@@ -90,6 +90,9 @@ int generate_swift_interface_for_module(NSString *moduleName, NSString *framewor
     if (xpc_get_type(result) != XPC_TYPE_DICTIONARY ||
         xpc_dictionary_get_count(request) <= 1) {
         NSLog(@"%@", result);
+        if (xpc_get_type(result) == XPC_TYPE_DATA) {
+            NSLog(@"%@", [[NSString alloc] initWithData:[NSData dataWithXPCObject:result] encoding:NSUTF8StringEncoding]);
+        }
         return error("couldn't process SourceKit results");
     }
 
