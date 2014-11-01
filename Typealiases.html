@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Global Variables  Reference</title>
+    <title>Typealiases  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <meta charset='utf-8'>
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
   </head>
   <body id="reference" class="Swift">
-    <a title="Global Variables  Reference"></a>
+    <a title="Typealiases  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p class="header-text"><a href="#">sourcekitten Docs</a></p>
@@ -20,7 +20,7 @@
         <p id="hierarchial_navigation">
         <a href="#" id="design_resources_link">sourcekitten Reference</a>
         <img id="carat" src="img/carat.png" height="10px" width="6px" />
-        Global Variables  Reference
+        Typealiases  Reference
         </p>
       </div>
     </section>
@@ -252,10 +252,10 @@
       <div class="rubber-band-gap"></div>
       <article class="chapter">
       <a name="/"></a>
-        <h1 class="chapter-name">Global Variables</h1>
+        <h1 class="chapter-name">Typealiases</h1>
         <section>
           <section class="section">
-            <p class="para">The following global variables are available globally.</p>
+            <p class="para">The following typealiases are available globally.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -269,8 +269,8 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:v12sourcekitten12uidStringMapGVSs10DictionaryVSs6UInt64SS_">
-                    <a class="x-instance-method Swift" href="#/s:v12sourcekitten12uidStringMapGVSs10DictionaryVSs6UInt64SS_">uidStringMap</a>
+                    <a name="/s:12sourcekitten8XPCArray">
+                    <a class="x-instance-method Swift" href="#/s:12sourcekitten8XPCArray">XPCArray</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -278,7 +278,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">SourceKit UID to String map</p>
+                        <p class="para">Type alias to simplify referring to an Array of XPCRepresentable objects.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -286,12 +286,12 @@
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
                           <p class="para">
-                          <code>var uidStringMap: [UInt64 : String]</code>
+                          <code>public typealias XPCArray = [XPCRepresentable]</code>
                           </p>
                         </div>
                       </div>
                       <div class="result-description view-on-github">
-                        <a href="https://github.com/jpsim/sourcekitten/blob/0.1.2/sourcekitten/main.swift#L18">Show on GitHub</a>
+                        <a href="https://github.com/jpsim/sourcekitten/blob/0.1.2/Vendor/SwiftXPC/SwiftXPC/XPCType.swift#L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -299,8 +299,8 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:v12sourcekitten7versionSS">
-                    <a class="x-instance-method Swift" href="#/s:v12sourcekitten7versionSS">version</a>
+                    <a name="/s:12sourcekitten13XPCDictionary">
+                    <a class="x-instance-method Swift" href="#/s:12sourcekitten13XPCDictionary">XPCDictionary</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -308,7 +308,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Version number</p>
+                        <p class="para">Type alias to simplify referring to a Dictionary of XPCRepresentable objects with String keys.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -316,42 +316,12 @@
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
                           <p class="para">
-                          <code>let version: String</code>
+                          <code>public typealias XPCDictionary = [String : XPCRepresentable]</code>
                           </p>
                         </div>
                       </div>
                       <div class="result-description view-on-github">
-                        <a href="https://github.com/jpsim/sourcekitten/blob/0.1.2/sourcekitten/main.swift#L13">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:v12sourcekitten7typeMapGVSs10DictionaryVSs14COpaquePointerOS_7XPCType_">
-                    <a class="x-instance-method Swift" href="#/s:v12sourcekitten7typeMapGVSs10DictionaryVSs14COpaquePointerOS_7XPCType_">typeMap</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Map xpc<em>type</em>t (COpaquePointer&#39;s) to their appropriate XPCType enum value.</p>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <p class="para">
-                          <code>let typeMap: [xpc_type_t : XPCType]</code>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="result-description view-on-github">
-                        <a href="https://github.com/jpsim/sourcekitten/blob/0.1.2/Vendor/SwiftXPC/SwiftXPC/XPCType.swift#L33">Show on GitHub</a>
+                        <a href="https://github.com/jpsim/sourcekitten/blob/0.1.2/Vendor/SwiftXPC/SwiftXPC/XPCType.swift#L50">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
