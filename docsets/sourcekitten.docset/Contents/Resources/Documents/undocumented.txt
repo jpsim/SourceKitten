@@ -1,0 +1,11 @@
+NSDate.h
+	class NSDate : NSObject, NSCopying, NSSecureCoding, NSCoding
+Swift
+	struct Double
+NSFileHandle.h
+	class NSFileHandle : NSObject, NSSecureCoding, NSCoding
+CFNumber.h
+	class CFBoolean
+XPCType.swift
+	public func !=(lhs: XPCRepresentable, rhs: XPCRepresentable) -> Bool
+	public func ==(lhs: XPCRepresentable, rhs: XPCRepresentable) -> Bool

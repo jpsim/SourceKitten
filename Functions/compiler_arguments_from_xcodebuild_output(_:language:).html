@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>insertDoc(_:_:_:_:) Function Reference</title>
+    <title>compiler_arguments_from_xcodebuild_output(_:language:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -20,8 +20,8 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body id="reference" class="Swift">
-    <a name="//apple_ref/swift/Function/insertDoc(_:_:_:_:)" class="dashAnchor"></a>
-    <a title="insertDoc(_:_:_:_:) Function Reference"></a>
+    <a name="//apple_ref/swift/Function/compiler_arguments_from_xcodebuild_output(_:language:)" class="dashAnchor"></a>
+    <a title="compiler_arguments_from_xcodebuild_output(_:language:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
         <p class="header-text"><a href="../index.html">sourcekitten Docs</a> (93% documented)</p>
@@ -34,7 +34,7 @@
         <p id="hierarchial_navigation">
         <a href="../index.html" id="design_resources_link">sourcekitten Reference</a>
         <img id="carat" src="../img/carat.png" height="10px" width="6px" />
-        insertDoc(_:_:_:_:) Function Reference
+        compiler_arguments_from_xcodebuild_output(_:language:) Function Reference
         </p>
       </div>
     </section>
@@ -311,10 +311,10 @@
       <div class="rubber-band-gap"></div>
       <article class="chapter">
       <a name="/"></a>
-        <h1 class="chapter-name">insertDoc(_:_:_:_:)</h1>
+        <h1 class="chapter-name">compiler_arguments_from_xcodebuild_output(_:language:)</h1>
         <section>
           <section class="section">
-            <p class="para">Insert a document in a parent at the given offset.</p>
+            <p class="para">Parses the compiler arguments needed to compile the <code>language</code> aspects of an Xcode project</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -327,9 +327,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FF12sourcekitten9insertDocFTGVSs10DictionarySSPS_16XPCRepresentable__RGS0_SSPS1___VSs5Int64SS_SbL_17insertDocDirectlyFTGS0_SSPS1___RGS0_SSPS1___S2__T_">
-                    <a name="//apple_ref/swift/Function/insertDocDirectly(_:_:_:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FF12sourcekitten9insertDocFTGVSs10DictionarySSPS_16XPCRepresentable__RGS0_SSPS1___VSs5Int64SS_SbL_17insertDocDirectlyFTGS0_SSPS1___RGS0_SSPS1___S2__T_">insertDocDirectly(_:_:_:)</a>
+                    <a name="/s:FF12sourcekitten41compiler_arguments_from_xcodebuild_outputFTCSo8NSString8languageOS_8Language_GSqGSaSS__L_15filterArgumentsFGSaSS_GSaSS_">
+                    <a name="//apple_ref/swift/Function/filterArguments(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FF12sourcekitten41compiler_arguments_from_xcodebuild_outputFTCSo8NSString8languageOS_8Language_GSqGSaSS__L_15filterArgumentsFGSaSS_GSaSS_">filterArguments(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -337,19 +337,49 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Insert doc without performing any validation</p>
+                        <p class="para">Filters compiler arguments from xcodebuild to something that libClang/sourcekit will accept</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">insertDocDirectly</span><span class="p">(</span><span class="nv">doc</span><span class="p">:</span> <span class="kt">XPCDictionary</span><span class="p">,</span> <span class="k">inout</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt">XPCDictionary</span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">Int64</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">filterArguments</span><span class="p">(</span><span class="k">var</span> <span class="nv">args</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
                       <div class="result-description view-on-github">
-                        <a href="https://github.com/jpsim/sourcekitten/blob/0.2.3/sourcekitten/main.swift#L594">Show on GitHub</a>
+                        <a href="https://github.com/jpsim/sourcekitten/blob/0.2.3/sourcekitten/main.swift#L483">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FFF12sourcekitten41compiler_arguments_from_xcodebuild_outputFTCSo8NSString8languageOS_8Language_GSqGSaSS__L_15filterArgumentsFGSaSS_GSaSS_L_24partiallyFilterArgumentsFGSaSS_TGSaSS_Sb_">
+                    <a name="//apple_ref/swift/Function/partiallyFilterArguments(_:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FFF12sourcekitten41compiler_arguments_from_xcodebuild_outputFTCSo8NSString8languageOS_8Language_GSqGSaSS__L_15filterArgumentsFGSaSS_GSaSS_L_24partiallyFilterArgumentsFGSaSS_TGSaSS_Sb_">partiallyFilterArguments(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Partially filters compiler arguments from xcodebuild to something that libClang/sourcekit will accept</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">partiallyFilterArguments</span><span class="p">(</span><span class="k">var</span> <span class="nv">args</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">([</span><span class="kt">String</span><span class="p">],</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="result-description view-on-github">
+                        <a href="https://github.com/jpsim/sourcekitten/blob/0.2.3/sourcekitten/main.swift#L485">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
