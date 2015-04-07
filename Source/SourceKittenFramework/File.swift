@@ -22,7 +22,7 @@ public struct File {
     :param: path File path.
     */
     public init?(path: String) {
-        self.path = path
+        self.path = (path as NSString).absolutePathRepresentation()
         if let contents = NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil) as String? {
             self.contents = contents
         } else {
