@@ -69,7 +69,10 @@ Partially filters compiler arguments from `xcodebuild` to something that SourceK
 private func partiallyFilterArguments(var args: [String]) -> ([String], Bool) {
     var didRemove = false
     let flagsToRemove = [
-        "-output-file-map"
+        "-output-file-map",
+        "--serialize-diagnostics",
+        "-c",
+        "-o"
     ]
     for flag in flagsToRemove {
         if let index = args.indexOf(flag) {
