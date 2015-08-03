@@ -1,0 +1,105 @@
+{
+  "Musician.h" : {
+    "key.substructure" : [
+      {
+        "name" : "JAZMusician",
+        "type" : "sourcekitten.source.lang.objc.decl.class",
+        "parameters" : [
+
+        ],
+        "line" : "12",
+        "file" : "Musician.h",
+        "declaration" : "@interface JAZMusician : NSObject\n@end",
+        "discussion" : null,
+        "resultDiscussion" : null,
+        "usr" : "c:objc(cs)JAZMusician",
+        "abstract" : [
+          {
+            "Para" : " JAZMusician models, you guessed it... Jazz Musicians! From Ellington to Marsalis, this class has you covered."
+          }
+        ],
+        "column" : "12"
+      },
+      {
+        "name" : "name",
+        "type" : "sourcekitten.source.lang.objc.decl.property",
+        "parameters" : [
+
+        ],
+        "line" : "17",
+        "file" : "Musician.h",
+        "declaration" : "- (NSString *)name;",
+        "discussion" : null,
+        "resultDiscussion" : null,
+        "usr" : "c:objc(cs)JAZMusician(py)name",
+        "abstract" : [
+          {
+            "Para" : " The name of the musician. i.e. \"John Coltrane\""
+          }
+        ],
+        "column" : "44"
+      },
+      {
+        "name" : "birthyear",
+        "type" : "sourcekitten.source.lang.objc.decl.property",
+        "parameters" : [
+
+        ],
+        "line" : "22",
+        "file" : "Musician.h",
+        "declaration" : "- (NSUInteger)birthyear;",
+        "discussion" : null,
+        "resultDiscussion" : null,
+        "usr" : "c:objc(cs)JAZMusician(py)birthyear",
+        "abstract" : [
+          {
+            "Para" : " The year the musician was born. i.e. 1926"
+          }
+        ],
+        "column" : "44"
+      },
+      {
+        "name" : "initWithName:birthyear:",
+        "type" : "sourcekitten.source.lang.objc.decl.initializer",
+        "parameters" : [
+          {
+            "name" : "name",
+            "discussion" : [
+              {
+                "Para" : "      The name of the musician. "
+              }
+            ]
+          },
+          {
+            "name" : "birthyear",
+            "discussion" : [
+              {
+                "Para" : " The year the musician was born."
+              }
+            ]
+          }
+        ],
+        "line" : "36",
+        "file" : "Musician.h",
+        "declaration" : "- (instancetype)initWithName:(NSString *)name birthyear:(NSUInteger)birthyear;",
+        "discussion" : [
+          {
+            "Para" : " Jazz can be addicting. Please be careful out there."
+          }
+        ],
+        "resultDiscussion" : [
+          {
+            "Para" : "          An initialized JAZMusician instance."
+          }
+        ],
+        "usr" : "c:objc(cs)JAZMusician(im)initWithName:birthyear:",
+        "abstract" : [
+          {
+            "Para" : " Initialize a JAZMusician. Don't forget to have a name and a birthyear."
+          }
+        ],
+        "column" : "1"
+      }
+    ]
+  }
+}

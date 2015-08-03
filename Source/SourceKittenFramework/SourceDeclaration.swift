@@ -11,6 +11,7 @@ import SWXMLHash
 
 /// Represents a source code declaration.
 public struct SourceDeclaration {
+    let type: String?
     let file: String
     let line: Int64?
     let column: Int64?
@@ -25,6 +26,7 @@ public struct SourceDeclaration {
 
     var dictionaryValue: [String: AnyObject] {
         var dict = [String: AnyObject]()
+        dict["type"] = type ?? NSNull()
         dict["file"] = file
         dict["line"] = line.map(String.init) ?? NSNull()
         dict["column"] = column.map(String.init) ?? NSNull()
@@ -56,6 +58,7 @@ public struct SourceDeclaration {
         name = rootXML["Name"].element?.text
         usr = rootXML["USR"].element?.text
         declaration = rootXML["Declaration"].element?.text
+        type = ObjCDeclarationKind.fromUSR(usr!, declaration: declaration)?.rawValue
         parameters = rootXML["Parameters"].children.map {
             [
                 "name": $0["Name"].element?.text ?? "",

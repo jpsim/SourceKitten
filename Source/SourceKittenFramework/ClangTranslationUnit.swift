@@ -11,6 +11,15 @@ public struct ClangTranslationUnit {
     /// Array of CXTranslationUnits.
     private let clangTranslationUnits: [CXTranslationUnit]
 
+    /// Array of sorted & deduplicated source declarations.
+    private var declarations: [SourceDeclaration] {
+        return Set(
+            clangTranslationUnits
+                .flatMap(commentXML)
+                .flatMap(SourceDeclaration.init)
+        ).sort(<)
+    }
+
     /**
     Create a ClangTranslationUnit by passing Objective-C header files and clang compiler arguments.
 
@@ -52,11 +61,8 @@ public struct ClangTranslationUnit {
 // MARK: CustomStringConvertible
 
 extension ClangTranslationUnit: CustomStringConvertible {
-    /// A textual XML representation of `ClangTranslationUnit`.
-    public var description: String {
-        let commentXMLs = clangTranslationUnits.map({commentXML($0)}).reduce([], combine: +).joinWithSeparator("\n")
-        return "<?xml version=\"1.0\"?>\n<sourcekitten>\n" + commentXMLs + "\n</sourcekitten>"
-    }
+    /// A textual JSON representation of `ClangTranslationUnit`.
+    public var description: String { return toJSON(groupDeclarationsByFile(declarations)) }
 }
 
 // MARK: Helpers
@@ -77,4 +83,13 @@ public func commentXML(translationUnit: CXTranslationUnit) -> [String] {
         return CXChildVisit_Recurse
     }
     return commentXMLs
+}
+
+private func groupDeclarationsByFile(declarations: [SourceDeclaration]) -> [String: [String: [AnyObject]]] {
+    let files = Set(declarations.map({ $0.file }))
+    var groupedDeclarations = [String: [String: [AnyObject]]]()
+    for file in files {
+        groupedDeclarations[file] = ["key.substructure": declarations.filter { $0.file == file }.map { $0.dictionaryValue }]
+    }
+    return groupedDeclarations
 }

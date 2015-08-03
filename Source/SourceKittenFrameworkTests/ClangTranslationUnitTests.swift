@@ -31,8 +31,9 @@ class ClangTranslationUnitTests: XCTestCase {
         let headerFiles = [fixturesDirectory + "Musician.h"]
         let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath()]
         let tu = ClangTranslationUnit(headerFiles: headerFiles, compilerArguments: compilerArguments)
-        let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(fixturesDirectory, withString: "")
-        let expectedOutput = File(path: fixturesDirectory + "Musician.xml")!.contents as String
+        let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
+        let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
+        let expectedOutput = File(path: fixturesDirectory + "Musician.json")!.contents
         XCTAssertEqual(comparisonString, expectedOutput, "Objective-C docs should match expected ouput")
     }
 }
