@@ -179,7 +179,10 @@ private func childrenAsArray(indexer: XMLIndexer) -> XPCArray? {
     let children = indexer.children
     if children.count > 0 {
         return children.flatMap({ $0.element }).map {
-            [$0.name: $0.text ?? ""] as XPCDictionary
+            [
+                $0.name: $0.text ?? "",
+                "kind": $0.attributes["kind"] ?? ""
+            ] as XPCDictionary
         } as XPCArray
     }
     return nil

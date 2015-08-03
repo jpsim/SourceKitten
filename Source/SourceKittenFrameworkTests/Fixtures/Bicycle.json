@@ -141,7 +141,8 @@
             "key.doc.usr" : "s:OC7Bicycle7Bicycle5Style",
             "key.doc.discussion" : [
               {
-                "List-Bullet" : ""
+                "List-Bullet" : "",
+                "kind" : ""
               }
             ]
           },
@@ -230,7 +231,8 @@
             "key.doc.usr" : "s:OC7Bicycle7Bicycle7Gearing",
             "key.doc.discussion" : [
               {
-                "List-Bullet" : ""
+                "List-Bullet" : "",
+                "kind" : ""
               }
             ]
           },
@@ -342,7 +344,8 @@
             "key.doc.usr" : "s:OC7Bicycle7Bicycle9Handlebar",
             "key.doc.discussion" : [
               {
-                "List-Bullet" : ""
+                "List-Bullet" : "",
+                "kind" : ""
               }
             ]
           },
@@ -542,7 +545,8 @@
                 "name" : "style",
                 "discussion" : [
                   {
-                    "Para" : "The style of the bicycle"
+                    "Para" : "The style of the bicycle",
+                    "kind" : ""
                   }
                 ]
               },
@@ -550,7 +554,8 @@
                 "name" : "gearing",
                 "discussion" : [
                   {
-                    "Para" : "The gearing of the bicycle"
+                    "Para" : "The gearing of the bicycle",
+                    "kind" : ""
                   }
                 ]
               },
@@ -558,7 +563,8 @@
                 "name" : "handlebar",
                 "discussion" : [
                   {
-                    "Para" : "The handlebar of the bicycle"
+                    "Para" : "The handlebar of the bicycle",
+                    "kind" : ""
                   }
                 ]
               },
@@ -566,7 +572,8 @@
                 "name" : "centimeters",
                 "discussion" : [
                   {
-                    "Para" : "The frame size of the bicycle, in centimeters"
+                    "Para" : "The frame size of the bicycle, in centimeters",
+                    "kind" : ""
                   }
                 ]
               }
@@ -586,7 +593,8 @@
             "key.typename" : "Bicycle.Type -> (style: Bicycle.Style, gearing: Bicycle.Gearing, handlebar: Bicycle.Handlebar, frameSize: Int) -> Bicycle",
             "key.doc.result_discussion" : [
               {
-                "Para" : "A beautiful, brand-new, custom built just for you."
+                "Para" : "A beautiful, brand-new, custom built just for you.",
+                "kind" : ""
               }
             ],
             "key.doc.type" : "Function",
@@ -616,7 +624,8 @@
                 "name" : "meters",
                 "discussion" : [
                   {
-                    "Para" : "The distance to travel in meters."
+                    "Para" : "The distance to travel in meters.",
+                    "kind" : ""
                   }
                 ]
               }

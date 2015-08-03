@@ -167,10 +167,12 @@
         "key.doc.usr" : "s:V10Commandant11HelpCommand",
         "key.doc.discussion" : [
           {
-            "Para" : "If you want to use this command, initialize it with the registry, then add it to that same registry:"
+            "Para" : "If you want to use this command, initialize it with the registry, then add it to that same registry:",
+            "kind" : ""
           },
           {
-            "CodeListing" : ""
+            "CodeListing" : "",
+            "kind" : ""
           }
         ]
       },
@@ -364,7 +366,8 @@
             "key.doc.usr" : "s:ZFP10Commandant11OptionsType8evaluateuRq_S0__FMq_FOS_11CommandModeGO6Result6Resultq_GOS_15CommandantErrorqq_S0_11ClientError__",
             "key.doc.discussion" : [
               {
-                "Para" : "Returns the parsed options or a `UsageError`."
+                "Para" : "Returns the parsed options or a `UsageError`.",
+                "kind" : ""
               }
             ]
           }
@@ -372,13 +375,16 @@
         "key.doc.usr" : "s:P10Commandant11OptionsType",
         "key.doc.discussion" : [
           {
-            "Para" : "This is most helpful when used in conjunction with the `Option` and `Switch` types, and `<*>` and `<|` combinators."
+            "Para" : "This is most helpful when used in conjunction with the `Option` and `Switch` types, and `<*>` and `<|` combinators.",
+            "kind" : ""
           },
           {
-            "Para" : "Example:"
+            "Para" : "Example:",
+            "kind" : ""
           },
           {
-            "CodeListing" : ""
+            "CodeListing" : "",
+            "kind" : ""
           }
         ]
       },
@@ -444,10 +450,12 @@
             "key.doc.usr" : "s:vV10Commandant6Option3keyGSqSS_",
             "key.doc.discussion" : [
               {
-                "Para" : "If this is nil, this option will not have a corresponding flag, and must be specified as a plain value at the end of the argument list."
+                "Para" : "If this is nil, this option will not have a corresponding flag, and must be specified as a plain value at the end of the argument list.",
+                "kind" : ""
               },
               {
-                "Para" : "This must be non-nil for a boolean option."
+                "Para" : "This must be non-nil for a boolean option.",
+                "kind" : ""
               }
             ]
           },
@@ -482,7 +490,8 @@
             "key.doc.usr" : "s:vV10Commandant6Option12defaultValueGSqq__",
             "key.doc.discussion" : [
               {
-                "Para" : "If this is nil, this option is always required."
+                "Para" : "If this is nil, this option is always required.",
+                "kind" : ""
               }
             ]
           },
@@ -517,7 +526,8 @@
             "key.doc.usr" : "s:vV10Commandant6Option5usageSS",
             "key.doc.discussion" : [
               {
-                "Para" : "For boolean operations, this should describe the effect of  using the default value (i.e., what will happen if you disable\/enable the flag differently from the default)."
+                "Para" : "For boolean operations, this should describe the effect of  using the default value (i.e., what will happen if you disable\/enable the flag differently from the default).",
+                "kind" : ""
               }
             ]
           },
@@ -905,34 +915,44 @@
         ],
         "key.doc.discussion" : [
           {
-            "Para" : "Swift strings are designed to be Unicode-correct.  In particular, the APIs make it easy to write code that works correctly, and does not surprise end-users, regardless of where you venture in the Unicode character space.  For example, the `==` operator checks for , so two different representations of the same string will always compare equal."
+            "Para" : "Swift strings are designed to be Unicode-correct.  In particular, the APIs make it easy to write code that works correctly, and does not surprise end-users, regardless of where you venture in the Unicode character space.  For example, the `==` operator checks for , so two different representations of the same string will always compare equal.",
+            "kind" : ""
           },
           {
-            "Para" : "The fundamental operations on Swift strings are not sensitive to locale settings.  That's because, for example, the validity of a `Dictionary<String, T>` in a running program depends on a given string comparison having a single, stable result.  Therefore, Swift always uses the default, un- Unicode algorithms for basic string operations."
+            "Para" : "The fundamental operations on Swift strings are not sensitive to locale settings.  That's because, for example, the validity of a `Dictionary<String, T>` in a running program depends on a given string comparison having a single, stable result.  Therefore, Swift always uses the default, un- Unicode algorithms for basic string operations.",
+            "kind" : ""
           },
           {
-            "Para" : "Importing `Foundation` endows swift strings with the full power of the `NSString` API, which allows you to choose more complex locale-sensitive operations explicitly."
+            "Para" : "Importing `Foundation` endows swift strings with the full power of the `NSString` API, which allows you to choose more complex locale-sensitive operations explicitly.",
+            "kind" : ""
           },
           {
-            "Para" : "Each string variable, `let` binding, or stored property has an independent value, so mutations to the string are not observable through its copies:"
+            "Para" : "Each string variable, `let` binding, or stored property has an independent value, so mutations to the string are not observable through its copies:",
+            "kind" : ""
           },
           {
-            "CodeListing" : ""
+            "CodeListing" : "",
+            "kind" : ""
           },
           {
-            "Para" : "Strings use Copy-on-Write so that their data is only copied lazily, upon mutation, when more than one string instance is using the same buffer.  Therefore, the first in any sequence of mutating operations may cost `O(N)` time and space, where `N` is the length of the string's (unspecified) underlying representation."
+            "Para" : "Strings use Copy-on-Write so that their data is only copied lazily, upon mutation, when more than one string instance is using the same buffer.  Therefore, the first in any sequence of mutating operations may cost `O(N)` time and space, where `N` is the length of the string's (unspecified) underlying representation.",
+            "kind" : ""
           },
           {
-            "Para" : "`String` is not itself a collection of anything.  Instead, it has properties that present the string's contents as meaningful collections:"
+            "Para" : "`String` is not itself a collection of anything.  Instead, it has properties that present the string's contents as meaningful collections:",
+            "kind" : ""
           },
           {
-            "List-Bullet" : ""
+            "List-Bullet" : "",
+            "kind" : ""
           },
           {
-            "Para" : "When a string's contiguous storage fills up, new storage must be allocated and characters must be moved to the new storage. `String` uses an exponential growth strategy that makes `append` a constant time operation ."
+            "Para" : "When a string's contiguous storage fills up, new storage must be allocated and characters must be moved to the new storage. `String` uses an exponential growth strategy that makes `append` a constant time operation .",
+            "kind" : ""
           },
           {
-            "Para" : "`String` is bridged to Objective-C as `NSString`, and a `String` that originated in Objective-C may store its characters in an `NSString`.  Since any arbitrary subclass of `NSSString` can become a `String`, there are no guarantees about representation or efficiency in this case.  Since `NSString` is immutable, it is just as though the storage was shared by some copy: the first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost `O(N)` time and space, where `N` is the length of the string representation (or more, if the underlying `NSString` is has unusual performance characteristics)."
+            "Para" : "`String` is bridged to Objective-C as `NSString`, and a `String` that originated in Objective-C may store its characters in an `NSString`.  Since any arbitrary subclass of `NSSString` can become a `String`, there are no guarantees about representation or efficiency in this case.  Since `NSString` is immutable, it is just as though the storage was shared by some copy: the first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost `O(N)` time and space, where `N` is the length of the string representation (or more, if the underlying `NSString` is has unusual performance characteristics).",
+            "kind" : ""
           }
         ]
       },
@@ -989,7 +1009,8 @@
         "key.doc.usr" : "s:ZF10Commandantoi3lmgu1_rFTFq_q0_GO6Result6Resultq_GOS_15CommandantErrorq1____GS1_q0_GS2_q1___",
         "key.doc.discussion" : [
           {
-            "Para" : "In the context of command-line option parsing, this is used to chain together the parsing of multiple arguments. See OptionsType for an example."
+            "Para" : "In the context of command-line option parsing, this is used to chain together the parsing of multiple arguments. See OptionsType for an example.",
+            "kind" : ""
           }
         ]
       },
@@ -1046,7 +1067,8 @@
         "key.doc.usr" : "s:ZF10Commandantoi3lmgu1_rFTGO6Result6ResultFq_q0_GOS_15CommandantErrorq1___GS1_q_GS2_q1____GS1_q0_GS2_q1___",
         "key.doc.discussion" : [
           {
-            "Para" : "In the context of command-line option parsing, this is used to chain together the parsing of multiple arguments. See OptionsType for an example."
+            "Para" : "In the context of command-line option parsing, this is used to chain together the parsing of multiple arguments. See OptionsType for an example.",
+            "kind" : ""
           }
         ]
       },
@@ -1106,7 +1128,8 @@
         "key.doc.usr" : "s:ZF10Commandantoi2lou0_Rq_S_12ArgumentType_FTOS_11CommandModeGVS_6Optionq___GO6Result6Resultq_GOS_15CommandantErrorq0___",
         "key.doc.discussion" : [
           {
-            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option's `defaultValue` is used."
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option's `defaultValue` is used.",
+            "kind" : ""
           }
         ]
       },
@@ -1166,7 +1189,8 @@
         "key.doc.usr" : "s:ZF10Commandantoi2lourFTOS_11CommandModeGVS_6OptionSb__GO6Result6ResultSbGOS_15CommandantErrorq___",
         "key.doc.discussion" : [
           {
-            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option's `defaultValue` is used."
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option's `defaultValue` is used.",
+            "kind" : ""
           }
         ]
       }
@@ -1291,7 +1315,8 @@
         "key.doc.usr" : "s:O10Commandant15CommandantError",
         "key.doc.discussion" : [
           {
-            "Para" : "`ClientError` should be the type of error (if any) that can occur when running commands."
+            "Para" : "`ClientError` should be the type of error (if any) that can occur when running commands.",
+            "kind" : ""
           }
         ]
       },
@@ -1356,7 +1381,8 @@
         "key.doc.usr" : "s:O10Commandant15CommandantError",
         "key.doc.discussion" : [
           {
-            "Para" : "`ClientError` should be the type of error (if any) that can occur when running commands."
+            "Para" : "`ClientError` should be the type of error (if any) that can occur when running commands.",
+            "kind" : ""
           }
         ]
       },
@@ -1746,7 +1772,8 @@
             "key.doc.usr" : "s:vV10Commandant6Switch4flagGSqVSs9Character_",
             "key.doc.discussion" : [
               {
-                "Para" : "Multiple flags can be grouped together as a single argument and will split when parsing (e.g. `rm -rf` treats 'r' and 'f' as inidividual flags)."
+                "Para" : "Multiple flags can be grouped together as a single argument and will split when parsing (e.g. `rm -rf` treats 'r' and 'f' as inidividual flags).",
+                "kind" : ""
               }
             ]
           },
@@ -1805,7 +1832,8 @@
         "key.doc.usr" : "s:V10Commandant6Switch",
         "key.doc.discussion" : [
           {
-            "Para" : "For a boolean toggle that can be enabled and disabled use `Option<Bool>`."
+            "Para" : "For a boolean toggle that can be enabled and disabled use `Option<Bool>`.",
+            "kind" : ""
           }
         ]
       },
@@ -1870,7 +1898,8 @@
         "key.doc.usr" : "s:V10Commandant6Switch",
         "key.doc.discussion" : [
           {
-            "Para" : "For a boolean toggle that can be enabled and disabled use `Option<Bool>`."
+            "Para" : "For a boolean toggle that can be enabled and disabled use `Option<Bool>`.",
+            "kind" : ""
           }
         ]
       },
@@ -1930,7 +1959,8 @@
         "key.doc.usr" : "s:ZF10Commandantoi2lourFTOS_11CommandModeVS_6Switch_GO6Result6ResultSbGOS_15CommandantErrorq___",
         "key.doc.discussion" : [
           {
-            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option's `defaultValue` is used."
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option's `defaultValue` is used.",
+            "kind" : ""
           }
         ]
       }
@@ -2498,7 +2528,8 @@
             "key.doc.usr" : "s:FC10Commandant15CommandRegistry8registeru__Rqd__S_11CommandTypezq_qqd__S1_11ClientError_FGS0_q__Fqd__T_",
             "key.doc.discussion" : [
               {
-                "Para" : "If another command was already registered with the same `verb`, it will be overwritten."
+                "Para" : "If another command was already registered with the same `verb`, it will be overwritten.",
+                "kind" : ""
               }
             ]
           },
@@ -2538,7 +2569,8 @@
             "key.doc.usr" : "s:FC10Commandant15CommandRegistry10runCommandurFGS0_q__FTSS9argumentsGSaSS__GSqGO6Result6ResultT_GOS_15CommandantErrorq____",
             "key.doc.discussion" : [
               {
-                "Para" : "Returns the results of the execution, or nil if no such command exists."
+                "Para" : "Returns the results of the execution, or nil if no such command exists.",
+                "kind" : ""
               }
             ]
           }
@@ -2605,13 +2637,16 @@
             "key.doc.usr" : "s:FC10Commandant15CommandRegistry4mainurFGS0_q__FT11defaultVerbSS12errorHandlerFq_T__T_",
             "key.doc.discussion" : [
               {
-                "Para" : "If the chosen command executes successfully, the process will exit with a successful exit code."
+                "Para" : "If the chosen command executes successfully, the process will exit with a successful exit code.",
+                "kind" : ""
               },
               {
-                "Para" : "If the chosen command fails, the provided error handler will be invoked, then the process will exit with a failure exit code."
+                "Para" : "If the chosen command fails, the provided error handler will be invoked, then the process will exit with a failure exit code.",
+                "kind" : ""
               },
               {
-                "Para" : "If a matching command could not be found or a usage error occurred, a helpful error message will be written to `stderr`, then the process will exit with a failure error code."
+                "Para" : "If a matching command could not be found or a usage error occurred, a helpful error message will be written to `stderr`, then the process will exit with a failure error code.",
+                "kind" : ""
               }
             ]
           }
@@ -3199,7 +3234,8 @@
             "key.doc.usr" : "s:FC10Commandant14ArgumentParser17consumeBooleanKeyFS0_FSSGSqSb_",
             "key.doc.discussion" : [
               {
-                "Para" : "If the key is found, it is then removed from the list of arguments remaining to be parsed."
+                "Para" : "If the key is found, it is then removed from the list of arguments remaining to be parsed.",
+                "kind" : ""
               }
             ]
           },
@@ -3239,7 +3275,8 @@
             "key.doc.usr" : "s:FC10Commandant14ArgumentParser18consumeValueForKeyFS0_FSSGO6Result6ResultGSqSS_GOS_15CommandantErrorOS_7NoError__",
             "key.doc.discussion" : [
               {
-                "Para" : "If a value is found, the key and the value are both removed from the list of arguments remaining to be parsed."
+                "Para" : "If a value is found, the key and the value are both removed from the list of arguments remaining to be parsed.",
+                "kind" : ""
               }
             ]
           },
