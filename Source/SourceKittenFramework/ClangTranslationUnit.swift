@@ -76,10 +76,22 @@ Returns an array of XML comments by iterating over a Clang translation unit.
 */
 public func commentXML(translationUnit: CXTranslationUnit) -> [String] {
     var commentXMLs = [String]()
-    clang_visitChildrenWithBlock(clang_getTranslationUnitCursor(translationUnit)) { cursor, _ in
-        if let commentXML = String.fromCString(clang_getCString(clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)))) {
-            commentXMLs.append(commentXML)
+    clang_visitChildrenWithBlock(clang_getTranslationUnitCursor(translationUnit)) { cursor, parent in
+        guard let commentXML = String.fromCString(clang_getCString(clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)))) else {
+            return CXChildVisit_Recurse
         }
+        var file = CXFile()
+        var line: UInt32 = 0
+        var column: UInt32 = 0
+        var offset: UInt32 = 0
+        clang_getSpellingLocation(clang_getCursorLocation(parent),
+            &file,
+            &line,
+            &column,
+            &offset)
+        print("\(file) \(line) \(column) \(offset)")
+        print("parent hash: \(clang_hashCursor(parent))\nparent: \(parent)\nchild comment: \(commentXML)")
+        commentXMLs.append(commentXML)
         return CXChildVisit_Recurse
     }
     return commentXMLs
