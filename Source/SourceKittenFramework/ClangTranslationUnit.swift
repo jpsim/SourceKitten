@@ -95,9 +95,13 @@ Returns an array of XML comments by iterating over a Clang translation unit.
 public func commentXML(translationUnit: CXTranslationUnit) -> [String] {
     var commentXMLs = [String]()
     translationUnit.visit { cursor, parent in
+        guard clang_isDeclaration(cursor.kind) != 0 else {
+            return CXChildVisit_Continue
+        }
         guard let commentXML = clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)).str() else {
             return CXChildVisit_Recurse
         }
+
         var file = CXFile()
         var line: UInt32 = 0
         var column: UInt32 = 0
