@@ -40,6 +40,7 @@ private func toOutputDictionary(decl: SourceDeclaration) -> [String: AnyObject] 
     set(.DocColumn, String(decl.location.column))
     set(.Name, decl.name)
     set(.DocUSR, decl.usr)
+    set(.ParsedDeclaration, decl.declaration)
 
     setA(.DocumentationComment, decl.discussion.map(toOutputDictionary))
     setA(.DocResultDiscussion, decl.returnDiscussion.map(toOutputDictionary))
