@@ -45,8 +45,8 @@ public struct SourceDeclaration {
         guard clang_isDeclaration(cursor.kind) != 0 else {
             return nil
         }
-        let comment = clang_Cursor_getParsedComment(cursor)
-        guard clang_Comment_getKind(comment) != CXComment_Null else {
+        let comment = cursor.parsedComment()
+        guard comment.kind() != CXComment_Null else {
             return nil
         }
 
@@ -61,9 +61,9 @@ public struct SourceDeclaration {
         var d = [Text]()
         var r = [Text]()
 
-        for i in 0..<clang_Comment_getNumChildren(comment) {
-            let c = clang_Comment_getChild(comment, i)
-            switch clang_Comment_getKind(c).rawValue {
+        for i in 0..<comment.count() {
+            let c = comment[i]
+            switch c.kind().rawValue {
             case CXComment_Text.rawValue:
                 d += c.paragraphToString()
                 break
@@ -75,7 +75,7 @@ public struct SourceDeclaration {
                 d += c.paragraphToString()
                 break
             case CXComment_BlockCommand.rawValue:
-                let command = clang_BlockCommandComment_getCommandName(c).str()
+                let command = c.commandName()
                 if command == "return" {
                     r += c.paragraphToString()
                 }

@@ -87,6 +87,10 @@ extension CXCursor {
         clang_visitChildrenWithBlock(self, block)
     }
 
+    func parsedComment() -> CXComment {
+        return clang_Cursor_getParsedComment(self)
+    }
+
     func flatMap<T>(block: (CXCursor) -> T?) -> [T] {
         var ret = [T]()
         visit() { cursor, _ in
@@ -133,5 +137,21 @@ extension CXComment {
             }
         }
         return ret
+    }
+
+    func kind() -> CXCommentKind {
+        return clang_Comment_getKind(self)
+    }
+
+    func commandName() -> String? {
+        return clang_BlockCommandComment_getCommandName(self).str()
+    }
+
+    func count() -> UInt32 {
+        return clang_Comment_getNumChildren(self)
+    }
+
+    subscript(idx: UInt32) -> CXComment {
+        return clang_Comment_getChild(self, idx)
     }
 }
