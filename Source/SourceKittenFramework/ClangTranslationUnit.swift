@@ -6,6 +6,31 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+extension CXString {
+    func str() -> String? {
+        return String.fromCString(clang_getCString(self))
+    }
+}
+
+struct Index {
+    private let cx = clang_createIndex(0, 1)
+
+    func open(file file: String, args: [UnsafePointer<Int8>]) -> CXTranslationUnit {
+        return clang_createTranslationUnitFromSourceFile(cx,
+            file,
+            Int32(args.count),
+            args,
+            0,
+            nil)
+    }
+}
+
+extension CXTranslationUnit {
+    func visit(block: ((CXCursor, CXCursor) -> CXChildVisitResult)) {
+        clang_visitChildrenWithBlock(clang_getTranslationUnitCursor(self), block)
+    }
+}
+
 /// Represents a group of CXTranslationUnits.
 public struct ClangTranslationUnit {
     /// Array of CXTranslationUnits.
@@ -28,15 +53,8 @@ public struct ClangTranslationUnit {
     */
     public init(headerFiles: [String], compilerArguments: [String]) {
         let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).UTF8String }
-        let clangIndex = clang_createIndex(0, 1)
-        clangTranslationUnits = headerFiles.map { file in
-            return clang_createTranslationUnitFromSourceFile(clangIndex,
-                file,
-                Int32(cStringCompilerArguments.count),
-                cStringCompilerArguments,
-                0,
-                nil)
-        }
+        let clangIndex = Index()
+        clangTranslationUnits = headerFiles.map { clangIndex.open(file: $0, args: cStringCompilerArguments) }
     }
 
     /**
@@ -76,8 +94,8 @@ Returns an array of XML comments by iterating over a Clang translation unit.
 */
 public func commentXML(translationUnit: CXTranslationUnit) -> [String] {
     var commentXMLs = [String]()
-    clang_visitChildrenWithBlock(clang_getTranslationUnitCursor(translationUnit)) { cursor, parent in
-        guard let commentXML = String.fromCString(clang_getCString(clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)))) else {
+    translationUnit.visit { cursor, parent in
+        guard let commentXML = clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)).str() else {
             return CXChildVisit_Recurse
         }
         var file = CXFile()
