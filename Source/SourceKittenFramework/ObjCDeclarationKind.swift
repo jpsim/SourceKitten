@@ -33,29 +33,18 @@ public enum ObjCDeclarationKind: String {
     /// `typedef`.
     case Typedef = "sourcekitten.source.lang.objc.decl.typedef"
 
-    public static func fromUSR(usr: String, declaration: String? = nil) -> ObjCDeclarationKind? {
-        let patterns: [ObjCDeclarationKind: String] = [
-            .Category: "<TODO>",
-            .Class: "^c:objc\\(cs\\)\\w+$",
-            .Enum: "<same as typedef so override later>",
-            .Enumcase: "^c:@E",
-            .Initializer: "^c:objc\\(cs\\)\\w+\\(im\\)init",
-            .MethodClass: "^c:objc\\((cs|pl)\\)\\w+\\(cm\\)\\w+",
-            .MethodInstance: "^c:objc\\((cs|pl)\\)\\w+\\(im\\)\\w+",
-            .Property: "^c:objc\\((cs|pl)\\)\\w+\\(py\\)\\w+",
-            .Protocol: "<TODO>",
-            .Typedef: "^c:.+@T@"
-        ]
-        for pattern in patterns {
-            let regex = try! NSRegularExpression(pattern: pattern.1, options: [])
-            if regex.matchesInString(usr, options: [], range: NSMakeRange(0, usr.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))).count > 0 {
-                if let declaration = declaration where pattern.0 == .Typedef &&
-                    declaration.rangeOfString("typedef enum")?.startIndex == declaration.startIndex {
-                        return .Enum
-                }
-                return pattern.0
-            }
+    public static func fromClang(kind: CXCursorKind) -> ObjCDeclarationKind? {
+        switch kind.rawValue {
+        case CXCursor_ObjCCategoryDecl.rawValue: return .Category
+        case CXCursor_ObjCInterfaceDecl.rawValue: return .Class
+        case CXCursor_EnumDecl.rawValue: return .Enum
+        case CXCursor_EnumConstantDecl.rawValue: return .Enumcase
+        case CXCursor_ObjCClassMethodDecl.rawValue: return .MethodClass
+        case CXCursor_ObjCInstanceMethodDecl.rawValue: return .MethodInstance
+        case CXCursor_ObjCPropertyDecl.rawValue: return .Property
+        case CXCursor_ObjCProtocolDecl.rawValue: return .Protocol
+        case CXCursor_TypedefDecl.rawValue: return .Typedef
+        default: return nil
         }
-        return nil
     }
 }

@@ -6,28 +6,22 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-extension CXString {
-    func str() -> String? {
-        return String.fromCString(clang_getCString(self))
+extension SequenceType where Generator.Element: Hashable {
+    func distinct() -> [Generator.Element] {
+        return Array(Set(self))
     }
 }
 
-struct Index {
-    private let cx = clang_createIndex(0, 1)
-
-    func open(file file: String, args: [UnsafePointer<Int8>]) -> CXTranslationUnit {
-        return clang_createTranslationUnitFromSourceFile(cx,
-            file,
-            Int32(args.count),
-            args,
-            0,
-            nil)
-    }
-}
-
-extension CXTranslationUnit {
-    func visit(block: ((CXCursor, CXCursor) -> CXChildVisitResult)) {
-        clang_visitChildrenWithBlock(clang_getTranslationUnitCursor(self), block)
+extension SequenceType {
+    func groupBy<T: Hashable>(keyFn: (Generator.Element) -> T) -> [T: [Generator.Element]] {
+        var ret = Dictionary<T, [Generator.Element]>()
+        for val in self {
+            let key = keyFn(val)
+            var d = ret[key] ?? []
+            d.append(val)
+            ret[key] = d
+        }
+        return ret
     }
 }
 
@@ -36,14 +30,7 @@ public struct ClangTranslationUnit {
     /// Array of CXTranslationUnits.
     private let clangTranslationUnits: [CXTranslationUnit]
 
-    /// Array of sorted & deduplicated source declarations.
-    private var declarations: [SourceDeclaration] {
-        return Set(
-            clangTranslationUnits
-                .flatMap(commentXML)
-                .flatMap(SourceDeclaration.init)
-        ).sort(<)
-    }
+    public let declarations: [String: [SourceDeclaration]]
 
     /**
     Create a ClangTranslationUnit by passing Objective-C header files and clang compiler arguments.
@@ -53,8 +40,13 @@ public struct ClangTranslationUnit {
     */
     public init(headerFiles: [String], compilerArguments: [String]) {
         let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).UTF8String }
-        let clangIndex = Index()
+        let clangIndex = ClangIndex()
         clangTranslationUnits = headerFiles.map { clangIndex.open(file: $0, args: cStringCompilerArguments) }
+        declarations = clangTranslationUnits
+            .flatMap { (tu: CXTranslationUnit) -> [SourceDeclaration] in tu.cursor().flatMap(SourceDeclaration.init) }
+            .distinct()
+//            .sort()
+            .groupBy { $0.location.file }
     }
 
     /**
@@ -80,50 +72,7 @@ public struct ClangTranslationUnit {
 
 extension ClangTranslationUnit: CustomStringConvertible {
     /// A textual JSON representation of `ClangTranslationUnit`.
-    public var description: String { return toJSON(groupDeclarationsByFile(declarations)) }
-}
-
-// MARK: Helpers
-
-/**
-Returns an array of XML comments by iterating over a Clang translation unit.
-
-- parameter translationUnit: Clang translation unit created from Clang index, file path and compiler arguments.
-
-- returns: An array of XML comments by iterating over a Clang translation unit.
-*/
-public func commentXML(translationUnit: CXTranslationUnit) -> [String] {
-    var commentXMLs = [String]()
-    translationUnit.visit { cursor, parent in
-        guard clang_isDeclaration(cursor.kind) != 0 else {
-            return CXChildVisit_Continue
-        }
-        guard let commentXML = clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)).str() else {
-            return CXChildVisit_Recurse
-        }
-
-        var file = CXFile()
-        var line: UInt32 = 0
-        var column: UInt32 = 0
-        var offset: UInt32 = 0
-        clang_getSpellingLocation(clang_getCursorLocation(parent),
-            &file,
-            &line,
-            &column,
-            &offset)
-        print("\(file) \(line) \(column) \(offset)")
-        print("parent hash: \(clang_hashCursor(parent))\nparent: \(parent)\nchild comment: \(commentXML)")
-        commentXMLs.append(commentXML)
-        return CXChildVisit_Recurse
+    public var description: String {
+        return declarationsToJSON(declarations)
     }
-    return commentXMLs
-}
-
-private func groupDeclarationsByFile(declarations: [SourceDeclaration]) -> [String: [String: [AnyObject]]] {
-    let files = Set(declarations.map({ $0.file }))
-    var groupedDeclarations = [String: [String: [AnyObject]]]()
-    for file in files {
-        groupedDeclarations[file] = ["key.substructure": declarations.filter { $0.file == file }.map { $0.dictionaryValue }]
-    }
-    return groupedDeclarations
 }

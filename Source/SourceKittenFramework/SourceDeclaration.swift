@@ -1,99 +1,112 @@
 //
-//  SourceDeclaration.swift
+//  SourceSourceDeclaration.swift
 //  SourceKitten
 //
 //  Created by JP Simard on 7/15/15.
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
-import SwiftXPC
-import SWXMLHash
+public struct SourceLocation {
+    let file: String
+    let line: UInt32
+    let column: UInt32
+    let offset: UInt32
+}
+
+public enum Text {
+    case Para(String, String?)
+}
+
+public struct Parameter {
+    let name: String
+    let discussion: [Text]
+
+    init(comment: CXComment) {
+        name = comment.paramName() ?? "<none>"
+        discussion = comment.paragraph().paragraphToString()
+    }
+}
 
 /// Represents a source code declaration.
 public struct SourceDeclaration {
-    let type: String?
-    let file: String
-    let line: Int64?
-    let column: Int64?
+    let type: ObjCDeclarationKind?
+    let location: SourceLocation
 
     let name: String?
     let usr: String?
     let declaration: String?
-    let parameters: XPCArray
-    let abstract: XPCArray?
-    let discussion: XPCArray?
-    let resultDiscussion: XPCArray?
+    let children: [SourceDeclaration]
 
-    var dictionaryValue: [String: AnyObject] {
-        var dict = [String: AnyObject]()
-        dict["type"] = type ?? NSNull()
-        dict["file"] = file
-        dict["line"] = line.map(String.init) ?? NSNull()
-        dict["column"] = column.map(String.init) ?? NSNull()
-        dict["name"] = name ?? NSNull()
-        dict["usr"] = usr ?? NSNull()
-        dict["declaration"] = declaration ?? NSNull()
-        func forceDict(array: XPCArray?) -> AnyObject {
-            return array?.map { toAnyObject($0 as! XPCDictionary) } ?? NSNull()
-        }
-        dict["parameters"]       = forceDict(parameters)
-        dict["abstract"]         = forceDict(abstract)
-        dict["discussion"]       = forceDict(discussion)
-        dict["resultDiscussion"] = forceDict(resultDiscussion)
-        return dict
-    }
+    let parameters: [Parameter]
+    let discussion: [Text]
+    let returnDiscussion: [Text]
 
-    public init?(xmlString: String) {
-        let cleanXMLDocs = xmlString.stringByReplacingOccurrencesOfString("<rawHTML>", withString: "")
-            .stringByReplacingOccurrencesOfString("</rawHTML>", withString: "")
-            .stringByReplacingOccurrencesOfString("<codeVoice>", withString: "`")
-            .stringByReplacingOccurrencesOfString("</codeVoice>", withString: "`")
-        guard let rootXML = SWXMLHash.parse(cleanXMLDocs).children.first else {
+    init?(cursor: CXCursor) {
+        guard clang_isDeclaration(cursor.kind) != 0 else {
             return nil
         }
-        file = rootXML.element?.attributes["file"] ?? "<none>"
-        line = rootXML.element?.attributes["line"].flatMap { Int64($0) }
-        column = rootXML.element?.attributes["column"].flatMap { Int64($0) }
+        let comment = clang_Cursor_getParsedComment(cursor)
+        guard clang_Comment_getKind(comment) != CXComment_Null else {
+            return nil
+        }
 
-        name = rootXML["Name"].element?.text
-        usr = rootXML["USR"].element?.text
-        declaration = rootXML["Declaration"].element?.text
-        type = ObjCDeclarationKind.fromUSR(usr!, declaration: declaration)?.rawValue
-        parameters = rootXML["Parameters"].children.map {
-            [
-                "name": $0["Name"].element?.text ?? "",
-                "discussion": childrenAsArray($0["Discussion"]) ?? []
-            ] as XPCDictionary
-        } as XPCArray
-        abstract = childrenAsArray(rootXML["Abstract"])
-        discussion = childrenAsArray(rootXML["Discussion"])
-        resultDiscussion = childrenAsArray(rootXML["ResultDiscussion"])
+        location = cursor.location()
+        name = cursor.name()
+        type = ObjCDeclarationKind.fromClang(cursor.kind)
+        usr = cursor.usr()
+        declaration = cursor.text()
+        children = cursor.flatMap(SourceDeclaration.init)
+
+        var params = [Parameter]()
+        var d = [Text]()
+        var r = [Text]()
+
+        for i in 0..<clang_Comment_getNumChildren(comment) {
+            let c = clang_Comment_getChild(comment, i)
+            switch clang_Comment_getKind(c).rawValue {
+            case CXComment_Text.rawValue:
+                d += c.paragraphToString()
+                break
+            case CXComment_InlineCommand.rawValue:
+                break
+            case CXComment_HTMLStartTag.rawValue: break
+            case CXComment_HTMLEndTag.rawValue: break
+            case CXComment_Paragraph.rawValue:
+                d += c.paragraphToString()
+                break
+            case CXComment_BlockCommand.rawValue:
+                let command = clang_BlockCommandComment_getCommandName(c).str()
+                if command == "return" {
+                    r += c.paragraphToString()
+                }
+                else {
+                    d += c.paragraphToString(command)
+                }
+                break
+            case CXComment_ParamCommand.rawValue:
+                params.append(Parameter(comment: c))
+                break
+            case CXComment_VerbatimBlockCommand.rawValue: break
+            case CXComment_VerbatimBlockLine.rawValue: break
+            case CXComment_VerbatimLine.rawValue: break
+            default: break
+            }
+        }
+
+        parameters = params
+        discussion = d
+        returnDiscussion = r
     }
 }
 
-// MARK: Equatable
-
-extension SourceDeclaration: Equatable {}
-
-/**
-Returns true if `lhs` SourceDeclaration is equal to `rhs` SourceDeclaration.
-
-- parameter lhs: SourceDeclaration to compare to `rhs`.
-- parameter rhs: SourceDeclaration to compare to `lhs`.
-
-- returns: True if `lhs` SourceDeclaration is equal to `rhs` SourceDeclaration.
-*/
-public func ==(lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
-    return lhs.usr == rhs.usr
-}
-
-// MARK: Hashable
-
 extension SourceDeclaration: Hashable {
-    /// The hash value.
     public var hashValue: Int {
         return usr?.hashValue ?? 0
     }
+}
+
+public func ==(lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
+    return lhs.usr == rhs.usr
 }
 
 // MARK: Comparable
@@ -104,7 +117,7 @@ extension SourceDeclaration: Comparable {}
 /// over instances of `Self`.
 public func <(lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
     // Sort by file path.
-    switch lhs.file.compare(rhs.file) {
+    switch lhs.location.file.compare(rhs.location.file) {
     case .OrderedDescending:
         return false
     case .OrderedAscending:
@@ -114,76 +127,16 @@ public func <(lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
     }
 
     // Then line.
-    if lhs.line > rhs.line {
+    if lhs.location.line > rhs.location.line {
         return false
-    } else if lhs.line < rhs.line {
+    } else if lhs.location.line < rhs.location.line {
         return true
     }
 
     // Then column.
-    if lhs.column > rhs.column {
+    if lhs.location.column > rhs.location.column {
         return false
     }
 
     return true
-}
-
-// MARK: Helpers
-
-/**
-Parse XML from `key.doc.full_as_xml` from `cursor.info` request.
-
-- parameter xmlDocs: Contents of `key.doc.full_as_xml` from SourceKit.
-
-- returns: XML parsed as an `XPCDictionary`.
-*/
-public func parseFullXMLDocs(xmlDocs: String) -> XPCDictionary? {
-    let cleanXMLDocs = xmlDocs.stringByReplacingOccurrencesOfString("<rawHTML>", withString: "")
-        .stringByReplacingOccurrencesOfString("</rawHTML>", withString: "")
-        .stringByReplacingOccurrencesOfString("<codeVoice>", withString: "`")
-        .stringByReplacingOccurrencesOfString("</codeVoice>", withString: "`")
-    return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
-        var docs = XPCDictionary()
-        docs[SwiftDocKey.DocType.rawValue] = rootXML.element?.name
-        docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.attributes["file"]
-        docs[SwiftDocKey.DocLine.rawValue] = rootXML.element?.attributes["line"].flatMap {
-            Int64($0)
-        }
-        docs[SwiftDocKey.DocColumn.rawValue] = rootXML.element?.attributes["column"].flatMap {
-            Int64($0)
-        }
-        docs[SwiftDocKey.DocName.rawValue] = rootXML["Name"].element?.text
-        docs[SwiftDocKey.DocUSR.rawValue] = rootXML["USR"].element?.text
-        docs[SwiftDocKey.DocDeclaration.rawValue] = rootXML["Declaration"].element?.text
-        let parameters = rootXML["Parameters"].children
-        if parameters.count > 0 {
-            docs[SwiftDocKey.DocParameters.rawValue] = parameters.map {
-                [
-                    "name": $0["Name"].element?.text ?? "",
-                    "discussion": childrenAsArray($0["Discussion"]) ?? []
-                ] as XPCDictionary
-            } as XPCArray
-        }
-        docs[SwiftDocKey.DocDiscussion.rawValue] = childrenAsArray(rootXML["Discussion"])
-        docs[SwiftDocKey.DocResultDiscussion.rawValue] = childrenAsArray(rootXML["ResultDiscussion"])
-        return docs
-    }
-}
-
-/**
-Returns an `XPCArray` of `XPCDictionary` items from `indexer` children, if any.
-
-- parameter indexer: `XMLIndexer` to traverse.
-*/
-private func childrenAsArray(indexer: XMLIndexer) -> XPCArray? {
-    let children = indexer.children
-    if children.count > 0 {
-        return children.flatMap({ $0.element }).map {
-            [
-                $0.name: $0.text ?? "",
-                "kind": $0.attributes["kind"] ?? ""
-            ] as XPCDictionary
-        } as XPCArray
-    }
-    return nil
 }

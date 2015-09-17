@@ -33,6 +33,7 @@ class ClangTranslationUnitTests: XCTestCase {
         let tu = ClangTranslationUnit(headerFiles: headerFiles, compilerArguments: compilerArguments)
         let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
         let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
+        try! (comparisonString as NSString).writeToFile(fixturesDirectory + "out.json", atomically: true, encoding: NSUTF8StringEncoding)
         let expectedOutput = File(path: fixturesDirectory + "Musician.json")!.contents
         XCTAssertEqual(comparisonString, expectedOutput, "Objective-C docs should match expected ouput")
     }
