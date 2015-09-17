@@ -37,6 +37,35 @@
                BlueprintName = "SourceKittenFrameworkTests"
                ReferencedContainer = "container:SourceKitten.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ClangTranslationUnitTests/testParsesObjectiveCHeaderFilesAndXcodebuildArguments()">
+               </Test>
+               <Test
+                  Identifier = "FileTests">
+               </Test>
+               <Test
+                  Identifier = "ModuleTests">
+               </Test>
+               <Test
+                  Identifier = "OffsetMapTests">
+               </Test>
+               <Test
+                  Identifier = "SourceKitTests">
+               </Test>
+               <Test
+                  Identifier = "StringTests">
+               </Test>
+               <Test
+                  Identifier = "StructureTests">
+               </Test>
+               <Test
+                  Identifier = "SwiftDocsTests">
+               </Test>
+               <Test
+                  Identifier = "SyntaxTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
