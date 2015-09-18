@@ -15,6 +15,7 @@ public struct SourceLocation {
 
 public enum Text {
     case Para(String, String?)
+    case Verbatim(String)
 }
 
 public struct Parameter {
@@ -27,36 +28,12 @@ public struct Parameter {
     }
 }
 
-/// Represents a source code declaration.
-public struct SourceDeclaration {
-    let type: ObjCDeclarationKind?
-    let location: SourceLocation
-
-    let name: String?
-    let usr: String?
-    let declaration: String?
-    let children: [SourceDeclaration]
-
+public struct Documentation {
     let parameters: [Parameter]
     let discussion: [Text]
     let returnDiscussion: [Text]
 
-    init?(cursor: CXCursor) {
-        guard clang_isDeclaration(cursor.kind) != 0 else {
-            return nil
-        }
-        let comment = cursor.parsedComment()
-        guard comment.kind() != CXComment_Null else {
-            return nil
-        }
-
-        location = cursor.location()
-        name = cursor.name()
-        type = ObjCDeclarationKind.fromClang(cursor.kind)
-        usr = cursor.usr()
-        declaration = cursor.text()
-        children = cursor.flatMap(SourceDeclaration.init)
-
+    init(comment: CXComment) {
         var params = [Parameter]()
         var d = [Text]()
         var r = [Text]()
@@ -88,7 +65,9 @@ public struct SourceDeclaration {
                 break
             case CXComment_VerbatimBlockCommand.rawValue: break
             case CXComment_VerbatimBlockLine.rawValue: break
-            case CXComment_VerbatimLine.rawValue: break
+            case CXComment_VerbatimLine.rawValue:
+                d += c.paragraphToString()
+                break
             default: break
             }
         }
@@ -96,6 +75,36 @@ public struct SourceDeclaration {
         parameters = params
         discussion = d
         returnDiscussion = r
+    }
+}
+
+/// Represents a source code declaration.
+public struct SourceDeclaration {
+    let type: ObjCDeclarationKind?
+    let location: SourceLocation
+
+    let name: String?
+    let usr: String?
+    let declaration: String?
+    let documentation: Documentation
+    let children: [SourceDeclaration]
+
+    init?(cursor: CXCursor) {
+        guard clang_isDeclaration(cursor.kind) != 0 else {
+            return nil
+        }
+        let comment = cursor.parsedComment()
+        guard comment.kind() != CXComment_Null else {
+            return nil
+        }
+
+        location = cursor.location()
+        name = cursor.name()
+        type = ObjCDeclarationKind.fromClang(cursor.kind)
+        usr = cursor.usr()
+        declaration = cursor.text()
+        documentation = Documentation(comment: comment)
+        children = cursor.flatMap(SourceDeclaration.init)
     }
 }
 

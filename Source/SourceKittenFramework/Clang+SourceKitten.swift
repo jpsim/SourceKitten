@@ -142,6 +142,10 @@ extension CXComment {
     }
 
     func paragraphToString(kind: String? = nil) -> [Text] {
+        if self.kind() == CXComment_VerbatimLine {
+            return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
+        }
+
         var ret = [Text]()
         for i in 0..<clang_Comment_getNumChildren(self) {
             let child = clang_Comment_getChild(self, i)

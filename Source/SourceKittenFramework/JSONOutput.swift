@@ -46,10 +46,10 @@ private func toOutputDictionary(decl: SourceDeclaration) -> [String: AnyObject] 
     set(.DocUSR, decl.usr)
     set(.ParsedDeclaration, decl.declaration)
 
-    setA(.DocumentationComment, decl.discussion.map(toOutputDictionary))
-    setA(.DocResultDiscussion, decl.returnDiscussion.map(toOutputDictionary))
+    setA(.DocumentationComment, decl.documentation.discussion.map(toOutputDictionary))
+    setA(.DocResultDiscussion, decl.documentation.returnDiscussion.map(toOutputDictionary))
 
-    setA(.DocParameters, decl.parameters.map(toOutputDictionary))
+    setA(.DocParameters, decl.documentation.parameters.map(toOutputDictionary))
     setA(.Substructure, decl.children.map(toOutputDictionary))
 
     set(.FullXMLDocs, "")
@@ -69,5 +69,7 @@ private func toOutputDictionary(text: Text) -> [String: AnyObject] {
     switch text {
     case .Para(let str, let kind):
         return ["kind": kind ?? "", "Para": str]
+    case .Verbatim(let str):
+        return ["kind": "", "Verbatim": str]
     }
 }
