@@ -163,6 +163,9 @@ extension CXComment {
         for i in 0..<clang_Comment_getNumChildren(self) {
             let child = clang_Comment_getChild(self, i)
             if let text = clang_TextComment_getText(child).str() {
+                if ret != "" {
+                    ret += "\n"
+                }
                 ret += text
             }
             else if child.kind() == CXComment_InlineCommand {
