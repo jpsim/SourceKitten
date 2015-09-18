@@ -69,9 +69,19 @@ extension CXCursor {
         clang_tokenize(self.translationUnit(), range, &tokens, &count)
 
         var str = ""
+        var prevWasIdentifier = false
         for i in 0..<count {
+            let type = clang_getTokenKind(tokens[Int(i)])
+            if type == CXToken_Comment {
+                break
+            }
+
             if let s = tokens[Int(i)].str(self.translationUnit()) {
+                if prevWasIdentifier && type == CXToken_Identifier {
+                    str += " "
+                }
                 str += s
+                prevWasIdentifier = type == CXToken_Identifier
             }
         }
 
