@@ -7,7 +7,11 @@
 //
 
 public func declarationsToJSON(decl: [String: [SourceDeclaration]]) -> String {
-    return toJSON([decl.map(toOutputDictionary)])
+    var ret = [AnyObject]()
+    for (key, value) in decl {
+        ret.append([key: toOutputDictionary(value)])
+    }
+    return toJSON(ret)
 }
 
 extension Dictionary {
