@@ -165,10 +165,12 @@ extension CXComment {
             if let text = clang_TextComment_getText(child).str() {
                 ret += text
             }
+            else if child.kind() == CXComment_InlineCommand {
+                // @autoreleasepool etc. get parsed as commands when not in code blocks
+                ret += "@" + clang_InlineCommandComment_getCommandName(child).str()!
+            }
             else {
                 print("not text: \(child.kind())")
-                print("\(clang_Comment_getNumChildren(self))")
-//                ret += child.paragraphToString(kind)
             }
         }
         return [.Para(ret.stringByRemovingCommonLeadingWhitespaceFromLines(), kind)]
