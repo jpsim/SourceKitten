@@ -145,18 +145,33 @@ extension CXComment {
         if self.kind() == CXComment_VerbatimLine {
             return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
         }
+        if self.kind() == CXComment_BlockCommand  {
+            var ret = [Text]()
+            for i in 0..<clang_Comment_getNumChildren(self) {
+                let child = clang_Comment_getChild(self, i)
+                ret += child.paragraphToString()
+            }
+            return ret
+        }
 
-        var ret = [Text]()
+        guard self.kind() == CXComment_Paragraph else {
+            print("not a paragraph: \(self.kind())")
+            return []
+        }
+
+        var ret = ""
         for i in 0..<clang_Comment_getNumChildren(self) {
             let child = clang_Comment_getChild(self, i)
             if let text = clang_TextComment_getText(child).str() {
-                ret.append(.Para(text.stringByRemovingCommonLeadingWhitespaceFromLines(), kind))
+                ret += text
             }
             else {
-                ret += child.paragraphToString(kind)
+                print("not text: \(child.kind())")
+                print("\(clang_Comment_getNumChildren(self))")
+//                ret += child.paragraphToString(kind)
             }
         }
-        return ret
+        return [.Para(ret.stringByRemovingCommonLeadingWhitespaceFromLines(), kind)]
     }
 
     func kind() -> CXCommentKind {
