@@ -63,10 +63,16 @@ extension CXCursor {
     }
 
     func text() -> String {
+        // Tokenize the string, then reassemble the tokens back into one string
+        // This is kinda wtf but there's no way to get the raw string...
         let range = clang_getCursorExtent(self)
         var tokens = UnsafeMutablePointer<CXToken>()
         var count = UInt32(0)
         clang_tokenize(self.translationUnit(), range, &tokens, &count)
+
+        func needsWhitespace(kind: CXTokenKind) -> Bool {
+            return kind == CXToken_Identifier || kind == CXToken_Keyword
+        }
 
         var str = ""
         var prevWasIdentifier = false
@@ -77,11 +83,11 @@ extension CXCursor {
             }
 
             if let s = tokens[Int(i)].str(self.translationUnit()) {
-                if prevWasIdentifier && type == CXToken_Identifier {
+                if prevWasIdentifier && needsWhitespace(type) {
                     str += " "
                 }
                 str += s
-                prevWasIdentifier = type == CXToken_Identifier
+                prevWasIdentifier = needsWhitespace(type)
             }
         }
 
