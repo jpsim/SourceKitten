@@ -43,7 +43,7 @@ public struct ClangTranslationUnit {
         let clangIndex = ClangIndex()
         clangTranslationUnits = headerFiles.map { clangIndex.open(file: $0, args: cStringCompilerArguments) }
         declarations = clangTranslationUnits
-            .flatMap { (tu: CXTranslationUnit) -> [SourceDeclaration] in tu.cursor().flatMap(SourceDeclaration.init) }
+            .flatMap { $0.cursor().flatMap(SourceDeclaration.init) }
             .distinct()
 //            .sort()
             .groupBy { $0.location.file }
