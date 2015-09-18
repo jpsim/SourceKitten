@@ -86,9 +86,12 @@ public struct SourceDeclaration {
     let name: String?
     let usr: String?
     let declaration: String?
-    let documentation: Documentation
+    let mark: String?
+    let documentation: Documentation?
     let children: [SourceDeclaration]
+}
 
+extension SourceDeclaration {
     init?(cursor: CXCursor) {
         guard clang_isDeclaration(cursor.kind) != 0 else {
             return nil
@@ -96,6 +99,23 @@ public struct SourceDeclaration {
         let comment = cursor.parsedComment()
         guard comment.kind() != CXComment_Null else {
             return nil
+        }
+
+        let rawComment = clang_Cursor_getRawCommentText(cursor).str()
+        if let rawComment = rawComment where rawComment.containsString("@name") {
+            let nsString = rawComment as NSString
+            let regex = try! NSRegularExpression(pattern: "@name +(.*)", options: [])
+            let range = NSRange(location: 0, length: nsString.length)
+            let matches = regex.matchesInString(rawComment, options: [], range: range)
+            if matches.count > 0 {
+                mark = nsString.substringWithRange(matches[0].rangeAtIndex(1))
+            }
+            else {
+                mark = nil
+            }
+        }
+        else {
+            mark = nil
         }
 
         location = cursor.location()

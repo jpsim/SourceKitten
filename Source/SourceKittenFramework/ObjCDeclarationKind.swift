@@ -33,6 +33,8 @@ public enum ObjCDeclarationKind: String {
     /// `typedef`.
     case Typedef = "sourcekitten.source.lang.objc.decl.typedef"
 
+    case Mark = "source.lang.swift.syntaxtype.comment.mark"
+
     public static func fromClang(kind: CXCursorKind) -> ObjCDeclarationKind? {
         switch kind.rawValue {
         case CXCursor_ObjCCategoryDecl.rawValue: return .Category
