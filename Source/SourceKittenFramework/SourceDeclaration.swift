@@ -105,7 +105,18 @@ extension SourceDeclaration {
         }
 
         let rawComment = clang_Cursor_getRawCommentText(cursor).str()
-        rawDocumentation = rawComment?.commentBody()
+        let replacements = [
+            "@param ": "- parameter: ",
+            "@return ": "- returns: ",
+            "@warning ": "- warning: ",
+            "@see ": "- see: ",
+            "@note ": "- note: ",
+        ]
+        var varRawDocumentation = rawComment?.commentBody()
+        for (original, replacement) in replacements {
+            varRawDocumentation = varRawDocumentation?.stringByReplacingOccurrencesOfString(original, withString: replacement)
+        }
+        rawDocumentation = varRawDocumentation
         if let rawComment = rawComment where rawComment.containsString("@name") {
             let nsString = rawComment as NSString
             let regex = try! NSRegularExpression(pattern: "@name +(.*)", options: [])

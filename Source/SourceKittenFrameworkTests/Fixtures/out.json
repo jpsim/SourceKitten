@@ -26,7 +26,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
               "key.parsed_declaration" : "@property(readonly, nonatomic) RLMPropertyType type;",
-              "key.doc.comment" : "Property type.\n\n@see RLMPropertyType",
+              "key.doc.comment" : "Property type.\n\n- see: RLMPropertyType",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "57",
               "key.name" : "type",
@@ -38,7 +38,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
               "key.parsed_declaration" : "@property(readonly, nonatomic) BOOL indexed;",
-              "key.doc.comment" : "Indicates if this property is indexed.\n\n@see RLMObject",
+              "key.doc.comment" : "Indicates if this property is indexed.\n\n- see: RLMObject",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "64",
               "key.name" : "indexed",
@@ -162,7 +162,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)defaultConfiguration;",
-              "key.doc.comment" : "Returns the default configuration used to create Realms when no other\nconfiguration is explicitly specified (i.e. `+[RLMRealm defaultRealm]`).\n\n@return The default Realm configuration.",
+              "key.doc.comment" : "Returns the default configuration used to create Realms when no other\nconfiguration is explicitly specified (i.e. `+[RLMRealm defaultRealm]`).\n\n- returns: The default Realm configuration.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "36",
               "key.name" : "defaultConfiguration",
@@ -180,7 +180,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.parsed_declaration" : "+ (void)setDefaultConfiguration:(nonnull RLMRealmConfiguration *)configuration;",
-              "key.doc.comment" : "Sets the default configuration to the given `RLMRealmConfiguration`.\n\n@param configuration The new default Realm configuration.",
+              "key.doc.comment" : "Sets the default configuration to the given `RLMRealmConfiguration`.\n\n- parameter: configuration The new default Realm configuration.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -454,7 +454,7 @@
           "key.kind" : "sourcekitten.source.lang.objc.decl.class",
           "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
           "key.parsed_declaration" : "@interface RLMRealm : NSObject",
-          "key.doc.comment" : "An RLMRealm instance (also referred to as \"a realm\") represents a Realm\ndatabase.\n\nRealms can either be stored on disk (see +[RLMRealm realmWithPath:]) or in\nmemory (see +[RLMRealm inMemoryRealmWithIdentifier:]).\n\nRLMRealm instances are cached internally, and constructing equivalent RLMRealm\nobjects (with the same path or identifier) multiple times on a single thread\nwithin a single iteration of the run loop will normally return the same\nRLMRealm object. If you specifically want to ensure a RLMRealm object is\ndestroyed (for example, if you wish to open a realm, check some property, and\nthen possibly delete the realm file and re-open it), place the code which uses\nthe realm within an `@autoreleasepool {}` and ensure you have no other\nstrong references to it.\n\n@warning RLMRealm instances are not thread safe and can not be shared across\nthreads or dispatch queues. You must call this method on each thread you want\nto interact with the realm on. For dispatch queues, this means that you must\ncall it in each block which is dispatched, as a queue is not guaranteed to run\non a consistent thread.",
+          "key.doc.comment" : "An RLMRealm instance (also referred to as \"a realm\") represents a Realm\ndatabase.\n\nRealms can either be stored on disk (see +[RLMRealm realmWithPath:]) or in\nmemory (see +[RLMRealm inMemoryRealmWithIdentifier:]).\n\nRLMRealm instances are cached internally, and constructing equivalent RLMRealm\nobjects (with the same path or identifier) multiple times on a single thread\nwithin a single iteration of the run loop will normally return the same\nRLMRealm object. If you specifically want to ensure a RLMRealm object is\ndestroyed (for example, if you wish to open a realm, check some property, and\nthen possibly delete the realm file and re-open it), place the code which uses\nthe realm within an `@autoreleasepool {}` and ensure you have no other\nstrong references to it.\n\n- warning: RLMRealm instances are not thread safe and can not be shared across\nthreads or dispatch queues. You must call this method on each thread you want\nto interact with the realm on. For dispatch queues, this means that you must\ncall it in each block which is dispatched, as a queue is not guaranteed to run\non a consistent thread.",
           "key.doc.full_as_xml" : "",
           "key.doc.line" : "49",
           "key.substructure" : [
@@ -471,7 +471,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)defaultRealm;",
-              "key.doc.comment" : "\nObtains an instance of the default Realm.\n\nThe default Realm is used by the `RLMObject` class methods\nwhich do not take a `RLMRealm` parameter, but is otherwise not special. The\ndefault Realm is persisted as default.realm under the Documents directory of\nyour Application on iOS, and in your application's Application Support\ndirectory on OS X.\n\nThe default Realm is created using the default `RLMRealmConfiguration`, which\ncan be changed via `+[RLMRealmConfiguration setDefaultConfiguration:]`.\n\n@return The default `RLMRealm` instance for the current thread.",
+              "key.doc.comment" : "\nObtains an instance of the default Realm.\n\nThe default Realm is used by the `RLMObject` class methods\nwhich do not take a `RLMRealm` parameter, but is otherwise not special. The\ndefault Realm is persisted as default.realm under the Documents directory of\nyour Application on iOS, and in your application's Application Support\ndirectory on OS X.\n\nThe default Realm is created using the default `RLMRealmConfiguration`, which\ncan be changed via `+[RLMRealmConfiguration setDefaultConfiguration:]`.\n\n- returns: The default `RLMRealm` instance for the current thread.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "68",
               "key.name" : "defaultRealm",
@@ -489,7 +489,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "+ (nullable instancetype)\n    realmWithConfiguration:(nonnull RLMRealmConfiguration *)configuration\n                     error:(NSError *_Nullable *_Nullable)error;",
-              "key.doc.comment" : "Obtains an `RLMRealm` instance with the given configuration.\n\n@param configuration The configuration for the realm.\n@param error         If an error occurs, upon return contains an `NSError` object\n                     that describes the problem. If you are not interested in\n                     possible errors, pass in `NULL`.\n\n@return An `RLMRealm` instance.",
+              "key.doc.comment" : "Obtains an `RLMRealm` instance with the given configuration.\n\n- parameter: configuration The configuration for the realm.\n- parameter: error         If an error occurs, upon return contains an `NSError` object\n                     that describes the problem. If you are not interested in\n                     possible errors, pass in `NULL`.\n\n- returns: An `RLMRealm` instance.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -527,7 +527,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)realmWithPath:(nonnull NSString *)path;",
-              "key.doc.comment" : "Obtains an `RLMRealm` instance persisted at a specific file path.\n\n@param path Path to the file you want the data saved in.\n\n@return An `RLMRealm` instance.",
+              "key.doc.comment" : "Obtains an `RLMRealm` instance persisted at a specific file path.\n\n- parameter: path Path to the file you want the data saved in.\n\n- returns: An `RLMRealm` instance.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -592,7 +592,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "@property(readonly, nonatomic) BOOL inWriteTransaction;",
-              "key.doc.comment" : "Indicates if this Realm is currently in a write transaction.\n\n@warning Wrapping mutating operations in a write transaction if this property returns `NO`\n         may cause a large number of write transactions to be created, which could negatively\n         impact Realm's performance. Always prefer performing multiple mutations in a single\n         transaction when possible.",
+              "key.doc.comment" : "Indicates if this Realm is currently in a write transaction.\n\n- warning: Wrapping mutating operations in a write transaction if this property returns `NO`\n         may cause a large number of write transactions to be created, which could negatively\n         impact Realm's performance. Always prefer performing multiple mutations in a single\n         transaction when possible.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "114",
               "key.name" : "inWriteTransaction",
@@ -628,7 +628,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (nonnull RLMNotificationToken *)addNotificationBlock:\n        (nonnull RLMNotificationBlock)block;",
-              "key.doc.comment" : "Add a notification handler for changes in this RLMRealm.\n\nThe block has the following definition:\n\n    typedef void(^RLMNotificationBlock)(NSString *notification, RLMRealm *realm);\n\nIt receives the following parameters:\n\n- `NSString` \\***notification**:    The name of the incoming notification. See\n                                    RLMRealmNotification for information on what\n                                    notifications are sent.\n- `RLMRealm` \\***realm**:           The realm for which this notification occurred\n\n@param block   A block which is called to process RLMRealm notifications.\n\n@return A token object which can later be passed to `-removeNotification:`\n        to remove this notification.",
+              "key.doc.comment" : "Add a notification handler for changes in this RLMRealm.\n\nThe block has the following definition:\n\n    typedef void(^RLMNotificationBlock)(NSString *notification, RLMRealm *realm);\n\nIt receives the following parameters:\n\n- `NSString` \\***notification**:    The name of the incoming notification. See\n                                    RLMRealmNotification for information on what\n                                    notifications are sent.\n- `RLMRealm` \\***realm**:           The realm for which this notification occurred\n\n- parameter: block   A block which is called to process RLMRealm notifications.\n\n- returns: A token object which can later be passed to `-removeNotification:`\n        to remove this notification.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -657,7 +657,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (void)removeNotification:(nonnull RLMNotificationToken *)notificationToken;",
-              "key.doc.comment" : "Remove a previously registered notification handler using the token returned\nfrom `-addNotificationBlock:`\n\n@param notificationToken   The token returned from `-addNotificationBlock:`\n                           corresponding to the notification block to remove.",
+              "key.doc.comment" : "Remove a previously registered notification handler using the token returned\nfrom `-addNotificationBlock:`\n\n- parameter: notificationToken   The token returned from `-addNotificationBlock:`\n                           corresponding to the notification block to remove.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -704,7 +704,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (BOOL)commitWriteTransaction:(NSError *_Nullable *_Nullable)error;",
-              "key.doc.comment" : "Commits all writes operations in the current write transaction.\n\nAfter this is called the `RLMRealm` reverts back to being read-only.\n\nCalling this when not in a write transaction will throw an exception.\n\n@param error If an error occurs, upon return contains an `NSError` object\n             that describes the problem. If you are not interested in\n             possible errors, pass in `NULL`.\n\n@return Whether the transaction succeeded.",
+              "key.doc.comment" : "Commits all writes operations in the current write transaction.\n\nAfter this is called the `RLMRealm` reverts back to being read-only.\n\nCalling this when not in a write transaction will throw an exception.\n\n- parameter: error If an error occurs, upon return contains an `NSError` object\n             that describes the problem. If you are not interested in\n             possible errors, pass in `NULL`.\n\n- returns: Whether the transaction succeeded.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -757,7 +757,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (BOOL)transactionWithBlock:(nonnull void (^)(void))block\n                       error:(NSError *_Nullable *_Nullable)error;",
-              "key.doc.comment" : "Helper to perform a block within a transaction.\n\n@param block The block to perform.\n@param error If an error occurs, upon return contains an `NSError` object\n             that describes the problem. If you are not interested in\n             possible errors, pass in `NULL`.\n\n@return Whether the transaction succeeded.",
+              "key.doc.comment" : "Helper to perform a block within a transaction.\n\n- parameter: block The block to perform.\n- parameter: error If an error occurs, upon return contains an `NSError` object\n             that describes the problem. If you are not interested in\n             possible errors, pass in `NULL`.\n\n- returns: Whether the transaction succeeded.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -795,7 +795,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (BOOL)refresh;",
-              "key.doc.comment" : "Update an `RLMRealm` and outstanding objects to point to the most recent data for this `RLMRealm`.\n\n@return    Whether the realm had any updates. Note that this may return YES even if no data has actually changed.",
+              "key.doc.comment" : "Update an `RLMRealm` and outstanding objects to point to the most recent data for this `RLMRealm`.\n\n- returns:    Whether the realm had any updates. Note that this may return YES even if no data has actually changed.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "266",
               "key.name" : "refresh",
@@ -825,7 +825,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (BOOL)writeCopyToPath:(nonnull NSString *)path\n                  error:(NSError *_Nullable *_Nullable)error;",
-              "key.doc.comment" : "Write a compacted copy of the RLMRealm to the given path.\n\nThe destination file cannot already exist.\n\nNote that if this is called from within a write transaction it writes the\n*current* data, and not data when the last write transaction was committed.\n\n@param path Path to save the Realm to.\n@param error On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify nil for this parameter if you do not want the error information.\n@return YES if the realm was copied successfully. Returns NO if an error occurred.",
+              "key.doc.comment" : "Write a compacted copy of the RLMRealm to the given path.\n\nThe destination file cannot already exist.\n\nNote that if this is called from within a write transaction it writes the\n*current* data, and not data when the last write transaction was committed.\n\n- parameter: path Path to save the Realm to.\n- parameter: error On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify nil for this parameter if you do not want the error information.\n- returns: YES if the realm was copied successfully. Returns NO if an error occurred.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -863,7 +863,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (BOOL)writeCopyToPath:(nonnull NSString *)path\n          encryptionKey:(nonnull NSData *)key\n                  error:(NSError *_Nullable *_Nullable)error;",
-              "key.doc.comment" : "Write an encrypted and compacted copy of the RLMRealm to the given path.\n\nThe destination file cannot already exist.\n\nNote that if this is called from within a write transaction it writes the\n*current* data, and not data when the last write transaction was committed.\n\n@param path Path to save the Realm to.\n@param key 64-byte encryption key to encrypt the new file with\n@param error On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify nil for this parameter if you do not want the error information.\n@return YES if the realm was copied successfully. Returns NO if an error occurred.",
+              "key.doc.comment" : "Write an encrypted and compacted copy of the RLMRealm to the given path.\n\nThe destination file cannot already exist.\n\nNote that if this is called from within a write transaction it writes the\n*current* data, and not data when the last write transaction was committed.\n\n- parameter: path Path to save the Realm to.\n- parameter: key 64-byte encryption key to encrypt the new file with\n- parameter: error On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify nil for this parameter if you do not want the error information.\n- returns: YES if the realm was copied successfully. Returns NO if an error occurred.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -931,7 +931,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (void)addObject:(nonnull RLMObject *)object;",
-              "key.doc.comment" : "\nAdds an object to be persisted it in this Realm.\n\nOnce added, this object can be retrieved using the `objectsWhere:` selectors\non `RLMRealm` and on subclasses of `RLMObject`. When added, all linked (child)\nobjects referenced by this object will also be added to the Realm if they are\nnot already in it. If the object or any linked objects already belong to a\ndifferent Realm an exception will be thrown. Use\n`-[RLMObject createInRealm:withObject]` to insert a copy of a persisted object\ninto a different Realm.\n\nThe object to be added must be valid and cannot have been previously deleted\nfrom a Realm (i.e. `isInvalidated`) must be false.\n\n@param object  Object to be added to this Realm.",
+              "key.doc.comment" : "\nAdds an object to be persisted it in this Realm.\n\nOnce added, this object can be retrieved using the `objectsWhere:` selectors\non `RLMRealm` and on subclasses of `RLMObject`. When added, all linked (child)\nobjects referenced by this object will also be added to the Realm if they are\nnot already in it. If the object or any linked objects already belong to a\ndifferent Realm an exception will be thrown. Use\n`-[RLMObject createInRealm:withObject]` to insert a copy of a persisted object\ninto a different Realm.\n\nThe object to be added must be valid and cannot have been previously deleted\nfrom a Realm (i.e. `isInvalidated`) must be false.\n\n- parameter: object  Object to be added to this Realm.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -954,7 +954,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (void)addObjects:(nonnull id<NSFastEnumeration>)array;",
-              "key.doc.comment" : "Adds objects in the given array to be persisted it in this Realm.\n\nThis is the equivalent of `addObject:` except for an array of objects.\n\n@param array   An enumerable object such as NSArray or RLMResults which contains objects to be added to\n               this Realm.\n\n@see   addObject:",
+              "key.doc.comment" : "Adds objects in the given array to be persisted it in this Realm.\n\nThis is the equivalent of `addObject:` except for an array of objects.\n\n- parameter: array   An enumerable object such as NSArray or RLMResults which contains objects to be added to\n               this Realm.\n\n- see:   addObject:",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -977,7 +977,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (void)addOrUpdateObject:(nonnull RLMObject *)object;",
-              "key.doc.comment" : "Adds or updates an object to be persisted it in this Realm. The object provided must have a designated\nprimary key. If no objects exist in the RLMRealm instance with the same primary key value, the object is\ninserted. Otherwise, the existing object is updated with any changed values.\n\nAs with `addObject:`, the object cannot already be persisted in a different\nRealm. Use `-[RLMObject createOrUpdateInRealm:withValue:]` to copy values to\na different Realm.\n\n@param object  Object to be added or updated.",
+              "key.doc.comment" : "Adds or updates an object to be persisted it in this Realm. The object provided must have a designated\nprimary key. If no objects exist in the RLMRealm instance with the same primary key value, the object is\ninserted. Otherwise, the existing object is updated with any changed values.\n\nAs with `addObject:`, the object cannot already be persisted in a different\nRealm. Use `-[RLMObject createOrUpdateInRealm:withValue:]` to copy values to\na different Realm.\n\n- parameter: object  Object to be added or updated.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1000,7 +1000,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (void)addOrUpdateObjectsFromArray:(nonnull id)array;",
-              "key.doc.comment" : "Adds or updates objects in the given array to be persisted it in this Realm.\n\nThis is the equivalent of `addOrUpdateObject:` except for an array of objects.\n\n@param array  `NSArray`, `RLMArray`, or `RLMResults` of `RLMObject`s (or subclasses) to be added to this Realm.\n\n@see   addOrUpdateObject:",
+              "key.doc.comment" : "Adds or updates objects in the given array to be persisted it in this Realm.\n\nThis is the equivalent of `addOrUpdateObject:` except for an array of objects.\n\n- parameter: array  `NSArray`, `RLMArray`, or `RLMResults` of `RLMObject`s (or subclasses) to be added to this Realm.\n\n- see:   addOrUpdateObject:",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1023,7 +1023,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (void)deleteObject:(nonnull RLMObject *)object;",
-              "key.doc.comment" : "Delete an object from this Realm.\n\n@param object  Object to be deleted from this Realm.",
+              "key.doc.comment" : "Delete an object from this Realm.\n\n- parameter: object  Object to be deleted from this Realm.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1046,7 +1046,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (void)deleteObjects:(nonnull id)array;",
-              "key.doc.comment" : "Delete an `NSArray`, `RLMArray`, or `RLMResults` of objects from this Realm.\n\n@param array  `RLMArray`, `NSArray`, or `RLMResults` of `RLMObject`s to be deleted.",
+              "key.doc.comment" : "Delete an `NSArray`, `RLMArray`, or `RLMResults` of objects from this Realm.\n\n- parameter: array  `RLMArray`, `NSArray`, or `RLMResults` of `RLMObject`s to be deleted.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1081,7 +1081,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "+ (uint64_t)schemaVersionAtPath:(nonnull NSString *)realmPath\n                          error:(NSError *_Nullable *_Nullable)error;",
-              "key.doc.comment" : "Get the schema version for a Realm at a given path.\n\n@param realmPath   Path to a Realm file\n@param error       If an error occurs, upon return contains an `NSError` object\n                   that describes the problem. If you are not interested in\n                   possible errors, pass in `NULL`.\n\n@return            The version of the Realm at `realmPath` or RLMNotVersioned if the version cannot be read.",
+              "key.doc.comment" : "Get the schema version for a Realm at a given path.\n\n- parameter: realmPath   Path to a Realm file\n- parameter: error       If an error occurs, upon return contains an `NSError` object\n                   that describes the problem. If you are not interested in\n                   possible errors, pass in `NULL`.\n\n- returns:            The version of the Realm at `realmPath` or RLMNotVersioned if the version cannot be read.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1119,7 +1119,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "+ (uint64_t)schemaVersionAtPath:(nonnull NSString *)realmPath\n                  encryptionKey:(nullable NSData *)key\n                          error:(NSError *_Nullable *_Nullable)error;",
-              "key.doc.comment" : "Get the schema version for an encrypted Realm at a given path.\n\n@param realmPath   Path to a Realm file\n@param key         64-byte encryption key.\n@param error       If an error occurs, upon return contains an `NSError` object\n                   that describes the problem. If you are not interested in\n                   possible errors, pass in `NULL`.\n\n@return            The version of the Realm at `realmPath` or RLMNotVersioned if the version cannot be read.",
+              "key.doc.comment" : "Get the schema version for an encrypted Realm at a given path.\n\n- parameter: realmPath   Path to a Realm file\n- parameter: key         64-byte encryption key.\n- parameter: error       If an error occurs, upon return contains an `NSError` object\n                   that describes the problem. If you are not interested in\n                   possible errors, pass in `NULL`.\n\n- returns:            The version of the Realm at `realmPath` or RLMNotVersioned if the version cannot be read.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1166,7 +1166,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "+ (nonnull NSError *)migrateRealm:\n        (nonnull RLMRealmConfiguration *)configuration;",
-              "key.doc.comment" : "Performs the given Realm configuration's migration block on a Realm at the given path.\n\nThis method is called automatically when opening a Realm for the first time and does\nnot need to be called explicitly. You can choose to call this method to control\nexactly when and how migrations are performed.\n\n@param configuration The Realm configuration used to open and migrate the Realm.\n@return              The error that occurred while applying the migration, if any.\n\n@see                 RLMMigration",
+              "key.doc.comment" : "Performs the given Realm configuration's migration block on a Realm at the given path.\n\nThis method is called automatically when opening a Realm for the first time and does\nnot need to be called explicitly. You can choose to call this method to control\nexactly when and how migrations are performed.\n\n- parameter: configuration The Realm configuration used to open and migrate the Realm.\n- returns:              The error that occurred while applying the migration, if any.\n\n- see:                 RLMMigration",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1289,7 +1289,7 @@
           "key.kind" : "sourcekitten.source.lang.objc.decl.typedef",
           "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
           "key.parsed_declaration" : "typedef void (^RLMMigrationBlock)(RLMMigration *_Nonnull, uint64_t)",
-          "key.doc.comment" : "Migration block used to migrate a Realm.\n\n@param migration   `RLMMigration` object used to perform the migration. The\n                   migration object allows you to enumerate and alter any\n                   existing objects which require migration.\n\n@param oldSchemaVersion    The schema version of the `RLMRealm` being migrated.",
+          "key.doc.comment" : "Migration block used to migrate a Realm.\n\n- parameter: migration   `RLMMigration` object used to perform the migration. The\n                   migration object allows you to enumerate and alter any\n                   existing objects which require migration.\n\n- parameter: oldSchemaVersion    The schema version of the `RLMRealm` being migrated.",
           "key.doc.parameters" : [
             {
               "discussion" : [
@@ -1372,7 +1372,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nonnull RLMObjectType)objectAtIndex:(NSUInteger)index;",
-              "key.doc.comment" : "Returns the object at the index specified.\n\n@param index   The index to look up.\n\n@return An RLMObject of the class contained by this RLMResults.",
+              "key.doc.comment" : "Returns the object at the index specified.\n\n- parameter: index   The index to look up.\n\n- returns: An RLMObject of the class contained by this RLMResults.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1401,7 +1401,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nullable RLMObjectType)firstObject;",
-              "key.doc.comment" : "Returns the first object in the results.\n\nReturns `nil` if called on an empty RLMResults.\n\n@return An RLMObject of the class contained by this RLMResults.",
+              "key.doc.comment" : "Returns the first object in the results.\n\nReturns `nil` if called on an empty RLMResults.\n\n- returns: An RLMObject of the class contained by this RLMResults.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "82",
               "key.name" : "firstObject",
@@ -1419,7 +1419,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nullable RLMObjectType)lastObject;",
-              "key.doc.comment" : "Returns the last object in the results.\n\nReturns `nil` if called on an empty RLMResults.\n\n@return An RLMObject of the class contained by this RLMResults.",
+              "key.doc.comment" : "Returns the last object in the results.\n\nReturns `nil` if called on an empty RLMResults.\n\n- returns: An RLMObject of the class contained by this RLMResults.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "91",
               "key.name" : "lastObject",
@@ -1446,7 +1446,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (NSUInteger)indexOfObject:(nonnull RLMObjectType)object;",
-              "key.doc.comment" : "\nGets the index of an object.\n\nReturns NSNotFound if the object is not found in this RLMResults.\n\n@param object  An object (of the same type as returned from the objectClassName selector).",
+              "key.doc.comment" : "\nGets the index of an object.\n\nReturns NSNotFound if the object is not found in this RLMResults.\n\n- parameter: object  An object (of the same type as returned from the objectClassName selector).",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1469,7 +1469,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (NSUInteger)indexOfObjectWhere:(nonnull NSString *)predicateFormat, ...;",
-              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n@param predicateFormat The predicate format string which can accept variable arguments.\n\n@return    Index of object or NSNotFound if the object is not found in this RLMResults.",
+              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:    Index of object or NSNotFound if the object is not found in this RLMResults.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1498,7 +1498,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (NSUInteger)indexOfObjectWithPredicate:(nonnull NSPredicate *)predicate;",
-              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n@param predicate   The predicate to filter the objects.\n\n@return    Index of object or NSNotFound if the object is not found in this RLMResults.",
+              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:    Index of object or NSNotFound if the object is not found in this RLMResults.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1527,7 +1527,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWhere:\n        (nonnull NSString *)predicateFormat, ...;",
-              "key.doc.comment" : "Get objects matching the given predicate in the RLMResults.\n\n@param predicateFormat The predicate format string which can accept variable arguments.\n\n@return                An RLMResults of objects that match the given predicate",
+              "key.doc.comment" : "Get objects matching the given predicate in the RLMResults.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:                An RLMResults of objects that match the given predicate",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1556,7 +1556,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWithPredicate:\n        (nonnull NSPredicate *)predicate;",
-              "key.doc.comment" : "Get objects matching the given predicate in the RLMResults.\n\n@param predicate   The predicate to filter the objects.\n\n@return            An RLMResults of objects that match the given predicate",
+              "key.doc.comment" : "Get objects matching the given predicate in the RLMResults.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:            An RLMResults of objects that match the given predicate",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1585,7 +1585,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)\n    sortedResultsUsingProperty:(nonnull NSString *)property\n                     ascending:(BOOL)ascending;",
-              "key.doc.comment" : "Get a sorted `RLMResults` from an existing `RLMResults` sorted by a property.\n\n@param property    The property name to sort by.\n@param ascending   The direction to sort by.\n\n@return    An RLMResults sorted by the specified property.",
+              "key.doc.comment" : "Get a sorted `RLMResults` from an existing `RLMResults` sorted by a property.\n\n- parameter: property    The property name to sort by.\n- parameter: ascending   The direction to sort by.\n\n- returns:    An RLMResults sorted by the specified property.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1623,7 +1623,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)sortedResultsUsingDescriptors:\n        (nonnull NSArray *)properties;",
-              "key.doc.comment" : "Get a sorted `RLMResults` from an existing `RLMResults` sorted by an `NSArray`` of `RLMSortDescriptor`s.\n\n@param properties  An array of `RLMSortDescriptor`s to sort by.\n\n@return    An RLMResults sorted by the specified properties.",
+              "key.doc.comment" : "Get a sorted `RLMResults` from an existing `RLMResults` sorted by an `NSArray`` of `RLMSortDescriptor`s.\n\n- parameter: properties  An array of `RLMSortDescriptor`s to sort by.\n\n- returns:    An RLMResults sorted by the specified properties.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1652,7 +1652,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nullable id)minOfProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "Returns the minimum (lowest) value of the given property\n\nNSNumber *min = [results minOfProperty:@\"age\"];\n\n@warning You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n@param property The property to look for a minimum on. Only properties of type int, float, double and NSDate are supported.\n\n@return The minimum value for the property amongst objects in an RLMResults.",
+              "key.doc.comment" : "Returns the minimum (lowest) value of the given property\n\nNSNumber *min = [results minOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to look for a minimum on. Only properties of type int, float, double and NSDate are supported.\n\n- returns: The minimum value for the property amongst objects in an RLMResults.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1681,7 +1681,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nullable id)maxOfProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "Returns the maximum (highest) value of the given property of objects in an RLMResults\n\nNSNumber *max = [results maxOfProperty:@\"age\"];\n\n@warning You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n@param property The property to look for a maximum on. Only properties of type int, float, double and NSDate are supported.\n\n@return The maximum value for the property amongst objects in an RLMResults",
+              "key.doc.comment" : "Returns the maximum (highest) value of the given property of objects in an RLMResults\n\nNSNumber *max = [results maxOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to look for a maximum on. Only properties of type int, float, double and NSDate are supported.\n\n- returns: The maximum value for the property amongst objects in an RLMResults",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1710,7 +1710,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nonnull NSNumber *)sumOfProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "Returns the sum of the given property for objects in an RLMResults.\n\nNSNumber *sum = [results sumOfProperty:@\"age\"];\n\n@warning You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n@param property The property to calculate sum on. Only properties of type int, float and double are supported.\n\n@return The sum of the given property over all objects in an RLMResults.",
+              "key.doc.comment" : "Returns the sum of the given property for objects in an RLMResults.\n\nNSNumber *sum = [results sumOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to calculate sum on. Only properties of type int, float and double are supported.\n\n- returns: The sum of the given property over all objects in an RLMResults.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1739,7 +1739,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nullable NSNumber *)averageOfProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "Returns the average of a given property for objects in an RLMResults.\n\nNSNumber *average = [results averageOfProperty:@\"age\"];\n\n@warning You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n@param property The property to calculate average on. Only properties of type int, float and double are supported.\n\n@return    The average for the given property amongst objects in an RLMResults. This will be of type double for both\nfloat and double properties.",
+              "key.doc.comment" : "Returns the average of a given property for objects in an RLMResults.\n\nNSNumber *average = [results averageOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to calculate average on. Only properties of type int, float and double are supported.\n\n- returns:    The average for the given property amongst objects in an RLMResults. This will be of type double for both\nfloat and double properties.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1894,7 +1894,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (nonnull RLMObjectType)objectAtIndex:(NSUInteger)index;",
-              "key.doc.comment" : "Returns the object at the index specified.\n\n@param index   The index to look up.\n\n@return An RLMObject of the class contained by this RLMArray.",
+              "key.doc.comment" : "Returns the object at the index specified.\n\n- parameter: index   The index to look up.\n\n- returns: An RLMObject of the class contained by this RLMArray.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1923,7 +1923,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (nullable RLMObjectType)firstObject;",
-              "key.doc.comment" : "Returns the first object in the array.\n\nReturns `nil` if called on an empty RLMArray.\n\n@return An RLMObject of the class contained by this RLMArray.",
+              "key.doc.comment" : "Returns the first object in the array.\n\nReturns `nil` if called on an empty RLMArray.\n\n- returns: An RLMObject of the class contained by this RLMArray.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "112",
               "key.name" : "firstObject",
@@ -1941,7 +1941,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (nullable RLMObjectType)lastObject;",
-              "key.doc.comment" : "Returns the last object in the array.\n\nReturns `nil` if called on an empty RLMArray.\n\n@return An RLMObject of the class contained by this RLMArray.",
+              "key.doc.comment" : "Returns the last object in the array.\n\nReturns `nil` if called on an empty RLMArray.\n\n- returns: An RLMObject of the class contained by this RLMArray.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "121",
               "key.name" : "lastObject",
@@ -1959,7 +1959,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)addObject:(nonnull RLMObjectType)object;",
-              "key.doc.comment" : "Adds an object to the end of the array.\n\n@warning This method can only be called during a write transaction.\n\n@param object  An RLMObject of the class contained by this RLMArray.",
+              "key.doc.comment" : "Adds an object to the end of the array.\n\n- warning: This method can only be called during a write transaction.\n\n- parameter: object  An RLMObject of the class contained by this RLMArray.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1982,7 +1982,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)addObjects:(nonnull id<NSFastEnumeration>)objects;",
-              "key.doc.comment" : "Adds an array of objects at the end of the array.\n\n@warning This method can only be called during a write transaction.\n\n@param objects     An enumerable object such as NSArray or RLMResults which contains objects of the\n                   same class as this RLMArray.",
+              "key.doc.comment" : "Adds an array of objects at the end of the array.\n\n- warning: This method can only be called during a write transaction.\n\n- parameter: objects     An enumerable object such as NSArray or RLMResults which contains objects of the\n                   same class as this RLMArray.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2005,7 +2005,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)insertObject:(nonnull RLMObjectType)anObject atIndex:(NSUInteger)index;",
-              "key.doc.comment" : "Inserts an object at the given index.\n\nThrows an exception when called with an index greater than the number of objects in this RLMArray.\n\n@warning This method can only be called during a write transaction.\n\n@param anObject  An object (of the same type as returned from the objectClassName selector).\n@param index   The array index at which the object is inserted.",
+              "key.doc.comment" : "Inserts an object at the given index.\n\nThrows an exception when called with an index greater than the number of objects in this RLMArray.\n\n- warning: This method can only be called during a write transaction.\n\n- parameter: anObject  An object (of the same type as returned from the objectClassName selector).\n- parameter: index   The array index at which the object is inserted.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2037,7 +2037,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)removeObjectAtIndex:(NSUInteger)index;",
-              "key.doc.comment" : "Removes an object at a given index.\n\nThrows an exception when called with an index greater than the number of objects in this RLMArray.\n\n@warning This method can only be called during a write transaction.\n\n@param index   The array index identifying the object to be removed.",
+              "key.doc.comment" : "Removes an object at a given index.\n\nThrows an exception when called with an index greater than the number of objects in this RLMArray.\n\n- warning: This method can only be called during a write transaction.\n\n- parameter: index   The array index identifying the object to be removed.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2060,7 +2060,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)removeLastObject;",
-              "key.doc.comment" : "Removes the last object in an RLMArray.\n\n@warning This method can only be called during a write transaction.",
+              "key.doc.comment" : "Removes the last object in an RLMArray.\n\n- warning: This method can only be called during a write transaction.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "179",
               "key.name" : "removeLastObject",
@@ -2072,7 +2072,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)removeAllObjects;",
-              "key.doc.comment" : "Removes all objects from an RLMArray.\n\n@warning This method can only be called during a write transaction.",
+              "key.doc.comment" : "Removes all objects from an RLMArray.\n\n- warning: This method can only be called during a write transaction.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "186",
               "key.name" : "removeAllObjects",
@@ -2084,7 +2084,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)replaceObjectAtIndex:(NSUInteger)index\n                  withObject:(nonnull RLMObjectType)anObject;",
-              "key.doc.comment" : "Replaces an object at the given index with a new object.\n\nThrows an exception when called with an index greater than the number of objects in this RLMArray.\n\n@warning This method can only be called during a write transaction.\n\n@param index       The array index of the object to be replaced.\n@param anObject    An object (of the same type as returned from the objectClassName selector).",
+              "key.doc.comment" : "Replaces an object at the given index with a new object.\n\nThrows an exception when called with an index greater than the number of objects in this RLMArray.\n\n- warning: This method can only be called during a write transaction.\n\n- parameter: index       The array index of the object to be replaced.\n- parameter: anObject    An object (of the same type as returned from the objectClassName selector).",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2116,7 +2116,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)moveObjectAtIndex:(NSUInteger)sourceIndex\n                  toIndex:(NSUInteger)destinationIndex;",
-              "key.doc.comment" : "Moves the object at the given source index to the given destination index.\n\nThrows an exception when called with an index greater than or equal to the\nnumber of objects in this RLMArray.\n\n@warning This method can only be called during a write transaction.\n\n@param sourceIndex      The index of the object to be moved.\n@param destinationIndex The index to which the object at `sourceIndex` should be moved.",
+              "key.doc.comment" : "Moves the object at the given source index to the given destination index.\n\nThrows an exception when called with an index greater than or equal to the\nnumber of objects in this RLMArray.\n\n- warning: This method can only be called during a write transaction.\n\n- parameter: sourceIndex      The index of the object to be moved.\n- parameter: destinationIndex The index to which the object at `sourceIndex` should be moved.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2148,7 +2148,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)exchangeObjectAtIndex:(NSUInteger)index1\n            withObjectAtIndex:(NSUInteger)index2;",
-              "key.doc.comment" : "Exchanges the objects in the array at given indexes.\n\nThrows an exception when either index exceeds the bounds of this RLMArray.\n\n@warning This method can only be called during a write transaction.\n\n@param index1 The index of the object with which to replace the object at index `index2`.\n@param index2 The index of the object with which to replace the object at index `index1`.",
+              "key.doc.comment" : "Exchanges the objects in the array at given indexes.\n\nThrows an exception when either index exceeds the bounds of this RLMArray.\n\n- warning: This method can only be called during a write transaction.\n\n- parameter: index1 The index of the object with which to replace the object at index `index2`.\n- parameter: index2 The index of the object with which to replace the object at index `index1`.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2189,7 +2189,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (NSUInteger)indexOfObject:(nonnull RLMObjectType)object;",
-              "key.doc.comment" : "\nGets the index of an object.\n\nReturns NSNotFound if the object is not found in this RLMArray.\n\n@param object  An object (of the same type as returned from the objectClassName selector).",
+              "key.doc.comment" : "\nGets the index of an object.\n\nReturns NSNotFound if the object is not found in this RLMArray.\n\n- parameter: object  An object (of the same type as returned from the objectClassName selector).",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2212,7 +2212,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (NSUInteger)indexOfObjectWhere:(nonnull NSString *)predicateFormat, ...;",
-              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n@param predicateFormat The predicate format string which can accept variable arguments.\n\n@return    Index of object or NSNotFound if the object is not found in this RLMArray.",
+              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:    Index of object or NSNotFound if the object is not found in this RLMArray.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2241,7 +2241,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (NSUInteger)indexOfObjectWithPredicate:(nonnull NSPredicate *)predicate;",
-              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n@param predicate   The predicate to filter the objects.\n\n@return    Index of object or NSNotFound if the object is not found in this RLMArray.",
+              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:    Index of object or NSNotFound if the object is not found in this RLMArray.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2270,7 +2270,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWhere:\n        (nonnull NSString *)predicateFormat, ...;",
-              "key.doc.comment" : "Get objects matching the given predicate in the RLMArray.\n\n@param predicateFormat The predicate format string which can accept variable arguments.\n\n@return                An RLMResults of objects that match the given predicate",
+              "key.doc.comment" : "Get objects matching the given predicate in the RLMArray.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:                An RLMResults of objects that match the given predicate",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2299,7 +2299,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWithPredicate:\n        (nonnull NSPredicate *)predicate;",
-              "key.doc.comment" : "Get objects matching the given predicate in the RLMArray.\n\n@param predicate   The predicate to filter the objects.\n\n@return            An RLMResults of objects that match the given predicate",
+              "key.doc.comment" : "Get objects matching the given predicate in the RLMArray.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:            An RLMResults of objects that match the given predicate",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2328,7 +2328,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)\n    sortedResultsUsingProperty:(nonnull NSString *)property\n                     ascending:(BOOL)ascending;",
-              "key.doc.comment" : "Get a sorted RLMResults from an RLMArray\n\n@param property    The property name to sort by.\n@param ascending   The direction to sort by.\n\n@return    An RLMResults sorted by the specified property.",
+              "key.doc.comment" : "Get a sorted RLMResults from an RLMArray\n\n- parameter: property    The property name to sort by.\n- parameter: ascending   The direction to sort by.\n\n- returns:    An RLMResults sorted by the specified property.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2366,7 +2366,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)sortedResultsUsingDescriptors:\n        (nonnull NSArray *)properties;",
-              "key.doc.comment" : "Get a sorted RLMResults from an RLMArray\n\n@param properties  An array of `RLMSortDescriptor`s to sort by.\n\n@return    An RLMResults sorted by the specified properties.",
+              "key.doc.comment" : "Get a sorted RLMResults from an RLMArray\n\n- parameter: properties  An array of `RLMSortDescriptor`s to sort by.\n\n- returns:    An RLMResults sorted by the specified properties.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2579,7 +2579,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "- (nonnull instancetype)init;",
-              "key.doc.comment" : "Initialize a standalone RLMObject\n\nInitialize an unpersisted instance of this object.\nCall addObject: on an RLMRealm to add standalone object to a realm.\n\n@see [RLMRealm addObject:]:",
+              "key.doc.comment" : "Initialize a standalone RLMObject\n\nInitialize an unpersisted instance of this object.\nCall addObject: on an RLMRealm to add standalone object to a realm.\n\n- see: [RLMRealm addObject:]:",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "102",
               "key.name" : "init",
@@ -2591,7 +2591,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "- (nonnull instancetype)initWithValue:(nonnull id)value;",
-              "key.doc.comment" : "Initialize a standalone RLMObject with values from an NSArray or NSDictionary\n\nInitialize an unpersisted instance of this object.\nCall addObject: on an RLMRealm to add standalone object to a realm.\n\n@see [RLMRealm addObject:]:",
+              "key.doc.comment" : "Initialize a standalone RLMObject with values from an NSArray or NSDictionary\n\nInitialize an unpersisted instance of this object.\nCall addObject: on an RLMRealm to add standalone object to a realm.\n\n- see: [RLMRealm addObject:]:",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "113",
               "key.name" : "initWithValue:",
@@ -2603,7 +2603,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull NSString *)className;",
-              "key.doc.comment" : "Helper to return the class name for an RLMObject subclass.\n\n@warning Do not override. Realm relies on this method returning the exact class\n         name.\n\n@return  The class name for the model class.",
+              "key.doc.comment" : "Helper to return the class name for an RLMObject subclass.\n\n- warning: Do not override. Realm relies on this method returning the exact class\n         name.\n\n- returns:  The class name for the model class.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "124",
               "key.name" : "className",
@@ -2621,7 +2621,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)createInDefaultRealmWithValue:(nonnull id)value;",
-              "key.doc.comment" : "Create an RLMObject in the default Realm with a given value.\n\nCreates an instance of this object and adds it to the default Realm populating\nthe object with the given value.\n\nIf nested objects are included in the argument, `createInDefaultRealmWithValue:` will be called\non them.\n\n@param value   The value used to populate the object. This can be any key\/value coding compliant\n               object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n               an NSArray with one object for each persisted property. An exception will be\n               thrown if any required properties are not present and no default is set.\n\nWhen passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.\n\n@see   defaultPropertyValues",
+              "key.doc.comment" : "Create an RLMObject in the default Realm with a given value.\n\nCreates an instance of this object and adds it to the default Realm populating\nthe object with the given value.\n\nIf nested objects are included in the argument, `createInDefaultRealmWithValue:` will be called\non them.\n\n- parameter: value   The value used to populate the object. This can be any key\/value coding compliant\n               object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n               an NSArray with one object for each persisted property. An exception will be\n               thrown if any required properties are not present and no default is set.\n\nWhen passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.\n\n- see:   defaultPropertyValues",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2644,7 +2644,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)createInRealm:(nonnull RLMRealm *)realm\n                            withValue:(nonnull id)value;",
-              "key.doc.comment" : "Create an RLMObject in a Realm with a given object.\n\nCreates an instance of this object and adds it to the given Realm populating\nthe object with the given object.\n\nIf nested objects are included in the argument, `createInRealm:withValue:` will be called\non them.\n\n@param realm   The Realm in which this object is persisted.\n@param value   The value used to populate the object. This can be any key\/value coding compliant\n               object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n               an NSArray with one object for each persisted property. An exception will be\n               thrown if any required properties are not present and no default is set.\n               \n               When passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.\n\n@see   defaultPropertyValues",
+              "key.doc.comment" : "Create an RLMObject in a Realm with a given object.\n\nCreates an instance of this object and adds it to the given Realm populating\nthe object with the given object.\n\nIf nested objects are included in the argument, `createInRealm:withValue:` will be called\non them.\n\n- parameter: realm   The Realm in which this object is persisted.\n- parameter: value   The value used to populate the object. This can be any key\/value coding compliant\n               object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n               an NSArray with one object for each persisted property. An exception will be\n               thrown if any required properties are not present and no default is set.\n               \n               When passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.\n\n- see:   defaultPropertyValues",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2676,7 +2676,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)createOrUpdateInDefaultRealmWithValue:(nonnull id)value;",
-              "key.doc.comment" : "Create or update an RLMObject in the default Realm with a given object.\n\nThis method can only be called on object types with a primary key defined. If there is already\nan object with the same primary key value in the default RLMRealm its values are updated and the object\nis returned. Otherwise this creates and populates a new instance of this object in the default Realm.\n\nIf nested objects are included in the argument, `createOrUpdateInDefaultRealmWithValue:` will be\ncalled on them if have a primary key (`createInDefaultRealmWithValue:` otherwise).\n\nThis is a no-op if the argument is an RLMObject of the same type already backed by the target realm.\n\n@param value   The value used to populate the object. This can be any key\/value coding compliant\n               object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n               an NSArray with one object for each persisted property. An exception will be\n               thrown if any required properties are not present and no default is set.\n\nWhen passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.\n\n@see   defaultPropertyValues, primaryKey",
+              "key.doc.comment" : "Create or update an RLMObject in the default Realm with a given object.\n\nThis method can only be called on object types with a primary key defined. If there is already\nan object with the same primary key value in the default RLMRealm its values are updated and the object\nis returned. Otherwise this creates and populates a new instance of this object in the default Realm.\n\nIf nested objects are included in the argument, `createOrUpdateInDefaultRealmWithValue:` will be\ncalled on them if have a primary key (`createInDefaultRealmWithValue:` otherwise).\n\nThis is a no-op if the argument is an RLMObject of the same type already backed by the target realm.\n\n- parameter: value   The value used to populate the object. This can be any key\/value coding compliant\n               object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n               an NSArray with one object for each persisted property. An exception will be\n               thrown if any required properties are not present and no default is set.\n\nWhen passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.\n\n- see:   defaultPropertyValues, primaryKey",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2699,7 +2699,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)createOrUpdateInRealm:(nonnull RLMRealm *)realm\n                                    withValue:(nonnull id)value;",
-              "key.doc.comment" : "Create or update an RLMObject with a given object.\n\nThis method can only be called on object types with a primary key defined. If there is already\nan object with the same primary key value in the provided RLMRealm its values are updated and the object\nis returned. Otherwise this creates and populates a new instance of this object in the provided Realm.\n\nIf nested objects are included in the argument, `createOrUpdateInRealm:withValue:` will be\ncalled on them if have a primary key (`createInRealm:withValue:` otherwise).\n\nThis is a no-op if the argument is an RLMObject of the same type already backed by the target realm.\n\n@param realm   The Realm in which this object is persisted.\n@param value   The value used to populate the object. This can be any key\/value coding compliant\n               object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n               an NSArray with one object for each persisted property. An exception will be\n               thrown if any required properties are not present and no default is set.\n\nWhen passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.\n\n@see   defaultPropertyValues, primaryKey",
+              "key.doc.comment" : "Create or update an RLMObject with a given object.\n\nThis method can only be called on object types with a primary key defined. If there is already\nan object with the same primary key value in the provided RLMRealm its values are updated and the object\nis returned. Otherwise this creates and populates a new instance of this object in the provided Realm.\n\nIf nested objects are included in the argument, `createOrUpdateInRealm:withValue:` will be\ncalled on them if have a primary key (`createInRealm:withValue:` otherwise).\n\nThis is a no-op if the argument is an RLMObject of the same type already backed by the target realm.\n\n- parameter: realm   The Realm in which this object is persisted.\n- parameter: value   The value used to populate the object. This can be any key\/value coding compliant\n               object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n               an NSArray with one object for each persisted property. An exception will be\n               thrown if any required properties are not present and no default is set.\n\nWhen passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.\n\n- see:   defaultPropertyValues, primaryKey",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2767,7 +2767,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull NSArray *)indexedProperties;",
-              "key.doc.comment" : "Return an array of property names for properties which should be indexed. Only supported\nfor string and int properties.\n@return    NSArray of property names.",
+              "key.doc.comment" : "Return an array of property names for properties which should be indexed. Only supported\nfor string and int properties.\n- returns:    NSArray of property names.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "243",
               "key.name" : "indexedProperties",
@@ -2785,7 +2785,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nullable NSDictionary *)defaultPropertyValues;",
-              "key.doc.comment" : "Implement to indicate the default values to be used for each property.\n\n@return    NSDictionary mapping property names to their default values.",
+              "key.doc.comment" : "Implement to indicate the default values to be used for each property.\n\n- returns:    NSDictionary mapping property names to their default values.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "250",
               "key.name" : "defaultPropertyValues",
@@ -2803,7 +2803,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nullable NSString *)primaryKey;",
-              "key.doc.comment" : "Implement to designate a property as the primary key for an RLMObject subclass. Only properties of\ntype RLMPropertyTypeString and RLMPropertyTypeInt can be designated as the primary key. Primary key \nproperties enforce uniqueness for each value whenever the property is set which incurs some overhead.\nIndexes are created automatically for primary key properties.\n\n@return    Name of the property designated as the primary key.",
+              "key.doc.comment" : "Implement to designate a property as the primary key for an RLMObject subclass. Only properties of\ntype RLMPropertyTypeString and RLMPropertyTypeInt can be designated as the primary key. Primary key \nproperties enforce uniqueness for each value whenever the property is set which incurs some overhead.\nIndexes are created automatically for primary key properties.\n\n- returns:    Name of the property designated as the primary key.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "260",
               "key.name" : "primaryKey",
@@ -2821,7 +2821,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nullable NSArray *)ignoredProperties;",
-              "key.doc.comment" : "Implement to return an array of property names to ignore. These properties will not be persisted\nand are treated as transient.\n\n@return    NSArray of property names to ignore.",
+              "key.doc.comment" : "Implement to return an array of property names to ignore. These properties will not be persisted\nand are treated as transient.\n\n- returns:    NSArray of property names to ignore.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "268",
               "key.name" : "ignoredProperties",
@@ -2839,7 +2839,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull NSArray *)requiredProperties;",
-              "key.doc.comment" : "Implement to return an array of property names that should not allow storing nil.\n\nBy default, all properties of a type that support storing nil are considered optional properties.\nTo require that an object in a Realm always have a non-nil value for a property,\nadd the name of the property to the array returned from this method.\n\nCurrently Object properties cannot be required. Array and NSNumber properties\ncan, but it makes little sense to do so: arrays do not support storing nil, and\nif you want a non-optional number you should instead use the primitive type.\n\n@return    NSArray of property names that are required.",
+              "key.doc.comment" : "Implement to return an array of property names that should not allow storing nil.\n\nBy default, all properties of a type that support storing nil are considered optional properties.\nTo require that an object in a Realm always have a non-nil value for a property,\nadd the name of the property to the array returned from this method.\n\nCurrently Object properties cannot be required. Array and NSNumber properties\ncan, but it makes little sense to do so: arrays do not support storing nil, and\nif you want a non-optional number you should instead use the primitive type.\n\n- returns:    NSArray of property names that are required.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "283",
               "key.name" : "requiredProperties",
@@ -2857,7 +2857,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull RLMResults *)allObjects;",
-              "key.doc.comment" : "Get all objects of this type from the default Realm.\n\n@return    An RLMResults of all objects of this type in the default Realm.",
+              "key.doc.comment" : "Get all objects of this type from the default Realm.\n\n- returns:    An RLMResults of all objects of this type in the default Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "296",
               "key.name" : "allObjects",
@@ -2875,7 +2875,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull RLMResults *)objectsWhere:(nonnull NSString *)predicateFormat, ...;",
-              "key.doc.comment" : "Get objects matching the given predicate for this type from the default Realm.\n\n@param predicateFormat The predicate format string which can accept variable arguments.\n\n@return    An RLMResults of objects of the subclass type in the default Realm that match the given predicate",
+              "key.doc.comment" : "Get objects matching the given predicate for this type from the default Realm.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:    An RLMResults of objects of the subclass type in the default Realm that match the given predicate",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2904,7 +2904,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull RLMResults *)objectsWithPredicate:(nullable NSPredicate *)predicate;",
-              "key.doc.comment" : "Get objects matching the given predicate for this type from the default Realm.\n\n@param predicate   The predicate to filter the objects.\n\n@return    An RLMResults of objects of the subclass type in the default Realm that match the given predicate",
+              "key.doc.comment" : "Get objects matching the given predicate for this type from the default Realm.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:    An RLMResults of objects of the subclass type in the default Realm that match the given predicate",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2933,7 +2933,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nullable instancetype)objectForPrimaryKey:(nullable id)primaryKey;",
-              "key.doc.comment" : "Get the single object with the given primary key from the default Realm.\n\nReturns the object from the default Realm which has the given primary key, or\n`nil` if the object does not exist. This is slightly faster than the otherwise\nequivalent `[[SubclassName objectsWhere:@\"primaryKeyPropertyName = %@\", key] firstObject]`.\n\nThis method requires that `primaryKey` be overridden on the receiving subclass.\n\n@return    An object of the subclass type or nil if an object with the given primary key does not exist.\n@see       -primaryKey",
+              "key.doc.comment" : "Get the single object with the given primary key from the default Realm.\n\nReturns the object from the default Realm which has the given primary key, or\n`nil` if the object does not exist. This is slightly faster than the otherwise\nequivalent `[[SubclassName objectsWhere:@\"primaryKeyPropertyName = %@\", key] firstObject]`.\n\nThis method requires that `primaryKey` be overridden on the receiving subclass.\n\n- returns:    An object of the subclass type or nil if an object with the given primary key does not exist.\n- see:       -primaryKey",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "329",
               "key.name" : "objectForPrimaryKey:",
@@ -2951,7 +2951,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull RLMResults *)allObjectsInRealm:(nonnull RLMRealm *)realm;",
-              "key.doc.comment" : "Get all objects of this type from the specified Realm.\n\n@param realm   The Realm instance to query.\n\n@return        An RLMResults of all objects of this type in the specified Realm.",
+              "key.doc.comment" : "Get all objects of this type from the specified Realm.\n\n- parameter: realm   The Realm instance to query.\n\n- returns:        An RLMResults of all objects of this type in the specified Realm.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2980,7 +2980,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull RLMResults *)objectsInRealm:(nonnull RLMRealm *)realm\n                                 where:(nonnull NSString *)predicateFormat, ...;",
-              "key.doc.comment" : "Get objects matching the given predicate for this type from the specified Realm.\n\n@param predicateFormat The predicate format string which can accept variable arguments.\n@param realm           The Realm instance to query.\n\n@return    An RLMResults of objects of the subclass type in the specified Realm that match the given predicate",
+              "key.doc.comment" : "Get objects matching the given predicate for this type from the specified Realm.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n- parameter: realm           The Realm instance to query.\n\n- returns:    An RLMResults of objects of the subclass type in the specified Realm that match the given predicate",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3018,7 +3018,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nonnull RLMResults *)objectsInRealm:(nonnull RLMRealm *)realm\n                         withPredicate:(nullable NSPredicate *)predicate;",
-              "key.doc.comment" : "Get objects matching the given predicate for this type from the specified Realm.\n\n@param predicate   The predicate to filter the objects.\n@param realm       The Realm instance to query.\n\n@return    An RLMResults of objects of the subclass type in the specified Realm that match the given predicate",
+              "key.doc.comment" : "Get objects matching the given predicate for this type from the specified Realm.\n\n- parameter: predicate   The predicate to filter the objects.\n- parameter: realm       The Realm instance to query.\n\n- returns:    An RLMResults of objects of the subclass type in the specified Realm that match the given predicate",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3056,7 +3056,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "+ (nullable instancetype)objectInRealm:(nonnull RLMRealm *)realm\n                         forPrimaryKey:(nullable id)primaryKey;",
-              "key.doc.comment" : "Get the single object with the given primary key from the specified Realm.\n\nReturns the object from the specified Realm which has the given primary key, or\n`nil` if the object does not exist. This is slightly faster than the otherwise\nequivalent `[[SubclassName objectsInRealm:realm where:@\"primaryKeyPropertyName = %@\", key] firstObject]`.\n\nThis method requires that `primaryKey` be overridden on the receiving subclass.\n\n@return    An object of the subclass type or nil if an object with the given primary key does not exist.\n@see       -primaryKey",
+              "key.doc.comment" : "Get the single object with the given primary key from the specified Realm.\n\nReturns the object from the specified Realm which has the given primary key, or\n`nil` if the object does not exist. This is slightly faster than the otherwise\nequivalent `[[SubclassName objectsInRealm:realm where:@\"primaryKeyPropertyName = %@\", key] firstObject]`.\n\nThis method requires that `primaryKey` be overridden on the receiving subclass.\n\n- returns:    An object of the subclass type or nil if an object with the given primary key does not exist.\n- see:       -primaryKey",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "378",
               "key.name" : "objectInRealm:forPrimaryKey:",
@@ -3074,7 +3074,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "- (nonnull NSArray *)linkingObjectsOfClass:(nonnull NSString *)className\n                               forProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "Get an `NSArray` of objects of type `className` which have this object as the given property value. This can\nbe used to get the inverse relatshionship value for `RLMObject` and `RLMArray` properties.\n\n@param className   The type of object on which the relationship to query is defined.\n@param property    The name of the property which defines the relationship.\n\n@return    An NSArray of objects of type `className` which have this object as thier value for the `property` property.",
+              "key.doc.comment" : "Get an `NSArray` of objects of type `className` which have this object as the given property value. This can\nbe used to get the inverse relatshionship value for `RLMObject` and `RLMArray` properties.\n\n- parameter: className   The type of object on which the relationship to query is defined.\n- parameter: property    The name of the property which defines the relationship.\n\n- returns:    An NSArray of objects of type `className` which have this object as thier value for the `property` property.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3112,7 +3112,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "- (BOOL)isEqualToObject:(nonnull RLMObject *)object;",
-              "key.doc.comment" : "Returns YES if another RLMObject points to the same object in an RLMRealm. For RLMObject types\nwith a primary, key, `isEqual:` is overridden to use this method (along with a corresponding\nimplementation for `hash`.\n\n@param object  The object to compare to.\n\n@return    YES if the object represents the same object in the same RLMRealm.",
+              "key.doc.comment" : "Returns YES if another RLMObject points to the same object in an RLMRealm. For RLMObject types\nwith a primary, key, `isEqual:` is overridden to use this method (along with a corresponding\nimplementation for `hash`.\n\n- parameter: object  The object to compare to.\n\n- returns:    YES if the object represents the same object in the same RLMRealm.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3195,7 +3195,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
               "key.parsed_declaration" : "@property(readonly, copy, nonatomic) NSArray *_Nonnull properties;",
-              "key.doc.comment" : "Array of persisted RLMProperty objects for an object.\n\n@see RLMProperty",
+              "key.doc.comment" : "Array of persisted RLMProperty objects for an object.\n\n- see: RLMProperty",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "41",
               "key.name" : "properties",
@@ -3231,7 +3231,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
               "key.parsed_declaration" : "- (nullable RLMProperty *)objectForKeyedSubscript:\n        (nonnull id<NSCopying>)propertyName;",
-              "key.doc.comment" : "Retrieve an RLMProperty object by name.\n\n@param propertyName The property's name.\n\n@return RLMProperty object or nil if there is no property with the given name.",
+              "key.doc.comment" : "Retrieve an RLMProperty object by name.\n\n- parameter: propertyName The property's name.\n\n- returns: RLMProperty object or nil if there is no property with the given name.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3326,7 +3326,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
               "key.parsed_declaration" : "@property(readonly, copy, nonatomic) NSArray *_Nonnull objectSchema;",
-              "key.doc.comment" : "An NSArray containing RLMObjectSchema's for all object types in this Realm. Meant\nto be used during migrations for dynamic introspection.\n\n@see RLMObjectSchema",
+              "key.doc.comment" : "An NSArray containing RLMObjectSchema's for all object types in this Realm. Meant\nto be used during migrations for dynamic introspection.\n\n- see: RLMObjectSchema",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "42",
               "key.name" : "objectSchema",
@@ -3338,7 +3338,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
               "key.parsed_declaration" : "- (nullable RLMObjectSchema *)schemaForClassName:(nonnull NSString *)className;",
-              "key.doc.comment" : "Returns an RLMObjectSchema for the given class name in this RLMSchema.\n\n@param className   The object class name.\n@return            RLMObjectSchema for the given class in this RLMSchema.\n\n@see               RLMObjectSchema",
+              "key.doc.comment" : "Returns an RLMObjectSchema for the given class name in this RLMSchema.\n\n- parameter: className   The object class name.\n- returns:            RLMObjectSchema for the given class in this RLMSchema.\n\n- see:               RLMObjectSchema",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3367,7 +3367,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
               "key.parsed_declaration" : "- (nonnull RLMObjectSchema *)objectForKeyedSubscript:\n        (nonnull id<NSCopying>)className;",
-              "key.doc.comment" : "Look up an RLMObjectSchema for the given class name in this Realm. Throws if there\nis no object of type className in this RLMSchema instance.\n\n@param className   The object class name.\n@return            RLMObjectSchema for the given class in this Realm.\n\n@see               RLMObjectSchema",
+              "key.doc.comment" : "Look up an RLMObjectSchema for the given class name in this Realm. Throws if there\nis no object of type className in this RLMSchema instance.\n\n- parameter: className   The object class name.\n- returns:            RLMObjectSchema for the given class in this Realm.\n\n- see:               RLMObjectSchema",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3635,7 +3635,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.parsed_declaration" : "- (void)enumerateObjects:(nonnull NSString *)className\n                   block:(nonnull RLMObjectMigrationBlock)block;",
-              "key.doc.comment" : "\nEnumerates objects of a given type in this Realm, providing both the old and new versions of each object.\nObjects properties can be accessed using keyed subscripting.\n\n@param className   The name of the RLMObject class to enumerate.\n\n@warning   All objects returned are of a type specific to the current migration and should not be casted\n           to className. Instead you should access them as RLMObjects and use keyed subscripting to access\n           properties.",
+              "key.doc.comment" : "\nEnumerates objects of a given type in this Realm, providing both the old and new versions of each object.\nObjects properties can be accessed using keyed subscripting.\n\n- parameter: className   The name of the RLMObject class to enumerate.\n\n- warning:   All objects returned are of a type specific to the current migration and should not be casted\n           to className. Instead you should access them as RLMObjects and use keyed subscripting to access\n           properties.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3658,7 +3658,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.parsed_declaration" : "- (nonnull RLMObject *)createObject:(nonnull NSString *)className\n                          withValue:(nonnull id)value;",
-              "key.doc.comment" : "Create an RLMObject of type `className` in the Realm being migrated.\n\n@param className   The name of the RLMObject class to create.\n@param value       The value used to populate the created object. This can be any key\/value coding compliant\n                   object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n                   an NSArray with one object for each persisted property. An exception will be\n                   thrown if any required properties are not present and no default is set.\n\n                   When passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.",
+              "key.doc.comment" : "Create an RLMObject of type `className` in the Realm being migrated.\n\n- parameter: className   The name of the RLMObject class to create.\n- parameter: value       The value used to populate the created object. This can be any key\/value coding compliant\n                   object, or a JSON object such as those returned from the methods in NSJSONSerialization, or\n                   an NSArray with one object for each persisted property. An exception will be\n                   thrown if any required properties are not present and no default is set.\n\n                   When passing in an NSArray, all properties must be present, valid and in the same order as the properties defined in the model.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3690,7 +3690,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.parsed_declaration" : "- (void)deleteObject:(nonnull RLMObject *)object;",
-              "key.doc.comment" : "Delete an object from a Realm during a migration. This can be called within `enumerateObjects:block:`.\n\n@param object  Object to be deleted from the Realm being migrated.",
+              "key.doc.comment" : "Delete an object from a Realm during a migration. This can be called within `enumerateObjects:block:`.\n\n- parameter: object  Object to be deleted from the Realm being migrated.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3713,7 +3713,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.parsed_declaration" : "- (BOOL)deleteDataForClassName:(nonnull NSString *)name;",
-              "key.doc.comment" : "Deletes the data for the class with the given name.\nThis deletes all objects of the given class, and if the RLMObject subclass no longer exists in your program,\ncleans up any remaining metadata for the class in the Realm file.\n\n@param  name The name of the RLMObject class to delete.\n\n@return whether there was any data to delete.",
+              "key.doc.comment" : "Deletes the data for the class with the given name.\nThis deletes all objects of the given class, and if the RLMObject subclass no longer exists in your program,\ncleans up any remaining metadata for the class in the Realm file.\n\n- parameter:  name The name of the RLMObject class to delete.\n\n- returns: whether there was any data to delete.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
