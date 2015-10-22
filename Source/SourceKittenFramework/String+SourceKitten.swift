@@ -221,8 +221,8 @@ extension String {
     public func commentBody(range: NSRange? = nil) -> String? {
         let nsString = self as NSString
         let patterns: [(pattern: String, options: NSRegularExpressionOptions)] = [
-            ("^\\s*\\/\\*\\*\\s*(.+)\\*\\/", [.AnchorsMatchLines, .DotMatchesLineSeparators]),   // multi: ^\s*\/\*\*\s*(.+)\*\/
-            ("^\\s*\\/\\/\\/(.+)?",          .AnchorsMatchLines)                                 // single: ^\s*\/\/\/(.+)?
+            ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.AnchorsMatchLines, .DotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
+            ("^\\s*\\/\\/\\/(.+)?",           .AnchorsMatchLines)                               // single: ^\s*\/\/\/(.+)?
         ]
         let range = range ?? NSRange(location: 0, length: nsString.length)
         for pattern in patterns {
@@ -248,6 +248,9 @@ extension String {
                     let leadingWhitespaceToAdd = String(count: leadingWhitespaceCountToAdd, repeatedValue: Character(" "))
 
                     let bodySubstring = nsString.substringWithRange(range)
+                    if bodySubstring.containsString("@name") {
+                        return "" // appledoc directive, return empty string
+                    }
                     return leadingWhitespaceToAdd + bodySubstring
                 }
             }

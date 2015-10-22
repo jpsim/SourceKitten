@@ -88,6 +88,7 @@ public struct SourceDeclaration {
     let declaration: String?
     let mark: String?
     let documentation: Documentation?
+    let rawDocumentation: String?
     let children: [SourceDeclaration]
 }
 
@@ -102,6 +103,7 @@ extension SourceDeclaration {
         }
 
         let rawComment = clang_Cursor_getRawCommentText(cursor).str()
+        rawDocumentation = rawComment?.commentBody()
         if let rawComment = rawComment where rawComment.containsString("@name") {
             let nsString = rawComment as NSString
             let regex = try! NSRegularExpression(pattern: "@name +(.*)", options: [])
