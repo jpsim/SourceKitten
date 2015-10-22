@@ -2471,7 +2471,7 @@
           "key.parsed_declaration" : "@interface RLMArray (Swift)",
           "key.doc.full_as_xml" : "",
           "key.doc.line" : "352",
-          "key.name" : "Swift",
+          "key.name" : "RLMArray(Swift)",
           "key.doc.column" : "12",
           "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
           "key.usr" : "c:objc(cy)RLMArray@Swift"

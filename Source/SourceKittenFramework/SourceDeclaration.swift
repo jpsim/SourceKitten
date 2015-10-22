@@ -123,9 +123,22 @@ extension SourceDeclaration {
         }
 
         location = cursor.location()
-        name = cursor.name()
         type = ObjCDeclarationKind.fromClang(cursor.kind)
         usr = cursor.usr()
+        if let usrNSString = usr as NSString? where type == .Category {
+            let regex = try! NSRegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
+            let range = NSRange(location: 0, length: usrNSString.length)
+            let matches = regex.matchesInString(usrNSString as String, options: [], range: range)
+            if matches.count > 0 {
+                let categoryOn = usrNSString.substringWithRange(matches[0].rangeAtIndex(1))
+                let categoryName = usrNSString.substringWithRange(matches[0].rangeAtIndex(2))
+                name = "\(categoryOn)(\(categoryName))"
+            } else {
+                name = cursor.name()
+            }
+        } else {
+            name = cursor.name()
+        }
         let commentXML = String.fromCString(clang_getCString(clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)))) ?? ""
         guard let rootXML = SWXMLHash.parse(commentXML).children.first else {
             fatalError("couldn't parse XML")
