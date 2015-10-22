@@ -39,7 +39,7 @@ private func toOutputDictionary(decl: SourceDeclaration) -> [String: AnyObject] 
         }
     }
 
-    set(.Kind, decl.type?.rawValue)
+    set(.Kind, decl.type.rawValue)
     set(.FilePath, decl.location.file)
     set(.DocFile, decl.location.file)
     set(.DocLine, String(decl.location.line))

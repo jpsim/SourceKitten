@@ -80,7 +80,7 @@ public struct Documentation {
 
 /// Represents a source code declaration.
 public struct SourceDeclaration {
-    let type: ObjCDeclarationKind?
+    let type: ObjCDeclarationKind
     let location: SourceLocation
 
     let name: String?

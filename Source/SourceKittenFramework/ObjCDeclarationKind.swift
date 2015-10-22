@@ -32,10 +32,10 @@ public enum ObjCDeclarationKind: String {
     case Protocol = "sourcekitten.source.lang.objc.decl.protocol"
     /// `typedef`.
     case Typedef = "sourcekitten.source.lang.objc.decl.typedef"
-
+    /// `mark`.
     case Mark = "source.lang.swift.syntaxtype.comment.mark"
 
-    public static func fromClang(kind: CXCursorKind) -> ObjCDeclarationKind? {
+    public static func fromClang(kind: CXCursorKind) -> ObjCDeclarationKind {
         switch kind.rawValue {
         case CXCursor_ObjCCategoryDecl.rawValue: return .Category
         case CXCursor_ObjCInterfaceDecl.rawValue: return .Class
@@ -46,7 +46,7 @@ public enum ObjCDeclarationKind: String {
         case CXCursor_ObjCPropertyDecl.rawValue: return .Property
         case CXCursor_ObjCProtocolDecl.rawValue: return .Protocol
         case CXCursor_TypedefDecl.rawValue: return .Typedef
-        default: return nil
+        default: fatalError("Unsupported CXCursorKind value: \(kind.rawValue)")
         }
     }
 }

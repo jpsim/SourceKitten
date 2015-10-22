@@ -28,8 +28,8 @@ class ClangTranslationUnitTests: XCTestCase {
     }
 
     func testBasicObjectiveCDocs() {
-        let headerFiles = ["/src/realm-cocoa/Realm/Realm.h"]
-        let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath(), "-I", "/src/realm-cocoa/"]
+        let headerFiles = ["/Users/jp/Projects/realm-cocoa/Realm/Realm.h"]
+        let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath(), "-I", "/Users/jp/Projects/realm-cocoa/"]
         let tu = ClangTranslationUnit(headerFiles: headerFiles, compilerArguments: compilerArguments)
         let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
         let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
