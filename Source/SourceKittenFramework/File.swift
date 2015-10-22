@@ -27,8 +27,8 @@ public struct File {
     public init?(path: String) {
         self.path = path
         do {
-            self.contents = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding) as String
-            self.lines = self.contents.lines()
+            contents = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding) as String
+            lines = contents.lines()
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
             return nil
@@ -43,7 +43,7 @@ public struct File {
     public init(contents: String) {
         path = nil
         self.contents = contents
-        self.lines = self.contents.lines()
+        lines = contents.lines()
     }
 
     /**
