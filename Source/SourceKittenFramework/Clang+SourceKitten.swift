@@ -35,7 +35,7 @@ extension CXTranslationUnit {
     }
 
     func visit(block: ((CXCursor, CXCursor) -> CXChildVisitResult)) {
-        self.cursor().visit(block)
+        cursor().visit(block)
     }
 }
 
@@ -68,7 +68,7 @@ extension CXCursor {
         let range = clang_getCursorExtent(self)
         var tokens = UnsafeMutablePointer<CXToken>()
         var count = UInt32(0)
-        clang_tokenize(self.translationUnit(), range, &tokens, &count)
+        clang_tokenize(translationUnit(), range, &tokens, &count)
 
         func needsWhitespace(kind: CXTokenKind) -> Bool {
             return kind == CXToken_Identifier || kind == CXToken_Keyword
@@ -82,7 +82,7 @@ extension CXCursor {
                 break
             }
 
-            if let s = tokens[Int(i)].str(self.translationUnit()) {
+            if let s = tokens[Int(i)].str(translationUnit()) {
                 if prevWasIdentifier && needsWhitespace(type) {
                     str += " "
                 }
@@ -91,7 +91,7 @@ extension CXCursor {
             }
         }
 
-        clang_disposeTokens(self.translationUnit(), tokens, count)
+        clang_disposeTokens(translationUnit(), tokens, count)
         return str
     }
 
@@ -141,11 +141,11 @@ extension CXComment {
         return clang_BlockCommandComment_getParagraph(self)
     }
 
-    func paragraphToString(kind: String? = nil) -> [Text] {
-        if self.kind() == CXComment_VerbatimLine {
+    func paragraphToString(kindString: String? = nil) -> [Text] {
+        if kind() == CXComment_VerbatimLine {
             return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
         }
-        if self.kind() == CXComment_BlockCommand  {
+        if kind() == CXComment_BlockCommand  {
             var ret = [Text]()
             for i in 0..<clang_Comment_getNumChildren(self) {
                 let child = clang_Comment_getChild(self, i)
@@ -154,8 +154,8 @@ extension CXComment {
             return ret
         }
 
-        guard self.kind() == CXComment_Paragraph else {
-            print("not a paragraph: \(self.kind())")
+        guard kind() == CXComment_Paragraph else {
+            print("not a paragraph: \(kind())")
             return []
         }
 
@@ -176,7 +176,7 @@ extension CXComment {
                 print("not text: \(child.kind())")
             }
         }
-        return [.Para(ret.stringByRemovingCommonLeadingWhitespaceFromLines(), kind)]
+        return [.Para(ret.stringByRemovingCommonLeadingWhitespaceFromLines(), kindString)]
     }
 
     func kind() -> CXCommentKind {
