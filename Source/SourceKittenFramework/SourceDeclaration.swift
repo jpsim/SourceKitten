@@ -6,6 +6,8 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+import SWXMLHash
+
 public struct SourceLocation {
     let file: String
     let line: UInt32
@@ -124,7 +126,11 @@ extension SourceDeclaration {
         name = cursor.name()
         type = ObjCDeclarationKind.fromClang(cursor.kind)
         usr = cursor.usr()
-        declaration = cursor.text()
+        let commentXML = String.fromCString(clang_getCString(clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)))) ?? ""
+        guard let rootXML = SWXMLHash.parse(commentXML).children.first else {
+            fatalError("couldn't parse XML")
+        }
+        declaration = rootXML["Declaration"].element?.text?.stringByReplacingOccurrencesOfString("\n@end", withString: "")
         documentation = Documentation(comment: comment)
         children = cursor.flatMap(SourceDeclaration.init)
     }
