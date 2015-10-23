@@ -156,7 +156,18 @@ extension SourceDeclaration {
         }
         declaration = rootXML["Declaration"].element?.text?.stringByReplacingOccurrencesOfString("\n@end", withString: "")
         documentation = Documentation(comment: comment)
-        children = cursor.flatMap(SourceDeclaration.init)
+        // Remove implicitly generated property getters & setters
+        let tmpChildren = cursor.flatMap(SourceDeclaration.init)
+        let propertyUSRs = tmpChildren.filter({ $0.type == .Property }).map({ $0.usr! })
+        let propertyGetterSetterUSRs = propertyUSRs.flatMap { usr -> [String] in
+            let getter = usr.stringByReplacingOccurrencesOfString("(py)", withString: "(im)")
+            let setter = usr.substringToIndex(usr.rangeOfString("(py)")!.startIndex) +
+                "(im)set" +
+                usr.substringFromIndex(usr.rangeOfString("(py)")!.startIndex.advancedBy(4)).capitalizedString +
+                ":"
+            return [getter, setter]
+        }
+        children = tmpChildren.filter { !propertyGetterSetterUSRs.contains($0.usr!) }
     }
 }
 

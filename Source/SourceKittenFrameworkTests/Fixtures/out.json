@@ -81,61 +81,6 @@
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
               "key.usr" : "c:objc(cs)RLMProperty(im)isEqualToProperty:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "- (NSString *_Nonnull)name;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "50",
-              "key.name" : "name",
-              "key.doc.column" : "43",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.usr" : "c:objc(cs)RLMProperty(im)name"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "- (RLMPropertyType)type;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "57",
-              "key.name" : "type",
-              "key.doc.column" : "49",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.usr" : "c:objc(cs)RLMProperty(im)type"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "- (BOOL)indexed;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "64",
-              "key.name" : "indexed",
-              "key.doc.column" : "38",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.usr" : "c:objc(cs)RLMProperty(im)indexed"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "- (NSString *_Nullable)objectClassName;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "69",
-              "key.name" : "objectClassName",
-              "key.doc.column" : "59",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.usr" : "c:objc(cs)RLMProperty(im)objectClassName"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "- (BOOL)optional;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "74",
-              "key.name" : "optional",
-              "key.doc.column" : "38",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.usr" : "c:objc(cs)RLMProperty(im)optional"
             }
           ],
           "key.name" : "RLMProperty",
@@ -286,39 +231,6 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "- (NSString *_Nullable)path;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "46",
-              "key.name" : "path",
-              "key.doc.column" : "49",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)path"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "- (void)setPath:(NSString *_Nullable)path;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "46",
-              "key.name" : "setPath:",
-              "key.doc.column" : "49",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)setPath:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "- (NSString *_Nullable)inMemoryIdentifier;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "49",
-              "key.name" : "inMemoryIdentifier",
-              "key.doc.column" : "49",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)inMemoryIdentifier"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.parsed_declaration" : "- (void)setInMemoryIdentifier:(NSString *_Nullable)inMemoryIdentifier;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "49",
@@ -326,17 +238,6 @@
               "key.doc.column" : "49",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)setInMemoryIdentifier:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "- (NSData *_Nullable)encryptionKey;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "52",
-              "key.name" : "encryptionKey",
-              "key.doc.column" : "47",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)encryptionKey"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
@@ -352,17 +253,6 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "- (BOOL)readOnly;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "55",
-              "key.name" : "readOnly",
-              "key.doc.column" : "28",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)readOnly"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.parsed_declaration" : "- (void)setReadOnly:(BOOL)readOnly;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "55",
@@ -370,17 +260,6 @@
               "key.doc.column" : "28",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)setReadOnly:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "- (uint64_t)schemaVersion;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "58",
-              "key.name" : "schemaVersion",
-              "key.doc.column" : "32",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)schemaVersion"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
@@ -396,17 +275,6 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "- (RLMMigrationBlock _Nullable)migrationBlock;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "61",
-              "key.name" : "migrationBlock",
-              "key.doc.column" : "57",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)migrationBlock"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.parsed_declaration" : "- (void)setMigrationBlock:(RLMMigrationBlock _Nullable)migrationBlock;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "61",
@@ -414,17 +282,6 @@
               "key.doc.column" : "57",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)setMigrationBlock:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "- (NSArray *_Nullable)objectClasses;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "64",
-              "key.name" : "objectClasses",
-              "key.doc.column" : "48",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(im)objectClasses"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
@@ -1194,17 +1051,6 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "- (NSString *_Nonnull)path;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "94",
-              "key.name" : "path",
-              "key.doc.column" : "43",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.usr" : "c:objc(cs)RLMRealm(im)path"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.parsed_declaration" : "- (BOOL)isReadOnly;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "99",
@@ -1212,72 +1058,6 @@
               "key.doc.column" : "59",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)isReadOnly"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "- (RLMSchema *_Null_unspecified)schema;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "104",
-              "key.name" : "schema",
-              "key.doc.column" : "62",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.usr" : "c:objc(cs)RLMRealm(im)schema"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "- (BOOL)inWriteTransaction;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "114",
-              "key.name" : "inWriteTransaction",
-              "key.doc.column" : "38",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.usr" : "c:objc(cs)RLMRealm(im)inWriteTransaction"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "- (RLMRealmConfiguration *_Nonnull)configuration;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "119",
-              "key.name" : "configuration",
-              "key.doc.column" : "56",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.usr" : "c:objc(cs)RLMRealm(im)configuration"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "- (BOOL)isEmpty;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "124",
-              "key.name" : "isEmpty",
-              "key.doc.column" : "38",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.usr" : "c:objc(cs)RLMRealm(im)isEmpty"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "- (BOOL)autorefresh;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "293",
-              "key.name" : "autorefresh",
-              "key.doc.column" : "28",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.usr" : "c:objc(cs)RLMRealm(im)autorefresh"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "- (void)setAutorefresh:(BOOL)autorefresh;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "293",
-              "key.name" : "setAutorefresh:",
-              "key.doc.column" : "28",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.usr" : "c:objc(cs)RLMRealm(im)setAutorefresh:"
             }
           ],
           "key.name" : "RLMRealm",
@@ -1787,39 +1567,6 @@
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.usr" : "c:objc(cs)RLMResults(cm)new"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.parsed_declaration" : "- (NSUInteger)count;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "47",
-              "key.name" : "count",
-              "key.doc.column" : "52",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.usr" : "c:objc(cs)RLMResults(im)count"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.parsed_declaration" : "- (NSString *_Nonnull)objectClassName;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "52",
-              "key.name" : "objectClassName",
-              "key.doc.column" : "49",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.usr" : "c:objc(cs)RLMResults(im)objectClassName"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.parsed_declaration" : "- (RLMRealm *_Nonnull)realm;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "57",
-              "key.name" : "realm",
-              "key.doc.column" : "43",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.usr" : "c:objc(cs)RLMResults(im)realm"
             }
           ],
           "key.name" : "RLMResults",
@@ -2418,39 +2165,6 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "- (NSUInteger)count;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "72",
-              "key.name" : "count",
-              "key.doc.column" : "52",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)count"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "- (NSString *_Nonnull)objectClassName;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "77",
-              "key.name" : "objectClassName",
-              "key.doc.column" : "49",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)objectClassName"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "- (RLMRealm *_Nullable)realm;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "82",
-              "key.name" : "realm",
-              "key.doc.column" : "53",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)realm"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (BOOL)isInvalidated;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "87",
@@ -2531,28 +2245,6 @@
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMSortDescriptor(im)reversedSortDescriptor"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "- (NSString *_Nonnull)property;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "333",
-              "key.name" : "property",
-              "key.doc.column" : "43",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMSortDescriptor(im)property"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "- (BOOL)ascending;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "338",
-              "key.name" : "ascending",
-              "key.doc.column" : "38",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMSortDescriptor(im)ascending"
             }
           ],
           "key.name" : "RLMSortDescriptor",
@@ -3140,28 +2832,6 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.parsed_declaration" : "- (RLMRealm *_Nullable)realm;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "217",
-              "key.name" : "realm",
-              "key.doc.column" : "53",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.usr" : "c:objc(cs)RLMObject(im)realm"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.parsed_declaration" : "- (RLMObjectSchema *_Nonnull)objectSchema;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "222",
-              "key.name" : "objectSchema",
-              "key.doc.column" : "50",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.usr" : "c:objc(cs)RLMObject(im)objectSchema"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.parsed_declaration" : "- (BOOL)isInvalidated;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "230",
@@ -3267,39 +2937,6 @@
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
               "key.usr" : "c:objc(cs)RLMObjectSchema(im)isEqualToObjectSchema:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.parsed_declaration" : "- (NSArray *_Nonnull)properties;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "41",
-              "key.name" : "properties",
-              "key.doc.column" : "48",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.usr" : "c:objc(cs)RLMObjectSchema(im)properties"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.parsed_declaration" : "- (NSString *_Nonnull)className;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "46",
-              "key.name" : "className",
-              "key.doc.column" : "43",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.usr" : "c:objc(cs)RLMObjectSchema(im)className"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.parsed_declaration" : "- (RLMProperty *_Nullable)primaryKeyProperty;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "51",
-              "key.name" : "primaryKeyProperty",
-              "key.doc.column" : "56",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.usr" : "c:objc(cs)RLMObjectSchema(im)primaryKeyProperty"
             }
           ],
           "key.name" : "RLMObjectSchema",
@@ -3403,17 +3040,6 @@
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
               "key.usr" : "c:objc(cs)RLMSchema(im)isEqualToSchema:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
-              "key.parsed_declaration" : "- (NSArray *_Nonnull)objectSchema;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "42",
-              "key.name" : "objectSchema",
-              "key.doc.column" : "48",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
-              "key.usr" : "c:objc(cs)RLMSchema(im)objectSchema"
             }
           ],
           "key.name" : "RLMSchema",
@@ -3737,28 +3363,6 @@
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.usr" : "c:objc(cs)RLMMigration(im)deleteDataForClassName:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
-              "key.parsed_declaration" : "- (RLMSchema *_Nonnull)oldSchema;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "46",
-              "key.name" : "oldSchema",
-              "key.doc.column" : "44",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
-              "key.usr" : "c:objc(cs)RLMMigration(im)oldSchema"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
-              "key.parsed_declaration" : "- (RLMSchema *_Nonnull)newSchema;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "52",
-              "key.name" : "newSchema",
-              "key.doc.column" : "44",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
-              "key.usr" : "c:objc(cs)RLMMigration(im)newSchema"
             }
           ],
           "key.name" : "RLMMigration",
