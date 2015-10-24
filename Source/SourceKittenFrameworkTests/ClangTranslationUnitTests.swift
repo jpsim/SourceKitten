@@ -27,12 +27,12 @@ class ClangTranslationUnitTests: XCTestCase {
         XCTAssertEqual(parsedXcodebuildArguments, xcodebuildArguments, "xcodebuild arguments should be parsed")
     }
 
-    func testBasicObjectiveCDocs() {
-        let headerFiles = [fixturesDirectory + "Musician.h"]
-        let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath()]
+    func testRealmObjectiveCDocs() {
+        let headerFiles = [fixturesDirectory + "/Realm/Realm.h"]
+        let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory]
         let tu = ClangTranslationUnit(headerFiles: headerFiles, compilerArguments: compilerArguments)
-        let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(fixturesDirectory, withString: "")
-        let expectedOutput = File(path: fixturesDirectory + "Musician.xml")!.contents as String
-        XCTAssertEqual(comparisonString, expectedOutput, "Objective-C docs should match expected ouput")
+        let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
+        let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
+        compareJSONStringWithFixturesName("Realm", jsonString: comparisonString)
     }
 }
