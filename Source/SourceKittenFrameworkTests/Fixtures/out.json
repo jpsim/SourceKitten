@@ -2892,7 +2892,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.parsed_declaration" : "@property(readonly, nonatomic) RLMSchema *_Nonnull oldSchema;",
-              "key.doc.comment" : "Get the new RLMSchema for the migration. This is the schema which describes the RLMRealm before the\nmigration is applied.",
+              "key.doc.comment" : "Get the old RLMSchema for the migration. This is the schema which describes the RLMRealm before the\nmigration is applied.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "46",
               "key.name" : "oldSchema",
