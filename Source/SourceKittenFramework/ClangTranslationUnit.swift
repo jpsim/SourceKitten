@@ -45,7 +45,7 @@ public struct ClangTranslationUnit {
         declarations = clangTranslationUnits
             .flatMap { $0.cursor().flatMap(SourceDeclaration.init) }
             .distinct()
-//            .sort()
+            .sort()
             .groupBy { $0.location.file }
     }
 
