@@ -11,12 +11,21 @@
           "key.doc.line" : "45",
           "key.substructure" : [
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "54",
+              "key.name" : "MARK: Properties",
+              "key.doc.column" : "43",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
               "key.parsed_declaration" : "@property (readonly, nonatomic) NSString *_Nonnull name;",
-              "key.doc.comment" : "Property name.",
+              "key.doc.comment" : "\nProperty name.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "50",
+              "key.doc.line" : "54",
               "key.name" : "name",
               "key.doc.column" : "43",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
@@ -28,7 +37,7 @@
               "key.parsed_declaration" : "@property (readonly, nonatomic) RLMPropertyType type;",
               "key.doc.comment" : "Property type.\n\n- see: RLMPropertyType",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "57",
+              "key.doc.line" : "61",
               "key.name" : "type",
               "key.doc.column" : "49",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
@@ -40,7 +49,7 @@
               "key.parsed_declaration" : "@property (readonly, nonatomic) BOOL indexed;",
               "key.doc.comment" : "Indicates if this property is indexed.\n\n- see: RLMObject",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "64",
+              "key.doc.line" : "68",
               "key.name" : "indexed",
               "key.doc.column" : "38",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
@@ -52,7 +61,7 @@
               "key.parsed_declaration" : "@property (readonly, copy, nonatomic, nullable) NSString *objectClassName;",
               "key.doc.comment" : "Object class name - specify object types for RLMObject and RLMArray properties.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "69",
+              "key.doc.line" : "73",
               "key.name" : "objectClassName",
               "key.doc.column" : "59",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
@@ -64,19 +73,28 @@
               "key.parsed_declaration" : "@property (readonly, nonatomic) BOOL optional;",
               "key.doc.comment" : "Whether this property is optional.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "74",
+              "key.doc.line" : "78",
               "key.name" : "optional",
               "key.doc.column" : "38",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
               "key.usr" : "c:objc(cs)RLMProperty(py)optional"
             },
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "87",
+              "key.name" : "MARK: Methods",
+              "key.doc.column" : "9",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
               "key.parsed_declaration" : "- (BOOL)isEqualToProperty:(nonnull RLMProperty *)property;",
-              "key.doc.comment" : "Returns YES if property objects are equal.",
+              "key.doc.comment" : "\nReturns YES if property objects are equal.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "79",
+              "key.doc.line" : "87",
               "key.name" : "-isEqualToProperty:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
@@ -158,7 +176,7 @@
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "54",
-              "key.name" : "MARK: Configuration Properties",
+              "key.name" : "MARK: Properties",
               "key.doc.column" : "49",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h"
             },
@@ -1076,7 +1094,7 @@
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "39",
-              "key.name" : "MARK: RLMCollection Properties",
+              "key.name" : "MARK: Properties",
               "key.doc.column" : "52",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h"
             },
@@ -1653,7 +1671,7 @@
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "222",
-              "key.name" : "MARK: RLMObject Properties",
+              "key.name" : "MARK: Properties",
               "key.doc.column" : "53",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h"
             },
@@ -2129,7 +2147,7 @@
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "71",
-              "key.name" : "MARK: RLMArray Properties",
+              "key.name" : "MARK: Properties",
               "key.doc.column" : "52",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h"
             },
@@ -2856,12 +2874,21 @@
           "key.doc.line" : "40",
           "key.substructure" : [
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "50",
+              "key.name" : "MARK: Properties",
+              "key.doc.column" : "44",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.parsed_declaration" : "@property (readonly, nonatomic) RLMSchema *_Nonnull oldSchema;",
-              "key.doc.comment" : "Get the old RLMSchema for the migration. This is the schema which describes the RLMRealm before the\nmigration is applied.",
+              "key.doc.comment" : "\nGet the old RLMSchema for the migration. This is the schema which describes the RLMRealm before the\nmigration is applied.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "46",
+              "key.doc.line" : "50",
               "key.name" : "oldSchema",
               "key.doc.column" : "44",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
@@ -2873,7 +2900,7 @@
               "key.parsed_declaration" : "@property (readonly, nonatomic) RLMSchema *_Nonnull newSchema;",
               "key.doc.comment" : "Get the new RLMSchema for the migration. This is the schema which describes the RLMRealm after applying\na migration.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "52",
+              "key.doc.line" : "56",
               "key.name" : "newSchema",
               "key.doc.column" : "44",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
@@ -2883,7 +2910,7 @@
               "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "69",
+              "key.doc.line" : "73",
               "key.name" : "MARK: Altering Objects during a Migration",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h"
@@ -2904,7 +2931,7 @@
                   "name" : "className"
                 }
               ],
-              "key.doc.line" : "69",
+              "key.doc.line" : "73",
               "key.doc.full_as_xml" : "",
               "key.name" : "-enumerateObjects:block:",
               "key.doc.column" : "9",
@@ -2936,7 +2963,7 @@
                   "name" : "value"
                 }
               ],
-              "key.doc.line" : "82",
+              "key.doc.line" : "86",
               "key.doc.full_as_xml" : "",
               "key.name" : "-createObject:withValue:",
               "key.doc.column" : "15",
@@ -2959,7 +2986,7 @@
                   "name" : "object"
                 }
               ],
-              "key.doc.line" : "89",
+              "key.doc.line" : "93",
               "key.doc.full_as_xml" : "",
               "key.name" : "-deleteObject:",
               "key.doc.column" : "9",
@@ -2982,7 +3009,7 @@
                   "name" : "name"
                 }
               ],
-              "key.doc.line" : "100",
+              "key.doc.line" : "104",
               "key.doc.full_as_xml" : "",
               "key.name" : "-deleteDataForClassName:",
               "key.doc.result_discussion" : [
@@ -3017,12 +3044,21 @@
           "key.doc.line" : "34",
           "key.substructure" : [
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "45",
+              "key.name" : "MARK: Properties",
+              "key.doc.column" : "48",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
               "key.parsed_declaration" : "@property (readonly, copy, nonatomic) NSArray *_Nonnull properties;",
-              "key.doc.comment" : "Array of persisted RLMProperty objects for an object.\n\n- see: RLMProperty",
+              "key.doc.comment" : "\nArray of persisted RLMProperty objects for an object.\n\n- see: RLMProperty",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "41",
+              "key.doc.line" : "45",
               "key.name" : "properties",
               "key.doc.column" : "48",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
@@ -3034,7 +3070,7 @@
               "key.parsed_declaration" : "@property (readonly, nonatomic) NSString *_Nonnull className;",
               "key.doc.comment" : "The name of the class this schema describes.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "46",
+              "key.doc.line" : "50",
               "key.name" : "className",
               "key.doc.column" : "43",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
@@ -3046,17 +3082,26 @@
               "key.parsed_declaration" : "@property (readonly, nonatomic, nullable) RLMProperty *primaryKeyProperty;",
               "key.doc.comment" : "The property which is the primary key for this object (if any).",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "51",
+              "key.doc.line" : "55",
               "key.name" : "primaryKeyProperty",
               "key.doc.column" : "56",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
               "key.usr" : "c:objc(cs)RLMObjectSchema(py)primaryKeyProperty"
             },
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "68",
+              "key.name" : "MARK: Methods",
+              "key.doc.column" : "27",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
               "key.parsed_declaration" : "- (nullable RLMProperty *)objectForKeyedSubscript:\n        (nonnull id<NSCopying>)propertyName;",
-              "key.doc.comment" : "Retrieve an RLMProperty object by name.\n\n- parameter: propertyName The property's name.\n\n- returns: RLMProperty object or nil if there is no property with the given name.",
+              "key.doc.comment" : "\nRetrieve an RLMProperty object by name.\n\n- parameter: propertyName The property's name.\n\n- returns: RLMProperty object or nil if there is no property with the given name.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -3068,7 +3113,7 @@
                   "name" : "propertyName"
                 }
               ],
-              "key.doc.line" : "60",
+              "key.doc.line" : "68",
               "key.doc.full_as_xml" : "",
               "key.name" : "-objectForKeyedSubscript:",
               "key.doc.result_discussion" : [
@@ -3087,7 +3132,7 @@
               "key.parsed_declaration" : "- (BOOL)isEqualToObjectSchema:(nonnull RLMObjectSchema *)objectSchema;",
               "key.doc.comment" : "Returns YES if equal to objectSchema",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "65",
+              "key.doc.line" : "73",
               "key.name" : "-isEqualToObjectSchema:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
@@ -3119,7 +3164,7 @@
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "45",
-              "key.name" : "MARK: RLMResults Properties",
+              "key.name" : "MARK: Properties",
               "key.doc.column" : "52",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h"
             },
@@ -3903,7 +3948,7 @@
           "key.kind" : "sourcekitten.source.lang.objc.decl.constant",
           "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMConstants.h",
           "key.parsed_declaration" : "extern NSString *const RLMRealmRefreshRequiredNotification",
-          "key.doc.comment" : "\nPosted by RLMRealm when the data in the realm has changed.\n\nDidChange are posted after a realm has been refreshed to reflect a write\ntransaction, i.e. when an autorefresh occurs, [refresh]([RLMRealm refresh]) is\ncalled, after an implicit refresh from [beginWriteTransaction]([RLMRealm beginWriteTransaction]),\nand after a local write transaction is committed.",
+          "key.doc.comment" : "\nPosted by RLMRealm when the data in the realm has changed.\n\nDidChange are posted after a realm has been refreshed to reflect a write\ntransaction, i.e. when an autorefresh occurs, `[RLMRealm refresh]` is\ncalled, after an implicit refresh from `[RLMRealm beginWriteTransaction]`,\nand after a local write transaction is committed.",
           "key.doc.full_as_xml" : "",
           "key.doc.line" : "101",
           "key.name" : "RLMRealmRefreshRequiredNotification",
@@ -3915,7 +3960,7 @@
           "key.kind" : "sourcekitten.source.lang.objc.decl.constant",
           "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMConstants.h",
           "key.parsed_declaration" : "extern NSString *const RLMRealmDidChangeNotification",
-          "key.doc.comment" : "Posted by RLMRealm when a write transaction has been committed to an RLMRealm on\na different thread for the same file. This is not posted if\n[autorefresh]([RLMRealm autorefresh]) is enabled or if the RLMRealm is\nrefreshed before the notifcation has a chance to run.\n\nRealms with autorefresh disabled should normally have a handler for this\nnotification which calls [refresh]([RLMRealm refresh]) after doing some work.\nWhile not refreshing is allowed, it may lead to large Realm files as Realm has\nto keep an extra copy of the data for the un-refreshed RLMRealm.",
+          "key.doc.comment" : "Posted by RLMRealm when a write transaction has been committed to an RLMRealm on\na different thread for the same file. This is not posted if\n`[RLMRealm autorefresh]` is enabled or if the RLMRealm is\nrefreshed before the notifcation has a chance to run.\n\nRealms with autorefresh disabled should normally have a handler for this\nnotification which calls `[RLMRealm refresh]` after doing some work.\nWhile not refreshing is allowed, it may lead to large Realm files as Realm has\nto keep an extra copy of the data for the un-refreshed RLMRealm.",
           "key.doc.full_as_xml" : "",
           "key.doc.line" : "114",
           "key.name" : "RLMRealmDidChangeNotification",
@@ -4020,22 +4065,40 @@
           "key.doc.line" : "34",
           "key.substructure" : [
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "46",
+              "key.name" : "MARK: Properties",
+              "key.doc.column" : "48",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
               "key.parsed_declaration" : "@property (readonly, copy, nonatomic) NSArray *_Nonnull objectSchema;",
-              "key.doc.comment" : "An NSArray containing RLMObjectSchema's for all object types in this Realm. Meant\nto be used during migrations for dynamic introspection.\n\n- see: RLMObjectSchema",
+              "key.doc.comment" : "\nAn NSArray containing RLMObjectSchema's for all object types in this Realm. Meant\nto be used during migrations for dynamic introspection.\n\n- see: RLMObjectSchema",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "42",
+              "key.doc.line" : "46",
               "key.name" : "objectSchema",
               "key.doc.column" : "48",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
               "key.usr" : "c:objc(cs)RLMSchema(py)objectSchema"
             },
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "60",
+              "key.name" : "MARK: Methods",
+              "key.doc.column" : "31",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
               "key.parsed_declaration" : "- (nullable RLMObjectSchema *)schemaForClassName:(nonnull NSString *)className;",
-              "key.doc.comment" : "Returns an RLMObjectSchema for the given class name in this RLMSchema.\n\n- parameter: className   The object class name.\n- returns:            RLMObjectSchema for the given class in this RLMSchema.\n\n- see:               RLMObjectSchema",
+              "key.doc.comment" : "\nReturns an RLMObjectSchema for the given class name in this RLMSchema.\n\n- parameter: className   The object class name.\n- returns:            RLMObjectSchema for the given class in this RLMSchema.\n\n- see:               RLMObjectSchema",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -4047,7 +4110,7 @@
                   "name" : "className"
                 }
               ],
-              "key.doc.line" : "52",
+              "key.doc.line" : "60",
               "key.doc.full_as_xml" : "",
               "key.name" : "-schemaForClassName:",
               "key.doc.result_discussion" : [
@@ -4076,7 +4139,7 @@
                   "name" : "className"
                 }
               ],
-              "key.doc.line" : "63",
+              "key.doc.line" : "71",
               "key.doc.full_as_xml" : "",
               "key.name" : "-objectForKeyedSubscript:",
               "key.doc.result_discussion" : [
@@ -4095,7 +4158,7 @@
               "key.parsed_declaration" : "- (BOOL)isEqualToSchema:(nonnull RLMSchema *)schema;",
               "key.doc.comment" : "Returns YES if schema are equal",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "68",
+              "key.doc.line" : "76",
               "key.name" : "-isEqualToSchema:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
