@@ -1411,7 +1411,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nullable id)minOfProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "\nReturns the minimum (lowest) value of the given property\n\nNSNumber *min = [results minOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to look for a minimum on. Only properties of type int, float, double and NSDate are supported.\n\n- returns: The minimum value for the property amongst objects in an RLMResults.",
+              "key.doc.comment" : "\nReturns the minimum (lowest) value of the given property\n\n    NSNumber *min = [results minOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to look for a minimum on. Only properties of type int, float, double and NSDate are supported.\n\n- returns: The minimum value for the property amongst objects in an RLMResults.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1440,7 +1440,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nullable id)maxOfProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "Returns the maximum (highest) value of the given property of objects in an RLMResults\n\nNSNumber *max = [results maxOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to look for a maximum on. Only properties of type int, float, double and NSDate are supported.\n\n- returns: The maximum value for the property amongst objects in an RLMResults",
+              "key.doc.comment" : "Returns the maximum (highest) value of the given property of objects in an RLMResults\n\n    NSNumber *max = [results maxOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to look for a maximum on. Only properties of type int, float, double and NSDate are supported.\n\n- returns: The maximum value for the property amongst objects in an RLMResults",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1469,7 +1469,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nonnull NSNumber *)sumOfProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "Returns the sum of the given property for objects in an RLMResults.\n\nNSNumber *sum = [results sumOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to calculate sum on. Only properties of type int, float and double are supported.\n\n- returns: The sum of the given property over all objects in an RLMResults.",
+              "key.doc.comment" : "Returns the sum of the given property for objects in an RLMResults.\n\n    NSNumber *sum = [results sumOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to calculate sum on. Only properties of type int, float and double are supported.\n\n- returns: The sum of the given property over all objects in an RLMResults.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -1498,7 +1498,7 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nullable NSNumber *)averageOfProperty:(nonnull NSString *)property;",
-              "key.doc.comment" : "Returns the average of a given property for objects in an RLMResults.\n\nNSNumber *average = [results averageOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to calculate average on. Only properties of type int, float and double are supported.\n\n- returns:    The average for the given property amongst objects in an RLMResults. This will be of type double for both\nfloat and double properties.",
+              "key.doc.comment" : "Returns the average of a given property for objects in an RLMResults.\n\n    NSNumber *average = [results averageOfProperty:@\"age\"];\n\n- warning: You cannot use this method on RLMObject, RLMArray, and NSData properties.\n\n- parameter: property The property to calculate average on. Only properties of type int, float and double are supported.\n\n- returns:    The average for the given property amongst objects in an RLMResults. This will be of type double for both\nfloat and double properties.",
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -2207,22 +2207,9 @@
           "key.kind" : "sourcekitten.source.lang.objc.decl.category",
           "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
           "key.parsed_declaration" : "@interface RLMArray (Swift)",
+          "key.doc.comment" : ":nodoc:",
           "key.doc.full_as_xml" : "",
-          "key.doc.line" : "348",
-          "key.substructure" : [
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "- (nonnull instancetype)initWithObjectClassName:\n        (nonnull NSString *)objectClassName;",
-              "key.doc.comment" : "For use only in Swift class definitions",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "352",
-              "key.name" : "-initWithObjectClassName:",
-              "key.doc.column" : "17",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)initWithObjectClassName:"
-            }
-          ],
+          "key.doc.line" : "349",
           "key.name" : "RLMArray(Swift)",
           "key.doc.column" : "12",
           "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
