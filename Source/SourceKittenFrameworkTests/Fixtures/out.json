@@ -77,7 +77,7 @@
               "key.doc.comment" : "Returns YES if property objects are equal.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "79",
-              "key.name" : "isEqualToProperty:",
+              "key.name" : "-isEqualToProperty:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
               "key.usr" : "c:objc(cs)RLMProperty(im)isEqualToProperty:"
@@ -110,7 +110,7 @@
               "key.doc.comment" : "Returns the default configuration used to create Realms when no other\nconfiguration is explicitly specified (i.e. `+[RLMRealm defaultRealm]`).\n\n- returns: The default Realm configuration.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "36",
-              "key.name" : "defaultConfiguration",
+              "key.name" : "+defaultConfiguration",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The default Realm configuration.",
@@ -139,7 +139,7 @@
               ],
               "key.doc.line" : "43",
               "key.doc.full_as_xml" : "",
-              "key.name" : "setDefaultConfiguration:",
+              "key.name" : "+setDefaultConfiguration:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(cm)setDefaultConfiguration:"
@@ -265,7 +265,7 @@
               "key.doc.comment" : "\nObtains an instance of the default Realm.\n\nThe default Realm is used by the `RLMObject` class methods\nwhich do not take a `RLMRealm` parameter, but is otherwise not special. The\ndefault Realm is persisted as default.realm under the Documents directory of\nyour Application on iOS, and in your application's Application Support\ndirectory on OS X.\n\nThe default Realm is created using the default `RLMRealmConfiguration`, which\ncan be changed via `+[RLMRealmConfiguration setDefaultConfiguration:]`.\n\n- returns: The default `RLMRealm` instance for the current thread.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "68",
-              "key.name" : "defaultRealm",
+              "key.name" : "+defaultRealm",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The default `RLMRealm` instance for the current thread.",
@@ -303,7 +303,7 @@
               ],
               "key.doc.line" : "80",
               "key.doc.full_as_xml" : "",
-              "key.name" : "realmWithConfiguration:error:",
+              "key.name" : "+realmWithConfiguration:error:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An `RLMRealm` instance.",
@@ -332,7 +332,7 @@
               ],
               "key.doc.line" : "89",
               "key.doc.full_as_xml" : "",
-              "key.name" : "realmWithPath:",
+              "key.name" : "+realmWithPath:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An `RLMRealm` instance.",
@@ -442,7 +442,7 @@
               ],
               "key.doc.line" : "153",
               "key.doc.full_as_xml" : "",
-              "key.name" : "addNotificationBlock:",
+              "key.name" : "-addNotificationBlock:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "A token object which can later be passed to `-removeNotification:`\n        to remove this notification.",
@@ -471,7 +471,7 @@
               ],
               "key.doc.line" : "162",
               "key.doc.full_as_xml" : "",
-              "key.name" : "removeNotification:",
+              "key.name" : "-removeNotification:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)removeNotification:"
@@ -492,7 +492,7 @@
               "key.doc.comment" : "\nBegins a write transaction in an `RLMRealm`.\n\nOnly one write transaction can be open at a time. Write transactions cannot be\nnested, and trying to begin a write transaction on a `RLMRealm` which is\nalready in a write transaction with throw an exception. Calls to\n`beginWriteTransaction` from `RLMRealm` instances in other threads will block\nuntil the current write transaction completes.\n\nBefore beginning the write transaction, `beginWriteTransaction` updates the\n`RLMRealm` to the latest Realm version, as if refresh was called, and\ngenerates notifications if applicable. This has no effect if the `RLMRealm`\nwas already up to date.\n\nIt is rarely a good idea to have write transactions span multiple cycles of\nthe run loop, but if you do wish to do so you will need to ensure that the\n`RLMRealm` in the write transaction is kept alive until the write transaction\nis committed.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "189",
-              "key.name" : "beginWriteTransaction",
+              "key.name" : "-beginWriteTransaction",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)beginWriteTransaction"
@@ -504,7 +504,7 @@
               "key.doc.comment" : "Commits all writes operations in the current write transaction.\n\nAfter this is called the `RLMRealm` reverts back to being read-only.\n\nCalling this when not in a write transaction will throw an exception.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "198",
-              "key.name" : "commitWriteTransaction",
+              "key.name" : "-commitWriteTransaction",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)commitWriteTransaction"
@@ -527,7 +527,7 @@
               ],
               "key.doc.line" : "213",
               "key.doc.full_as_xml" : "",
-              "key.name" : "commitWriteTransaction:",
+              "key.name" : "-commitWriteTransaction:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "Whether the transaction succeeded.",
@@ -545,7 +545,7 @@
               "key.doc.comment" : "Revert all writes made in the current write transaction and end the transaction.\n\nThis rolls back all objects in the Realm to the state they were in at the\nbeginning of the write transaction, and then ends the transaction.\n\nThis restores the data for deleted objects, but does not re-validated deleted\naccessor objects. Any `RLMObject`s which were added to the Realm will be\ninvalidated rather than switching back to standalone objects.\nGiven the following code:\n\n    ObjectType *oldObject = [[ObjectType objectsWhere:@\"...\"] firstObject];\n    ObjectType *newObject = [[ObjectType alloc] init];\n\n    [realm beginWriteTransaction];\n    [realm addObject:newObject];\n    [realm deleteObject:oldObject];\n    [realm cancelWriteTransaction];\n\nBoth `oldObject` and `newObject` will return `YES` for `isInvalidated`,\nbut re-running the query which provided `oldObject` will once again return\nthe valid object.\n\nCalling this when not in a write transaction will throw an exception.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "240",
-              "key.name" : "cancelWriteTransaction",
+              "key.name" : "-cancelWriteTransaction",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)cancelWriteTransaction"
@@ -557,7 +557,7 @@
               "key.doc.comment" : "Helper to perform a block within a transaction.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "245",
-              "key.name" : "transactionWithBlock:",
+              "key.name" : "-transactionWithBlock:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)transactionWithBlock:"
@@ -589,7 +589,7 @@
               ],
               "key.doc.line" : "257",
               "key.doc.full_as_xml" : "",
-              "key.name" : "transactionWithBlock:error:",
+              "key.name" : "-transactionWithBlock:error:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "Whether the transaction succeeded.",
@@ -607,7 +607,7 @@
               "key.doc.comment" : "Update an `RLMRealm` and outstanding objects to point to the most recent data for this `RLMRealm`.\n\n- returns:    Whether the realm had any updates. Note that this may return YES even if no data has actually changed.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "264",
-              "key.name" : "refresh",
+              "key.name" : "-refresh",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "Whether the realm had any updates. Note that this may return YES even if no data has actually changed.",
@@ -657,7 +657,7 @@
               ],
               "key.doc.line" : "305",
               "key.doc.full_as_xml" : "",
-              "key.name" : "writeCopyToPath:error:",
+              "key.name" : "-writeCopyToPath:error:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "YES if the realm was copied successfully. Returns NO if an error occurred.",
@@ -704,7 +704,7 @@
               ],
               "key.doc.line" : "320",
               "key.doc.full_as_xml" : "",
-              "key.name" : "writeCopyToPath:encryptionKey:error:",
+              "key.name" : "-writeCopyToPath:encryptionKey:error:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "YES if the realm was copied successfully. Returns NO if an error occurred.",
@@ -722,7 +722,7 @@
               "key.doc.comment" : "Invalidate all RLMObjects and RLMResults read from this Realm.\n\nAn RLMRealm holds a read lock on the version of the data accessed by it, so\nthat changes made to the Realm on different threads do not modify or delete the\ndata seen by this RLMRealm. Calling this method releases the read lock,\nallowing the space used on disk to be reused by later write transactions rather\nthan growing the file. This method should be called before performing long\nblocking operations on a background thread on which you previously read data\nfrom the Realm which you no longer need.\n\nAll `RLMObject`, `RLMResults` and `RLMArray` instances obtained from this\n`RLMRealm` on the current thread are invalidated, and can not longer be used.\nThe `RLMRealm` itself remains valid, and a new read transaction is implicitly\nbegun the next time data is read from the Realm.\n\nCalling this method multiple times in a row without reading any data from the\nRealm, or before ever reading any data from the Realm is a no-op. This method\ncannot be called on a read-only Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "342",
-              "key.name" : "invalidate",
+              "key.name" : "-invalidate",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)invalidate"
@@ -754,7 +754,7 @@
               ],
               "key.doc.line" : "366",
               "key.doc.full_as_xml" : "",
-              "key.name" : "addObject:",
+              "key.name" : "-addObject:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)addObject:"
@@ -777,7 +777,7 @@
               ],
               "key.doc.line" : "378",
               "key.doc.full_as_xml" : "",
-              "key.name" : "addObjects:",
+              "key.name" : "-addObjects:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)addObjects:"
@@ -800,7 +800,7 @@
               ],
               "key.doc.line" : "391",
               "key.doc.full_as_xml" : "",
-              "key.name" : "addOrUpdateObject:",
+              "key.name" : "-addOrUpdateObject:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)addOrUpdateObject:"
@@ -823,7 +823,7 @@
               ],
               "key.doc.line" : "402",
               "key.doc.full_as_xml" : "",
-              "key.name" : "addOrUpdateObjectsFromArray:",
+              "key.name" : "-addOrUpdateObjectsFromArray:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)addOrUpdateObjectsFromArray:"
@@ -846,7 +846,7 @@
               ],
               "key.doc.line" : "409",
               "key.doc.full_as_xml" : "",
-              "key.name" : "deleteObject:",
+              "key.name" : "-deleteObject:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)deleteObject:"
@@ -869,7 +869,7 @@
               ],
               "key.doc.line" : "416",
               "key.doc.full_as_xml" : "",
-              "key.name" : "deleteObjects:",
+              "key.name" : "-deleteObjects:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)deleteObjects:"
@@ -881,7 +881,7 @@
               "key.doc.comment" : "Deletes all objects in this Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "421",
-              "key.name" : "deleteAllObjects",
+              "key.name" : "-deleteAllObjects",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)deleteAllObjects"
@@ -913,7 +913,7 @@
               ],
               "key.doc.line" : "447",
               "key.doc.full_as_xml" : "",
-              "key.name" : "schemaVersionAtPath:error:",
+              "key.name" : "+schemaVersionAtPath:error:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The version of the Realm at `realmPath` or RLMNotVersioned if the version cannot be read.",
@@ -960,7 +960,7 @@
               ],
               "key.doc.line" : "460",
               "key.doc.full_as_xml" : "",
-              "key.name" : "schemaVersionAtPath:encryptionKey:error:",
+              "key.name" : "+schemaVersionAtPath:encryptionKey:error:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The version of the Realm at `realmPath` or RLMNotVersioned if the version cannot be read.",
@@ -989,7 +989,7 @@
               ],
               "key.doc.line" : "474",
               "key.doc.full_as_xml" : "",
-              "key.name" : "migrateRealm:",
+              "key.name" : "+migrateRealm:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The error that occurred while applying the migration, if any.",
@@ -1006,7 +1006,7 @@
               "key.parsed_declaration" : "- (BOOL)isReadOnly;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "99",
-              "key.name" : "isReadOnly",
+              "key.name" : "-isReadOnly",
               "key.doc.column" : "59",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(im)isReadOnly"
@@ -1136,7 +1136,7 @@
               ],
               "key.doc.line" : "70",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectAtIndex:",
+              "key.name" : "-objectAtIndex:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMObject of the class contained by this RLMResults.",
@@ -1154,7 +1154,7 @@
               "key.doc.comment" : "Returns the first object in the results.\n\nReturns `nil` if called on an empty RLMResults.\n\n- returns: An RLMObject of the class contained by this RLMResults.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "79",
-              "key.name" : "firstObject",
+              "key.name" : "-firstObject",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMObject of the class contained by this RLMResults.",
@@ -1172,7 +1172,7 @@
               "key.doc.comment" : "Returns the last object in the results.\n\nReturns `nil` if called on an empty RLMResults.\n\n- returns: An RLMObject of the class contained by this RLMResults.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "88",
-              "key.name" : "lastObject",
+              "key.name" : "-lastObject",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMObject of the class contained by this RLMResults.",
@@ -1210,7 +1210,7 @@
               ],
               "key.doc.line" : "106",
               "key.doc.full_as_xml" : "",
-              "key.name" : "indexOfObject:",
+              "key.name" : "-indexOfObject:",
               "key.doc.column" : "15",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.usr" : "c:objc(cs)RLMResults(im)indexOfObject:"
@@ -1233,7 +1233,7 @@
               ],
               "key.doc.line" : "115",
               "key.doc.full_as_xml" : "",
-              "key.name" : "indexOfObjectWhere:",
+              "key.name" : "-indexOfObjectWhere:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "Index of object or NSNotFound if the object is not found in this RLMResults.",
@@ -1262,7 +1262,7 @@
               ],
               "key.doc.line" : "124",
               "key.doc.full_as_xml" : "",
-              "key.name" : "indexOfObjectWithPredicate:",
+              "key.name" : "-indexOfObjectWithPredicate:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "Index of object or NSNotFound if the object is not found in this RLMResults.",
@@ -1291,7 +1291,7 @@
               ],
               "key.doc.line" : "133",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectsWhere:",
+              "key.name" : "-objectsWhere:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of objects that match the given predicate",
@@ -1320,7 +1320,7 @@
               ],
               "key.doc.line" : "142",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectsWithPredicate:",
+              "key.name" : "-objectsWithPredicate:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of objects that match the given predicate",
@@ -1358,7 +1358,7 @@
               ],
               "key.doc.line" : "152",
               "key.doc.full_as_xml" : "",
-              "key.name" : "sortedResultsUsingProperty:ascending:",
+              "key.name" : "-sortedResultsUsingProperty:ascending:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults sorted by the specified property.",
@@ -1387,7 +1387,7 @@
               ],
               "key.doc.line" : "161",
               "key.doc.full_as_xml" : "",
-              "key.name" : "sortedResultsUsingDescriptors:",
+              "key.name" : "-sortedResultsUsingDescriptors:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults sorted by the specified properties.",
@@ -1425,7 +1425,7 @@
               ],
               "key.doc.line" : "181",
               "key.doc.full_as_xml" : "",
-              "key.name" : "minOfProperty:",
+              "key.name" : "-minOfProperty:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The minimum value for the property amongst objects in an RLMResults.",
@@ -1454,7 +1454,7 @@
               ],
               "key.doc.line" : "194",
               "key.doc.full_as_xml" : "",
-              "key.name" : "maxOfProperty:",
+              "key.name" : "-maxOfProperty:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The maximum value for the property amongst objects in an RLMResults",
@@ -1483,7 +1483,7 @@
               ],
               "key.doc.line" : "207",
               "key.doc.full_as_xml" : "",
-              "key.name" : "sumOfProperty:",
+              "key.name" : "-sumOfProperty:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The sum of the given property over all objects in an RLMResults.",
@@ -1512,7 +1512,7 @@
               ],
               "key.doc.line" : "221",
               "key.doc.full_as_xml" : "",
-              "key.name" : "averageOfProperty:",
+              "key.name" : "-averageOfProperty:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "   The average for the given property amongst objects in an RLMResults. This will be of type double for both\nfloat and double properties.",
@@ -1539,7 +1539,7 @@
               "key.doc.comment" : "\n-[RLMResults init] is not available because RLMResults cannot be created directly.\nRLMResults can be obtained by querying a Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "237",
-              "key.name" : "init",
+              "key.name" : "-init",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.usr" : "c:objc(cs)RLMResults(im)init"
@@ -1551,7 +1551,7 @@
               "key.doc.comment" : "+[RLMResults new] is not available because RLMResults cannot be created directly.\nRLMResults can be obtained by querying a Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "243",
-              "key.name" : "new",
+              "key.name" : "+new",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
               "key.usr" : "c:objc(cs)RLMResults(cm)new"
@@ -1661,7 +1661,7 @@
               ],
               "key.doc.line" : "101",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectAtIndex:",
+              "key.name" : "-objectAtIndex:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMObject of the class contained by this RLMArray.",
@@ -1679,7 +1679,7 @@
               "key.doc.comment" : "Returns the first object in the array.\n\nReturns `nil` if called on an empty RLMArray.\n\n- returns: An RLMObject of the class contained by this RLMArray.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "110",
-              "key.name" : "firstObject",
+              "key.name" : "-firstObject",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMObject of the class contained by this RLMArray.",
@@ -1697,7 +1697,7 @@
               "key.doc.comment" : "Returns the last object in the array.\n\nReturns `nil` if called on an empty RLMArray.\n\n- returns: An RLMObject of the class contained by this RLMArray.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "119",
-              "key.name" : "lastObject",
+              "key.name" : "-lastObject",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMObject of the class contained by this RLMArray.",
@@ -1735,7 +1735,7 @@
               ],
               "key.doc.line" : "136",
               "key.doc.full_as_xml" : "",
-              "key.name" : "addObject:",
+              "key.name" : "-addObject:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)addObject:"
@@ -1758,7 +1758,7 @@
               ],
               "key.doc.line" : "146",
               "key.doc.full_as_xml" : "",
-              "key.name" : "addObjects:",
+              "key.name" : "-addObjects:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)addObjects:"
@@ -1790,7 +1790,7 @@
               ],
               "key.doc.line" : "158",
               "key.doc.full_as_xml" : "",
-              "key.name" : "insertObject:atIndex:",
+              "key.name" : "-insertObject:atIndex:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)insertObject:atIndex:"
@@ -1813,7 +1813,7 @@
               ],
               "key.doc.line" : "169",
               "key.doc.full_as_xml" : "",
-              "key.name" : "removeObjectAtIndex:",
+              "key.name" : "-removeObjectAtIndex:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)removeObjectAtIndex:"
@@ -1825,7 +1825,7 @@
               "key.doc.comment" : "Removes the last object in an RLMArray.\n\n- warning: This method can only be called during a write transaction.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "176",
-              "key.name" : "removeLastObject",
+              "key.name" : "-removeLastObject",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)removeLastObject"
@@ -1837,7 +1837,7 @@
               "key.doc.comment" : "Removes all objects from an RLMArray.\n\n- warning: This method can only be called during a write transaction.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "183",
-              "key.name" : "removeAllObjects",
+              "key.name" : "-removeAllObjects",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)removeAllObjects"
@@ -1869,7 +1869,7 @@
               ],
               "key.doc.line" : "195",
               "key.doc.full_as_xml" : "",
-              "key.name" : "replaceObjectAtIndex:withObject:",
+              "key.name" : "-replaceObjectAtIndex:withObject:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)replaceObjectAtIndex:withObject:"
@@ -1901,7 +1901,7 @@
               ],
               "key.doc.line" : "208",
               "key.doc.full_as_xml" : "",
-              "key.name" : "moveObjectAtIndex:toIndex:",
+              "key.name" : "-moveObjectAtIndex:toIndex:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)moveObjectAtIndex:toIndex:"
@@ -1933,7 +1933,7 @@
               ],
               "key.doc.line" : "220",
               "key.doc.full_as_xml" : "",
-              "key.name" : "exchangeObjectAtIndex:withObjectAtIndex:",
+              "key.name" : "-exchangeObjectAtIndex:withObjectAtIndex:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)exchangeObjectAtIndex:withObjectAtIndex:"
@@ -1965,7 +1965,7 @@
               ],
               "key.doc.line" : "236",
               "key.doc.full_as_xml" : "",
-              "key.name" : "indexOfObject:",
+              "key.name" : "-indexOfObject:",
               "key.doc.column" : "15",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)indexOfObject:"
@@ -1988,7 +1988,7 @@
               ],
               "key.doc.line" : "245",
               "key.doc.full_as_xml" : "",
-              "key.name" : "indexOfObjectWhere:",
+              "key.name" : "-indexOfObjectWhere:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "Index of object or NSNotFound if the object is not found in this RLMArray.",
@@ -2017,7 +2017,7 @@
               ],
               "key.doc.line" : "254",
               "key.doc.full_as_xml" : "",
-              "key.name" : "indexOfObjectWithPredicate:",
+              "key.name" : "-indexOfObjectWithPredicate:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "Index of object or NSNotFound if the object is not found in this RLMArray.",
@@ -2046,7 +2046,7 @@
               ],
               "key.doc.line" : "263",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectsWhere:",
+              "key.name" : "-objectsWhere:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of objects that match the given predicate",
@@ -2075,7 +2075,7 @@
               ],
               "key.doc.line" : "272",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectsWithPredicate:",
+              "key.name" : "-objectsWithPredicate:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of objects that match the given predicate",
@@ -2113,7 +2113,7 @@
               ],
               "key.doc.line" : "282",
               "key.doc.full_as_xml" : "",
-              "key.name" : "sortedResultsUsingProperty:ascending:",
+              "key.name" : "-sortedResultsUsingProperty:ascending:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults sorted by the specified property.",
@@ -2142,7 +2142,7 @@
               ],
               "key.doc.line" : "291",
               "key.doc.full_as_xml" : "",
-              "key.name" : "sortedResultsUsingDescriptors:",
+              "key.name" : "-sortedResultsUsingDescriptors:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults sorted by the specified properties.",
@@ -2169,7 +2169,7 @@
               "key.doc.comment" : "\n-[RLMArray init] is not available because RLMArrays cannot be created directly.\nRLMArray properties on RLMObjects are lazily created when accessed, or can be obtained by querying a Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "308",
-              "key.name" : "init",
+              "key.name" : "-init",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)init"
@@ -2181,7 +2181,7 @@
               "key.doc.comment" : "+[RLMArray new] is not available because RLMArrays cannot be created directly.\nRLMArray properties on RLMObjects are lazily created when accessed, or can be obtained by querying a Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "314",
-              "key.name" : "new",
+              "key.name" : "+new",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(cm)new"
@@ -2192,7 +2192,7 @@
               "key.parsed_declaration" : "- (BOOL)isInvalidated;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "86",
-              "key.name" : "isInvalidated",
+              "key.name" : "-isInvalidated",
               "key.doc.column" : "62",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)isInvalidated"
@@ -2217,7 +2217,7 @@
               "key.doc.comment" : "For use only in Swift class definitions",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "352",
-              "key.name" : "initWithObjectClassName:",
+              "key.name" : "-initWithObjectClassName:",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(im)initWithObjectClassName:"
@@ -2267,7 +2267,7 @@
               "key.doc.comment" : "Returns a new sort descriptor for the given property name and order.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "339",
-              "key.name" : "sortDescriptorWithProperty:ascending:",
+              "key.name" : "+sortDescriptorWithProperty:ascending:",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMSortDescriptor(cm)sortDescriptorWithProperty:ascending:"
@@ -2279,7 +2279,7 @@
               "key.doc.comment" : "Returns a copy of the receiver with the sort order reversed.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "344",
-              "key.name" : "reversedSortDescriptor",
+              "key.name" : "-reversedSortDescriptor",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMSortDescriptor(im)reversedSortDescriptor"
@@ -2321,7 +2321,7 @@
               "key.doc.comment" : "\nInitialize a standalone RLMObject\n\nInitialize an unpersisted instance of this object.\nCall addObject: on an RLMRealm to add standalone object to a realm.\n\n- see: [RLMRealm addObject:]:",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "101",
-              "key.name" : "init",
+              "key.name" : "-init",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.usr" : "c:objc(cs)RLMObject(im)init"
@@ -2333,7 +2333,7 @@
               "key.doc.comment" : "Initialize a standalone RLMObject with values from an NSArray or NSDictionary\n\nInitialize an unpersisted instance of this object.\nCall addObject: on an RLMRealm to add standalone object to a realm.\n\n- see: [RLMRealm addObject:]:",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "112",
-              "key.name" : "initWithValue:",
+              "key.name" : "-initWithValue:",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.usr" : "c:objc(cs)RLMObject(im)initWithValue:"
@@ -2345,7 +2345,7 @@
               "key.doc.comment" : "Helper to return the class name for an RLMObject subclass.\n\n- warning: Do not override. Realm relies on this method returning the exact class\n         name.\n\n- returns:  The class name for the model class.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "123",
-              "key.name" : "className",
+              "key.name" : "+className",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "The class name for the model class.",
@@ -2374,7 +2374,7 @@
               ],
               "key.doc.line" : "143",
               "key.doc.full_as_xml" : "",
-              "key.name" : "createInDefaultRealmWithValue:",
+              "key.name" : "+createInDefaultRealmWithValue:",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.usr" : "c:objc(cs)RLMObject(cm)createInDefaultRealmWithValue:"
@@ -2406,7 +2406,7 @@
               ],
               "key.doc.line" : "164",
               "key.doc.full_as_xml" : "",
-              "key.name" : "createInRealm:withValue:",
+              "key.name" : "+createInRealm:withValue:",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.usr" : "c:objc(cs)RLMObject(cm)createInRealm:withValue:"
@@ -2429,7 +2429,7 @@
               ],
               "key.doc.line" : "187",
               "key.doc.full_as_xml" : "",
-              "key.name" : "createOrUpdateInDefaultRealmWithValue:",
+              "key.name" : "+createOrUpdateInDefaultRealmWithValue:",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.usr" : "c:objc(cs)RLMObject(cm)createOrUpdateInDefaultRealmWithValue:"
@@ -2461,7 +2461,7 @@
               ],
               "key.doc.line" : "211",
               "key.doc.full_as_xml" : "",
-              "key.name" : "createOrUpdateInRealm:withValue:",
+              "key.name" : "+createOrUpdateInRealm:withValue:",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.usr" : "c:objc(cs)RLMObject(cm)createOrUpdateInRealm:withValue:"
@@ -2527,7 +2527,7 @@
               "key.doc.comment" : "\nReturn an array of property names for properties which should be indexed. Only supported\nfor string and int properties.\n- returns:    NSArray of property names.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "247",
-              "key.name" : "indexedProperties",
+              "key.name" : "+indexedProperties",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "NSArray of property names.",
@@ -2545,7 +2545,7 @@
               "key.doc.comment" : "Implement to indicate the default values to be used for each property.\n\n- returns:    NSDictionary mapping property names to their default values.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "254",
-              "key.name" : "defaultPropertyValues",
+              "key.name" : "+defaultPropertyValues",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "NSDictionary mapping property names to their default values.",
@@ -2563,7 +2563,7 @@
               "key.doc.comment" : "Implement to designate a property as the primary key for an RLMObject subclass. Only properties of\ntype RLMPropertyTypeString and RLMPropertyTypeInt can be designated as the primary key. Primary key \nproperties enforce uniqueness for each value whenever the property is set which incurs some overhead.\nIndexes are created automatically for primary key properties.\n\n- returns:    Name of the property designated as the primary key.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "264",
-              "key.name" : "primaryKey",
+              "key.name" : "+primaryKey",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "Name of the property designated as the primary key.",
@@ -2581,7 +2581,7 @@
               "key.doc.comment" : "Implement to return an array of property names to ignore. These properties will not be persisted\nand are treated as transient.\n\n- returns:    NSArray of property names to ignore.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "272",
-              "key.name" : "ignoredProperties",
+              "key.name" : "+ignoredProperties",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "NSArray of property names to ignore.",
@@ -2599,7 +2599,7 @@
               "key.doc.comment" : "Implement to return an array of property names that should not allow storing nil.\n\nBy default, all properties of a type that support storing nil are considered optional properties.\nTo require that an object in a Realm always have a non-nil value for a property,\nadd the name of the property to the array returned from this method.\n\nCurrently Object properties cannot be required. Array and NSNumber properties\ncan, but it makes little sense to do so: arrays do not support storing nil, and\nif you want a non-optional number you should instead use the primitive type.\n\n- returns:    NSArray of property names that are required.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "287",
-              "key.name" : "requiredProperties",
+              "key.name" : "+requiredProperties",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "NSArray of property names that are required.",
@@ -2626,7 +2626,7 @@
               "key.doc.comment" : "\nGet all objects of this type from the default Realm.\n\n- returns:    An RLMResults of all objects of this type in the default Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "299",
-              "key.name" : "allObjects",
+              "key.name" : "+allObjects",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of all objects of this type in the default Realm.",
@@ -2655,7 +2655,7 @@
               ],
               "key.doc.line" : "308",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectsWhere:",
+              "key.name" : "+objectsWhere:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of objects of the subclass type in the default Realm that match the given predicate",
@@ -2684,7 +2684,7 @@
               ],
               "key.doc.line" : "318",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectsWithPredicate:",
+              "key.name" : "+objectsWithPredicate:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of objects of the subclass type in the default Realm that match the given predicate",
@@ -2702,7 +2702,7 @@
               "key.doc.comment" : "Get the single object with the given primary key from the default Realm.\n\nReturns the object from the default Realm which has the given primary key, or\n`nil` if the object does not exist. This is slightly faster than the otherwise\nequivalent `[[SubclassName objectsWhere:@\"primaryKeyPropertyName = %@\", key] firstObject]`.\n\nThis method requires that `primaryKey` be overridden on the receiving subclass.\n\n- returns:    An object of the subclass type or nil if an object with the given primary key does not exist.\n- see:       -primaryKey",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "332",
-              "key.name" : "objectForPrimaryKey:",
+              "key.name" : "+objectForPrimaryKey:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An object of the subclass type or nil if an object with the given primary key does not exist.\n ",
@@ -2740,7 +2740,7 @@
               ],
               "key.doc.line" : "346",
               "key.doc.full_as_xml" : "",
-              "key.name" : "allObjectsInRealm:",
+              "key.name" : "+allObjectsInRealm:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of all objects of this type in the specified Realm.",
@@ -2778,7 +2778,7 @@
               ],
               "key.doc.line" : "356",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectsInRealm:where:",
+              "key.name" : "+objectsInRealm:where:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of objects of the subclass type in the specified Realm that match the given predicate",
@@ -2816,7 +2816,7 @@
               ],
               "key.doc.line" : "366",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectsInRealm:withPredicate:",
+              "key.name" : "+objectsInRealm:withPredicate:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An RLMResults of objects of the subclass type in the specified Realm that match the given predicate",
@@ -2834,7 +2834,7 @@
               "key.doc.comment" : "Get the single object with the given primary key from the specified Realm.\n\nReturns the object from the specified Realm which has the given primary key, or\n`nil` if the object does not exist. This is slightly faster than the otherwise\nequivalent `[[SubclassName objectsInRealm:realm where:@\"primaryKeyPropertyName = %@\", key] firstObject]`.\n\nThis method requires that `primaryKey` be overridden on the receiving subclass.\n\n- returns:    An object of the subclass type or nil if an object with the given primary key does not exist.\n- see:       -primaryKey",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "380",
-              "key.name" : "objectInRealm:forPrimaryKey:",
+              "key.name" : "+objectInRealm:forPrimaryKey:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An object of the subclass type or nil if an object with the given primary key does not exist.\n ",
@@ -2881,7 +2881,7 @@
               ],
               "key.doc.line" : "397",
               "key.doc.full_as_xml" : "",
-              "key.name" : "linkingObjectsOfClass:forProperty:",
+              "key.name" : "-linkingObjectsOfClass:forProperty:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "An NSArray of objects of type `className` which have this object as thier value for the `property` property.",
@@ -2910,7 +2910,7 @@
               ],
               "key.doc.line" : "408",
               "key.doc.full_as_xml" : "",
-              "key.name" : "isEqualToObject:",
+              "key.name" : "-isEqualToObject:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "YES if the object represents the same object in the same RLMRealm.",
@@ -2927,7 +2927,7 @@
               "key.parsed_declaration" : "- (BOOL)isInvalidated;",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "235",
-              "key.name" : "isInvalidated",
+              "key.name" : "-isInvalidated",
               "key.doc.column" : "62",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.usr" : "c:objc(cs)RLMObject(im)isInvalidated"
@@ -3007,7 +3007,7 @@
               ],
               "key.doc.line" : "60",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectForKeyedSubscript:",
+              "key.name" : "-objectForKeyedSubscript:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "RLMProperty object or nil if there is no property with the given name.",
@@ -3025,7 +3025,7 @@
               "key.doc.comment" : "Returns YES if equal to objectSchema",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "65",
-              "key.name" : "isEqualToObjectSchema:",
+              "key.name" : "-isEqualToObjectSchema:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
               "key.usr" : "c:objc(cs)RLMObjectSchema(im)isEqualToObjectSchema:"
@@ -3081,7 +3081,7 @@
               ],
               "key.doc.line" : "52",
               "key.doc.full_as_xml" : "",
-              "key.name" : "schemaForClassName:",
+              "key.name" : "-schemaForClassName:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "RLMObjectSchema for the given class in this RLMSchema.",
@@ -3110,7 +3110,7 @@
               ],
               "key.doc.line" : "63",
               "key.doc.full_as_xml" : "",
-              "key.name" : "objectForKeyedSubscript:",
+              "key.name" : "-objectForKeyedSubscript:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "RLMObjectSchema for the given class in this Realm.",
@@ -3128,7 +3128,7 @@
               "key.doc.comment" : "Returns YES if schema are equal",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "68",
-              "key.name" : "isEqualToSchema:",
+              "key.name" : "-isEqualToSchema:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
               "key.usr" : "c:objc(cs)RLMSchema(im)isEqualToSchema:"
@@ -3367,7 +3367,7 @@
               ],
               "key.doc.line" : "69",
               "key.doc.full_as_xml" : "",
-              "key.name" : "enumerateObjects:block:",
+              "key.name" : "-enumerateObjects:block:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.usr" : "c:objc(cs)RLMMigration(im)enumerateObjects:block:"
@@ -3399,7 +3399,7 @@
               ],
               "key.doc.line" : "82",
               "key.doc.full_as_xml" : "",
-              "key.name" : "createObject:withValue:",
+              "key.name" : "-createObject:withValue:",
               "key.doc.column" : "15",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.usr" : "c:objc(cs)RLMMigration(im)createObject:withValue:"
@@ -3422,7 +3422,7 @@
               ],
               "key.doc.line" : "89",
               "key.doc.full_as_xml" : "",
-              "key.name" : "deleteObject:",
+              "key.name" : "-deleteObject:",
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
               "key.usr" : "c:objc(cs)RLMMigration(im)deleteObject:"
@@ -3445,7 +3445,7 @@
               ],
               "key.doc.line" : "100",
               "key.doc.full_as_xml" : "",
-              "key.name" : "deleteDataForClassName:",
+              "key.name" : "-deleteDataForClassName:",
               "key.doc.result_discussion" : [
                 {
                   "Para" : "whether there was any data to delete.",

@@ -148,7 +148,13 @@ extension SourceDeclaration {
                 name = cursor.name()
             }
         } else {
-            name = cursor.name()
+            if type == .MethodInstance {
+                name = "-" + cursor.name()
+            } else if type == .MethodClass {
+                name = "+" + cursor.name()
+            } else {
+                name = cursor.name()
+            }
         }
         let commentXML = String.fromCString(clang_getCString(clang_FullComment_getAsXML(clang_Cursor_getParsedComment(cursor)))) ?? ""
         guard let rootXML = SWXMLHash.parse(commentXML).children.first else {
