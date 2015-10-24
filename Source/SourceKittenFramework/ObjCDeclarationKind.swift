@@ -16,6 +16,8 @@ public enum ObjCDeclarationKind: String {
     case Category = "sourcekitten.source.lang.objc.decl.category"
     /// `class`.
     case Class = "sourcekitten.source.lang.objc.decl.class"
+    /// `constant`.
+    case Constant = "sourcekitten.source.lang.objc.decl.constant"
     /// `enum`.
     case Enum = "sourcekitten.source.lang.objc.decl.enum"
     /// `enumcase`.
@@ -46,6 +48,7 @@ public enum ObjCDeclarationKind: String {
         case CXCursor_ObjCPropertyDecl.rawValue: return .Property
         case CXCursor_ObjCProtocolDecl.rawValue: return .Protocol
         case CXCursor_TypedefDecl.rawValue: return .Typedef
+        case CXCursor_VarDecl.rawValue: return .Constant
         default: fatalError("Unsupported CXCursorKind value: \(kind.rawValue)")
         }
     }
