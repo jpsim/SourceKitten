@@ -45,7 +45,7 @@ private func toOutputDictionary(decl: SourceDeclaration) -> [String: AnyObject] 
     set(.DocLine, String(decl.location.line))
     set(.DocColumn, String(decl.location.column))
     set(.Name, decl.name)
-    set(.DocUSR, decl.usr)
+    set(.USR, decl.usr)
     set(.ParsedDeclaration, decl.declaration)
     set(.DocumentationComment, decl.rawDocumentation)
 

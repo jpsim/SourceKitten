@@ -55,13 +55,13 @@ class SwiftDocsTests: XCTestCase {
             "key.doc.line": 1,
             "key.doc.column": 2,
             "key.doc.name": "name",
-            "key.doc.usr": "usr",
+            "key.usr": "usr",
             "key.doc.declaration": "declaration",
             "key.doc.parameters": [[
                 "name": "param1",
-                "discussion": [["Para": "param1_discussion", "kind": ""]]
+                "discussion": [["Para": "param1_discussion"]]
             ]],
-            "key.doc.result_discussion": [["Para": "result_discussion", "kind": ""]]
+            "key.doc.result_discussion": [["Para": "result_discussion"]]
         ]
         XCTAssertEqual(toAnyObject(parsed), expected)
     }

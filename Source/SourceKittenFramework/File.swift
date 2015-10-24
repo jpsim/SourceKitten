@@ -372,7 +372,7 @@ public func parseFullXMLDocs(xmlDocs: String) -> XPCDictionary? {
             Int64($0)
         }
         docs[SwiftDocKey.DocName.rawValue] = rootXML["Name"].element?.text
-        docs[SwiftDocKey.DocUSR.rawValue] = rootXML["USR"].element?.text
+        docs[SwiftDocKey.USR.rawValue] = rootXML["USR"].element?.text
         docs[SwiftDocKey.DocDeclaration.rawValue] = rootXML["Declaration"].element?.text
         let parameters = rootXML["Parameters"].children
         if parameters.count > 0 {
@@ -398,11 +398,8 @@ private func childrenAsArray(indexer: XMLIndexer) -> XPCArray? {
     let children = indexer.children
     if children.count > 0 {
         return children.flatMap({ $0.element }).map {
-            [
-                $0.name: $0.text ?? "",
-                "kind": $0.attributes["kind"] ?? ""
-                ] as XPCDictionary
-            } as XPCArray
+            [$0.name: $0.text ?? ""] as XPCDictionary
+        } as XPCArray
     }
     return nil
 }
