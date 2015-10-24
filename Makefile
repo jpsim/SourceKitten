@@ -18,13 +18,13 @@ COMPONENTS_PLIST=Source/sourcekitten/Components.plist
 
 .PHONY: all bootstrap clean install package test uninstall
 
-all:
+all: bootstrap
 	$(BUILD_TOOL) $(XCODEFLAGS) build
 
 bootstrap:
 	script/bootstrap
 
-test: clean
+test: clean bootstrap
 	$(BUILD_TOOL) $(XCODEFLAGS) test
 
 clean:
@@ -39,7 +39,7 @@ uninstall:
 	rm -rf "$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework"
 	rm -f "$(BINARIES_FOLDER)/sourcekitten"
 
-installables: clean
+installables: clean bootstrap
 	$(BUILD_TOOL) $(XCODEFLAGS) install
 
 	mkdir -p "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)"
