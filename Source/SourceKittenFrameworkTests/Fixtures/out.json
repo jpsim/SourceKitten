@@ -104,12 +104,21 @@
           "key.doc.line" : "28",
           "key.substructure" : [
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "40",
+              "key.name" : "MARK: Default Configuration",
+              "key.doc.column" : "17",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)defaultConfiguration;",
-              "key.doc.comment" : "Returns the default configuration used to create Realms when no other\nconfiguration is explicitly specified (i.e. `+[RLMRealm defaultRealm]`).\n\n- returns: The default Realm configuration.",
+              "key.doc.comment" : "\nReturns the default configuration used to create Realms when no other\nconfiguration is explicitly specified (i.e. `+[RLMRealm defaultRealm]`).\n\n- returns: The default Realm configuration.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "36",
+              "key.doc.line" : "40",
               "key.name" : "+defaultConfiguration",
               "key.doc.result_discussion" : [
                 {
@@ -137,7 +146,7 @@
                   "name" : "configuration"
                 }
               ],
-              "key.doc.line" : "43",
+              "key.doc.line" : "47",
               "key.doc.full_as_xml" : "",
               "key.name" : "+setDefaultConfiguration:",
               "key.doc.column" : "9",
@@ -145,12 +154,21 @@
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(cm)setDefaultConfiguration:"
             },
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "54",
+              "key.name" : "MARK: Configuration Properties",
+              "key.doc.column" : "49",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
               "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable) NSString *path;",
-              "key.doc.comment" : "The path to the realm file. Mutually exclusive with `inMemoryIdentifier`.",
+              "key.doc.comment" : "",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "46",
+              "key.doc.line" : "54",
               "key.name" : "path",
               "key.doc.column" : "49",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
@@ -162,7 +180,7 @@
               "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable) NSString *inMemoryIdentifier;",
               "key.doc.comment" : "A string used to identify a particular in-memory Realm. Mutually exclusive with `path`.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "49",
+              "key.doc.line" : "57",
               "key.name" : "inMemoryIdentifier",
               "key.doc.column" : "49",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
@@ -174,7 +192,7 @@
               "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable) NSData *encryptionKey;",
               "key.doc.comment" : "64-byte key to use to encrypt the data.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "52",
+              "key.doc.line" : "60",
               "key.name" : "encryptionKey",
               "key.doc.column" : "47",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
@@ -186,7 +204,7 @@
               "key.parsed_declaration" : "@property(assign, readwrite, nonatomic) BOOL readOnly;",
               "key.doc.comment" : "Whether the Realm is read-only (must be YES for read-only files).",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "55",
+              "key.doc.line" : "63",
               "key.name" : "readOnly",
               "key.doc.column" : "28",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
@@ -198,7 +216,7 @@
               "key.parsed_declaration" : "@property(assign, readwrite, nonatomic) uint64_t schemaVersion;",
               "key.doc.comment" : "The current schema version.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "58",
+              "key.doc.line" : "66",
               "key.name" : "schemaVersion",
               "key.doc.column" : "32",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
@@ -210,7 +228,7 @@
               "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable)\n    RLMMigrationBlock migrationBlock;",
               "key.doc.comment" : "The block which migrates the Realm to the current version.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "61",
+              "key.doc.line" : "69",
               "key.name" : "migrationBlock",
               "key.doc.column" : "57",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
@@ -222,7 +240,7 @@
               "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable) NSArray *objectClasses;",
               "key.doc.comment" : "The classes persisted in the Realm.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "64",
+              "key.doc.line" : "72",
               "key.name" : "objectClasses",
               "key.doc.column" : "48",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
@@ -1048,6 +1066,422 @@
           "key.doc.column" : "16",
           "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
           "key.usr" : "c:RLMRealm.h@T@RLMMigrationBlock"
+        }
+      ],
+      "key.diagnostic_stage" : ""
+    }
+  },
+  {
+    "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h" : {
+      "key.substructure" : [
+        {
+          "key.kind" : "sourcekitten.source.lang.objc.decl.protocol",
+          "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+          "key.parsed_declaration" : "@protocol RLMCollection <NSFastEnumeration>",
+          "key.doc.comment" : "A homogenous collection of `RLMObject`s like `RLMArray` or `RLMResults`.",
+          "key.doc.full_as_xml" : "",
+          "key.doc.line" : "28",
+          "key.substructure" : [
+            {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "39",
+              "key.name" : "MARK: RLMCollection Properties",
+              "key.doc.column" : "52",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "@required\n@property(readonly, assign, nonatomic) NSUInteger count;",
+              "key.doc.comment" : "\nNumber of objects in the collection.",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "39",
+              "key.name" : "count",
+              "key.doc.column" : "52",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(py)count"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "@required\n@property(readonly, copy, nonatomic) NSString *_Nonnull objectClassName;",
+              "key.doc.comment" : "The class name (i.e. type) of the RLMObjects contained in this RLMCollection.",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "44",
+              "key.name" : "objectClassName",
+              "key.doc.column" : "49",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(py)objectClassName"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "@required\n@property(readonly, nonatomic) RLMRealm *_Nonnull realm;",
+              "key.doc.comment" : "The Realm in which this collection is persisted. Returns nil for standalone collections.",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "49",
+              "key.name" : "realm",
+              "key.doc.column" : "43",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(py)realm"
+            },
+            {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "64",
+              "key.name" : "MARK: Accessing Objects from a Collection",
+              "key.doc.column" : "7",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (nonnull id)objectAtIndex:(NSUInteger)index;",
+              "key.doc.comment" : "\nReturns the object at the index specified.\n\n- parameter: index   The index to look up.\n\n- returns: An RLMObject of the class contained by this RLMCollection.",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The index to look up.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "index"
+                }
+              ],
+              "key.doc.line" : "64",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-objectAtIndex:",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "An RLMObject of the class contained by this RLMCollection.",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "7",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)objectAtIndex:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (nullable id)firstObject;",
+              "key.doc.comment" : "Returns the first object in the collection.\n\nReturns `nil` if called on an empty RLMCollection.\n\n- returns: An RLMObject of the class contained by this RLMCollection.",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "73",
+              "key.name" : "-firstObject",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "An RLMObject of the class contained by this RLMCollection.",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "16",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)firstObject"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (nullable id)lastObject;",
+              "key.doc.comment" : "Returns the last object in the collection.\n\nReturns `nil` if called on an empty RLMCollection.\n\n- returns: An RLMObject of the class contained by this RLMCollection.",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "82",
+              "key.name" : "-lastObject",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "An RLMObject of the class contained by this RLMCollection.",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "16",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)lastObject"
+            },
+            {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "97",
+              "key.name" : "MARK: Querying a Collection",
+              "key.doc.column" : "15",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (NSUInteger)indexOfObject:(nonnull RLMObject *)object;",
+              "key.doc.comment" : "\nGets the index of an object.\n\nReturns NSNotFound if the object is not found in this RLMCollection.\n\n- parameter: object  An object (of the same type as returned from the objectClassName selector).",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "An object (of the same type as returned from the objectClassName selector).",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "object"
+                }
+              ],
+              "key.doc.line" : "97",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-indexOfObject:",
+              "key.doc.column" : "15",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)indexOfObject:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (NSUInteger)indexOfObjectWhere:(nonnull NSString *)predicateFormat, ...;",
+              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:    Index of object or NSNotFound if the object is not found in this RLMCollection.",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The predicate format string which can accept variable arguments.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "predicateFormat"
+                }
+              ],
+              "key.doc.line" : "106",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-indexOfObjectWhere:",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "Index of object or NSNotFound if the object is not found in this RLMCollection.",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "15",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)indexOfObjectWhere:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (NSUInteger)indexOfObjectWithPredicate:(nonnull NSPredicate *)predicate;",
+              "key.doc.comment" : "Gets the index of the first object matching the predicate.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:    Index of object or NSNotFound if the object is not found in this RLMCollection.",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The predicate to filter the objects.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "predicate"
+                }
+              ],
+              "key.doc.line" : "115",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-indexOfObjectWithPredicate:",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "Index of object or NSNotFound if the object is not found in this RLMCollection.",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "15",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)indexOfObjectWithPredicate:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (nonnull RLMResults *)objectsWhere:(nonnull NSString *)predicateFormat, ...;",
+              "key.doc.comment" : "Get objects matching the given predicate in the RLMCollection.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:    An RLMResults of objects that match the given predicate",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The predicate format string which can accept variable arguments.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "predicateFormat"
+                }
+              ],
+              "key.doc.line" : "124",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-objectsWhere:",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "An RLMResults of objects that match the given predicate",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "17",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)objectsWhere:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (nonnull RLMResults *)objectsWithPredicate:(nonnull NSPredicate *)predicate;",
+              "key.doc.comment" : "Get objects matching the given predicate in the RLMCollection.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:            An RLMResults of objects that match the given predicate",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The predicate to filter the objects.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "predicate"
+                }
+              ],
+              "key.doc.line" : "133",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-objectsWithPredicate:",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "An RLMResults of objects that match the given predicate",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "17",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)objectsWithPredicate:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (nonnull RLMResults *)sortedResultsUsingProperty:(nonnull NSString *)property\n                                         ascending:(BOOL)ascending;",
+              "key.doc.comment" : "Get a sorted RLMResults from an RLMCollection.\n\n- parameter: property    The property name to sort by.\n- parameter: ascending   The direction to sort by.\n\n- returns:    An RLMResults sorted by the specified property.",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The property name to sort by.\n ",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "property"
+                },
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The direction to sort by.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "ascending"
+                }
+              ],
+              "key.doc.line" : "143",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-sortedResultsUsingProperty:ascending:",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "An RLMResults sorted by the specified property.",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "17",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)sortedResultsUsingProperty:ascending:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (nonnull RLMResults *)sortedResultsUsingDescriptors:\n        (nonnull NSArray *)properties;",
+              "key.doc.comment" : "Get a sorted RLMResults from an RLMCollection.\n\n- parameter: properties  An array of `RLMSortDescriptor`s to sort by.\n\n- returns:    An RLMResults sorted by the specified properties.",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "An array of `RLMSortDescriptor`s to sort by.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "properties"
+                }
+              ],
+              "key.doc.line" : "152",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-sortedResultsUsingDescriptors:",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "An RLMResults sorted by the specified properties.",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "17",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)sortedResultsUsingDescriptors:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (nullable id)valueForKey:(nonnull NSString *)key;",
+              "key.doc.comment" : "Returns an NSArray containing the results of invoking `valueForKey:` using key on each of the collection's objects.\n\n- parameter: key The name of the property.\n\n- returns: NSArray containing the results of invoking `valueForKey:` using key on each of the collection's objects.",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The name of the property.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "key"
+                }
+              ],
+              "key.doc.line" : "167",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-valueForKey:",
+              "key.doc.result_discussion" : [
+                {
+                  "Para" : "NSArray containing the results of invoking `valueForKey:` using key on each of the collection's objects.",
+                  "kind" : ""
+                }
+              ],
+              "key.doc.column" : "16",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)valueForKey:"
+            },
+            {
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.parsed_declaration" : "- (void)setValue:(nullable id)value forKey:(nonnull NSString *)key;",
+              "key.doc.comment" : "Invokes `setValue:forKey:` on each of the collection's objects using the specified value and key.\n\n- warning: This method can only be called during a write transaction.\n\n- parameter: value The object value.\n- parameter: key   The name of the property.",
+              "key.doc.parameters" : [
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The object value.\n",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "value"
+                },
+                {
+                  "discussion" : [
+                    {
+                      "Para" : "The name of the property.",
+                      "kind" : ""
+                    }
+                  ],
+                  "name" : "key"
+                }
+              ],
+              "key.doc.line" : "177",
+              "key.doc.full_as_xml" : "",
+              "key.name" : "-setValue:forKey:",
+              "key.doc.column" : "9",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+              "key.usr" : "c:objc(pl)RLMCollection(im)setValue:forKey:"
+            }
+          ],
+          "key.name" : "RLMCollection",
+          "key.doc.column" : "11",
+          "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
+          "key.usr" : "c:objc(pl)RLMCollection"
         }
       ],
       "key.diagnostic_stage" : ""
@@ -2209,7 +2643,7 @@
           "key.parsed_declaration" : "@interface RLMArray (Swift)",
           "key.doc.comment" : ":nodoc:",
           "key.doc.full_as_xml" : "",
-          "key.doc.line" : "349",
+          "key.doc.line" : "357",
           "key.name" : "RLMArray(Swift)",
           "key.doc.column" : "12",
           "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
@@ -2224,12 +2658,21 @@
           "key.doc.line" : "324",
           "key.substructure" : [
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "333",
+              "key.name" : "MARK: Properties",
+              "key.doc.column" : "43",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "@property(readonly, nonatomic) NSString *_Nonnull property;",
-              "key.doc.comment" : "The name of the property which this sort descriptor orders results by.",
+              "key.doc.comment" : "\nThe name of the property which this sort descriptor orders results by.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "329",
+              "key.doc.line" : "333",
               "key.name" : "property",
               "key.doc.column" : "43",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
@@ -2241,19 +2684,28 @@
               "key.parsed_declaration" : "@property(readonly, nonatomic) BOOL ascending;",
               "key.doc.comment" : "Whether this descriptor sorts in ascending or descending order.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "334",
+              "key.doc.line" : "338",
               "key.name" : "ascending",
               "key.doc.column" : "38",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMSortDescriptor(py)ascending"
             },
             {
+              "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
+              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : "347",
+              "key.name" : "MARK: Methods",
+              "key.doc.column" : "17",
+              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h"
+            },
+            {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.parsed_declaration" : "+ (nonnull instancetype)sortDescriptorWithProperty:\n                            (nonnull NSString *)propertyName\n                                         ascending:(BOOL)ascending;",
-              "key.doc.comment" : "Returns a new sort descriptor for the given property name and order.",
+              "key.doc.comment" : "\nReturns a new sort descriptor for the given property name and order.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "339",
+              "key.doc.line" : "347",
               "key.name" : "+sortDescriptorWithProperty:ascending:",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
@@ -2265,7 +2717,7 @@
               "key.parsed_declaration" : "- (nonnull instancetype)reversedSortDescriptor;",
               "key.doc.comment" : "Returns a copy of the receiver with the sort order reversed.",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : "344",
+              "key.doc.line" : "352",
               "key.name" : "-reversedSortDescriptor",
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
