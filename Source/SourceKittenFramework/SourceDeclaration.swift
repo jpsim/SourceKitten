@@ -163,7 +163,8 @@ extension SourceDeclaration {
             let getter = usr.stringByReplacingOccurrencesOfString("(py)", withString: "(im)")
             let setter = usr.substringToIndex(usr.rangeOfString("(py)")!.startIndex) +
                 "(im)set" +
-                usr.substringFromIndex(usr.rangeOfString("(py)")!.startIndex.advancedBy(4)).capitalizedString +
+                String(usr.characters[usr.rangeOfString("(py)")!.startIndex.advancedBy(4)]).capitalizedString +
+                usr.substringFromIndex(usr.rangeOfString("(py)")!.startIndex.advancedBy(5)) +
                 ":"
             return [getter, setter]
         }
