@@ -13,7 +13,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) NSString *_Nonnull name;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSString *_Nonnull name;",
               "key.doc.comment" : "Property name.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "50",
@@ -25,7 +25,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) RLMPropertyType type;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) RLMPropertyType type;",
               "key.doc.comment" : "Property type.\n\n- see: RLMPropertyType",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "57",
@@ -37,7 +37,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) BOOL indexed;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) BOOL indexed;",
               "key.doc.comment" : "Indicates if this property is indexed.\n\n- see: RLMObject",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "64",
@@ -49,7 +49,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "@property(readonly, copy, nonatomic, nullable) NSString *objectClassName;",
+              "key.parsed_declaration" : "@property (readonly, copy, nonatomic, nullable) NSString *objectClassName;",
               "key.doc.comment" : "Object class name - specify object types for RLMObject and RLMArray properties.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "69",
@@ -61,7 +61,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMProperty.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) BOOL optional;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) BOOL optional;",
               "key.doc.comment" : "Whether this property is optional.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "74",
@@ -165,7 +165,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable) NSString *path;",
+              "key.parsed_declaration" : "@property (readwrite, copy, nonatomic, nullable) NSString *path;",
               "key.doc.comment" : "",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "54",
@@ -177,7 +177,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable) NSString *inMemoryIdentifier;",
+              "key.parsed_declaration" : "@property (readwrite, copy, nonatomic, nullable) NSString *inMemoryIdentifier;",
               "key.doc.comment" : "A string used to identify a particular in-memory Realm. Mutually exclusive with `path`.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "57",
@@ -189,7 +189,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable) NSData *encryptionKey;",
+              "key.parsed_declaration" : "@property (readwrite, copy, nonatomic, nullable) NSData *encryptionKey;",
               "key.doc.comment" : "64-byte key to use to encrypt the data.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "60",
@@ -201,7 +201,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "@property(assign, readwrite, nonatomic) BOOL readOnly;",
+              "key.parsed_declaration" : "@property (assign, readwrite, nonatomic) BOOL readOnly;",
               "key.doc.comment" : "Whether the Realm is read-only (must be YES for read-only files).",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "63",
@@ -213,7 +213,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "@property(assign, readwrite, nonatomic) uint64_t schemaVersion;",
+              "key.parsed_declaration" : "@property (assign, readwrite, nonatomic) uint64_t schemaVersion;",
               "key.doc.comment" : "The current schema version.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "66",
@@ -225,7 +225,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable)\n    RLMMigrationBlock migrationBlock;",
+              "key.parsed_declaration" : "@property (readwrite, copy, nonatomic, nullable)\n    RLMMigrationBlock migrationBlock;",
               "key.doc.comment" : "The block which migrates the Realm to the current version.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "69",
@@ -237,7 +237,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealmConfiguration.h",
-              "key.parsed_declaration" : "@property(readwrite, copy, nonatomic, nullable) NSArray *objectClasses;",
+              "key.parsed_declaration" : "@property (readwrite, copy, nonatomic, nullable) NSArray *objectClasses;",
               "key.doc.comment" : "The classes persisted in the Realm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "72",
@@ -364,7 +364,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) NSString *_Nonnull path;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSString *_Nonnull path;",
               "key.doc.comment" : "Path to the file where this Realm is persisted.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "94",
@@ -376,7 +376,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "@property(readonly, getter=isReadOnly, nonatomic) BOOL readOnly;",
+              "key.parsed_declaration" : "@property (readonly, getter=isReadOnly, nonatomic) BOOL readOnly;",
               "key.doc.comment" : "Indicates if this Realm was opened in read-only mode.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "99",
@@ -388,7 +388,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic, null_unspecified) RLMSchema *schema;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic, null_unspecified) RLMSchema *schema;",
               "key.doc.comment" : "The RLMSchema used by this RLMRealm.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "104",
@@ -400,7 +400,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) BOOL inWriteTransaction;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) BOOL inWriteTransaction;",
               "key.doc.comment" : "Indicates if this Realm is currently in a write transaction.\n\n- warning: Wrapping mutating operations in a write transaction if this property returns `NO`\n         may cause a large number of write transactions to be created, which could negatively\n         impact Realm's performance. Always prefer performing multiple mutations in a single\n         transaction when possible.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "114",
@@ -412,7 +412,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) RLMRealmConfiguration *_Nonnull configuration;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) RLMRealmConfiguration *_Nonnull configuration;",
               "key.doc.comment" : "Returns an `RLMRealmConfiguration` that can be used to create this `RLMRealm` instance.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "119",
@@ -424,7 +424,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) BOOL isEmpty;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) BOOL isEmpty;",
               "key.doc.comment" : "Indicates if this Realm contains any objects.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "124",
@@ -639,7 +639,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "@property(assign, readwrite, nonatomic) BOOL autorefresh;",
+              "key.parsed_declaration" : "@property (assign, readwrite, nonatomic) BOOL autorefresh;",
               "key.doc.comment" : "Set to YES to automatically update this Realm when changes happen in other threads.\n\nIf set to YES (the default), changes made on other threads will be reflected\nin this Realm on the next cycle of the run loop after the changes are\ncommitted.  If set to NO, you must manually call -refresh on the Realm to\nupdate it to get the latest version.\n\nEven with this enabled, you can still call -refresh at any time to update the\nRealm before the automatic refresh would occur.\n\nNotifications are sent when a write transaction is committed whether or not\nthis is enabled.\n\nDisabling this on an `RLMRealm` without any strong references to it will not\nhave any effect, and it will switch back to YES the next time the `RLMRealm`\nobject is created. This is normally irrelevant as it means that there is\nnothing to refresh (as persisted `RLMObject`s, `RLMArray`s, and `RLMResults` have strong\nreferences to the containing `RLMRealm`), but it means that setting\n`RLMRealm.defaultRealm.autorefresh = NO` in\n`application:didFinishLaunchingWithOptions:` and only later storing Realm\nobjects will not work.\n\nDefaults to YES.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "291",
@@ -1017,17 +1017,6 @@
               "key.doc.column" : "14",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
               "key.usr" : "c:objc(cs)RLMRealm(cm)migrateRealm:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.parsed_declaration" : "- (BOOL)isReadOnly;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "99",
-              "key.name" : "-isReadOnly",
-              "key.doc.column" : "59",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMRealm.h",
-              "key.usr" : "c:objc(cs)RLMRealm(im)isReadOnly"
             }
           ],
           "key.name" : "RLMRealm",
@@ -1094,7 +1083,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
-              "key.parsed_declaration" : "@required\n@property(readonly, assign, nonatomic) NSUInteger count;",
+              "key.parsed_declaration" : "@required\n@property (readonly, assign, nonatomic) NSUInteger count;",
               "key.doc.comment" : "\nNumber of objects in the collection.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "39",
@@ -1106,7 +1095,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
-              "key.parsed_declaration" : "@required\n@property(readonly, copy, nonatomic) NSString *_Nonnull objectClassName;",
+              "key.parsed_declaration" : "@required\n@property (readonly, copy, nonatomic) NSString *_Nonnull objectClassName;",
               "key.doc.comment" : "The class name (i.e. type) of the RLMObjects contained in this RLMCollection.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "44",
@@ -1118,7 +1107,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMCollection.h",
-              "key.parsed_declaration" : "@required\n@property(readonly, nonatomic) RLMRealm *_Nonnull realm;",
+              "key.parsed_declaration" : "@required\n@property (readonly, nonatomic) RLMRealm *_Nonnull realm;",
               "key.doc.comment" : "The Realm in which this collection is persisted. Returns nil for standalone collections.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "49",
@@ -1671,7 +1660,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic, nullable) RLMRealm *realm;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic, nullable) RLMRealm *realm;",
               "key.doc.comment" : "\nThe Realm in which this object is persisted. Returns nil for standalone objects.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "222",
@@ -1683,7 +1672,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) RLMObjectSchema *_Nonnull objectSchema;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) RLMObjectSchema *_Nonnull objectSchema;",
               "key.doc.comment" : "The ObjectSchema which lists the persisted properties for this object.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "227",
@@ -1695,7 +1684,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.parsed_declaration" : "@property(readonly, getter=isInvalidated, nonatomic) BOOL invalidated;",
+              "key.parsed_declaration" : "@property (readonly, getter=isInvalidated, nonatomic) BOOL invalidated;",
               "key.doc.comment" : "Indicates if an object can no longer be accessed.\n\nAn object can no longer be accessed if the object has been deleted from the containing `realm` or\nif `invalidate` is called on the containing `realm`.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "235",
@@ -2113,17 +2102,6 @@
               "key.doc.column" : "9",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
               "key.usr" : "c:objc(cs)RLMObject(im)isEqualToObject:"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.parsed_declaration" : "- (BOOL)isInvalidated;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "235",
-              "key.name" : "-isInvalidated",
-              "key.doc.column" : "62",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObject.h",
-              "key.usr" : "c:objc(cs)RLMObject(im)isInvalidated"
             }
           ],
           "key.name" : "RLMObject",
@@ -2158,7 +2136,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "@property(readonly, assign, nonatomic) NSUInteger count;",
+              "key.parsed_declaration" : "@property (readonly, assign, nonatomic) NSUInteger count;",
               "key.doc.comment" : "\nNumber of objects in the array.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "71",
@@ -2170,7 +2148,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "@property(readonly, copy, nonatomic) NSString *_Nonnull objectClassName;",
+              "key.parsed_declaration" : "@property (readonly, copy, nonatomic) NSString *_Nonnull objectClassName;",
               "key.doc.comment" : "The class name (i.e. type) of the RLMObjects contained in this RLMArray.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "76",
@@ -2182,7 +2160,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic, nullable) RLMRealm *realm;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic, nullable) RLMRealm *realm;",
               "key.doc.comment" : "The Realm in which this array is persisted. Returns nil for standalone arrays.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "81",
@@ -2194,7 +2172,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "@property(readonly, getter=isInvalidated, nonatomic) BOOL invalidated;",
+              "key.parsed_declaration" : "@property (readonly, getter=isInvalidated, nonatomic) BOOL invalidated;",
               "key.doc.comment" : "Indicates if an array can no longer be accessed.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "86",
@@ -2754,17 +2732,6 @@
               "key.doc.column" : "17",
               "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
               "key.usr" : "c:objc(cs)RLMArray(cm)new"
-            },
-            {
-              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "- (BOOL)isInvalidated;",
-              "key.doc.full_as_xml" : "",
-              "key.doc.line" : "86",
-              "key.name" : "-isInvalidated",
-              "key.doc.column" : "62",
-              "key.filepath" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)isInvalidated"
             }
           ],
           "key.name" : "RLMArray",
@@ -2792,7 +2759,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) NSString *_Nonnull property;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSString *_Nonnull property;",
               "key.doc.comment" : "\nThe name of the property which this sort descriptor orders results by.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "333",
@@ -2804,7 +2771,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMArray.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) BOOL ascending;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) BOOL ascending;",
               "key.doc.comment" : "Whether this descriptor sorts in ascending or descending order.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "338",
@@ -2891,7 +2858,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) RLMSchema *_Nonnull oldSchema;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) RLMSchema *_Nonnull oldSchema;",
               "key.doc.comment" : "Get the old RLMSchema for the migration. This is the schema which describes the RLMRealm before the\nmigration is applied.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "46",
@@ -2903,7 +2870,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMMigration.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) RLMSchema *_Nonnull newSchema;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) RLMSchema *_Nonnull newSchema;",
               "key.doc.comment" : "Get the new RLMSchema for the migration. This is the schema which describes the RLMRealm after applying\na migration.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "52",
@@ -3052,7 +3019,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.parsed_declaration" : "@property(readonly, copy, nonatomic) NSArray *_Nonnull properties;",
+              "key.parsed_declaration" : "@property (readonly, copy, nonatomic) NSArray *_Nonnull properties;",
               "key.doc.comment" : "Array of persisted RLMProperty objects for an object.\n\n- see: RLMProperty",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "41",
@@ -3064,7 +3031,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) NSString *_Nonnull className;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSString *_Nonnull className;",
               "key.doc.comment" : "The name of the class this schema describes.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "46",
@@ -3076,7 +3043,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMObjectSchema.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic, nullable) RLMProperty *primaryKeyProperty;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic, nullable) RLMProperty *primaryKeyProperty;",
               "key.doc.comment" : "The property which is the primary key for this object (if any).",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "51",
@@ -3159,7 +3126,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.parsed_declaration" : "@property(readonly, assign, nonatomic) NSUInteger count;",
+              "key.parsed_declaration" : "@property (readonly, assign, nonatomic) NSUInteger count;",
               "key.doc.comment" : "\nNumber of objects in the results.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "45",
@@ -3171,7 +3138,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.parsed_declaration" : "@property(readonly, copy, nonatomic) NSString *_Nonnull objectClassName;",
+              "key.parsed_declaration" : "@property (readonly, copy, nonatomic) NSString *_Nonnull objectClassName;",
               "key.doc.comment" : "The class name (i.e. type) of the RLMObjects contained in this RLMResults.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "50",
@@ -3183,7 +3150,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMResults.h",
-              "key.parsed_declaration" : "@property(readonly, nonatomic) RLMRealm *_Nonnull realm;",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) RLMRealm *_Nonnull realm;",
               "key.doc.comment" : "The Realm this `RLMResults` is associated with.",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "55",
@@ -4055,7 +4022,7 @@
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.doc.file" : "\/Users\/jp\/Projects\/realm-cocoa\/Realm\/RLMSchema.h",
-              "key.parsed_declaration" : "@property(readonly, copy, nonatomic) NSArray *_Nonnull objectSchema;",
+              "key.parsed_declaration" : "@property (readonly, copy, nonatomic) NSArray *_Nonnull objectSchema;",
               "key.doc.comment" : "An NSArray containing RLMObjectSchema's for all object types in this Realm. Meant\nto be used during migrations for dynamic introspection.\n\n- see: RLMObjectSchema",
               "key.doc.full_as_xml" : "",
               "key.doc.line" : "42",

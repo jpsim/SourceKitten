@@ -160,18 +160,39 @@ extension SourceDeclaration {
         guard let rootXML = SWXMLHash.parse(commentXML).children.first else {
             fatalError("couldn't parse XML")
         }
-        declaration = rootXML["Declaration"].element?.text?.stringByReplacingOccurrencesOfString("\n@end", withString: "")
+        declaration = rootXML["Declaration"].element?.text?
+            .stringByReplacingOccurrencesOfString("\n@end", withString: "")
+            .stringByReplacingOccurrencesOfString("@property(", withString: "@property (")
         documentation = Documentation(comment: comment)
         // Remove implicitly generated property getters & setters
         let tmpChildren = cursor.flatMap(SourceDeclaration.init)
-        let propertyUSRs = tmpChildren.filter({ $0.type == .Property }).map({ $0.usr! })
-        let propertyGetterSetterUSRs = propertyUSRs.flatMap { usr -> [String] in
-            let getter = usr.stringByReplacingOccurrencesOfString("(py)", withString: "(im)")
-            let setter = usr.substringToIndex(usr.rangeOfString("(py)")!.startIndex) +
-                "(im)set" +
-                String(usr.characters[usr.rangeOfString("(py)")!.startIndex.advancedBy(4)]).capitalizedString +
-                usr.substringFromIndex(usr.rangeOfString("(py)")!.startIndex.advancedBy(5)) +
-                ":"
+        let properties = tmpChildren.filter { $0.type == .Property }
+        let propertyGetterSetterUSRs = properties.flatMap { property -> [String] in
+            let usr = property.usr!
+            let pyStartIndex = usr.rangeOfString("(py)")!.startIndex
+            let usrPrefix = usr.substringToIndex(pyStartIndex)
+            let declaration = property.declaration!
+            let getterRegex = try! NSRegularExpression(pattern: "getter=(\\w+)", options: [])
+            let fullDeclarationRange = NSRange(location: 0, length: (declaration as NSString).length)
+            let getterMatches = getterRegex.matchesInString(declaration, options: [], range: fullDeclarationRange)
+            let getter: String
+            if getterMatches.count > 0 {
+                let getterName = (declaration as NSString).substringWithRange(getterMatches[0].rangeAtIndex(1))
+                getter = usrPrefix + "(im)\(getterName)"
+            } else {
+                getter = usr.stringByReplacingOccurrencesOfString("(py)", withString: "(im)")
+            }
+            let setterRegex = try! NSRegularExpression(pattern: "setter=(\\w+:)", options: [])
+            let setterMatches = setterRegex.matchesInString(declaration, options: [], range: fullDeclarationRange)
+            let setter: String
+            if setterMatches.count > 0 {
+                let setterName = (declaration as NSString).substringWithRange(setterMatches[0].rangeAtIndex(1))
+                setter = usrPrefix + "(im)\(setterName)"
+            } else {
+                let capitalFirstLetter = String(usr.characters[pyStartIndex.advancedBy(4)]).capitalizedString
+                let restOfSetterName = usr.substringFromIndex(pyStartIndex.advancedBy(5))
+                setter = "\(usrPrefix)(im)set\(capitalFirstLetter)\(restOfSetterName):"
+            }
             return [getter, setter]
         }
         children = tmpChildren.filter { !propertyGetterSetterUSRs.contains($0.usr!) }
