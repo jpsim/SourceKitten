@@ -1,3 +1,20 @@
+## Master
+
+##### Breaking
+
+None.
+
+##### Enhancements
+
+None.
+
+##### Bug Fixes
+
+* Add support for C/C++ struct & field types.  
+  [JP Simard](https://github.com/jpsim)
+  [jazzy#374](https://github.com/realm/jazzy/issues/374)
+
+
 ## 0.6.1
 
 ##### Breaking
@@ -15,7 +32,7 @@ None.
   [Benedikt Terhechte](https://github.com/terhechte)
   [#97](https://github.com/jpsim/SourceKitten/issues/97)
 
-* Fix an out-of-bounds exception when generating pragma marks.
+* Fix an out-of-bounds exception when generating pragma marks.  
   [JP Simard](https://github.com/jpsim)
   [jazzy#370](https://github.com/realm/jazzy/issues/370)
 
