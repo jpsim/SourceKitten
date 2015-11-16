@@ -38,6 +38,10 @@ public enum ObjCDeclarationKind: String {
     case Function = "sourcekitten.source.lang.objc.decl.function"
     /// `mark`.
     case Mark = "sourcekitten.source.lang.objc.mark"
+    /// `struct`
+    case Struct = "sourcekitten.source.lang.objc.decl.struct"
+    /// `field`
+    case Field = "sourcekitten.source.lang.objc.decl.field"
 
     public static func fromClang(kind: CXCursorKind) -> ObjCDeclarationKind {
         switch kind.rawValue {
@@ -52,7 +56,9 @@ public enum ObjCDeclarationKind: String {
         case CXCursor_TypedefDecl.rawValue: return .Typedef
         case CXCursor_VarDecl.rawValue: return .Constant
         case CXCursor_FunctionDecl.rawValue: return .Function
-        default: fatalError("Unsupported CXCursorKind value: \(kind.rawValue)")
+        case CXCursor_StructDecl.rawValue: return .Struct
+        case CXCursor_FieldDecl.rawValue: return .Field
+        default: fatalError("Unsupported CXCursorKind: \(clang_getCursorKindSpelling(kind))")
         }
     }
 }
