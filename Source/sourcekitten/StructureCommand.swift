@@ -18,7 +18,7 @@ struct StructureCommand: CommandType {
     func run(mode: CommandMode) -> Result<(), CommandantError<SourceKittenError>> {
         return StructureOptions.evaluate(mode).flatMap { options in
             if !options.file.isEmpty {
-                if let file = File(path: options.file.absolutePathRepresentation()) {
+                if let file = File(path: options.file) {
                     print(Structure(file: file))
                     return .Success()
                 }

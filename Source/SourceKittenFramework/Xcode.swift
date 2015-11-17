@@ -159,8 +159,7 @@ public func parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: [Strin
     var xcodebuildArguments = sourcekittenArguments
     var headerFiles = [String]()
     while let headerFile = xcodebuildArguments.first where headerFile.isObjectiveCHeaderFile() {
-        headerFiles.append(headerFile.absolutePathRepresentation())
-        xcodebuildArguments.removeAtIndex(0)
+        headerFiles.append(xcodebuildArguments.removeAtIndex(0).absolutePathRepresentation())
     }
     return (headerFiles, xcodebuildArguments)
 }

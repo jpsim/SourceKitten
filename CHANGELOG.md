@@ -6,7 +6,9 @@ None.
 
 ##### Enhancements
 
-None.
+* Increase robustness of file path handling.  
+  [Boris Bügling](https://github.com/neonichu)
+  [#86](https://github.com/jpsim/SourceKitten/issues/86)
 
 ##### Bug Fixes
 
