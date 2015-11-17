@@ -24,8 +24,7 @@ struct CompleteCommand: CommandType {
                 path = options.file.absolutePathRepresentation()
                 if let file = File(path: path) {
                     contents = file.contents
-                }
-                else {
+                } else {
                     return .Failure(.CommandError(.ReadFailed(path: options.file)))
                 }
             } else {
@@ -38,8 +37,7 @@ struct CompleteCommand: CommandType {
                 args.appendContentsOf(options.compilerargs.componentsSeparatedByString(" "))
             }
             if args.indexOf("-sdk") == nil {
-                args.append("-sdk")
-                args.append(sdkPath())
+                args.appendContentsOf(["-sdk", sdkPath()])
             }
 
             let request = Request.CodeCompletionRequest(file: path, contents: contents,

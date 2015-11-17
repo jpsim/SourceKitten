@@ -18,7 +18,7 @@ struct SyntaxCommand: CommandType {
     func run(mode: CommandMode) -> Result<(), CommandantError<SourceKittenError>> {
         return SyntaxOptions.evaluate(mode).flatMap { options in
             if !options.file.isEmpty {
-                if let file = File(path: options.file.absolutePathRepresentation()) {
+                if let file = File(path: options.file) {
                     print(SyntaxMap(file: file))
                     return .Success()
                 }
