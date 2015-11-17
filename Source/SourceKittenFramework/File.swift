@@ -25,7 +25,7 @@ public struct File {
     - parameter path: File path.
     */
     public init?(path: String) {
-        self.path = path
+        self.path = (path as NSString).absolutePathRepresentation()
         do {
             contents = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding) as String
             lines = contents.lines()
