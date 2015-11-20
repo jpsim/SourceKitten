@@ -49,7 +49,7 @@ installables: clean bootstrap
 
 prefix_install: installables
 	mkdir -p "$(FRAMEWORKS_FOLDER)" "$(BINARIES_FOLDER)"
-	cp -rf "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework" "$(FRAMEWORKS_FOLDER)/"
+	cp -Rf "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework" "$(FRAMEWORKS_FOLDER)/"
 	cp -f "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)/sourcekitten" "$(BINARIES_FOLDER)/"
 
 package: installables
