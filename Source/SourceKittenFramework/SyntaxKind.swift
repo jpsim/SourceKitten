@@ -48,12 +48,8 @@ public enum SyntaxKind: String {
     /// `typeidentifier`.
     case Typeidentifier = "source.lang.swift.syntaxtype.typeidentifier"
 
-    /**
-    Returns true if the input is a comment-like syntax kind string.
-
-    - parameter string: Input string.
-    */
-    internal static func isCommentLike(string: Swift.String) -> Bool {
-        return [Comment, CommentMark, CommentURL, DocComment, DocCommentField].map({ $0.rawValue }).contains(string)
+    /// Returns the valid documentation comment syntax kinds.
+    internal static func docComments() -> [SyntaxKind] {
+        return [CommentURL, DocComment, DocCommentField]
     }
 }

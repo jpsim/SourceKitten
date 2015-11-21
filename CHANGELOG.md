@@ -16,6 +16,11 @@ None.
   [JP Simard](https://github.com/jpsim)
   [jazzy#374](https://github.com/realm/jazzy/issues/374)
 
+* Fix issue where Swift extensions would pick up documentation from previous
+  tokens.  
+  [JP Simard](https://github.com/jpsim)
+  [#65](https://github.com/jpsim/SourceKitten/issues/65)
+
 
 ## 0.6.1
 

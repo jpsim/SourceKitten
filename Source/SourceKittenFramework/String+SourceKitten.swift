@@ -57,6 +57,21 @@ extension NSString {
         return nil
     }
 
+    public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
+        let range = NSRange(location: offset, length: 0)
+        var numberOfLines = 0, index = 0, lineRangeStart = 0, previousIndex = 0
+        while index < length {
+            numberOfLines++
+            if index > range.location {
+                break
+            }
+            lineRangeStart = numberOfLines
+            previousIndex = index
+            index = NSMaxRange(lineRangeForRange(NSRange(location: index, length: 1)))
+        }
+        return (lineRangeStart, range.location - previousIndex + 1)
+    }
+
     /**
     Returns a copy of `self` with the trailing contiguous characters belonging to `characterSet`
     removed.
