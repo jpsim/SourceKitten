@@ -730,7 +730,6 @@
       {
         "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 3535,
-        "key.doc.comment" : "Attempts to parse a value from the given command-line argument.",
         "key.namelength" : 3,
         "key.bodyoffset" : 3564,
         "key.bodylength" : 119,
@@ -811,7 +810,6 @@
       {
         "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 3686,
-        "key.doc.comment" : "Attempts to parse a value from the given command-line argument.",
         "key.modulename" : "Swift",
         "key.namelength" : 6,
         "key.bodyoffset" : 3718,

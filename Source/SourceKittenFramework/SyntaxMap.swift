@@ -73,8 +73,8 @@ public struct SyntaxMap {
     */
     public func commentRangeBeforeOffset(offset: Int) -> Range<Int>? {
         let tokensBeforeOffset = tokens.filter { $0.offset < offset }
-        let commentTokensImmediatelyPrecedingOffset = filterLastContiguous(tokensBeforeOffset) {
-            SyntaxKind.isCommentLike($0.type)
+        let commentTokensImmediatelyPrecedingOffset = filterLastContiguous(tokensBeforeOffset) { token in
+            SyntaxKind.docComments().map({$0.rawValue}).contains(token.type)
         }
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.map { lastToken in
