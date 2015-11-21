@@ -311,7 +311,7 @@ public struct File {
             return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
                 let commentEndLine = (contents as NSString).lineAndCharacterForCharacterOffset(commentByteRange.endIndex)?.line
                 let tokenStartLine = (contents as NSString).lineAndCharacterForCharacterOffset(Int(offset))?.line
-                guard commentEndLine == tokenStartLine else {
+                guard commentEndLine == tokenStartLine || commentEndLine == tokenStartLine?.predecessor() else {
                     return nil
                 }
                 return contents.byteRangeToNSRange(start: commentByteRange.startIndex, length: commentByteRange.endIndex - commentByteRange.startIndex).flatMap { nsRange in
