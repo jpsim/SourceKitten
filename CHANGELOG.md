@@ -12,9 +12,10 @@ None.
 
 ##### Bug Fixes
 
-* Add support for C/C++ struct & field types.  
+* Add support for C/C++ struct, field & ivar types.  
   [JP Simard](https://github.com/jpsim)
   [jazzy#374](https://github.com/realm/jazzy/issues/374)
+  [jazzy#387](https://github.com/realm/jazzy/issues/387)
 
 
 ## 0.6.1
