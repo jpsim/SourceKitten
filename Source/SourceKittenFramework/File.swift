@@ -11,13 +11,13 @@ import SwiftXPC
 import SWXMLHash
 
 /// Represents a source file.
-public struct File {
+public final class File {
     /// File path. Nil if initialized directly with `File(contents:)`.
     public let path: String?
     /// File contents.
-    public let contents: String
+    public var contents: String
     /// File lines.
-    public let lines: [Line]
+    public var lines: [Line]
 
     /**
     Failable initializer by path. Fails if file contents could not be read as a UTF8 string.
@@ -31,6 +31,9 @@ public struct File {
             lines = contents.lines()
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
+            // necessary to set contents & lines because of rdar://21744509
+            contents = ""
+            lines = []
             return nil
         }
     }

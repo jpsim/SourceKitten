@@ -138,7 +138,7 @@ extension NSString {
     /**
     Returns an array of Lines for each line in the file.
     */
-    internal func lines() -> [Line] {
+    public func lines() -> [Line] {
         var lines = [Line]()
         var lineIndex = 1
         enumerateLinesUsingBlock { line, _ in

@@ -2,7 +2,9 @@
 
 ##### Breaking
 
-None.
+* `File` is now a `final class` instead of a `struct` and `contents` & `lines`
+  are now marked as `var`. This was done so that mutations to the underlying
+  file on disk can be mirrored in a `File` instance.
 
 ##### Enhancements
 
