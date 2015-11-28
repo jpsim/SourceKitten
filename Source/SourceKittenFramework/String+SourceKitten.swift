@@ -89,7 +89,7 @@ extension NSString {
                 return substringWithRange(NSRange(location: 0, length: newLength))
             }
         }
-        return self as String
+        return ""
     }
 
     /**

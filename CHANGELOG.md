@@ -15,6 +15,10 @@ None.
   [JP Simard](https://github.com/jpsim)
   [#65](https://github.com/jpsim/SourceKitten/issues/65)
 
+* Fix `String.stringByTrimmingTrailingCharactersInSet(_:)` returning full string
+  when all characters matched character set.  
+  [JP Simard](https://github.com/jpsim)
+
 
 ## 0.6.2
 
