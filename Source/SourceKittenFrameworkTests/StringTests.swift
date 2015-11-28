@@ -23,6 +23,8 @@ class StringTests: XCTestCase {
     func testStringByTrimmingTrailingCharactersInSet() {
         XCTAssertEqual("".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "")
         XCTAssertEqual(" a ".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), " a")
+        XCTAssertEqual(" ".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "")
+        XCTAssertEqual("a".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "a")
     }
 
     func testCommentBody() {
