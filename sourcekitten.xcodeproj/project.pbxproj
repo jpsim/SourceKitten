@@ -919,7 +919,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Source/sourcekitten/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -931,7 +931,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Source/sourcekitten/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -943,7 +943,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Source/sourcekitten/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -955,7 +955,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Source/sourcekitten/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
