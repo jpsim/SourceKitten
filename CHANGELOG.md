@@ -19,6 +19,9 @@ None.
   when all characters matched character set.  
   [JP Simard](https://github.com/jpsim)
 
+* Fix `indexOfByteOffset(offset:)` failing when string include some emoji.
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#111](https://github.com/jpsim/SourceKitten/pull/111)
 
 ## 0.6.2
 
