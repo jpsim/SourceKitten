@@ -22,41 +22,6 @@ private let commentLinePrefixCharacterSet: NSCharacterSet = {
 }()
 
 extension NSString {
-    /**
-    Binary search for NSString index equivalent to byte offset.
-
-    - parameter offset: Byte offset.
-
-    - returns: NSString index, if any.
-    */
-    private func indexOfByteOffset(offset: Int) -> Int? {
-        var usedLength = 0
-
-        var left = Int(floor(Double(offset)/2))
-        var right = min(length, offset + 1)
-        var midpoint = (left + right) / 2
-
-        for _ in left..<right {
-            getBytes(nil,
-                maxLength: Int.max,
-                usedLength: &usedLength,
-                encoding: NSUTF8StringEncoding,
-                options: [],
-                range: NSRange(location: 0, length: midpoint),
-                remainingRange: nil)
-            if usedLength < offset {
-                left = midpoint
-                midpoint = (right + left) / 2
-            } else if usedLength > offset {
-                right = midpoint
-                midpoint = (right + left) / 2
-            } else {
-                return midpoint
-            }
-        }
-        return nil
-    }
-
     public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
         let range = NSRange(location: offset, length: 0)
         var numberOfLines = 0, index = 0, lineRangeStart = 0, previousIndex = 0
@@ -114,8 +79,9 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func byteRangeToNSRange(start start: Int, length: Int) -> NSRange? {
-        return indexOfByteOffset(start).flatMap { stringStart in
-            return indexOfByteOffset(start + length).map { stringEnd in
+        let string = self as String
+        return string.indexOfByteOffset(start).flatMap { stringStart in
+            return string.indexOfByteOffset(start + length).map { stringEnd in
                 return NSRange(location: stringStart, length: stringEnd - stringStart)
             }
         }
@@ -204,6 +170,17 @@ extension NSString {
 }
 
 extension String {
+    /**
+     UTF16 index equivalent to byte offset.
+     
+     - parameter offset: Byte offset.
+     
+     - returns: UTF16 index, if any.
+     */
+    private func indexOfByteOffset(offset: Int) -> Int? {
+        return utf8.startIndex.advancedBy(offset).samePositionIn(utf16).map(utf16.startIndex.distanceTo)
+    }
+
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
