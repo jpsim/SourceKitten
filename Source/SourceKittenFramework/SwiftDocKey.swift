@@ -62,17 +62,17 @@ internal enum SwiftDocKey: String {
     case DocName              = "key.doc.name"
     /// Parameters of documented token (XPCArray).
     case DocParameters        = "key.doc.parameters"
-    /// Parsed declaration (String).
-    case DocResultDiscussion  = "key.doc.result_discussion"
-    /// Parsed scope start (Int64).
-    case DocType              = "key.doc.type"
-    /// Parsed scope start end (Int64).
-    case USR                  = "key.usr"
     /// Result discussion documentation of documented token (XPCArray).
-    case ParsedDeclaration    = "key.parsed_declaration"
+    case DocResultDiscussion  = "key.doc.result_discussion"
     /// Type of documented token (String).
-    case ParsedScopeEnd       = "key.parsed_scope.end"
+    case DocType              = "key.doc.type"
     /// USR of documented token (String).
+    case USR                  = "key.usr"
+    /// Parsed declaration (String).
+    case ParsedDeclaration    = "key.parsed_declaration"
+    /// Parsed scope end (Int64).
+    case ParsedScopeEnd       = "key.parsed_scope.end"
+    /// Parsed scope start (Int64).
     case ParsedScopeStart     = "key.parsed_scope.start"
 
 
@@ -166,6 +166,17 @@ internal enum SwiftDocKey: String {
     internal static func getSubstructure(dictionary: XPCDictionary) -> XPCArray? {
         return get(.Substructure, dictionary)
     }
+    
+    /**
+     Get name string from dictionary.
+     
+     - parameter dictionary: Dictionary to get value from.
+     
+     - returns: Name string if successful.
+     */
+    internal static func getName(dictionary: XPCDictionary) -> String? {
+        return get(.Name, dictionary)
+    }
 
     /**
     Get name offset int from dictionary.
@@ -231,5 +242,27 @@ internal enum SwiftDocKey: String {
     */
     internal static func getFullXMLDocs(dictionary: XPCDictionary) -> String? {
         return get(.FullXMLDocs, dictionary)
+    }
+    
+    /**
+     Get USR string from dictionary.
+     
+     - parameter dictionary: Dictionary to get value from.
+     
+     - returns: USR string if successful.
+     */
+    internal static func getUSR(dictionary: XPCDictionary) -> String? {
+        return get(.USR, dictionary)
+    }
+    
+    /**
+     Get parsed declaration string from dictionary.
+     
+     - parameter dictionary: Dictionary to get value from.
+     
+     - returns: parsed declaration string if successful.
+     */
+    internal static func getParsedDeclaration(dictionary: XPCDictionary) -> String? {
+        return get(.ParsedDeclaration, dictionary)
     }
 }

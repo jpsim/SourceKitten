@@ -65,3 +65,5 @@ public enum ObjCDeclarationKind: String {
         }
     }
 }
+
+extension ObjCDeclarationKind: DeclarationKindType {}
