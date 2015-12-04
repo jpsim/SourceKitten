@@ -124,28 +124,28 @@ class StringTests: XCTestCase {
     }
 
     func testSubstringWithByteRange() {
-        let string = "😄123"
-        XCTAssertEqual(string.substringWithByteRange(start: 0, length: 4)!, "😄")
-        XCTAssertEqual(string.substringWithByteRange(start: 4, length: 1)!, "1")
+        let string = "👨‍👩‍👧‍👧123"
+        XCTAssertEqual(string.substringWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧")
+        XCTAssertEqual(string.substringWithByteRange(start: 25, length: 1)!, "1")
     }
 
     func testSubstringLinesWithByteRange() {
-        let string = "😄\n123"
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 0)!, "😄\n")
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 4)!, "😄\n")
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 5)!, "😄\n")
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 6)!, string)
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 6, length: 0)!, "123")
+        let string = "👨‍👩‍👧‍👧\n123"
+        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 0)!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 26)!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 27)!, string)
+        XCTAssertEqual(string.substringLinesWithByteRange(start: 27, length: 0)!, "123")
     }
 
     func testLineRangeWithByteRange() {
         XCTAssert("".lineRangeWithByteRange(start: 0, length: 0) == nil)
-        let string = "😄\n123"
+        let string = "👨‍👩‍👧‍👧\n123"
         XCTAssert(string.lineRangeWithByteRange(start: 0, length: 0)! == (1, 1))
-        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 4)! == (1, 1))
-        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 5)! == (1, 2))
-        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 6)! == (1, 2))
-        XCTAssert(string.lineRangeWithByteRange(start: 6, length: 0)! == (2, 2))
+        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 25)! == (1, 1))
+        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 26)! == (1, 2))
+        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 27)! == (1, 2))
+        XCTAssert(string.lineRangeWithByteRange(start: 27, length: 0)! == (2, 2))
     }
 }
 
