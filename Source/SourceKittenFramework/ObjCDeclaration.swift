@@ -12,7 +12,7 @@ public struct ObjCDeclaration: DeclarationType {
     public let language: Language = .Swift
     public let kind: ObjCDeclarationKind? // FIXME: Type 'ObjCDeclaration' does not conform to protocol 'DeclarationType'
     public let location: SourceLocation
-    public let extent: Range<SourceLocation> // FIXME: Type 'SourceLocation' does not conform to protocol 'ForwardIndexType'
+    public let extent: (start: SourceLocation, end: SourceLocation)
     public let name: String?
     public let typeName: String?
     public let usr: String?

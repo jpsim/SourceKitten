@@ -265,4 +265,59 @@ internal enum SwiftDocKey: String {
     internal static func getParsedDeclaration(dictionary: XPCDictionary) -> String? {
         return get(.ParsedDeclaration, dictionary)
     }
+    
+    /**
+     Get parsed scope start int from dictionary.
+     
+     - parameter dictionary: Dictionary to get value from.
+     
+     - returns: parsed scope start int if successful.
+     */
+    internal static func getParsedScopeStart(dictionary: XPCDictionary) -> Int64? {
+        return get(.ParsedScopeStart, dictionary)
+    }
+    
+    /**
+     Get parsed scope end int from dictionary.
+     
+     - parameter dictionary: Dictionary to get value from.
+     
+     - returns: parsed scope end int if successful.
+     */
+    internal static func getParsedScopeEnd(dictionary: XPCDictionary) -> Int64? {
+        return get(.ParsedScopeEnd, dictionary)
+    }
+    
+    /**
+     Get doc file string from dictionary.
+     
+     - parameter dictionary: Dictionary to get value from.
+     
+     - returns: doc file string if successful.
+     */
+    internal static func getDocFile(dictionary: XPCDictionary) -> String? {
+        return get(.DocFile, dictionary)
+    }
+    
+    /**
+     Get doc column int from dictionary.
+     
+     - parameter dictionary: Dictionary to get value from.
+     
+     - returns: doc column int if successful.
+     */
+    internal static func getDocColumn(dictionary: XPCDictionary) -> Int64? {
+        return get(.DocColumn, dictionary)
+    }
+    
+    /**
+     Get doc line int from dictionary.
+     
+     - parameter dictionary: Dictionary to get value from.
+     
+     - returns: doc line int if successful.
+     */
+    internal static func getDocLine(dictionary: XPCDictionary) -> Int64? {
+        return get(.DocLine, dictionary)
+    }
 }

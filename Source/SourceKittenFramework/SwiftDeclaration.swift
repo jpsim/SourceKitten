@@ -12,7 +12,7 @@ public struct SwiftDeclaration: DeclarationType {
     public let language: Language = .Swift
     public let kind: DeclarationKindType?
     public let location: SourceLocation
-    public let extent: Range<SourceLocation> // FIXME: Type 'SourceLocation' does not conform to protocol 'ForwardIndexType'
+    public let extent: (start: SourceLocation, end: SourceLocation)
     public let name: String?
     public let typeName: String?
     public let usr: String?
@@ -25,8 +25,24 @@ public struct SwiftDeclaration: DeclarationType {
 extension SwiftDeclaration {
     public init(dictionary: XPCDictionary) {
         kind = SwiftDocKey.getKind(dictionary).flatMap { SwiftDeclarationKind(rawValue: $0) } // FIXME: why doesn't .flatMap(SwiftDeclarationKind.init) work here?
-        location = // FIXME
-        extent = // FIXME
+        
+        if let file = SwiftDocKey.getDocFile(dictionary),
+            line = SwiftDocKey.getDocLine(dictionary).map({ UInt32($0) }),
+            column = SwiftDocKey.getDocColumn(dictionary).map({ UInt32($0) }) {
+        
+            if let offset = SwiftDocKey.getOffset(dictionary).map({ UInt32($0) }) {
+                location = SourceLocation(file: file, line: line, column: column, offset: offset)
+            }
+                
+            if let parsedScopeStart = SwiftDocKey.getParsedScopeStart(dictionary).map({ UInt32($0) }),
+                parsedScopeEnd = SwiftDocKey.getParsedScopeEnd(dictionary).map({ UInt32($0) }) {
+        
+                let start = SourceLocation.init(file: file, line: line, column: column, offset: parsedScopeStart)
+                let end = SourceLocation.init(file: file, line: line, column: column, offset: parsedScopeEnd)
+                extent = (start: start, end: end)
+            }
+        }
+    
         name = SwiftDocKey.getName(dictionary)
         typeName = SwiftDocKey.getTypeName(dictionary)
         usr = SwiftDocKey.getUSR(dictionary)

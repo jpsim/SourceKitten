@@ -10,7 +10,7 @@ public protocol DeclarationType {
     var language: Language { get }
     var kind: DeclarationKindType? { get }
     var location: SourceLocation { get }
-    var extent: Range<SourceLocation> { get } // FIXME: Type 'SourceLocation' does not conform to protocol 'ForwardIndexType'
+    var extent: (start: SourceLocation, end: SourceLocation) { get }
     var name: String? { get }
     var typeName: String? { get }
     var usr: String? { get }
