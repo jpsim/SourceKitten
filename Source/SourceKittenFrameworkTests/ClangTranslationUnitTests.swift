@@ -35,6 +35,15 @@ class ClangTranslationUnitTests: XCTestCase {
         let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
         compareJSONStringWithFixturesName("Musician", jsonString: comparisonString)
     }
+    
+    func testUnicodeInObjectiveCDocs() {
+        let headerFiles = [fixturesDirectory + "SuperScript.h"]
+        let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory]
+        let tu = ClangTranslationUnit(headerFiles: headerFiles, compilerArguments: compilerArguments)
+        let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
+        let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
+        compareJSONStringWithFixturesName("SuperScript", jsonString: comparisonString)
+    }
 
     func testRealmObjectiveCDocs() {
         let headerFiles = [fixturesDirectory + "/Realm/Realm.h"]
