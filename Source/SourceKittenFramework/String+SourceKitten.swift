@@ -234,13 +234,12 @@ extension String {
             if markString.isEmpty {
                 return nil
             }
-            let markByteRange = self.NSRangeToByteRange(start: markRange.location, length: markRange.length)
-            if markByteRange == nil {
+            guard let markByteRange = self.NSRangeToByteRange(start: markRange.location, length: markRange.length) else {
                 return nil
             }
             let location = SourceLocation(file: filename,
-                line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange!.location, length: 0)!.start),
-                column: 1, offset: UInt32(markByteRange!.location))
+                line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
+                column: 1, offset: UInt32(markByteRange.location))
             return SourceDeclaration(type: .Mark, location: location, extent: (location, location), name: markString,
                 usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [])
         }
