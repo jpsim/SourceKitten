@@ -25,6 +25,10 @@ None.
   [Norio Nomura](https://github.com/norio-nomura)
   [#111](https://github.com/jpsim/SourceKitten/pull/111)
 
+* Fix pragma mark extraction with multibyte characters.  
+  [1ec5](https://github.com/1ec5)
+  [#114](https://github.com/jpsim/SourceKitten/pull/114)
+
 ## 0.6.2
 
 ##### Breaking
