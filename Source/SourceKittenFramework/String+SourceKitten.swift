@@ -88,6 +88,24 @@ extension NSString {
     }
 
     /**
+    Converts an `NSRange` suitable for filtering `self` as an
+    `NSString` to a range of byte offsets in `self`.
+
+    - parameter start: Starting character index in the string.
+    - parameter length: Number of characters to include in range.
+
+    - returns: An equivalent `NSRange`.
+    */
+    public func NSRangeToByteRange(start start: Int, length: Int) -> NSRange? {
+        let string = self as String
+        return string.byteOffsetAtIndex(start).flatMap { stringStart in
+            return string.byteOffsetAtIndex(start + length).map { stringEnd in
+                return NSRange(location: stringStart, length: stringEnd - stringStart)
+            }
+        }
+    }
+
+    /**
     Returns a substring with the provided byte range.
 
     - parameter start: Starting byte offset.
@@ -181,6 +199,17 @@ extension String {
         return utf8.startIndex.advancedBy(offset).samePositionIn(utf16).map(utf16.startIndex.distanceTo)
     }
 
+    /**
+     Byte offset equivalent to UTF16 index.
+     
+     - parameter index: UTF16 index.
+     
+     - returns: Byte offset, if any.
+     */
+    private func byteOffsetAtIndex(index: Int) -> Int? {
+        return utf16.startIndex.advancedBy(index).samePositionIn(utf8).map(utf8.startIndex.distanceTo)
+    }
+
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
@@ -205,9 +234,13 @@ extension String {
             if markString.isEmpty {
                 return nil
             }
+            let markByteRange = self.NSRangeToByteRange(start: markRange.location, length: markRange.length)
+            if markByteRange == nil {
+                return nil
+            }
             let location = SourceLocation(file: filename,
-                line: UInt32((self as NSString).lineRangeWithByteRange(start: markRange.location, length: 0)!.start),
-                column: 1, offset: UInt32(markRange.location))
+                line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange!.location, length: 0)!.start),
+                column: 1, offset: UInt32(markByteRange!.location))
             return SourceDeclaration(type: .Mark, location: location, extent: (location, location), name: markString,
                 usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [])
         }
