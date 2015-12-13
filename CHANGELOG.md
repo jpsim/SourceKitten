@@ -1,3 +1,11 @@
+## Master
+
+##### Enhancements
+
+* Optimize `NSRange` operation.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#120](https://github.com/jpsim/SourceKitten/pull/120)
+
 ## 0.7.0
 
 ##### Breaking
