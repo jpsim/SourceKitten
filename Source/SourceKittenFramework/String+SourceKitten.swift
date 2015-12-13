@@ -98,11 +98,17 @@ extension NSString {
     */
     public func NSRangeToByteRange(start start: Int, length: Int) -> NSRange? {
         let string = self as String
-        return string.byteOffsetAtIndex(start).flatMap { stringStart in
-            return string.byteOffsetAtIndex(start + length).map { stringEnd in
-                return NSRange(location: stringStart, length: stringEnd - stringStart)
-            }
+        let startUTF16Index = string.utf16.startIndex.advancedBy(start)
+        let endUTF16Index = startUTF16Index.advancedBy(length)
+        
+        guard let startUTF8Index = startUTF16Index.samePositionIn(string.utf8),
+            let endUTF8Index = endUTF16Index.samePositionIn(string.utf8) else {
+                return nil
         }
+        
+        let location = string.utf8.startIndex.distanceTo(startUTF8Index)
+        let length = startUTF8Index.distanceTo(endUTF8Index)
+        return NSRange(location: location, length: length)
     }
 
     /**
