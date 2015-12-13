@@ -9,7 +9,8 @@
 import Commandant
 import Result
 
-private let version = "0.6.2"
+private let version = NSBundle.mainBundle()
+    .objectForInfoDictionaryKey("CFBundleShortVersionString")!
 
 struct VersionCommand: CommandType {
     let verb = "version"
