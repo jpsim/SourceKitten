@@ -7,6 +7,7 @@
 //
 
 import Commandant
+import Curry
 import Foundation
 import Result
 import SourceKittenFramework
@@ -34,12 +35,8 @@ struct SyntaxOptions: OptionsType {
     let file: String
     let text: String
 
-    static func create(file: String)(text: String) -> SyntaxOptions {
-        return self.init(file: file, text: text)
-    }
-
     static func evaluate(m: CommandMode) -> Result<SyntaxOptions, CommandantError<SourceKittenError>> {
-        return create
+        return curry(self.init)
             <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
             <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
     }

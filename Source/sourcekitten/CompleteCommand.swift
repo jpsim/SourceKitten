@@ -7,6 +7,7 @@
 //
 
 import Commandant
+import Curry
 import Foundation
 import Result
 import SourceKittenFramework
@@ -55,12 +56,8 @@ struct CompleteOptions: OptionsType {
     let offset: Int
     let compilerargs: String
 
-    static func create(file: String)(text: String)(offset: Int)(compilerargs: String) -> CompleteOptions {
-        return self.init(file: file, text: text, offset: offset, compilerargs: compilerargs)
-    }
-
     static func evaluate(m: CommandMode) -> Result<CompleteOptions, CommandantError<SourceKittenError>> {
-        return create
+        return curry(self.init)
             <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
             <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
             <*> m <| Option(key: "offset", defaultValue: 0, usage: "Offset for which to generate code completion options.")

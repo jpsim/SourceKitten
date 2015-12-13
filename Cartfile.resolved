@@ -1,3 +1,4 @@
+github "thoughtbot/Curry" "v1.4.0"
 github "antitypical/Result" "1.0.1"
 github "drmohundro/SWXMLHash" "2.0.5"
 github "jpsim/SwiftXPC" "1.1.0"
