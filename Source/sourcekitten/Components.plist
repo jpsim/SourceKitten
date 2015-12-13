@@ -31,6 +31,12 @@
 				<key>BundleOverwriteAction</key>
 				<string></string>
 				<key>RootRelativeBundlePath</key>
+				<string>/usr/local/Frameworks/SourceKittenFramework.framework/Versions/A/Frameworks/Curry.framework</string>
+			</dict>
+			<dict>
+				<key>BundleOverwriteAction</key>
+				<string></string>
+				<key>RootRelativeBundlePath</key>
 				<string>/usr/local/Frameworks/SourceKittenFramework.framework/Versions/A/Frameworks/Result.framework</string>
 			</dict>
 		</array>
