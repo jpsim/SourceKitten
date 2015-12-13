@@ -9,7 +9,7 @@
 import Commandant
 import Result
 
-private let version = NSBundle.mainBundle()
+private let version = NSBundle(identifier: "com.sourcekitten.SourceKittenFramework")!
     .objectForInfoDictionaryKey("CFBundleShortVersionString")!
 
 struct VersionCommand: CommandType {
