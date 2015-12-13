@@ -200,28 +200,6 @@ extension NSString {
 }
 
 extension String {
-    /**
-     UTF16 index equivalent to byte offset.
-     
-     - parameter offset: Byte offset.
-     
-     - returns: UTF16 index, if any.
-     */
-    private func indexOfByteOffset(offset: Int) -> Int? {
-        return utf8.startIndex.advancedBy(offset).samePositionIn(utf16).map(utf16.startIndex.distanceTo)
-    }
-
-    /**
-     Byte offset equivalent to UTF16 index.
-     
-     - parameter index: UTF16 index.
-     
-     - returns: Byte offset, if any.
-     */
-    private func byteOffsetAtIndex(index: Int) -> Int? {
-        return utf16.startIndex.advancedBy(index).samePositionIn(utf8).map(utf8.startIndex.distanceTo)
-    }
-
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
