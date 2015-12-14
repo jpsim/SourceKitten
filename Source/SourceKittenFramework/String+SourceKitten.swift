@@ -83,12 +83,13 @@ extension NSString {
         let startUTF8Index = string.utf8.startIndex.advancedBy(start)
         let endUTF8Index = startUTF8Index.advancedBy(length)
         
-        guard let startUTF16Index = startUTF8Index.samePositionIn(string.utf16),
-            let endUTF16Index = endUTF8Index.samePositionIn(string.utf16) else {
+        let utf16View = string.utf16
+        guard let startUTF16Index = startUTF8Index.samePositionIn(utf16View),
+            let endUTF16Index = endUTF8Index.samePositionIn(utf16View) else {
                 return nil
         }
         
-        let location = string.utf16.startIndex.distanceTo(startUTF16Index)
+        let location = utf16View.startIndex.distanceTo(startUTF16Index)
         let length = startUTF16Index.distanceTo(endUTF16Index)
         return NSRange(location: location, length: length)
     }
@@ -107,12 +108,13 @@ extension NSString {
         let startUTF16Index = string.utf16.startIndex.advancedBy(start)
         let endUTF16Index = startUTF16Index.advancedBy(length)
         
-        guard let startUTF8Index = startUTF16Index.samePositionIn(string.utf8),
-            let endUTF8Index = endUTF16Index.samePositionIn(string.utf8) else {
+        let utf8View = string.utf8
+        guard let startUTF8Index = startUTF16Index.samePositionIn(utf8View),
+            let endUTF8Index = endUTF16Index.samePositionIn(utf8View) else {
                 return nil
         }
         
-        let location = string.utf8.startIndex.distanceTo(startUTF8Index)
+        let location = utf8View.startIndex.distanceTo(startUTF8Index)
         let length = startUTF8Index.distanceTo(endUTF8Index)
         return NSRange(location: location, length: length)
     }

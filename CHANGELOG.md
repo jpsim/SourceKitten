@@ -4,7 +4,7 @@
 
 * Optimize `NSRange` operation.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [#120](https://github.com/jpsim/SourceKitten/pull/120)
+  [#119](https://github.com/jpsim/SourceKitten/issues/119)
 
 ## 0.7.0
 
