@@ -21,7 +21,66 @@ private let commentLinePrefixCharacterSet: NSCharacterSet = {
   return characterSet
 }()
 
+private var keyByteOffsetCache = "ByteOffsetCache"
+
 extension NSString {
+    /**
+    ByteOffsetCache is cache byte offset and UTF8Index of UTF16 based location.
+    This depends on using for that will be calculated from begening of the string to the end.
+    */
+    @objc private class ByteOffsetCache: NSObject {
+        struct Entry {
+            let byteOffset: Int
+            let index: String.UTF8Index
+        }
+        
+        var cache = Dictionary<Int, Entry>()
+        let utf8View: String.UTF8View
+        
+        init(_ string: String) {
+            self.utf8View = string.utf8
+        }
+        
+        func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
+            if let entry = cache[location] {
+                return entry.byteOffset
+            } else {
+                let entry: Entry
+                if let nearestLocation = cache.keys.filter({ $0 < location }).maxElement() {
+                    let nearestEntry = cache[nearestLocation]!
+                    let byteOffset = nearestEntry.byteOffset + nearestEntry.index.distanceTo(index)
+                    entry = Entry(byteOffset: byteOffset, index: index)
+                } else {
+                    let byteOffset = utf8View.startIndex.distanceTo(index)
+                    entry = Entry(byteOffset: byteOffset, index: index)
+                }
+                cache[location] = entry
+                
+                // keep largest 5 entry
+                if cache.keys.count > 5 {
+                    if let minLocation = cache.keys.minElement() {
+                        cache.removeValueForKey(minLocation)
+                    }
+                }
+                
+                return entry.byteOffset
+            }
+        }
+    }
+    
+    /**
+     ByteOffsetCache instance is stored to instance of NSString as associated object.
+    */
+    private var byteOffsetCache: ByteOffsetCache {
+        if let cache = objc_getAssociatedObject(self, &keyByteOffsetCache) as? ByteOffsetCache {
+            return cache
+        } else {
+            let cache = ByteOffsetCache(self as String)
+            objc_setAssociatedObject(self, &keyByteOffsetCache, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return cache
+        }
+    }
+    
     public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
         let range = NSRange(location: offset, length: 0)
         var numberOfLines = 0, index = 0, lineRangeStart = 0, previousIndex = 0
@@ -114,9 +173,10 @@ extension NSString {
                 return nil
         }
         
-        let location = utf8View.startIndex.distanceTo(startUTF8Index)
+        let byteOffset = byteOffsetCache.byteOffsetFromLocation(start, andIndex: startUTF8Index)
+        // byteOffsetCache will hit, but will be calculated from startUTF8Index in most case.
         let length = startUTF8Index.distanceTo(endUTF8Index)
-        return NSRange(location: location, length: length)
+        return NSRange(location: byteOffset, length: length)
     }
 
     /**
