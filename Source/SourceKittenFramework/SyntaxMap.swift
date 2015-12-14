@@ -87,7 +87,7 @@ public struct SyntaxMap {
         let commentEnd = tokensBeginningComment.indexOf(isNotDoc)
         let commentTokensImmediatelyPrecedingOffset = (
             commentEnd.map(tokensBeginningComment.prefixUpTo) ?? tokensBeginningComment
-                ).reverse()
+        ).reverse()
         
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.map { lastToken in
