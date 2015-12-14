@@ -80,11 +80,18 @@ extension NSString {
     */
     public func byteRangeToNSRange(start start: Int, length: Int) -> NSRange? {
         let string = self as String
-        return string.indexOfByteOffset(start).flatMap { stringStart in
-            return string.indexOfByteOffset(start + length).map { stringEnd in
-                return NSRange(location: stringStart, length: stringEnd - stringStart)
-            }
+        let startUTF8Index = string.utf8.startIndex.advancedBy(start)
+        let endUTF8Index = startUTF8Index.advancedBy(length)
+        
+        let utf16View = string.utf16
+        guard let startUTF16Index = startUTF8Index.samePositionIn(utf16View),
+            let endUTF16Index = endUTF8Index.samePositionIn(utf16View) else {
+                return nil
         }
+        
+        let location = utf16View.startIndex.distanceTo(startUTF16Index)
+        let length = startUTF16Index.distanceTo(endUTF16Index)
+        return NSRange(location: location, length: length)
     }
 
     /**
@@ -98,11 +105,18 @@ extension NSString {
     */
     public func NSRangeToByteRange(start start: Int, length: Int) -> NSRange? {
         let string = self as String
-        return string.byteOffsetAtIndex(start).flatMap { stringStart in
-            return string.byteOffsetAtIndex(start + length).map { stringEnd in
-                return NSRange(location: stringStart, length: stringEnd - stringStart)
-            }
+        let startUTF16Index = string.utf16.startIndex.advancedBy(start)
+        let endUTF16Index = startUTF16Index.advancedBy(length)
+        
+        let utf8View = string.utf8
+        guard let startUTF8Index = startUTF16Index.samePositionIn(utf8View),
+            let endUTF8Index = endUTF16Index.samePositionIn(utf8View) else {
+                return nil
         }
+        
+        let location = utf8View.startIndex.distanceTo(startUTF8Index)
+        let length = startUTF8Index.distanceTo(endUTF8Index)
+        return NSRange(location: location, length: length)
     }
 
     /**
@@ -188,28 +202,6 @@ extension NSString {
 }
 
 extension String {
-    /**
-     UTF16 index equivalent to byte offset.
-     
-     - parameter offset: Byte offset.
-     
-     - returns: UTF16 index, if any.
-     */
-    private func indexOfByteOffset(offset: Int) -> Int? {
-        return utf8.startIndex.advancedBy(offset).samePositionIn(utf16).map(utf16.startIndex.distanceTo)
-    }
-
-    /**
-     Byte offset equivalent to UTF16 index.
-     
-     - parameter index: UTF16 index.
-     
-     - returns: Byte offset, if any.
-     */
-    private func byteOffsetAtIndex(index: Int) -> Int? {
-        return utf16.startIndex.advancedBy(index).samePositionIn(utf8).map(utf8.startIndex.distanceTo)
-    }
-
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
