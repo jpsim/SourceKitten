@@ -25,8 +25,7 @@ private var keyByteOffsetCache = "ByteOffsetCache"
 
 extension NSString {
     /**
-    ByteOffsetCache is cache byte offset and UTF8Index of UTF16 based location.
-    This depends on using for that will be calculated from begening of the string to the end.
+    ByteOffsetCache caches pairs of byte offset and UTF8Index for referencing by UTF16 based location.
     */
     @objc private class ByteOffsetCache: NSObject {
         struct ByteOffsetIndexPair {
