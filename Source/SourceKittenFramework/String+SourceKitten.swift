@@ -36,8 +36,20 @@ extension NSString {
         var cache = Dictionary<Int, ByteOffsetIndexPair>()
         let utf8View: String.UTF8View
         
-        init(_ string: String) {
-            self.utf8View = string.utf8
+        init(_ string: NSString) {
+            // Making copy of string for avoiding Circular reference and memory leaks.
+            //
+            // If string is `Swift.String`, holding that into `ByteOffsetCache` does not cause
+            // Circular reference, because Casting `String` to `NSString` makes new `NSString`
+            // instance.
+            // If string is native `NSString` instance, Circular reference happens on following:
+            // ```
+            // self.utf8View = (string as String).utf8
+            // ```
+            // Because the reference to `NSString` is holded by every casted `String`, their Views
+            // and Indices.
+            let cString = string.cStringUsingEncoding(NSUTF8StringEncoding)
+            self.utf8View = String(CString: cString, encoding: NSUTF8StringEncoding)!.utf8
         }
         
         func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
@@ -68,7 +80,7 @@ extension NSString {
         if let cache = objc_getAssociatedObject(self, &keyByteOffsetCache) as? ByteOffsetCache {
             return cache
         } else {
-            let cache = ByteOffsetCache(self as String)
+            let cache = ByteOffsetCache(self)
             objc_setAssociatedObject(self, &keyByteOffsetCache, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return cache
         }
