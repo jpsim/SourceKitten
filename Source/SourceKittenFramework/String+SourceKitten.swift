@@ -157,7 +157,9 @@ extension NSString {
     */
     public func NSRangeToByteRange(start start: Int, length: Int) -> NSRange? {
         let string = self as String
-        let startUTF16Index = string.utf16.startIndex.advancedBy(start)
+        
+        let utf16View = string.utf16
+        let startUTF16Index = utf16View.startIndex.advancedBy(start)
         let endUTF16Index = startUTF16Index.advancedBy(length)
         
         let utf8View = string.utf8
@@ -166,8 +168,20 @@ extension NSString {
                 return nil
         }
         
-        let byteOffset = byteOffsetCache.byteOffsetFromLocation(start, andIndex: startUTF8Index)
-        // byteOffsetCache will hit, but will be calculated from startUTF8Index in most case.
+        // Don't using `ByteOffsetCache` if string is short.
+        // There are two reasons for:
+        // 1. Avoid using associatedObject on NSTaggedPointerString (< 7 bytes) because that does
+        //    not free associatedObject.
+        // 2. Using cache is overkill for short string.
+        let byteOffset: Int
+        if utf16View.count > 50 {
+            byteOffset = byteOffsetCache.byteOffsetFromLocation(start, andIndex: startUTF8Index)
+        } else {
+            byteOffset = utf8View.startIndex.distanceTo(startUTF8Index)
+        }
+        
+        // `byteOffsetCache` will hit for below, but that will be calculated from startUTF8Index
+        // in most case.
         let length = startUTF8Index.distanceTo(endUTF8Index)
         return NSRange(location: byteOffset, length: length)
     }
