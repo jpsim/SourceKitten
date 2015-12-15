@@ -29,12 +29,12 @@ extension NSString {
     This depends on using for that will be calculated from begening of the string to the end.
     */
     @objc private class ByteOffsetCache: NSObject {
-        struct Entry {
+        struct ByteOffsetIndexPair {
             let byteOffset: Int
             let index: String.UTF8Index
         }
         
-        var cache = Dictionary<Int, Entry>()
+        var cache = Dictionary<Int, ByteOffsetIndexPair>()
         let utf8View: String.UTF8View
         
         init(_ string: String) {
@@ -42,28 +42,22 @@ extension NSString {
         }
         
         func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
-            if let entry = cache[location] {
-                return entry.byteOffset
+            if let byteOffsetIndexPair = cache[location] {
+                return byteOffsetIndexPair.byteOffset
             } else {
-                let entry: Entry
+                let byteOffsetIndexPair: ByteOffsetIndexPair
                 if let nearestLocation = cache.keys.filter({ $0 < location }).maxElement() {
-                    let nearestEntry = cache[nearestLocation]!
-                    let byteOffset = nearestEntry.byteOffset + nearestEntry.index.distanceTo(index)
-                    entry = Entry(byteOffset: byteOffset, index: index)
+                    let nearestByteOffsetIndexPair = cache[nearestLocation]!
+                    let byteOffset = nearestByteOffsetIndexPair.byteOffset +
+                        nearestByteOffsetIndexPair.index.distanceTo(index)
+                    byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
                 } else {
                     let byteOffset = utf8View.startIndex.distanceTo(index)
-                    entry = Entry(byteOffset: byteOffset, index: index)
+                    byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
                 }
-                cache[location] = entry
+                cache[location] = byteOffsetIndexPair
                 
-                // keep largest 5 entry
-                if cache.keys.count > 5 {
-                    if let minLocation = cache.keys.minElement() {
-                        cache.removeValueForKey(minLocation)
-                    }
-                }
-                
-                return entry.byteOffset
+                return byteOffsetIndexPair.byteOffset
             }
         }
     }
