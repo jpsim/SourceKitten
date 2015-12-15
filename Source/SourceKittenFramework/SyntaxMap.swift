@@ -72,10 +72,23 @@ public struct SyntaxMap {
     - parameter offset: Last possible byte offset of the range's start.
     */
     public func commentRangeBeforeOffset(offset: Int) -> Range<Int>? {
-        let tokensBeforeOffset = tokens.filter { $0.offset < offset }
-        let commentTokensImmediatelyPrecedingOffset = filterLastContiguous(tokensBeforeOffset) { token in
-            SyntaxKind.docComments().map({$0.rawValue}).contains(token.type)
-        }
+        
+        // be lazy for performance
+        let tokensBeforeOffset = tokens.lazy.reverse().filter { $0.offset < offset }
+        
+        let docTypes = SyntaxKind.docComments().map({$0.rawValue})
+        let isDoc = { (token: SyntaxToken) -> Bool in docTypes.contains(token.type) }
+        let isNotDoc = { !isDoc($0) }
+        
+        guard let commentBegin = tokensBeforeOffset.indexOf(isDoc) else { return nil }
+        let tokensBeginningComment = tokensBeforeOffset.suffixFrom(commentBegin)
+
+        // For avoiding declaring `var` with type annotation before `if let`, use `map()`
+        let commentEnd = tokensBeginningComment.indexOf(isNotDoc)
+        let commentTokensImmediatelyPrecedingOffset = (
+            commentEnd.map(tokensBeginningComment.prefixUpTo) ?? tokensBeginningComment
+        ).reverse()
+        
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.map { lastToken in
                 return Range(start: firstToken.offset, end: lastToken.offset + lastToken.length)
