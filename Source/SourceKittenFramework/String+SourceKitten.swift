@@ -21,7 +21,71 @@ private let commentLinePrefixCharacterSet: NSCharacterSet = {
   return characterSet
 }()
 
+private var keyByteOffsetCache = "ByteOffsetCache"
+
 extension NSString {
+    /**
+    ByteOffsetCache caches pairs of byte offset and UTF8Index for referencing by UTF16 based location.
+    */
+    @objc private class ByteOffsetCache: NSObject {
+        struct ByteOffsetIndexPair {
+            let byteOffset: Int
+            let index: String.UTF8Index
+        }
+        
+        var cache = Dictionary<Int, ByteOffsetIndexPair>()
+        let utf8View: String.UTF8View
+        
+        init(_ string: NSString) {
+            // Making copy of string for avoiding Circular reference and memory leaks.
+            //
+            // If string is `Swift.String`, holding that into `ByteOffsetCache` does not cause
+            // Circular reference, because Casting `String` to `NSString` makes new `NSString`
+            // instance.
+            // If string is native `NSString` instance, Circular reference happens on following:
+            // ```
+            // self.utf8View = (string as String).utf8
+            // ```
+            // Because the reference to `NSString` is holded by every casted `String`, their Views
+            // and Indices.
+            let cString = string.cStringUsingEncoding(NSUTF8StringEncoding)
+            self.utf8View = String(CString: cString, encoding: NSUTF8StringEncoding)!.utf8
+        }
+        
+        func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
+            if let byteOffsetIndexPair = cache[location] {
+                return byteOffsetIndexPair.byteOffset
+            } else {
+                let byteOffsetIndexPair: ByteOffsetIndexPair
+                if let nearestLocation = cache.keys.filter({ $0 < location }).maxElement() {
+                    let nearestByteOffsetIndexPair = cache[nearestLocation]!
+                    let byteOffset = nearestByteOffsetIndexPair.byteOffset +
+                        nearestByteOffsetIndexPair.index.distanceTo(index)
+                    byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
+                } else {
+                    let byteOffset = utf8View.startIndex.distanceTo(index)
+                    byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
+                }
+                cache[location] = byteOffsetIndexPair
+                
+                return byteOffsetIndexPair.byteOffset
+            }
+        }
+    }
+    
+    /**
+     ByteOffsetCache instance is stored to instance of NSString as associated object.
+    */
+    private var byteOffsetCache: ByteOffsetCache {
+        if let cache = objc_getAssociatedObject(self, &keyByteOffsetCache) as? ByteOffsetCache {
+            return cache
+        } else {
+            let cache = ByteOffsetCache(self)
+            objc_setAssociatedObject(self, &keyByteOffsetCache, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return cache
+        }
+    }
+    
     public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
         let range = NSRange(location: offset, length: 0)
         var numberOfLines = 0, index = 0, lineRangeStart = 0, previousIndex = 0
@@ -105,7 +169,9 @@ extension NSString {
     */
     public func NSRangeToByteRange(start start: Int, length: Int) -> NSRange? {
         let string = self as String
-        let startUTF16Index = string.utf16.startIndex.advancedBy(start)
+        
+        let utf16View = string.utf16
+        let startUTF16Index = utf16View.startIndex.advancedBy(start)
         let endUTF16Index = startUTF16Index.advancedBy(length)
         
         let utf8View = string.utf8
@@ -114,9 +180,22 @@ extension NSString {
                 return nil
         }
         
-        let location = utf8View.startIndex.distanceTo(startUTF8Index)
+        // Don't using `ByteOffsetCache` if string is short.
+        // There are two reasons for:
+        // 1. Avoid using associatedObject on NSTaggedPointerString (< 7 bytes) because that does
+        //    not free associatedObject.
+        // 2. Using cache is overkill for short string.
+        let byteOffset: Int
+        if utf16View.count > 50 {
+            byteOffset = byteOffsetCache.byteOffsetFromLocation(start, andIndex: startUTF8Index)
+        } else {
+            byteOffset = utf8View.startIndex.distanceTo(startUTF8Index)
+        }
+        
+        // `byteOffsetCache` will hit for below, but that will be calculated from startUTF8Index
+        // in most case.
         let length = startUTF8Index.distanceTo(endUTF8Index)
-        return NSRange(location: location, length: length)
+        return NSRange(location: byteOffset, length: length)
     }
 
     /**
