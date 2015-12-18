@@ -21,25 +21,33 @@ private let commentLinePrefixCharacterSet: NSCharacterSet = {
   return characterSet
 }()
 
-private var keyByteOffsetCache = "ByteOffsetCache"
+private var keyCacheContainer = 0
 
 extension NSString {
     /**
-    ByteOffsetCache caches pairs of byte offset and UTF8Index for referencing by UTF16 based location.
+    CacheContainer caches
+     - pairs of byte offset and UTF8Index for referencing by UTF16 based location.
+     - pairs of NSRange andLine
     */
-    @objc private class ByteOffsetCache: NSObject {
+    @objc private class CacheContainer: NSObject {
         struct ByteOffsetIndexPair {
             let byteOffset: Int
             let index: String.UTF8Index
         }
         
-        var cache = Dictionary<Int, ByteOffsetIndexPair>()
+        struct RangeLinePair {
+            let range: NSRange
+            let line: Line
+        }
+        
+        var byteOffsetIndexPairs = Dictionary<Int, ByteOffsetIndexPair>()
+        let rangeLinePairs: [RangeLinePair]
         let utf8View: String.UTF8View
         
         init(_ string: NSString) {
             // Making copy of string for avoiding Circular reference and memory leaks.
             //
-            // If string is `Swift.String`, holding that into `ByteOffsetCache` does not cause
+            // If string is `Swift.String`, holding that into `CacheContainer` does not cause
             // Circular reference, because Casting `String` to `NSString` makes new `NSString`
             // instance.
             // If string is native `NSString` instance, Circular reference happens on following:
@@ -49,16 +57,36 @@ extension NSString {
             // Because the reference to `NSString` is holded by every casted `String`, their Views
             // and Indices.
             let cString = string.cStringUsingEncoding(NSUTF8StringEncoding)
-            self.utf8View = String(CString: cString, encoding: NSUTF8StringEncoding)!.utf8
+            let string = String(CString: cString, encoding: NSUTF8StringEncoding)!
+            self.utf8View = string.utf8
+            
+            var start = 0       // line start
+            var end = 0         // line end
+            var contentsEnd = 0 // line end without line delimiter
+            var lineIndex = 1   // start by 1
+            
+            let nsstring = string as NSString
+            var rangeLinePairs = [RangeLinePair]()
+            while start < nsstring.length {
+                let range = NSRange(location: start, length: 0)
+                nsstring.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, forRange: range)
+                let lineRange = NSRange(location: start, length: end - start)
+                let contentsRange = NSRange(location: start, length: contentsEnd - start)
+                let line = (lineIndex, nsstring.substringWithRange(contentsRange))
+                rangeLinePairs.append(RangeLinePair(range: lineRange, line: line))
+                lineIndex += 1
+                start = end
+            }
+            self.rangeLinePairs = rangeLinePairs
         }
         
         func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
-            if let byteOffsetIndexPair = cache[location] {
+            if let byteOffsetIndexPair = byteOffsetIndexPairs[location] {
                 return byteOffsetIndexPair.byteOffset
             } else {
                 let byteOffsetIndexPair: ByteOffsetIndexPair
-                if let nearestLocation = cache.keys.filter({ $0 < location }).maxElement() {
-                    let nearestByteOffsetIndexPair = cache[nearestLocation]!
+                if let nearestLocation = byteOffsetIndexPairs.keys.filter({ $0 < location }).maxElement() {
+                    let nearestByteOffsetIndexPair = byteOffsetIndexPairs[nearestLocation]!
                     let byteOffset = nearestByteOffsetIndexPair.byteOffset +
                         nearestByteOffsetIndexPair.index.distanceTo(index)
                     byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
@@ -66,39 +94,45 @@ extension NSString {
                     let byteOffset = utf8View.startIndex.distanceTo(index)
                     byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
                 }
-                cache[location] = byteOffsetIndexPair
+                byteOffsetIndexPairs[location] = byteOffsetIndexPair
                 
                 return byteOffsetIndexPair.byteOffset
+            }
+        }
+        
+        var lines: [Line] {
+            return rangeLinePairs.map { $0.line }
+        }
+        
+        func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
+            let index = rangeLinePairs.indexOf { NSLocationInRange(offset, $0.range) }
+            return index.map {
+                let pair = rangeLinePairs[$0]
+                return (line: pair.line.index, character: offset - pair.range.location + 1)
             }
         }
     }
     
     /**
-     ByteOffsetCache instance is stored to instance of NSString as associated object.
+     CacheContainer instance is stored to instance of NSString as associated object.
     */
-    private var byteOffsetCache: ByteOffsetCache {
-        if let cache = objc_getAssociatedObject(self, &keyByteOffsetCache) as? ByteOffsetCache {
+    private var cacheContainer: CacheContainer {
+        if let cache = objc_getAssociatedObject(self, &keyCacheContainer) as? CacheContainer {
             return cache
         } else {
-            let cache = ByteOffsetCache(self)
-            objc_setAssociatedObject(self, &keyByteOffsetCache, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            let cache = CacheContainer(self)
+            objc_setAssociatedObject(self, &keyCacheContainer, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return cache
         }
     }
     
+    /**
+    Returns line number and character for utf16 based offset.
+     
+    - parameter offset: utf16 based index
+    */
     public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
-        let range = NSRange(location: offset, length: 0)
-        var numberOfLines = 0, index = 0, lineRangeStart = 0, previousIndex = 0
-        while index < length {
-            numberOfLines++
-            if index > range.location {
-                break
-            }
-            lineRangeStart = numberOfLines
-            previousIndex = index
-            index = NSMaxRange(lineRangeForRange(NSRange(location: index, length: 1)))
-        }
-        return (lineRangeStart, range.location - previousIndex + 1)
+        return cacheContainer.lineAndCharacterForCharacterOffset(offset)
     }
 
     /**
@@ -180,19 +214,19 @@ extension NSString {
                 return nil
         }
         
-        // Don't using `ByteOffsetCache` if string is short.
+        // Don't using `CacheContainer` if string is short.
         // There are two reasons for:
         // 1. Avoid using associatedObject on NSTaggedPointerString (< 7 bytes) because that does
         //    not free associatedObject.
         // 2. Using cache is overkill for short string.
         let byteOffset: Int
         if utf16View.count > 50 {
-            byteOffset = byteOffsetCache.byteOffsetFromLocation(start, andIndex: startUTF8Index)
+            byteOffset = cacheContainer.byteOffsetFromLocation(start, andIndex: startUTF8Index)
         } else {
             byteOffset = utf8View.startIndex.distanceTo(startUTF8Index)
         }
         
-        // `byteOffsetCache` will hit for below, but that will be calculated from startUTF8Index
+        // `cacheContainer` will hit for below, but that will be calculated from startUTF8Index
         // in most case.
         let length = startUTF8Index.distanceTo(endUTF8Index)
         return NSRange(location: byteOffset, length: length)
@@ -250,12 +284,7 @@ extension NSString {
     Returns an array of Lines for each line in the file.
     */
     public func lines() -> [Line] {
-        var lines = [Line]()
-        var lineIndex = 1
-        enumerateLinesUsingBlock { line, _ in
-            lines.append((lineIndex++, line))
-        }
-        return lines
+        return cacheContainer.lines
     }
 
     /**
