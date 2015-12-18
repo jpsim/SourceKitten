@@ -1,10 +1,23 @@
 ## Master
 
+##### Breaking
+
+* None.
+
 ##### Enhancements
 
-* Optimize `NSRange` operation by using `ByteOffsetCache`  
+* Optimize `NSString.lineAndCharacterForCharacterOffset(...)`,
+  `NSString.NSRangeToByteRange(...)` and
+  `SyntaxMap.commentRangeBeforeOffset(_:)`.  
   [Norio Nomura](https://github.com/norio-nomura)
   [#119](https://github.com/jpsim/SourceKitten/issues/119)
+
+* Fix unicode handling of `String.commentBody(range:)`.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
+##### Bug Fixes
+
+* None.
 
 ## 0.7.1
 
