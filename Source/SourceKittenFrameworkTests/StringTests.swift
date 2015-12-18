@@ -43,10 +43,10 @@ class StringTests: XCTestCase {
         commentString = "// Not a documentation comment."
         XCTAssertNil(commentString.commentBody())
 
-        commentString = "😄\n    /// Multiple\n        /// single line comments.\n\n"
+        commentString = "👨‍👩‍👧‍👧\n    /// Multiple\n        /// single line comments.\n\n"
         XCTAssertEqual(commentString.commentBody()!, "Multiple\n    single line comments.")
 
-        commentString = "😄\n    /**\n    Multiple\n        line\n    comments.\n    */"
+        commentString = "👨‍👩‍👧‍👧\n    /**\n    Multiple\n        line\n    comments.\n    */"
         XCTAssertEqual(commentString.commentBody()!, "Multiple\n    line\ncomments.")
     }
 

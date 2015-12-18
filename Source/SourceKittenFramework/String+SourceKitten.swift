@@ -383,9 +383,7 @@ extension String {
                     }
                     var lineStart = 0
                     var lineEnd = nsString.length
-                    guard let indexRange = self.byteRangeToNSRange(start: range.location, length: 0) else {
-                        return "" // out of range, return empty string
-                    }
+                    let indexRange = NSRange(location: range.location, length: 0)
                     nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, forRange: indexRange)
                     let leadingWhitespaceCountToAdd = nsString.substringWithRange(NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(whitespaceAndNewlineCharacterSet)
                     let leadingWhitespaceToAdd = String(count: leadingWhitespaceCountToAdd, repeatedValue: Character(" "))
