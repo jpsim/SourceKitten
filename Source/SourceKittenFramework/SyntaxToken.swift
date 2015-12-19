@@ -28,7 +28,7 @@ public struct SyntaxToken {
     - parameter length: Token length.
     */
     public init(type: String, offset: Int, length: Int) {
-        self.type = type
+        self.type = SyntaxKind(rawValue: type)?.rawValue ?? type
         self.offset = offset
         self.length = length
     }
