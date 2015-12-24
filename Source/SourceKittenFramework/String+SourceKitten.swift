@@ -45,17 +45,18 @@ extension NSString {
         let utf8View: String.UTF8View
         
         init(_ string: NSString) {
-            // Making copy of string for avoiding Circular reference and memory leaks.
+            // Make a copy of the string to avoid holding a circular reference, which would leak
+            // memory.
             //
-            // If string is `Swift.String`, holding that into `CacheContainer` does not cause
-            // Circular reference, because Casting `String` to `NSString` makes new `NSString`
-            // instance.
-            // If string is native `NSString` instance, Circular reference happens on following:
-            // ```
-            // self.utf8View = (string as String).utf8
-            // ```
-            // Because the reference to `NSString` is holded by every casted `String`, their Views
-            // and Indices.
+            // If the string is a `Swift.String`, strongly referencing that in `CacheContainer` does
+            // not cause a circular reference, because casting `String` to `NSString` makes a new
+            // `NSString` instance.
+            //
+            // If the string is a native `NSString` instance, a circular reference is created when
+            // assigning `self.utf8View = (string as String).utf8`.
+            //
+            // A reference to `NSString` is held by every cast `String` along with their views and
+            // indices.
             let cString = string.cStringUsingEncoding(NSUTF8StringEncoding)
             let string = String(CString: cString, encoding: NSUTF8StringEncoding)!
             self.utf8View = string.utf8
