@@ -34,16 +34,16 @@ extension NSString {
             let byteOffset: Int
             let index: String.UTF8Index
         }
-        
+
         struct RangeLinePair {
             let range: NSRange
             let line: Line
         }
-        
+
         var byteOffsetIndexPairs = Dictionary<Int, ByteOffsetIndexPair>()
         let rangeLinePairs: [RangeLinePair]
         let utf8View: String.UTF8View
-        
+
         init(_ string: NSString) {
             // Make a copy of the string to avoid holding a circular reference, which would leak
             // memory.
@@ -60,12 +60,12 @@ extension NSString {
             let cString = string.cStringUsingEncoding(NSUTF8StringEncoding)
             let string = String(CString: cString, encoding: NSUTF8StringEncoding)!
             self.utf8View = string.utf8
-            
+
             var start = 0       // line start
             var end = 0         // line end
             var contentsEnd = 0 // line end without line delimiter
             var lineIndex = 1   // start by 1
-            
+
             let nsstring = string as NSString
             var rangeLinePairs = [RangeLinePair]()
             while start < nsstring.length {
@@ -80,7 +80,7 @@ extension NSString {
             }
             self.rangeLinePairs = rangeLinePairs
         }
-        
+
         func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
             if let byteOffsetIndexPair = byteOffsetIndexPairs[location] {
                 return byteOffsetIndexPair.byteOffset
@@ -96,15 +96,15 @@ extension NSString {
                     byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
                 }
                 byteOffsetIndexPairs[location] = byteOffsetIndexPair
-                
+
                 return byteOffsetIndexPair.byteOffset
             }
         }
-        
+
         var lines: [Line] {
             return rangeLinePairs.map { $0.line }
         }
-        
+
         func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
             let index = rangeLinePairs.indexOf { NSLocationInRange(offset, $0.range) }
             return index.map {
@@ -113,7 +113,7 @@ extension NSString {
             }
         }
     }
-    
+
     /**
      CacheContainer instance is stored to instance of NSString as associated object.
     */
@@ -126,10 +126,10 @@ extension NSString {
             return cache
         }
     }
-    
+
     /**
     Returns line number and character for utf16 based offset.
-     
+
     - parameter offset: utf16 based index
     */
     public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
@@ -181,13 +181,13 @@ extension NSString {
         let string = self as String
         let startUTF8Index = string.utf8.startIndex.advancedBy(start)
         let endUTF8Index = startUTF8Index.advancedBy(length)
-        
+
         let utf16View = string.utf16
         guard let startUTF16Index = startUTF8Index.samePositionIn(utf16View),
             let endUTF16Index = endUTF8Index.samePositionIn(utf16View) else {
                 return nil
         }
-        
+
         let location = utf16View.startIndex.distanceTo(startUTF16Index)
         let length = startUTF16Index.distanceTo(endUTF16Index)
         return NSRange(location: location, length: length)
@@ -204,17 +204,17 @@ extension NSString {
     */
     public func NSRangeToByteRange(start start: Int, length: Int) -> NSRange? {
         let string = self as String
-        
+
         let utf16View = string.utf16
         let startUTF16Index = utf16View.startIndex.advancedBy(start)
         let endUTF16Index = startUTF16Index.advancedBy(length)
-        
+
         let utf8View = string.utf8
         guard let startUTF8Index = startUTF16Index.samePositionIn(utf8View),
             let endUTF8Index = endUTF16Index.samePositionIn(utf8View) else {
                 return nil
         }
-        
+
         // Don't using `CacheContainer` if string is short.
         // There are two reasons for:
         // 1. Avoid using associatedObject on NSTaggedPointerString (< 7 bytes) because that does
@@ -226,7 +226,7 @@ extension NSString {
         } else {
             byteOffset = utf8View.startIndex.distanceTo(startUTF8Index)
         }
-        
+
         // `cacheContainer` will hit for below, but that will be calculated from startUTF8Index
         // in most case.
         let length = startUTF8Index.distanceTo(endUTF8Index)
@@ -388,7 +388,7 @@ extension String {
 
     /**
     Returns the body of the comment if the string is a comment.
-    
+
     - parameter range: Range to restrict the search for a comment body.
     */
     public func commentBody(range: NSRange? = nil) -> String? {
@@ -460,7 +460,7 @@ extension String {
 
     /**
     Returns the number of contiguous characters at the start of `self` belonging to `characterSet`.
-    
+
     - parameter characterSet: Character set to check for membership.
     */
     public func countOfLeadingCharactersInSet(characterSet: NSCharacterSet) -> Int {
