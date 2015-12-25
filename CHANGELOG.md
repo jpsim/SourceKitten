@@ -1,3 +1,19 @@
+## Master
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* Add `NSString.lineAndCharacterForByteOffset`.
+  [JP Simard](https://github.com/jpsim)
+
+##### Bug Fixes
+
+* Fixed multi-byte character handling in `File.getDocumentationCommentBody`.  
+  [JP Simard](https://github.com/jpsim)
+
 ## 0.7.2
 
 ##### Breaking
