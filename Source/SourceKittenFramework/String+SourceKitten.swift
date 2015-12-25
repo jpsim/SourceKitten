@@ -59,7 +59,7 @@ extension NSString {
             // indices.
             let cString = string.cStringUsingEncoding(NSUTF8StringEncoding)
             let string = String(CString: cString, encoding: NSUTF8StringEncoding)!
-            self.utf8View = string.utf8
+            utf8View = string.utf8
 
             var start = 0       // line start
             var end = 0         // line end
@@ -84,21 +84,20 @@ extension NSString {
         func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
             if let byteOffsetIndexPair = byteOffsetIndexPairs[location] {
                 return byteOffsetIndexPair.byteOffset
-            } else {
-                let byteOffsetIndexPair: ByteOffsetIndexPair
-                if let nearestLocation = byteOffsetIndexPairs.keys.filter({ $0 < location }).maxElement() {
-                    let nearestByteOffsetIndexPair = byteOffsetIndexPairs[nearestLocation]!
-                    let byteOffset = nearestByteOffsetIndexPair.byteOffset +
-                        nearestByteOffsetIndexPair.index.distanceTo(index)
-                    byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
-                } else {
-                    let byteOffset = utf8View.startIndex.distanceTo(index)
-                    byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
-                }
-                byteOffsetIndexPairs[location] = byteOffsetIndexPair
-
-                return byteOffsetIndexPair.byteOffset
             }
+            let byteOffsetIndexPair: ByteOffsetIndexPair
+            if let nearestLocation = byteOffsetIndexPairs.keys.filter({ $0 < location }).maxElement() {
+                let nearestByteOffsetIndexPair = byteOffsetIndexPairs[nearestLocation]!
+                let byteOffset = nearestByteOffsetIndexPair.byteOffset +
+                    nearestByteOffsetIndexPair.index.distanceTo(index)
+                byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
+            } else {
+                let byteOffset = utf8View.startIndex.distanceTo(index)
+                byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
+            }
+            byteOffsetIndexPairs[location] = byteOffsetIndexPair
+
+            return byteOffsetIndexPair.byteOffset
         }
 
         var lines: [Line] {
@@ -120,20 +119,30 @@ extension NSString {
     private var cacheContainer: CacheContainer {
         if let cache = objc_getAssociatedObject(self, &keyCacheContainer) as? CacheContainer {
             return cache
-        } else {
-            let cache = CacheContainer(self)
-            objc_setAssociatedObject(self, &keyCacheContainer, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            return cache
         }
+        let cache = CacheContainer(self)
+        objc_setAssociatedObject(self, &keyCacheContainer, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return cache
     }
 
     /**
     Returns line number and character for utf16 based offset.
 
-    - parameter offset: utf16 based index
+    - parameter offset: utf16 based index.
     */
     public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
         return cacheContainer.lineAndCharacterForCharacterOffset(offset)
+    }
+
+    /**
+    Returns line number and character for byte offset.
+
+    - parameter offset: byte offset.
+    */
+    public func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
+        return byteRangeToNSRange(start: offset, length: 0).flatMap { characterRange in
+            return lineAndCharacterForCharacterOffset(NSMaxRange(characterRange))
+        }
     }
 
     /**
@@ -184,7 +193,7 @@ extension NSString {
 
         let utf16View = string.utf16
         guard let startUTF16Index = startUTF8Index.samePositionIn(utf16View),
-            let endUTF16Index = endUTF8Index.samePositionIn(utf16View) else {
+            endUTF16Index = endUTF8Index.samePositionIn(utf16View) else {
                 return nil
         }
 

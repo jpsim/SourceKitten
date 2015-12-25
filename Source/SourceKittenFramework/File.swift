@@ -305,15 +305,15 @@ public final class File {
 
     - parameter dictionary: Dictionary to parse.
     - parameter syntaxMap:  SyntaxMap for current file.
-    
+
     - returns: `dictionary`'s documentation comment body as a string, without any documentation
                syntax (`/** ... */` or `/// ...`).
     */
     public func getDocumentationCommentBody(dictionary: XPCDictionary, syntaxMap: SyntaxMap) -> String? {
         return SwiftDocKey.getOffset(dictionary).flatMap { offset in
             return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
-                let commentEndLine = (contents as NSString).lineAndCharacterForCharacterOffset(commentByteRange.endIndex)?.line
-                let tokenStartLine = (contents as NSString).lineAndCharacterForCharacterOffset(Int(offset))?.line
+                let commentEndLine = (contents as NSString).lineAndCharacterForByteOffset(commentByteRange.endIndex)?.line
+                let tokenStartLine = (contents as NSString).lineAndCharacterForByteOffset(Int(offset))?.line
                 guard commentEndLine == tokenStartLine || commentEndLine == tokenStartLine?.predecessor() else {
                     return nil
                 }
