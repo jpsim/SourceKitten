@@ -35,13 +35,14 @@ extension NSString {
             let index: String.UTF8Index
         }
 
-        struct RangeLinePair {
+        struct RangesAndLine {
             let range: NSRange
+            let byteRange: NSRange
             let line: Line
         }
 
         var byteOffsetIndexPairs = Dictionary<Int, ByteOffsetIndexPair>()
-        let rangeLinePairs: [RangeLinePair]
+        let rangesAndLine: [RangesAndLine]
         let utf8View: String.UTF8View
 
         init(_ string: NSString) {
@@ -65,20 +66,38 @@ extension NSString {
             var end = 0         // line end
             var contentsEnd = 0 // line end without line delimiter
             var lineIndex = 1   // start by 1
+            var byteOffsetStart = 0
+            var utf8indexStart = string.utf8.startIndex
+            var utf16indexStart = string.utf16.startIndex
 
             let nsstring = string as NSString
-            var rangeLinePairs = [RangeLinePair]()
+            var rangesAndLine = [RangesAndLine]()
             while start < nsstring.length {
                 let range = NSRange(location: start, length: 0)
                 nsstring.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, forRange: range)
+                
+                // range
                 let lineRange = NSRange(location: start, length: end - start)
                 let contentsRange = NSRange(location: start, length: contentsEnd - start)
+                
+                // byteRange
+                let utf16indexEnd = utf16indexStart.advancedBy(end - start)
+                let utf8indexEnd = utf16indexEnd.samePositionIn(utf8View)!
+                let byteLength = utf8indexStart.distanceTo(utf8indexEnd)
+                let byteRange = NSRange(location: byteOffsetStart, length: byteLength)
+                
+                // line
                 let line = (lineIndex, nsstring.substringWithRange(contentsRange))
-                rangeLinePairs.append(RangeLinePair(range: lineRange, line: line))
+                
+                rangesAndLine.append(RangesAndLine(range: lineRange, byteRange: byteRange, line: line))
+                
                 lineIndex += 1
                 start = end
+                utf16indexStart = utf16indexEnd
+                utf8indexStart = utf8indexEnd
+                byteOffsetStart += byteLength
             }
-            self.rangeLinePairs = rangeLinePairs
+            self.rangesAndLine = rangesAndLine
         }
 
         func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
@@ -101,14 +120,22 @@ extension NSString {
         }
 
         var lines: [Line] {
-            return rangeLinePairs.map { $0.line }
+            return rangesAndLine.map { $0.line }
         }
 
         func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
-            let index = rangeLinePairs.indexOf { NSLocationInRange(offset, $0.range) }
+            let index = rangesAndLine.indexOf { NSLocationInRange(offset, $0.range) }
             return index.map {
-                let pair = rangeLinePairs[$0]
-                return (line: pair.line.index, character: offset - pair.range.location + 1)
+                let element = rangesAndLine[$0]
+                return (line: element.line.index, character: offset - element.range.location + 1)
+            }
+        }
+        
+        func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
+            let index = rangesAndLine.indexOf { NSLocationInRange(offset, $0.byteRange) }
+            return index.map {
+                let element = rangesAndLine[$0]
+                return (line: element.line.index, character: offset - element.range.location + 1)
             }
         }
     }
@@ -140,9 +167,7 @@ extension NSString {
     - parameter offset: byte offset.
     */
     public func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
-        return byteRangeToNSRange(start: offset, length: 0).flatMap { characterRange in
-            return lineAndCharacterForCharacterOffset(NSMaxRange(characterRange))
-        }
+        return cacheContainer.lineAndCharacterForByteOffset(offset)
     }
 
     /**
