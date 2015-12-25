@@ -94,6 +94,32 @@ extension NSString {
         }
         
         /**
+         Returns UTF16 offset from UTF8 offset
+         - parameter byteOffset: UTF8 based offset of string
+         - returns: UTF16 based offset of string
+        */
+        func locationFromByteOffset(byteOffset: Int) -> Int {
+            if self.rangesAndLine.isEmpty {
+                return 0
+            }
+            guard let index = rangesAndLine.indexOf({ NSLocationInRange(byteOffset, $0.byteRange) }) else {
+                fatalError()
+            }
+            let element = rangesAndLine[index]
+            let diff = byteOffset - element.byteRange.location
+            if diff == 0 {
+                return element.range.location
+            } else if element.byteRange.length == diff {
+                return NSMaxRange(element.range)
+            } else {
+                let endUTF16index = element.line.content.utf8.startIndex.advancedBy(diff)
+                .samePositionIn(element.line.content.utf16)!
+                let utf16Diff = element.line.content.utf16.startIndex.distanceTo(endUTF16index)
+                return element.range.location + utf16Diff
+            }
+        }
+
+        /**
          Returns UTF8 offset from UTF16 offset
          - parameter location: UTF16 based offset of string
          - returns: UTF8 based offset of string
@@ -223,19 +249,13 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func byteRangeToNSRange(start start: Int, length: Int) -> NSRange? {
-        let string = self as String
-        let startUTF8Index = string.utf8.startIndex.advancedBy(start)
-        let endUTF8Index = startUTF8Index.advancedBy(length)
-
-        let utf16View = string.utf16
-        guard let startUTF16Index = startUTF8Index.samePositionIn(utf16View),
-            endUTF16Index = endUTF8Index.samePositionIn(utf16View) else {
-                return nil
+        if self.length == 0 { return nil }
+        let utf16Start = cacheContainer.locationFromByteOffset(start)
+        if length == 0 {
+            return NSRange(location: utf16Start, length: 0)
         }
-
-        let location = utf16View.startIndex.distanceTo(startUTF16Index)
-        let length = startUTF16Index.distanceTo(endUTF16Index)
-        return NSRange(location: location, length: length)
+        let utf16End = cacheContainer.locationFromByteOffset(start + length)
+        return NSRange(location: utf16Start, length: utf16End - utf16Start)
     }
 
     /**
