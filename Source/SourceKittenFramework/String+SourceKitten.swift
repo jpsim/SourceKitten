@@ -26,22 +26,15 @@ private var keyCacheContainer = 0
 extension NSString {
     /**
     CacheContainer caches
-     - pairs of byte offset and UTF8Index for referencing by UTF16 based location.
-     - pairs of NSRange andLine
+     - UTF16 based NSRange, UTF8 based NSRange and Line
     */
     @objc private class CacheContainer: NSObject {
-        struct ByteOffsetIndexPair {
-            let byteOffset: Int
-            let index: String.UTF8Index
-        }
-
         struct RangesAndLine {
             let range: NSRange
             let byteRange: NSRange
             let line: Line
         }
 
-        var byteOffsetIndexPairs = Dictionary<Int, ByteOffsetIndexPair>()
         let rangesAndLine: [RangesAndLine]
         let utf8View: String.UTF8View
 
@@ -99,24 +92,31 @@ extension NSString {
             }
             self.rangesAndLine = rangesAndLine
         }
-
-        func byteOffsetFromLocation(location: Int, andIndex index: String.UTF8Index) -> Int {
-            if let byteOffsetIndexPair = byteOffsetIndexPairs[location] {
-                return byteOffsetIndexPair.byteOffset
+        
+        /**
+         Returns UTF8 offset from UTF16 offset
+         - parameter location: UTF16 based offset of string
+         - returns: UTF8 based offset of string
+        */
+        func byteOffsetFromLocation(location: Int) -> Int {
+            if self.rangesAndLine.isEmpty {
+                return 0
             }
-            let byteOffsetIndexPair: ByteOffsetIndexPair
-            if let nearestLocation = byteOffsetIndexPairs.keys.filter({ $0 < location }).maxElement() {
-                let nearestByteOffsetIndexPair = byteOffsetIndexPairs[nearestLocation]!
-                let byteOffset = nearestByteOffsetIndexPair.byteOffset +
-                    nearestByteOffsetIndexPair.index.distanceTo(index)
-                byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
+            guard let index = rangesAndLine.indexOf({ NSLocationInRange(location, $0.range) }) else {
+                fatalError()
+            }
+            let element = rangesAndLine[index]
+            let diff = location - element.range.location
+            if diff == 0 {
+                return element.byteRange.location
+            } else if element.range.length == diff {
+                return NSMaxRange(element.byteRange)
             } else {
-                let byteOffset = utf8View.startIndex.distanceTo(index)
-                byteOffsetIndexPair = ByteOffsetIndexPair(byteOffset: byteOffset, index: index)
+                let endUTF8index = element.line.content.utf16.startIndex.advancedBy(diff)
+                    .samePositionIn(element.line.content.utf8)!
+                let byteDiff = element.line.content.utf8.startIndex.distanceTo(endUTF8index)
+                return element.byteRange.location + byteDiff
             }
-            byteOffsetIndexPairs[location] = byteOffsetIndexPair
-
-            return byteOffsetIndexPair.byteOffset
         }
 
         var lines: [Line] {
@@ -267,7 +267,7 @@ extension NSString {
         // 2. Using cache is overkill for short string.
         let byteOffset: Int
         if utf16View.count > 50 {
-            byteOffset = cacheContainer.byteOffsetFromLocation(start, andIndex: startUTF8Index)
+            byteOffset = cacheContainer.byteOffsetFromLocation(start)
         } else {
             byteOffset = utf8View.startIndex.distanceTo(startUTF8Index)
         }
