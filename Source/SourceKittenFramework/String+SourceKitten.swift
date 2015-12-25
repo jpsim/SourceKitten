@@ -135,7 +135,18 @@ extension NSString {
             let index = rangesAndLine.indexOf { NSLocationInRange(offset, $0.byteRange) }
             return index.map {
                 let element = rangesAndLine[$0]
-                return (line: element.line.index, character: offset - element.range.location + 1)
+                
+                let character: Int
+                let content = element.line.content
+                let length = offset - element.byteRange.location + 1
+                if length == element.byteRange.length {
+                    character = content.utf16.count
+                } else {
+                    let endIndex = content.utf8.startIndex.advancedBy(length)
+                        .samePositionIn(content.utf16) ?? content.utf16.endIndex
+                    character = content.utf16.startIndex.distanceTo(endIndex)
+                }
+                return (line: element.line.index, character: character)
             }
         }
     }
