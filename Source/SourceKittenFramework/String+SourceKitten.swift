@@ -25,8 +25,11 @@ private var keyCacheContainer = 0
 
 extension NSString {
     /**
-    CacheContainer caches
-     - UTF16 based NSRange, UTF8 based NSRange and Line
+    CacheContainer caches:
+
+    - UTF16-based NSRange
+    - UTF8-based NSRange
+    - Line
     */
     @objc private class CacheContainer: NSObject {
         struct RangesAndLine {
@@ -94,12 +97,14 @@ extension NSString {
         }
         
         /**
-         Returns UTF16 offset from UTF8 offset
-         - parameter byteOffset: UTF8 based offset of string
-         - returns: UTF16 based offset of string
+        Returns UTF16 offset from UTF8 offset.
+
+        - parameter byteOffset: UTF8-based offset of string.
+
+        - returns: UTF16 based offset of string.
         */
         func locationFromByteOffset(byteOffset: Int) -> Int {
-            if self.rangesAndLine.isEmpty {
+            if rangesAndLine.isEmpty {
                 return 0
             }
             guard let index = rangesAndLine.indexOf({ NSLocationInRange(byteOffset, $0.byteRange) }) else {
@@ -111,21 +116,22 @@ extension NSString {
                 return element.range.location
             } else if element.byteRange.length == diff {
                 return NSMaxRange(element.range)
-            } else {
-                let endUTF16index = element.line.content.utf8.startIndex.advancedBy(diff)
-                .samePositionIn(element.line.content.utf16)!
-                let utf16Diff = element.line.content.utf16.startIndex.distanceTo(endUTF16index)
-                return element.range.location + utf16Diff
             }
+            let endUTF16index = element.line.content.utf8.startIndex.advancedBy(diff)
+                                       .samePositionIn(element.line.content.utf16)!
+            let utf16Diff = element.line.content.utf16.startIndex.distanceTo(endUTF16index)
+            return element.range.location + utf16Diff
         }
 
         /**
-         Returns UTF8 offset from UTF16 offset
-         - parameter location: UTF16 based offset of string
-         - returns: UTF8 based offset of string
+        Returns UTF8 offset from UTF16 offset.
+
+        - parameter location: UTF16-based offset of string.
+
+        - returns: UTF8 based offset of string.
         */
         func byteOffsetFromLocation(location: Int) -> Int {
-            if self.rangesAndLine.isEmpty {
+            if rangesAndLine.isEmpty {
                 return 0
             }
             guard let index = rangesAndLine.indexOf({ NSLocationInRange(location, $0.range) }) else {
@@ -137,12 +143,11 @@ extension NSString {
                 return element.byteRange.location
             } else if element.range.length == diff {
                 return NSMaxRange(element.byteRange)
-            } else {
-                let endUTF8index = element.line.content.utf16.startIndex.advancedBy(diff)
-                    .samePositionIn(element.line.content.utf8)!
-                let byteDiff = element.line.content.utf8.startIndex.distanceTo(endUTF8index)
-                return element.byteRange.location + byteDiff
             }
+            let endUTF8index = element.line.content.utf16.startIndex.advancedBy(diff)
+                                      .samePositionIn(element.line.content.utf8)!
+            let byteDiff = element.line.content.utf8.startIndex.distanceTo(endUTF8index)
+            return element.byteRange.location + byteDiff
         }
 
         var lines: [Line] {
@@ -178,7 +183,7 @@ extension NSString {
     }
 
     /**
-     CacheContainer instance is stored to instance of NSString as associated object.
+    CacheContainer instance is stored to instance of NSString as associated object.
     */
     private var cacheContainer: CacheContainer {
         if let cache = objc_getAssociatedObject(self, &keyCacheContainer) as? CacheContainer {
