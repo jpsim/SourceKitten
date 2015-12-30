@@ -1,4 +1,4 @@
-## Master
+## 0.7.3
 
 ##### Breaking
 
@@ -6,7 +6,7 @@
 
 ##### Enhancements
 
-* Add `NSString.lineAndCharacterForByteOffset`.
+* Add `NSString.lineAndCharacterForByteOffset`.  
   [JP Simard](https://github.com/jpsim)
 
 ##### Bug Fixes
