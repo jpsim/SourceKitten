@@ -16,23 +16,21 @@ struct StructureCommand: CommandType {
     let verb = "structure"
     let function = "Print Swift structure information as JSON"
 
-    func run(mode: CommandMode) -> Result<(), CommandantError<SourceKittenError>> {
-        return StructureOptions.evaluate(mode).flatMap { options in
-            if !options.file.isEmpty {
-                if let file = File(path: options.file) {
-                    print(Structure(file: file))
-                    return .Success()
-                }
-                return .Failure(.CommandError(.ReadFailed(path: options.file)))
-            }
-            if !options.text.isEmpty {
-                print(Structure(file: File(contents: options.text)))
+    func run(options: StructureOptions) -> Result<(), SourceKittenError> {
+        if !options.file.isEmpty {
+            if let file = File(path: options.file) {
+                print(Structure(file: file))
                 return .Success()
             }
-            return .Failure(.CommandError(
-                .InvalidArgument(description: "either file or text must be set when calling structure")
-            ))
+            return .Failure(.ReadFailed(path: options.file))
         }
+        if !options.text.isEmpty {
+            print(Structure(file: File(contents: options.text)))
+            return .Success()
+        }
+        return .Failure(
+            .InvalidArgument(description: "either file or text must be set when calling structure")
+        )
     }
 }
 

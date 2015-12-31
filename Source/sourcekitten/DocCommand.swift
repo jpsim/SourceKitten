@@ -16,21 +16,18 @@ struct DocCommand: CommandType {
     let verb = "doc"
     let function = "Print Swift docs as JSON or Objective-C docs as XML"
 
-    func run(mode: CommandMode) -> Result<(), CommandantError<SourceKittenError>> {
-        return DocOptions.evaluate(mode).flatMap { options in
-            let args = Process.arguments
-            if options.objc {
-                return runObjC(options, args: args)
-            }
-            if options.singleFile {
-                return runSwiftSingleFile(args)
-            }
-            let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
-            return runSwiftModule(moduleName, args: args)
+    func run(options: DocOptions) -> Result<(), SourceKittenError> {
+        let args = Process.arguments
+        if options.objc {
+            return runObjC(options, args: args)
+        } else if options.singleFile {
+            return runSwiftSingleFile(args)
         }
+        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
+        return runSwiftModule(moduleName, args: args)
     }
 
-    func runSwiftModule(moduleName: String?, args: [String]) -> Result<(), CommandantError<SourceKittenError>> {
+    func runSwiftModule(moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
         let xcodeBuildArgumentsStart = (moduleName != nil) ? 4 : 2
         let xcodeBuildArguments = Array<String>(args[xcodeBuildArgumentsStart..<args.count])
         let module = Module(xcodeBuildArguments: xcodeBuildArguments, name: moduleName)
@@ -39,12 +36,12 @@ struct DocCommand: CommandType {
             print(docs)
             return .Success()
         }
-        return .Failure(.CommandError(.DocFailed))
+        return .Failure(.DocFailed)
     }
 
-    func runSwiftSingleFile(args: [String]) -> Result<(), CommandantError<SourceKittenError>> {
+    func runSwiftSingleFile(args: [String]) -> Result<(), SourceKittenError> {
         if args.count < 5 {
-            return .Failure(.CommandError(.InvalidArgument(description: "at least 5 arguments are required when using `--single-file`")))
+            return .Failure(.InvalidArgument(description: "at least 5 arguments are required when using `--single-file`"))
         }
         let sourcekitdArguments = Array<String>(args[4..<args.count])
         if let file = File(path: args[3]) {
@@ -52,10 +49,10 @@ struct DocCommand: CommandType {
             print(docs)
             return .Success()
         }
-        return .Failure(.CommandError(.ReadFailed(path: args[3])))
+        return .Failure(.ReadFailed(path: args[3]))
     }
 
-    func runObjC(options: DocOptions, args: [String]) -> Result<(), CommandantError<SourceKittenError>> {
+    func runObjC(options: DocOptions, args: [String]) -> Result<(), SourceKittenError> {
         let translationUnit = ClangTranslationUnit(headerFiles: [args[3]], compilerArguments: Array<String>(args[4..<args.count]))
         print(translationUnit)
         return .Success()

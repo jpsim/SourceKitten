@@ -16,18 +16,16 @@ struct SyntaxCommand: CommandType {
     let verb = "syntax"
     let function = "Print Swift syntax information as JSON"
 
-    func run(mode: CommandMode) -> Result<(), CommandantError<SourceKittenError>> {
-        return SyntaxOptions.evaluate(mode).flatMap { options in
-            if !options.file.isEmpty {
-                if let file = File(path: options.file) {
-                    print(SyntaxMap(file: file))
-                    return .Success()
-                }
-                return .Failure(.CommandError(.ReadFailed(path: options.file)))
+    func run(options: SyntaxOptions) -> Result<(), SourceKittenError> {
+        if !options.file.isEmpty {
+            if let file = File(path: options.file) {
+                print(SyntaxMap(file: file))
+                return .Success()
             }
-            print(SyntaxMap(file: File(contents: options.text)))
-            return .Success()
+            return .Failure(.ReadFailed(path: options.file))
         }
+        print(SyntaxMap(file: File(contents: options.text)))
+        return .Success()
     }
 }
 

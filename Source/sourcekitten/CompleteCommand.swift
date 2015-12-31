@@ -17,36 +17,34 @@ struct CompleteCommand: CommandType {
     let verb = "complete"
     let function = "Generate code completion options."
 
-    func run(mode: CommandMode) -> Result<(), CommandantError<SourceKittenError>> {
-        return CompleteOptions.evaluate(mode).flatMap { options in
-            let path: String
-            let contents: String
-            if !options.file.isEmpty {
-                path = options.file.absolutePathRepresentation()
-                if let file = File(path: path) {
-                    contents = file.contents
-                } else {
-                    return .Failure(.CommandError(.ReadFailed(path: options.file)))
-                }
+    func run(options: CompleteOptions) -> Result<(), SourceKittenError> {
+        let path: String
+        let contents: String
+        if !options.file.isEmpty {
+            path = options.file.absolutePathRepresentation()
+            if let file = File(path: path) {
+                contents = file.contents
             } else {
-                path = "\(NSUUID().UUIDString).swift"
-                contents = options.text
+                return .Failure(.ReadFailed(path: options.file))
             }
-
-            var args = ["-c", path]
-            if !options.compilerargs.isEmpty {
-                args.appendContentsOf(options.compilerargs.componentsSeparatedByString(" "))
-            }
-            if args.indexOf("-sdk") == nil {
-                args.appendContentsOf(["-sdk", sdkPath()])
-            }
-
-            let request = Request.CodeCompletionRequest(file: path, contents: contents,
-                                                        offset: Int64(options.offset),
-                                                        arguments: args)
-            print(CodeCompletionItem.parseResponse(request.send()))
-            return .Success()
+        } else {
+            path = "\(NSUUID().UUIDString).swift"
+            contents = options.text
         }
+
+        var args = ["-c", path]
+        if !options.compilerargs.isEmpty {
+            args.appendContentsOf(options.compilerargs.componentsSeparatedByString(" "))
+        }
+        if args.indexOf("-sdk") == nil {
+            args.appendContentsOf(["-sdk", sdkPath()])
+        }
+
+        let request = Request.CodeCompletionRequest(file: path, contents: contents,
+            offset: Int64(options.offset),
+            arguments: args)
+        print(CodeCompletionItem.parseResponse(request.send()))
+        return .Success()
     }
 }
 
