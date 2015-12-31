@@ -6,10 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-import Commandant
-
 /// Possible errors within SourceKitten.
-enum SourceKittenError: CustomStringConvertible {
+enum SourceKittenError: ErrorType, CustomStringConvertible {
     /// One or more argument was invalid.
     case InvalidArgument(description: String)
 
