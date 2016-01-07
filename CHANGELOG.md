@@ -1,3 +1,19 @@
+## Master
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* Add support for parsing module imports in Objective-C.  
+  [JP Simard](https://github.com/jpsim)
+  [jazzy#452](https://github.com/realm/jazzy/issues/452)
+
 ## 0.7.3
 
 ##### Breaking

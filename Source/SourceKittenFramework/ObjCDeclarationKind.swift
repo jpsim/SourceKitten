@@ -44,6 +44,8 @@ public enum ObjCDeclarationKind: String {
     case Field = "sourcekitten.source.lang.objc.decl.field"
     /// `ivar`
     case Ivar = "sourcekitten.source.lang.objc.decl.ivar"
+    /// `ModuleImport`
+    case ModuleImport = "sourcekitten.source.lang.objc.module.import"
 
     public static func fromClang(kind: CXCursorKind) -> ObjCDeclarationKind {
         switch kind.rawValue {
@@ -61,6 +63,7 @@ public enum ObjCDeclarationKind: String {
         case CXCursor_StructDecl.rawValue: return .Struct
         case CXCursor_FieldDecl.rawValue: return .Field
         case CXCursor_ObjCIvarDecl.rawValue: return .Ivar
+        case CXCursor_ModuleImportDecl.rawValue: return .ModuleImport
         default: fatalError("Unsupported CXCursorKind: \(clang_getCursorKindSpelling(kind))")
         }
     }
