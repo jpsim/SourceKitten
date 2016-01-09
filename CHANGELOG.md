@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Add `Structure.init(sourceKitResponse:)`  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
 

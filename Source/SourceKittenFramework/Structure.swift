@@ -15,14 +15,23 @@ public struct Structure {
     public let dictionary: XPCDictionary
 
     /**
+     Create a Structure from a SourceKit `editor.open` response.
+     
+     - parameter sourceKitResponse: SourceKit `editor.open` response.
+     */
+    public init(sourceKitResponse: XPCDictionary) {
+        var sourceKitResponse = sourceKitResponse
+        _ = sourceKitResponse.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue)
+        self.dictionary = sourceKitResponse
+    }
+
+    /**
     Initialize a Structure by passing in a File.
 
     - parameter file: File to parse for structural information.
     */
     public init(file: File) {
-        var tmpDictionary = Request.EditorOpen(file).send()
-        _ = tmpDictionary.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue)
-        dictionary = tmpDictionary
+        self.init(sourceKitResponse: Request.EditorOpen(file).send())
     }
 }
 
