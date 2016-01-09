@@ -15,14 +15,13 @@ public struct Structure {
     public let dictionary: XPCDictionary
 
     /**
-     Create a Structure from a SourceKit `editor.open` response.
+    Create a Structure from a SourceKit `editor.open` response.
      
-     - parameter sourceKitResponse: SourceKit `editor.open` response.
-     */
-    public init(sourceKitResponse: XPCDictionary) {
-        var sourceKitResponse = sourceKitResponse
+    - parameter sourceKitResponse: SourceKit `editor.open` response.
+    */
+    public init(var sourceKitResponse: XPCDictionary) {
         _ = sourceKitResponse.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue)
-        self.dictionary = sourceKitResponse
+        dictionary = sourceKitResponse
     }
 
     /**

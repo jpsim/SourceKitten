@@ -6,7 +6,7 @@
 
 ##### Enhancements
 
-* Add `Structure.init(sourceKitResponse:)`  
+* Add `Structure.init(sourceKitResponse:)`.  
   [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
