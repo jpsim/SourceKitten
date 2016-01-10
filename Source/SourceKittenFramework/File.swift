@@ -333,12 +333,12 @@ Traverse the dictionary replacing SourceKit UIDs with their string value.
 - returns: Dictionary with UIDs replaced by strings.
 */
 internal func replaceUIDsWithSourceKitStrings(var dictionary: XPCDictionary) -> XPCDictionary {
-    for key in dictionary.keys {
-        if let uid = dictionary[key] as? UInt64, uidString = stringForSourceKitUID(uid) {
+    for (key, value) in dictionary {
+        if let uid = value as? UInt64, uidString = stringForSourceKitUID(uid) {
             dictionary[key] = uidString
-        } else if let array = dictionary[key] as? XPCArray {
+        } else if let array = value as? XPCArray {
             dictionary[key] = array.map { replaceUIDsWithSourceKitStrings($0 as! XPCDictionary) } as XPCArray
-        } else if let dict = dictionary[key] as? XPCDictionary {
+        } else if let dict = value as? XPCDictionary {
             dictionary[key] = replaceUIDsWithSourceKitStrings(dict)
         }
     }
