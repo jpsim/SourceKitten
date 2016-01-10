@@ -9,6 +9,9 @@
 * Add `Structure.init(sourceKitResponse:)`.  
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Imporve performance of `Request.send()`.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
 ##### Bug Fixes
 
 * Add support for parsing module imports in Objective-C.  
