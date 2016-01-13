@@ -9,7 +9,7 @@
 * Add `Structure.init(sourceKitResponse:)`.  
   [Norio Nomura](https://github.com/norio-nomura)
 
-* Imporve performance of `Request.send()`.  
+* Improve performance of `Request.send()`.  
   [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
