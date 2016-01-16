@@ -1,3 +1,19 @@
+## Master
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* Fix crash when file contains NULL character.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [SwiftLint#379](https://github.com/realm/SwiftLint/issues/379)
+
 ## 0.7.4
 
 ##### Breaking

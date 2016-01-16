@@ -54,8 +54,8 @@ extension NSString {
             //
             // A reference to `NSString` is held by every cast `String` along with their views and
             // indices.
-            let cString = string.cStringUsingEncoding(NSUTF8StringEncoding)
-            let string = String(CString: cString, encoding: NSUTF8StringEncoding)!
+            let data = string.dataUsingEncoding(NSUTF8StringEncoding)
+            let string = String(data: data, usingEncoding: NSUTF8StringEncoding)
             utf8View = string.utf8
 
             var start = 0       // line start
