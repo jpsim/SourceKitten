@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0A78691C111E2500C64CB0 /* DeclarationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A78681C111E2500C64CB0 /* DeclarationType.swift */; };
+		2C0A786B1C111F2500C64CB0 /* SwiftDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A786A1C111F2500C64CB0 /* SwiftDeclaration.swift */; };
+		2C0A786D1C111FC100C64CB0 /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A786C1C111FC100C64CB0 /* Accessibility.swift */; };
+		2C0A786F1C11222700C64CB0 /* DeclarationKindType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A786E1C11222700C64CB0 /* DeclarationKindType.swift */; };
+		2C184FEB1C121838001AA834 /* ObjCDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C184FEA1C121838001AA834 /* ObjCDeclaration.swift */; };
 		2C55B3321BEB3CA7002E8C6B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; };
 		2C55B3331BEB3CAB002E8C6B /* Commandant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; };
 		2C55B3341BEB3D7D002E8C6B /* Commandant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -130,6 +135,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C0A78681C111E2500C64CB0 /* DeclarationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarationType.swift; sourceTree = "<group>"; };
+		2C0A786A1C111F2500C64CB0 /* SwiftDeclaration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDeclaration.swift; sourceTree = "<group>"; };
+		2C0A786C1C111FC100C64CB0 /* Accessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
+		2C0A786E1C11222700C64CB0 /* DeclarationKindType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarationKindType.swift; sourceTree = "<group>"; };
+		2C184FEA1C121838001AA834 /* ObjCDeclaration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCDeclaration.swift; sourceTree = "<group>"; };
 		3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Clang+SourceKitten.swift"; sourceTree = "<group>"; };
 		3F56EACF1BAB251C006433D0 /* JSONOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONOutput.swift; sourceTree = "<group>"; };
 		5499CA961A2394B700783309 /* Components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Components.plist; sourceTree = "<group>"; };
@@ -370,10 +380,13 @@
 			children = (
 				E8D4742B1A648ED10011A49C /* clang-c */,
 				D0D1216F19E87B05005E4BAA /* Supporting Files */,
+				2C0A786C1C111FC100C64CB0 /* Accessibility.swift */,
 				E87212191AD2FFCD00A484F4 /* Array+SourceKitten.swift */,
 				3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */,
 				E8D4743A1A648F290011A49C /* ClangTranslationUnit.swift */,
 				E8EE34BE1B9A502F00947605 /* CodeCompletionItem.swift */,
+				2C0A786E1C11222700C64CB0 /* DeclarationKindType.swift */,
+				2C0A78681C111E2500C64CB0 /* DeclarationType.swift */,
 				E852418E1A5F4FB3007099FB /* Dictionary+Merge.swift */,
 				E806D2921BE058D600D1BE41 /* Documentation.swift */,
 				E84763691A5A0651000EAE22 /* File.swift */,
@@ -390,6 +403,7 @@
 				E806D28C1BE0589B00D1BE41 /* SourceLocation.swift */,
 				E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */,
 				E834740E1A593B5B00532B9A /* Structure.swift */,
+				2C0A786A1C111F2500C64CB0 /* SwiftDeclaration.swift */,
 				E89291A81A5B800300D91568 /* SwiftDeclarationKind.swift */,
 				E89291A61A5B7FF800D91568 /* SwiftDocKey.swift */,
 				E8A18A3E1A592246000362B7 /* SwiftDocs.swift */,
@@ -399,6 +413,7 @@
 				E80F236A1A5CB04100FD2352 /* SyntaxToken.swift */,
 				E806D28E1BE058B100D1BE41 /* Text.swift */,
 				E8A9B88F1B56CB5500CD17D4 /* Xcode.swift */,
+				2C184FEA1C121838001AA834 /* ObjCDeclaration.swift */,
 			);
 			name = SourceKittenFramework;
 			path = Source/SourceKittenFramework;
@@ -615,12 +630,15 @@
 			files = (
 				E806D2931BE058D600D1BE41 /* Documentation.swift in Sources */,
 				E872121A1AD2FFCD00A484F4 /* Array+SourceKitten.swift in Sources */,
+				2C0A786F1C11222700C64CB0 /* DeclarationKindType.swift in Sources */,
 				3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */,
 				E8D4743B1A648F290011A49C /* ClangTranslationUnit.swift in Sources */,
 				E8EE34BF1B9A502F00947605 /* CodeCompletionItem.swift in Sources */,
 				E852418F1A5F4FB3007099FB /* Dictionary+Merge.swift in Sources */,
+				2C0A78691C111E2500C64CB0 /* DeclarationType.swift in Sources */,
 				E847636A1A5A0651000EAE22 /* File.swift in Sources */,
 				3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */,
+				2C184FEB1C121838001AA834 /* ObjCDeclaration.swift in Sources */,
 				E8A18A3B1A58971D000362B7 /* Language.swift in Sources */,
 				E806D28F1BE058B100D1BE41 /* Text.swift in Sources */,
 				E8241CA51A5E01A10047687E /* Module.swift in Sources */,
@@ -632,11 +650,13 @@
 				E806D28D1BE0589B00D1BE41 /* SourceLocation.swift in Sources */,
 				E868473E1A587CCC0043DC65 /* sourcekitd.swift in Sources */,
 				E8AE53C71A5B5FCA0092D24A /* String+SourceKitten.swift in Sources */,
+				2C0A786B1C111F2500C64CB0 /* SwiftDeclaration.swift in Sources */,
 				E834740F1A593B5B00532B9A /* Structure.swift in Sources */,
 				E89291A91A5B800300D91568 /* SwiftDeclarationKind.swift in Sources */,
 				E89291A71A5B7FF800D91568 /* SwiftDocKey.swift in Sources */,
 				E8A18A3F1A592246000362B7 /* SwiftDocs.swift in Sources */,
 				E83C8E9A1A5CBADD003A8D35 /* SwiftXPC+JSON.swift in Sources */,
+				2C0A786D1C111FC100C64CB0 /* Accessibility.swift in Sources */,
 				E80F23691A5CB01A00FD2352 /* SyntaxKind.swift in Sources */,
 				E8CC8A2D1A587FD300D1FEC7 /* SyntaxMap.swift in Sources */,
 				E80F236B1A5CB04100FD2352 /* SyntaxToken.swift in Sources */,
