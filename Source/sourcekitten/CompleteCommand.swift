@@ -22,11 +22,10 @@ struct CompleteCommand: CommandType {
         let contents: String
         if !options.file.isEmpty {
             path = options.file.absolutePathRepresentation()
-            if let file = File(path: path) {
-                contents = file.contents
-            } else {
+            guard let file = File(path: path) else {
                 return .Failure(.ReadFailed(path: options.file))
             }
+            contents = file.contents
         } else {
             path = "\(NSUUID().UUIDString).swift"
             contents = options.text
