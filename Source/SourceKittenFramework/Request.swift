@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+import SourceKit
+#endif
 
 public protocol SourceKitRepresentable {
     func isEqualTo(rhs: SourceKitRepresentable) -> Bool

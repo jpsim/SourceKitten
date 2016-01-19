@@ -8,6 +8,9 @@
 
 import Foundation
 import SWXMLHash
+#if SWIFT_PACKAGE
+import SourceKit
+#endif
 
 /// Represents a source file.
 public final class File {

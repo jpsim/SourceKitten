@@ -6,6 +6,10 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+import Clang_C
+#endif
+
 /**
 Objective-C declaration kinds.
 More or less equivalent to `SwiftDeclarationKind`, but with made up values because there's no such

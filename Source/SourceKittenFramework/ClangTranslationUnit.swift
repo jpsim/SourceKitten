@@ -6,6 +6,11 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+import Clang_C
+#endif
+import Foundation
+
 extension SequenceType where Generator.Element: Hashable {
     func distinct() -> [Generator.Element] {
         return Array(Set(self))

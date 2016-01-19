@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+import Darwin
 import Commandant
 
 let registry = CommandRegistry<SourceKittenError>()

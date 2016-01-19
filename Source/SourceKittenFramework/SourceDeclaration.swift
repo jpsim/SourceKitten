@@ -6,6 +6,11 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+import Clang_C
+#endif
+import Foundation
+
 public func insertMarks(declarations: [SourceDeclaration], limitRange: NSRange? = nil) -> [SourceDeclaration] {
     guard declarations.count > 0 else { return [] }
     guard let path = declarations.first?.location.file, let file = File(path: path) else {
