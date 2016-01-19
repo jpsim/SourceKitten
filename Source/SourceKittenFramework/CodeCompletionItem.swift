@@ -104,11 +104,11 @@ public struct CodeCompletionItem: CustomStringConvertible {
         }
         return 16.stride(to: maxRange, by: 45).enumerate().flatMap { index, offset -> CodeCompletionItem? in
             data.getBytes(&buffer, range: NSRange(location: offset, length: 8))
-            guard let kind = stringForSourceKitUID(buffer) else {
+            guard let kind = stringForSourceKitUID(unsafeBitCast(buffer, sourcekitd_uid_t.self)) else {
                 return nil
             }
             data.getBytes(&buffer, range: NSRange(location: offset + 36, length: 8))
-            guard let context = stringForSourceKitUID(buffer) else {
+            guard let context = stringForSourceKitUID(unsafeBitCast(buffer, sourcekitd_uid_t.self)) else {
                 return nil
             }
             return CodeCompletionItem(kind: kind,

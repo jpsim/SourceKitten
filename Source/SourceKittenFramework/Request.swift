@@ -13,7 +13,7 @@ import SwiftXPC
 private var sourceKitInitializationToken = dispatch_once_t(0)
 
 /// SourceKit UID to String map.
-private var uidStringMap = [UInt64: String]()
+private var uidStringMap = [COpaquePointer: String]()
 
 /**
 Cache SourceKit requests for strings from UIDs
@@ -22,11 +22,8 @@ Cache SourceKit requests for strings from UIDs
 
 - returns: Cached UID string if available, nil otherwise.
 */
-internal func stringForSourceKitUID(uid: UInt64) -> String? {
-    if uid < UInt64(UInt32.max) {
-        // UID's are always higher than UInt32.max
-        return nil
-    } else if let string = uidStringMap[uid] {
+internal func stringForSourceKitUID(uid: COpaquePointer) -> String? {
+    if let string = uidStringMap[uid] {
         return string
     } else if let uidString = String(UTF8String: sourcekitd_uid_get_string_ptr(uid)) {
         uidStringMap[uid] = uidString
@@ -42,49 +39,54 @@ public enum Request {
     /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
     case CursorInfo(file: String, offset: Int64, arguments: [String])
     /// A custom request by passing in the xpc_object_t directly.
-    case CustomRequest(xpc_object_t)
+    case CustomRequest(sourcekitd_object_t)
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
     case CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
 
     /// xpc_object_t version of the Request to be sent to SourceKit.
-    private var xpcValue: xpc_object_t {
+    private var xpcValue: sourcekitd_object_t {
+        var dict: [sourcekitd_uid_t : sourcekitd_object_t]
         switch self {
         case .EditorOpen(let file):
-            let openRequestUID = sourcekitd_uid_get_from_cstr("source.request.editor.open")
             if let path = file.path {
-                return toXPC([
-                    "key.request": openRequestUID,
-                    "key.name": path,
-                    "key.sourcefile": path
-                ])
+                dict = [
+                    sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
+                    sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(path),
+                    sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(path)
+                ]
             } else {
-                return toXPC([
-                    "key.request": openRequestUID,
-                    "key.name": String(file.contents.hash),
-                    "key.sourcetext": file.contents
-                ])
+                dict = [
+                    sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
+                    sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(String(file.contents.hash)),
+                    sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(file.contents)
+                ]
             }
         case .CursorInfo(let file, let offset, let arguments):
-            return toXPC([
-                "key.request": sourcekitd_uid_get_from_cstr("source.request.cursorinfo"),
-                "key.name": file,
-                "key.sourcefile": file,
-                "key.offset": offset,
-                "key.compilerargs": (arguments.map { $0 as XPCRepresentable } as XPCArray)
-            ])
+            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.cursorinfo")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
+            ]
         case .CustomRequest(let request):
             return request
         case .CodeCompletionRequest(let file, let contents, let offset, let arguments):
-            return toXPC([
-                "key.request": sourcekitd_uid_get_from_cstr("source.request.codecomplete"),
-                "key.name": file,
-                "key.sourcefile": file,
-                "key.sourcetext": contents,
-                "key.offset": offset,
-                "key.compilerargs": (arguments.map { $0 as XPCRepresentable } as XPCArray)
-            ])
+            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.codecomplete")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(contents),
+                sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
+            ]
         }
+        var keys = Array(dict.keys)
+        var values = Array(dict.values)
+        return sourcekitd_request_dictionary_create(&keys, &values, dict.count)
     }
 
     /**
@@ -95,7 +97,7 @@ public enum Request {
 
     - returns: xpc_object_t representation of the Request, if successful.
     */
-    internal static func cursorInfoRequestForFilePath(filePath: String?, arguments: [String]) -> xpc_object_t? {
+    internal static func cursorInfoRequestForFilePath(filePath: String?, arguments: [String]) -> sourcekitd_object_t? {
         if let path = filePath {
             return Request.CursorInfo(file: path, offset: 0, arguments: arguments).xpcValue
         }
@@ -110,11 +112,11 @@ public enum Request {
 
     - returns: SourceKit response if successful.
     */
-    internal static func sendCursorInfoRequest(request: xpc_object_t, atOffset offset: Int64) -> XPCDictionary? {
+    internal static func sendCursorInfoRequest(request: sourcekitd_object_t, atOffset offset: Int64) -> XPCDictionary? {
         if offset == 0 {
             return nil
         }
-        xpc_dictionary_set_int64(request, SwiftDocKey.Offset.rawValue, offset)
+        sourcekitd_request_dictionary_set_int64(request, sourcekitd_uid_get_from_cstr(SwiftDocKey.Offset.rawValue), offset)
         return Request.CustomRequest(request).send()
     }
 
@@ -127,10 +129,7 @@ public enum Request {
         dispatch_once(&sourceKitInitializationToken) {
             sourcekitd_initialize()
         }
-        guard let response = sourcekitd_send_request_sync(xpcValue) else {
-            fatalError("SourceKit response nil for request \(self)")
-        }
-        return replaceUIDsWithSourceKitStrings(fromXPC(response))
+        return replaceUIDsWithSourceKitStrings(fromXPC(unsafeBitCast(sourcekitd_send_request_sync(xpcValue), xpc_object_t.self)))
     }
 }
 
@@ -138,5 +137,5 @@ public enum Request {
 
 extension Request: CustomStringConvertible {
     /// A textual representation of `Request`.
-    public var description: String { return xpcValue.description }
+    public var description: String { return String.fromCString(sourcekitd_request_description_copy(xpcValue))! }
 }
