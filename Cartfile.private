@@ -1,3 +1,2 @@
 github "Carthage/Commandant"
 github "jspahrsummers/xcconfigs"
-github "thoughtbot/Curry"
