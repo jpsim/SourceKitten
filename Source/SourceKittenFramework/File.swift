@@ -56,7 +56,7 @@ public final class File {
 
     - returns: Source declaration if successfully parsed.
     */
-    public func parseDeclaration(dictionary: XPCDictionary) -> String? {
+    public func parseDeclaration(dictionary: [String: XPCRepresentable]) -> String? {
         if !shouldParseDeclaration(dictionary) {
             return nil
         }
@@ -76,7 +76,7 @@ public final class File {
     
     - returns: Line numbers containing the declaration's implementation.
     */
-    public func parseScopeRange(dictionary: XPCDictionary) -> (start: Int, end: Int)? {
+    public func parseScopeRange(dictionary: [String: XPCRepresentable]) -> (start: Int, end: Int)? {
         if !shouldParseDeclaration(dictionary) {
             return nil
         }
@@ -99,7 +99,7 @@ public final class File {
 
     - returns: Mark name if successfully parsed.
     */
-    private func markNameFromDictionary(dictionary: XPCDictionary) -> String? {
+    private func markNameFromDictionary(dictionary: [String: XPCRepresentable]) -> String? {
         precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.CommentMark.rawValue)
         let offset = Int(SwiftDocKey.getOffset(dictionary)!)
         let length = Int(SwiftDocKey.getLength(dictionary)!)
@@ -118,7 +118,7 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func processDictionary(dictionary: XPCDictionary, cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> XPCDictionary {
+    public func processDictionary(dictionary: [String: XPCRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: XPCRepresentable] {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
@@ -163,7 +163,7 @@ public final class File {
     - parameter documentedTokenOffsets: Offsets that are likely documented.
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
-    internal func furtherProcessDictionary(dictionary: XPCDictionary, documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> XPCDictionary {
+    internal func furtherProcessDictionary(dictionary: [String: XPCRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: XPCRepresentable] {
         var dictionary = dictionary
         let offsetMap = generateOffsetMap(documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reverse() { // Do this in reverse to insert the doc at the correct offset
@@ -189,9 +189,9 @@ public final class File {
                `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
                and declarations.
     */
-    private func newSubstructure(dictionary: XPCDictionary, cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> XPCArray? {
+    private func newSubstructure(dictionary: [String: XPCRepresentable], cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> [XPCRepresentable]? {
         return SwiftDocKey.getSubstructure(dictionary)?
-            .map({ $0 as! XPCDictionary })
+            .map({ $0 as! [String: XPCRepresentable] })
             .filter(isDeclarationOrCommentMark)
             .map {
                 processDictionary($0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
@@ -204,7 +204,7 @@ public final class File {
     - parameter dictionary:        Dictionary to update.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    private func dictWithCommentMarkNamesCursorInfo(dictionary: XPCDictionary, cursorInfoRequest: sourcekitd_object_t) -> XPCDictionary? {
+    private func dictWithCommentMarkNamesCursorInfo(dictionary: [String: XPCRepresentable], cursorInfoRequest: sourcekitd_object_t) -> [String: XPCRepresentable]? {
         if let kind = SwiftDocKey.getKind(dictionary) {
             // Only update dictionaries with a 'kind' key
             if kind == SyntaxKind.CommentMark.rawValue {
@@ -215,7 +215,7 @@ public final class File {
             } else if let decl = SwiftDeclarationKind(rawValue: kind) where decl != .VarParameter {
                 // Update if kind is a declaration (but not a parameter)
                 var updateDict = Request.sendCursorInfoRequest(cursorInfoRequest,
-                    atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? XPCDictionary()
+                    atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [String: XPCRepresentable]()
 
                 // Skip kinds, since values from editor.open are more accurate than cursorinfo
                 updateDict.removeValueForKey(SwiftDocKey.Kind.rawValue)
@@ -233,7 +233,7 @@ public final class File {
 
     - returns: True if a doc should be inserted in the parent at the provided offset.
     */
-    private func shouldInsert(parent: XPCDictionary, offset: Int64) -> Bool {
+    private func shouldInsert(parent: [String: XPCRepresentable], offset: Int64) -> Bool {
         return SwiftDocKey.getSubstructure(parent) != nil &&
             ((offset == 0) ||
             (shouldTreatAsSameFile(parent) && SwiftDocKey.getOffset(parent) == offset))
@@ -250,13 +250,13 @@ public final class File {
 
     - returns: Parent with doc inserted if successful.
     */
-    private func insertDoc(doc: XPCDictionary, parent: XPCDictionary, offset: Int64) -> XPCDictionary? {
+    private func insertDoc(doc: [String: XPCRepresentable], parent: [String: XPCRepresentable], offset: Int64) -> [String: XPCRepresentable]? {
         var parent = parent
         if shouldInsert(parent, offset: offset) {
             var substructure = SwiftDocKey.getSubstructure(parent)!
             var insertIndex = substructure.count
             for (index, structure) in substructure.reverse().enumerate() {
-                if SwiftDocKey.getOffset(structure as! XPCDictionary)! < offset {
+                if SwiftDocKey.getOffset(structure as! [String: XPCRepresentable])! < offset {
                     break
                 }
                 insertIndex = substructure.count - index
@@ -266,10 +266,10 @@ public final class File {
             return parent
         }
         for key in parent.keys {
-            if let subArray = parent[key] as? XPCArray {
+            if let subArray = parent[key] as? [XPCRepresentable] {
                 var subArray = subArray
                 for i in 0..<subArray.count {
-                    if let subDict = insertDoc(doc, parent: subArray[i] as! XPCDictionary, offset: offset) {
+                    if let subDict = insertDoc(doc, parent: subArray[i] as! [String: XPCRepresentable], offset: offset) {
                         subArray[i] = subDict
                         parent[key] = subArray
                         return parent
@@ -286,7 +286,7 @@ public final class File {
 
     - parameter dictionary: Dictionary to parse.
     */
-    internal func shouldTreatAsSameFile(dictionary: XPCDictionary) -> Bool {
+    internal func shouldTreatAsSameFile(dictionary: [String: XPCRepresentable]) -> Bool {
         return path == SwiftDocKey.getFilePath(dictionary)
     }
 
@@ -295,7 +295,7 @@ public final class File {
 
     - parameter dictionary: Dictionary to parse.
     */
-    private func shouldParseDeclaration(dictionary: XPCDictionary) -> Bool {
+    private func shouldParseDeclaration(dictionary: [String: XPCRepresentable]) -> Bool {
         let sameFile                = shouldTreatAsSameFile(dictionary)
         let hasTypeName             = SwiftDocKey.getTypeName(dictionary) != nil
         let hasAnnotatedDeclaration = SwiftDocKey.getAnnotatedDeclaration(dictionary) != nil
@@ -313,7 +313,7 @@ public final class File {
     - returns: `dictionary`'s documentation comment body as a string, without any documentation
                syntax (`/** ... */` or `/// ...`).
     */
-    public func getDocumentationCommentBody(dictionary: XPCDictionary, syntaxMap: SyntaxMap) -> String? {
+    public func getDocumentationCommentBody(dictionary: [String: XPCRepresentable], syntaxMap: SyntaxMap) -> String? {
         return SwiftDocKey.getOffset(dictionary).flatMap { offset in
             return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
                 let commentEndLine = (contents as NSString).lineAndCharacterForByteOffset(commentByteRange.endIndex)?.line
@@ -336,14 +336,14 @@ Traverse the dictionary replacing SourceKit UIDs with their string value.
 
 - returns: Dictionary with UIDs replaced by strings.
 */
-internal func replaceUIDsWithSourceKitStrings(dictionary: XPCDictionary) -> XPCDictionary {
+internal func replaceUIDsWithSourceKitStrings(dictionary: [String: XPCRepresentable]) -> [String: XPCRepresentable] {
     var dictionary = dictionary
     for (key, value) in dictionary {
         if let uid = value as? UInt64, uidString = stringForSourceKitUID(unsafeBitCast(uid, sourcekitd_uid_t.self)) {
             dictionary[key] = uidString
-        } else if let array = value as? XPCArray {
-            dictionary[key] = array.map { replaceUIDsWithSourceKitStrings($0 as! XPCDictionary) } as XPCArray
-        } else if let dict = value as? XPCDictionary {
+        } else if let array = value as? [XPCRepresentable] {
+            dictionary[key] = array.map { replaceUIDsWithSourceKitStrings($0 as! [String: XPCRepresentable]) } as [XPCRepresentable]
+        } else if let dict = value as? [String: XPCRepresentable] {
             dictionary[key] = replaceUIDsWithSourceKitStrings(dict)
         }
     }
@@ -355,7 +355,7 @@ Returns true if the dictionary represents a source declaration or a mark-style c
 
 - parameter dictionary: Dictionary to parse.
 */
-private func isDeclarationOrCommentMark(dictionary: XPCDictionary) -> Bool {
+private func isDeclarationOrCommentMark(dictionary: [String: XPCRepresentable]) -> Bool {
     if let kind = SwiftDocKey.getKind(dictionary) {
         return kind != SwiftDeclarationKind.VarParameter.rawValue &&
             (kind == SyntaxKind.CommentMark.rawValue || SwiftDeclarationKind(rawValue: kind) != nil)
@@ -368,15 +368,15 @@ Parse XML from `key.doc.full_as_xml` from `cursor.info` request.
 
 - parameter xmlDocs: Contents of `key.doc.full_as_xml` from SourceKit.
 
-- returns: XML parsed as an `XPCDictionary`.
+- returns: XML parsed as an `[String: XPCRepresentable]`.
 */
-public func parseFullXMLDocs(xmlDocs: String) -> XPCDictionary? {
+public func parseFullXMLDocs(xmlDocs: String) -> [String: XPCRepresentable]? {
     let cleanXMLDocs = xmlDocs.stringByReplacingOccurrencesOfString("<rawHTML>", withString: "")
         .stringByReplacingOccurrencesOfString("</rawHTML>", withString: "")
         .stringByReplacingOccurrencesOfString("<codeVoice>", withString: "`")
         .stringByReplacingOccurrencesOfString("</codeVoice>", withString: "`")
     return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
-        var docs = XPCDictionary()
+        var docs = [String: XPCRepresentable]()
         docs[SwiftDocKey.DocType.rawValue] = rootXML.element?.name
         docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.attributes["file"]
         docs[SwiftDocKey.DocLine.rawValue] = rootXML.element?.attributes["line"].flatMap {
@@ -394,8 +394,8 @@ public func parseFullXMLDocs(xmlDocs: String) -> XPCDictionary? {
                 [
                     "name": $0["Name"].element?.text ?? "",
                     "discussion": childrenAsArray($0["Discussion"]) ?? []
-                ] as XPCDictionary
-            } as XPCArray
+                ] as [String: XPCRepresentable]
+            } as [XPCRepresentable]
         }
         docs[SwiftDocKey.DocDiscussion.rawValue] = childrenAsArray(rootXML["Discussion"])
         docs[SwiftDocKey.DocResultDiscussion.rawValue] = childrenAsArray(rootXML["ResultDiscussion"])
@@ -404,16 +404,16 @@ public func parseFullXMLDocs(xmlDocs: String) -> XPCDictionary? {
 }
 
 /**
-Returns an `XPCArray` of `XPCDictionary` items from `indexer` children, if any.
+Returns an `[XPCRepresentable]` of `[String: XPCRepresentable]` items from `indexer` children, if any.
 
 - parameter indexer: `XMLIndexer` to traverse.
 */
-private func childrenAsArray(indexer: XMLIndexer) -> XPCArray? {
+private func childrenAsArray(indexer: XMLIndexer) -> [XPCRepresentable]? {
     let children = indexer.children
     if children.count > 0 {
         return children.flatMap({ $0.element }).map {
-            [$0.name: $0.text ?? ""] as XPCDictionary
-        } as XPCArray
+            [$0.name: $0.text ?? ""] as [String: XPCRepresentable]
+        } as [XPCRepresentable]
     }
     return nil
 }

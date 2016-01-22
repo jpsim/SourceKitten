@@ -14,8 +14,8 @@ public struct SwiftDocs {
     /// Documented File.
     public let file: File
 
-    /// Docs information as an XPCDictionary.
-    public let docsDictionary: XPCDictionary
+    /// Docs information as an [String: XPCRepresentable].
+    public let docsDictionary: [String: XPCRepresentable]
 
     /**
     Create docs for the specified Swift file and compiler arguments.
@@ -38,7 +38,7 @@ public struct SwiftDocs {
     - parameter dictionary:        editor.open response from SourceKit.
     - parameter cursorInfoRequest: SourceKit xpc dictionary to use to send cursorinfo request.
     */
-    public init(file: File, dictionary: XPCDictionary, cursorInfoRequest: sourcekitd_object_t?) {
+    public init(file: File, dictionary: [String: XPCRepresentable], cursorInfoRequest: sourcekitd_object_t?) {
         self.file = file
         var dictionary = dictionary
         let syntaxMapData = dictionary.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue) as! NSData

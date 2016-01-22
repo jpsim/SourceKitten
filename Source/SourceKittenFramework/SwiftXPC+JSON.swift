@@ -27,23 +27,23 @@ public func toJSON(object: AnyObject) -> String {
 }
 
 /**
-Convert XPCDictionary to `[String: AnyObject]`.
+Convert [String: XPCRepresentable] to `[String: AnyObject]`.
 
-- parameter dictionary: XPCDictionary to convert.
+- parameter dictionary: [String: XPCRepresentable] to convert.
 
 - returns: JSON-serializable Dictionary.
 */
-public func toAnyObject(dictionary: XPCDictionary) -> [String: AnyObject] {
+public func toAnyObject(dictionary: [String: XPCRepresentable]) -> [String: AnyObject] {
     var anyDictionary = [String: AnyObject]()
     for (key, object) in dictionary {
         switch object {
         case let object as AnyObject:
             anyDictionary[key] = object
-        case let object as XPCArray:
-            anyDictionary[key] = object.map { toAnyObject($0 as! XPCDictionary) }
-        case let object as [XPCDictionary]:
+        case let object as [XPCRepresentable]:
+            anyDictionary[key] = object.map { toAnyObject($0 as! [String: XPCRepresentable]) }
+        case let object as [[String: XPCRepresentable]]:
             anyDictionary[key] = object.map { toAnyObject($0) }
-        case let object as XPCDictionary:
+        case let object as [String: XPCRepresentable]:
             anyDictionary[key] = toAnyObject(object)
         case let object as String:
             anyDictionary[key] = object

@@ -52,7 +52,7 @@ public struct SyntaxMap {
 
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
-    public init(sourceKitResponse: XPCDictionary) {
+    public init(sourceKitResponse: [String: XPCRepresentable]) {
         self.init(data: SwiftDocKey.getSyntaxMap(sourceKitResponse)!)
     }
 

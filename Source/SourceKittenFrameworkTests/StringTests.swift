@@ -93,7 +93,7 @@ class StringTests: XCTestCase {
     }
 
     func testParseDeclaration() {
-        let dict: XPCDictionary = [
+        let dict: [String: XPCRepresentable] = [
             "key.kind": "source.lang.swift.decl.class",
             "key.offset": Int64(24),
             "key.bodyoffset": Int64(32),
