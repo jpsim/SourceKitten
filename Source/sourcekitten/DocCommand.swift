@@ -7,7 +7,6 @@
 //
 
 import Commandant
-import Curry
 import Foundation
 import Result
 import SourceKittenFramework
@@ -64,8 +63,14 @@ struct DocOptions: OptionsType {
     let moduleName: String
     let objc: Bool
 
+    static func create(singleFile: Bool) -> (moduleName: String) -> (objc: Bool) -> DocOptions {
+        return { moduleName in { objc in
+            self.init(singleFile: singleFile, moduleName: moduleName, objc: objc)
+        }}
+    }
+
     static func evaluate(m: CommandMode) -> Result<DocOptions, CommandantError<SourceKittenError>> {
-        return curry(self.init)
+        return create
             <*> m <| Option(key: "single-file", defaultValue: false, usage: "only document one file")
             <*> m <| Option(key: "module-name", defaultValue: "",    usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
             <*> m <| Option(key: "objc",        defaultValue: false, usage: "document Objective-C headers")
