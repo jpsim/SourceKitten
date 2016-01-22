@@ -113,14 +113,13 @@ public enum Request {
     case EditorOpen(File)
     /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
     case CursorInfo(file: String, offset: Int64, arguments: [String])
-    /// A custom request by passing in the xpc_object_t directly.
+    /// A custom request by passing in the sourcekitd_object_t directly.
     case CustomRequest(sourcekitd_object_t)
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
     case CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
 
-    /// xpc_object_t version of the Request to be sent to SourceKit.
-    private var xpcValue: sourcekitd_object_t {
+    private var sourcekitObject: sourcekitd_object_t {
         var dict: [sourcekitd_uid_t : sourcekitd_object_t]
         switch self {
         case .EditorOpen(let file):
@@ -165,16 +164,16 @@ public enum Request {
     }
 
     /**
-    Create a Request.CursorInfo.xpcValue() from a file path and compiler arguments.
+    Create a Request.CursorInfo.sourcekitObject() from a file path and compiler arguments.
 
     - parameter filePath:  Path of the file to create request.
     - parameter arguments: Compiler arguments.
 
-    - returns: xpc_object_t representation of the Request, if successful.
+    - returns: sourcekitd_object_t representation of the Request, if successful.
     */
     internal static func cursorInfoRequestForFilePath(filePath: String?, arguments: [String]) -> sourcekitd_object_t? {
         if let path = filePath {
-            return Request.CursorInfo(file: path, offset: 0, arguments: arguments).xpcValue
+            return Request.CursorInfo(file: path, offset: 0, arguments: arguments).sourcekitObject
         }
         return nil
     }
@@ -182,7 +181,7 @@ public enum Request {
     /**
     Send a Request.CursorInfo by updating its offset. Returns SourceKit response if successful.
 
-    - parameter request: xpc_object_t representation of Request.CursorInfo
+    - parameter request: sourcekitd_object_t representation of Request.CursorInfo
     - parameter offset:  Offset to update request.
 
     - returns: SourceKit response if successful.
@@ -198,13 +197,13 @@ public enum Request {
     /**
     Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
 
-    - returns: SourceKit output as an XPC dictionary.
+    - returns: SourceKit output as a dictionary.
     */
     public func send() -> [String: SourceKitRepresentable] {
         dispatch_once(&sourceKitInitializationToken) {
             sourcekitd_initialize()
         }
-        return fromSourceKit(sourcekitd_response_get_value(sourcekitd_send_request_sync(xpcValue))) as! [String: SourceKitRepresentable]
+        return fromSourceKit(sourcekitd_response_get_value(sourcekitd_send_request_sync(sourcekitObject))) as! [String: SourceKitRepresentable]
     }
 }
 
@@ -212,5 +211,5 @@ public enum Request {
 
 extension Request: CustomStringConvertible {
     /// A textual representation of `Request`.
-    public var description: String { return String.fromCString(sourcekitd_request_description_copy(xpcValue))! }
+    public var description: String { return String(UTF8String: sourcekitd_request_description_copy(sourcekitObject))! }
 }

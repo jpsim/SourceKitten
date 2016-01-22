@@ -49,9 +49,9 @@ public final class File {
     }
 
     /**
-    Parse source declaration string from XPC dictionary.
+    Parse source declaration string from SourceKit dictionary.
 
-    - parameter dictionary: XPC dictionary to extract declaration from.
+    - parameter dictionary: SourceKit dictionary to extract declaration from.
 
     - returns: Source declaration if successfully parsed.
     */
@@ -69,9 +69,9 @@ public final class File {
     }
 
     /**
-    Parse line numbers containing the declaration's implementation from XPC dictionary.
+    Parse line numbers containing the declaration's implementation from SourceKit dictionary.
     
-    - parameter dictionary: XPC dictionary to extract declaration from.
+    - parameter dictionary: SourceKit dictionary to extract declaration from.
     
     - returns: Line numbers containing the declaration's implementation.
     */
