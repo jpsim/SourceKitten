@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-import SwiftXPC
-
 /// Type that maps potentially documented declaration offsets to its closest parent offset.
 public typealias OffsetMap = [Int: Int]
 

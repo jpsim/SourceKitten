@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftXPC
 
 /// Represents a Swift file's syntax information.
 public struct SyntaxMap {

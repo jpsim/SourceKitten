@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftXPC
 
 extension Dictionary {
     private mutating func addIfNotNil(key: Key, _ value: Value?) {

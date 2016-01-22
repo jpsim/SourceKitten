@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftXPC
 import SWXMLHash
 
 /// Represents a source file.

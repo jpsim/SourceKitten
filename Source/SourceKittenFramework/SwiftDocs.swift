@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftXPC
 
 /// Represents docs for a Swift file.
 public struct SwiftDocs {

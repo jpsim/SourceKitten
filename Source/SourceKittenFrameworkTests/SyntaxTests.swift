@@ -8,7 +8,6 @@
 
 import Foundation
 import SourceKittenFramework
-import SwiftXPC
 import XCTest
 
 func compareSyntax(file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {

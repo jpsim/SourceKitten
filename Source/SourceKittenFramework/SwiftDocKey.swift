@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftXPC
 
 /// SourceKit response dictionary keys.
 internal enum SwiftDocKey: String {

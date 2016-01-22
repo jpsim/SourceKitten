@@ -7,7 +7,6 @@
 //
 
 import SourceKittenFramework
-import SwiftXPC
 import XCTest
 
 class CodeCompletionTests: XCTestCase {
