@@ -329,27 +329,6 @@ public final class File {
 }
 
 /**
-Traverse the dictionary replacing SourceKit UIDs with their string value.
-
-- parameter dictionary: Dictionary to replace UIDs.
-
-- returns: Dictionary with UIDs replaced by strings.
-*/
-internal func replaceUIDsWithSourceKitStrings(dictionary: [String: SourceKitRepresentable]) -> [String: SourceKitRepresentable] {
-    var dictionary = dictionary
-    for (key, value) in dictionary {
-        if let uid = value as? UInt64, uidString = stringForSourceKitUID(unsafeBitCast(uid, sourcekitd_uid_t.self)) {
-            dictionary[key] = uidString
-        } else if let array = value as? [SourceKitRepresentable] {
-            dictionary[key] = array.map { replaceUIDsWithSourceKitStrings($0 as! [String: SourceKitRepresentable]) } as [SourceKitRepresentable]
-        } else if let dict = value as? [String: SourceKitRepresentable] {
-            dictionary[key] = replaceUIDsWithSourceKitStrings(dict)
-        }
-    }
-    return dictionary
-}
-
-/**
 Returns true if the dictionary represents a source declaration or a mark-style comment.
 
 - parameter dictionary: Dictionary to parse.

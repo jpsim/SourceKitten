@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import SwiftXPC
-
-public typealias SourceKitRepresentable = XPCRepresentable
 
 /**
 JSON Object to JSON String.

@@ -7,7 +7,82 @@
 //
 
 import Foundation
-import SwiftXPC
+
+public protocol SourceKitRepresentable {
+    func isEqualTo(rhs: SourceKitRepresentable) -> Bool
+}
+extension Array: SourceKitRepresentable {}
+extension Dictionary: SourceKitRepresentable {}
+extension String: SourceKitRepresentable {}
+extension Int64: SourceKitRepresentable {}
+extension Bool: SourceKitRepresentable {}
+
+extension SourceKitRepresentable {
+    public func isEqualTo(rhs: SourceKitRepresentable) -> Bool {
+        switch self {
+        case let lhs as [SourceKitRepresentable]:
+            for (idx, value) in lhs.enumerate() {
+                if let rhs = rhs as? [SourceKitRepresentable] where rhs[idx].isEqualTo(value) {
+                    continue
+                }
+                return false
+            }
+            return true
+        case let lhs as [String: SourceKitRepresentable]:
+            for (key, value) in lhs {
+                if let rhs = rhs as? [String: SourceKitRepresentable],
+                    rhsValue = rhs[key] where rhsValue.isEqualTo(value) {
+                    continue
+                }
+                return false
+            }
+            return true
+        case let lhs as String:
+            return lhs == rhs as? String
+        case let lhs as Int64:
+            return lhs == rhs as? Int64
+        case let lhs as Bool:
+            return lhs == rhs as? Bool
+        default:
+            fatalError("Should never happen because we've checked all SourceKitRepresentable types")
+        }
+    }
+}
+
+private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRepresentable? {
+    switch sourcekitd_variant_get_type(sourcekitObject) {
+    case SOURCEKITD_VARIANT_TYPE_ARRAY:
+        var array = [SourceKitRepresentable]()
+        sourcekitd_variant_array_apply(sourcekitObject) { index, value in
+            if let value = fromSourceKit(value) {
+                array.insert(value, atIndex: Int(index))
+            }
+            return true
+        }
+        return array
+    case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
+        var dict = [String: SourceKitRepresentable]()
+        sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
+            if let key = stringForSourceKitUID(key), value = fromSourceKit(value) {
+                dict[key] = value
+            }
+            return true
+        }
+        return dict
+    case SOURCEKITD_VARIANT_TYPE_STRING:
+        return String(UTF8String: sourcekitd_variant_string_get_ptr(sourcekitObject))!
+    case SOURCEKITD_VARIANT_TYPE_INT64:
+        return sourcekitd_variant_int64_get_value(sourcekitObject)
+    case SOURCEKITD_VARIANT_TYPE_BOOL:
+        return sourcekitd_variant_bool_get_value(sourcekitObject)
+    case SOURCEKITD_VARIANT_TYPE_UID:
+        return stringForSourceKitUID(sourcekitd_variant_uid_get_value(sourcekitObject))!
+    case SOURCEKITD_VARIANT_TYPE_NULL:
+        return nil
+    default:
+        fatalError("Should never happen because we've checked all SourceKitRepresentable types")
+    }
+}
 
 /// dispatch_once_t token used to only initialize SourceKit once per session.
 private var sourceKitInitializationToken: dispatch_once_t = 0
@@ -129,7 +204,7 @@ public enum Request {
         dispatch_once(&sourceKitInitializationToken) {
             sourcekitd_initialize()
         }
-        return replaceUIDsWithSourceKitStrings(fromXPC(unsafeBitCast(sourcekitd_send_request_sync(xpcValue), xpc_object_t.self)))
+        return fromSourceKit(sourcekitd_response_get_value(sourcekitd_send_request_sync(xpcValue))) as! [String: SourceKitRepresentable]
     }
 }
 

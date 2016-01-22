@@ -107,7 +107,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Syntax map data if successful.
     */
-    internal static func getSyntaxMap(dictionary: [String: SourceKitRepresentable]) -> NSData? {
+    internal static func getSyntaxMap(dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
         return get(.SyntaxMap, dictionary)
     }
 

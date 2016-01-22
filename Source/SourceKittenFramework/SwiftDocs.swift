@@ -40,7 +40,7 @@ public struct SwiftDocs {
     public init(file: File, dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?) {
         self.file = file
         var dictionary = dictionary
-        let syntaxMapData = dictionary.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue) as! NSData
+        let syntaxMapData = dictionary.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue) as! [SourceKitRepresentable]
         let syntaxMap = SyntaxMap(data: syntaxMapData)
         dictionary = file.processDictionary(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
         if let cursorInfoRequest = cursorInfoRequest {

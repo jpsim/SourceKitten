@@ -16,19 +16,6 @@ extension Dictionary {
     }
 }
 
-extension NSData {
-    private func stringFromRange(start: Int, end: Int) -> String? {
-        let start = start
-        let length = end - start
-        if length < 0 {
-            return nil
-        }
-        var buffer = [CChar](count: length, repeatedValue: 0)
-        getBytes(&buffer, range: NSRange(location: start, length: length))
-        return String.fromCString(&buffer)
-    }
-}
-
 public struct CodeCompletionItem: CustomStringConvertible {
     public let kind: String
     public let context: String
@@ -39,20 +26,6 @@ public struct CodeCompletionItem: CustomStringConvertible {
     public let moduleName: String?
     public let docBrief: String?
     public let associatedUSRs: String?
-
-    public init(kind: String, context: String, name: String?,
-                descriptionKey: String?, sourcetext: String?, typeName: String?,
-                moduleName: String?, docBrief: String?, associatedUSRs: String?) {
-        self.kind = kind
-        self.context = context
-        self.name = name
-        self.descriptionKey = descriptionKey
-        self.sourcetext = sourcetext
-        self.typeName = typeName
-        self.moduleName = moduleName
-        self.docBrief = docBrief
-        self.associatedUSRs = associatedUSRs
-    }
 
     /// Dictionary representation of CodeCompletionItem. Useful for NSJSONSerialization.
     public var dictionaryValue: [String: AnyObject] {
@@ -75,51 +48,17 @@ public struct CodeCompletionItem: CustomStringConvertible {
     }
 
     public static func parseResponse(response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {
-        return (response["key.results"] as? NSData).map { parseItems($0) } ?? []
-    }
-
-    public static func parseItems(data: NSData) -> [CodeCompletionItem] {
-        var buffer = UInt64(0)
-        data.getBytes(&buffer, range: NSRange(location: 8, length: 8))
-        let maxRange = Int(buffer.littleEndian) + 16
-        var smallerBuffer = UInt32(0)
-        let notFound = UInt32.max
-        let offsets = 16.stride(to: maxRange, by: 45).map { offset in
-            return (offset + 8).stride(through: offset + 32, by: 4).map { offset -> Int? in
-                data.getBytes(&smallerBuffer, range: NSRange(location: offset, length: 4))
-                if smallerBuffer != notFound {
-                    return maxRange + Int(smallerBuffer)
-                }
-                return nil
-            }
-        }
-        let flatOffsets = offsets.flatMap({ $0 }).flatMap({ $0 })
-        let offsetPairs = zip(flatOffsets, Array(flatOffsets.dropFirst()) + [data.length])
-        var offsetsToStrings = [Int: String]()
-        for (offset, nextOffset) in offsetPairs {
-            if let string = data.stringFromRange(offset, end: nextOffset) {
-                offsetsToStrings[offset] = string
-            }
-        }
-        return 16.stride(to: maxRange, by: 45).enumerate().flatMap { index, offset -> CodeCompletionItem? in
-            data.getBytes(&buffer, range: NSRange(location: offset, length: 8))
-            guard let kind = stringForSourceKitUID(unsafeBitCast(buffer, sourcekitd_uid_t.self)) else {
-                return nil
-            }
-            data.getBytes(&buffer, range: NSRange(location: offset + 36, length: 8))
-            guard let context = stringForSourceKitUID(unsafeBitCast(buffer, sourcekitd_uid_t.self)) else {
-                return nil
-            }
-            return CodeCompletionItem(kind: kind,
-                context: context,
-                name: offsets[index][0].flatMap({ offsetsToStrings[$0] }),
-                descriptionKey: offsets[index][1].flatMap({ offsetsToStrings[$0] }),
-                sourcetext: offsets[index][2].flatMap({ offsetsToStrings[$0] }),
-                typeName: offsets[index][3].flatMap({ offsetsToStrings[$0] }),
-                moduleName: offsets[index][4].flatMap({ offsetsToStrings[$0] }),
-                docBrief: offsets[index][5].flatMap({ offsetsToStrings[$0] }),
-                associatedUSRs: offsets[index][6].flatMap({ offsetsToStrings[$0] })
-            )
+        return (response["key.results"] as! [SourceKitRepresentable]).map { item in
+            let dict = item as! [String: SourceKitRepresentable]
+            return CodeCompletionItem(kind: dict["key.kind"] as! String,
+                context: dict["key.context"] as! String,
+                name: dict["key.name"] as? String,
+                descriptionKey: dict["key.description"] as? String,
+                sourcetext: dict["key.sourcetext"] as? String,
+                typeName: dict["key.typename"] as? String,
+                moduleName: dict["key.modulename"] as? String,
+                docBrief: dict["key.doc.brief"] as? String,
+                associatedUSRs: dict["key.associated_usrs"] as? String)
         }
     }
 }
