@@ -10,7 +10,7 @@ import Foundation
 import SwiftXPC
 
 /// dispatch_once_t token used to only initialize SourceKit once per session.
-private var sourceKitInitializationToken = dispatch_once_t(0)
+private var sourceKitInitializationToken: dispatch_once_t = 0
 
 /// SourceKit UID to String map.
 private var uidStringMap = [COpaquePointer: String]()
