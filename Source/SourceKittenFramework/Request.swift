@@ -13,7 +13,7 @@ import SwiftXPC
 private var sourceKitInitializationToken: dispatch_once_t = 0
 
 /// SourceKit UID to String map.
-private var uidStringMap = [COpaquePointer: String]()
+private var uidStringMap = [sourcekitd_uid_t: String]()
 
 /**
 Cache SourceKit requests for strings from UIDs
@@ -22,7 +22,7 @@ Cache SourceKit requests for strings from UIDs
 
 - returns: Cached UID string if available, nil otherwise.
 */
-internal func stringForSourceKitUID(uid: COpaquePointer) -> String? {
+internal func stringForSourceKitUID(uid: sourcekitd_uid_t) -> String? {
     if let string = uidStringMap[uid] {
         return string
     } else if let uidString = String(UTF8String: sourcekitd_uid_get_string_ptr(uid)) {
