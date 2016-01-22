@@ -43,7 +43,7 @@
 		E86847381A587B0A0043DC65 /* SwiftXPC.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E86847361A587AF40043DC65 /* SwiftXPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E868473A1A587B4D0043DC65 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86847391A587B4D0043DC65 /* Request.swift */; };
 		E868473C1A587C6E0043DC65 /* sourcekitd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E868473B1A587C6E0043DC65 /* sourcekitd.framework */; };
-		E868473E1A587CCC0043DC65 /* sourcekitd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E868473D1A587CCC0043DC65 /* sourcekitd.swift */; };
+		E86F588E1C4DC49000426E78 /* sourcekitd.h in Headers */ = {isa = PBXBuildFile; fileRef = E86F588D1C4DC49000426E78 /* sourcekitd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E872121A1AD2FFCD00A484F4 /* Array+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87212191AD2FFCD00A484F4 /* Array+SourceKitten.swift */; };
 		E877D9271B5693E70095BB2B /* ObjCDeclarationKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E877D9261B5693E70095BB2B /* ObjCDeclarationKind.swift */; };
 		E89291A71A5B7FF800D91568 /* SwiftDocKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89291A61A5B7FF800D91568 /* SwiftDocKey.swift */; };
@@ -179,7 +179,7 @@
 		E86847361A587AF40043DC65 /* SwiftXPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftXPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86847391A587B4D0043DC65 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; usesTabs = 0; };
 		E868473B1A587C6E0043DC65 /* sourcekitd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sourcekitd.framework; path = Toolchains/XcodeDefault.xctoolchain/usr/lib/sourcekitd.framework; sourceTree = DEVELOPER_DIR; };
-		E868473D1A587CCC0043DC65 /* sourcekitd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sourcekitd.swift; sourceTree = "<group>"; usesTabs = 0; };
+		E86F588D1C4DC49000426E78 /* sourcekitd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sourcekitd.h; sourceTree = "<group>"; };
 		E87212191AD2FFCD00A484F4 /* Array+SourceKitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SourceKitten.swift"; sourceTree = "<group>"; };
 		E877D9261B5693E70095BB2B /* ObjCDeclarationKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCDeclarationKind.swift; sourceTree = "<group>"; };
 		E89291A61A5B7FF800D91568 /* SwiftDocKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDocKey.swift; sourceTree = "<group>"; };
@@ -360,6 +360,7 @@
 		D0D1216E19E87B05005E4BAA /* SourceKittenFramework */ = {
 			isa = PBXGroup;
 			children = (
+				E86F588D1C4DC49000426E78 /* sourcekitd.h */,
 				E8D4742B1A648ED10011A49C /* clang-c */,
 				D0D1216F19E87B05005E4BAA /* Supporting Files */,
 				E87212191AD2FFCD00A484F4 /* Array+SourceKitten.swift */,
@@ -377,7 +378,6 @@
 				E806D2901BE058C400D1BE41 /* Parameter.swift */,
 				E86847391A587B4D0043DC65 /* Request.swift */,
 				E8A9B8911B56D1B100CD17D4 /* SourceDeclaration.swift */,
-				E868473D1A587CCC0043DC65 /* sourcekitd.swift */,
 				D0D1217119E87B05005E4BAA /* SourceKittenFramework.h */,
 				E806D28C1BE0589B00D1BE41 /* SourceLocation.swift */,
 				E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */,
@@ -456,6 +456,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E86F588E1C4DC49000426E78 /* sourcekitd.h in Headers */,
 				E8D474331A648ED10011A49C /* BuildSystem.h in Headers */,
 				E8D474341A648ED10011A49C /* CXCompilationDatabase.h in Headers */,
 				E8D474351A648ED10011A49C /* CXErrorCode.h in Headers */,
@@ -622,7 +623,6 @@
 				E868473A1A587B4D0043DC65 /* Request.swift in Sources */,
 				E8A9B8921B56D1B100CD17D4 /* SourceDeclaration.swift in Sources */,
 				E806D28D1BE0589B00D1BE41 /* SourceLocation.swift in Sources */,
-				E868473E1A587CCC0043DC65 /* sourcekitd.swift in Sources */,
 				E8AE53C71A5B5FCA0092D24A /* String+SourceKitten.swift in Sources */,
 				E834740F1A593B5B00532B9A /* Structure.swift in Sources */,
 				E89291A91A5B800300D91568 /* SwiftDeclarationKind.swift in Sources */,

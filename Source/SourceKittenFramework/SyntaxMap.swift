@@ -40,7 +40,7 @@ public struct SyntaxMap {
             data.getBytes(&length, range: NSRange(location: 12 + parserOffset, length: 4))
 
             return SyntaxToken(
-                type: stringForSourceKitUID(uid) ?? "unknown",
+                type: stringForSourceKitUID(unsafeBitCast(uid, sourcekitd_uid_t.self)) ?? "unknown",
                 offset: offset,
                 length: length >> 1
             )

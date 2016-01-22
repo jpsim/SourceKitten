@@ -21,3 +21,4 @@ FOUNDATION_EXPORT const unsigned char SourceKittenFrameworkVersionString[];
 #import <SourceKittenFramework/Index.h>
 #import <SourceKittenFramework/Documentation.h>
 #import <SourceKittenFramework/CXCompilationDatabase.h>
+#import <SourceKittenFramework/sourcekitd.h>

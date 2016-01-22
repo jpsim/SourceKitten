@@ -118,7 +118,7 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func processDictionary(dictionary: XPCDictionary, cursorInfoRequest: xpc_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> XPCDictionary {
+    public func processDictionary(dictionary: XPCDictionary, cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> XPCDictionary {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
@@ -163,7 +163,7 @@ public final class File {
     - parameter documentedTokenOffsets: Offsets that are likely documented.
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
-    internal func furtherProcessDictionary(dictionary: XPCDictionary, documentedTokenOffsets: [Int], cursorInfoRequest: xpc_object_t, syntaxMap: SyntaxMap) -> XPCDictionary {
+    internal func furtherProcessDictionary(dictionary: XPCDictionary, documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> XPCDictionary {
         var dictionary = dictionary
         let offsetMap = generateOffsetMap(documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reverse() { // Do this in reverse to insert the doc at the correct offset
@@ -189,7 +189,7 @@ public final class File {
                `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
                and declarations.
     */
-    private func newSubstructure(dictionary: XPCDictionary, cursorInfoRequest: xpc_object_t?, syntaxMap: SyntaxMap?) -> XPCArray? {
+    private func newSubstructure(dictionary: XPCDictionary, cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> XPCArray? {
         return SwiftDocKey.getSubstructure(dictionary)?
             .map({ $0 as! XPCDictionary })
             .filter(isDeclarationOrCommentMark)
@@ -204,7 +204,7 @@ public final class File {
     - parameter dictionary:        Dictionary to update.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    private func dictWithCommentMarkNamesCursorInfo(dictionary: XPCDictionary, cursorInfoRequest: xpc_object_t) -> XPCDictionary? {
+    private func dictWithCommentMarkNamesCursorInfo(dictionary: XPCDictionary, cursorInfoRequest: sourcekitd_object_t) -> XPCDictionary? {
         if let kind = SwiftDocKey.getKind(dictionary) {
             // Only update dictionaries with a 'kind' key
             if kind == SyntaxKind.CommentMark.rawValue {
@@ -339,7 +339,7 @@ Traverse the dictionary replacing SourceKit UIDs with their string value.
 internal func replaceUIDsWithSourceKitStrings(dictionary: XPCDictionary) -> XPCDictionary {
     var dictionary = dictionary
     for (key, value) in dictionary {
-        if let uid = value as? UInt64, uidString = stringForSourceKitUID(uid) {
+        if let uid = value as? UInt64, uidString = stringForSourceKitUID(unsafeBitCast(uid, sourcekitd_uid_t.self)) {
             dictionary[key] = uidString
         } else if let array = value as? XPCArray {
             dictionary[key] = array.map { replaceUIDsWithSourceKitStrings($0 as! XPCDictionary) } as XPCArray
