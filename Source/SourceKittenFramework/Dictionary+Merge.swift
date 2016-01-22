@@ -14,11 +14,12 @@ Returns a new dictionary by adding the entries of dict2 into dict1, overriding i
 
 - returns: A new dictionary by adding the entries of dict2 into dict1, overriding if the key exists.
 */
-internal func merge<K,V>(var dict1: [K: V], _ dict2: [K: V]?) -> [K: V] {
+internal func merge<K,V>(dict1: [K: V], _ dict2: [K: V]?) -> [K: V] {
+    var mergedDict = dict1
     if let dict2 = dict2 {
         for (key, value) in dict2 {
-            dict1[key] = value
+            mergedDict[key] = value
         }
     }
-    return dict1
+    return mergedDict
 }

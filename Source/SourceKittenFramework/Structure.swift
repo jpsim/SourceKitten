@@ -19,7 +19,8 @@ public struct Structure {
      
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
-    public init(var sourceKitResponse: XPCDictionary) {
+    public init(sourceKitResponse: XPCDictionary) {
+        var sourceKitResponse = sourceKitResponse
         _ = sourceKitResponse.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue)
         dictionary = sourceKitResponse
     }

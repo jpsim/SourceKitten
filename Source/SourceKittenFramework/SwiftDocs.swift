@@ -38,8 +38,9 @@ public struct SwiftDocs {
     - parameter dictionary:        editor.open response from SourceKit.
     - parameter cursorInfoRequest: SourceKit xpc dictionary to use to send cursorinfo request.
     */
-    public init(file: File, var dictionary: XPCDictionary, cursorInfoRequest: xpc_object_t?) {
+    public init(file: File, dictionary: XPCDictionary, cursorInfoRequest: xpc_object_t?) {
         self.file = file
+        var dictionary = dictionary
         let syntaxMapData = dictionary.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue) as! NSData
         let syntaxMap = SyntaxMap(data: syntaxMapData)
         dictionary = file.processDictionary(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)

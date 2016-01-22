@@ -66,7 +66,8 @@ Partially filters compiler arguments from `xcodebuild` to something that SourceK
 - returns: A tuple of partially filtered compiler arguments in `.0`, and whether or not there are
           more flags to remove in `.1`.
 */
-private func partiallyFilterArguments(var args: [String]) -> ([String], Bool) {
+private func partiallyFilterArguments(args: [String]) -> ([String], Bool) {
+    var args = args
     var didRemove = false
     let flagsToRemove = [
         "-output-file-map"
@@ -88,7 +89,8 @@ Filters compiler arguments from `xcodebuild` to something that SourceKit/Clang w
 
 - returns: Filtered compiler arguments.
 */
-private func filterArguments(var args: [String]) -> [String] {
+private func filterArguments(args: [String]) -> [String] {
+    var args = args
     args.appendContentsOf(["-D", "DEBUG"])
     var shouldContinueToFilterArguments = true
     while shouldContinueToFilterArguments {

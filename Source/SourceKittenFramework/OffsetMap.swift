@@ -48,7 +48,8 @@ extension File {
 
     - returns: OffsetMap of potentially documented declaration offsets to its nearest parent offset.
     */
-    private func mapOffsets(dictionary: XPCDictionary, var offsetMap: OffsetMap) -> OffsetMap {
+    private func mapOffsets(dictionary: XPCDictionary, offsetMap: OffsetMap) -> OffsetMap {
+        var offsetMap = offsetMap
         // Only map if we're in the correct file
         if let rangeStart = SwiftDocKey.getNameOffset(dictionary),
             rangeLength = SwiftDocKey.getNameLength(dictionary) where
