@@ -118,7 +118,8 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func processDictionary(var dictionary: XPCDictionary, cursorInfoRequest: xpc_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> XPCDictionary {
+    public func processDictionary(dictionary: XPCDictionary, cursorInfoRequest: xpc_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> XPCDictionary {
+        var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
                 dictionary,
@@ -162,7 +163,8 @@ public final class File {
     - parameter documentedTokenOffsets: Offsets that are likely documented.
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
-    internal func furtherProcessDictionary(var dictionary: XPCDictionary, documentedTokenOffsets: [Int], cursorInfoRequest: xpc_object_t, syntaxMap: SyntaxMap) -> XPCDictionary {
+    internal func furtherProcessDictionary(dictionary: XPCDictionary, documentedTokenOffsets: [Int], cursorInfoRequest: xpc_object_t, syntaxMap: SyntaxMap) -> XPCDictionary {
+        var dictionary = dictionary
         let offsetMap = generateOffsetMap(documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reverse() { // Do this in reverse to insert the doc at the correct offset
             let response = processDictionary(Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset))!, cursorInfoRequest: nil, syntaxMap: syntaxMap)
@@ -248,7 +250,8 @@ public final class File {
 
     - returns: Parent with doc inserted if successful.
     */
-    private func insertDoc(doc: XPCDictionary, var parent: XPCDictionary, offset: Int64) -> XPCDictionary? {
+    private func insertDoc(doc: XPCDictionary, parent: XPCDictionary, offset: Int64) -> XPCDictionary? {
+        var parent = parent
         if shouldInsert(parent, offset: offset) {
             var substructure = SwiftDocKey.getSubstructure(parent)!
             var insertIndex = substructure.count
@@ -263,7 +266,8 @@ public final class File {
             return parent
         }
         for key in parent.keys {
-            if var subArray = parent[key] as? XPCArray {
+            if let subArray = parent[key] as? XPCArray {
+                var subArray = subArray
                 for i in 0..<subArray.count {
                     if let subDict = insertDoc(doc, parent: subArray[i] as! XPCDictionary, offset: offset) {
                         subArray[i] = subDict
@@ -332,7 +336,8 @@ Traverse the dictionary replacing SourceKit UIDs with their string value.
 
 - returns: Dictionary with UIDs replaced by strings.
 */
-internal func replaceUIDsWithSourceKitStrings(var dictionary: XPCDictionary) -> XPCDictionary {
+internal func replaceUIDsWithSourceKitStrings(dictionary: XPCDictionary) -> XPCDictionary {
+    var dictionary = dictionary
     for (key, value) in dictionary {
         if let uid = value as? UInt64, uidString = stringForSourceKitUID(uid) {
             dictionary[key] = uidString

@@ -337,7 +337,7 @@ extension NSString {
         return byteRangeToNSRange(start: start, length: length).flatMap { range in
             var numberOfLines = 0, index = 0, lineRangeStart = 0
             while index < self.length {
-                numberOfLines++
+                numberOfLines += 1
                 if index <= range.location {
                     lineRangeStart = numberOfLines
                 }
@@ -539,7 +539,7 @@ extension String {
             if !characterSet.characterIsMember(char) {
                 break
             }
-            count++
+            count += 1
         }
         return count
     }
