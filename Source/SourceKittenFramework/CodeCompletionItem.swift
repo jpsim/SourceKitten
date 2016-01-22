@@ -75,7 +75,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
         return toJSON(dictionaryValue)
     }
 
-    public static func parseResponse(response: [String: XPCRepresentable]) -> [CodeCompletionItem] {
+    public static func parseResponse(response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {
         return (response["key.results"] as? NSData).map { parseItems($0) } ?? []
     }
 

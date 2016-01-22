@@ -112,7 +112,7 @@ public enum Request {
 
     - returns: SourceKit response if successful.
     */
-    internal static func sendCursorInfoRequest(request: sourcekitd_object_t, atOffset offset: Int64) -> [String: XPCRepresentable]? {
+    internal static func sendCursorInfoRequest(request: sourcekitd_object_t, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
         if offset == 0 {
             return nil
         }
@@ -121,11 +121,11 @@ public enum Request {
     }
 
     /**
-    Sends the request to SourceKit and return the response as an [String: XPCRepresentable].
+    Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
 
     - returns: SourceKit output as an XPC dictionary.
     */
-    public func send() -> [String: XPCRepresentable] {
+    public func send() -> [String: SourceKitRepresentable] {
         dispatch_once(&sourceKitInitializationToken) {
             sourcekitd_initialize()
         }

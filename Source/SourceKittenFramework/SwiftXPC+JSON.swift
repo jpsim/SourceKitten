@@ -9,6 +9,8 @@
 import Foundation
 import SwiftXPC
 
+public typealias SourceKitRepresentable = XPCRepresentable
+
 /**
 JSON Object to JSON String.
 
@@ -27,23 +29,23 @@ public func toJSON(object: AnyObject) -> String {
 }
 
 /**
-Convert [String: XPCRepresentable] to `[String: AnyObject]`.
+Convert [String: SourceKitRepresentable] to `[String: AnyObject]`.
 
-- parameter dictionary: [String: XPCRepresentable] to convert.
+- parameter dictionary: [String: SourceKitRepresentable] to convert.
 
 - returns: JSON-serializable Dictionary.
 */
-public func toAnyObject(dictionary: [String: XPCRepresentable]) -> [String: AnyObject] {
+public func toAnyObject(dictionary: [String: SourceKitRepresentable]) -> [String: AnyObject] {
     var anyDictionary = [String: AnyObject]()
     for (key, object) in dictionary {
         switch object {
         case let object as AnyObject:
             anyDictionary[key] = object
-        case let object as [XPCRepresentable]:
-            anyDictionary[key] = object.map { toAnyObject($0 as! [String: XPCRepresentable]) }
-        case let object as [[String: XPCRepresentable]]:
+        case let object as [SourceKitRepresentable]:
+            anyDictionary[key] = object.map { toAnyObject($0 as! [String: SourceKitRepresentable]) }
+        case let object as [[String: SourceKitRepresentable]]:
             anyDictionary[key] = object.map { toAnyObject($0) }
-        case let object as [String: XPCRepresentable]:
+        case let object as [String: SourceKitRepresentable]:
             anyDictionary[key] = toAnyObject(object)
         case let object as String:
             anyDictionary[key] = object
@@ -62,7 +64,7 @@ public func toAnyObject(dictionary: [String: XPCRepresentable]) -> [String: AnyO
         case let object as NSFileHandle:
             anyDictionary[key] = NSNumber(int: object.fileDescriptor)
         default:
-            fatalError("Should never happen because we've checked all XPCRepresentable types")
+            fatalError("Should never happen because we've checked all SourceKitRepresentable types")
         }
     }
     return anyDictionary

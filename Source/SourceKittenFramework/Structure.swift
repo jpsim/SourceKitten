@@ -11,15 +11,15 @@ import SwiftXPC
 
 /// Represents the structural information in a Swift source file.
 public struct Structure {
-    /// Structural information as an [String: XPCRepresentable].
-    public let dictionary: [String: XPCRepresentable]
+    /// Structural information as an [String: SourceKitRepresentable].
+    public let dictionary: [String: SourceKitRepresentable]
 
     /**
     Create a Structure from a SourceKit `editor.open` response.
      
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
-    public init(sourceKitResponse: [String: XPCRepresentable]) {
+    public init(sourceKitResponse: [String: SourceKitRepresentable]) {
         var sourceKitResponse = sourceKitResponse
         _ = sourceKitResponse.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue)
         dictionary = sourceKitResponse
