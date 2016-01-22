@@ -5,7 +5,19 @@ git:
 branches:
   only:
     - master
-script: make test
+script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
+matrix:
+  include:
+    - script: make test
+      env: JOB=Xcode
+    - script: swift build
+      env: JOB=SPM
+      before_install:
+        - make swift_snapshot_install
+        - make spm_bootstrap
+        - 'export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"'
+  exclude:
+    - script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
 notifications:
   email: false
   slack: realmio:vPdpsG9NLDo2DNlbqtcMAQuE
