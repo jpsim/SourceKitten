@@ -10,7 +10,6 @@ import Commandant
 import Foundation
 import Result
 import SourceKittenFramework
-import SwiftXPC
 
 struct CompleteCommand: CommandType {
     let verb = "complete"

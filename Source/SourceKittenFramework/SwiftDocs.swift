@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import SwiftXPC
 
 /// Represents docs for a Swift file.
 public struct SwiftDocs {
     /// Documented File.
     public let file: File
 
-    /// Docs information as an XPCDictionary.
-    public let docsDictionary: XPCDictionary
+    /// Docs information as an [String: SourceKitRepresentable].
+    public let docsDictionary: [String: SourceKitRepresentable]
 
     /**
     Create docs for the specified Swift file and compiler arguments.
@@ -36,12 +35,12 @@ public struct SwiftDocs {
 
     - parameter file:              Swift file to document.
     - parameter dictionary:        editor.open response from SourceKit.
-    - parameter cursorInfoRequest: SourceKit xpc dictionary to use to send cursorinfo request.
+    - parameter cursorInfoRequest: SourceKit dictionary to use to send cursorinfo request.
     */
-    public init(file: File, dictionary: XPCDictionary, cursorInfoRequest: sourcekitd_object_t?) {
+    public init(file: File, dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?) {
         self.file = file
         var dictionary = dictionary
-        let syntaxMapData = dictionary.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue) as! NSData
+        let syntaxMapData = dictionary.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue) as! [SourceKitRepresentable]
         let syntaxMap = SyntaxMap(data: syntaxMapData)
         dictionary = file.processDictionary(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
         if let cursorInfoRequest = cursorInfoRequest {

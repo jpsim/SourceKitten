@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftXPC
 
 /// Represents a Swift file's syntax information.
 public struct SyntaxMap {
@@ -28,22 +27,10 @@ public struct SyntaxMap {
 
     - parameter data: NSData from a SourceKit `editor.open` response
     */
-    public init(data: NSData) {
-        var numberOfTokens = 0
-        data.getBytes(&numberOfTokens, range: NSRange(location: 8, length: 8))
-        numberOfTokens = numberOfTokens >> 4
-
-        tokens = 16.stride(through: numberOfTokens * 16, by: 16).map { parserOffset in
-            var uid = UInt64(0), offset = 0, length = 0
-            data.getBytes(&uid, range: NSRange(location: parserOffset, length: 8))
-            data.getBytes(&offset, range: NSRange(location: 8 + parserOffset, length: 4))
-            data.getBytes(&length, range: NSRange(location: 12 + parserOffset, length: 4))
-
-            return SyntaxToken(
-                type: stringForSourceKitUID(unsafeBitCast(uid, sourcekitd_uid_t.self)) ?? "unknown",
-                offset: offset,
-                length: length >> 1
-            )
+    public init(data: [SourceKitRepresentable]) {
+        tokens = data.map { item in
+            let dict = item as! [String: SourceKitRepresentable]
+            return SyntaxToken(type: dict["key.kind"] as! String, offset: Int(dict["key.offset"] as! Int64), length: Int(dict["key.length"] as! Int64))
         }
     }
 
@@ -52,7 +39,7 @@ public struct SyntaxMap {
 
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
-    public init(sourceKitResponse: XPCDictionary) {
+    public init(sourceKitResponse: [String: SourceKitRepresentable]) {
         self.init(data: SwiftDocKey.getSyntaxMap(sourceKitResponse)!)
     }
 

@@ -7,19 +7,18 @@
 //
 
 import Foundation
-import SwiftXPC
 
 /// Represents the structural information in a Swift source file.
 public struct Structure {
-    /// Structural information as an XPCDictionary.
-    public let dictionary: XPCDictionary
+    /// Structural information as an [String: SourceKitRepresentable].
+    public let dictionary: [String: SourceKitRepresentable]
 
     /**
     Create a Structure from a SourceKit `editor.open` response.
      
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
-    public init(sourceKitResponse: XPCDictionary) {
+    public init(sourceKitResponse: [String: SourceKitRepresentable]) {
         var sourceKitResponse = sourceKitResponse
         _ = sourceKitResponse.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue)
         dictionary = sourceKitResponse
@@ -55,5 +54,5 @@ Returns true if `lhs` Structure is equal to `rhs` Structure.
 - returns: True if `lhs` Structure is equal to `rhs` Structure.
 */
 public func ==(lhs: Structure, rhs: Structure) -> Bool {
-    return lhs.dictionary == rhs.dictionary
+    return lhs.dictionary.isEqualTo(rhs.dictionary)
 }

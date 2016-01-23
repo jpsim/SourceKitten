@@ -8,7 +8,6 @@
 
 import Foundation
 import SourceKittenFramework
-import SwiftXPC
 import XCTest
 
 class StructureTests: XCTestCase {

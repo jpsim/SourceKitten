@@ -8,7 +8,6 @@
 
 import Foundation
 import SourceKittenFramework
-import SwiftXPC
 import XCTest
 
 class StringTests: XCTestCase {
@@ -93,7 +92,7 @@ class StringTests: XCTestCase {
     }
 
     func testParseDeclaration() {
-        let dict: XPCDictionary = [
+        let dict: [String: SourceKitRepresentable] = [
             "key.kind": "source.lang.swift.decl.class",
             "key.offset": Int64(24),
             "key.bodyoffset": Int64(32),

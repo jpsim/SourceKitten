@@ -1,6 +1,3 @@
-[submodule "Carthage/Checkouts/SwiftXPC"]
-	path = Carthage/Checkouts/SwiftXPC
-	url = https://github.com/jpsim/SwiftXPC.git
 [submodule "Carthage/Checkouts/xcconfigs"]
 	path = Carthage/Checkouts/xcconfigs
 	url = https://github.com/jspahrsummers/xcconfigs.git

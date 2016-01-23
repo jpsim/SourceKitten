@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftXPC
 
 /// SourceKit response dictionary keys.
 internal enum SwiftDocKey: String {
@@ -37,7 +36,7 @@ internal enum SwiftDocKey: String {
     case NameOffset           = "key.nameoffset"
     /// Offset (Int64).
     case Offset               = "key.offset"
-    /// Substructure (XPCArray).
+    /// Substructure ([SourceKitRepresentable]).
     case Substructure         = "key.substructure"
     /// Syntax map (NSData).
     case SyntaxMap            = "key.syntaxmap"
@@ -52,7 +51,7 @@ internal enum SwiftDocKey: String {
     case DocumentationComment = "key.doc.comment"
     /// Declaration of documented token (String).
     case DocDeclaration       = "key.doc.declaration"
-    /// Discussion documentation of documented token (XPCArray).
+    /// Discussion documentation of documented token ([SourceKitRepresentable]).
     case DocDiscussion        = "key.doc.discussion"
     /// File where the documented token is located (String).
     case DocFile              = "key.doc.file"
@@ -60,7 +59,7 @@ internal enum SwiftDocKey: String {
     case DocLine              = "key.doc.line"
     /// Name of documented token (String).
     case DocName              = "key.doc.name"
-    /// Parameters of documented token (XPCArray).
+    /// Parameters of documented token ([SourceKitRepresentable]).
     case DocParameters        = "key.doc.parameters"
     /// Parsed declaration (String).
     case DocResultDiscussion  = "key.doc.result_discussion"
@@ -68,7 +67,7 @@ internal enum SwiftDocKey: String {
     case DocType              = "key.doc.type"
     /// Parsed scope start end (Int64).
     case USR                  = "key.usr"
-    /// Result discussion documentation of documented token (XPCArray).
+    /// Result discussion documentation of documented token ([SourceKitRepresentable]).
     case ParsedDeclaration    = "key.parsed_declaration"
     /// Type of documented token (String).
     case ParsedScopeEnd       = "key.parsed_scope.end"
@@ -86,7 +85,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Typed value of a dictionary key.
     */
-    private static func get<T>(key: SwiftDocKey, _ dictionary: XPCDictionary) -> T? {
+    private static func get<T>(key: SwiftDocKey, _ dictionary: [String: SourceKitRepresentable]) -> T? {
         return dictionary[key.rawValue] as! T?
     }
 
@@ -97,7 +96,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Kind string if successful.
     */
-    internal static func getKind(dictionary: XPCDictionary) -> String? {
+    internal static func getKind(dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.Kind, dictionary)
     }
 
@@ -108,7 +107,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Syntax map data if successful.
     */
-    internal static func getSyntaxMap(dictionary: XPCDictionary) -> NSData? {
+    internal static func getSyntaxMap(dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
         return get(.SyntaxMap, dictionary)
     }
 
@@ -119,7 +118,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Offset int if successful.
     */
-    internal static func getOffset(dictionary: XPCDictionary) -> Int64? {
+    internal static func getOffset(dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.Offset, dictionary)
     }
 
@@ -130,7 +129,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Length int if successful.
     */
-    internal static func getLength(dictionary: XPCDictionary) -> Int64? {
+    internal static func getLength(dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.Length, dictionary)
     }
 
@@ -141,7 +140,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Type name string if successful.
     */
-    internal static func getTypeName(dictionary: XPCDictionary) -> String? {
+    internal static func getTypeName(dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.TypeName, dictionary)
     }
 
@@ -152,7 +151,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Annotated declaration string if successful.
     */
-    internal static func getAnnotatedDeclaration(dictionary: XPCDictionary) -> String? {
+    internal static func getAnnotatedDeclaration(dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.AnnotatedDeclaration, dictionary)
     }
 
@@ -163,7 +162,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Substructure array if successful.
     */
-    internal static func getSubstructure(dictionary: XPCDictionary) -> XPCArray? {
+    internal static func getSubstructure(dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
         return get(.Substructure, dictionary)
     }
 
@@ -174,7 +173,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Name offset int if successful.
     */
-    internal static func getNameOffset(dictionary: XPCDictionary) -> Int64? {
+    internal static func getNameOffset(dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.NameOffset, dictionary)
     }
 
@@ -185,7 +184,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Length int if successful.
     */
-    internal static func getNameLength(dictionary: XPCDictionary) -> Int64? {
+    internal static func getNameLength(dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.NameLength, dictionary)
     }
 
@@ -196,7 +195,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Body offset int if successful.
     */
-    internal static func getBodyOffset(dictionary: XPCDictionary) -> Int64? {
+    internal static func getBodyOffset(dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.BodyOffset, dictionary)
     }
 
@@ -207,7 +206,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Body length int if successful.
     */
-    internal static func getBodyLength(dictionary: XPCDictionary) -> Int64? {
+    internal static func getBodyLength(dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.BodyLength, dictionary)
     }
 
@@ -218,7 +217,7 @@ internal enum SwiftDocKey: String {
 
     - returns: File path string if successful.
     */
-    internal static func getFilePath(dictionary: XPCDictionary) -> String? {
+    internal static func getFilePath(dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.FilePath, dictionary)
     }
 
@@ -229,7 +228,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Full xml docs string if successful.
     */
-    internal static func getFullXMLDocs(dictionary: XPCDictionary) -> String? {
+    internal static func getFullXMLDocs(dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.FullXMLDocs, dictionary)
     }
 }
