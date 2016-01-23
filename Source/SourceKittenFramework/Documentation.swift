@@ -6,6 +6,10 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+import Clang_C
+#endif
+
 public struct Documentation {
     let parameters: [Parameter]
     let returnDiscussion: [Text]

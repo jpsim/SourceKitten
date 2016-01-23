@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+import SourceKit
+#endif
 
 /// Represents docs for a Swift file.
 public struct SwiftDocs {
