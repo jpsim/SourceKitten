@@ -5,6 +5,7 @@ For SourceKitten contributors, follow these steps to cut a release:
 1. Update version number in the following files:
     * `Source/sourcekitten/Info.plist`
     * `Source/SourceKittenFramework/Info.plist`
+    * `Source/sourcekitten/VersionCommand.swift`
 2. Come up with a witty feline themed release name. Past names include:
     * Objective-Cat
     * Cat-astrophic

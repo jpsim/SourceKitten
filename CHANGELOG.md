@@ -1,12 +1,15 @@
-## Master
+## 0.8.0
 
 ##### Breaking
 
-* None.
+* Replaced all uses of `XPCDictionary`, `XPCArray`, `XPCRepresentable` &
+  `xpc_object_t` with SourceKit equivalents.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Enhancements
 
-* None.
+* Supports building with Swift 2.2 snapshot & Swift Package Manager on OS X.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Bug Fixes
 
