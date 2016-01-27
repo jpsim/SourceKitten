@@ -104,6 +104,9 @@ internal func stringForSourceKitUID(uid: sourcekitd_uid_t) -> String? {
     if let string = uidStringMap[uid] {
         return string
     } else if let uidString = String(UTF8String: sourcekitd_uid_get_string_ptr(uid)) {
+        let uidString = SwiftDocKey(rawValue: uidString)?.rawValue ??
+            SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
+            SyntaxKind(rawValue: uidString)?.rawValue ?? uidString
         uidStringMap[uid] = uidString
         return uidString
     }
