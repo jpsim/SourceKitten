@@ -104,13 +104,35 @@ internal func stringForSourceKitUID(uid: sourcekitd_uid_t) -> String? {
     if let string = uidStringMap[uid] {
         return string
     } else if let uidString = String(UTF8String: sourcekitd_uid_get_string_ptr(uid)) {
-        let uidString = SwiftDocKey(rawValue: uidString)?.rawValue ??
-            SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
-            SyntaxKind(rawValue: uidString)?.rawValue ?? uidString
+        /*
+        `String` created by `String(UTF8String:)` is based on `NSString`.
+        `NSString` base `String` has performance penalty on getting `hashValue`.
+        Everytime on getting `hashValue`, it calls `decomposedStringWithCanonicalMapping` for
+        "Unicode Normalization Form D" and creates autoreleased `CFString (mutable)` and
+        `CFString (store)`. Those `CFString` are created every time on using `hashValue`, such as
+        using `String` for Dictionary's key or adding to Set.
+        
+        For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
+        That does not cause calling `decomposedStringWithCanonicalMapping`.
+        */
+        let uidString = sourceKittenRawValueStringFrom(uidString) ?? uidString
         uidStringMap[uid] = uidString
         return uidString
     }
     return nil
+}
+
+/**
+Returns SourceKitten defined enum's rawValue String from string
+
+- parameter uidString: String created from sourcekitd_uid_get_string_ptr().
+
+- returns: rawValue String if defined in SourceKitten, nil otherwise.
+*/
+private func sourceKittenRawValueStringFrom(uidString: String) -> String? {
+    return SwiftDocKey(rawValue: uidString)?.rawValue ??
+        SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
+        SyntaxKind(rawValue: uidString)?.rawValue
 }
 
 /// Represents a SourceKit request.
