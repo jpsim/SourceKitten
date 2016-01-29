@@ -16,7 +16,7 @@ OUTPUT_PACKAGE=SourceKitten.pkg
 VERSION_STRING=$(shell agvtool what-marketing-version -terse1)
 COMPONENTS_PLIST=Source/sourcekitten/Components.plist
 
-SWIFT_SNAPSHOT=swift-2.2-SNAPSHOT-2016-01-25-a
+SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-01-25-a
 
 SPM=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin/swift build
 SPM_INCLUDE=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/local/include
