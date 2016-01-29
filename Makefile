@@ -77,7 +77,7 @@ archive:
 release: package archive
 
 swift_snapshot_install:
-	curl https://swift.org/builds/xcode/$(SWIFT_SNAPSHOT)/$(SWIFT_SNAPSHOT)-osx.pkg -o swift.pkg
+	curl https://swift.org/builds/development/xcode/$(SWIFT_SNAPSHOT)/$(SWIFT_SNAPSHOT)-osx.pkg -o swift.pkg
 	sudo installer -pkg swift.pkg -target /
 
 spm_bootstrap:
