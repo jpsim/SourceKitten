@@ -89,6 +89,7 @@ spm_bootstrap:
 	curl https://static.realm.io/libsourcekitdInProc/$(SWIFT_SNAPSHOT)/libsourcekitdInProc.dylib -o /usr/local/lib/libsourcekitdInProc.dylib
 
 spm:
+	sed -i "" "s/swift-latest/$(SWIFT_SNAPSHOT)/" Source/Clang_C/module.modulemap
 	$(SPM) $(SPMFLAGS)
 
 spm_clean:
