@@ -35,7 +35,7 @@ public enum ObjCDeclarationKind: String {
     /// `property`.
     case Property = "sourcekitten.source.lang.objc.decl.property"
     /// `protocol`.
-    case Protocol = "sourcekitten.source.lang.objc.decl.protocol"
+    case `Protocol` = "sourcekitten.source.lang.objc.decl.protocol"
     /// `typedef`.
     case Typedef = "sourcekitten.source.lang.objc.decl.typedef"
     /// `function`.
