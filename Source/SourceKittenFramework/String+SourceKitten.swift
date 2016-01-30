@@ -8,7 +8,17 @@
 
 import Foundation
 
-public typealias Line = (index: Int, content: String)
+/// Representation of line in String
+public struct Line {
+    /// origin = 0
+    public let index: Int
+    /// Content
+    public let content: String
+    /// UTF16 based range in entire String. Equivalent to Range<UTF16Index>
+    public let range: NSRange
+    /// Byte based range in entire String. Equivalent to Range<UTF8Index>
+    public let byteRange: NSRange
+}
 
 private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespaceAndNewlineCharacterSet()
 
@@ -32,13 +42,7 @@ extension NSString {
     - Line
     */
     @objc private class CacheContainer: NSObject {
-        struct RangesAndLine {
-            let range: NSRange
-            let byteRange: NSRange
-            let line: Line
-        }
-
-        let rangesAndLine: [RangesAndLine]
+        let lines: [Line]
         let utf8View: String.UTF8View
 
         init(_ string: NSString) {
@@ -66,7 +70,7 @@ extension NSString {
             var utf16indexStart = string.utf16.startIndex
 
             let nsstring = string as NSString
-            var rangesAndLine = [RangesAndLine]()
+            var lines = [Line]()
             while start < nsstring.length {
                 let range = NSRange(location: start, length: 0)
                 nsstring.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, forRange: range)
@@ -82,9 +86,11 @@ extension NSString {
                 let byteRange = NSRange(location: byteOffsetStart, length: byteLength)
                 
                 // line
-                let line = (lineIndex, nsstring.substringWithRange(contentsRange))
+                let line = Line(index: lineIndex,
+                    content: nsstring.substringWithRange(contentsRange),
+                    range: lineRange, byteRange: byteRange)
                 
-                rangesAndLine.append(RangesAndLine(range: lineRange, byteRange: byteRange, line: line))
+                lines.append(line)
                 
                 lineIndex += 1
                 start = end
@@ -92,7 +98,7 @@ extension NSString {
                 utf8indexStart = utf8indexEnd
                 byteOffsetStart += byteLength
             }
-            self.rangesAndLine = rangesAndLine
+            self.lines = lines
         }
         
         /**
@@ -103,23 +109,23 @@ extension NSString {
         - returns: UTF16 based offset of string.
         */
         func locationFromByteOffset(byteOffset: Int) -> Int {
-            if rangesAndLine.isEmpty {
+            if lines.isEmpty {
                 return 0
             }
-            guard let index = rangesAndLine.indexOf({ NSLocationInRange(byteOffset, $0.byteRange) }) else {
+            guard let index = lines.indexOf({ NSLocationInRange(byteOffset, $0.byteRange) }) else {
                 fatalError()
             }
-            let element = rangesAndLine[index]
-            let diff = byteOffset - element.byteRange.location
+            let line = lines[index]
+            let diff = byteOffset - line.byteRange.location
             if diff == 0 {
-                return element.range.location
-            } else if element.byteRange.length == diff {
-                return NSMaxRange(element.range)
+                return line.range.location
+            } else if line.byteRange.length == diff {
+                return NSMaxRange(line.range)
             }
-            let endUTF16index = element.line.content.utf8.startIndex.advancedBy(diff)
-                                       .samePositionIn(element.line.content.utf16)!
-            let utf16Diff = element.line.content.utf16.startIndex.distanceTo(endUTF16index)
-            return element.range.location + utf16Diff
+            let endUTF16index = line.content.utf8.startIndex.advancedBy(diff)
+                                       .samePositionIn(line.content.utf16)!
+            let utf16Diff = line.content.utf16.startIndex.distanceTo(endUTF16index)
+            return line.range.location + utf16Diff
         }
 
         /**
@@ -130,53 +136,49 @@ extension NSString {
         - returns: UTF8 based offset of string.
         */
         func byteOffsetFromLocation(location: Int) -> Int {
-            if rangesAndLine.isEmpty {
+            if lines.isEmpty {
                 return 0
             }
-            guard let index = rangesAndLine.indexOf({ NSLocationInRange(location, $0.range) }) else {
+            guard let index = lines.indexOf({ NSLocationInRange(location, $0.range) }) else {
                 fatalError()
             }
-            let element = rangesAndLine[index]
-            let diff = location - element.range.location
+            let line = lines[index]
+            let diff = location - line.range.location
             if diff == 0 {
-                return element.byteRange.location
-            } else if element.range.length == diff {
-                return NSMaxRange(element.byteRange)
+                return line.byteRange.location
+            } else if line.range.length == diff {
+                return NSMaxRange(line.byteRange)
             }
-            let endUTF8index = element.line.content.utf16.startIndex.advancedBy(diff)
-                                      .samePositionIn(element.line.content.utf8)!
-            let byteDiff = element.line.content.utf8.startIndex.distanceTo(endUTF8index)
-            return element.byteRange.location + byteDiff
-        }
-
-        var lines: [Line] {
-            return rangesAndLine.map { $0.line }
+            let endUTF8index = line.content.utf16.startIndex.advancedBy(diff)
+                                      .samePositionIn(line.content.utf8)!
+            let byteDiff = line.content.utf8.startIndex.distanceTo(endUTF8index)
+            return line.byteRange.location + byteDiff
         }
 
         func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
-            let index = rangesAndLine.indexOf { NSLocationInRange(offset, $0.range) }
+            let index = lines.indexOf { NSLocationInRange(offset, $0.range) }
             return index.map {
-                let element = rangesAndLine[$0]
-                return (line: element.line.index, character: offset - element.range.location + 1)
+                let line = lines[$0]
+                return (line: line.index, character: offset - line.range.location + 1)
             }
         }
         
         func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
-            let index = rangesAndLine.indexOf { NSLocationInRange(offset, $0.byteRange) }
+            let index = lines.indexOf { NSLocationInRange(offset, $0.byteRange) }
             return index.map {
-                let element = rangesAndLine[$0]
+                let line = lines[$0]
                 
                 let character: Int
-                let content = element.line.content
-                let length = offset - element.byteRange.location + 1
-                if length == element.byteRange.length {
+                let content = line.content
+                let length = offset - line.byteRange.location + 1
+                if length == line.byteRange.length {
                     character = content.utf16.count
                 } else {
                     let endIndex = content.utf8.startIndex.advancedBy(length)
                         .samePositionIn(content.utf16) ?? content.utf16.endIndex
                     character = content.utf16.startIndex.distanceTo(endIndex)
                 }
-                return (line: element.line.index, character: character)
+                return (line: line.index, character: character)
             }
         }
     }
