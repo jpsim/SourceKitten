@@ -80,21 +80,9 @@ swift_snapshot_install:
 	curl https://swift.org/builds/development/xcode/$(SWIFT_SNAPSHOT)/$(SWIFT_SNAPSHOT)-osx.pkg -o swift.pkg
 	sudo installer -pkg swift.pkg -target /
 
-spm_bootstrap:
-	cd /usr/local/include; svn export --force http://llvm.org/svn/llvm-project/cfe/trunk/include/clang-c/
-	cp clang_c_module.modulemap /usr/local/include/clang-c/module.modulemap
-	cp /Library/Developer/Toolchains/swift-latest.xctoolchain/usr/lib/libclang.dylib /usr/local/lib/
-	mkdir -p /usr/local/include/sourcekitdInProc
-	curl https://raw.githubusercontent.com/apple/swift/$(SWIFT_SNAPSHOT)/tools/SourceKit/tools/sourcekitd/include/sourcekitd/sourcekitd.h > /usr/local/include/sourcekitdInProc/sourcekitd.h
-	curl https://static.realm.io/libsourcekitdInProc/$(SWIFT_SNAPSHOT)/libsourcekitdInProc.dylib -o /usr/local/lib/libsourcekitdInProc.dylib
-
 spm:
 	sed -i "" "s/swift-latest/$(SWIFT_SNAPSHOT)/" Source/Clang_C/module.modulemap
 	$(SPM) $(SPMFLAGS)
 
 spm_clean:
 	$(SPM) --clean
-
-spm_teardown:
-	rm -rf /usr/local/include/clang-c /usr/local/lib/libclang.dylib
-	rm -rf /usr/local/include/sourcekitdInProc /usr/local/lib/libsourcekitdInProc.dylib
