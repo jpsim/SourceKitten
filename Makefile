@@ -83,6 +83,7 @@ swift_snapshot_install:
 spm:
 	sed -i "" "s/swift-latest/$(SWIFT_SNAPSHOT)/" Source/Clang_C/module.modulemap
 	$(SPM) $(SPMFLAGS)
+	sed -i "" "s/$(SWIFT_SNAPSHOT)/swift-latest/" Source/Clang_C/module.modulemap
 
 spm_clean:
 	$(SPM) --clean
