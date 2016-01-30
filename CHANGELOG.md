@@ -1,3 +1,18 @@
+## Master
+
+##### Breaking
+
+* Change `Line` from tuple to struct with extra properties `range` and `byteRange`.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* None.
+
 ## 0.8.0
 
 ##### Breaking
