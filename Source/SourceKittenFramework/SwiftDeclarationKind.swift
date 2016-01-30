@@ -60,7 +60,7 @@ public enum SwiftDeclarationKind: String {
     /// `module`
     case Module = "source.lang.swift.decl.module"
     /// `protocol`.
-    case Protocol = "source.lang.swift.decl.protocol"
+    case `Protocol` = "source.lang.swift.decl.protocol"
     /// `struct`.
     case Struct = "source.lang.swift.decl.struct"
     /// `typealias`.
