@@ -10,7 +10,7 @@ matrix:
   include:
     - script: make test
       env: JOB=Xcode
-    - script: make spm
+    - script: make spm_test
       env: JOB=SPM
       before_install:
         - make swift_snapshot_install
