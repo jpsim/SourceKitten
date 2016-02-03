@@ -11,6 +11,15 @@ import SourceKittenFramework
 import XCTest
 
 class OffsetMapTests: XCTestCase {
+
+    // protocol XCTestCaseProvider
+    lazy var allTests: [(String, () throws -> Void)] = [
+        ("testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented",
+            self.testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented),
+        ("testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset",
+            self.testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset),
+    ]
+
     func testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented() {
         // Subscripts aren't parsed by SourceKit, so OffsetMap should contain its offset.
         let file = File(contents:

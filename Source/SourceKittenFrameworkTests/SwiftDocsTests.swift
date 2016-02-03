@@ -38,6 +38,14 @@ func compareDocsWithFixturesName(name: String) {
 }
 
 class SwiftDocsTests: XCTestCase {
+
+    // protocol XCTestCaseProvider
+    lazy var allTests: [(String, () throws -> Void)] = [
+        ("testSubscript", self.testSubscript),
+        ("testBicycle", self.testBicycle),
+        ("testParseFullXMLDocs", self.testParseFullXMLDocs),
+    ]
+
     func testSubscript() {
         compareDocsWithFixturesName("Subscript")
     }
