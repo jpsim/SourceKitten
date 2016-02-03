@@ -6,10 +6,17 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+import Foundation
 import SourceKittenFramework
 import XCTest
 
 class CodeCompletionTests: XCTestCase {
+
+    // protocol XCTestCaseProvider
+    lazy var allTests: [(String, () throws -> Void)] = [
+        ("testSimpleCodeCompletion", self.testSimpleCodeCompletion),
+    ]
+
     func testSimpleCodeCompletion() {
         let file = "\(NSUUID().UUIDString).swift"
         let completionItems = CodeCompletionItem.parseResponse(
