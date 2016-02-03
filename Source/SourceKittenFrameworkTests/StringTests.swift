@@ -11,6 +11,27 @@ import SourceKittenFramework
 import XCTest
 
 class StringTests: XCTestCase {
+
+    // protocol XCTestCaseProvider
+    lazy var allTests: [(String, () throws -> Void)] = [
+        ("testStringByRemovingCommonLeadingWhitespaceFromLines",
+            self.testStringByRemovingCommonLeadingWhitespaceFromLines),
+        ("testStringByTrimmingTrailingCharactersInSet",
+            self.testStringByTrimmingTrailingCharactersInSet),
+        ("testCommentBody", self.testCommentBody),
+        ("testIsSwiftFile", self.testIsSwiftFile),
+        ("testIsObjectiveCHeaderFile", self.testIsObjectiveCHeaderFile),
+        ("testAbsolutePath", self.testAbsolutePath),
+        ("testIsTokenDocumentable", self.testIsTokenDocumentable),
+        ("testParseDeclaration", self.testParseDeclaration),
+        ("testGenerateDocumentedTokenOffsets", self.testGenerateDocumentedTokenOffsets),
+        ("testDocumentedTokenOffsetsWithSubscript", self.testDocumentedTokenOffsetsWithSubscript),
+        ("testGenerateDocumentedTokenOffsetsEmpty", self.testGenerateDocumentedTokenOffsetsEmpty),
+        ("testSubstringWithByteRange", self.testSubstringWithByteRange),
+        ("testSubstringLinesWithByteRange", self.testSubstringLinesWithByteRange),
+        ("testLineRangeWithByteRange", self.testLineRangeWithByteRange),
+    ]
+
     func testStringByRemovingCommonLeadingWhitespaceFromLines() {
         var input = "a\n b\n  c"
         XCTAssertEqual(input.stringByRemovingCommonLeadingWhitespaceFromLines(), input)
