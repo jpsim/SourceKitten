@@ -85,5 +85,11 @@ spm:
 	$(SPM) $(SPMFLAGS)
 	sed -i "" "s/$(SWIFT_SNAPSHOT)/swift-latest/" Source/Clang_C/module.modulemap
 
+spm_test: spm
+	.build/Debug/SourceKittenFrameworkTests
+
 spm_clean:
 	$(SPM) --clean
+
+spm_clean_dist:
+	$(SPM) --clean=dist
