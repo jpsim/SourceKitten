@@ -38,6 +38,31 @@ private func sourcekitStringsStartingWith(pattern: String) -> Set<String> {
 
 class SourceKitTests: XCTestCase {
 
+    func testStatementKinds() {
+        let expected: [StatementKind] = [
+            .Brace,
+            .Case,
+            .For,
+            .ForEach,
+            .Guard,
+            .If,
+            .RepeatWhile,
+            .Switch,
+            .While,
+        ]
+
+        let actual = sourcekitStringsStartingWith("source.lang.swift.stmt.")
+        let expectedStrings = Set(expected.map { $0.rawValue })
+        XCTAssertEqual(
+            actual,
+            expectedStrings
+        )
+        if actual != expectedStrings {
+            print("the following strings were added: \(actual.subtract(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtract(actual))")
+        }
+    }
+
     func testSyntaxKinds() {
         let expected: [SyntaxKind] = [
             .Argument,
