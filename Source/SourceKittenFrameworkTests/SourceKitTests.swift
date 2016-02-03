@@ -6,6 +6,7 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+import Foundation
 import SourceKittenFramework
 import XCTest
 
