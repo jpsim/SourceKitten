@@ -21,9 +21,12 @@ SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-01-25-a
 SPM=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/swift build
 SPM_INCLUDE=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/local/include
 SPM_LIB=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/lib
-SPMFLAGS=-Xcc -ISource/Clang_C -Xcc -I$(SPM_INCLUDE)                               # for including "clang-c"
-SPMFLAGS+= -Xcc -F$(SPM_LIB) -Xlinker -F$(SPM_LIB) -Xlinker -L$(SPM_LIB) # for linking sourcekitd and clang-c
-SPMFLAGS+= -Xlinker -rpath -Xlinker $(SPM_LIB)                           # for loading sourcekitd and clang-c
+# for including "clang-c"
+SPMFLAGS=-Xcc -ISource/Clang_C -Xcc -I$(SPM_INCLUDE)
+# for linking sourcekitd and clang-c
+SPMFLAGS+= -Xcc -F$(SPM_LIB) -Xlinker -F$(SPM_LIB) -Xlinker -L$(SPM_LIB)
+# for loading sourcekitd and clang-c
+SPMFLAGS+= -Xlinker -rpath -Xlinker $(SPM_LIB)
 
 .PHONY: all bootstrap clean install package test uninstall
 
