@@ -253,7 +253,9 @@ public enum Request {
         dispatch_once(&sourceKitInitializationToken) {
             sourcekitd_initialize()
         }
-        return fromSourceKit(sourcekitd_response_get_value(sourcekitd_send_request_sync(sourcekitObject))) as! [String: SourceKitRepresentable]
+        let response = sourcekitd_send_request_sync(sourcekitObject)
+        defer { sourcekitd_response_dispose(response) }
+        return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
 }
 
