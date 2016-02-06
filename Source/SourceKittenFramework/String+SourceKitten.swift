@@ -112,10 +112,11 @@ extension NSString {
             if lines.isEmpty {
                 return 0
             }
-            guard let index = lines.indexOf({ NSLocationInRange(byteOffset, $0.byteRange) }) else {
+            let index = lines.indexOf({ NSLocationInRange(byteOffset, $0.byteRange) })
+            // byteOffset may be out of bounds when sourcekitd points end of string.
+            guard let line = (index.map { lines[$0] } ?? lines.last) else {
                 fatalError()
             }
-            let line = lines[index]
             let diff = byteOffset - line.byteRange.location
             if diff == 0 {
                 return line.range.location
