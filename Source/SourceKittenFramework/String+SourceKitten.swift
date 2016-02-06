@@ -140,10 +140,11 @@ extension NSString {
             if lines.isEmpty {
                 return 0
             }
-            guard let index = lines.indexOf({ NSLocationInRange(location, $0.range) }) else {
+            let index = lines.indexOf({ NSLocationInRange(location, $0.range) })
+            // location may be out of bounds when NSRegularExpression points end of string.
+            guard let line = (index.map { lines[$0] } ?? lines.last) else {
                 fatalError()
             }
-            let line = lines[index]
             let diff = location - line.range.location
             if diff == 0 {
                 return line.byteRange.location
