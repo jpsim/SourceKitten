@@ -12,7 +12,7 @@
 
 * Fix crash when offset points end of string.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [#164](https://github.com/realm/SwiftLint/issues/379)
+  [#164](https://github.com/realm/SwiftLint/issues/164)
 
 ## 0.9.0
 
