@@ -83,7 +83,7 @@ public class Bicycle {
     func travel(distance meters: Double) {
         if meters > 0.0 {
             distanceTravelled += meters
-            numberOfTrips++
+            numberOfTrips += 1
         }
     }
 }

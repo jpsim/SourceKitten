@@ -9,7 +9,7 @@
 import Foundation
 import SWXMLHash
 #if SWIFT_PACKAGE
-import sourcekitd
+import SourceKit
 #endif
 
 /// Represents a source file.

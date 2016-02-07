@@ -8,7 +8,7 @@
 
 import Foundation
 #if SWIFT_PACKAGE
-import sourcekitd
+import SourceKit
 #endif
 
 public protocol SourceKitRepresentable {
