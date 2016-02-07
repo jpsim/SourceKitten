@@ -2,7 +2,13 @@ TEMPORARY_FOLDER?=/tmp/SourceKitten.dst
 PREFIX?=/usr/local
 BUILD_TOOL?=xcodebuild
 
+SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-01-25-a
+SWIFT_SNAPSHOT_BUNDLE=org.swift.20160125a
+
+XCODE_7_2_OVERRIDE_CONFIG?=/tmp/Xcode7_2-Toolchain.xcconfig
+
 XCODEFLAGS=-workspace 'SourceKitten.xcworkspace' -scheme 'sourcekitten' DSTROOT=$(TEMPORARY_FOLDER)
+XCODEFLAGS_TOOLCHAIN=$(XCODEFLAGS) -xcconfig $(XCODE_7_2_OVERRIDE_CONFIG) TOOLCHAINS=$(SWIFT_SNAPSHOT_BUNDLE)
 
 BUILT_BUNDLE=$(TEMPORARY_FOLDER)/Applications/sourcekitten.app
 SOURCEKITTEN_FRAMEWORK_BUNDLE=$(BUILT_BUNDLE)/Contents/Frameworks/SourceKittenFramework.framework
@@ -16,11 +22,10 @@ OUTPUT_PACKAGE=SourceKitten.pkg
 VERSION_STRING=$(shell agvtool what-marketing-version -terse1)
 COMPONENTS_PLIST=Source/sourcekitten/Components.plist
 
-SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-01-25-a
-
-SPM=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/swift build
-SPM_INCLUDE=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/local/include
-SPM_LIB=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/lib
+SWIFT_TOOLCHAIN=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain
+SPM=$(SWIFT_TOOLCHAIN)/usr/bin/swift build
+SPM_INCLUDE=$(SWIFT_TOOLCHAIN)/usr/local/include
+SPM_LIB=$(SWIFT_TOOLCHAIN)/usr/lib
 # for including "clang-c"
 SPMFLAGS=-Xcc -ISource/Clang_C -Xcc -I$(SPM_INCLUDE)
 # for linking sourcekitd and clang-c
@@ -96,3 +101,8 @@ spm_clean:
 
 spm_clean_dist:
 	$(SPM) --clean=dist
+
+with_toolchain: bootstrap
+	export PATH="${SWIFT_TOOLCHAIN}/usr/bin":"${PATH}"
+	echo "SWIFT_EXEC=${SWIFT_TOOLCHAIN}/usr/bin/swiftc\nXCODE_DEFAULT_TOOLCHAIN_OVERRIDE=${SWIFT_TOOLCHAIN}\n" >> $(XCODE_7_2_OVERRIDE_CONFIG)
+	$(BUILD_TOOL) $(XCODEFLAGS_TOOLCHAIN) build

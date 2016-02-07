@@ -19,10 +19,22 @@ Run `xcodebuild clean build` along with any passed in build arguments.
 internal func runXcodeBuild(arguments: [String], inPath path: String) -> String? {
     fputs("Running xcodebuild\n", stderr)
 
+    var arguments = arguments
+    arguments.appendContentsOf(["clean", "build"])
+    if let toolchain = toolchainPath() {
+        arguments.insertContentsOf([ "-toolchain", toolchain ], at: arguments.startIndex)
+    }
+
+    let environment = merge(NSProcessInfo.processInfo().environment, [
+        "CODE_SIGN_IDENTITY": "",
+        "CODE_SIGNING_REQUIRED": "NO"
+    ])
+
     let task = NSTask()
     task.launchPath = "/usr/bin/xcodebuild"
     task.currentDirectoryPath = path
-    task.arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
+    task.arguments = arguments
+    task.environment = environment
 
     let pipe = NSPipe()
     task.standardOutput = pipe
@@ -31,10 +43,8 @@ internal func runXcodeBuild(arguments: [String], inPath path: String) -> String?
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let xcodebuildOutput = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
-    file.closeFile()
-
-    return xcodebuildOutput as String?
+    defer { file.closeFile() }
+    return String(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
 }
 
 /**
@@ -177,7 +187,31 @@ public func sdkPath() -> String {
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let sdkPath = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
-    file.closeFile()
+    defer { file.closeFile() }
+    let sdkPath = String(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
     return sdkPath?.stringByReplacingOccurrencesOfString("\n", withString: "") ?? ""
+}
+
+internal func toolchainPath() -> String? {
+    if let toolchain = NSProcessInfo.processInfo().environment["XCODE_DEFAULT_TOOLCHAIN_OVERRIDE"] {
+        return toolchain
+    }
+
+    let task = NSTask()
+    task.launchPath = "/usr/bin/xcrun"
+    task.arguments = ["-f", "swiftc"]
+
+    let pipe = NSPipe()
+    task.standardOutput = pipe
+
+    task.launch()
+
+    let file = pipe.fileHandleForReading
+    defer { file.closeFile() }
+    return String(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+        .flatMap({ NSURL(fileURLWithPath: $0) })?
+        .URLByDeletingLastPathComponent?
+        .URLByDeletingLastPathComponent?
+        .URLByDeletingLastPathComponent?
+        .path
 }

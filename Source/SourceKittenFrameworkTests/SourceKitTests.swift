@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SourceKittenFramework
 import XCTest
+@testable import SourceKittenFramework
 
 private func run(executable: String, arguments: [String]) -> String? {
     let task = NSTask()
@@ -21,20 +21,18 @@ private func run(executable: String, arguments: [String]) -> String? {
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let output = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
-    file.closeFile()
-    return output as String?
+    defer { file.closeFile() }
+    return String(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
 }
 
 private func sourcekitStringsStartingWith(pattern: String) -> Set<String> {
-    let sourceKitServicePath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
-        .stringByDeletingLastPathComponent as NSString)
-        .stringByDeletingLastPathComponent as NSString)
-        .stringByAppendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
+    // Should ideally use NSURL(fileURLWithPath:isDirectory:relativeToURL:)
+    // but that's 10.11+.
+    guard let sourceKitServicePath = toolchainPath().flatMap({
+        NSURL(fileURLWithPath: $0, isDirectory: true).URLByAppendingPathComponent("usr/lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService", isDirectory: false).path
+    }) else { return [] }
     let strings = run("/usr/bin/strings", arguments: [sourceKitServicePath])
-    return Set(strings!.componentsSeparatedByString("\n").filter { string in
-        return string.rangeOfString(pattern)?.startIndex == string.startIndex
-    })
+    return Set(strings!.componentsSeparatedByString("\n").filter({ $0.hasPrefix(pattern) }))
 }
 
 class SourceKitTests: XCTestCase {
@@ -93,16 +91,16 @@ class SourceKitTests: XCTestCase {
             .StringInterpolationAnchor,
             .Typeidentifier
         ]
-        let actual = sourcekitStringsStartingWith("source.lang.swift.syntaxtype.")
-        let expectedStrings = Set(expected.map { $0.rawValue })
-        XCTAssertEqual(
-            actual,
-            expectedStrings
-        )
-        if actual != expectedStrings {
-            print("the following strings were added: \(actual.subtract(expectedStrings))")
-            print("the following strings were removed: \(expectedStrings.subtract(actual))")
+
+        // SourceKit occasionally builds these through interpolation, so check prefixes only.
+        var actual = sourcekitStringsStartingWith("source.lang.swift.syntaxtype.")
+        for string in expected.lazy.map({ String($0.rawValue) }) {
+            if actual.remove(string) != nil { continue }
+            if let indexToRemove = actual.indexOf(string.hasPrefix) {
+                actual.removeAtIndex(indexToRemove)
+            }
         }
+        XCTAssert(actual.isEmpty, "the following strings were unmatched: \(actual)")
     }
 
     func testSwiftDeclarationKind() {
@@ -128,7 +126,9 @@ class SourceKitTests: XCTestCase {
             .FunctionMethodClass,
             .FunctionMethodInstance,
             .FunctionMethodStatic,
-            .FunctionOperator,
+            .FunctionOperatorPostfix,
+            .FunctionOperatorPrefix,
+            .FunctionOperatorInfix,
             .FunctionSubscript,
             .GenericTypeParam,
             .Module,
@@ -142,15 +142,14 @@ class SourceKitTests: XCTestCase {
             .VarParameter,
             .VarStatic
         ]
-        let actual = sourcekitStringsStartingWith("source.lang.swift.decl.")
-        let expectedStrings = Set(expected.map { $0.rawValue })
-        XCTAssertEqual(
-            actual,
-            expectedStrings
-        )
-        if actual != expectedStrings {
-            print("the following strings were added: \(actual.subtract(expectedStrings))")
-            print("the following strings were removed: \(expectedStrings.subtract(actual))")
+        // SourceKit occasionally builds these through interpolation, so check prefixes only.
+        var actual = sourcekitStringsStartingWith("source.lang.swift.decl.")
+        for string in expected.lazy.map({ String($0.rawValue) }) {
+            if actual.remove(string) != nil { continue }
+            if let indexToRemove = actual.indexOf(string.hasPrefix) {
+                actual.removeAtIndex(indexToRemove)
+            }
         }
+        XCTAssert(actual.isEmpty, "the following strings were unmatched: \(actual)")
     }
 }
