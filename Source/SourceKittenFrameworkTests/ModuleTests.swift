@@ -11,6 +11,15 @@ import SourceKittenFramework
 import XCTest
 
 class ModuleTests: XCTestCase {
+    
+    // protocol XCTestCaseProvider
+    lazy var allTests: [(String, () throws -> Void)] = [
+        ("testModuleNilInPathWithNoXcodeProject", self.testModuleNilInPathWithNoXcodeProject),
+        // ("testSourceKittenFrameworkDocsAreValidJSON",
+        //     self.testSourceKittenFrameworkDocsAreValidJSON), FIXME: Failing on SPM
+        // ("testCommandantDocs", self.testCommandantDocs), FIXME: Failing on SPM
+    ]
+    
     func testModuleNilInPathWithNoXcodeProject() {
         let pathWithNoXcodeProject = (__FILE__ as NSString).stringByDeletingLastPathComponent
         let model = Module(xcodeBuildArguments: [], name: nil, inPath: pathWithNoXcodeProject)

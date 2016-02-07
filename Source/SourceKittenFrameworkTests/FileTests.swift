@@ -10,6 +10,12 @@ import SourceKittenFramework
 import XCTest
 
 class FileTests: XCTestCase {
+
+    // protocol XCTestCaseProvider
+    lazy var allTests: [(String, () throws -> Void)] = [
+        ("testUnreadablePath", self.testUnreadablePath)
+    ]
+
     func testUnreadablePath() {
         XCTAssert(File(path: "/dev/null") == nil)
     }
