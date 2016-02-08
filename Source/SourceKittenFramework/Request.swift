@@ -257,6 +257,59 @@ public enum Request {
         defer { sourcekitd_response_dispose(response) }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
+    
+    /// A enum representation of SOURCEKITD_ERROR_*
+    public enum Error: ErrorType, CustomStringConvertible {
+        case ConnectionInterrupted(String?)
+        case Invalid(String?)
+        case Failed(String?)
+        case Cancelled(String?)
+        case Unknown(String?)
+        
+        /// A textual representation of `self`.
+        public var description: String {
+            return getDescription() ?? "no description"
+        }
+        
+        private func getDescription() -> String? {
+            switch self {
+            case .ConnectionInterrupted(let string): return string
+            case .Invalid(let string): return string
+            case .Failed(let string): return string
+            case .Cancelled(let string): return string
+            case .Unknown(let string): return string
+            }
+        }
+        
+        private init(response: sourcekitd_response_t) {
+            let description = String(UTF8String: sourcekitd_response_error_get_description(response))
+            switch sourcekitd_response_error_get_kind(response) {
+            case SOURCEKITD_ERROR_CONNECTION_INTERRUPTED: self = .ConnectionInterrupted(description)
+            case SOURCEKITD_ERROR_REQUEST_INVALID: self = .Invalid(description)
+            case SOURCEKITD_ERROR_REQUEST_FAILED: self = .Failed(description)
+            case SOURCEKITD_ERROR_REQUEST_CANCELLED: self = .Cancelled(description)
+            default: self = .Unknown(description)
+            }
+        }
+    }
+    
+    /**
+    Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
+     
+    - returns: SourceKit output as a dictionary.
+    - throws: Request.Error on fail ()
+    */
+    public func sendMayThrow() throws -> [String: SourceKitRepresentable] {
+        dispatch_once(&sourceKitInitializationToken) {
+            sourcekitd_initialize()
+        }
+        let response = sourcekitd_send_request_sync(sourcekitObject)
+        defer { sourcekitd_response_dispose(response) }
+        if sourcekitd_response_is_error(response) {
+            throw Request.Error(response: response)
+        }
+        return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
+    }
 }
 
 // MARK: CustomStringConvertible
