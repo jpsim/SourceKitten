@@ -245,7 +245,7 @@ public enum Request {
             return nil
         }
         sourcekitd_request_dictionary_set_int64(request, sourcekitd_uid_get_from_cstr(SwiftDocKey.Offset.rawValue), offset)
-        return Request.CustomRequest(request).send()
+        return try? Request.CustomRequest(request).sendMayThrow()
     }
 
     /**
