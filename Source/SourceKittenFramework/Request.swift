@@ -91,6 +91,10 @@ private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRe
 /// dispatch_once_t token used to only initialize SourceKit once per session.
 private var sourceKitInitializationToken: dispatch_once_t = 0
 
+/// dispatch_semaphore_t used to waiting sourcekitd restored.
+private var sourceKitWaitingRestoredSemaphore = dispatch_semaphore_create(0)
+private let sourceKitWaitingRestoredTimeout = Int64(10 * NSEC_PER_SEC)
+
 /// SourceKit UID to String map.
 private var uidStringMap = [sourcekitd_uid_t: String]()
 
@@ -302,11 +306,24 @@ public enum Request {
     public func sendMayThrow() throws -> [String: SourceKitRepresentable] {
         dispatch_once(&sourceKitInitializationToken) {
             sourcekitd_initialize()
+            sourcekitd_set_notification_handler() { response in
+                if !sourcekitd_response_is_error(response) {
+                    fflush(stdout)
+                    fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
+                    dispatch_semaphore_signal(sourceKitWaitingRestoredSemaphore)
+                }
+                sourcekitd_response_dispose(response)
+            }
         }
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response) }
         if sourcekitd_response_is_error(response) {
-            throw Request.Error(response: response)
+            let error = Request.Error(response: response)
+            if case .ConnectionInterrupted = error {
+                dispatch_semaphore_wait(sourceKitWaitingRestoredSemaphore,
+                    dispatch_time(DISPATCH_TIME_NOW, sourceKitWaitingRestoredTimeout))
+            }
+            throw error
         }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
