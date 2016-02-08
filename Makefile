@@ -75,8 +75,8 @@ swift_snapshot_install:
 	sudo installer -pkg swift.pkg -target /
 
 spm_bootstrap: spm_teardown
-	ln -s /Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/local/include/clang-c /usr/local/include/clang-c
-	sudo cp Source/Clang_C/module.modulemap /usr/local/include/clang-c/module.modulemap
+	cp -r /Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/local/include/clang-c /usr/local/include/clang-c
+	cp Source/Clang_C/module.modulemap /usr/local/include/clang-c/module.modulemap
 	ln -s /Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/lib/libclang.dylib /usr/local/lib/libclang.dylib
 	mkdir -p /usr/local/include/sourcekitdInProc
 	ln -s /Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/lib/sourcekitd.framework/Headers/sourcekitd.h /usr/local/include/sourcekitdInProc/sourcekitd.h
