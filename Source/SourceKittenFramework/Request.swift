@@ -91,7 +91,7 @@ private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRe
 /// dispatch_once_t token used to only initialize SourceKit once per session.
 private var sourceKitInitializationToken: dispatch_once_t = 0
 
-/// dispatch_semaphore_t used to waiting sourcekitd restored.
+/// dispatch_semaphore_t used when waiting for sourcekitd to be restored.
 private var sourceKitWaitingRestoredSemaphore = dispatch_semaphore_create(0)
 private let sourceKitWaitingRestoredTimeout = Int64(10 * NSEC_PER_SEC)
 
@@ -245,7 +245,7 @@ public enum Request {
             return nil
         }
         sourcekitd_request_dictionary_set_int64(request, sourcekitd_uid_get_from_cstr(SwiftDocKey.Offset.rawValue), offset)
-        return try? Request.CustomRequest(request).sendMayThrow()
+        return try? Request.CustomRequest(request).failableSend()
     }
 
     /**
@@ -303,7 +303,7 @@ public enum Request {
     - returns: SourceKit output as a dictionary.
     - throws: Request.Error on fail ()
     */
-    public func sendMayThrow() throws -> [String: SourceKitRepresentable] {
+    public func failableSend() throws -> [String: SourceKitRepresentable] {
         dispatch_once(&sourceKitInitializationToken) {
             sourcekitd_initialize()
             sourcekitd_set_notification_handler() { response in
