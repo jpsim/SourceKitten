@@ -1,9 +1,9 @@
-## Master
+## 0.10.0
 
 ##### Breaking
 
 * Change `SwiftDocs.init(file:arguments:)` to
-  `SwiftDocs.init?(file:arguments:)`  
+  `SwiftDocs.init?(file:arguments:)`.  
   [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Enhancements
