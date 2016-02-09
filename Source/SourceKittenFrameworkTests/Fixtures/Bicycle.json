@@ -8,7 +8,7 @@
         "key.doc.comment" : "🚲 A two-wheeled, human-powered mode of transportation.",
         "key.namelength" : 7,
         "key.doc.line" : 4,
-        "key.bodylength" : 2193,
+        "key.bodylength" : 2196,
         "key.length" : 7,
         "key.doc.column" : 14,
         "key.parsed_scope.end" : 89,
@@ -599,7 +599,7 @@
             "key.doc.comment" : "Take a bike out for a spin.\n\n- parameter meters: The distance to travel in meters.",
             "key.namelength" : 31,
             "key.doc.line" : 83,
-            "key.bodylength" : 109,
+            "key.bodylength" : 112,
             "key.length" : 31,
             "key.doc.parameters" : [
               {
@@ -641,6 +641,6 @@
     ],
     "key.offset" : 0,
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-    "key.length" : 2298
+    "key.length" : 2301
   }
 }
