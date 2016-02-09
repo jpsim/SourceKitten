@@ -2,7 +2,9 @@
 
 ##### Breaking
 
-* None.
+* Change `SwiftDocs.init(file:arguments:)` to
+  `SwiftDocs.init?(file:arguments:)`  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Enhancements
 
