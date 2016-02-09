@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Add `Request.failableSend()` that can handle SourceKitService crashes.
+  `sourcekitten doc` does not stop when SourceKitService crashes.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
 
