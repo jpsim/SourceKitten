@@ -30,7 +30,7 @@ func compareJSONStringWithFixturesName(name: String, jsonString: String) {
 
 func compareDocsWithFixturesName(name: String) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
-    let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])
+    let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
 
     let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
     let comparisonString = String(docs).stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")

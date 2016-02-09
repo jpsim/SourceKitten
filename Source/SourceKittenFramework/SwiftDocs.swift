@@ -25,12 +25,19 @@ public struct SwiftDocs {
     - parameter file:      Swift file to document.
     - parameter arguments: compiler arguments to pass to SourceKit.
     */
-    public init(file: File, arguments: [String]) {
-        self.init(
-            file: file,
-            dictionary: Request.EditorOpen(file).send(),
-            cursorInfoRequest: Request.cursorInfoRequestForFilePath(file.path, arguments: arguments)
-        )
+    public init?(file: File, arguments: [String]) {
+        do {
+            self.init(
+                file: file,
+                dictionary: try Request.EditorOpen(file).failableSend(),
+                cursorInfoRequest: Request.cursorInfoRequestForFilePath(file.path, arguments: arguments)
+            )
+        } catch let error as Request.Error {
+            fputs(error.description, stderr)
+            return nil
+        } catch {
+            return nil
+        }
     }
 
     /**

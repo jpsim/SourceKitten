@@ -43,8 +43,8 @@ struct DocCommand: CommandType {
             return .Failure(.InvalidArgument(description: "at least 5 arguments are required when using `--single-file`"))
         }
         let sourcekitdArguments = Array<String>(args[4..<args.count])
-        if let file = File(path: args[3]) {
-            let docs = SwiftDocs(file: file, arguments: sourcekitdArguments)
+        if let file = File(path: args[3]),
+            docs = SwiftDocs(file: file, arguments: sourcekitdArguments) {
             print(docs)
             return .Success()
         }
