@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm -rf /usr/local/include/clang-c /usr/local/lib/libclang.dylib
+rm -rf /usr/local/include/sourcekitdInProc /usr/local/lib/libsourcekitdInProc.dylib
