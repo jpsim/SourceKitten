@@ -14,7 +14,7 @@ For SourceKitten contributors, follow these steps to cut a release:
 3. Update the first header in `CHANGELOG.md` to the new version number & release
    name.
 4. Commit & push to the `master` branch.
-5. Tag: `git tag -a 0.6.2 -m "0.6.2: Objective-Cat"; git push --tags`
+5. Tag: `git tag -a 0.6.2 -m "0.6.2: Objective-Cat"; git push origin 0.6.2`
 6. Make sure you have the latest stable Xcode version installed or symlinked
    under `/Applications/Xcode.app` and `xcode-select`ed.
 7. Create the pkg installer & framework zip: `make release`
