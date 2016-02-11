@@ -64,7 +64,7 @@ private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRe
         }
         return array
     case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
-        var dict = [String: SourceKitRepresentable]()
+        var dict = [String: SourceKitRepresentable](minimumCapacity: 9)
         sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
             if let key = stringForSourceKitUID(key), value = fromSourceKit(value) {
                 dict[key] = value
