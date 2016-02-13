@@ -9,6 +9,9 @@
 import Darwin
 import Foundation
 import Commandant
+import SourceKittenFramework
+
+checkDepndenciesOfSourceKittenFramework()
 
 // `sourcekitd_set_notification_handler()` set the handler to be executed on main thread queue.
 // So, we vacate main thread to `dispatch_main()`.

@@ -14,6 +14,7 @@
 		2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED279151C61E2A100084460 /* StatementKind.swift */; };
 		3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */; };
 		3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56EACF1BAB251C006433D0 /* JSONOutput.swift */; };
+		6C31C15A1C6CADE30008ABFB /* DyldHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C31C1591C6CADE30008ABFB /* DyldHelper.swift */; };
 		D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0D1217219E87B05005E4BAA /* SourceKittenFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D0D1217119E87B05005E4BAA /* SourceKittenFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0D1217819E87B05005E4BAA /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; };
@@ -40,7 +41,7 @@
 		E847636A1A5A0651000EAE22 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84763691A5A0651000EAE22 /* File.swift */; };
 		E852418F1A5F4FB3007099FB /* Dictionary+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E852418E1A5F4FB3007099FB /* Dictionary+Merge.swift */; };
 		E868473A1A587B4D0043DC65 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86847391A587B4D0043DC65 /* Request.swift */; };
-		E868473C1A587C6E0043DC65 /* sourcekitd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E868473B1A587C6E0043DC65 /* sourcekitd.framework */; };
+		E868473C1A587C6E0043DC65 /* sourcekitd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E868473B1A587C6E0043DC65 /* sourcekitd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E86F588E1C4DC49000426E78 /* sourcekitd.h in Headers */ = {isa = PBXBuildFile; fileRef = E86F588D1C4DC49000426E78 /* sourcekitd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E872121A1AD2FFCD00A484F4 /* Array+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87212191AD2FFCD00A484F4 /* Array+SourceKitten.swift */; };
 		E877D9271B5693E70095BB2B /* ObjCDeclarationKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E877D9261B5693E70095BB2B /* ObjCDeclarationKind.swift */; };
@@ -50,7 +51,7 @@
 		E8A18A3F1A592246000362B7 /* SwiftDocs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A18A3E1A592246000362B7 /* SwiftDocs.swift */; };
 		E8A9B8901B56CB5500CD17D4 /* Xcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9B88F1B56CB5500CD17D4 /* Xcode.swift */; };
 		E8A9B8921B56D1B100CD17D4 /* SourceDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9B8911B56D1B100CD17D4 /* SourceDeclaration.swift */; };
-		E8AB1A2E1A649F2100452012 /* libclang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8AB1A2D1A649F2100452012 /* libclang.dylib */; };
+		E8AB1A2E1A649F2100452012 /* libclang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8AB1A2D1A649F2100452012 /* libclang.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E8AB1A301A64A21400452012 /* ClangTranslationUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AB1A2F1A64A21400452012 /* ClangTranslationUnitTests.swift */; };
 		E8AE53C71A5B5FCA0092D24A /* String+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */; };
 		E8C0DFCD1AD349DB007EE3D4 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */; };
@@ -127,6 +128,7 @@
 		3F56EACF1BAB251C006433D0 /* JSONOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONOutput.swift; sourceTree = "<group>"; };
 		5499CA961A2394B700783309 /* Components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Components.plist; sourceTree = "<group>"; };
 		5499CA971A2394B700783309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C31C1591C6CADE30008ABFB /* DyldHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DyldHelper.swift; sourceTree = "<group>"; };
 		6CDD63421C61DB840094A198 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D0D1211B19E87861005E4BAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0D1212419E878CC005E4BAA /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				E8EE34BE1B9A502F00947605 /* CodeCompletionItem.swift */,
 				E852418E1A5F4FB3007099FB /* Dictionary+Merge.swift */,
 				E806D2921BE058D600D1BE41 /* Documentation.swift */,
+				6C31C1591C6CADE30008ABFB /* DyldHelper.swift */,
 				E84763691A5A0651000EAE22 /* File.swift */,
 				3F56EACF1BAB251C006433D0 /* JSONOutput.swift */,
 				E8A18A3A1A58971D000362B7 /* Language.swift */,
@@ -616,6 +619,7 @@
 				E8241CA51A5E01A10047687E /* Module.swift in Sources */,
 				E877D9271B5693E70095BB2B /* ObjCDeclarationKind.swift in Sources */,
 				E83748C31A5BCD7900862B1B /* OffsetMap.swift in Sources */,
+				6C31C15A1C6CADE30008ABFB /* DyldHelper.swift in Sources */,
 				E806D2911BE058C400D1BE41 /* Parameter.swift in Sources */,
 				E868473A1A587B4D0043DC65 /* Request.swift in Sources */,
 				E8A9B8921B56D1B100CD17D4 /* SourceDeclaration.swift in Sources */,
@@ -716,7 +720,7 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks $(TOOLCHAIN_DIR)/usr/lib /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib",
@@ -748,7 +752,7 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks $(TOOLCHAIN_DIR)/usr/lib /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib",
@@ -820,7 +824,7 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks $(TOOLCHAIN_DIR)/usr/lib /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib",
@@ -877,7 +881,7 @@
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks $(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks $(TOOLCHAIN_DIR)/usr/lib /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib",

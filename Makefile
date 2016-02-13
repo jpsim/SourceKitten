@@ -50,6 +50,18 @@ installables: clean bootstrap
 	mv -f "$(SOURCEKITTEN_EXECUTABLE)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)/sourcekitten"
 	rm -rf "$(BUILT_BUNDLE)"
 
+	# remove rpathes that set by xcodebuild.
+	# SourceKittenFramework has dynamic loading mechanism for CLI.
+	install_name_tool -delete_rpath \
+		`xcode-select -p`/Toolchains/XcodeDefault.xctoolchain/usr/lib \
+	  "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework/Versions/A/SourceKittenFramework"
+	install_name_tool -delete_rpath \
+		/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib \
+	  "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework/Versions/A/SourceKittenFramework"
+	install_name_tool -delete_rpath \
+		/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib \
+	  "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework/Versions/A/SourceKittenFramework"
+
 prefix_install: installables
 	mkdir -p "$(FRAMEWORKS_FOLDER)" "$(BINARIES_FOLDER)"
 	cp -Rf "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework" "$(FRAMEWORKS_FOLDER)/"
