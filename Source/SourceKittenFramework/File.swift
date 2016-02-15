@@ -318,11 +318,6 @@ public final class File {
     public func getDocumentationCommentBody(dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
         return SwiftDocKey.getOffset(dictionary).flatMap { offset in
             return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
-                let commentEndLine = (contents as NSString).lineAndCharacterForByteOffset(commentByteRange.endIndex)?.line
-                let tokenStartLine = (contents as NSString).lineAndCharacterForByteOffset(Int(offset))?.line
-                guard commentEndLine == tokenStartLine || commentEndLine == tokenStartLine?.predecessor() else {
-                    return nil
-                }
                 return contents.byteRangeToNSRange(start: commentByteRange.startIndex, length: commentByteRange.endIndex - commentByteRange.startIndex).flatMap { nsRange in
                     return contents.commentBody(nsRange)
                 }
