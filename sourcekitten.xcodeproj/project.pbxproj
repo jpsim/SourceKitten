@@ -42,7 +42,6 @@
 		E847636A1A5A0651000EAE22 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84763691A5A0651000EAE22 /* File.swift */; };
 		E852418F1A5F4FB3007099FB /* Dictionary+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E852418E1A5F4FB3007099FB /* Dictionary+Merge.swift */; };
 		E868473A1A587B4D0043DC65 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86847391A587B4D0043DC65 /* Request.swift */; };
-		E868473C1A587C6E0043DC65 /* sourcekitd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E868473B1A587C6E0043DC65 /* sourcekitd.framework */; };
 		E86F588E1C4DC49000426E78 /* sourcekitd.h in Headers */ = {isa = PBXBuildFile; fileRef = E86F588D1C4DC49000426E78 /* sourcekitd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E872121A1AD2FFCD00A484F4 /* Array+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87212191AD2FFCD00A484F4 /* Array+SourceKitten.swift */; };
 		E877D9271B5693E70095BB2B /* ObjCDeclarationKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E877D9261B5693E70095BB2B /* ObjCDeclarationKind.swift */; };
@@ -219,7 +218,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8AB1A2E1A649F2100452012 /* libclang.dylib in Frameworks */,
-				E868473C1A587C6E0043DC65 /* sourcekitd.framework in Frameworks */,
 				E8C0DFCD1AD349DB007EE3D4 /* SWXMLHash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
