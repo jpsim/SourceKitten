@@ -44,7 +44,7 @@ while contents2 != contents:
 # apply first parameter label
 contents = re.compile(r'^(\s+return [^(]+\()([^),]+)', re.M).sub(r'\1\2: \2', contents)
 
-# remove _ on private lazy var
+# remove _ on private let
 contents2 = re.compile(r'^(private let .*)\s_\s', re.M).sub(r'\1 ', contents)
 while contents2 != contents:
     contents = contents2
