@@ -599,7 +599,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $SRCROOT/Source/SourceKittenFramework/\n\n./create_swift_from_generated_interface.py generated_interfaces/sourcekitd_h.txt > created_sourcekitd.swift\n";
+			shellScript = "cd $SRCROOT/Source/SourceKittenFramework/\n\n./create_swift_from_generated_interface.py generated_interfaces/sourcekitd_h.txt sourcekitd.framework/Versions/A/sourcekitd SourceKit > created_sourcekitd.swift\n";
 		};
 		C2265FAB1A4B86AC00158358 /* Check Xcode Version */ = {
 			isa = PBXShellScriptBuildPhase;

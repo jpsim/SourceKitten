@@ -2,67 +2,118 @@
 
 import sys
 import re
+from string import Template
+
+# expecting parameters
+# argv[1] target filename
+# argv[2] path of library. e.g. "libclang.dylib", "sourcekitd.framework/Versions/A/sourcekitd"
+# argv[3] import on SWIFT_PACKAGE. e.g. "Clang_C", "SourceKit"
 
 f = open(sys.argv[1], "r")
 contents = f.read()
 
-# comment out import
-# contents = re.compile(r'^import', re.M).sub('// import', contents)
+libraryPath = sys.argv[2]
+importOnSwiftPackage = sys.argv[3]
 
-# comment out public typealias, var
-contents = re.compile('^(public\s)(typealias|var)', re.M).sub(r'//\1\2', contents)
+# comment out
+## import
+contents = re.compile(r'^import', re.M).sub('// import', contents)
 
-# comment out public struct
+## public typealias, var
+contents = re.compile('^(public\s)(typealias|var)', re.M).sub(r'// \1\2', contents)
+## public struct
 contents = re.compile('^(public\sstruct[^}]+})', re.M).sub(r'/*\n\1\n*/', contents)
+## extension
+contents = re.compile('^(extension.+?)^}$', re.M+re.DOTALL).sub(r'/*\n\1\n*/', contents)
 
-# make function and lazy var
-contents = re.compile(r'^public func (sourcekitd_\w+)(\(.*)$', re.M).sub(\
+# make function and let
+contents = re.compile(r'^public func (\w+)(\(.*)$', re.M).sub(\
 r"""public func \1\2 {
     return _\1\2
 }
-private let _\1: @convention(c) \2 = sourcekitd.loadSymbol("\1")
+private let _\1: @convention(c) \2 = library.loadSymbol("\1")
 """, contents)
 
-# add missing return ()
-contents = re.compile('\) =', re.M).sub(') -> () =', contents)
 
-# remove return type on return
-contents = re.compile(r'^(\s+return.*)\s->.*$', re.M).sub(r'\1', contents)
+# public func `^(public func .*)`
 
-# remove type annotation on return
-contents2 = re.compile(r'^(\s+return [^(]+\([^:)]+):\s+[^,)]+', re.M).sub(r'\1', contents)
+## add unnamed first parameter label
+contents = re.compile(r'^(public func [^(]+\()(_:)', re.M).sub(r'\1unnamed1:', contents)
+
+## add unnamed parameter labels
+detectUnnamedLabelInFunc = re.compile(r'^(public func .*)\s+_:', re.M)
+contents = detectUnnamedLabelInFunc.sub(r'\1 _ unnamed2:', contents)
+contents = detectUnnamedLabelInFunc.sub(r'\1 _ unnamed3:', contents)
+contents = detectUnnamedLabelInFunc.sub(r'\1 _ unnamed4:', contents)
+contents = detectUnnamedLabelInFunc.sub(r'\1 _ unnamed5:', contents)
+contents = detectUnnamedLabelInFunc.sub(r'\1 _ unnamed6:', contents)
+contents = detectUnnamedLabelInFunc.sub(r'\1 _ unnamed7:', contents)
+
+# return `^(\s+return`
+
+## remove return type by depending the assumption that never returns closure.
+contents = re.compile(r'^(\s+return.*)\s->[^()\n]*$', re.M).sub(r'\1', contents)
+
+## remove type annotation on return
+detectTypeAnnotationInReturn = re.compile(r'^(\s+return [^(]+\([^:\n]+):\s+[^:,\n]+(,.+\)|\))$', re.M)
+contents2 = detectTypeAnnotationInReturn.sub(r'\1\2', contents)
 while contents2 != contents:
     contents = contents2
-    contents2 = re.compile(r'^(\s+return [^(]+\([^:)]+):\s+[^,)]+', re.M).sub(r'\1', contents)
+    contents2 = detectTypeAnnotationInReturn.sub(r'\1\2', contents)
 
-# apply parameter label
-contents2 = re.compile(r'^(\s+return .*)\s+_\s+(\w+)', re.M).sub(r'\1 \2: \2', contents)
+## apply parameter labels
+detectUnnamedParameterLabelInReturn = re.compile(r'^(\s+return .*)\s+_\s+(\w+)', re.M)
+contents2 = detectUnnamedParameterLabelInReturn.sub(r'\1 \2: \2', contents)
 while contents2 != contents:
     contents = contents2
-    contents2 = re.compile(r'^(\s+return .*)\s+_\s+(\w+)', re.M).sub(r'\1 \2: \2', contents)
+    contents2 = detectUnnamedParameterLabelInReturn.sub(r'\1 \2: \2', contents)
 
-# apply first parameter label
+## apply first parameter label
 contents = re.compile(r'^(\s+return [^(]+\()([^),]+)', re.M).sub(r'\1\2: \2', contents)
 
-# remove _ on private let
-contents2 = re.compile(r'^(private let .*)\s_\s', re.M).sub(r'\1 ', contents)
+## add unnamed first parameter label
+contents = re.compile(r'^(\s+return [^(]+\()(_: _)', re.M).sub(r'\1unnamed1', contents)
+
+## add unnamed parameter labels
+detectUnnamedLabelInReturn = re.compile(r'^(\s+return .*), _', re.M)
+contents = detectUnnamedLabelInReturn.sub(r'\1, unnamed2', contents)
+contents = detectUnnamedLabelInReturn.sub(r'\1, unnamed3', contents)
+contents = detectUnnamedLabelInReturn.sub(r'\1, unnamed4', contents)
+contents = detectUnnamedLabelInReturn.sub(r'\1, unnamed5', contents)
+contents = detectUnnamedLabelInReturn.sub(r'\1, unnamed6', contents)
+contents = detectUnnamedLabelInReturn.sub(r'\1, unnamed7', contents)
+
+## remove return
+#contents = re.compile(r'(\) {\n\s+)return\s', re.M).sub(r'\1', contents)
+
+
+# private let
+
+## remove _
+detectLowLineInPrivateLet = re.compile(r'^(private let .*)\s_\s', re.M)
+contents2 = detectLowLineInPrivateLet.sub(r'\1 ', contents)
 while contents2 != contents:
     contents = contents2
-    contents2 = re.compile(r'^(private let .*)\s_\s', re.M).sub(r'\1 ', contents)
+    contents2 = detectLowLineInPrivateLet.sub(r'\1 ', contents)
+
+## add unnamed return ()
+contents = re.compile('\) =', re.M).sub(') -> () =', contents)
 
 
-# remove return
-contents = re.compile(r'(\) {\n\s+)return\s', re.M).sub(r'\1', contents)
-
-contents = """// this file is generated by `convert_generated_interface_from_sourcekitd_h.py`
+# Add Header
+header = Template("""// this file is generated by `create_swift_from_generated_interface.py`
 #if SWIFT_PACKAGE
-import SourceKit
+import $importOnSwiftPackage
 #endif
-let sourcekitd = toolchainLoader.load("sourcekitd.framework/Versions/A/sourcekitd")
+private let library = toolchainLoader.load("$libraryPath")
 // swiftlint:disable file_length
-// swiftlint:disable variable_name
+// swiftlint:disable force_unwrapping
+// swiftlint:disable function_parameter_count
 // swiftlint:disable missing_docs
+// swiftlint:disable trailing_newline
+// swiftlint:disable variable_name
 // swiftlint:disable valid_docs
-""" + contents
+""").substitute({ "importOnSwiftPackage": importOnSwiftPackage, "libraryPath": libraryPath })
+contents = header + contents
 
 sys.stdout.write(contents)
