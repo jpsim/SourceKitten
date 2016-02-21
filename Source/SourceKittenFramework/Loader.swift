@@ -21,7 +21,7 @@ struct DynamicLinkLibrary {
     }
 }
 
-let toolchainLoader = Loader(pathes: [
+let toolchainLoader = Loader(paths: [
     xcodeDefaultToolchainOverride,
     toolchainDir,
     xcodeSelectPath?.toolchainDir,
@@ -41,15 +41,15 @@ let toolchainLoader = Loader(pathes: [
     })
 
 struct Loader {
-    let pathes: [String]
+    let paths: [String]
 
     func load(path: String) -> DynamicLinkLibrary {
-        guard let index = pathes.indexOf({
+        guard let index = paths.indexOf({
             $0.stringByAppendingPathComponent(path).isFile
         }) else {
             fatalError("Library \(path) is not found.")
         }
-        let fullPath = pathes[index].stringByAppendingPathComponent(path)
+        let fullPath = paths[index].stringByAppendingPathComponent(path)
         let handle = dlopen(fullPath, RTLD_LAZY)
         if handle == nil {
             fatalError("Loading \(path) failed.")
@@ -94,9 +94,8 @@ private let xcodeSelectPath: String? = {
     }
 
     var start = output.startIndex
-    var end = output.startIndex
     var contentsEnd = output.startIndex
-    output.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, forRange: start..<start)
+    output.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, forRange: start..<start)
     let xcodeSelectPath = output.substringWithRange(start..<contentsEnd)
     // If xcodeSelectPath is path of "Command Line Tools OS X for Xcode", return nil.
     // Because that does not contain `sourcekitd.framework`.
