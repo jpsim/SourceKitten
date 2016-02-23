@@ -15,7 +15,8 @@ struct DynamicLinkLibrary {
     func loadSymbol<T>(symbol: String) -> T {
         let sym = Darwin.dlsym(handle, symbol)
         if sym == nil {
-            fatalError("Finding symbol \(symbol) failed")
+            let errorString = String(UTF8String: dlerror())
+            fatalError("Finding symbol \(symbol) failed: \(errorString)")
         }
         return unsafeBitCast(sym, T.self)
     }
