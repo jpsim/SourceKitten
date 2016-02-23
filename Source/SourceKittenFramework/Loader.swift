@@ -55,7 +55,7 @@ struct Loader {
             }
         }
 
-        // try loading with simple path that depends resovling to DYLD
+        // try loading with simple path that depends resolving to DYLD
         let handle = dlopen(path, RTLD_LAZY)
         if handle != nil {
             return DynamicLinkLibrary(path: path, handle: handle)
