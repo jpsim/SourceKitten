@@ -44,17 +44,23 @@ struct Loader {
     let paths: [String]
 
     func load(path: String) -> DynamicLinkLibrary {
-        guard let index = paths.indexOf({
-            $0.stringByAppendingPathComponent(path).isFile
-        }) else {
-            fatalError("Library \(path) is not found.")
+        let fullPaths = paths.map { $0.stringByAppendingPathComponent(path) }.filter { $0.isFile }
+
+        // try all fullPaths that contains target file
+        for fullPath in fullPaths {
+            let handle = dlopen(fullPath, RTLD_LAZY)
+            if handle != nil {
+                return DynamicLinkLibrary(path: path, handle: handle)
+            }
         }
-        let fullPath = paths[index].stringByAppendingPathComponent(path)
-        let handle = dlopen(fullPath, RTLD_LAZY)
-        if handle == nil {
-            fatalError("Loading \(path) failed.")
+
+        // try loading with simple path that depends resovling to DYLD
+        let handle = dlopen(path, RTLD_LAZY)
+        if handle != nil {
+            return DynamicLinkLibrary(path: path, handle: handle)
         }
-        return DynamicLinkLibrary(path: path, handle: handle)
+
+        fatalError("Loading \(path) failed")
     }
 }
 
