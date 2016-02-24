@@ -141,6 +141,7 @@
 		6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_Documentation.swift; sourceTree = "<group>"; };
 		6C552AE01C7D358F0088929A /* generate_library_wrappers.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_library_wrappers.sh; sourceTree = "<group>"; };
 		6C552AE11C7D378B0088929A /* convert_generated_interface_to_wrapper.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = convert_generated_interface_to_wrapper.py; sourceTree = "<group>"; };
+		6C552B041C7D3B9D0088929A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6CDD63421C61DB840094A198 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D0D1211B19E87861005E4BAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0D1212419E878CC005E4BAA /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
@@ -265,6 +266,7 @@
 		6C4CF57A1C78BB52008532C5 /* library_wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				6C552B041C7D3B9D0088929A /* README.md */,
 				6C552AE01C7D358F0088929A /* generate_library_wrappers.sh */,
 				6C552AE11C7D378B0088929A /* convert_generated_interface_to_wrapper.py */,
 				6C4CF6421C797DFB008532C5 /* CXString_h.txt */,
