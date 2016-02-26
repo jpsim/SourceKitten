@@ -155,7 +155,6 @@
 		6C552AE01C7D358F0088929A /* generate_library_wrappers.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_library_wrappers.sh; sourceTree = "<group>"; };
 		6C552AE11C7D378B0088929A /* convert_generated_interface_to_wrapper.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = convert_generated_interface_to_wrapper.py; sourceTree = "<group>"; };
 		6C552B041C7D3B9D0088929A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		6CDD63421C61DB840094A198 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		6CF12A4B1C7D935B006DEC36 /* interfacegen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = interfacegen; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CF12A4D1C7D935B006DEC36 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		6CF12A5E1C7DB306006DEC36 /* sourcekitd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sourcekitd.h; sourceTree = "<group>"; };
@@ -481,7 +480,6 @@
 				E8AB1A2F1A64A21400452012 /* ClangTranslationUnitTests.swift */,
 				E845EFEB1B9941AA00CFA57B /* CodeCompletionTests.swift */,
 				E805A0491B560FCA00EA654A /* FileTests.swift */,
-				6CDD63421C61DB840094A198 /* main.swift */,
 				E8241CA21A5E01840047687E /* ModuleTests.swift */,
 				E8C9EA091A5C9A2900A6D4D1 /* OffsetMapTests.swift */,
 				E805A0471B55CBAF00EA654A /* SourceKitTests.swift */,
@@ -491,7 +489,7 @@
 				D0DB09A319EA354200234B16 /* SyntaxTests.swift */,
 			);
 			name = SourceKittenFrameworkTests;
-			path = Source/SourceKittenFrameworkTests;
+			path = Tests/SourceKittenFramework;
 			sourceTree = "<group>";
 		};
 		D0D1217C19E87B05005E4BAA /* Supporting Files */ = {
@@ -1058,7 +1056,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Source/SourceKittenFrameworkTests/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 			};
@@ -1069,7 +1067,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Source/SourceKittenFrameworkTests/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 			};
@@ -1114,7 +1112,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Source/SourceKittenFrameworkTests/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 			};
@@ -1159,7 +1157,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Source/SourceKittenFrameworkTests/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 			};

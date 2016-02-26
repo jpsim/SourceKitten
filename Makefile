@@ -18,6 +18,7 @@ COMPONENTS_PLIST=Source/sourcekitten/Components.plist
 
 SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-02-25-a
 SWIFT_BUILD_COMMAND=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/swift build
+SWIFT_TEST_COMMAND=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/swift test
 
 .PHONY: all bootstrap clean install package test uninstall
 
@@ -78,7 +79,7 @@ spm:
 	$(SWIFT_BUILD_COMMAND) -v
 
 spm_test: spm
-	.build/Debug/SourceKittenFrameworkTests
+	$(SWIFT_TEST_COMMAND)
 
 spm_clean:
 	$(SWIFT_BUILD_COMMAND) --clean
