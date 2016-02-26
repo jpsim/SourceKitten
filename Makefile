@@ -78,6 +78,7 @@ swift_snapshot_install:
 spm:
 	$(SWIFT_BUILD_COMMAND) -v
 
+spm_test: PATH:=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/:$(PATH)
 spm_test: spm
 	$(SWIFT_TEST_COMMAND)
 
