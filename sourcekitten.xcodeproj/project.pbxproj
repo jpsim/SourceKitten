@@ -80,6 +80,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6CFC1C0C1C80177200CD70E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0D1211019E87861005E4BAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CF12A4A1C7D935B006DEC36;
+			remoteInfo = interfacegen;
+		};
 		D0AAAB5119FB0960007B24B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D0D1211019E87861005E4BAA /* Project object */;
@@ -562,6 +569,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6CFC1C0D1C80177200CD70E1 /* PBXTargetDependency */,
 			);
 			name = SourceKittenFramework;
 			productName = SourceKittenFramework;
@@ -779,6 +787,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6CFC1C0D1C80177200CD70E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6CF12A4A1C7D935B006DEC36 /* interfacegen */;
+			targetProxy = 6CFC1C0C1C80177200CD70E1 /* PBXContainerItemProxy */;
+		};
 		D0AAAB5219FB0960007B24B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D0D1216C19E87B05005E4BAA /* SourceKittenFramework */;
