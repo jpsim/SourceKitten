@@ -22,18 +22,14 @@ private let library = toolchainLoader.load("sourcekitd.framework/Versions/A/sour
 //
 //===----------------------------------------------------------------------===//
 
-// import Darwin.C.stddef
-// import Darwin.C.stdint
-// import Darwin.C.stdbool
-
 /**
-* \brief The version constants for the sourcekitd API.
-* SOURCEKITD_VERSION_MINOR should increase when there are API additions.
-* SOURCEKITD_VERSION_MAJOR is intended for "major" source/ABI breaking changes.
-*
-* The policy about the sourcekitd API is to keep it source and ABI compatible,
-* thus SOURCEKITD_VERSION_MAJOR is expected to remain stable.
-*/
+ * \brief The version constants for the sourcekitd API.
+ * SOURCEKITD_VERSION_MINOR should increase when there are API additions.
+ * SOURCEKITD_VERSION_MAJOR is intended for "major" source/ABI breaking changes.
+ *
+ * The policy about the sourcekitd API is to keep it source and ABI compatible,
+ * thus SOURCEKITD_VERSION_MAJOR is expected to remain stable.
+ */
 // public var SOURCEKITD_VERSION_MAJOR: Int32 { get }
 // public var SOURCEKITD_VERSION_MINOR: Int32 { get }
 
@@ -150,7 +146,7 @@ private let _sourcekitd_uid_get_string_ptr: @convention(c) (obj: sourcekitd_uid_
  * @{
  */
 
- /**
+/**
  * \brief Used for constructing a request object.
  */
 // public typealias sourcekitd_object_t = UnsafeMutablePointer<Void>
@@ -306,13 +302,13 @@ private let _sourcekitd_request_description_copy: @convention(c) (obj: sourcekit
  * @}
  */
 
- /**
+/**
  * \defgroup Response API
  *
  * @{
  */
 
- /**
+/**
  * \brief The result of a request.
  *
  * If the request failed \c sourcekitd_response_t will be an error response and
@@ -730,7 +726,7 @@ private let _sourcekitd_variant_description_copy: @convention(c) (obj: sourcekit
  * @}
  */
 
- /**
+/**
  * \brief Invoke a request synchronously.
  *
  * The caller accepts ownership of the returned sourcekitd_response_t object and
@@ -827,4 +823,5 @@ public func sourcekitd_set_uid_handlers(uid_from_str: sourcekitd_uid_from_str_ha
     return _sourcekitd_set_uid_handlers(uid_from_str: uid_from_str, str_from_uid: str_from_uid)
 }
 private let _sourcekitd_set_uid_handlers: @convention(c) (uid_from_str: sourcekitd_uid_from_str_handler_t!, str_from_uid: sourcekitd_str_from_uid_handler_t!) -> () = library.loadSymbol("sourcekitd_set_uid_handlers")
+
 

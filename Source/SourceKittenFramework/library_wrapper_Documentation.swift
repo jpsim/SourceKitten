@@ -10,10 +10,6 @@ private let library = toolchainLoader.load("libclang.dylib")
 // swiftlint:disable trailing_newline
 // swiftlint:disable variable_name
 // swiftlint:disable valid_docs
-// import Darwin
-// import Foundation
-// import SWXMLHash
-// import SourceKittenFramework
 
 /*==-- clang-c/Documentation.h - Utilities for comment processing -*- C -*-===*\
 |*                                                                            *|
@@ -30,34 +26,32 @@ private let library = toolchainLoader.load("libclang.dylib")
 \*===----------------------------------------------------------------------===*/
 
 /**
-* \defgroup CINDEX_COMMENT Comment introspection
-*
-* The routines in this group provide access to information in documentation
-* comments. These facilities are distinct from the core and may be subject to
-* their own schedule of stability and deprecation.
-*
-* @{
-*/
+ * \defgroup CINDEX_COMMENT Comment introspection
+ *
+ * The routines in this group provide access to information in documentation
+ * comments. These facilities are distinct from the core and may be subject to
+ * their own schedule of stability and deprecation.
+ *
+ * @{
+ */
 
 /**
-* \brief A parsed comment.
-*/
+ * \brief A parsed comment.
+ */
 /*
 public struct CXComment {
-// public var ASTNode: UnsafePointer<Void>
-// public var TranslationUnit: CXTranslationUnit
-public init()
-public init(ASTNode: UnsafePointer<Void>, TranslationUnit: CXTranslationUnit)
+    public var ASTNode: UnsafePointer<Void>
+    public var TranslationUnit: CXTranslationUnit
+    public init()
+    public init(ASTNode: UnsafePointer<Void>, TranslationUnit: CXTranslationUnit)
 }
 */
 
-
-
 /**
-* \brief Given a cursor that represents a documentable entity (e.g.,
-* declaration), return the associated parsed comment as a
-* \c CXComment_FullComment AST node.
-*/
+ * \brief Given a cursor that represents a documentable entity (e.g.,
+ * declaration), return the associated parsed comment as a
+ * \c CXComment_FullComment AST node.
+ */
 public func clang_Cursor_getParsedComment(C: CXCursor) -> CXComment {
     return _clang_Cursor_getParsedComment(C: C)
 }
@@ -65,187 +59,187 @@ private let _clang_Cursor_getParsedComment: @convention(c) (C: CXCursor) -> CXCo
 
 
 /**
-* \brief Describes the type of the comment AST node (\c CXComment).  A comment
-* node can be considered block content (e. g., paragraph), inline content
-* (plain text) or neither (the root AST node).
-*/
+ * \brief Describes the type of the comment AST node (\c CXComment).  A comment
+ * node can be considered block content (e. g., paragraph), inline content
+ * (plain text) or neither (the root AST node).
+ */
 /*
 public struct CXCommentKind : RawRepresentable, Equatable {
-public init(_ rawValue: UInt32)
-public init(rawValue: UInt32)
-// public var rawValue: UInt32
+    public init(_ rawValue: UInt32)
+    public init(rawValue: UInt32)
+    public var rawValue: UInt32
 }
 */
 
 /**
-* \brief Null comment.  No AST node is constructed at the requested location
-* because there is no text or a syntax error.
-*/
+ * \brief Null comment.  No AST node is constructed at the requested location
+ * because there is no text or a syntax error.
+ */
 // public var CXComment_Null: CXCommentKind { get }
 
 /**
-* \brief Plain text.  Inline content.
-*/
+ * \brief Plain text.  Inline content.
+ */
 // public var CXComment_Text: CXCommentKind { get }
 
 /**
-* \brief A command with word-like arguments that is considered inline content.
-*
-* For example: \\c command.
-*/
+ * \brief A command with word-like arguments that is considered inline content.
+ *
+ * For example: \\c command.
+ */
 // public var CXComment_InlineCommand: CXCommentKind { get }
 
 /**
-* \brief HTML start tag with attributes (name-value pairs).  Considered
-* inline content.
-*
-* For example:
-* \verbatim
-* <br> <br /> <a href="http://example.org/">
-* \endverbatim
-*/
+ * \brief HTML start tag with attributes (name-value pairs).  Considered
+ * inline content.
+ *
+ * For example:
+ * \verbatim
+ * <br> <br /> <a href="http://example.org/">
+ * \endverbatim
+ */
 // public var CXComment_HTMLStartTag: CXCommentKind { get }
 
 /**
-* \brief HTML end tag.  Considered inline content.
-*
-* For example:
-* \verbatim
-* </a>
-* \endverbatim
-*/
+ * \brief HTML end tag.  Considered inline content.
+ *
+ * For example:
+ * \verbatim
+ * </a>
+ * \endverbatim
+ */
 // public var CXComment_HTMLEndTag: CXCommentKind { get }
 
 /**
-* \brief A paragraph, contains inline comment.  The paragraph itself is
-* block content.
-*/
+ * \brief A paragraph, contains inline comment.  The paragraph itself is
+ * block content.
+ */
 // public var CXComment_Paragraph: CXCommentKind { get }
 
 /**
-* \brief A command that has zero or more word-like arguments (number of
-* word-like arguments depends on command name) and a paragraph as an
-* argument.  Block command is block content.
-*
-* Paragraph argument is also a child of the block command.
-*
-* For example: \\brief has 0 word-like arguments and a paragraph argument.
-*
-* AST nodes of special kinds that parser knows about (e. g., \\param
-* command) have their own node kinds.
-*/
+ * \brief A command that has zero or more word-like arguments (number of
+ * word-like arguments depends on command name) and a paragraph as an
+ * argument.  Block command is block content.
+ *
+ * Paragraph argument is also a child of the block command.
+ *
+ * For example: \\brief has 0 word-like arguments and a paragraph argument.
+ *
+ * AST nodes of special kinds that parser knows about (e. g., \\param
+ * command) have their own node kinds.
+ */
 // public var CXComment_BlockCommand: CXCommentKind { get }
 
 /**
-* \brief A \\param or \\arg command that describes the function parameter
-* (name, passing direction, description).
-*
-* For example: \\param [in] ParamName description.
-*/
+ * \brief A \\param or \\arg command that describes the function parameter
+ * (name, passing direction, description).
+ *
+ * For example: \\param [in] ParamName description.
+ */
 // public var CXComment_ParamCommand: CXCommentKind { get }
 
 /**
-* \brief A \\tparam command that describes a template parameter (name and
-* description).
-*
-* For example: \\tparam T description.
-*/
+ * \brief A \\tparam command that describes a template parameter (name and
+ * description).
+ *
+ * For example: \\tparam T description.
+ */
 // public var CXComment_TParamCommand: CXCommentKind { get }
 
 /**
-* \brief A verbatim block command (e. g., preformatted code).  Verbatim
-* block has an opening and a closing command and contains multiple lines of
-* text (\c CXComment_VerbatimBlockLine child nodes).
-*
-* For example:
-* \\verbatim
-* aaa
-* \\endverbatim
-*/
+ * \brief A verbatim block command (e. g., preformatted code).  Verbatim
+ * block has an opening and a closing command and contains multiple lines of
+ * text (\c CXComment_VerbatimBlockLine child nodes).
+ *
+ * For example:
+ * \\verbatim
+ * aaa
+ * \\endverbatim
+ */
 // public var CXComment_VerbatimBlockCommand: CXCommentKind { get }
 
 /**
-* \brief A line of text that is contained within a
-* CXComment_VerbatimBlockCommand node.
-*/
+ * \brief A line of text that is contained within a
+ * CXComment_VerbatimBlockCommand node.
+ */
 // public var CXComment_VerbatimBlockLine: CXCommentKind { get }
 
 /**
-* \brief A verbatim line command.  Verbatim line has an opening command,
-* a single line of text (up to the newline after the opening command) and
-* has no closing command.
-*/
+ * \brief A verbatim line command.  Verbatim line has an opening command,
+ * a single line of text (up to the newline after the opening command) and
+ * has no closing command.
+ */
 // public var CXComment_VerbatimLine: CXCommentKind { get }
 
 /**
-* \brief A full comment attached to a declaration, contains block content.
-*/
+ * \brief A full comment attached to a declaration, contains block content.
+ */
 // public var CXComment_FullComment: CXCommentKind { get }
 
 /**
-* \brief The most appropriate rendering mode for an inline command, chosen on
-* command semantics in Doxygen.
-*/
+ * \brief The most appropriate rendering mode for an inline command, chosen on
+ * command semantics in Doxygen.
+ */
 /*
 public struct CXCommentInlineCommandRenderKind : RawRepresentable, Equatable {
-public init(_ rawValue: UInt32)
-public init(rawValue: UInt32)
-// public var rawValue: UInt32
+    public init(_ rawValue: UInt32)
+    public init(rawValue: UInt32)
+    public var rawValue: UInt32
 }
 */
 
 /**
-* \brief Command argument should be rendered in a normal font.
-*/
+ * \brief Command argument should be rendered in a normal font.
+ */
 // public var CXCommentInlineCommandRenderKind_Normal: CXCommentInlineCommandRenderKind { get }
 
 /**
-* \brief Command argument should be rendered in a bold font.
-*/
+ * \brief Command argument should be rendered in a bold font.
+ */
 // public var CXCommentInlineCommandRenderKind_Bold: CXCommentInlineCommandRenderKind { get }
 
 /**
-* \brief Command argument should be rendered in a monospaced font.
-*/
+ * \brief Command argument should be rendered in a monospaced font.
+ */
 // public var CXCommentInlineCommandRenderKind_Monospaced: CXCommentInlineCommandRenderKind { get }
 
 /**
-* \brief Command argument should be rendered emphasized (typically italic
-* font).
-*/
+ * \brief Command argument should be rendered emphasized (typically italic
+ * font).
+ */
 // public var CXCommentInlineCommandRenderKind_Emphasized: CXCommentInlineCommandRenderKind { get }
 
 /**
-* \brief Describes parameter passing direction for \\param or \\arg command.
-*/
+ * \brief Describes parameter passing direction for \\param or \\arg command.
+ */
 /*
 public struct CXCommentParamPassDirection : RawRepresentable, Equatable {
-public init(_ rawValue: UInt32)
-public init(rawValue: UInt32)
-// public var rawValue: UInt32
+    public init(_ rawValue: UInt32)
+    public init(rawValue: UInt32)
+    public var rawValue: UInt32
 }
 */
 
 /**
-* \brief The parameter is an input parameter.
-*/
+ * \brief The parameter is an input parameter.
+ */
 // public var CXCommentParamPassDirection_In: CXCommentParamPassDirection { get }
 
 /**
-* \brief The parameter is an output parameter.
-*/
+ * \brief The parameter is an output parameter.
+ */
 // public var CXCommentParamPassDirection_Out: CXCommentParamPassDirection { get }
 
 /**
-* \brief The parameter is an input and output parameter.
-*/
+ * \brief The parameter is an input and output parameter.
+ */
 // public var CXCommentParamPassDirection_InOut: CXCommentParamPassDirection { get }
 
 /**
-* \param Comment AST node of any kind.
-*
-* \returns the type of the AST node.
-*/
+ * \param Comment AST node of any kind.
+ *
+ * \returns the type of the AST node.
+ */
 public func clang_Comment_getKind(Comment: CXComment) -> CXCommentKind {
     return _clang_Comment_getKind(Comment: Comment)
 }
@@ -253,10 +247,10 @@ private let _clang_Comment_getKind: @convention(c) (Comment: CXComment) -> CXCom
 
 
 /**
-* \param Comment AST node of any kind.
-*
-* \returns number of children of the AST node.
-*/
+ * \param Comment AST node of any kind.
+ *
+ * \returns number of children of the AST node.
+ */
 public func clang_Comment_getNumChildren(Comment: CXComment) -> UInt32 {
     return _clang_Comment_getNumChildren(Comment: Comment)
 }
@@ -265,12 +259,12 @@ private let _clang_Comment_getNumChildren: @convention(c) (Comment: CXComment) -
 
 
 /**
-* \param Comment AST node of any kind.
-*
-* \param ChildIdx child index (zero-based).
-*
-* \returns the specified child of the AST node.
-*/
+ * \param Comment AST node of any kind.
+ *
+ * \param ChildIdx child index (zero-based).
+ *
+ * \returns the specified child of the AST node.
+ */
 public func clang_Comment_getChild(Comment: CXComment, _ ChildIdx: UInt32) -> CXComment {
     return _clang_Comment_getChild(Comment: Comment, ChildIdx: ChildIdx)
 }
@@ -278,14 +272,14 @@ private let _clang_Comment_getChild: @convention(c) (Comment: CXComment, ChildId
 
 
 /**
-* \brief A \c CXComment_Paragraph node is considered whitespace if it contains
-* only \c CXComment_Text nodes that are empty or whitespace.
-*
-* Other AST nodes (except \c CXComment_Paragraph and \c CXComment_Text) are
-* never considered whitespace.
-*
-* \returns non-zero if \c Comment is whitespace.
-*/
+ * \brief A \c CXComment_Paragraph node is considered whitespace if it contains
+ * only \c CXComment_Text nodes that are empty or whitespace.
+ *
+ * Other AST nodes (except \c CXComment_Paragraph and \c CXComment_Text) are
+ * never considered whitespace.
+ *
+ * \returns non-zero if \c Comment is whitespace.
+ */
 public func clang_Comment_isWhitespace(Comment: CXComment) -> UInt32 {
     return _clang_Comment_isWhitespace(Comment: Comment)
 }
@@ -294,10 +288,10 @@ private let _clang_Comment_isWhitespace: @convention(c) (Comment: CXComment) -> 
 
 
 /**
-* \returns non-zero if \c Comment is inline content and has a newline
-* immediately following it in the comment text.  Newlines between paragraphs
-* do not count.
-*/
+ * \returns non-zero if \c Comment is inline content and has a newline
+ * immediately following it in the comment text.  Newlines between paragraphs
+ * do not count.
+ */
 public func clang_InlineContentComment_hasTrailingNewline(Comment: CXComment) -> UInt32 {
     return _clang_InlineContentComment_hasTrailingNewline(Comment: Comment)
 }
@@ -305,10 +299,10 @@ private let _clang_InlineContentComment_hasTrailingNewline: @convention(c) (Comm
 
 
 /**
-* \param Comment a \c CXComment_Text AST node.
-*
-* \returns text contained in the AST node.
-*/
+ * \param Comment a \c CXComment_Text AST node.
+ *
+ * \returns text contained in the AST node.
+ */
 public func clang_TextComment_getText(Comment: CXComment) -> CXString {
     return _clang_TextComment_getText(Comment: Comment)
 }
@@ -317,10 +311,10 @@ private let _clang_TextComment_getText: @convention(c) (Comment: CXComment) -> C
 
 
 /**
-* \param Comment a \c CXComment_InlineCommand AST node.
-*
-* \returns name of the inline command.
-*/
+ * \param Comment a \c CXComment_InlineCommand AST node.
+ *
+ * \returns name of the inline command.
+ */
 public func clang_InlineCommandComment_getCommandName(Comment: CXComment) -> CXString {
     return _clang_InlineCommandComment_getCommandName(Comment: Comment)
 }
@@ -328,11 +322,11 @@ private let _clang_InlineCommandComment_getCommandName: @convention(c) (Comment:
 
 
 /**
-* \param Comment a \c CXComment_InlineCommand AST node.
-*
-* \returns the most appropriate rendering mode, chosen on command
-* semantics in Doxygen.
-*/
+ * \param Comment a \c CXComment_InlineCommand AST node.
+ *
+ * \returns the most appropriate rendering mode, chosen on command
+ * semantics in Doxygen.
+ */
 public func clang_InlineCommandComment_getRenderKind(Comment: CXComment) -> CXCommentInlineCommandRenderKind {
     return _clang_InlineCommandComment_getRenderKind(Comment: Comment)
 }
@@ -341,10 +335,10 @@ private let _clang_InlineCommandComment_getRenderKind: @convention(c) (Comment: 
 
 
 /**
-* \param Comment a \c CXComment_InlineCommand AST node.
-*
-* \returns number of command arguments.
-*/
+ * \param Comment a \c CXComment_InlineCommand AST node.
+ *
+ * \returns number of command arguments.
+ */
 public func clang_InlineCommandComment_getNumArgs(Comment: CXComment) -> UInt32 {
     return _clang_InlineCommandComment_getNumArgs(Comment: Comment)
 }
@@ -353,12 +347,12 @@ private let _clang_InlineCommandComment_getNumArgs: @convention(c) (Comment: CXC
 
 
 /**
-* \param Comment a \c CXComment_InlineCommand AST node.
-*
-* \param ArgIdx argument index (zero-based).
-*
-* \returns text of the specified argument.
-*/
+ * \param Comment a \c CXComment_InlineCommand AST node.
+ *
+ * \param ArgIdx argument index (zero-based).
+ *
+ * \returns text of the specified argument.
+ */
 public func clang_InlineCommandComment_getArgText(Comment: CXComment, _ ArgIdx: UInt32) -> CXString {
     return _clang_InlineCommandComment_getArgText(Comment: Comment, ArgIdx: ArgIdx)
 }
@@ -366,11 +360,11 @@ private let _clang_InlineCommandComment_getArgText: @convention(c) (Comment: CXC
 
 
 /**
-* \param Comment a \c CXComment_HTMLStartTag or \c CXComment_HTMLEndTag AST
-* node.
-*
-* \returns HTML tag name.
-*/
+ * \param Comment a \c CXComment_HTMLStartTag or \c CXComment_HTMLEndTag AST
+ * node.
+ *
+ * \returns HTML tag name.
+ */
 public func clang_HTMLTagComment_getTagName(Comment: CXComment) -> CXString {
     return _clang_HTMLTagComment_getTagName(Comment: Comment)
 }
@@ -379,10 +373,10 @@ private let _clang_HTMLTagComment_getTagName: @convention(c) (Comment: CXComment
 
 
 /**
-* \param Comment a \c CXComment_HTMLStartTag AST node.
-*
-* \returns non-zero if tag is self-closing (for example, &lt;br /&gt;).
-*/
+ * \param Comment a \c CXComment_HTMLStartTag AST node.
+ *
+ * \returns non-zero if tag is self-closing (for example, &lt;br /&gt;).
+ */
 public func clang_HTMLStartTagComment_isSelfClosing(Comment: CXComment) -> UInt32 {
     return _clang_HTMLStartTagComment_isSelfClosing(Comment: Comment)
 }
@@ -390,10 +384,10 @@ private let _clang_HTMLStartTagComment_isSelfClosing: @convention(c) (Comment: C
 
 
 /**
-* \param Comment a \c CXComment_HTMLStartTag AST node.
-*
-* \returns number of attributes (name-value pairs) attached to the start tag.
-*/
+ * \param Comment a \c CXComment_HTMLStartTag AST node.
+ *
+ * \returns number of attributes (name-value pairs) attached to the start tag.
+ */
 public func clang_HTMLStartTag_getNumAttrs(Comment: CXComment) -> UInt32 {
     return _clang_HTMLStartTag_getNumAttrs(Comment: Comment)
 }
@@ -402,12 +396,12 @@ private let _clang_HTMLStartTag_getNumAttrs: @convention(c) (Comment: CXComment)
 
 
 /**
-* \param Comment a \c CXComment_HTMLStartTag AST node.
-*
-* \param AttrIdx attribute index (zero-based).
-*
-* \returns name of the specified attribute.
-*/
+ * \param Comment a \c CXComment_HTMLStartTag AST node.
+ *
+ * \param AttrIdx attribute index (zero-based).
+ *
+ * \returns name of the specified attribute.
+ */
 public func clang_HTMLStartTag_getAttrName(Comment: CXComment, _ AttrIdx: UInt32) -> CXString {
     return _clang_HTMLStartTag_getAttrName(Comment: Comment, AttrIdx: AttrIdx)
 }
@@ -416,12 +410,12 @@ private let _clang_HTMLStartTag_getAttrName: @convention(c) (Comment: CXComment,
 
 
 /**
-* \param Comment a \c CXComment_HTMLStartTag AST node.
-*
-* \param AttrIdx attribute index (zero-based).
-*
-* \returns value of the specified attribute.
-*/
+ * \param Comment a \c CXComment_HTMLStartTag AST node.
+ *
+ * \param AttrIdx attribute index (zero-based).
+ *
+ * \returns value of the specified attribute.
+ */
 public func clang_HTMLStartTag_getAttrValue(Comment: CXComment, _ AttrIdx: UInt32) -> CXString {
     return _clang_HTMLStartTag_getAttrValue(Comment: Comment, AttrIdx: AttrIdx)
 }
@@ -430,10 +424,10 @@ private let _clang_HTMLStartTag_getAttrValue: @convention(c) (Comment: CXComment
 
 
 /**
-* \param Comment a \c CXComment_BlockCommand AST node.
-*
-* \returns name of the block command.
-*/
+ * \param Comment a \c CXComment_BlockCommand AST node.
+ *
+ * \returns name of the block command.
+ */
 public func clang_BlockCommandComment_getCommandName(Comment: CXComment) -> CXString {
     return _clang_BlockCommandComment_getCommandName(Comment: Comment)
 }
@@ -442,10 +436,10 @@ private let _clang_BlockCommandComment_getCommandName: @convention(c) (Comment: 
 
 
 /**
-* \param Comment a \c CXComment_BlockCommand AST node.
-*
-* \returns number of word-like arguments.
-*/
+ * \param Comment a \c CXComment_BlockCommand AST node.
+ *
+ * \returns number of word-like arguments.
+ */
 public func clang_BlockCommandComment_getNumArgs(Comment: CXComment) -> UInt32 {
     return _clang_BlockCommandComment_getNumArgs(Comment: Comment)
 }
@@ -454,12 +448,12 @@ private let _clang_BlockCommandComment_getNumArgs: @convention(c) (Comment: CXCo
 
 
 /**
-* \param Comment a \c CXComment_BlockCommand AST node.
-*
-* \param ArgIdx argument index (zero-based).
-*
-* \returns text of the specified word-like argument.
-*/
+ * \param Comment a \c CXComment_BlockCommand AST node.
+ *
+ * \param ArgIdx argument index (zero-based).
+ *
+ * \returns text of the specified word-like argument.
+ */
 public func clang_BlockCommandComment_getArgText(Comment: CXComment, _ ArgIdx: UInt32) -> CXString {
     return _clang_BlockCommandComment_getArgText(Comment: Comment, ArgIdx: ArgIdx)
 }
@@ -468,11 +462,11 @@ private let _clang_BlockCommandComment_getArgText: @convention(c) (Comment: CXCo
 
 
 /**
-* \param Comment a \c CXComment_BlockCommand or
-* \c CXComment_VerbatimBlockCommand AST node.
-*
-* \returns paragraph argument of the block command.
-*/
+ * \param Comment a \c CXComment_BlockCommand or
+ * \c CXComment_VerbatimBlockCommand AST node.
+ *
+ * \returns paragraph argument of the block command.
+ */
 public func clang_BlockCommandComment_getParagraph(Comment: CXComment) -> CXComment {
     return _clang_BlockCommandComment_getParagraph(Comment: Comment)
 }
@@ -481,10 +475,10 @@ private let _clang_BlockCommandComment_getParagraph: @convention(c) (Comment: CX
 
 
 /**
-* \param Comment a \c CXComment_ParamCommand AST node.
-*
-* \returns parameter name.
-*/
+ * \param Comment a \c CXComment_ParamCommand AST node.
+ *
+ * \returns parameter name.
+ */
 public func clang_ParamCommandComment_getParamName(Comment: CXComment) -> CXString {
     return _clang_ParamCommandComment_getParamName(Comment: Comment)
 }
@@ -493,12 +487,12 @@ private let _clang_ParamCommandComment_getParamName: @convention(c) (Comment: CX
 
 
 /**
-* \param Comment a \c CXComment_ParamCommand AST node.
-*
-* \returns non-zero if the parameter that this AST node represents was found
-* in the function prototype and \c clang_ParamCommandComment_getParamIndex
-* function will return a meaningful value.
-*/
+ * \param Comment a \c CXComment_ParamCommand AST node.
+ *
+ * \returns non-zero if the parameter that this AST node represents was found
+ * in the function prototype and \c clang_ParamCommandComment_getParamIndex
+ * function will return a meaningful value.
+ */
 public func clang_ParamCommandComment_isParamIndexValid(Comment: CXComment) -> UInt32 {
     return _clang_ParamCommandComment_isParamIndexValid(Comment: Comment)
 }
@@ -507,10 +501,10 @@ private let _clang_ParamCommandComment_isParamIndexValid: @convention(c) (Commen
 
 
 /**
-* \param Comment a \c CXComment_ParamCommand AST node.
-*
-* \returns zero-based parameter index in function prototype.
-*/
+ * \param Comment a \c CXComment_ParamCommand AST node.
+ *
+ * \returns zero-based parameter index in function prototype.
+ */
 public func clang_ParamCommandComment_getParamIndex(Comment: CXComment) -> UInt32 {
     return _clang_ParamCommandComment_getParamIndex(Comment: Comment)
 }
@@ -519,11 +513,11 @@ private let _clang_ParamCommandComment_getParamIndex: @convention(c) (Comment: C
 
 
 /**
-* \param Comment a \c CXComment_ParamCommand AST node.
-*
-* \returns non-zero if parameter passing direction was specified explicitly in
-* the comment.
-*/
+ * \param Comment a \c CXComment_ParamCommand AST node.
+ *
+ * \returns non-zero if parameter passing direction was specified explicitly in
+ * the comment.
+ */
 public func clang_ParamCommandComment_isDirectionExplicit(Comment: CXComment) -> UInt32 {
     return _clang_ParamCommandComment_isDirectionExplicit(Comment: Comment)
 }
@@ -532,10 +526,10 @@ private let _clang_ParamCommandComment_isDirectionExplicit: @convention(c) (Comm
 
 
 /**
-* \param Comment a \c CXComment_ParamCommand AST node.
-*
-* \returns parameter passing direction.
-*/
+ * \param Comment a \c CXComment_ParamCommand AST node.
+ *
+ * \returns parameter passing direction.
+ */
 public func clang_ParamCommandComment_getDirection(Comment: CXComment) -> CXCommentParamPassDirection {
     return _clang_ParamCommandComment_getDirection(Comment: Comment)
 }
@@ -544,10 +538,10 @@ private let _clang_ParamCommandComment_getDirection: @convention(c) (Comment: CX
 
 
 /**
-* \param Comment a \c CXComment_TParamCommand AST node.
-*
-* \returns template parameter name.
-*/
+ * \param Comment a \c CXComment_TParamCommand AST node.
+ *
+ * \returns template parameter name.
+ */
 public func clang_TParamCommandComment_getParamName(Comment: CXComment) -> CXString {
     return _clang_TParamCommandComment_getParamName(Comment: Comment)
 }
@@ -556,14 +550,14 @@ private let _clang_TParamCommandComment_getParamName: @convention(c) (Comment: C
 
 
 /**
-* \param Comment a \c CXComment_TParamCommand AST node.
-*
-* \returns non-zero if the parameter that this AST node represents was found
-* in the template parameter list and
-* \c clang_TParamCommandComment_getDepth and
-* \c clang_TParamCommandComment_getIndex functions will return a meaningful
-* value.
-*/
+ * \param Comment a \c CXComment_TParamCommand AST node.
+ *
+ * \returns non-zero if the parameter that this AST node represents was found
+ * in the template parameter list and
+ * \c clang_TParamCommandComment_getDepth and
+ * \c clang_TParamCommandComment_getIndex functions will return a meaningful
+ * value.
+ */
 public func clang_TParamCommandComment_isParamPositionValid(Comment: CXComment) -> UInt32 {
     return _clang_TParamCommandComment_isParamPositionValid(Comment: Comment)
 }
@@ -572,18 +566,18 @@ private let _clang_TParamCommandComment_isParamPositionValid: @convention(c) (Co
 
 
 /**
-* \param Comment a \c CXComment_TParamCommand AST node.
-*
-* \returns zero-based nesting depth of this parameter in the template parameter list.
-*
-* For example,
-* \verbatim
-*     template<typename C, template<typename T> class TT>
-*     void test(TT<int> aaa);
-* \endverbatim
-* for C and TT nesting depth is 0,
-* for T nesting depth is 1.
-*/
+ * \param Comment a \c CXComment_TParamCommand AST node.
+ *
+ * \returns zero-based nesting depth of this parameter in the template parameter list.
+ *
+ * For example,
+ * \verbatim
+ *     template<typename C, template<typename T> class TT>
+ *     void test(TT<int> aaa);
+ * \endverbatim
+ * for C and TT nesting depth is 0,
+ * for T nesting depth is 1.
+ */
 public func clang_TParamCommandComment_getDepth(Comment: CXComment) -> UInt32 {
     return _clang_TParamCommandComment_getDepth(Comment: Comment)
 }
@@ -592,23 +586,23 @@ private let _clang_TParamCommandComment_getDepth: @convention(c) (Comment: CXCom
 
 
 /**
-* \param Comment a \c CXComment_TParamCommand AST node.
-*
-* \returns zero-based parameter index in the template parameter list at a
-* given nesting depth.
-*
-* For example,
-* \verbatim
-*     template<typename C, template<typename T> class TT>
-*     void test(TT<int> aaa);
-* \endverbatim
-* for C and TT nesting depth is 0, so we can ask for index at depth 0:
-* at depth 0 C's index is 0, TT's index is 1.
-*
-* For T nesting depth is 1, so we can ask for index at depth 0 and 1:
-* at depth 0 T's index is 1 (same as TT's),
-* at depth 1 T's index is 0.
-*/
+ * \param Comment a \c CXComment_TParamCommand AST node.
+ *
+ * \returns zero-based parameter index in the template parameter list at a
+ * given nesting depth.
+ *
+ * For example,
+ * \verbatim
+ *     template<typename C, template<typename T> class TT>
+ *     void test(TT<int> aaa);
+ * \endverbatim
+ * for C and TT nesting depth is 0, so we can ask for index at depth 0:
+ * at depth 0 C's index is 0, TT's index is 1.
+ *
+ * For T nesting depth is 1, so we can ask for index at depth 0 and 1:
+ * at depth 0 T's index is 1 (same as TT's),
+ * at depth 1 T's index is 0.
+ */
 public func clang_TParamCommandComment_getIndex(Comment: CXComment, _ Depth: UInt32) -> UInt32 {
     return _clang_TParamCommandComment_getIndex(Comment: Comment, Depth: Depth)
 }
@@ -617,10 +611,10 @@ private let _clang_TParamCommandComment_getIndex: @convention(c) (Comment: CXCom
 
 
 /**
-* \param Comment a \c CXComment_VerbatimBlockLine AST node.
-*
-* \returns text contained in the AST node.
-*/
+ * \param Comment a \c CXComment_VerbatimBlockLine AST node.
+ *
+ * \returns text contained in the AST node.
+ */
 public func clang_VerbatimBlockLineComment_getText(Comment: CXComment) -> CXString {
     return _clang_VerbatimBlockLineComment_getText(Comment: Comment)
 }
@@ -628,10 +622,10 @@ private let _clang_VerbatimBlockLineComment_getText: @convention(c) (Comment: CX
 
 
 /**
-* \param Comment a \c CXComment_VerbatimLine AST node.
-*
-* \returns text contained in the AST node.
-*/
+ * \param Comment a \c CXComment_VerbatimLine AST node.
+ *
+ * \returns text contained in the AST node.
+ */
 public func clang_VerbatimLineComment_getText(Comment: CXComment) -> CXString {
     return _clang_VerbatimLineComment_getText(Comment: Comment)
 }
@@ -639,13 +633,13 @@ private let _clang_VerbatimLineComment_getText: @convention(c) (Comment: CXComme
 
 
 /**
-* \brief Convert an HTML tag AST node to string.
-*
-* \param Comment a \c CXComment_HTMLStartTag or \c CXComment_HTMLEndTag AST
-* node.
-*
-* \returns string containing an HTML tag.
-*/
+ * \brief Convert an HTML tag AST node to string.
+ *
+ * \param Comment a \c CXComment_HTMLStartTag or \c CXComment_HTMLEndTag AST
+ * node.
+ *
+ * \returns string containing an HTML tag.
+ */
 public func clang_HTMLTagComment_getAsString(Comment: CXComment) -> CXString {
     return _clang_HTMLTagComment_getAsString(Comment: Comment)
 }
@@ -653,36 +647,36 @@ private let _clang_HTMLTagComment_getAsString: @convention(c) (Comment: CXCommen
 
 
 /**
-* \brief Convert a given full parsed comment to an HTML fragment.
-*
-* Specific details of HTML layout are subject to change.  Don't try to parse
-* this HTML back into an AST, use other APIs instead.
-*
-* Currently the following CSS classes are used:
-* \li "para-brief" for \\brief paragraph and equivalent commands;
-* \li "para-returns" for \\returns paragraph and equivalent commands;
-* \li "word-returns" for the "Returns" word in \\returns paragraph.
-*
-* Function argument documentation is rendered as a \<dl\> list with arguments
-* sorted in function prototype order.  CSS classes used:
-* \li "param-name-index-NUMBER" for parameter name (\<dt\>);
-* \li "param-descr-index-NUMBER" for parameter description (\<dd\>);
-* \li "param-name-index-invalid" and "param-descr-index-invalid" are used if
-* parameter index is invalid.
-*
-* Template parameter documentation is rendered as a \<dl\> list with
-* parameters sorted in template parameter list order.  CSS classes used:
-* \li "tparam-name-index-NUMBER" for parameter name (\<dt\>);
-* \li "tparam-descr-index-NUMBER" for parameter description (\<dd\>);
-* \li "tparam-name-index-other" and "tparam-descr-index-other" are used for
-* names inside template template parameters;
-* \li "tparam-name-index-invalid" and "tparam-descr-index-invalid" are used if
-* parameter position is invalid.
-*
-* \param Comment a \c CXComment_FullComment AST node.
-*
-* \returns string containing an HTML fragment.
-*/
+ * \brief Convert a given full parsed comment to an HTML fragment.
+ *
+ * Specific details of HTML layout are subject to change.  Don't try to parse
+ * this HTML back into an AST, use other APIs instead.
+ *
+ * Currently the following CSS classes are used:
+ * \li "para-brief" for \\brief paragraph and equivalent commands;
+ * \li "para-returns" for \\returns paragraph and equivalent commands;
+ * \li "word-returns" for the "Returns" word in \\returns paragraph.
+ *
+ * Function argument documentation is rendered as a \<dl\> list with arguments
+ * sorted in function prototype order.  CSS classes used:
+ * \li "param-name-index-NUMBER" for parameter name (\<dt\>);
+ * \li "param-descr-index-NUMBER" for parameter description (\<dd\>);
+ * \li "param-name-index-invalid" and "param-descr-index-invalid" are used if
+ * parameter index is invalid.
+ *
+ * Template parameter documentation is rendered as a \<dl\> list with
+ * parameters sorted in template parameter list order.  CSS classes used:
+ * \li "tparam-name-index-NUMBER" for parameter name (\<dt\>);
+ * \li "tparam-descr-index-NUMBER" for parameter description (\<dd\>);
+ * \li "tparam-name-index-other" and "tparam-descr-index-other" are used for
+ * names inside template template parameters;
+ * \li "tparam-name-index-invalid" and "tparam-descr-index-invalid" are used if
+ * parameter position is invalid.
+ *
+ * \param Comment a \c CXComment_FullComment AST node.
+ *
+ * \returns string containing an HTML fragment.
+ */
 public func clang_FullComment_getAsHTML(Comment: CXComment) -> CXString {
     return _clang_FullComment_getAsHTML(Comment: Comment)
 }
@@ -690,17 +684,18 @@ private let _clang_FullComment_getAsHTML: @convention(c) (Comment: CXComment) ->
 
 
 /**
-* \brief Convert a given full parsed comment to an XML document.
-*
-* A Relax NG schema for the XML can be found in comment-xml-schema.rng file
-* inside clang source tree.
-*
-* \param Comment a \c CXComment_FullComment AST node.
-*
-* \returns string containing an XML document.
-*/
+ * \brief Convert a given full parsed comment to an XML document.
+ *
+ * A Relax NG schema for the XML can be found in comment-xml-schema.rng file
+ * inside clang source tree.
+ *
+ * \param Comment a \c CXComment_FullComment AST node.
+ *
+ * \returns string containing an XML document.
+ */
 public func clang_FullComment_getAsXML(Comment: CXComment) -> CXString {
     return _clang_FullComment_getAsXML(Comment: Comment)
 }
 private let _clang_FullComment_getAsXML: @convention(c) (Comment: CXComment) -> CXString = library.loadSymbol("clang_FullComment_getAsXML")
+
 
