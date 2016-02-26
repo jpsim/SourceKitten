@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Stop interface generation if running on Travis-CI
-[ "$USER" = "travis" ] && exit 0
-
 [ -z "$SRCROOT" -o -z "$TARGET_TEMP_DIR" ] && exit 1
 
 cd $SRCROOT/Source/SourceKittenFramework/
