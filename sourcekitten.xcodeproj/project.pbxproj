@@ -142,10 +142,6 @@
 		5499CA971A2394B700783309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C4CF5721C78B47F008532C5 /* library_wrapper_sourcekitd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_sourcekitd.swift; sourceTree = "<group>"; };
 		6C4CF5741C78B47F008532C5 /* library_wrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper.swift; sourceTree = "<group>"; };
-		6C4CF57D1C78BBC2008532C5 /* sourcekitd_h.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = sourcekitd_h.txt; sourceTree = "<group>"; };
-		6C4CF6421C797DFB008532C5 /* CXString_h.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = CXString_h.txt; sourceTree = "<group>"; };
-		6C4CF6431C797DFB008532C5 /* Documentation_h.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = Documentation_h.txt; sourceTree = "<group>"; };
-		6C4CF6441C797DFB008532C5 /* Index_h.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = Index_h.txt; sourceTree = "<group>"; };
 		6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_Index.swift; sourceTree = "<group>"; };
 		6C4CF6481C79802A008532C5 /* library_wrapper_CXString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_CXString.swift; sourceTree = "<group>"; };
 		6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_Documentation.swift; sourceTree = "<group>"; };
@@ -157,6 +153,9 @@
 		6CF12A4D1C7D935B006DEC36 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		6CF12A5E1C7DB306006DEC36 /* sourcekitd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sourcekitd.h; sourceTree = "<group>"; };
 		6CF12A5F1C7DB340006DEC36 /* interfacegen-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "interfacegen-Bridging-Header.h"; sourceTree = "<group>"; };
+		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		6CFC1B721C8003AE00CD70E1 /* interfacegen_sourcekitd.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = interfacegen_sourcekitd.sh; sourceTree = "<group>"; };
+		6CFC1B731C8003AE00CD70E1 /* interfacegen_Clang_C.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = interfacegen_Clang_C.sh; sourceTree = "<group>"; };
 		D0D1211B19E87861005E4BAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0D1212419E878CC005E4BAA /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		D0D1212619E878CC005E4BAA /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -290,10 +289,8 @@
 				6C552B041C7D3B9D0088929A /* README.md */,
 				6C552AE01C7D358F0088929A /* generate_library_wrappers.sh */,
 				6C552AE11C7D378B0088929A /* convert_generated_interface_to_wrapper.py */,
-				6C4CF6421C797DFB008532C5 /* CXString_h.txt */,
-				6C4CF6431C797DFB008532C5 /* Documentation_h.txt */,
-				6C4CF6441C797DFB008532C5 /* Index_h.txt */,
-				6C4CF57D1C78BBC2008532C5 /* sourcekitd_h.txt */,
+				6CFC1B721C8003AE00CD70E1 /* interfacegen_sourcekitd.sh */,
+				6CFC1B731C8003AE00CD70E1 /* interfacegen_Clang_C.sh */,
 			);
 			path = library_wrapper;
 			sourceTree = "<group>";
@@ -508,6 +505,7 @@
 				E8D474301A648ED10011A49C /* Documentation.h */,
 				E8D474311A648ED10011A49C /* Index.h */,
 				E8D474321A648ED10011A49C /* Platform.h */,
+				6CFC18F01C7F2FB900CD70E1 /* module.modulemap */,
 			);
 			path = "clang-c";
 			sourceTree = "<group>";
