@@ -176,9 +176,14 @@ extension NSString {
                 if length == line.byteRange.length {
                     character = content.utf16.count
                 } else {
-                    let endIndex = content.utf8.startIndex.advancedBy(length)
-                        .samePositionIn(content.utf16) ?? content.utf16.endIndex
-                    character = content.utf16.startIndex.distanceTo(endIndex)
+                    let fullLength = content.utf8.startIndex.distanceTo(content.utf8.endIndex)
+                    if fullLength < length {
+                        character = fullLength
+                    } else {
+                        let endIndex = content.utf8.startIndex.advancedBy(length)
+                            .samePositionIn(content.utf16) ?? content.utf16.endIndex
+                        character = content.utf16.startIndex.distanceTo(endIndex)
+                    }
                 }
                 return (line: line.index, character: character)
             }
