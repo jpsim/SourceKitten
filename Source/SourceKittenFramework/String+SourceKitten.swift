@@ -123,8 +123,9 @@ extension NSString {
             } else if line.byteRange.length == diff {
                 return NSMaxRange(line.range)
             }
-            let endUTF16index = line.content.utf8.startIndex.advancedBy(diff)
-                                       .samePositionIn(line.content.utf16)!
+            let utf8View = line.content.utf8
+            let endUTF16index = utf8View.startIndex.advancedBy(diff, limit: utf8View.endIndex)
+                .samePositionIn(line.content.utf16)!
             let utf16Diff = line.content.utf16.startIndex.distanceTo(endUTF16index)
             return line.range.location + utf16Diff
         }
@@ -151,8 +152,9 @@ extension NSString {
             } else if line.range.length == diff {
                 return NSMaxRange(line.byteRange)
             }
-            let endUTF8index = line.content.utf16.startIndex.advancedBy(diff)
-                                      .samePositionIn(line.content.utf8)!
+            let utf16View = line.content.utf16
+            let endUTF8index = utf16View.startIndex.advancedBy(diff, limit: utf16View.endIndex)
+                .samePositionIn(line.content.utf8)!
             let byteDiff = line.content.utf8.startIndex.distanceTo(endUTF8index)
             return line.byteRange.location + byteDiff
         }
@@ -176,7 +178,8 @@ extension NSString {
                 if length == line.byteRange.length {
                     character = content.utf16.count
                 } else {
-                    let endIndex = content.utf8.startIndex.advancedBy(length)
+                    let utf8View = content.utf8
+                    let endIndex = utf8View.startIndex.advancedBy(length, limit: utf8View.endIndex)
                         .samePositionIn(content.utf16) ?? content.utf16.endIndex
                     character = content.utf16.startIndex.distanceTo(endIndex)
                 }
