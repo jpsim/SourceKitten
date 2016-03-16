@@ -73,6 +73,8 @@ internal enum SwiftDocKey: String {
     case ParsedScopeEnd       = "key.parsed_scope.end"
     /// USR of documented token (String).
     case ParsedScopeStart     = "key.parsed_scope.start"
+    /// Swift Declaration (String).
+    case SwiftDeclaration     = "key.swift_declaration"
 
 
     // MARK: Typed SwiftDocKey Getters

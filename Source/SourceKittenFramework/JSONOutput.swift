@@ -85,6 +85,7 @@ private func toOutputDictionary(decl: SourceDeclaration) -> [String: AnyObject] 
     set(.DocumentationComment, decl.commentBody)
     set(.ParsedScopeStart, Int(decl.extent.start.line))
     set(.ParsedScopeEnd, Int(decl.extent.end.line))
+    set(.SwiftDeclaration, decl.swiftDeclaration)
 
     setA(.DocResultDiscussion, decl.documentation?.returnDiscussion.map(toOutputDictionary))
     setA(.DocParameters, decl.documentation?.parameters.map(toOutputDictionary))

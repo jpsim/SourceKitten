@@ -13,6 +13,7 @@
           "key.usr" : "c:objc(cs)SuperScript",
           "key.doc.file" : "SuperScript.h",
           "key.doc.full_as_xml" : "",
+          "key.swift_declaration" : "class SuperScript : NSObject",
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -26,17 +27,18 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "SuperScript.h",
               "key.parsed_declaration" : "- (void)superSize:(id)sender;",
               "key.doc.comment" : "ᵝ \tᵞ \tᵟ \tᵋ \t\t\tᶿ \tᶥ \t\t\t\t\t\t\t\t\t\t\tᶹ \tᵠ \tᵡ",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 13,
               "key.name" : "-superSize:",
-              "key.parsed_scope.start" : 13,
               "key.doc.column" : 13,
               "key.parsed_scope.end" : 13,
-              "key.filepath" : "SuperScript.h",
-              "key.usr" : "c:objc(cs)SuperScript(im)superSize:"
+              "key.usr" : "c:objc(cs)SuperScript(im)superSize:",
+              "key.doc.file" : "SuperScript.h",
+              "key.doc.full_as_xml" : "",
+              "key.swift_declaration" : "@IBAction func superSize(sender: AnyObject!)",
+              "key.parsed_scope.start" : 13,
+              "key.filepath" : "SuperScript.h"
             }
           ],
           "key.parsed_scope.start" : 6,
