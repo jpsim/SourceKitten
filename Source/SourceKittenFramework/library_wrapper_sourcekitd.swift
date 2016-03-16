@@ -22,6 +22,10 @@ private let library = toolchainLoader.load("sourcekitd.framework/Versions/A/sour
 //
 //===----------------------------------------------------------------------===//
 
+// import Darwin.C.stddef
+// import Darwin.C.stdint
+// import Darwin.C.stdbool
+
 /**
  * \brief The version constants for the sourcekitd API.
  * SOURCEKITD_VERSION_MINOR should increase when there are API additions.
