@@ -18,6 +18,10 @@
   [Norio Nomura](https://github.com/norio-nomura)
   [#142](https://github.com/jpsim/SourceKitten/issues/142)
 
+* Fix "Unrecognized arguments:" error on `doc` command.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#174](https://github.com/jpsim/SourceKitten/issues/174)
+
 ## 0.10.0
 
 ##### Breaking
