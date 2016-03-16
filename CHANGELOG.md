@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix crash on DOS newlines.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#315](https://github.com/realm/SwiftLint/issues/315)
 
 ## 0.10.0
 
