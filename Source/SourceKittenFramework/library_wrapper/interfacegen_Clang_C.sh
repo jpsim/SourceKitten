@@ -1,8 +1,8 @@
 #!/bin/sh
 
-[ -z "$SRCROOT" -o -z "$TARGET_BUILD_DIR" -o -z "$TARGET_TEMP_DIR" ] && exit 1
+[ -z "$SRCROOT" -o -z "$BUILT_PRODUCTS_DIR" -o -z "$TARGET_BUILD_DIR" -o -z "$TARGET_TEMP_DIR" ] && exit 1
 
-interfacegen=$TARGET_BUILD_DIR/interfacegen
+interfacegen=$BUILT_PRODUCTS_DIR/interfacegen
 
 [ -x $interfacegen ] || exit 1
 
