@@ -53,8 +53,9 @@ public struct SyntaxMap {
     }
 
     /**
-    Returns the range of the last contiguous comment-like block from the tokens in `self` prior to
-    `offset`.
+    Returns the range of the last contiguous doc comment block from the tokens in `self` prior to
+    `offset`. If finds identifier earlier than doc comment, stops searching and returns nil,
+    because doc comment belong to identifier.
 
     - parameter offset: Last possible byte offset of the range's start.
     */
@@ -66,8 +67,12 @@ public struct SyntaxMap {
         let docTypes = SyntaxKind.docComments().map({$0.rawValue})
         let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
         let isNotDoc = { !isDoc($0) }
+        let isIdentifier = { (token: SyntaxToken) in token.type == SyntaxKind.Identifier.rawValue }
+        let isDocOrIdentifier = { isDoc($0) || isIdentifier($0) }
 
-        guard let commentBegin = tokensBeforeOffset.indexOf(isDoc) else { return nil }
+        // if finds identifier earlier than comment, stops searching and returns nil.
+        guard let commentBegin = tokensBeforeOffset.indexOf(isDocOrIdentifier)
+            where !isIdentifier(tokensBeforeOffset[commentBegin]) else { return nil }
         let tokensBeginningComment = tokensBeforeOffset.suffixFrom(commentBegin)
 
         // For avoiding declaring `var` with type annotation before `if let`, use `map()`

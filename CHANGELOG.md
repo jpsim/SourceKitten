@@ -10,7 +10,13 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix crash on DOS newlines.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#315](https://github.com/realm/SwiftLint/issues/315)
+
+* Fix doc.comment blank for many declarations, causing missing Jazzy docs.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#142](https://github.com/jpsim/SourceKitten/issues/142)
 
 ## 0.10.0
 
