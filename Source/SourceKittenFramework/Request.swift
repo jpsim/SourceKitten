@@ -340,3 +340,34 @@ extension Request: CustomStringConvertible {
     /// A textual representation of `Request`.
     public var description: String { return String(UTF8String: sourcekitd_request_description_copy(sourcekitObject))! }
 }
+
+internal func libraryWrapperForModule(module: String) -> String {
+    let xctestConfigurationPath = NSProcessInfo.processInfo().environment["XCTestConfigurationFilePath"]!
+    let buildPath = xctestConfigurationPath.substringToIndex(xctestConfigurationPath.rangeOfString("/Intermediates/")!.startIndex)
+    let arguments = [
+        "-sdk",
+        sdkPath(),
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        buildPath + "/Products/Debug",
+        "-Xcc",
+        "-ivfsoverlay",
+        "-Xcc",
+        buildPath + "/Intermediates/SourceKitten.build/all-product-headers.yaml",
+        "-Xcc",
+        "-ivfsoverlay",
+        "-Xcc",
+        buildPath + "/Intermediates/SourceKitten.build/Debug/SourceKittenFramework.build/unextended-module-overlay.yaml"
+    ]
+    var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+    let dict = [
+        sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")),
+        sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().UUIDString),
+        sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
+        sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create("SourceKittenFramework.\(module)")
+    ]
+    var keys = Array(dict.keys)
+    var values = Array(dict.values)
+    return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()["key.sourcetext"] as! String
+}

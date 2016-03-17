@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SourceKittenFramework
+@testable import SourceKittenFramework
 import XCTest
 
 private func run(executable: String, arguments: [String]) -> String? {
@@ -151,6 +151,12 @@ class SourceKitTests: XCTestCase {
         if actual != expectedStrings {
             print("the following strings were added: \(actual.subtract(expectedStrings))")
             print("the following strings were removed: \(expectedStrings.subtract(actual))")
+        }
+    }
+
+    func testObjCSwiftInterfaceHeader() {
+        for module in ["CXString", "Documentation", "Index", "sourcekitd"] {
+            print(libraryWrapperForModule(module))
         }
     }
 }
