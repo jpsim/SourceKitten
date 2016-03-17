@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SourceKittenFramework
+@testable import SourceKittenFramework
 import XCTest
 
 private func run(executable: String, arguments: [String]) -> String? {
@@ -153,4 +153,26 @@ class SourceKitTests: XCTestCase {
             print("the following strings were removed: \(expectedStrings.subtract(actual))")
         }
     }
+
+#if !SWIFT_PACKAGE
+    func testLibraryWrappersAreUpToDate() {
+        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
+        let modules: [(module: String, path: String, spmModule: String)] = [
+            ("CXString", "libclang.dylib", "Clang_C"),
+            ("Documentation", "libclang.dylib", "Clang_C"),
+            ("Index", "libclang.dylib", "Clang_C"),
+            ("sourcekitd", "sourcekitd.framework/Versions/A/sourcekitd", "SourceKit")
+        ]
+        for (module, path, spmModule) in modules {
+            let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
+            let existingWrapper = try! String(contentsOfFile: wrapperPath)
+            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
+            XCTAssertEqual(existingWrapper, generatedWrapper)
+            let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
+            if existingWrapper != generatedWrapper && overwrite {
+                generatedWrapper.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(wrapperPath, atomically: true)
+            }
+        }
+    }
+#endif
 }

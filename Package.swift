@@ -13,6 +13,5 @@ let package = Package(
     .Package(url: "https://github.com/norio-nomura/Clang_C.git", majorVersion: 1),
     .Package(url: "https://github.com/drmohundro/SWXMLHash.git", majorVersion: 2),
     .Package(url: "https://github.com/Carthage/Commandant.git", majorVersion: 0, minor: 8),
-  ],
-  exclude: ["Source/interfacegen"]
+  ]
 )

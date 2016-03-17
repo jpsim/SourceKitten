@@ -340,3 +340,52 @@ extension Request: CustomStringConvertible {
     /// A textual representation of `Request`.
     public var description: String { return String(UTF8String: sourcekitd_request_description_copy(sourcekitObject))! }
 }
+
+private func interfaceForModule(module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
+    var compilerargs = compilerArguments.map({ sourcekitd_request_string_create($0) })
+    let dict = [
+        sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")),
+        sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().UUIDString),
+        sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
+        sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create("SourceKittenFramework.\(module)")
+    ]
+    var keys = Array(dict.keys)
+    var values = Array(dict.values)
+    return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
+}
+
+internal func libraryWrapperForModule(module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {
+    let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
+    let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
+    let source = sourceKitResponse["key.sourcetext"] as! String
+    let freeFunctions = substructure.filter({
+        SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .FunctionFree
+    }).flatMap { function -> String? in
+        let fullFunctionName = function["key.name"] as! String
+        let name = fullFunctionName.substringToIndex(fullFunctionName.rangeOfString("(")!.startIndex)
+        guard name != "clang_executeOnThread" else { // unsupported format
+            return nil
+        }
+
+        var parameters = [String]()
+        if let functionSubstructure = SwiftDocKey.getSubstructure(function) {
+            for parameterStructure in functionSubstructure {
+                parameters.append((parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String)
+            }
+        }
+        var returnTypes = [String]()
+        if let offset = SwiftDocKey.getOffset(function), length = SwiftDocKey.getLength(function) {
+            let start = source.startIndex.advancedBy(Int(offset))
+            let end = start.advancedBy(Int(length))
+            let functionDeclaration = source.substringWithRange(start..<end)
+            if let startOfReturnArrow = functionDeclaration.rangeOfString("->", options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil)?.startIndex {
+                returnTypes.append(functionDeclaration.substringFromIndex(startOfReturnArrow.advancedBy(3)))
+            }
+        }
+
+        return "internal let \(name): @convention(c) (\(parameters.joinWithSeparator(", "))) -> (\(returnTypes.joinWithSeparator(", "))) = library.loadSymbol(\"\(name)\")"
+    }
+    let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
+    let library = "private let library = toolchainLoader.load(\"\(loadPath)\")\n"
+    return spmImport + library + freeFunctions.joinWithSeparator("\n") + "\n"
+}
