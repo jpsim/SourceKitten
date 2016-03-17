@@ -78,8 +78,10 @@ private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRe
         }
         return dict
     case SOURCEKITD_VARIANT_TYPE_STRING:
-        return swiftStringFrom(sourcekitd_variant_string_get_ptr(sourcekitObject),
-            length: sourcekitd_variant_string_get_length(sourcekitObject))!
+        let length = sourcekitd_variant_string_get_length(sourcekitObject)
+        let ptr = sourcekitd_variant_string_get_ptr(sourcekitObject)
+        let string = swiftStringFrom(ptr, length: length)
+        return string
     case SOURCEKITD_VARIANT_TYPE_INT64:
         return sourcekitd_variant_int64_get_value(sourcekitObject)
     case SOURCEKITD_VARIANT_TYPE_BOOL:
@@ -115,9 +117,8 @@ internal func stringForSourceKitUID(uid: sourcekitd_uid_t) -> String? {
         return string
     }
     let length = sourcekitd_uid_get_length(uid)
-    let pointer = UnsafeMutablePointer<Int8>(sourcekitd_uid_get_string_ptr(uid))
-    if let uidString = String(bytesNoCopy: pointer, length: length,
-        encoding: NSUTF8StringEncoding, freeWhenDone: false) {
+    let bytes = sourcekitd_uid_get_string_ptr(uid)
+    if let uidString = swiftStringFrom(bytes, length: length) {
         /*
         `String` created by `String(UTF8String:)` is based on `NSString`.
         `NSString` base `String` has performance penalty on getting `hashValue`.
@@ -152,7 +153,7 @@ private func sourceKittenRawValueStringFrom(uidString: String) -> String? {
 /**
 Returns Swift's native String from NSUTF8StringEncoding bytes and length
 
-`String(UTF8String:)` creates `String` based on `NSString`.
+`String(bytesNoCopy:length:encoding:)` creates `String` based on `NSString`.
 That is slower than Swift's native String on some scene.
  
 - parameter bytes: UnsafePointer<Int8>
@@ -162,8 +163,16 @@ That is slower than Swift's native String on some scene.
 */
 private func swiftStringFrom(bytes: UnsafePointer<Int8>, length: Int) -> String? {
     let pointer = UnsafeMutablePointer<Int8>(bytes)
-    return String(bytesNoCopy: pointer, length: length, encoding: NSUTF8StringEncoding,
-        freeWhenDone: false).map { "\($0)" }
+    // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
+    // We'll try another encodings if fail.
+    let encodings = [NSUTF8StringEncoding, NSNEXTSTEPStringEncoding, NSASCIIStringEncoding]
+    for encoding in encodings {
+        if let string = String(bytesNoCopy: pointer, length: length, encoding: encoding,
+            freeWhenDone: false) {
+            return "\(string)"
+        }
+    }
+    return nil
 }
 
 /// Represents a SourceKit request.
