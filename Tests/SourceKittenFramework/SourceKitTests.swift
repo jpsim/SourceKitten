@@ -155,8 +155,18 @@ class SourceKitTests: XCTestCase {
     }
 
     func testObjCSwiftInterfaceHeader() {
-        for module in ["CXString", "Documentation", "Index", "sourcekitd"] {
-            print(libraryWrapperForModule(module))
+        let modules: [(module: String, path: String)] = [
+            ("CXString", "libclang.dylib"),
+            ("Documentation", "libclang.dylib"),
+            ("Index", "libclang.dylib"),
+            ("sourcekitd", "sourcekitd.framework/Versions/A/sourcekitd")
+        ]
+        for (module, path) in modules {
+            let wrapper = libraryWrapperForModule(module, loadPath: path)
+            print("====================================================================================")
+            print("Printing wrapper for \(module)")
+            print("====================================================================================")
+            print(wrapper)
         }
     }
 }
