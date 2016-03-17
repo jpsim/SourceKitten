@@ -10,7 +10,9 @@
 
 ##### Enhancements
 
-* None.
+* Simplify the process of generating library wrapper and detect changes of
+  wrapping library on test.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Bug Fixes
 
