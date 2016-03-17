@@ -3,9 +3,10 @@
 ##### Breaking
 
 * Now `libclang.dylib` and `sourcekitd.framework` are dynamically loaded at
-  runtime by `SourceKittenFramework`. If SourceKittenFramework clients
-  previously accessed either of these libraries directly using their APIs, those
-  are no longer available.  
+  runtime by SourceKittenFramework to use the versions included in the Xcode
+  version specified by `xcode-select -p` or custom toolchains. If
+  SourceKittenFramework clients previously accessed either of these libraries
+  directly using their APIs, those are no longer available.  
   [Norio Nomura](https://github.com/norio-nomura)
   [#167](https://github.com/jpsim/SourceKitten/issues/167)
 
