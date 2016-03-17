@@ -372,7 +372,7 @@ private func interfaceForModule(module: String) -> [String: SourceKitRepresentab
     return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
-internal func libraryWrapperForModule(module: String, loadPath: String) -> String {
+internal func libraryWrapperForModule(module: String, loadPath: String, spmModule: String) -> String {
     let sourceKitResponse = interfaceForModule(module)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
@@ -403,6 +403,7 @@ internal func libraryWrapperForModule(module: String, loadPath: String) -> Strin
 
         return "internal let \(name): @convention(c) (\(parameters.joinWithSeparator(", "))) -> (\(returnTypes.joinWithSeparator(", "))) = library.loadSymbol(\"\(name)\")"
     }
+    let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
     let library = "private let library = toolchainLoader.load(\"\(loadPath)\")\n"
-    return library + freeFunctions.joinWithSeparator("\n") + "\n"
+    return spmImport + library + freeFunctions.joinWithSeparator("\n") + "\n"
 }

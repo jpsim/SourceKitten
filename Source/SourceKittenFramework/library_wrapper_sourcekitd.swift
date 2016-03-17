@@ -1,3 +1,6 @@
+#if SWIFT_PACKAGE
+import SourceKit
+#endif
 private let library = toolchainLoader.load("sourcekitd.framework/Versions/A/sourcekitd")
 internal let sourcekitd_initialize: @convention(c) () -> () = library.loadSymbol("sourcekitd_initialize")
 internal let sourcekitd_shutdown: @convention(c) () -> () = library.loadSymbol("sourcekitd_shutdown")
