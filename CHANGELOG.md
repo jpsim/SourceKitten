@@ -2,7 +2,11 @@
 
 ##### Breaking
 
-* None.
+* Now `libclang.dylib` and `sourcekitd.framework` are dynamicaly loaded on
+  runtime by `SourceKittenFramework`. Depending client might need some
+  modification if referencing them from language other than Swift.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#167](https://github.com/jpsim/SourceKitten/issues/167)
 
 ##### Enhancements
 
