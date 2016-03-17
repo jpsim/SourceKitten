@@ -2,11 +2,22 @@
 
 ##### Breaking
 
-* None.
+* Now `libclang.dylib` and `sourcekitd.framework` are dynamically loaded at
+  runtime by SourceKittenFramework to use the versions included in the Xcode
+  version specified by `xcode-select -p` or custom toolchains. If
+  SourceKittenFramework clients previously accessed either of these libraries
+  directly using their APIs, those are no longer available.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#167](https://github.com/jpsim/SourceKitten/issues/167)
 
 ##### Enhancements
 
-* None.
+* Simplify the process of generating library wrappers and validate library
+  wrappers in unit tests.  
+  [JP Simard](https://github.com/jpsim)
+
+* Support `swift test` on OS X.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
 
@@ -45,7 +56,7 @@
 
 * Fix crash when offset points end of string.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [#164](https://github.com/realm/SwiftLint/issues/164)
+  [SwiftLint#164](https://github.com/realm/SwiftLint/issues/164)
 
 ## 0.9.0
 

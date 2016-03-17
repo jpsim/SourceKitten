@@ -25,14 +25,6 @@ func compareSyntax(file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
 
 class SyntaxTests: XCTestCase {
 
-    // protocol XCTestCaseProvider
-    lazy var allTests: [(String, () throws -> Void)] = [
-        ("testPrintEmptySyntax", self.testPrintEmptySyntax),
-        ("testGenerateSameSyntaxMapFileAndContents", self.testGenerateSameSyntaxMapFileAndContents),
-        ("testSubscript", self.testSubscript),
-        ("testSyntaxMapPrintValidJSON", self.testSyntaxMapPrintValidJSON),
-    ]
-
     func testPrintEmptySyntax() {
         XCTAssertEqual(SyntaxMap(file: File(contents: "")).description, "[\n\n]", "should print empty syntax")
     }

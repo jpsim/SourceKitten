@@ -14,15 +14,6 @@ let fixturesDirectory = (__FILE__ as NSString).stringByDeletingLastPathComponent
 
 class ClangTranslationUnitTests: XCTestCase {
 
-    // protocol XCTestCaseProvider
-    lazy var allTests: [(String, () throws -> Void)] = [
-        ("testParsesObjectiveCHeaderFilesAndXcodebuildArguments",
-            self.testParsesObjectiveCHeaderFilesAndXcodebuildArguments),
-        ("testBasicObjectiveCDocs", self.testBasicObjectiveCDocs),
-        ("testUnicodeInObjectiveCDocs", self.testUnicodeInObjectiveCDocs),
-        // ("testRealmObjectiveCDocs", self.testRealmObjectiveCDocs), FIXME: Failing on SPM
-    ]
-
     func testParsesObjectiveCHeaderFilesAndXcodebuildArguments() {
         let headerFiles = [
             "a.h",

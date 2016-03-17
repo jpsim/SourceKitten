@@ -10,15 +10,12 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
+let projectRoot = (((__FILE__ as NSString)
+    .stringByDeletingLastPathComponent as NSString)
+    .stringByDeletingLastPathComponent as NSString)
+    .stringByDeletingLastPathComponent
+
 class ModuleTests: XCTestCase {
-    
-    // protocol XCTestCaseProvider
-    lazy var allTests: [(String, () throws -> Void)] = [
-        ("testModuleNilInPathWithNoXcodeProject", self.testModuleNilInPathWithNoXcodeProject),
-        // ("testSourceKittenFrameworkDocsAreValidJSON",
-        //     self.testSourceKittenFrameworkDocsAreValidJSON), FIXME: Failing on SPM
-        // ("testCommandantDocs", self.testCommandantDocs), FIXME: Failing on SPM
-    ]
     
     func testModuleNilInPathWithNoXcodeProject() {
         let pathWithNoXcodeProject = (__FILE__ as NSString).stringByDeletingLastPathComponent
@@ -27,10 +24,6 @@ class ModuleTests: XCTestCase {
     }
 
     func testSourceKittenFrameworkDocsAreValidJSON() {
-        let projectRoot = (((__FILE__ as NSString)
-            .stringByDeletingLastPathComponent as NSString)
-            .stringByDeletingLastPathComponent as NSString)
-            .stringByDeletingLastPathComponent
         let sourceKittenModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
         let docsJSON = sourceKittenModule.docs.description
         XCTAssert(docsJSON.rangeOfString("error type") == nil)
@@ -43,10 +36,6 @@ class ModuleTests: XCTestCase {
     }
 
     func testCommandantDocs() {
-        let projectRoot = (((__FILE__ as NSString)
-            .stringByDeletingLastPathComponent as NSString)
-            .stringByDeletingLastPathComponent as NSString)
-            .stringByDeletingLastPathComponent
         let commandantPath = projectRoot + "/Carthage/Checkouts/Commandant/"
         let commandantModule = Module(xcodeBuildArguments: ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"], name: nil, inPath: commandantPath)!
         let escapedCommandantPath = commandantPath.stringByReplacingOccurrencesOfString("/", withString: "\\/")
