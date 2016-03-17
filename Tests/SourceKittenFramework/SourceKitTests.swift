@@ -147,7 +147,6 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-#if !SWIFT_PACKAGE
     func testLibraryWrappersAreUpToDate() {
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
         let modules: [(module: String, path: String, spmModule: String)] = [
@@ -167,5 +166,4 @@ class SourceKitTests: XCTestCase {
             }
         }
     }
-#endif
 }
