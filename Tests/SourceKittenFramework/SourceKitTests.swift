@@ -154,7 +154,7 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    func testObjCSwiftInterfaceHeader() {
+    func testLibraryWrappersAreUpToDate() {
         let modules: [(module: String, path: String)] = [
             ("CXString", "libclang.dylib"),
             ("Documentation", "libclang.dylib"),
@@ -162,11 +162,14 @@ class SourceKitTests: XCTestCase {
             ("sourcekitd", "sourcekitd.framework/Versions/A/sourcekitd")
         ]
         for (module, path) in modules {
-            let wrapper = libraryWrapperForModule(module, loadPath: path)
-            print("====================================================================================")
-            print("Printing wrapper for \(module)")
-            print("====================================================================================")
-            print(wrapper)
+            let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
+            let existingWrapper = try! String(contentsOfFile: wrapperPath)
+            let generatedWrapper = libraryWrapperForModule(module, loadPath: path)
+            XCTAssertEqual(existingWrapper, generatedWrapper)
+            let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
+            if existingWrapper != generatedWrapper && overwrite {
+                generatedWrapper.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(wrapperPath, atomically: true)
+            }
         }
     }
 }

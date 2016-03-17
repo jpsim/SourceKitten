@@ -404,5 +404,5 @@ internal func libraryWrapperForModule(module: String, loadPath: String) -> Strin
         return "internal let \(name): @convention(c) (\(parameters.joinWithSeparator(", "))) -> (\(returnTypes.joinWithSeparator(", "))) = library.loadSymbol(\"\(name)\")"
     }
     let library = "private let library = toolchainLoader.load(\"\(loadPath)\")\n"
-    return library + freeFunctions.joinWithSeparator("\n")
+    return library + freeFunctions.joinWithSeparator("\n") + "\n"
 }
