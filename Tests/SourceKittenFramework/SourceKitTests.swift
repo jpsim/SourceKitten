@@ -39,13 +39,6 @@ private func sourcekitStringsStartingWith(pattern: String) -> Set<String> {
 
 class SourceKitTests: XCTestCase {
 
-    // protocol XCTestCaseProvider
-    lazy var allTests: [(String, () throws -> Void)] = [
-        ("testStatementKinds", self.testStatementKinds),
-        ("testSyntaxKinds", self.testSyntaxKinds),
-        ("testSwiftDeclarationKind", self.testSwiftDeclarationKind),
-    ]
-
     func testStatementKinds() {
         let expected: [StatementKind] = [
             .Brace,

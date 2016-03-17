@@ -12,11 +12,6 @@ import XCTest
 
 class CodeCompletionTests: XCTestCase {
 
-    // protocol XCTestCaseProvider
-    lazy var allTests: [(String, () throws -> Void)] = [
-        // ("testSimpleCodeCompletion", self.testSimpleCodeCompletion), FIXME: Failing on SPM
-    ]
-
     func testSimpleCodeCompletion() {
         let file = "\(NSUUID().UUIDString).swift"
         let completionItems = CodeCompletionItem.parseResponse(
