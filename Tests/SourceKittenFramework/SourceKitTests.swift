@@ -156,7 +156,7 @@ class SourceKitTests: XCTestCase {
 
 #if !SWIFT_PACKAGE
     func testLibraryWrappersAreUpToDate() {
-        _ = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)! // build SourceKittenFramework module so these succeed
+        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
         let modules: [(module: String, path: String, spmModule: String)] = [
             ("CXString", "libclang.dylib", "Clang_C"),
             ("Documentation", "libclang.dylib", "Clang_C"),
@@ -166,7 +166,7 @@ class SourceKitTests: XCTestCase {
         for (module, path, spmModule) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, spmModule: spmModule)
+            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
             if existingWrapper != generatedWrapper && overwrite {

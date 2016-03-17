@@ -341,26 +341,8 @@ extension Request: CustomStringConvertible {
     public var description: String { return String(UTF8String: sourcekitd_request_description_copy(sourcekitObject))! }
 }
 
-private func interfaceForModule(module: String) -> [String: SourceKitRepresentable] {
-    let xctestConfigurationPath = NSProcessInfo.processInfo().environment["XCTestConfigurationFilePath"]!
-    let buildPath = xctestConfigurationPath.substringToIndex(xctestConfigurationPath.rangeOfString("/Intermediates/")!.startIndex)
-    let arguments = [
-        "-sdk",
-        sdkPath(),
-        "-Xcc",
-        "-F",
-        "-Xcc",
-        buildPath + "/Products/Debug",
-        "-Xcc",
-        "-ivfsoverlay",
-        "-Xcc",
-        buildPath + "/Intermediates/SourceKitten.build/all-product-headers.yaml",
-        "-Xcc",
-        "-ivfsoverlay",
-        "-Xcc",
-        buildPath + "/Intermediates/SourceKitten.build/Debug/SourceKittenFramework.build/unextended-module-overlay.yaml"
-    ]
-    var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+private func interfaceForModule(module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
+    var compilerargs = compilerArguments.map({ sourcekitd_request_string_create($0) })
     let dict = [
         sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")),
         sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().UUIDString),
@@ -372,8 +354,8 @@ private func interfaceForModule(module: String) -> [String: SourceKitRepresentab
     return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
-internal func libraryWrapperForModule(module: String, loadPath: String, spmModule: String) -> String {
-    let sourceKitResponse = interfaceForModule(module)
+internal func libraryWrapperForModule(module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {
+    let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = substructure.filter({
