@@ -59,15 +59,20 @@ public struct SyntaxMap {
 
     - parameter offset: Last possible byte offset of the range's start.
     */
-    public func commentRangeBeforeOffset(offset: Int) -> Range<Int>? {
+    public func commentRangeBeforeOffset(offset: Int, string: NSString? = nil) -> Range<Int>? {
 
         // be lazy for performance
         let tokensBeforeOffset = tokens.lazy.reverse().filter { $0.offset < offset }
 
-        let docTypes = SyntaxKind.docComments().map({$0.rawValue})
+        let docTypes = SyntaxKind.docComments().map({ $0.rawValue })
         let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
         let isNotDoc = { !isDoc($0) }
-        let isIdentifier = { (token: SyntaxToken) in token.type == SyntaxKind.Identifier.rawValue }
+        let isIdentifier = { (token: SyntaxToken) in
+            return token.type == SyntaxKind.Identifier.rawValue &&
+                // ignore identifiers starting with '@' because they may be placed between
+                // declarations and their documentation.
+                string?.rangeOfString("@", options: [], range: NSRange(location: token.offset, length: 1)) == nil
+        }
         let isDocOrIdentifier = { isDoc($0) || isIdentifier($0) }
 
         // if finds identifier earlier than comment, stops searching and returns nil.

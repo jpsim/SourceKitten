@@ -317,7 +317,7 @@ public final class File {
     */
     public func getDocumentationCommentBody(dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
         return SwiftDocKey.getOffset(dictionary).flatMap { offset in
-            return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
+            return syntaxMap.commentRangeBeforeOffset(Int(offset), string: contents).flatMap { commentByteRange in
                 return contents.byteRangeToNSRange(start: commentByteRange.startIndex, length: commentByteRange.endIndex - commentByteRange.startIndex).flatMap { nsRange in
                     return contents.commentBody(nsRange)
                 }
