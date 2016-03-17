@@ -156,6 +156,7 @@ class SourceKitTests: XCTestCase {
 
 #if !SWIFT_PACKAGE
     func testLibraryWrappersAreUpToDate() {
+        _ = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)! // build SourceKittenFramework module so these succeed
         let modules: [(module: String, path: String, spmModule: String)] = [
             ("CXString", "libclang.dylib", "Clang_C"),
             ("Documentation", "libclang.dylib", "Clang_C"),
