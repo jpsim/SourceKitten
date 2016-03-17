@@ -22,6 +22,11 @@
   [Norio Nomura](https://github.com/norio-nomura)
   [#174](https://github.com/jpsim/SourceKitten/issues/174)
 
+* Fix "illegal hardware instruction" error when SourceKitService returns
+  string in other than `NSUTF8StringEncoding`.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#184](https://github.com/jpsim/SourceKitten/issues/184)
+
 ## 0.10.0
 
 ##### Breaking
