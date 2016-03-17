@@ -27,8 +27,8 @@ let toolchainLoader = Loader(searchPaths: [
     toolchainDir,
     xcodeSelectPath?.toolchainDir,
     /*
-    Followings are used when `xcode-select -p` points "Command Line Tools OS X for Xcode",
-    but Xcode.app exists.
+    These search paths are used when `xcode-select -p` points to
+    "Command Line Tools OS X for Xcode", but Xcode.app exists.
     */
     applicationsDir?.xcodeDeveloperDir.toolchainDir,
     applicationsDir?.xcodeBetaDeveloperDir.toolchainDir,
@@ -62,14 +62,15 @@ struct Loader {
 
 /// Returns "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable
 ///
-/// `launch-with-toolchain` set toolchain path to "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment
-/// variable.
+/// `launch-with-toolchain` sets the toolchain path to the
+/// "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable.
 private let xcodeDefaultToolchainOverride: String? =
     NSProcessInfo.processInfo().environment["XCODE_DEFAULT_TOOLCHAIN_OVERRIDE"]
 
 /// Returns "TOOLCHAIN_DIR" environment variable
 ///
-/// `Xcode`/`xcodebuild` set toolchain path to "TOOLCHAIN_DIR" environment variable.
+/// `Xcode`/`xcodebuild` sets the toolchain path to the
+/// "TOOLCHAIN_DIR" environment variable.
 private let toolchainDir: String? =
     NSProcessInfo.processInfo().environment["TOOLCHAIN_DIR"]
 
@@ -98,8 +99,8 @@ private let xcodeSelectPath: String? = {
     var contentsEnd = output.startIndex
     output.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, forRange: start..<start)
     let xcodeSelectPath = output.substringWithRange(start..<contentsEnd)
-    // If xcodeSelectPath is path of "Command Line Tools OS X for Xcode", return nil.
-    // Because that does not contain `sourcekitd.framework`.
+    // Return nil if xcodeSelectPath points to "Command Line Tools OS X for Xcode"
+    // because it doesn't contain `sourcekitd.framework`.
     if xcodeSelectPath == "/Library/Developer/CommandLineTools" {
         return nil
     }

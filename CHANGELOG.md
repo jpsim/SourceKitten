@@ -2,16 +2,17 @@
 
 ##### Breaking
 
-* Now `libclang.dylib` and `sourcekitd.framework` are dynamicaly loaded on
-  runtime by `SourceKittenFramework`. Depending client might need some
-  modification if referencing them from language other than Swift.  
+* Now `libclang.dylib` and `sourcekitd.framework` are dynamically loaded at
+  runtime by `SourceKittenFramework`. If SourceKittenFramework clients
+  previously accessed either of these libraries directly using their APIs, those
+  are no longer available.  
   [Norio Nomura](https://github.com/norio-nomura)
   [#167](https://github.com/jpsim/SourceKitten/issues/167)
 
 ##### Enhancements
 
-* Simplify the process of generating library wrapper and detect changes of
-  wrapping library on test.  
+* Simplify the process of generating library wrappers and validate library
+  wrappers in unit tests.  
   [JP Simard](https://github.com/jpsim)
 
 * Support `swift test` on OS X.  
@@ -39,7 +40,7 @@
 
 * Fix crash when offset points end of string.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [#164](https://github.com/realm/SwiftLint/issues/164)
+  [SwiftLint#164](https://github.com/realm/SwiftLint/issues/164)
 
 ## 0.9.0
 
