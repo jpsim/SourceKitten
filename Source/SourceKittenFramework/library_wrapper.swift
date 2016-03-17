@@ -87,7 +87,6 @@ private let xcodeSelectPath: String? = {
 
     let pipe = NSPipe()
     task.standardOutput = pipe
-    task.standardError = pipe
     task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
 
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
