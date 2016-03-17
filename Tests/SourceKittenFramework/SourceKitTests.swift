@@ -154,6 +154,7 @@ class SourceKitTests: XCTestCase {
         }
     }
 
+#if !SWIFT_PACKAGE
     func testLibraryWrappersAreUpToDate() {
         let modules: [(module: String, path: String, spmModule: String)] = [
             ("CXString", "libclang.dylib", "Clang_C"),
@@ -172,4 +173,5 @@ class SourceKitTests: XCTestCase {
             }
         }
     }
+#endif
 }
