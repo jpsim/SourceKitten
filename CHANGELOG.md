@@ -14,6 +14,9 @@
   wrapping library on test.  
   [JP Simard](https://github.com/jpsim)
 
+* Support `swift test` on OS X.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
 ##### Bug Fixes
 
 * None.
