@@ -59,10 +59,8 @@ public struct SyntaxMap {
 
     - parameter offset: Last possible byte offset of the range's start.
     */
-    public func commentRangeBeforeOffset(offset: Int, string: NSString? = nil) -> Range<Int>? {
-
-        // be lazy for performance
-        let tokensBeforeOffset = tokens.lazy.reverse().filter { $0.offset < offset }
+    public func commentRangeBeforeOffset(offset: Int, string: NSString? = nil, isExtension: Bool = false) -> Range<Int>? {
+        let tokensBeforeOffset = tokens.reverse().filter { $0.offset < offset }
 
         let docTypes = SyntaxKind.docComments().map({ $0.rawValue })
         let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
@@ -85,6 +83,17 @@ public struct SyntaxMap {
         let commentTokensImmediatelyPrecedingOffset = (
             commentEnd.map(tokensBeginningComment.prefixUpTo) ?? tokensBeginningComment
         ).reverse()
+
+        if isExtension {
+            // Return nil if tokens between found documentation comment and offset are of types other
+            // than builtin or keyword, since it means it's the documentation for some other declaration.
+            let tokensBetweenCommentAndOffset = tokensBeforeOffset.filter {
+                $0.offset > commentTokensImmediatelyPrecedingOffset.last?.offset
+            }
+            guard tokensBetweenCommentAndOffset.filter({ ![.AttributeBuiltin, .Keyword].contains(SyntaxKind(rawValue: $0.type)!) }).isEmpty else {
+                return nil
+            }
+        }
 
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.map { lastToken in
