@@ -90,7 +90,7 @@ public struct SyntaxMap {
             let tokensBetweenCommentAndOffset = tokensBeforeOffset.filter {
                 $0.offset > commentTokensImmediatelyPrecedingOffset.last?.offset
             }
-            guard tokensBetweenCommentAndOffset.filter({ ![.AttributeBuiltin, .Keyword].contains(SyntaxKind(rawValue: $0.type)!) }).isEmpty else {
+            guard tokensBetweenCommentAndOffset.filter({ ![.AttributeBuiltin, .Keyword, .String].contains(SyntaxKind(rawValue: $0.type)!) }).isEmpty else {
                 return nil
             }
         }
