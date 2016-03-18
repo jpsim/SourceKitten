@@ -90,8 +90,12 @@ public struct SyntaxMap {
             let tokensBetweenCommentAndOffset = tokensBeforeOffset.filter {
                 $0.offset > commentTokensImmediatelyPrecedingOffset.last?.offset
             }
-            guard tokensBetweenCommentAndOffset.filter({ ![.AttributeBuiltin, .Keyword, .String].contains(SyntaxKind(rawValue: $0.type)!) }).isEmpty else {
-                return nil
+            if !tokensBetweenCommentAndOffset.filter({ ![.AttributeBuiltin, .Keyword].contains(SyntaxKind(rawValue: $0.type)!) }).isEmpty,
+                let lastCommentTokenOffset = commentTokensImmediatelyPrecedingOffset.last?.offset,
+                lastCommentLine = string?.lineAndCharacterForByteOffset(lastCommentTokenOffset)?.line,
+                offsetLine = string?.lineAndCharacterForByteOffset(offset)?.line
+                where offsetLine - lastCommentLine > 2 {
+                        return nil
             }
         }
 
@@ -108,14 +112,7 @@ public struct SyntaxMap {
 extension SyntaxMap: CustomStringConvertible {
     /// A textual JSON representation of `SyntaxMap`.
     public var description: String {
-        do {
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(tokens.map { $0.dictionaryValue },
-                options: .PrettyPrinted)
-            if let jsonString = NSString(data: jsonData, encoding: NSUTF8StringEncoding) as String? {
-                return jsonString
-            }
-        } catch {}
-        return "[\n\n]" // Empty JSON Array
+        return toJSON(tokens.map { $0.dictionaryValue })
     }
 }
 
