@@ -59,15 +59,18 @@ public struct SyntaxMap {
 
     - parameter offset: Last possible byte offset of the range's start.
     */
-    public func commentRangeBeforeOffset(offset: Int) -> Range<Int>? {
+    public func commentRangeBeforeOffset(offset: Int, string: NSString? = nil, isExtension: Bool = false) -> Range<Int>? {
+        let tokensBeforeOffset = tokens.reverse().filter { $0.offset < offset }
 
-        // be lazy for performance
-        let tokensBeforeOffset = tokens.lazy.reverse().filter { $0.offset < offset }
-
-        let docTypes = SyntaxKind.docComments().map({$0.rawValue})
+        let docTypes = SyntaxKind.docComments().map({ $0.rawValue })
         let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
         let isNotDoc = { !isDoc($0) }
-        let isIdentifier = { (token: SyntaxToken) in token.type == SyntaxKind.Identifier.rawValue }
+        let isIdentifier = { (token: SyntaxToken) in
+            return token.type == SyntaxKind.Identifier.rawValue &&
+                // ignore identifiers starting with '@' because they may be placed between
+                // declarations and their documentation.
+                string?.rangeOfString("@", options: [], range: NSRange(location: token.offset, length: 1)) == nil
+        }
         let isDocOrIdentifier = { isDoc($0) || isIdentifier($0) }
 
         // if finds identifier earlier than comment, stops searching and returns nil.
@@ -80,6 +83,21 @@ public struct SyntaxMap {
         let commentTokensImmediatelyPrecedingOffset = (
             commentEnd.map(tokensBeginningComment.prefixUpTo) ?? tokensBeginningComment
         ).reverse()
+
+        if isExtension {
+            // Return nil if tokens between found documentation comment and offset are of types other
+            // than builtin or keyword, since it means it's the documentation for some other declaration.
+            let tokensBetweenCommentAndOffset = tokensBeforeOffset.filter {
+                $0.offset > commentTokensImmediatelyPrecedingOffset.last?.offset
+            }
+            if !tokensBetweenCommentAndOffset.filter({ ![.AttributeBuiltin, .Keyword].contains(SyntaxKind(rawValue: $0.type)!) }).isEmpty,
+                let lastCommentTokenOffset = commentTokensImmediatelyPrecedingOffset.last?.offset,
+                lastCommentLine = string?.lineAndCharacterForByteOffset(lastCommentTokenOffset)?.line,
+                offsetLine = string?.lineAndCharacterForByteOffset(offset)?.line
+                where offsetLine - lastCommentLine > 2 {
+                        return nil
+            }
+        }
 
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.map { lastToken in
@@ -94,14 +112,7 @@ public struct SyntaxMap {
 extension SyntaxMap: CustomStringConvertible {
     /// A textual JSON representation of `SyntaxMap`.
     public var description: String {
-        do {
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(tokens.map { $0.dictionaryValue },
-                options: .PrettyPrinted)
-            if let jsonString = NSString(data: jsonData, encoding: NSUTF8StringEncoding) as String? {
-                return jsonString
-            }
-        } catch {}
-        return "[\n\n]" // Empty JSON Array
+        return toJSON(tokens.map { $0.dictionaryValue })
     }
 }
 

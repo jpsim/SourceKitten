@@ -1228,7 +1228,6 @@
       {
         "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 1909,
-        "key.doc.comment" : "Describes an option that can be provided on the command line.",
         "key.namelength" : 6,
         "key.bodyoffset" : 3178,
         "key.bodylength" : 58,
@@ -1653,7 +1652,6 @@
       {
         "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 349,
-        "key.doc.comment" : "Possible errors that can originate from Commandant.\n\n`ClientError` should be the type of error (if any) that can occur when\nrunning commands.",
         "key.namelength" : 15,
         "key.bodyoffset" : 602,
         "key.bodylength" : 175,
@@ -2372,7 +2370,6 @@
       {
         "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 404,
-        "key.doc.comment" : "Describes a parameterless command line flag that defaults to false and can only\nbe switched on. Canonical examples include `--force` and `--recurse`.\n\nFor a boolean toggle that can be enabled and disabled use `Option<Bool>`.",
         "key.namelength" : 6,
         "key.bodyoffset" : 1182,
         "key.bodylength" : 140,
@@ -3089,7 +3086,6 @@
       {
         "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 2197,
-        "key.doc.comment" : "Maintains the list of commands available to run.",
         "key.namelength" : 15,
         "key.bodyoffset" : 3396,
         "key.bodylength" : 3537,
@@ -3666,7 +3662,6 @@
       {
         "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 256,
-        "key.doc.comment" : "Represents an argument passed on the command line.",
         "key.namelength" : 11,
         "key.bodyoffset" : 923,
         "key.bodylength" : 210,

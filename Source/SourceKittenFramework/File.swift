@@ -140,10 +140,15 @@ public final class File {
             dictionary[SwiftDocKey.ParsedScopeEnd.rawValue] = Int64(parsedScopeRange.end)
         }
 
+        var didParseXMLDocs = false
+
         // Parse `key.doc.full_as_xml` and add to dictionary
         if let parsedXMLDocs = (SwiftDocKey.getFullXMLDocs(dictionary).flatMap(parseFullXMLDocs)) {
             dictionary = merge(dictionary, parsedXMLDocs)
+            didParseXMLDocs = true
+        }
 
+        if let kindString = SwiftDocKey.getKind(dictionary) where didParseXMLDocs || SwiftDeclarationKind(rawValue: kindString) == .Extension {
             // Parse documentation comment and add to dictionary
             if let commentBody = (syntaxMap.flatMap { getDocumentationCommentBody(dictionary, syntaxMap: $0) }) {
                 dictionary[SwiftDocKey.DocumentationComment.rawValue] = commentBody
@@ -316,8 +321,9 @@ public final class File {
                syntax (`/** ... */` or `/// ...`).
     */
     public func getDocumentationCommentBody(dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
-        return SwiftDocKey.getOffset(dictionary).flatMap { offset in
-            return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
+        let isExtension = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init) == .Extension
+        return (isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)).flatMap { offset in
+            return syntaxMap.commentRangeBeforeOffset(Int(offset), string: contents, isExtension: isExtension).flatMap { commentByteRange in
                 return contents.byteRangeToNSRange(start: commentByteRange.startIndex, length: commentByteRange.endIndex - commentByteRange.startIndex).flatMap { nsRange in
                     return contents.commentBody(nsRange)
                 }
