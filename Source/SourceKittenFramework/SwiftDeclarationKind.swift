@@ -53,6 +53,8 @@ public enum SwiftDeclarationKind: String {
     case FunctionMethodInstance = "source.lang.swift.decl.function.method.instance"
     /// `function.method.static`.
     case FunctionMethodStatic = "source.lang.swift.decl.function.method.static"
+    /// `function.operator`.
+    case FunctionOperator = "source.lang.swift.decl.function.operator"
     /// `function.operator.infix`.
     case FunctionOperatorInfix = "source.lang.swift.decl.function.operator.infix"
     /// `function.operator.postfix`.

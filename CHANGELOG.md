@@ -1,8 +1,9 @@
-## Master
+## 0.12.0
 
 ##### Breaking
 
-* None.
+* Updated for Xcode 7.3.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Enhancements
 
