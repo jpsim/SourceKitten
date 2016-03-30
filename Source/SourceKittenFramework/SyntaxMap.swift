@@ -132,10 +132,8 @@ public func ==(lhs: SyntaxMap, rhs: SyntaxMap) -> Bool {
     if lhs.tokens.count != rhs.tokens.count {
         return false
     }
-    for (index, value) in lhs.tokens.enumerate() {
-        if rhs.tokens[index] != value {
-            return false
-        }
+    for (index, value) in lhs.tokens.enumerate() where rhs.tokens[index] != value {
+        return false
     }
     return true
 }
