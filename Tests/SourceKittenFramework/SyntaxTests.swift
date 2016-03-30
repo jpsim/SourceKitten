@@ -30,8 +30,8 @@ class SyntaxTests: XCTestCase {
     }
 
     func testGenerateSameSyntaxMapFileAndContents() {
-        let fileContents = try! NSString(contentsOfFile: __FILE__, encoding: NSUTF8StringEncoding) as String!
-        XCTAssertEqual(SyntaxMap(file: File(path: __FILE__)!),
+        let fileContents = try! NSString(contentsOfFile: #file, encoding: NSUTF8StringEncoding) as String!
+        XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
             SyntaxMap(file: File(contents: fileContents)),
             "should generate the same syntax map for a file as raw text")
     }

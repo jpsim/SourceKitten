@@ -10,7 +10,7 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-let projectRoot = (((__FILE__ as NSString)
+let projectRoot = (((#file as NSString)
     .stringByDeletingLastPathComponent as NSString)
     .stringByDeletingLastPathComponent as NSString)
     .stringByDeletingLastPathComponent
@@ -18,7 +18,7 @@ let projectRoot = (((__FILE__ as NSString)
 class ModuleTests: XCTestCase {
     
     func testModuleNilInPathWithNoXcodeProject() {
-        let pathWithNoXcodeProject = (__FILE__ as NSString).stringByDeletingLastPathComponent
+        let pathWithNoXcodeProject = (#file as NSString).stringByDeletingLastPathComponent
         let model = Module(xcodeBuildArguments: [], name: nil, inPath: pathWithNoXcodeProject)
         XCTAssert(model == nil, "model initialization without any Xcode project should fail")
     }

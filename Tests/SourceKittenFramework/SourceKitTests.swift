@@ -100,6 +100,7 @@ class SourceKitTests: XCTestCase {
 
     func testSwiftDeclarationKind() {
         let expected: [SwiftDeclarationKind] = [
+            .Associatedtype,
             .Class,
             .Enum,
             .Enumcase,
@@ -121,7 +122,9 @@ class SourceKitTests: XCTestCase {
             .FunctionMethodClass,
             .FunctionMethodInstance,
             .FunctionMethodStatic,
-            .FunctionOperator,
+            .FunctionOperatorInfix,
+            .FunctionOperatorPostfix,
+            .FunctionOperatorPrefix,
             .FunctionSubscript,
             .GenericTypeParam,
             .Module,
