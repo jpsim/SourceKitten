@@ -33,9 +33,6 @@ public final class File {
             lines = contents.lines()
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
-            // necessary to set contents & lines because of rdar://21744509
-            contents = ""
-            lines = []
             return nil
         }
     }
