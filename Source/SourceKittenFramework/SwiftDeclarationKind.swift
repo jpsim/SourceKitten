@@ -9,6 +9,8 @@
 /// Swift declaration kinds.
 /// Found in `strings SourceKitService | grep source.lang.swift.decl.`.
 public enum SwiftDeclarationKind: String {
+    /// `associatedtype`.
+    case Associatedtype = "source.lang.swift.decl.associatedtype"
     /// `class`.
     case Class = "source.lang.swift.decl.class"
     /// `enum`.
@@ -51,8 +53,12 @@ public enum SwiftDeclarationKind: String {
     case FunctionMethodInstance = "source.lang.swift.decl.function.method.instance"
     /// `function.method.static`.
     case FunctionMethodStatic = "source.lang.swift.decl.function.method.static"
-    /// `function.operator`.
-    case FunctionOperator = "source.lang.swift.decl.function.operator"
+    /// `function.operator.infix`.
+    case FunctionOperatorInfix = "source.lang.swift.decl.function.operator.infix"
+    /// `function.operator.postfix`.
+    case FunctionOperatorPostfix = "source.lang.swift.decl.function.operator.postfix"
+    /// `function.operator.prefix`.
+    case FunctionOperatorPrefix = "source.lang.swift.decl.function.operator.prefix"
     /// `function.subscript`.
     case FunctionSubscript = "source.lang.swift.decl.function.subscript"
     /// `generic_type_param`.

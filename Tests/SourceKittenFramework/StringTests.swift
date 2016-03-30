@@ -78,7 +78,7 @@ class StringTests: XCTestCase {
 
     func testAbsolutePath() {
         XCTAssert(("LICENSE".absolutePathRepresentation() as NSString).absolutePath, "absolutePathRepresentation() of a relative path should be an absolute path")
-        XCTAssertEqual(__FILE__.absolutePathRepresentation(), __FILE__, "absolutePathRepresentation() should return the caller if it's already an absolute path")
+        XCTAssertEqual(#file.absolutePathRepresentation(), #file, "absolutePathRepresentation() should return the caller if it's already an absolute path")
     }
 
     func testIsTokenDocumentable() {

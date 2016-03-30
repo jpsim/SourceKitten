@@ -10,7 +10,7 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-let fixturesDirectory = (__FILE__ as NSString).stringByDeletingLastPathComponent + "/Fixtures/"
+let fixturesDirectory = (#file as NSString).stringByDeletingLastPathComponent + "/Fixtures/"
 
 class ClangTranslationUnitTests: XCTestCase {
 

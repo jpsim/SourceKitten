@@ -564,7 +564,7 @@
             ],
             "key.doc.column" : 5,
             "key.parsed_scope.end" : 76,
-            "key.usr" : "s:FC7Bicycle7BicyclecFMS0_FT5styleOS0_5Style7gearingOS0_7Gearing9handlebarOS0_9Handlebar9frameSizeSi_S0_",
+            "key.usr" : "s:FC7Bicycle7BicyclecFT5styleOS0_5Style7gearingOS0_7Gearing9handlebarOS0_9Handlebar9frameSizeSi_S0_",
             "key.doc.file" : "Bicycle.swift",
             "key.nameoffset" : 1754,
             "key.annotated_decl" : "<Declaration>init(style: <Type usr=\"s:OC7Bicycle7Bicycle5Style\">Style<\/Type>, gearing: <Type usr=\"s:OC7Bicycle7Bicycle7Gearing\">Gearing<\/Type>, handlebar: <Type usr=\"s:OC7Bicycle7Bicycle9Handlebar\">Handlebar<\/Type>, frameSize centimeters: <Type usr=\"s:Si\">Int<\/Type>)<\/Declaration>",
@@ -586,7 +586,7 @@
                 "key.attribute" : "source.decl.attribute.__raw_doc_comment"
               }
             ],
-            "key.doc.full_as_xml" : "<Function file=\"Bicycle.swift\" line=\"68\" column=\"5\"><Name>init(style:gearing:handlebar:frameSize:)<\/Name><USR>s:FC7Bicycle7BicyclecFMS0_FT5styleOS0_5Style7gearingOS0_7Gearing9handlebarOS0_9Handlebar9frameSizeSi_S0_<\/USR><Declaration>init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)<\/Declaration><Abstract><Para>Initializes a new bicycle with the provided parts and specifications.<\/Para><\/Abstract><Parameters><Parameter><Name>style<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The style of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>gearing<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The gearing of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>handlebar<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The handlebar of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>centimeters<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The frame size of the bicycle, in centimeters<\/Para><\/Discussion><\/Parameter><\/Parameters><ResultDiscussion><Para>A beautiful, brand-new, custom built just for you.<\/Para><\/ResultDiscussion><\/Function>",
+            "key.doc.full_as_xml" : "<Function file=\"Bicycle.swift\" line=\"68\" column=\"5\"><Name>init(style:gearing:handlebar:frameSize:)<\/Name><USR>s:FC7Bicycle7BicyclecFT5styleOS0_5Style7gearingOS0_7Gearing9handlebarOS0_9Handlebar9frameSizeSi_S0_<\/USR><Declaration>init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)<\/Declaration><Abstract><Para>Initializes a new bicycle with the provided parts and specifications.<\/Para><\/Abstract><Parameters><Parameter><Name>style<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The style of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>gearing<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The gearing of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>handlebar<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The handlebar of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>centimeters<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The frame size of the bicycle, in centimeters<\/Para><\/Discussion><\/Parameter><\/Parameters><ResultDiscussion><Para>A beautiful, brand-new, custom built just for you.<\/Para><\/ResultDiscussion><\/Function>",
             "key.doc.name" : "init(style:gearing:handlebar:frameSize:)",
             "key.substructure" : [
 
@@ -613,7 +613,7 @@
             ],
             "key.doc.column" : 10,
             "key.parsed_scope.end" : 88,
-            "key.usr" : "s:FC7Bicycle7Bicycle6travelFS0_FT8distanceSd_T_",
+            "key.usr" : "s:FC7Bicycle7Bicycle6travelFT8distanceSd_T_",
             "key.doc.file" : "Bicycle.swift",
             "key.nameoffset" : 2152,
             "key.annotated_decl" : "<Declaration>func travel(distance meters: <Type usr=\"s:Sd\">Double<\/Type>)<\/Declaration>",
@@ -623,14 +623,14 @@
             "key.bodyoffset" : 2185,
             "key.doc.declaration" : "func travel(distance meters: Double)",
             "key.name" : "travel(distance:)",
-            "key.typename" : "Bicycle -> (distance: Double) -> ()",
+            "key.typename" : "(Bicycle) -> (distance: Double) -> ()",
             "key.doc.type" : "Function",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.__raw_doc_comment"
               }
             ],
-            "key.doc.full_as_xml" : "<Function file=\"Bicycle.swift\" line=\"83\" column=\"10\"><Name>travel(distance:)<\/Name><USR>s:FC7Bicycle7Bicycle6travelFS0_FT8distanceSd_T_<\/USR><Declaration>func travel(distance meters: Double)<\/Declaration><Abstract><Para>Take a bike out for a spin.<\/Para><\/Abstract><Parameters><Parameter><Name>meters<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The distance to travel in meters.<\/Para><\/Discussion><\/Parameter><\/Parameters><\/Function>",
+            "key.doc.full_as_xml" : "<Function file=\"Bicycle.swift\" line=\"83\" column=\"10\"><Name>travel(distance:)<\/Name><USR>s:FC7Bicycle7Bicycle6travelFT8distanceSd_T_<\/USR><Declaration>func travel(distance meters: Double)<\/Declaration><Abstract><Para>Take a bike out for a spin.<\/Para><\/Abstract><Parameters><Parameter><Name>meters<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The distance to travel in meters.<\/Para><\/Discussion><\/Parameter><\/Parameters><\/Function>",
             "key.doc.name" : "travel(distance:)",
             "key.substructure" : [
 

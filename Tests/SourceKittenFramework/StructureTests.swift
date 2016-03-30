@@ -23,8 +23,8 @@ class StructureTests: XCTestCase {
     }
 
     func testGenerateSameStructureFileAndContents() {
-        let fileContents = try! NSString(contentsOfFile: __FILE__, encoding: NSUTF8StringEncoding) as String!
-        XCTAssertEqual(Structure(file: File(path: __FILE__)!),
+        let fileContents = try! NSString(contentsOfFile: #file, encoding: NSUTF8StringEncoding) as String!
+        XCTAssertEqual(Structure(file: File(path: #file)!),
             Structure(file: File(contents: fileContents)),
             "should generate the same structure for a file as raw text")
     }

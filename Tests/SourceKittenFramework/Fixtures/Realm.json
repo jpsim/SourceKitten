@@ -4,7 +4,7 @@
       "key.substructure" : [
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.class",
-          "key.parsed_declaration" : "@interface RLMArray < RLMObjectType : RLMObject * >  : NSObject<RLMCollection,NSFastEnumeration> ",
+          "key.parsed_declaration" : "@interface RLMArray <RLMObjectType : RLMObject *> : NSObject<RLMCollection,NSFastEnumeration> ",
           "key.doc.comment" : "RLMArray is the container type in Realm used to define to-many relationships.\n\nUnlike an NSArray, RLMArrays hold a single type, specified by the `objectClassName` property.\nThis is referred to in these docs as the “type” of the array.\n\nWhen declaring an RLMArray property, the type must be marked as conforming to a\nprotocol by the same name as the objects it should contain (see the\n`RLM_ARRAY_TYPE` macro). RLMArray properties can also use Objective-C generics\nif available. For example:\n\n    RLM_ARRAY_TYPE(ObjectType)\n    ...\n    @property RLMArray<ObjectType *><ObjectType> *arrayOfObjectTypes;\n\nRLMArrays can be queried with the same predicates as RLMObject and RLMResults.\n\nRLMArrays cannot be created directly. RLMArray properties on RLMObjects are\nlazily created when accessed, or can be obtained by querying a Realm.\n\n### Key-Value Observing\n\nRLMArray supports array key-value observing on RLMArray properties on RLMObject\nsubclasses, and the `invalidated` property on RLMArray instances themselves is\nkey-value observing compliant when the RLMArray is attached to a persisted\nRLMObject (RLMArrays on standalone RLMObjects will never become invalidated).\n\nBecause RLMArrays are attached to the object which they are a property of, they\ndo not require using the mutable collection proxy objects from\n`-mutableArrayValueForKey:` or KVC-compatible mutation methods on the containing\nobject. Instead, you can call the mutation methods on the RLMArray directly.",
           "key.doc.line" : 62,
           "key.name" : "RLMArray",
@@ -509,7 +509,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWhere:\n        (nonnull NSString *)predicateFormat, ...;",
+              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWhere:\n    (nonnull NSString *)predicateFormat, ...;",
               "key.doc.comment" : "Get objects matching the given predicate in the RLMArray.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:                An RLMResults of objects that match the given predicate",
               "key.doc.parameters" : [
                 {
@@ -540,7 +540,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWithPredicate:\n        (nonnull NSPredicate *)predicate;",
+              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWithPredicate:\n    (nonnull NSPredicate *)predicate;",
               "key.doc.comment" : "Get objects matching the given predicate in the RLMArray.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:            An RLMResults of objects that match the given predicate",
               "key.doc.parameters" : [
                 {
@@ -571,7 +571,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)\n    sortedResultsUsingProperty:(nonnull NSString *)property\n                     ascending:(BOOL)ascending;",
+              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)\nsortedResultsUsingProperty:(nonnull NSString *)property\n                 ascending:(BOOL)ascending;",
               "key.doc.comment" : "Get a sorted RLMResults from an RLMArray\n\n- parameter: property    The property name to sort by.\n- parameter: ascending   The direction to sort by.\n\n- returns:    An RLMResults sorted by the specified property.",
               "key.doc.parameters" : [
                 {
@@ -611,7 +611,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)sortedResultsUsingDescriptors:\n        (nonnull NSArray *)properties;",
+              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)sortedResultsUsingDescriptors:\n    (nonnull NSArray *)properties;",
               "key.doc.comment" : "Get a sorted RLMResults from an RLMArray\n\n- parameter: properties  An array of `RLMSortDescriptor`s to sort by.\n\n- returns:    An RLMResults sorted by the specified properties.",
               "key.doc.parameters" : [
                 {
@@ -1179,7 +1179,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults *)sortedResultsUsingDescriptors:\n        (nonnull NSArray *)properties;",
+              "key.parsed_declaration" : "- (nonnull RLMResults *)sortedResultsUsingDescriptors:\n    (nonnull NSArray *)properties;",
               "key.doc.comment" : "Get a sorted RLMResults from an RLMCollection.\n\n- parameter: properties  An array of `RLMSortDescriptor`s to sort by.\n\n- returns:    An RLMResults sorted by the specified properties.",
               "key.doc.parameters" : [
                 {
@@ -2851,7 +2851,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nullable RLMProperty *)objectForKeyedSubscript:\n        (nonnull id<NSCopying>)propertyName;",
+              "key.parsed_declaration" : "- (nullable RLMProperty *)objectForKeyedSubscript:\n    (nonnull id<NSCopying>)propertyName;",
               "key.doc.comment" : "Retrieve an RLMProperty object by name.\n\n- parameter: propertyName The property's name.\n\n- returns: RLMProperty object or nil if there is no property with the given name.",
               "key.doc.parameters" : [
                 {
@@ -3136,7 +3136,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
-              "key.parsed_declaration" : "+ (nullable instancetype)\n    realmWithConfiguration:(nonnull RLMRealmConfiguration *)configuration\n                     error:(NSError *_Nullable *_Nullable)error;",
+              "key.parsed_declaration" : "+ (nullable instancetype)\nrealmWithConfiguration:(nonnull RLMRealmConfiguration *)configuration\n                 error:(NSError *_Nullable *_Nullable)error;",
               "key.doc.comment" : "Obtains an `RLMRealm` instance with the given configuration.\n\n- parameter: configuration The configuration for the realm.\n- parameter: error         If an error occurs, upon return contains an `NSError` object\n                     that describes the problem. If you are not interested in\n                     possible errors, pass in `NULL`.\n\n- returns: An `RLMRealm` instance.",
               "key.doc.parameters" : [
                 {
@@ -3311,7 +3311,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMNotificationToken *)addNotificationBlock:\n        (nonnull RLMNotificationBlock)block;",
+              "key.parsed_declaration" : "- (nonnull RLMNotificationToken *)addNotificationBlock:\n    (nonnull RLMNotificationBlock)block;",
               "key.doc.comment" : "Add a notification handler for changes in this RLMRealm.\n\nThe block has the following definition:\n\n    typedef void(^RLMNotificationBlock)(NSString *notification, RLMRealm *realm);\n\nIt receives the following parameters:\n\n- `NSString` \\***notification**:    The name of the incoming notification. See\n                                    RLMRealmNotification for information on what\n                                    notifications are sent.\n- `RLMRealm` \\***realm**:           The realm for which this notification occurred\n\n- parameter: block   A block which is called to process RLMRealm notifications.\n\n- returns: A token object which can later be passed to `-removeNotification:`\n        to remove this notification.",
               "key.doc.parameters" : [
                 {
@@ -3934,7 +3934,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
-              "key.parsed_declaration" : "+ (nonnull NSError *)migrateRealm:\n        (nonnull RLMRealmConfiguration *)configuration;",
+              "key.parsed_declaration" : "+ (nonnull NSError *)migrateRealm:\n    (nonnull RLMRealmConfiguration *)configuration;",
               "key.doc.comment" : "Performs the given Realm configuration's migration block on a Realm at the given path.\n\nThis method is called automatically when opening a Realm for the first time and does\nnot need to be called explicitly. You can choose to call this method to control\nexactly when and how migrations are performed.\n\n- parameter: configuration The Realm configuration used to open and migrate the Realm.\n- returns:              The error that occurred while applying the migration, if any.\n\n- see:                 RLMMigration",
               "key.doc.parameters" : [
                 {
@@ -4222,7 +4222,7 @@
       "key.substructure" : [
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.class",
-          "key.parsed_declaration" : "@interface RLMResults < RLMObjectType : RLMObject * >  : NSObject<RLMCollection,NSFastEnumeration> ",
+          "key.parsed_declaration" : "@interface RLMResults <RLMObjectType : RLMObject *> : NSObject<RLMCollection,NSFastEnumeration> ",
           "key.doc.comment" : "RLMResults is an auto-updating container type in Realm returned from object\nqueries.\n\nRLMResults can be queried with the same predicates as RLMObject and RLMArray\nand you can chain queries to further filter query results.\n\nRLMResults cannot be created directly.",
           "key.doc.line" : 36,
           "key.name" : "RLMResults",
@@ -4464,7 +4464,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWhere:\n        (nonnull NSString *)predicateFormat, ...;",
+              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWhere:\n    (nonnull NSString *)predicateFormat, ...;",
               "key.doc.comment" : "Get objects matching the given predicate in the RLMResults.\n\n- parameter: predicateFormat The predicate format string which can accept variable arguments.\n\n- returns:                An RLMResults of objects that match the given predicate",
               "key.doc.parameters" : [
                 {
@@ -4495,7 +4495,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWithPredicate:\n        (nonnull NSPredicate *)predicate;",
+              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWithPredicate:\n    (nonnull NSPredicate *)predicate;",
               "key.doc.comment" : "Get objects matching the given predicate in the RLMResults.\n\n- parameter: predicate   The predicate to filter the objects.\n\n- returns:            An RLMResults of objects that match the given predicate",
               "key.doc.parameters" : [
                 {
@@ -4526,7 +4526,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)\n    sortedResultsUsingProperty:(nonnull NSString *)property\n                     ascending:(BOOL)ascending;",
+              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)\nsortedResultsUsingProperty:(nonnull NSString *)property\n                 ascending:(BOOL)ascending;",
               "key.doc.comment" : "Get a sorted `RLMResults` from an existing `RLMResults` sorted by a property.\n\n- parameter: property    The property name to sort by.\n- parameter: ascending   The direction to sort by.\n\n- returns:    An RLMResults sorted by the specified property.",
               "key.doc.parameters" : [
                 {
@@ -4566,7 +4566,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)sortedResultsUsingDescriptors:\n        (nonnull NSArray *)properties;",
+              "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)sortedResultsUsingDescriptors:\n    (nonnull NSArray *)properties;",
               "key.doc.comment" : "Get a sorted `RLMResults` from an existing `RLMResults` sorted by an `NSArray`` of `RLMSortDescriptor`s.\n\n- parameter: properties  An array of `RLMSortDescriptor`s to sort by.\n\n- returns:    An RLMResults sorted by the specified properties.",
               "key.doc.parameters" : [
                 {
@@ -4869,7 +4869,7 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.parsed_declaration" : "- (nonnull RLMObjectSchema *)objectForKeyedSubscript:\n        (nonnull id<NSCopying>)className;",
+              "key.parsed_declaration" : "- (nonnull RLMObjectSchema *)objectForKeyedSubscript:\n    (nonnull id<NSCopying>)className;",
               "key.doc.comment" : "Look up an RLMObjectSchema for the given class name in this Realm. Throws if there\nis no object of type className in this RLMSchema instance.\n\n- parameter: className   The object class name.\n- returns:            RLMObjectSchema for the given class in this Realm.\n\n- see:               RLMObjectSchema",
               "key.doc.parameters" : [
                 {

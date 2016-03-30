@@ -101,7 +101,7 @@ public struct SyntaxMap {
 
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.map { lastToken in
-                return Range(start: firstToken.offset, end: lastToken.offset + lastToken.length)
+                return firstToken.offset...lastToken.offset + lastToken.length
             }
         }
     }
