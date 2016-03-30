@@ -209,22 +209,21 @@ public final class File {
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
     private func dictWithCommentMarkNamesCursorInfo(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
-        if let kind = SwiftDocKey.getKind(dictionary) {
-            // Only update dictionaries with a 'kind' key
-            if kind == SyntaxKind.CommentMark.rawValue {
-                // Update comment marks
-                if let markName = markNameFromDictionary(dictionary) {
-                    return [SwiftDocKey.Name.rawValue: markName]
-                }
-            } else if let decl = SwiftDeclarationKind(rawValue: kind) where decl != .VarParameter {
-                // Update if kind is a declaration (but not a parameter)
-                var updateDict = Request.sendCursorInfoRequest(cursorInfoRequest,
-                    atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [String: SourceKitRepresentable]()
+        guard let kind = SwiftDocKey.getKind(dictionary) else {
+            return nil
+        }
+        // Only update dictionaries with a 'kind' key
+        if kind == SyntaxKind.CommentMark.rawValue, let markName = markNameFromDictionary(dictionary) {
+            // Update comment marks
+            return [SwiftDocKey.Name.rawValue: markName]
+        } else if let decl = SwiftDeclarationKind(rawValue: kind) where decl != .VarParameter {
+            // Update if kind is a declaration (but not a parameter)
+            var updateDict = Request.sendCursorInfoRequest(cursorInfoRequest,
+                atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [String: SourceKitRepresentable]()
 
-                // Skip kinds, since values from editor.open are more accurate than cursorinfo
-                updateDict.removeValueForKey(SwiftDocKey.Kind.rawValue)
-                return updateDict
-            }
+            // Skip kinds, since values from editor.open are more accurate than cursorinfo
+            updateDict.removeValueForKey(SwiftDocKey.Kind.rawValue)
+            return updateDict
         }
         return nil
     }
