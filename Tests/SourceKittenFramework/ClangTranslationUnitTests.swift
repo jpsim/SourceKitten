@@ -29,30 +29,21 @@ class ClangTranslationUnitTests: XCTestCase {
         XCTAssertEqual(parsedXcodebuildArguments, xcodebuildArguments, "xcodebuild arguments should be parsed")
     }
 
+    private func compareClangFixture(fixture: String) {
+        let tu = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
+                                      compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
+        compareJSONStringWithFixturesName((fixture as NSString).lastPathComponent, jsonString: tu)
+    }
+
     func testBasicObjectiveCDocs() {
-        let headerFiles = [fixturesDirectory + "Musician.h"]
-        let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath()]
-        let tu = ClangTranslationUnit(headerFiles: headerFiles, compilerArguments: compilerArguments)
-        let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
-        let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
-        compareJSONStringWithFixturesName("Musician", jsonString: comparisonString)
+        compareClangFixture("Musician")
     }
     
     func testUnicodeInObjectiveCDocs() {
-        let headerFiles = [fixturesDirectory + "SuperScript.h"]
-        let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory]
-        let tu = ClangTranslationUnit(headerFiles: headerFiles, compilerArguments: compilerArguments)
-        let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
-        let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
-        compareJSONStringWithFixturesName("SuperScript", jsonString: comparisonString)
+        compareClangFixture("SuperScript")
     }
 
     func testRealmObjectiveCDocs() {
-        let headerFiles = [fixturesDirectory + "/Realm/Realm.h"]
-        let compilerArguments = ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory]
-        let tu = ClangTranslationUnit(headerFiles: headerFiles, compilerArguments: compilerArguments)
-        let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
-        let comparisonString = (tu.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
-        compareJSONStringWithFixturesName("Realm", jsonString: comparisonString)
+        compareClangFixture("Realm/Realm")
     }
 }

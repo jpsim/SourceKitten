@@ -92,6 +92,6 @@ public struct ClangTranslationUnit {
 extension ClangTranslationUnit: CustomStringConvertible {
     /// A textual JSON representation of `ClangTranslationUnit`.
     public var description: String {
-        return declarationsToJSON(declarations)
+        return declarationsToJSON(declarations) + "\n"
     }
 }
