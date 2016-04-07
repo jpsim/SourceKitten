@@ -69,7 +69,7 @@ public struct SyntaxMap {
             return token.type == SyntaxKind.Identifier.rawValue &&
                 // ignore identifiers starting with '@' because they may be placed between
                 // declarations and their documentation.
-                string?.rangeOfString("@", options: [], range: NSRange(location: token.offset, length: 1)) == nil
+                !(string?.substringWithByteRange(start: token.offset, length: token.length)?.hasPrefix("@") ?? true)
         }
         let isDocOrIdentifier = { isDoc($0) || isIdentifier($0) }
 
