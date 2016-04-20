@@ -59,23 +59,14 @@ public struct SyntaxMap {
 
     - parameter offset: Last possible byte offset of the range's start.
     */
-    public func commentRangeBeforeOffset(offset: Int, string: NSString? = nil, isExtension: Bool = false) -> Range<Int>? {
+    public func commentRangeBeforeOffset(offset: Int) -> Range<Int>? {
         let tokensBeforeOffset = tokens.reverse().filter { $0.offset < offset }
 
         let docTypes = SyntaxKind.docComments().map({ $0.rawValue })
         let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
         let isNotDoc = { !isDoc($0) }
-        let isIdentifier = { (token: SyntaxToken) in
-            return token.type == SyntaxKind.Identifier.rawValue &&
-                // ignore identifiers starting with '@' because they may be placed between
-                // declarations and their documentation.
-                !(string?.substringWithByteRange(start: token.offset, length: token.length)?.hasPrefix("@") ?? true)
-        }
-        let isDocOrIdentifier = { isDoc($0) || isIdentifier($0) }
 
-        // if finds identifier earlier than comment, stops searching and returns nil.
-        guard let commentBegin = tokensBeforeOffset.indexOf(isDocOrIdentifier)
-            where !isIdentifier(tokensBeforeOffset[commentBegin]) else { return nil }
+        guard let commentBegin = tokensBeforeOffset.indexOf(isDoc) else { return nil }
         let tokensBeginningComment = tokensBeforeOffset.suffixFrom(commentBegin)
 
         // For avoiding declaring `var` with type annotation before `if let`, use `map()`
@@ -84,23 +75,13 @@ public struct SyntaxMap {
             commentEnd.map(tokensBeginningComment.prefixUpTo) ?? tokensBeginningComment
         ).reverse()
 
-        if isExtension {
-            // Return nil if tokens between found documentation comment and offset are of types other
-            // than builtin or keyword, since it means it's the documentation for some other declaration.
-            let tokensBetweenCommentAndOffset = tokensBeforeOffset.filter {
-                $0.offset > commentTokensImmediatelyPrecedingOffset.last?.offset
-            }
-            if !tokensBetweenCommentAndOffset.filter({ ![.AttributeBuiltin, .Keyword].contains(SyntaxKind(rawValue: $0.type)!) }).isEmpty,
-                let lastCommentTokenOffset = commentTokensImmediatelyPrecedingOffset.last?.offset,
-                lastCommentLine = string?.lineAndCharacterForByteOffset(lastCommentTokenOffset)?.line,
-                offsetLine = string?.lineAndCharacterForByteOffset(offset)?.line
-                where offsetLine - lastCommentLine > 2 {
-                        return nil
-            }
-        }
-
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
-            return commentTokensImmediatelyPrecedingOffset.last.map { lastToken in
+            return commentTokensImmediatelyPrecedingOffset.last.flatMap { lastToken in
+                let regularCommentTokensBetweenDocCommentAndOffset = tokensBeforeOffset
+                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .Comment })
+                if !regularCommentTokensBetweenDocCommentAndOffset.isEmpty {
+                    return nil // "doc comment" isn't actually a doc comment
+                }
                 return firstToken.offset...lastToken.offset + lastToken.length
             }
         }

@@ -186,6 +186,10 @@ public enum Request {
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
     case CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
+    /// ObjC Swift Interface
+    case Interface(file: String, uuid: String)
+    /// Find USR
+    case FindUSR(file: String, usr: String)
 
     private var sourcekitObject: sourcekitd_object_t {
         var dict: [sourcekitd_uid_t : sourcekitd_object_t]
@@ -224,6 +228,21 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(contents),
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
+            ]
+        case .Interface(let file, let uuid):
+            let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
+            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(uuid),
+                sourcekitd_uid_get_from_cstr("key.filepath"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
+            ]
+        case .FindUSR(let file, let usr):
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.find_usr")),
+                sourcekitd_uid_get_from_cstr("key.usr"): sourcekitd_request_string_create(usr),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file)
             ]
         }
         var keys = Array(dict.keys)

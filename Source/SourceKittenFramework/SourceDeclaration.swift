@@ -10,6 +10,7 @@
 import Clang_C
 #endif
 import Foundation
+import SWXMLHash
 
 public func insertMarks(declarations: [SourceDeclaration], limitRange: NSRange? = nil) -> [SourceDeclaration] {
     guard declarations.count > 0 else { return [] }
@@ -39,6 +40,7 @@ public struct SourceDeclaration {
     let documentation: Documentation?
     let commentBody: String?
     var children: [SourceDeclaration]
+    let swiftDeclaration: String?
 
     /// Range
     var range: NSRange {
@@ -86,7 +88,7 @@ public struct SourceDeclaration {
 }
 
 extension SourceDeclaration {
-    init?(cursor: CXCursor) {
+    init?(cursor: CXCursor, compilerArguments: [String]) {
         guard cursor.shouldDocument() else {
             return nil
         }
@@ -98,7 +100,10 @@ extension SourceDeclaration {
         declaration = cursor.declaration()
         documentation = Documentation(comment: cursor.parsedComment())
         commentBody = cursor.commentBody()
-        children = cursor.flatMap(SourceDeclaration.init).rejectPropertyMethods()
+        children = cursor.flatMap({
+            SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
+        }).rejectPropertyMethods()
+        swiftDeclaration = cursor.swiftDeclaration(compilerArguments)
     }
 }
 

@@ -12,6 +12,8 @@ import Clang_C
 import Foundation
 import SWXMLHash
 
+private var interfaceUUIDMap: [String: String] = [:]
+
 struct ClangIndex {
     private let cx = clang_createIndex(0, 1)
 
@@ -151,6 +153,31 @@ extension CXCursor {
             commentBody = commentBody?.stringByReplacingOccurrencesOfString(original, withString: replacement)
         }
         return commentBody
+    }
+
+    func swiftDeclaration(compilerArguments: [String]) -> String? {
+        let file = location().file
+        let swiftUUID: String
+        if let uuid = interfaceUUIDMap[file] {
+            swiftUUID = uuid
+        } else {
+            swiftUUID = NSUUID().UUIDString
+            interfaceUUIDMap[file] = swiftUUID
+            // Generate Swift interface, associating it with the UUID
+            _ = Request.Interface(file: file, uuid: swiftUUID).send()
+        }
+
+        guard let usr = usr(),
+            usrOffset = Request.FindUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.Offset.rawValue] as? Int64 else {
+            return nil
+        }
+
+        let cursorInfo = Request.CursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
+        guard let docsXML = cursorInfo[SwiftDocKey.FullXMLDocs.rawValue] as? String,
+            swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
+                return nil
+        }
+        return swiftDeclaration
     }
 }
 

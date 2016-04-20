@@ -6,11 +6,19 @@
 
 ##### Enhancements
 
-* None.
+* Swift declarations are included when generating Objective-C documentation.  
+  [JP Simard](https://github.com/jpsim)
+  [realm/jazzy#136](https://github.com/realm/jazzy/issues/136)
 
 ##### Bug Fixes
 
-* None.
+* Fixed situations where the wrong documentation comment was found for a
+  declaration, or when documentation comments were further than a single line
+  away from their declaration and the declaration would be incorrectly
+  considered undocumented.  
+  [JP Simard](https://github.com/jpsim)
+  [realm/jazzy#454](https://github.com/realm/jazzy/issues/454)
+  [realm/jazzy#502](https://github.com/realm/jazzy/issues/502)
 
 ## 0.12.0
 

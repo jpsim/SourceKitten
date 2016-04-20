@@ -1,5 +1,9 @@
 import Foundation
 
+/// Deprecated extension.
+@available(*, deprecated, message="This is deprecated but should still be documented.")
+public extension NSString {}
+
 /// 🚲 A two-wheeled, human-powered mode of transportation.
 public class Bicycle {
     /**
