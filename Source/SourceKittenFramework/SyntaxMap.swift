@@ -76,7 +76,12 @@ public struct SyntaxMap {
         ).reverse()
 
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
-            return commentTokensImmediatelyPrecedingOffset.last.map { lastToken in
+            return commentTokensImmediatelyPrecedingOffset.last.flatMap { lastToken in
+                let regularCommentTokensBetweenDocCommentAndOffset = tokensBeforeOffset
+                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .Comment })
+                if !regularCommentTokensBetweenDocCommentAndOffset.isEmpty {
+                    return nil // "doc comment" isn't actually a doc comment
+                }
                 return firstToken.offset...lastToken.offset + lastToken.length
             }
         }
