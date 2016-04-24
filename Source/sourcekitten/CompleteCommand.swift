@@ -13,7 +13,7 @@ import SourceKittenFramework
 
 struct CompleteCommand: CommandType {
     let verb = "complete"
-    let function = "Generate code completion options."
+    let function = "Generate code completion options"
 
     func run(options: CompleteOptions) -> Result<(), SourceKittenError> {
         let path: String

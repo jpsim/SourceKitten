@@ -1,3 +1,18 @@
+## Master
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* Add `index` command.  
+  [JP Simard](https://github.com/jpsim)
+
+##### Bug Fixes
+
+* None.
+
 ## 0.12.1
 
 ##### Breaking

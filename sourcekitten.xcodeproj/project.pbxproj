@@ -34,6 +34,7 @@
 		E80F23671A5CADD900FD2352 /* SwiftDocsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80F23661A5CADD900FD2352 /* SwiftDocsTests.swift */; };
 		E80F23691A5CB01A00FD2352 /* SyntaxKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80F23681A5CB01A00FD2352 /* SyntaxKind.swift */; };
 		E80F236B1A5CB04100FD2352 /* SyntaxToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80F236A1A5CB04100FD2352 /* SyntaxToken.swift */; };
+		E813023B1CCD09DB0056E826 /* IndexCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813023A1CCD09DB0056E826 /* IndexCommand.swift */; };
 		E8241CA31A5E01840047687E /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8241CA21A5E01840047687E /* ModuleTests.swift */; };
 		E8241CA51A5E01A10047687E /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8241CA41A5E01A10047687E /* Module.swift */; };
 		E834740F1A593B5B00532B9A /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834740E1A593B5B00532B9A /* Structure.swift */; };
@@ -171,6 +172,7 @@
 		E80F23661A5CADD900FD2352 /* SwiftDocsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDocsTests.swift; sourceTree = "<group>"; };
 		E80F23681A5CB01A00FD2352 /* SyntaxKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxKind.swift; sourceTree = "<group>"; };
 		E80F236A1A5CB04100FD2352 /* SyntaxToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxToken.swift; sourceTree = "<group>"; };
+		E813023A1CCD09DB0056E826 /* IndexCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexCommand.swift; sourceTree = "<group>"; };
 		E8241CA21A5E01840047687E /* ModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		E8241CA41A5E01A10047687E /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		E834740E1A593B5B00532B9A /* Structure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -282,6 +284,7 @@
 				E8F4AF111B9A56A70054C51C /* CompleteCommand.swift */,
 				E80604B41A5D474B0016D959 /* DocCommand.swift */,
 				E8D86D841A688EF20063E8E9 /* Errors.swift */,
+				E813023A1CCD09DB0056E826 /* IndexCommand.swift */,
 				D0D1211B19E87861005E4BAA /* main.swift */,
 				E80604B21A5D452C0016D959 /* StructureCommand.swift */,
 				E83A0B361A5D399A0041A60A /* SyntaxCommand.swift */,
@@ -669,6 +672,7 @@
 				E8DD06E81AE447E9006D9C86 /* DocCommand.swift in Sources */,
 				E8D86D851A688EF20063E8E9 /* Errors.swift in Sources */,
 				D0E7B65619E9C76900EDBA4D /* main.swift in Sources */,
+				E813023B1CCD09DB0056E826 /* IndexCommand.swift in Sources */,
 				E8DD06E61AE44540006D9C86 /* StructureCommand.swift in Sources */,
 				E8DD06E71AE447AB006D9C86 /* SyntaxCommand.swift in Sources */,
 				E83A0B351A5D382B0041A60A /* VersionCommand.swift in Sources */,

@@ -190,6 +190,8 @@ public enum Request {
     case Interface(file: String, uuid: String)
     /// Find USR
     case FindUSR(file: String, usr: String)
+    /// Index
+    case Index(file: String)
 
     private var sourcekitObject: sourcekitd_object_t {
         var dict: [sourcekitd_uid_t : sourcekitd_object_t]
@@ -243,6 +245,14 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.find_usr")),
                 sourcekitd_uid_get_from_cstr("key.usr"): sourcekitd_request_string_create(usr),
                 sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file)
+            ]
+        case .Index(let file):
+            let arguments = ["-sdk", sdkPath(), "-j4", file ]
+            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.indexsource")),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
         }
         var keys = Array(dict.keys)

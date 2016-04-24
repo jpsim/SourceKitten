@@ -169,4 +169,25 @@ class SourceKitTests: XCTestCase {
             }
         }
     }
+
+    func testIndex() {
+        let file = "\(fixturesDirectory)Bicycle.swift"
+        let indexJSON = NSMutableString(string: toJSON(toAnyObject(Request.Index(file: file).send())) + "\n")
+
+        func replace(pattern: String, withTemplate template: String) {
+            try! NSRegularExpression(pattern: pattern, options: []).replaceMatchesInString(indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
+        }
+
+        // Replace the parts of the output that are dependent on the environment of the test running machine
+        replace("\"key\\.filepath\"[^\\n]*", withTemplate: "\"key\\.filepath\" : \"\",")
+        replace("\"key\\.hash\"[^\\n]*", withTemplate: "\"key\\.hash\" : \"\",")
+
+        compareJSONStringWithFixturesName("BicycleIndex", jsonString: indexJSON as String)
+    }
+}
+
+extension String: CustomStringConvertible {
+    public var description: String {
+        return self
+    }
 }
