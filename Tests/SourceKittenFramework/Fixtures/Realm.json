@@ -4152,6 +4152,7 @@
           "key.usr" : "c:RLMRealm.h@T@RLMMigrationBlock",
           "key.doc.file" : "Realm\/RLMRealm.h",
           "key.doc.full_as_xml" : "",
+          "key.swift_declaration" : "typealias RLMMigrationBlock = (RLMMigration!, UInt64) -> Void",
           "key.parsed_scope.start" : 431,
           "key.filepath" : "Realm\/RLMRealm.h"
         },
