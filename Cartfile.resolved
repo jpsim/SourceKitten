@@ -1,4 +1,4 @@
-github "antitypical/Result" "1.0.2"
-github "drmohundro/SWXMLHash" "2.2.0"
+github "antitypical/Result" "2.0.0"
+github "drmohundro/SWXMLHash" "2.3.1"
 github "jspahrsummers/xcconfigs" "0.9"
-github "Carthage/Commandant" "0.9.0"
+github "Carthage/Commandant" "0.10.0"
