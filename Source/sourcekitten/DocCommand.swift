@@ -15,7 +15,28 @@ struct DocCommand: CommandType {
     let verb = "doc"
     let function = "Print Swift docs as JSON or Objective-C docs as XML"
 
-    func run(options: DocOptions) -> Result<(), SourceKittenError> {
+    struct Options: OptionsType {
+        let singleFile: Bool
+        let moduleName: String
+        let objc: Bool
+        let arguments: [String]
+
+        static func create(singleFile: Bool) -> (moduleName: String) -> (objc: Bool) -> (arguments: [String]) -> Options {
+            return { moduleName in { objc in { arguments in
+                self.init(singleFile: singleFile, moduleName: moduleName, objc: objc, arguments: arguments)
+            }}}
+        }
+
+        static func evaluate(m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+            return create
+                <*> m <| Option(key: "single-file", defaultValue: false, usage: "only document one file")
+                <*> m <| Option(key: "module-name", defaultValue: "",    usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
+                <*> m <| Option(key: "objc",        defaultValue: false, usage: "document Objective-C headers")
+                <*> m <| Argument(defaultValue: [], usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
+        }
+    }
+
+    func run(options: Options) -> Result<(), SourceKittenError> {
         let args = options.arguments
         if options.objc {
             return runObjC(options, args: args)
@@ -49,33 +70,12 @@ struct DocCommand: CommandType {
         return .Failure(.ReadFailed(path: args[0]))
     }
 
-    func runObjC(options: DocOptions, args: [String]) -> Result<(), SourceKittenError> {
+    func runObjC(options: Options, args: [String]) -> Result<(), SourceKittenError> {
         if args.isEmpty {
             return .Failure(.InvalidArgument(description: "at least 5 arguments are required when using `--objc`"))
         }
         let translationUnit = ClangTranslationUnit(headerFiles: [args[0]], compilerArguments: Array(args.dropFirst(1)))
         print(translationUnit)
         return .Success()
-    }
-}
-
-struct DocOptions: OptionsType {
-    let singleFile: Bool
-    let moduleName: String
-    let objc: Bool
-    let arguments: [String]
-
-    static func create(singleFile: Bool) -> (moduleName: String) -> (objc: Bool) -> (arguments: [String]) -> DocOptions {
-        return { moduleName in { objc in { arguments in
-            self.init(singleFile: singleFile, moduleName: moduleName, objc: objc, arguments: arguments)
-            }}}
-    }
-
-    static func evaluate(m: CommandMode) -> Result<DocOptions, CommandantError<SourceKittenError>> {
-        return create
-            <*> m <| Option(key: "single-file", defaultValue: false, usage: "only document one file")
-            <*> m <| Option(key: "module-name", defaultValue: "",    usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
-            <*> m <| Option(key: "objc",        defaultValue: false, usage: "document Objective-C headers")
-            <*> m <| Argument(defaultValue: [], usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
     }
 }

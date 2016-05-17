@@ -15,7 +15,28 @@ struct CompleteCommand: CommandType {
     let verb = "complete"
     let function = "Generate code completion options"
 
-    func run(options: CompleteOptions) -> Result<(), SourceKittenError> {
+    struct Options: OptionsType {
+        let file: String
+        let text: String
+        let offset: Int
+        let compilerargs: String
+
+        static func create(file: String) -> (text: String) -> (offset: Int) -> (compilerargs: String) -> Options {
+            return { text in { offset in { compilerargs in
+                self.init(file: file, text: text, offset: offset, compilerargs: compilerargs)
+            }}}
+        }
+
+        static func evaluate(m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+            return create
+                <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
+                <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
+                <*> m <| Option(key: "offset", defaultValue: 0, usage: "Offset for which to generate code completion options.")
+                <*> m <| Option(key: "compilerargs", defaultValue: "", usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
+        }
+    }
+
+    func run(options: Options) -> Result<(), SourceKittenError> {
         let path: String
         let contents: String
         if !options.file.isEmpty {
@@ -42,26 +63,5 @@ struct CompleteCommand: CommandType {
             arguments: args)
         print(CodeCompletionItem.parseResponse(request.send()))
         return .Success()
-    }
-}
-
-struct CompleteOptions: OptionsType {
-    let file: String
-    let text: String
-    let offset: Int
-    let compilerargs: String
-
-    static func create(file: String) -> (text: String) -> (offset: Int) -> (compilerargs: String) -> CompleteOptions {
-        return { text in { offset in { compilerargs in
-            self.init(file: file, text: text, offset: offset, compilerargs: compilerargs)
-        }}}
-    }
-
-    static func evaluate(m: CommandMode) -> Result<CompleteOptions, CommandantError<SourceKittenError>> {
-        return create
-            <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
-            <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
-            <*> m <| Option(key: "offset", defaultValue: 0, usage: "Offset for which to generate code completion options.")
-            <*> m <| Option(key: "compilerargs", defaultValue: "", usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
     }
 }
