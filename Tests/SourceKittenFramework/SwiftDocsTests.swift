@@ -36,7 +36,7 @@ func compareJSONStringWithFixturesName(name: String, jsonString: CustomStringCon
     let actualValue = jsonValue(actualContent)
     let expectedValue = jsonValue(expectedFile.contents)
     let message = "output should match expected fixture"
-    func AssertEqual<T: Equatable>(firstValue: T, _ secondValue: T) {
+    func AssertEqual(firstValue: NSObject, _ secondValue: NSObject) {
         if firstValue != secondValue {
             XCTFail(message)
             print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
