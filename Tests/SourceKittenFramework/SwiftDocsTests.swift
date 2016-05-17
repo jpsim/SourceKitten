@@ -16,25 +16,30 @@ func compareJSONStringWithFixturesName(name: String, jsonString: CustomStringCon
         let result = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
         return (result as? NSDictionary) ?? (result as! NSArray)
     }
-    let escapedFixturesDirectory = rootDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
-    let actualContent = String(jsonString).stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
 
-    let fixturePath = fixturesDirectory + name + ".json"
-    let expectedContent = File(path: fixturePath)!.contents
+    // Strip out fixtures directory since it's dependent on the test machine's setup
+    let escapedFixturesDirectory = rootDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
+    let jsonString = String(jsonString).stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
+
+    // Strip out any other absolute paths after that, since it's also dependent on the test machine's setup
+    let absolutePathRegex = try! NSRegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
+    let actualContent = absolutePathRegex.stringByReplacingMatchesInString(jsonString, options: [], range: NSRange(location: 0, length: jsonString.utf16.count), withTemplate: "\"key\\.filepath\" : \"\",")
+
+    let expectedFile = File(path: fixturesDirectory + name + ".json")!
 
     let overwrite = false
-    if overwrite && actualContent != expectedContent {
-        _ = try? actualContent.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(fixturePath, options: .AtomicWrite)
+    if overwrite && actualContent != expectedFile.contents {
+        _ = try? actualContent.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(expectedFile.path!, options: .AtomicWrite)
         return
     }
 
     let actualValue = jsonValue(actualContent)
-    let expectedValue = jsonValue(expectedContent)
+    let expectedValue = jsonValue(expectedFile.contents)
     let message = "output should match expected fixture"
     func AssertEqual<T: Equatable>(firstValue: T, _ secondValue: T) {
         if firstValue != secondValue {
             XCTFail(message)
-            print("actual:\n\(actualContent)\nexpected:\n\(expectedContent)")
+            print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
         }
     }
     if let firstValue = actualValue as? NSDictionary, secondValue = expectedValue as? NSDictionary {

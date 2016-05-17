@@ -1012,7 +1012,7 @@
             "key.filepath" : "Sources\/Commandant\/Swift3to22.swift"
           }
         ],
-        "key.filepath" : "\/Applications\/Xcode-7.3.1.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX10.11.sdk\/System\/Library\/Frameworks\/Foundation.framework\/Headers\/NSCharacterSet.h",
+        "key.filepath" : "",
         "key.modulename" : "Foundation.NSCharacterSet"
       },
       {
