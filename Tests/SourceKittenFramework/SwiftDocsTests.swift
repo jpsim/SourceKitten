@@ -11,12 +11,6 @@ import SourceKittenFramework
 import XCTest
 
 func compareJSONStringWithFixturesName(name: String, jsonString: CustomStringConvertible, rootDirectory: String = fixturesDirectory) {
-    func jsonValue(jsonString: String) -> AnyObject {
-        let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)!
-        let result = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
-        return (result as? NSDictionary) ?? (result as! NSArray)
-    }
-
     // Strip out fixtures directory since it's dependent on the test machine's setup
     let escapedFixturesDirectory = rootDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
     let jsonString = String(jsonString).stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
@@ -33,21 +27,15 @@ func compareJSONStringWithFixturesName(name: String, jsonString: CustomStringCon
         return
     }
 
-    let actualValue = jsonValue(actualContent)
-    let expectedValue = jsonValue(expectedFile.contents)
-    let message = "output should match expected fixture"
-    func AssertEqual(firstValue: NSObject, _ secondValue: NSObject) {
-        if firstValue != secondValue {
-            XCTFail(message)
-            print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
-        }
+    func jsonValue(jsonString: String) -> NSObject {
+        let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let result = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
+        return (result as? NSDictionary) ?? (result as! NSArray)
     }
-    if let firstValue = actualValue as? NSDictionary, secondValue = expectedValue as? NSDictionary {
-        AssertEqual(firstValue, secondValue)
-    } else if let firstValue = actualValue as? NSArray, secondValue = expectedValue as? NSArray {
-        AssertEqual(firstValue, secondValue)
-    } else {
-        XCTFail("output didn't match fixture type")
+
+    if jsonValue(actualContent) != jsonValue(expectedFile.contents) {
+        XCTFail("output should match expected fixture")
+        print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
     }
 }
 
