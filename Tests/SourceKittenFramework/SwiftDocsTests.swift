@@ -11,32 +11,31 @@ import SourceKittenFramework
 import XCTest
 
 func compareJSONStringWithFixturesName(name: String, jsonString: CustomStringConvertible, rootDirectory: String = fixturesDirectory) {
-    func jsonValue(jsonString: String) -> AnyObject {
+    // Strip out fixtures directory since it's dependent on the test machine's setup
+    let escapedFixturesDirectory = rootDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
+    let jsonString = String(jsonString).stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
+
+    // Strip out any other absolute paths after that, since it's also dependent on the test machine's setup
+    let absolutePathRegex = try! NSRegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
+    let actualContent = absolutePathRegex.stringByReplacingMatchesInString(jsonString, options: [], range: NSRange(location: 0, length: jsonString.utf16.count), withTemplate: "\"key\\.filepath\" : \"\",")
+
+    let expectedFile = File(path: fixturesDirectory + name + ".json")!
+
+    let overwrite = false
+    if overwrite && actualContent != expectedFile.contents {
+        _ = try? actualContent.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(expectedFile.path!, options: .AtomicWrite)
+        return
+    }
+
+    func jsonValue(jsonString: String) -> NSObject {
         let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding)!
         let result = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
         return (result as? NSDictionary) ?? (result as! NSArray)
     }
-    let escapedFixturesDirectory = rootDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
-    let actualContent = String(jsonString).stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
 
-    let fixturePath = fixturesDirectory + name + ".json"
-    let expectedContent = File(path: fixturePath)!.contents
-
-    let overwrite = false
-    if overwrite && actualContent != expectedContent {
-        _ = try? actualContent.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(fixturePath, options: .AtomicWrite)
-        return
-    }
-
-    let actualValue = jsonValue(actualContent)
-    let expectedValue = jsonValue(expectedContent)
-    let message = "output should match expected fixture"
-    if let firstValue = actualValue as? NSDictionary, secondValue = expectedValue as? NSDictionary {
-        XCTAssertEqual(firstValue, secondValue, message)
-    } else if let firstValue = actualValue as? NSArray, secondValue = expectedValue as? NSArray {
-        XCTAssertEqual(firstValue, secondValue, message)
-    } else {
-        XCTFail("output didn't match fixture type")
+    if jsonValue(actualContent) != jsonValue(expectedFile.contents) {
+        XCTFail("output should match expected fixture")
+        print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
     }
 }
 
