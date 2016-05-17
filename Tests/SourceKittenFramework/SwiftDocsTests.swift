@@ -31,10 +31,16 @@ func compareJSONStringWithFixturesName(name: String, jsonString: CustomStringCon
     let actualValue = jsonValue(actualContent)
     let expectedValue = jsonValue(expectedContent)
     let message = "output should match expected fixture"
+    func AssertEqual<T: Equatable>(firstValue: T, _ secondValue: T) {
+        if firstValue != secondValue {
+            XCTFail(message)
+            print("actual:\n\(actualContent)\nexpected:\n\(expectedContent)")
+        }
+    }
     if let firstValue = actualValue as? NSDictionary, secondValue = expectedValue as? NSDictionary {
-        XCTAssertEqual(firstValue, secondValue, message)
+        AssertEqual(firstValue, secondValue)
     } else if let firstValue = actualValue as? NSArray, secondValue = expectedValue as? NSArray {
-        XCTAssertEqual(firstValue, secondValue, message)
+        AssertEqual(firstValue, secondValue)
     } else {
         XCTFail("output didn't match fixture type")
     }
