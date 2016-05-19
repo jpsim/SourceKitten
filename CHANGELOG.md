@@ -10,7 +10,10 @@
 
 ##### Bug Fixes
 
-* None.
+* Add support for handling `CXCursor_UnexposedDecl` declarations when
+  documenting Objective-C.  
+  [JP Simard](https://github.com/jpsim)
+  [realm/jazzy#543](https://github.com/realm/jazzy/issues/543)
 
 ## 0.12.2
 
