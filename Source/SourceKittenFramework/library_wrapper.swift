@@ -25,7 +25,7 @@ struct DynamicLinkLibrary {
 let toolchainLoader = Loader(searchPaths: [
     xcodeDefaultToolchainOverride,
     toolchainDir,
-    xcodeSelectPath?.toolchainDir,
+    xcrunFindPath,
     /*
     These search paths are used when `xcode-select -p` points to
     "Command Line Tools OS X for Xcode", but Xcode.app exists.
@@ -74,17 +74,19 @@ private let xcodeDefaultToolchainOverride: String? =
 private let toolchainDir: String? =
     NSProcessInfo.processInfo().environment["TOOLCHAIN_DIR"]
 
-/// Returns result string of `xcode-select -p`
-private let xcodeSelectPath: String? = {
-    let pathOfXcodeSelect = "/usr/bin/xcode-select"
+/// Returns toolchain directory that parsed from result of `xcrun -find swift`
+///
+/// This is affected by "DEVELOPER_DIR", "TOOLCHAINS" environment variables.
+private let xcrunFindPath: String? = {
+    let pathOfXcrun = "/usr/bin/xcrun"
 
-    if !NSFileManager.defaultManager().isExecutableFileAtPath(pathOfXcodeSelect) {
+    if !NSFileManager.defaultManager().isExecutableFileAtPath(pathOfXcrun) {
         return nil
     }
 
     let task = NSTask()
-    task.launchPath = pathOfXcodeSelect
-    task.arguments = ["-p"]
+    task.launchPath = pathOfXcrun
+    task.arguments = ["-find", "swift"]
 
     let pipe = NSPipe()
     task.standardOutput = pipe
@@ -98,13 +100,17 @@ private let xcodeSelectPath: String? = {
     var start = output.startIndex
     var contentsEnd = output.startIndex
     output.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, forRange: start..<start)
-    let xcodeSelectPath = output.substringWithRange(start..<contentsEnd)
-    // Return nil if xcodeSelectPath points to "Command Line Tools OS X for Xcode"
-    // because it doesn't contain `sourcekitd.framework`.
-    if xcodeSelectPath == "/Library/Developer/CommandLineTools" {
+    let xcrunFindSwiftPath = output.substringWithRange(start..<contentsEnd)
+    guard xcrunFindSwiftPath.hasSuffix("/usr/bin/swift") else {
         return nil
     }
-    return xcodeSelectPath
+    let xcrunFindPath = xcrunFindSwiftPath.deletingLastPathComponents(3)
+    // Return nil if xcrunFindPath points to "Command Line Tools OS X for Xcode"
+    // because it doesn't contain `sourcekitd.framework`.
+    if xcrunFindPath == "/Library/Developer/CommandLineTools" {
+        return nil
+    }
+    return xcrunFindPath
 }()
 
 private let applicationsDir: String? =
@@ -136,5 +142,10 @@ private extension String {
 
     private func stringByAppendingPathComponent(str: String) -> String {
         return (self as NSString).stringByAppendingPathComponent(str)
+    }
+
+    private func deletingLastPathComponents(_ n: Int) -> String {
+        let pathComponents = NSString(string: self).pathComponents.dropLast(n)
+        return NSString.pathWithComponents(Array(pathComponents))
     }
 }

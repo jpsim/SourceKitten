@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Add support `TOOLCHAINS` environment variable to selecting alternative
+  toolchains for loading SourceKitService.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
 
