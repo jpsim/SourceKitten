@@ -1,4 +1,5 @@
 github "antitypical/Result" "2.0.0"
 github "drmohundro/SWXMLHash" "2.3.1"
+github "behrang/YamlSwift" "1.4.3"
 github "jspahrsummers/xcconfigs" "0.9"
 github "Carthage/Commandant" "0.10.0"
