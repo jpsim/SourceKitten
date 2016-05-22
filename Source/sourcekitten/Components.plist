@@ -19,6 +19,12 @@
 				<key>BundleOverwriteAction</key>
 				<string></string>
 				<key>RootRelativeBundlePath</key>
+				<string>/usr/local/Frameworks/SourceKittenFramework.framework/Versions/A/Frameworks/YamlSwift.framework</string>
+			</dict>
+			<dict>
+				<key>BundleOverwriteAction</key>
+				<string></string>
+				<key>RootRelativeBundlePath</key>
 				<string>/usr/local/Frameworks/SourceKittenFramework.framework/Versions/A/Frameworks/Commandant.framework</string>
 			</dict>
 			<dict>
