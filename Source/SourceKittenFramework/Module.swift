@@ -43,6 +43,9 @@ public struct Module {
         guard let moduleCommand = yamlCommands.filter({ command in
             command.dictionary?["module-name"]?.string == spmName
         }).first?.dictionary else {
+            fputs("Could not find SPM module '\(spmName)'. Here are the modules available:\n", stderr)
+            let availableModules = yamlCommands.flatMap({ $0.dictionary?["module-name"]?.string })
+            fputs("\(availableModules.map({ "  - " + $0 }).joinWithSeparator("\n"))\n", stderr)
             return nil
         }
         func stringArray(key: Yaml) -> [String]? {
