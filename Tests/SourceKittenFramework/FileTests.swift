@@ -14,4 +14,12 @@ class FileTests: XCTestCase {
     func testUnreadablePath() {
         XCTAssert(File(path: "/dev/null") == nil)
     }
+
+    func testFormat() {
+        let file = File(path: fixturesDirectory + "BicycleUnformatted.swift")
+        let formattedFile = file?.format(trimmingTrailingWhitespace: true,
+                                         useTabs: false,
+                                         indentWidth: 4)
+        XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift"))
+    }
 }
