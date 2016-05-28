@@ -6,6 +6,15 @@
 
 ##### Enhancements
 
+* Add `format` command that re-indents a Swift file much like pasting into
+  Xcode would. This command optionally takes the following parameters:
+
+  * `--file (string)`: relative or absolute path of Swift file to format
+  * `--no-trim-whitespace`: trim trailing whitespace
+  * `--use-tabs`: use tabs to indent
+  * `--indent-width (integer)`: number of spaces to indent  
+  [JP Simard](https://github.com/jpsim)
+
 * Add support `TOOLCHAINS` environment variable to selecting alternative
   toolchains for loading SourceKitService.  
   [Norio Nomura](https://github.com/norio-nomura)
