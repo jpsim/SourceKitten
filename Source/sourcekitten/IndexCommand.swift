@@ -1,5 +1,5 @@
 //
-//  Structure.swift
+//  IndexCommand.swift
 //  SourceKitten
 //
 //  Created by JP Simard on 2015-04-24.

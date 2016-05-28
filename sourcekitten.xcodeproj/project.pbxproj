@@ -71,6 +71,7 @@
 		E8D474391A648ED10011A49C /* Platform.h in Headers */ = {isa = PBXBuildFile; fileRef = E8D474321A648ED10011A49C /* Platform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8D4743B1A648F290011A49C /* ClangTranslationUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D4743A1A648F290011A49C /* ClangTranslationUnit.swift */; };
 		E8D86D851A688EF20063E8E9 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D86D841A688EF20063E8E9 /* Errors.swift */; };
+		E8DB29161CFA4818007C30E8 /* FormatCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB29151CFA4818007C30E8 /* FormatCommand.swift */; };
 		E8DD06E61AE44540006D9C86 /* StructureCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80604B21A5D452C0016D959 /* StructureCommand.swift */; };
 		E8DD06E71AE447AB006D9C86 /* SyntaxCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83A0B361A5D399A0041A60A /* SyntaxCommand.swift */; };
 		E8DD06E81AE447E9006D9C86 /* DocCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80604B41A5D474B0016D959 /* DocCommand.swift */; };
@@ -210,6 +211,7 @@
 		E8D474321A648ED10011A49C /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		E8D4743A1A648F290011A49C /* ClangTranslationUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClangTranslationUnit.swift; sourceTree = "<group>"; };
 		E8D86D841A688EF20063E8E9 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		E8DB29151CFA4818007C30E8 /* FormatCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatCommand.swift; sourceTree = "<group>"; };
 		E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Commandant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EE34BE1B9A502F00947605 /* CodeCompletionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeCompletionItem.swift; sourceTree = "<group>"; };
 		E8F4AF111B9A56A70054C51C /* CompleteCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteCommand.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				E8F4AF111B9A56A70054C51C /* CompleteCommand.swift */,
 				E80604B41A5D474B0016D959 /* DocCommand.swift */,
 				E8D86D841A688EF20063E8E9 /* Errors.swift */,
+				E8DB29151CFA4818007C30E8 /* FormatCommand.swift */,
 				E813023A1CCD09DB0056E826 /* IndexCommand.swift */,
 				D0D1211B19E87861005E4BAA /* main.swift */,
 				E80604B21A5D452C0016D959 /* StructureCommand.swift */,
@@ -668,6 +671,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8DB29161CFA4818007C30E8 /* FormatCommand.swift in Sources */,
 				E8F4AF121B9A56A70054C51C /* CompleteCommand.swift in Sources */,
 				E8DD06E81AE447E9006D9C86 /* DocCommand.swift in Sources */,
 				E8D86D851A688EF20063E8E9 /* Errors.swift in Sources */,

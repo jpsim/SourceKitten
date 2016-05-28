@@ -7,36 +7,36 @@ public extension NSString {}
 /// 🚲 A two-wheeled, human-powered mode of transportation.
 public class Bicycle {
     /**
-    Frame and construction style.
+     Frame and construction style.
 
-    - Road: For streets or trails.
-    - Touring: For long journeys.
-    - Cruiser: For casual trips around town.
-    - Hybrid: For general-purpose transportation.
-    */
+     - Road: For streets or trails.
+     - Touring: For long journeys.
+     - Cruiser: For casual trips around town.
+     - Hybrid: For general-purpose transportation.
+     */
     public enum Style {
         case Road, Touring, Cruiser, Hybrid
     }
 
     /**
-    Mechanism for converting pedal power into motion.
+     Mechanism for converting pedal power into motion.
 
-    - Fixed: A single, fixed gear.
-    - Freewheel: A variable-speed, disengageable gear.
-    */
+     - Fixed: A single, fixed gear.
+     - Freewheel: A variable-speed, disengageable gear.
+     */
     public enum Gearing {
         case Fixed
         case Freewheel(speeds: Int)
     }
 
     /**
-    Hardware used for steering.
+     Hardware used for steering.
 
-    - Riser: A casual handlebar.
-    - Café: An upright handlebar.
-    - Drop: A classic handlebar.
-    - Bullhorn: A powerful handlebar.
-    */
+     - Riser: A casual handlebar.
+     - Café: An upright handlebar.
+     - Drop: A classic handlebar.
+     - Bullhorn: A powerful handlebar.
+     */
     enum Handlebar {
         case Riser, Café, Drop, Bullhorn
     }
@@ -60,15 +60,15 @@ public class Bicycle {
     private(set) var distanceTravelled: Double
 
     /**
-    Initializes a new bicycle with the provided parts and specifications.
+     Initializes a new bicycle with the provided parts and specifications.
 
-    - parameter style: The style of the bicycle
-    - parameter gearing: The gearing of the bicycle
-    - parameter handlebar: The handlebar of the bicycle
-    - parameter centimeters: The frame size of the bicycle, in centimeters
+     - parameter style: The style of the bicycle
+     - parameter gearing: The gearing of the bicycle
+     - parameter handlebar: The handlebar of the bicycle
+     - parameter centimeters: The frame size of the bicycle, in centimeters
 
-    - returns: A beautiful, brand-new, custom built just for you.
-    */
+     - returns: A beautiful, brand-new, custom built just for you.
+     */
     init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int) {
         self.style = style
         self.gearing = gearing
@@ -80,10 +80,10 @@ public class Bicycle {
     }
 
     /**
-    Take a bike out for a spin.
+     Take a bike out for a spin.
 
-    - parameter meters: The distance to travel in meters.
-    */
+     - parameter meters: The distance to travel in meters.
+     */
     func travel(distance meters: Double) {
         if meters > 0.0 {
             distanceTravelled += meters

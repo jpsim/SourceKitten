@@ -144,7 +144,7 @@ private extension String {
         return (self as NSString).stringByAppendingPathComponent(str)
     }
 
-    private func deletingLastPathComponents(_ n: Int) -> String {
+    private func deletingLastPathComponents(n: Int) -> String {
         let pathComponents = NSString(string: self).pathComponents.dropLast(n)
         return NSString.pathWithComponents(Array(pathComponents))
     }
