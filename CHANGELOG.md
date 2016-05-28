@@ -15,6 +15,12 @@
   * `--indent-width (integer)`: number of spaces to indent  
   [JP Simard](https://github.com/jpsim)
 
+* Add `--spm-module [ModuleName]` flag to `doc` to document Swift Package
+  Manager modules. Need to run `swift build` prior to running
+  `sourcekitten doc`. The right Swift toolchain version must also be selected
+  (by setting `TOOLCHAIN_DIR` or similar).  
+  [JP Simard](https://github.com/jpsim)
+
 * Add support `TOOLCHAINS` environment variable to selecting alternative
   toolchains for loading SourceKitService.  
   [Norio Nomura](https://github.com/norio-nomura)
