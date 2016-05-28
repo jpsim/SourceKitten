@@ -16,6 +16,7 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
     let registry = CommandRegistry<SourceKittenError>()
     registry.register(CompleteCommand())
     registry.register(DocCommand())
+    registry.register(FormatCommand())
     registry.register(IndexCommand())
     registry.register(SyntaxCommand())
     registry.register(StructureCommand())

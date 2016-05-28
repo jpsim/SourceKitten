@@ -49,6 +49,46 @@ public final class File {
     }
 
     /**
+     Formats the file.
+     */
+    public func format(trimmingTrailingWhitespace trimmingTrailingWhitespace: Bool,
+                                                  useTabs: Bool,
+                                                  indentWidth: Int) -> String {
+        guard let path = path else {
+            return contents
+        }
+        _ = Structure(file: self)
+        var newContents = [String]()
+        var offset = 0
+        for line in lines {
+            let formatResponse = Request.Format(file: path,
+                                                line: Int64(line.index),
+                                                useTabs: useTabs,
+                                                indentWidth: Int64(indentWidth)).send()
+            let newText = formatResponse["key.sourcetext"] as! String
+            newContents.append(newText)
+
+            guard newText != line.content else { continue }
+
+            Request.ReplaceText(file: path,
+                                offset: Int64(line.byteRange.location + offset),
+                                length: Int64(line.byteRange.length - 1),
+                                sourceText: newText).send()
+            let oldLength = line.byteRange.length
+            let newLength = newText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+            offset += 1 + newLength - oldLength
+        }
+
+        if trimmingTrailingWhitespace {
+            newContents = newContents.map {
+                ($0 as NSString).stringByTrimmingTrailingCharactersInSet(.whitespaceCharacterSet())
+            }
+        }
+
+        return newContents.joinWithSeparator("\n") + "\n"
+    }
+
+    /**
     Parse source declaration string from SourceKit dictionary.
 
     - parameter dictionary: SourceKit dictionary to extract declaration from.

@@ -192,6 +192,10 @@ public enum Request {
     case FindUSR(file: String, usr: String)
     /// Index
     case Index(file: String)
+    /// Format
+    case Format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
+    /// ReplaceText
+    case ReplaceText(file: String, offset: Int64, length: Int64, sourceText: String)
 
     private var sourcekitObject: sourcekitd_object_t {
         var dict: [sourcekitd_uid_t : sourcekitd_object_t]
@@ -253,6 +257,28 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.indexsource")),
                 sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
+            ]
+        case .Format(let file, let line, let useTabs, let indentWidth):
+            let formatOptions = [
+                sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth"): sourcekitd_request_int64_create(indentWidth),
+                sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth"): sourcekitd_request_int64_create(indentWidth),
+                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(Int64(Int(useTabs))),
+            ]
+            var formatOptionsKeys = Array(formatOptions.keys)
+            var formatOptionsValues = Array(formatOptions.values)
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.formattext")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.line"): sourcekitd_request_int64_create(line),
+                sourcekitd_uid_get_from_cstr("key.editor.format.options"): sourcekitd_request_dictionary_create(&formatOptionsKeys, &formatOptionsValues, formatOptions.count)
+            ]
+        case .ReplaceText(let file, let offset, let length, let sourceText):
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.replacetext")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
+                sourcekitd_uid_get_from_cstr("key.length"): sourcekitd_request_int64_create(length),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(sourceText),
             ]
         }
         var keys = Array(dict.keys)
