@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Yaml
 
 /// Represents source module to be documented.
 public struct Module {
@@ -31,6 +32,33 @@ public struct Module {
             fputs("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
             return nil
         }
+    }
+
+    public init?(spmName: String) {
+        let yamlPath = ".build/debug.yaml"
+        guard let yamlContents = try? String(contentsOfFile: yamlPath),
+            yamlCommands = Yaml.load(yamlContents).value?.dictionary?["commands"]?.dictionary?.values else {
+                return nil
+        }
+        guard let moduleCommand = yamlCommands.filter({ command in
+            command.dictionary?["module-name"]?.string == spmName
+        }).first?.dictionary else {
+            fputs("Could not find SPM module '\(spmName)'. Here are the modules available:\n", stderr)
+            let availableModules = yamlCommands.flatMap({ $0.dictionary?["module-name"]?.string })
+            fputs("\(availableModules.map({ "  - " + $0 }).joinWithSeparator("\n"))\n", stderr)
+            return nil
+        }
+        func stringArray(key: Yaml) -> [String]? {
+            return moduleCommand[key]?.array?.flatMap { $0.string }
+        }
+        guard let imports = stringArray("import-paths"),
+            otherArguments = stringArray("other-args"),
+            sources = stringArray("sources") else {
+                return nil
+        }
+        name = spmName
+        compilerArguments = sources + otherArguments + ["-I"] + imports
+        sourceFiles = sources
     }
 
     /**
