@@ -1,3 +1,21 @@
+## Master
+
+##### Breaking
+
+* Embedding frameworks depended by `sourcekitten` is moved from
+  SourceKittenFramework target to sourcekitten target in Xcode project.
+  `SourceKittenFramework.framework` built by SourceKittenFramework target does
+  not contain Swift libraries and those frameworks any more.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* None.
+
 ## 0.13.0
 
 ##### Breaking
