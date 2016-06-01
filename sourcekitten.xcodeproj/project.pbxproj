@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		2C55B3321BEB3CA7002E8C6B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; };
 		2C55B3331BEB3CAB002E8C6B /* Commandant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; };
-		2C55B3341BEB3D7D002E8C6B /* Commandant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2C55B3351BEB3D7D002E8C6B /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED279151C61E2A100084460 /* StatementKind.swift */; };
 		3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */; };
 		3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56EACF1BAB251C006433D0 /* JSONOutput.swift */; };
@@ -19,6 +17,10 @@
 		6C4CF6521C798082008532C5 /* library_wrapper_CXString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6481C79802A008532C5 /* library_wrapper_CXString.swift */; };
 		6C4CF6551C798086008532C5 /* library_wrapper_Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */; };
 		6C4CF6581C79808C008532C5 /* library_wrapper_Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */; };
+		6CCFCE891CFECFED003239EB /* SWXMLHash.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6CCFCE8C1CFECFF1003239EB /* Yaml.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0D1217219E87B05005E4BAA /* SourceKittenFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D0D1217119E87B05005E4BAA /* SourceKittenFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0D1217819E87B05005E4BAA /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; };
@@ -95,14 +97,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		6CCFCE881CFECFBD003239EB /* Embed Frameworks into SourceKittenFramework.framework */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = SourceKittenFramework.framework/Versions/Current/Frameworks;
+			dstSubfolderSpec = 10;
+			files = (
+				6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */,
+				6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */,
+				6CCFCE891CFECFED003239EB /* SWXMLHash.framework in Embed Frameworks into SourceKittenFramework.framework */,
+				6CCFCE8C1CFECFF1003239EB /* Yaml.framework in Embed Frameworks into SourceKittenFramework.framework */,
+			);
+			name = "Embed Frameworks into SourceKittenFramework.framework";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0AAAB5319FB0960007B24B3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2C55B3341BEB3D7D002E8C6B /* Commandant.framework in Embed Frameworks */,
-				2C55B3351BEB3D7D002E8C6B /* Result.framework in Embed Frameworks */,
 				D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -512,6 +526,8 @@
 				D0E7B62F19E9C64500EDBA4D /* Frameworks */,
 				D0E7B65719E9C7C700EDBA4D /* Extract CLI Tool */,
 				D0AAAB5319FB0960007B24B3 /* Embed Frameworks */,
+				6CCFCE881CFECFBD003239EB /* Embed Frameworks into SourceKittenFramework.framework */,
+				6CCFCEC01CFED30B003239EB /* Embed Swift libraries into SourceKittenFramework.framework */,
 			);
 			buildRules = (
 			);
@@ -566,6 +582,21 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6CCFCEC01CFED30B003239EB /* Embed Swift libraries into SourceKittenFramework.framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Swift libraries into SourceKittenFramework.framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$TARGET_BUILD_DIR\"\nSOURCEKITTENFRAMEWORK_BUNDLE=\"$FRAMEWORKS_FOLDER_PATH/SourceKittenFramework.framework\"\n\nxcrun swift-stdlib-tool --copy --verbose --Xcodesign --timestamp=none \\\n  --scan-executable \"$EXECUTABLE_PATH\" \\\n  --scan-folder \"$FRAMEWORKS_FOLDER_PATH\" \\\n  --platform macosx --destination \"$SOURCEKITTENFRAMEWORK_BUNDLE/Versions/Current/Frameworks\" \\\n  --strip-bitcode\n";
+			showEnvVarsInLog = 0;
+		};
 		C2265FAB1A4B86AC00158358 /* Check Xcode Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
