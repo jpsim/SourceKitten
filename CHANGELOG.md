@@ -2,10 +2,11 @@
 
 ##### Breaking
 
-* Embedding frameworks depended by `sourcekitten` is moved from
-  SourceKittenFramework target to sourcekitten target in Xcode project.
-  `SourceKittenFramework.framework` built by SourceKittenFramework target does
-  not contain Swift libraries and those frameworks any more.  
+* Embedding frameworks needed by `sourcekitten` was moved from
+  SourceKittenFramework Xcode target to the sourcekitten target.
+  The `SourceKittenFramework.framework` product built by the
+  SourceKittenFramework target no longer contains unnecessary frameworks or
+  multiple copies of the Swift libraries.  
   [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Enhancements
