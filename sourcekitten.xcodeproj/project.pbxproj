@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		2C55B3321BEB3CA7002E8C6B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; };
 		2C55B3331BEB3CAB002E8C6B /* Commandant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; };
-		2C55B3341BEB3D7D002E8C6B /* Commandant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2C55B3351BEB3D7D002E8C6B /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED279151C61E2A100084460 /* StatementKind.swift */; };
 		3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */; };
 		3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56EACF1BAB251C006433D0 /* JSONOutput.swift */; };
@@ -19,6 +17,10 @@
 		6C4CF6521C798082008532C5 /* library_wrapper_CXString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6481C79802A008532C5 /* library_wrapper_CXString.swift */; };
 		6C4CF6551C798086008532C5 /* library_wrapper_Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */; };
 		6C4CF6581C79808C008532C5 /* library_wrapper_Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */; };
+		6CCFCE891CFECFED003239EB /* SWXMLHash.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6CCFCE8C1CFECFF1003239EB /* Yaml.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0D1217219E87B05005E4BAA /* SourceKittenFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D0D1217119E87B05005E4BAA /* SourceKittenFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0D1217819E87B05005E4BAA /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; };
@@ -28,7 +30,6 @@
 		E805A0481B55CBAF00EA654A /* SourceKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805A0471B55CBAF00EA654A /* SourceKitTests.swift */; };
 		E805A04A1B560FCA00EA654A /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805A0491B560FCA00EA654A /* FileTests.swift */; };
 		E80678051CF2749300AFC816 /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yaml.framework */; };
-		E80678071CF2751400AFC816 /* Yaml.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E806D28D1BE0589B00D1BE41 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E806D28C1BE0589B00D1BE41 /* SourceLocation.swift */; };
 		E806D28F1BE058B100D1BE41 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = E806D28E1BE058B100D1BE41 /* Text.swift */; };
 		E806D2911BE058C400D1BE41 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E806D2901BE058C400D1BE41 /* Parameter.swift */; };
@@ -40,8 +41,6 @@
 		E8241CA31A5E01840047687E /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8241CA21A5E01840047687E /* ModuleTests.swift */; };
 		E8241CA51A5E01A10047687E /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8241CA41A5E01A10047687E /* Module.swift */; };
 		E834740F1A593B5B00532B9A /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834740E1A593B5B00532B9A /* Structure.swift */; };
-		E834AE641BED76B00017B386 /* Commandant.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E834AE651BED76B30017B386 /* Result.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E83748C31A5BCD7900862B1B /* OffsetMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83748C21A5BCD7900862B1B /* OffsetMap.swift */; };
 		E83A0B351A5D382B0041A60A /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83A0B341A5D382B0041A60A /* VersionCommand.swift */; };
 		E845EFEC1B9941AA00CFA57B /* CodeCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E845EFEB1B9941AA00CFA57B /* CodeCompletionTests.swift */; };
@@ -59,7 +58,6 @@
 		E8AB1A301A64A21400452012 /* ClangTranslationUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AB1A2F1A64A21400452012 /* ClangTranslationUnitTests.swift */; };
 		E8AE53C71A5B5FCA0092D24A /* String+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */; };
 		E8C0DFCD1AD349DB007EE3D4 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */; };
-		E8C0DFCE1AD349E5007EE3D4 /* SWXMLHash.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8C9EA041A5C986A00A6D4D1 /* StructureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EA031A5C986A00A6D4D1 /* StructureTests.swift */; };
 		E8C9EA081A5C99C400A6D4D1 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EA071A5C99C400A6D4D1 /* StringTests.swift */; };
 		E8C9EA0A1A5C9A2900A6D4D1 /* OffsetMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EA091A5C9A2900A6D4D1 /* OffsetMapTests.swift */; };
@@ -99,18 +97,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D039935519E9A9F500D13E71 /* Copy Frameworks */ = {
+		6CCFCE881CFECFBD003239EB /* Embed Frameworks into SourceKittenFramework.framework */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
+			buildActionMask = 12;
+			dstPath = SourceKittenFramework.framework/Versions/Current/Frameworks;
 			dstSubfolderSpec = 10;
 			files = (
-				E80678071CF2751400AFC816 /* Yaml.framework in Copy Frameworks */,
-				E834AE651BED76B30017B386 /* Result.framework in Copy Frameworks */,
-				E834AE641BED76B00017B386 /* Commandant.framework in Copy Frameworks */,
-				E8C0DFCE1AD349E5007EE3D4 /* SWXMLHash.framework in Copy Frameworks */,
+				6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */,
+				6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */,
+				6CCFCE891CFECFED003239EB /* SWXMLHash.framework in Embed Frameworks into SourceKittenFramework.framework */,
+				6CCFCE8C1CFECFF1003239EB /* Yaml.framework in Embed Frameworks into SourceKittenFramework.framework */,
 			);
-			name = "Copy Frameworks";
+			name = "Embed Frameworks into SourceKittenFramework.framework";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D0AAAB5319FB0960007B24B3 /* Embed Frameworks */ = {
@@ -119,8 +117,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2C55B3341BEB3D7D002E8C6B /* Commandant.framework in Embed Frameworks */,
-				2C55B3351BEB3D7D002E8C6B /* Result.framework in Embed Frameworks */,
 				D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -494,7 +490,6 @@
 				D0D1216819E87B05005E4BAA /* Sources */,
 				D0D1216919E87B05005E4BAA /* Frameworks */,
 				D0D1216A19E87B05005E4BAA /* Headers */,
-				D039935519E9A9F500D13E71 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -531,6 +526,8 @@
 				D0E7B62F19E9C64500EDBA4D /* Frameworks */,
 				D0E7B65719E9C7C700EDBA4D /* Extract CLI Tool */,
 				D0AAAB5319FB0960007B24B3 /* Embed Frameworks */,
+				6CCFCE881CFECFBD003239EB /* Embed Frameworks into SourceKittenFramework.framework */,
+				6CCFCEC01CFED30B003239EB /* Embed Swift libraries into SourceKittenFramework.framework */,
 			);
 			buildRules = (
 			);
@@ -564,7 +561,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "SourceKitten" */;
+			buildConfigurationList = D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "sourcekitten" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -585,6 +582,21 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6CCFCEC01CFED30B003239EB /* Embed Swift libraries into SourceKittenFramework.framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Swift libraries into SourceKittenFramework.framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$TARGET_BUILD_DIR\"\nSOURCEKITTENFRAMEWORK_BUNDLE=\"$FRAMEWORKS_FOLDER_PATH/SourceKittenFramework.framework\"\n\nxcrun swift-stdlib-tool --copy --verbose --Xcodesign --timestamp=none \\\n  --scan-executable \"$EXECUTABLE_PATH\" \\\n  --scan-folder \"$FRAMEWORKS_FOLDER_PATH\" \\\n  --platform macosx --destination \"$SOURCEKITTENFRAMEWORK_BUNDLE/Versions/Current/Frameworks\" \\\n  --strip-bitcode\n";
+			showEnvVarsInLog = 0;
+		};
 		C2265FAB1A4B86AC00158358 /* Check Xcode Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -735,7 +747,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
@@ -760,7 +771,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
@@ -817,7 +827,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
@@ -863,7 +872,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
@@ -938,7 +946,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "SourceKitten" */ = {
+		D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "sourcekitten" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0D1211D19E87861005E4BAA /* Debug */,
