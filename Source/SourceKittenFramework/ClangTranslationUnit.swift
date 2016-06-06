@@ -11,15 +11,15 @@ import Clang_C
 #endif
 import Foundation
 
-extension SequenceType where Generator.Element: Hashable {
-    func distinct() -> [Generator.Element] {
+extension Sequence where Iterator.Element: Hashable {
+    func distinct() -> [Iterator.Element] {
         return Array(Set(self))
     }
 }
 
-extension SequenceType {
-    func groupBy<T: Hashable>(keyFn: (Generator.Element) -> T) -> [T: [Generator.Element]] {
-        var ret = Dictionary<T, [Generator.Element]>()
+extension Sequence {
+    func groupBy<T: Hashable>(keyFn: (Iterator.Element) -> T) -> [T: [Iterator.Element]] {
+        var ret = Dictionary<T, [Iterator.Element]>()
         for val in self {
             let key = keyFn(val)
             var d = ret[key] ?? []
@@ -38,7 +38,7 @@ extension Dictionary {
         }
     }
 
-    func map<OutValue>(@noescape transform: Value throws -> OutValue) rethrows -> [Key: OutValue] {
+    func map<OutValue>(transform: @noescape (Value) throws -> (OutValue)) rethrows -> [Key: OutValue] {
         return Dictionary<Key, OutValue>(try map { (k, v) in (k, try transform(v)) })
     }
 }
@@ -57,13 +57,13 @@ public struct ClangTranslationUnit {
     - parameter compilerArguments: Clang compiler arguments.
     */
     public init(headerFiles: [String], compilerArguments: [String]) {
-        let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).UTF8String }
+        let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).utf8String! }
         let clangIndex = ClangIndex()
         clangTranslationUnits = headerFiles.map { clangIndex.open(file: $0, args: cStringCompilerArguments) }
         declarations = clangTranslationUnits
-            .flatMap { $0.cursor().flatMap({ SourceDeclaration(cursor: $0, compilerArguments: compilerArguments) }) }
+            .flatMap { $0.cursor().flatMap(block: { SourceDeclaration(cursor: $0, compilerArguments: compilerArguments) }) }
             .distinct()
-            .sort()
+            .sorted()
             .groupBy { $0.location.file }
             .map { insertMarks($0) }
     }
@@ -76,9 +76,9 @@ public struct ClangTranslationUnit {
     - parameter xcodeBuildArguments: The arguments necessary pass in to `xcodebuild` to link these header files.
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
-    public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = NSFileManager.defaultManager().currentDirectoryPath) {
-        let xcodeBuildOutput = runXcodeBuild(xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
-        guard let clangArguments = parseCompilerArguments(xcodeBuildOutput, language: .ObjC, moduleName: nil) else {
+    public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = NSFileManager.default().currentDirectoryPath) {
+        let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
+        guard let clangArguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .ObjC, moduleName: nil) else {
             fputs("could not parse compiler arguments\n", stderr)
             fputs("\(xcodeBuildOutput)\n", stderr)
             return nil

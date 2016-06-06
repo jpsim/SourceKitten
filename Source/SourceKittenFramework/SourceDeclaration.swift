@@ -12,7 +12,7 @@ import Clang_C
 import Foundation
 import SWXMLHash
 
-public func insertMarks(declarations: [SourceDeclaration], limitRange: NSRange? = nil) -> [SourceDeclaration] {
+public func insertMarks(_ declarations: [SourceDeclaration], limitRange: NSRange? = nil) -> [SourceDeclaration] {
     guard declarations.count > 0 else { return [] }
     guard let path = declarations.first?.location.file, let file = File(path: path) else {
         fatalError("can't extract marks without a file.")
@@ -26,7 +26,7 @@ public func insertMarks(declarations: [SourceDeclaration], limitRange: NSRange? 
         varDeclaration.children = insertMarks(declaration.children, limitRange: range)
         return varDeclaration
     }
-    return (newDeclarations + currentMarks).sort()
+    return (newDeclarations + currentMarks).sorted()
 }
 
 /// Represents a source code declaration.
@@ -44,7 +44,7 @@ public struct SourceDeclaration {
 
     /// Range
     var range: NSRange {
-        return extent.start.rangeToEndLocation(extent.end)
+        return extent.start.rangeToEndLocation(end: extent.end)
     }
 
     /// Returns the USR for the auto-generated getter for this property.
@@ -61,7 +61,7 @@ public struct SourceDeclaration {
         return generateAccessorUSR(getter: false)
     }
 
-    private func generateAccessorUSR(getter getter: Bool) -> String {
+    private func generateAccessorUSR(getter: Bool) -> String {
         assert(type == .Property)
         guard let usr = usr else {
             fatalError("Couldn't extract USR")
@@ -69,20 +69,20 @@ public struct SourceDeclaration {
         guard let declaration = declaration else {
             fatalError("Couldn't extract declaration")
         }
-        let pyStartIndex = usr.rangeOfString("(py)")!.startIndex
-        let usrPrefix = usr.substringToIndex(pyStartIndex)
+        let pyStartIndex = usr.range(of: "(py)")!.lowerBound
+        let usrPrefix = usr.substring(to: pyStartIndex)
         let fullDeclarationRange = NSRange(location: 0, length: (declaration as NSString).length)
         let regex = try! NSRegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)", options: [])
-        let matches = regex.matchesInString(declaration, options: [], range: fullDeclarationRange)
+        let matches = regex.matches(in: declaration, options: [], range: fullDeclarationRange)
         if matches.count > 0 {
-            let accessorName = (declaration as NSString).substringWithRange(matches[0].rangeAtIndex(1))
+            let accessorName = (declaration as NSString).substring(with: matches[0].range(at: 1))
             return usrPrefix + "(im)\(accessorName)"
         } else if getter {
-            return usr.stringByReplacingOccurrencesOfString("(py)", withString: "(im)")
+            return usr.replacingOccurrences(of: "(py)", with: "(im)")
         }
         // Setter
-        let capitalFirstLetter = String(usr.characters[pyStartIndex.advancedBy(4)]).capitalizedString
-        let restOfSetterName = usr.substringFromIndex(pyStartIndex.advancedBy(5))
+        let capitalFirstLetter = String(usr.characters[usr.characters.index(pyStartIndex, offsetBy: 4)]).capitalized
+        let restOfSetterName = usr.substring(from: usr.characters.index(pyStartIndex, offsetBy: 5))
         return "\(usrPrefix)(im)set\(capitalFirstLetter)\(restOfSetterName):"
     }
 }
@@ -100,14 +100,14 @@ extension SourceDeclaration {
         declaration = cursor.declaration()
         documentation = Documentation(comment: cursor.parsedComment())
         commentBody = cursor.commentBody()
-        children = cursor.flatMap({
+        children = cursor.flatMap(block: {
             SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
         }).rejectPropertyMethods()
-        swiftDeclaration = cursor.swiftDeclaration(compilerArguments)
+        swiftDeclaration = cursor.swiftDeclaration(compilerArguments: compilerArguments)
     }
 }
 
-extension SequenceType where Generator.Element == SourceDeclaration {
+extension Sequence where Iterator.Element == SourceDeclaration {
     /// Removes implicitly generated property getters & setters
     func rejectPropertyMethods() -> [SourceDeclaration] {
         let propertyGetterSetterUSRs = filter {
