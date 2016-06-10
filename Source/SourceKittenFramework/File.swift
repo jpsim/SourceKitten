@@ -101,12 +101,13 @@ public final class File {
         }
         return SwiftDocKey.getOffset(dictionary).flatMap { start in
             let start = Int(start)
-            if let end = SwiftDocKey.getBodyOffset(dictionary).map({ Int($0) }) {
-                return contents.substringStartingLinesWithByteRange(start: start, length: (end ?? start) - start)?
-                    .stringByTrimmingWhitespaceAndOpeningCurlyBrace()
+            let substring: String?
+            if let end = SwiftDocKey.getBodyOffset(dictionary) {
+                substring = contents.substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
+            } else {
+                substring = contents.substringLinesWithByteRange(start: start, length: 0)
             }
-            return contents.substringLinesWithByteRange(start: start, length: 0)?
-                .stringByTrimmingWhitespaceAndOpeningCurlyBrace()
+            return substring?.stringByTrimmingWhitespaceAndOpeningCurlyBrace()
         }
     }
 
