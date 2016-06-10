@@ -383,7 +383,7 @@ extension NSString {
     Returns true if self is a Swift file.
     */
     public func isSwiftFile() -> Bool {
-        return pathExtension == "swift"
+        return pathExtension == "swift" && NSFileManager.defaultManager().fileExistsAtPath(self as String)
     }
 
     /**
