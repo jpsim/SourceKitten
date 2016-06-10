@@ -3,12 +3,12 @@
     "key.substructure" : [
       {
         "key.kind" : "source.lang.swift.decl.struct",
-        "key.offset" : 7,
+        "key.offset" : 0,
         "key.parsed_declaration" : "struct VoidStruct",
         "key.namelength" : 10,
         "key.bodyoffset" : 19,
         "key.bodylength" : 113,
-        "key.length" : 10,
+        "key.length" : 133,
         "key.name" : "VoidStruct",
         "key.typename" : "VoidStruct.Type",
         "key.parsed_scope.end" : 7,
