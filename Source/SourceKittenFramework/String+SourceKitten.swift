@@ -383,7 +383,7 @@ extension NSString {
     Returns true if self is a Swift file.
     */
     public func isSwiftFile() -> Bool {
-        return pathExtension == "swift" && NSFileManager.defaultManager().fileExistsAtPath(self as String)
+        return pathExtension == "swift"
     }
 
     /**
@@ -395,6 +395,10 @@ extension NSString {
 }
 
 extension String {
+    internal var isFile: Bool {
+        return NSFileManager.defaultManager().fileExistsAtPath(self)
+    }
+
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
