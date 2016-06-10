@@ -100,10 +100,12 @@ public final class File {
             return nil
         }
         return SwiftDocKey.getOffset(dictionary).flatMap { start in
-            let end = SwiftDocKey.getBodyOffset(dictionary).map { Int($0) }
             let start = Int(start)
-            let length = (end ?? start) - start
-            return contents.substringLinesWithByteRange(start: start, length: length)?
+            if let end = SwiftDocKey.getBodyOffset(dictionary).map({ Int($0) }) {
+                return contents.substringStartingLinesWithByteRange(start: start, length: (end ?? start) - start)?
+                    .stringByTrimmingWhitespaceAndOpeningCurlyBrace()
+            }
+            return contents.substringLinesWithByteRange(start: start, length: 0)?
                 .stringByTrimmingWhitespaceAndOpeningCurlyBrace()
         }
     }
