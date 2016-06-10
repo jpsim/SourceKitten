@@ -21,6 +21,11 @@
   [#45](https://github.com/jpsim/SourceKitten/issues/45)
   [jazzy#226](https://github.com/realm/jazzy/issues/226)
 
+* Fix issue where directories ending with `.swift` would be considered Swift
+  source files.  
+  [JP Simard](https://github.com/jpsim)
+  [jazzy#586](https://github.com/realm/jazzy/issues/586)
+
 ## 0.13.0
 
 ##### Breaking

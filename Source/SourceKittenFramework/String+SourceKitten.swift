@@ -395,6 +395,10 @@ extension NSString {
 }
 
 extension String {
+    internal var isFile: Bool {
+        return NSFileManager.defaultManager().fileExistsAtPath(self)
+    }
+
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {

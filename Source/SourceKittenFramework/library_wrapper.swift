@@ -120,10 +120,6 @@ private let userApplicationsDir: String? =
     NSSearchPathForDirectoriesInDomains(.ApplicationDirectory, .UserDomainMask, true).first
 
 private extension String {
-    private var isFile: Bool {
-        return NSFileManager.defaultManager().fileExistsAtPath(self)
-    }
-
     private var toolchainDir: String {
         return stringByAppendingPathComponent("Toolchains/XcodeDefault.xctoolchain")
     }
