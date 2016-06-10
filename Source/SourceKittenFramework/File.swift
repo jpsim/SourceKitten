@@ -259,6 +259,13 @@ public final class File {
 
             // Skip kinds, since values from editor.open are more accurate than cursorinfo
             updateDict.removeValueForKey(SwiftDocKey.Kind.rawValue)
+
+            // Skip offset and length.
+            // Their values are same with "key.nameoffset" and "key.namelength" in most case.
+            // When kind is extension, their values locate **the type's declaration** in their declared file.
+            // That may be different from the file declaring extension.
+            updateDict.removeValueForKey(SwiftDocKey.Offset.rawValue)
+            updateDict.removeValueForKey(SwiftDocKey.Length.rawValue)
             return updateDict
         }
         return nil
@@ -275,7 +282,7 @@ public final class File {
     private func shouldInsert(parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
         return SwiftDocKey.getSubstructure(parent) != nil &&
             ((offset == 0) ||
-            (shouldTreatAsSameFile(parent) && SwiftDocKey.getOffset(parent) == offset))
+            (shouldTreatAsSameFile(parent) && SwiftDocKey.getNameOffset(parent) == offset))
     }
 
     /**
