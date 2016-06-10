@@ -96,16 +96,17 @@ public final class File {
     - returns: Source declaration if successfully parsed.
     */
     public func parseDeclaration(dictionary: [String: SourceKitRepresentable]) -> String? {
-        if !shouldParseDeclaration(dictionary) {
+        guard shouldParseDeclaration(dictionary),
+            let start = SwiftDocKey.getOffset(dictionary).map({ Int($0) }) else {
             return nil
         }
-        return SwiftDocKey.getOffset(dictionary).flatMap { start in
-            let end = SwiftDocKey.getBodyOffset(dictionary).map { Int($0) }
-            let start = Int(start)
-            let length = (end ?? start) - start
-            return contents.substringLinesWithByteRange(start: start, length: length)?
-                .stringByTrimmingWhitespaceAndOpeningCurlyBrace()
+        let substring: String?
+        if let end = SwiftDocKey.getBodyOffset(dictionary) {
+            substring = contents.substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
+        } else {
+            substring = contents.substringLinesWithByteRange(start: start, length: 0)
         }
+        return substring?.stringByTrimmingWhitespaceAndOpeningCurlyBrace()
     }
 
     /**

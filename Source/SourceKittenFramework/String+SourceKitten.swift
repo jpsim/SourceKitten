@@ -334,6 +334,14 @@ extension NSString {
         }
     }
 
+    public func substringStartingLinesWithByteRange(start start: Int, length: Int) -> String? {
+        return byteRangeToNSRange(start: start, length: length).map { range in
+            var lineStart = 0, lineEnd = 0
+            getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, forRange: range)
+            return substringWithRange(NSRange(location: lineStart, length: NSMaxRange(range) - lineStart))
+        }
+    }
+
     /**
     Returns line numbers containing starting and ending byte offsets.
 

@@ -1132,7 +1132,7 @@
           {
             "key.kind" : "source.lang.swift.decl.var.static",
             "key.offset" : 300,
-            "key.parsed_declaration" : "static var name: String { get }",
+            "key.parsed_declaration" : "static var name: String",
             "key.doc.comment" : "A human-readable name for this type.",
             "key.namelength" : 4,
             "key.doc.line" : 12,
@@ -1522,7 +1522,7 @@
           {
             "key.kind" : "source.lang.swift.decl.function.method.instance",
             "key.offset" : 1698,
-            "key.parsed_declaration" : "public init() {}",
+            "key.parsed_declaration" : "public init()",
             "key.namelength" : 6,
             "key.bodyoffset" : 1706,
             "key.bodylength" : 0,
@@ -3179,7 +3179,7 @@
           {
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 524,
-            "key.parsed_declaration" : "var verb: String { get }",
+            "key.parsed_declaration" : "var verb: String",
             "key.doc.comment" : "The action that users should specify to use this subcommand (e.g.,\n`help`).",
             "key.namelength" : 4,
             "key.doc.line" : 22,
@@ -3231,7 +3231,7 @@
           {
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 636,
-            "key.parsed_declaration" : "var function: String { get }",
+            "key.parsed_declaration" : "var function: String",
             "key.doc.comment" : "A human-readable, high-level description of what this command is used\nfor.",
             "key.namelength" : 8,
             "key.doc.line" : 26,
@@ -3629,7 +3629,7 @@
           {
             "key.kind" : "source.lang.swift.decl.function.method.instance",
             "key.offset" : 2503,
-            "key.parsed_declaration" : "public init() {}",
+            "key.parsed_declaration" : "public init()",
             "key.namelength" : 6,
             "key.bodyoffset" : 2511,
             "key.bodylength" : 0,
