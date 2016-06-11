@@ -32,10 +32,10 @@
             "key.parsed_scope.end" : 3
           }
         ],
-        "key.length" : 10,
+        "key.length" : 133,
         "key.parsed_scope.start" : 1,
         "key.kind" : "source.lang.swift.decl.struct",
-        "key.offset" : 7,
+        "key.offset" : 0,
         "key.nameoffset" : 7,
         "key.typename" : "VoidStruct.Type",
         "key.name" : "VoidStruct",

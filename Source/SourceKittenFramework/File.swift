@@ -96,16 +96,17 @@ public final class File {
     - returns: Source declaration if successfully parsed.
     */
     public func parseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        if !shouldParseDeclaration(dictionary) {
+        guard shouldParseDeclaration(dictionary),
+            let start = SwiftDocKey.getOffset(dictionary).map({ Int($0) }) else {
             return nil
         }
-        return SwiftDocKey.getOffset(dictionary).flatMap { start in
-            let end = SwiftDocKey.getBodyOffset(dictionary).map { Int($0) }
-            let start = Int(start)
-            let length = (end ?? start) - start
-            return contents.substringLinesWithByteRange(start: start, length: length)?
-                .stringByTrimmingWhitespaceAndOpeningCurlyBrace()
+        let substring: String?
+        if let end = SwiftDocKey.getBodyOffset(dictionary) {
+            substring = contents.substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
+        } else {
+            substring = contents.substringLinesWithByteRange(start: start, length: 0)
         }
+        return substring?.stringByTrimmingWhitespaceAndOpeningCurlyBrace()
     }
 
     /**
@@ -258,6 +259,13 @@ public final class File {
 
             // Skip kinds, since values from editor.open are more accurate than cursorinfo
             updateDict.removeValue(forKey: SwiftDocKey.Kind.rawValue)
+
+            // Skip offset and length.
+            // Their values are same with "key.nameoffset" and "key.namelength" in most case.
+            // When kind is extension, their values locate **the type's declaration** in their declared file.
+            // That may be different from the file declaring extension.
+            updateDict.removeValue(forKey: SwiftDocKey.Offset.rawValue)
+            updateDict.removeValue(forKey: SwiftDocKey.Length.rawValue)
             return updateDict
         }
         return nil
@@ -274,7 +282,7 @@ public final class File {
     private func shouldInsert(_ parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
         return SwiftDocKey.getSubstructure(parent) != nil &&
             ((offset == 0) ||
-            (shouldTreatAsSameFile(parent) && SwiftDocKey.getOffset(parent) == offset))
+            (shouldTreatAsSameFile(parent) && SwiftDocKey.getNameOffset(parent) == offset))
     }
 
     /**

@@ -334,6 +334,14 @@ extension NSString {
         }
     }
 
+    public func substringStartingLinesWithByteRange(start: Int, length: Int) -> String? {
+        return byteRangeToNSRange(start: start, length: length).map { range in
+            var lineStart = 0, lineEnd = 0
+            getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: range)
+            return substring(with: NSRange(location: lineStart, length: NSMaxRange(range) - lineStart))
+        }
+    }
+
     /**
     Returns line numbers containing starting and ending byte offsets.
 
@@ -387,6 +395,10 @@ extension NSString {
 }
 
 extension String {
+    internal var isFile: Bool {
+        return NSFileManager.default().fileExists(atPath: self)
+    }
+
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {

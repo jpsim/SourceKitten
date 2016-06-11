@@ -17,7 +17,7 @@
                BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
                BuildableName = "sourcekitten.app"
                BlueprintName = "sourcekitten"
-               ReferencedContainer = "container:sourcekitten.xcodeproj">
+               ReferencedContainer = "container:SourceKitten.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "D0D1217619E87B05005E4BAA"
                BuildableName = "SourceKittenFrameworkTests.xctest"
                BlueprintName = "SourceKittenFrameworkTests"
-               ReferencedContainer = "container:sourcekitten.xcodeproj">
+               ReferencedContainer = "container:SourceKitten.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
             BuildableName = "sourcekitten.app"
             BlueprintName = "sourcekitten"
-            ReferencedContainer = "container:sourcekitten.xcodeproj">
+            ReferencedContainer = "container:SourceKitten.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -70,7 +70,7 @@
             BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
             BuildableName = "sourcekitten.app"
             BlueprintName = "sourcekitten"
-            ReferencedContainer = "container:sourcekitten.xcodeproj">
+            ReferencedContainer = "container:SourceKitten.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -89,7 +89,7 @@
             BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
             BuildableName = "sourcekitten.app"
             BlueprintName = "sourcekitten"
-            ReferencedContainer = "container:sourcekitten.xcodeproj">
+            ReferencedContainer = "container:SourceKitten.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
