@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SWXMLHash
+//import SWXMLHash
 #if SWIFT_PACKAGE
 import SourceKit
 #endif
@@ -29,7 +29,7 @@ public final class File {
     public init?(path: String) {
         self.path = (path as NSString).absolutePathRepresentation()
         do {
-            contents = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding) as String
+            contents = try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue) as String
             lines = contents.lines()
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
@@ -75,7 +75,7 @@ public final class File {
                                     length: Int64(line.byteRange.length - 1),
                                     sourceText: newText).send()
             let oldLength = line.byteRange.length
-            let newLength = newText.lengthOfBytes(using: NSUTF8StringEncoding)
+            let newLength = newText.lengthOfBytes(using: String.Encoding.utf8)
             offset += 1 + newLength - oldLength
         }
 
@@ -140,14 +140,14 @@ public final class File {
     - returns: Mark name if successfully parsed.
     */
     private func markNameFromDictionary(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.CommentMark.rawValue)
-        let offset = Int(SwiftDocKey.getOffset(dictionary)!)
-        let length = Int(SwiftDocKey.getLength(dictionary)!)
-        if let fileContentsData = contents.data(using: NSUTF8StringEncoding),
-            subdata = Optional(fileContentsData.subdata(with: NSRange(location: offset, length: length))),
-            substring = NSString(data: subdata, encoding: NSUTF8StringEncoding) as String? {
-            return substring
-        }
+//        precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.CommentMark.rawValue)
+//        let offset = Int(SwiftDocKey.getOffset(dictionary)!)
+//        let length = Int(SwiftDocKey.getLength(dictionary)!)
+//        if let fileContentsData = contents.data(using: String.Encoding.utf8),
+//            subdata = Optional(fileContentsData.subdata(in: _NSRange(location: offset, length: length))),
+//            substring = NSString(data: subdata, encoding: NSUTF8StringEncoding) as String? {
+//            return substring
+//        }
         return nil
     }
 
@@ -404,49 +404,50 @@ Parse XML from `key.doc.full_as_xml` from `cursor.info` request.
 - returns: XML parsed as an `[String: SourceKitRepresentable]`.
 */
 public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentable]? {
-    let cleanXMLDocs = xmlDocs.replacingOccurrences(of: "<rawHTML>", with: "")
-        .replacingOccurrences(of: "</rawHTML>", with: "")
-        .replacingOccurrences(of: "<codeVoice>", with: "`")
-        .replacingOccurrences(of: "</codeVoice>", with: "`")
-    return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
-        var docs = [String: SourceKitRepresentable]()
-        docs[SwiftDocKey.DocType.rawValue] = rootXML.element?.name
-        docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.attributes["file"]
-        docs[SwiftDocKey.DocLine.rawValue] = rootXML.element?.attributes["line"].flatMap {
-            Int64($0)
-        }
-        docs[SwiftDocKey.DocColumn.rawValue] = rootXML.element?.attributes["column"].flatMap {
-            Int64($0)
-        }
-        docs[SwiftDocKey.DocName.rawValue] = rootXML["Name"].element?.text
-        docs[SwiftDocKey.USR.rawValue] = rootXML["USR"].element?.text
-        docs[SwiftDocKey.DocDeclaration.rawValue] = rootXML["Declaration"].element?.text
-        let parameters = rootXML["Parameters"].children
-        if parameters.count > 0 {
-            docs[SwiftDocKey.DocParameters.rawValue] = parameters.map {
-                [
-                    "name": $0["Name"].element?.text ?? "",
-                    "discussion": childrenAsArray($0["Discussion"]) ?? []
-                ] as [String: SourceKitRepresentable]
-            } as [SourceKitRepresentable]
-        }
-        docs[SwiftDocKey.DocDiscussion.rawValue] = childrenAsArray(rootXML["Discussion"])
-        docs[SwiftDocKey.DocResultDiscussion.rawValue] = childrenAsArray(rootXML["ResultDiscussion"])
-        return docs
-    }
-}
-
-/**
-Returns an `[SourceKitRepresentable]` of `[String: SourceKitRepresentable]` items from `indexer` children, if any.
-
-- parameter indexer: `XMLIndexer` to traverse.
-*/
-private func childrenAsArray(_ indexer: XMLIndexer) -> [SourceKitRepresentable]? {
-    let children = indexer.children
-    if children.count > 0 {
-        return children.flatMap({ $0.element }).map {
-            [$0.name: $0.text ?? ""] as [String: SourceKitRepresentable]
-        } as [SourceKitRepresentable]
-    }
     return nil
+//    let cleanXMLDocs = xmlDocs.replacingOccurrences(of: "<rawHTML>", with: "")
+//        .replacingOccurrences(of: "</rawHTML>", with: "")
+//        .replacingOccurrences(of: "<codeVoice>", with: "`")
+//        .replacingOccurrences(of: "</codeVoice>", with: "`")
+//    return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
+//        var docs = [String: SourceKitRepresentable]()
+//        docs[SwiftDocKey.DocType.rawValue] = rootXML.element?.name
+//        docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.attributes["file"]
+//        docs[SwiftDocKey.DocLine.rawValue] = rootXML.element?.attributes["line"].flatMap {
+//            Int64($0)
+//        }
+//        docs[SwiftDocKey.DocColumn.rawValue] = rootXML.element?.attributes["column"].flatMap {
+//            Int64($0)
+//        }
+//        docs[SwiftDocKey.DocName.rawValue] = rootXML["Name"].element?.text
+//        docs[SwiftDocKey.USR.rawValue] = rootXML["USR"].element?.text
+//        docs[SwiftDocKey.DocDeclaration.rawValue] = rootXML["Declaration"].element?.text
+//        let parameters = rootXML["Parameters"].children
+//        if parameters.count > 0 {
+//            docs[SwiftDocKey.DocParameters.rawValue] = parameters.map {
+//                [
+//                    "name": $0["Name"].element?.text ?? "",
+//                    "discussion": childrenAsArray($0["Discussion"]) ?? []
+//                ] as [String: SourceKitRepresentable]
+//            } as [SourceKitRepresentable]
+//        }
+//        docs[SwiftDocKey.DocDiscussion.rawValue] = childrenAsArray(rootXML["Discussion"])
+//        docs[SwiftDocKey.DocResultDiscussion.rawValue] = childrenAsArray(rootXML["ResultDiscussion"])
+//        return docs
+//    }
 }
+
+///**
+//Returns an `[SourceKitRepresentable]` of `[String: SourceKitRepresentable]` items from `indexer` children, if any.
+//
+//- parameter indexer: `XMLIndexer` to traverse.
+//*/
+//private func childrenAsArray(_ indexer: XMLIndexer) -> [SourceKitRepresentable]? {
+//    let children = indexer.children
+//    if children.count > 0 {
+//        return children.flatMap({ $0.element }).map {
+//            [$0.name: $0.text ?? ""] as [String: SourceKitRepresentable]
+//        } as [SourceKitRepresentable]
+//    }
+//    return nil
+//}

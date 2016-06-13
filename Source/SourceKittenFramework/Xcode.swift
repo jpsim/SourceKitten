@@ -19,19 +19,19 @@ Run `xcodebuild clean build` along with any passed in build arguments.
 internal func runXcodeBuild(arguments: [String], inPath path: String) -> String? {
     fputs("Running xcodebuild\n", stderr)
 
-    let task = NSTask()
+    let task = Task()
     task.launchPath = "/usr/bin/xcodebuild"
     task.currentDirectoryPath = path
     task.arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
     task.standardError = pipe
 
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let xcodebuildOutput = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+    let xcodebuildOutput = NSString(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue)
     file.closeFile()
 
     return xcodebuildOutput as String?
@@ -131,7 +131,7 @@ internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Langu
     } else {
         pattern = "/usr/bin/swiftc.*"
     }
-    let regex = try! NSRegularExpression(pattern: pattern, options: []) // Safe to force try
+    let regex = try! RegularExpression(pattern: pattern, options: []) // Safe to force try
     let range = NSRange(location: 0, length: xcodebuildOutput.length)
 
     guard let regexMatch = regex.firstMatch(in: xcodebuildOutput as String, options: [], range: range) else {
@@ -167,17 +167,17 @@ public func parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: [Strin
 }
 
 public func sdkPath() -> String {
-    let task = NSTask()
+    let task = Task()
     task.launchPath = "/usr/bin/xcrun"
     task.arguments = ["--show-sdk-path"]
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
 
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let sdkPath = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+    let sdkPath = NSString(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue)
     file.closeFile()
     return sdkPath?.replacingOccurrences(of: "\n", with: "") ?? ""
 }

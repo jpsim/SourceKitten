@@ -10,7 +10,7 @@
 import Clang_C
 #endif
 import Foundation
-import SWXMLHash
+//import SWXMLHash
 
 public func insertMarks(_ declarations: [SourceDeclaration], limitRange: NSRange? = nil) -> [SourceDeclaration] {
     guard declarations.count > 0 else { return [] }
@@ -72,7 +72,7 @@ public struct SourceDeclaration {
         let pyStartIndex = usr.range(of: "(py)")!.lowerBound
         let usrPrefix = usr.substring(to: pyStartIndex)
         let fullDeclarationRange = NSRange(location: 0, length: (declaration as NSString).length)
-        let regex = try! NSRegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)", options: [])
+        let regex = try! RegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)", options: [])
         let matches = regex.matches(in: declaration, options: [], range: fullDeclarationRange)
         if matches.count > 0 {
             let accessorName = (declaration as NSString).substring(with: matches[0].range(at: 1))
@@ -87,25 +87,25 @@ public struct SourceDeclaration {
     }
 }
 
-extension SourceDeclaration {
-    init?(cursor: CXCursor, compilerArguments: [String]) {
-        guard cursor.shouldDocument() else {
-            return nil
-        }
-        type = cursor.objCKind()
-        location = cursor.location()
-        extent = cursor.extent()
-        name = cursor.name()
-        usr = cursor.usr()
-        declaration = cursor.declaration()
-        documentation = Documentation(comment: cursor.parsedComment())
-        commentBody = cursor.commentBody()
-        children = cursor.flatMap(block: {
-            SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
-        }).rejectPropertyMethods()
-        swiftDeclaration = cursor.swiftDeclaration(compilerArguments: compilerArguments)
-    }
-}
+//extension SourceDeclaration {
+//    init?(cursor: CXCursor, compilerArguments: [String]) {
+//        guard cursor.shouldDocument() else {
+//            return nil
+//        }
+//        type = cursor.objCKind()
+//        location = cursor.location()
+//        extent = cursor.extent()
+//        name = cursor.name()
+//        usr = cursor.usr()
+//        declaration = cursor.declaration()
+//        documentation = Documentation(comment: cursor.parsedComment())
+//        commentBody = cursor.commentBody()
+//        children = cursor.flatMap(block: {
+//            SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
+//        }).rejectPropertyMethods()
+//        swiftDeclaration = cursor.swiftDeclaration(compilerArguments: compilerArguments)
+//    }
+//}
 
 extension Sequence where Iterator.Element == SourceDeclaration {
     /// Removes implicitly generated property getters & setters

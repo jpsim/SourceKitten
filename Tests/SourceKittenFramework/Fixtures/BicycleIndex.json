@@ -2,10 +2,10 @@
   "key.hash" : "",
   "key.entities" : [
     {
-      "key.column" : 18,
       "key.line" : 5,
       "key.name" : "NSString",
       "key.usr" : "c:objc(cs)NSString",
+      "key.column" : 18,
       "key.kind" : "source.lang.swift.decl.extension.class",
       "key.entities" : [
         {
@@ -14,11 +14,6 @@
           "key.usr" : "c:objc(cs)NSString",
           "key.column" : 18,
           "key.kind" : "source.lang.swift.ref.class"
-        }
-      ],
-      "key.attributes" : [
-        {
-          "key.attribute" : "source.decl.attribute.objc.name"
         }
       ]
     },
@@ -140,12 +135,7 @@
           "key.name" : "style",
           "key.usr" : "s:vC7Bicycle7Bicycle5styleOS0_5Style",
           "key.column" : 9,
-          "key.kind" : "source.lang.swift.decl.var.instance",
-          "key.attributes" : [
-            {
-              "key.attribute" : "source.decl.attribute.final"
-            }
-          ]
+          "key.kind" : "source.lang.swift.decl.var.instance"
         },
         {
           "key.line" : 45,
@@ -159,12 +149,7 @@
           "key.name" : "gearing",
           "key.usr" : "s:vC7Bicycle7Bicycle7gearingOS0_7Gearing",
           "key.column" : 9,
-          "key.kind" : "source.lang.swift.decl.var.instance",
-          "key.attributes" : [
-            {
-              "key.attribute" : "source.decl.attribute.final"
-            }
-          ]
+          "key.kind" : "source.lang.swift.decl.var.instance"
         },
         {
           "key.line" : 48,
@@ -178,12 +163,7 @@
           "key.name" : "handlebar",
           "key.usr" : "s:vC7Bicycle7Bicycle9handlebarOS0_9Handlebar",
           "key.column" : 9,
-          "key.kind" : "source.lang.swift.decl.var.instance",
-          "key.attributes" : [
-            {
-              "key.attribute" : "source.decl.attribute.final"
-            }
-          ]
+          "key.kind" : "source.lang.swift.decl.var.instance"
         },
         {
           "key.line" : 51,
@@ -197,12 +177,7 @@
           "key.name" : "frameSize",
           "key.usr" : "s:vC7Bicycle7Bicycle9frameSizeSi",
           "key.column" : 9,
-          "key.kind" : "source.lang.swift.decl.var.instance",
-          "key.attributes" : [
-            {
-              "key.attribute" : "source.decl.attribute.final"
-            }
-          ]
+          "key.kind" : "source.lang.swift.decl.var.instance"
         },
         {
           "key.line" : 54,
@@ -395,7 +370,7 @@
             {
               "key.line" : 88,
               "key.name" : ">(_:_:)",
-              "key.usr" : "s:ZFsoi1guRxs13FloatingPointrFTxx_Sb",
+              "key.usr" : "s:ZFsoi1gFTSdSd_Sb",
               "key.column" : 19,
               "key.kind" : "source.lang.swift.ref.function.operator.infix"
             },

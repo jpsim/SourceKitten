@@ -1,64 +1,37 @@
 {
   "Bicycle.swift" : {
-    "key.offset" : 0,
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-    "key.length" : 2471,
     "key.substructure" : [
       {
         "key.bodylength" : 0,
         "key.nameoffset" : 150,
         "key.offset" : 140,
         "key.length" : 21,
+        "key.doc.comment" : "Deprecated extension.",
         "key.name" : "NSString",
         "key.bodyoffset" : 160,
         "key.attributes" : [
           {
             "key.attribute" : "source.decl.attribute.available"
+          },
+          {
+            "key.attribute" : "source.decl.attribute.__raw_doc_comment"
           }
         ],
         "key.kind" : "source.lang.swift.decl.extension",
         "key.namelength" : 8
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.public",
-        "key.length" : 2238,
-        "key.doc.type" : "Class",
-        "key.runtime_name" : "_TtC8__main__7Bicycle",
-        "key.parsed_scope.start" : 8,
-        "key.kind" : "source.lang.swift.decl.class",
-        "key.doc.full_as_xml" : "<Class file=\"Bicycle.swift\" line=\"8\" column=\"14\"><Name>Bicycle<\/Name><USR>s:C7Bicycle7Bicycle<\/USR><Declaration>public class Bicycle<\/Declaration><Abstract><Para>🚲 A two-wheeled, human-powered mode of transportation.<\/Para><\/Abstract><\/Class>",
-        "key.nameoffset" : 238,
-        "key.typename" : "Bicycle.Type",
-        "key.doc.column" : 14,
-        "key.doc.comment" : "🚲 A two-wheeled, human-powered mode of transportation.",
-        "key.bodyoffset" : 247,
         "key.filepath" : "Bicycle.swift",
-        "key.doc.file" : "Bicycle.swift",
+        "key.parsed_declaration" : "public class Bicycle",
         "key.annotated_decl" : "<Declaration>public class Bicycle<\/Declaration>",
-        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>Bicycle<\/decl.name><\/decl.class>",
-        "key.doc.declaration" : "public class Bicycle",
+        "key.accessibility" : "source.lang.swift.accessibility.public",
         "key.substructure" : [
           {
-            "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.length" : 62,
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 17,
-            "key.kind" : "source.lang.swift.decl.enum",
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"17\" column=\"17\"><Name>Style<\/Name><USR>s:OC7Bicycle7Bicycle5Style<\/USR><Declaration>public enum Style<\/Declaration><Abstract><Para>Frame and construction style.<\/Para><\/Abstract><Discussion><List-Bullet><Item><Para>Road: For streets or trails.<\/Para><\/Item><Item><Para>Touring: For long journeys.<\/Para><\/Item><Item><Para>Cruiser: For casual trips around town.<\/Para><\/Item><Item><Para>Hybrid: For general-purpose transportation.<\/Para><\/Item><\/List-Bullet><\/Discussion><\/Other>",
-            "key.nameoffset" : 484,
-            "key.typename" : "Bicycle.Style.Type",
-            "key.doc.column" : 17,
-            "key.doc.comment" : "Frame and construction style.\n\n- Road: For streets or trails.\n- Touring: For long journeys.\n- Cruiser: For casual trips around town.\n- Hybrid: For general-purpose transportation.",
-            "key.bodyoffset" : 491,
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
+            "key.parsed_declaration" : "public enum Style",
             "key.annotated_decl" : "<Declaration>public enum Style<\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>Style<\/decl.name><\/decl.enum>",
-            "key.doc.discussion" : [
-              {
-                "List-Bullet" : ""
-              }
-            ],
+            "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.substructure" : [
               {
                 "key.offset" : 500,
@@ -68,8 +41,7 @@
                 "key.substructure" : [
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Road<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Road<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 4,
                     "key.parsed_scope.start" : 18,
@@ -85,8 +57,7 @@
                   },
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Touring<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Touring<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 7,
                     "key.parsed_scope.start" : 18,
@@ -102,8 +73,7 @@
                   },
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Cruiser<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Cruiser<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 7,
                     "key.parsed_scope.start" : 18,
@@ -119,8 +89,7 @@
                   },
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Hybrid<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Hybrid<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 6,
                     "key.parsed_scope.start" : 18,
@@ -138,38 +107,31 @@
                 "key.namelength" : 0
               }
             ],
-            "key.doc.declaration" : "public enum Style",
+            "key.length" : 62,
+            "key.parsed_scope.start" : 17,
+            "key.kind" : "source.lang.swift.decl.enum",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"17\" column=\"17\"><Name>Style<\/Name><USR>s:OC7Bicycle7Bicycle5Style<\/USR><Declaration>public enum Style<\/Declaration><Abstract><Para>Frame and construction style.<\/Para><\/Abstract><Discussion><List-Bullet><Item><Para>Road: For streets or trails.<\/Para><\/Item><Item><Para>Touring: For long journeys.<\/Para><\/Item><Item><Para>Cruiser: For casual trips around town.<\/Para><\/Item><Item><Para>Hybrid: For general-purpose transportation.<\/Para><\/Item><\/List-Bullet><\/Discussion><\/Other>",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.offset" : 479,
-            "key.doc.line" : 17,
-            "key.doc.name" : "Style",
+            "key.nameoffset" : 484,
+            "key.typename" : "Bicycle.Style.Type",
+            "key.doc.comment" : "Frame and construction style.\n\n- Road: For streets or trails.\n- Touring: For long journeys.\n- Cruiser: For casual trips around town.\n- Hybrid: For general-purpose transportation.",
             "key.name" : "Style",
             "key.usr" : "s:OC7Bicycle7Bicycle5Style",
-            "key.parsed_declaration" : "public enum Style",
+            "key.bodyoffset" : 491,
             "key.namelength" : 5,
             "key.parsed_scope.end" : 19,
             "key.bodylength" : 49
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.length" : 75,
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 27,
-            "key.kind" : "source.lang.swift.decl.enum",
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"27\" column=\"17\"><Name>Gearing<\/Name><USR>s:OC7Bicycle7Bicycle7Gearing<\/USR><Declaration>public enum Gearing<\/Declaration><Abstract><Para>Mechanism for converting pedal power into motion.<\/Para><\/Abstract><Discussion><List-Bullet><Item><Para>Fixed: A single, fixed gear.<\/Para><\/Item><Item><Para>Freewheel: A variable-speed, disengageable gear.<\/Para><\/Item><\/List-Bullet><\/Discussion><\/Other>",
-            "key.nameoffset" : 723,
-            "key.typename" : "Bicycle.Gearing.Type",
-            "key.doc.column" : 17,
-            "key.doc.comment" : "Mechanism for converting pedal power into motion.\n\n- Fixed: A single, fixed gear.\n- Freewheel: A variable-speed, disengageable gear.",
-            "key.bodyoffset" : 732,
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
+            "key.parsed_declaration" : "public enum Gearing",
             "key.annotated_decl" : "<Declaration>public enum Gearing<\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>Gearing<\/decl.name><\/decl.enum>",
-            "key.doc.discussion" : [
-              {
-                "List-Bullet" : ""
-              }
-            ],
+            "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.substructure" : [
               {
                 "key.offset" : 741,
@@ -179,8 +141,7 @@
                 "key.substructure" : [
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Fixed<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Fixed<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 5,
                     "key.parsed_scope.start" : 28,
@@ -205,8 +166,7 @@
                 "key.substructure" : [
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Freewheel(speeds: <Type usr=\"s:Si\">Int<\/Type>)<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Freewheel<\/decl.name><tuple>(<tuple.element><tuple.element.argument_label>speeds<\/tuple.element.argument_label>: <tuple.element.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/tuple.element.type><\/tuple.element>)<\/tuple><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 22,
                     "key.parsed_scope.start" : 29,
@@ -224,38 +184,31 @@
                 "key.namelength" : 0
               }
             ],
-            "key.doc.declaration" : "public enum Gearing",
+            "key.length" : 75,
+            "key.parsed_scope.start" : 27,
+            "key.kind" : "source.lang.swift.decl.enum",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"27\" column=\"17\"><Name>Gearing<\/Name><USR>s:OC7Bicycle7Bicycle7Gearing<\/USR><Declaration>public enum Gearing<\/Declaration><Abstract><Para>Mechanism for converting pedal power into motion.<\/Para><\/Abstract><Discussion><List-Bullet><Item><Para>Fixed: A single, fixed gear.<\/Para><\/Item><Item><Para>Freewheel: A variable-speed, disengageable gear.<\/Para><\/Item><\/List-Bullet><\/Discussion><\/Other>",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.offset" : 718,
-            "key.doc.line" : 27,
-            "key.doc.name" : "Gearing",
+            "key.nameoffset" : 723,
+            "key.typename" : "Bicycle.Gearing.Type",
+            "key.doc.comment" : "Mechanism for converting pedal power into motion.\n\n- Fixed: A single, fixed gear.\n- Freewheel: A variable-speed, disengageable gear.",
             "key.name" : "Gearing",
             "key.usr" : "s:OC7Bicycle7Bicycle7Gearing",
-            "key.parsed_declaration" : "public enum Gearing",
+            "key.bodyoffset" : 732,
             "key.namelength" : 7,
             "key.parsed_scope.end" : 30,
             "key.bodylength" : 60
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.length" : 64,
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 40,
-            "key.kind" : "source.lang.swift.decl.enum",
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"40\" column=\"10\"><Name>Handlebar<\/Name><USR>s:OC7Bicycle7Bicycle9Handlebar<\/USR><Declaration>enum Handlebar<\/Declaration><Abstract><Para>Hardware used for steering.<\/Para><\/Abstract><Discussion><List-Bullet><Item><Para>Riser: A casual handlebar.<\/Para><\/Item><Item><Para>Café: An upright handlebar.<\/Para><\/Item><Item><Para>Drop: A classic handlebar.<\/Para><\/Item><Item><Para>Bullhorn: A powerful handlebar.<\/Para><\/Item><\/List-Bullet><\/Discussion><\/Other>",
-            "key.nameoffset" : 997,
-            "key.typename" : "Bicycle.Handlebar.Type",
-            "key.doc.column" : 10,
-            "key.doc.comment" : "Hardware used for steering.\n\n- Riser: A casual handlebar.\n- Café: An upright handlebar.\n- Drop: A classic handlebar.\n- Bullhorn: A powerful handlebar.",
-            "key.bodyoffset" : 1008,
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
+            "key.parsed_declaration" : "enum Handlebar",
             "key.annotated_decl" : "<Declaration>enum Handlebar<\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>Handlebar<\/decl.name><\/decl.enum>",
-            "key.doc.discussion" : [
-              {
-                "List-Bullet" : ""
-              }
-            ],
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.substructure" : [
               {
                 "key.offset" : 1017,
@@ -265,8 +218,7 @@
                 "key.substructure" : [
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Riser<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Riser<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 5,
                     "key.parsed_scope.start" : 41,
@@ -282,8 +234,7 @@
                   },
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Café<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Café<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 5,
                     "key.parsed_scope.start" : 41,
@@ -299,8 +250,7 @@
                   },
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Drop<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Drop<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 4,
                     "key.parsed_scope.start" : 41,
@@ -316,8 +266,7 @@
                   },
                   {
                     "key.filepath" : "Bicycle.swift",
-                    "key.annotated_decl" : "<Declaration>case Bullhorn<\/Declaration>",
-                    "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>Bullhorn<\/decl.name><\/decl.enumelement>",
+                    "key.annotated_decl" : "<Declaration><\/Declaration>",
                     "key.accessibility" : "source.lang.swift.accessibility.internal",
                     "key.length" : 8,
                     "key.parsed_scope.start" : 41,
@@ -335,37 +284,44 @@
                 "key.namelength" : 0
               }
             ],
-            "key.doc.declaration" : "enum Handlebar",
+            "key.length" : 64,
+            "key.parsed_scope.start" : 40,
+            "key.kind" : "source.lang.swift.decl.enum",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"40\" column=\"10\"><Name>Handlebar<\/Name><USR>s:OC7Bicycle7Bicycle9Handlebar<\/USR><Declaration>enum Handlebar<\/Declaration><Abstract><Para>Hardware used for steering.<\/Para><\/Abstract><Discussion><List-Bullet><Item><Para>Riser: A casual handlebar.<\/Para><\/Item><Item><Para>Café: An upright handlebar.<\/Para><\/Item><Item><Para>Drop: A classic handlebar.<\/Para><\/Item><Item><Para>Bullhorn: A powerful handlebar.<\/Para><\/Item><\/List-Bullet><\/Discussion><\/Other>",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.offset" : 992,
-            "key.doc.line" : 40,
-            "key.doc.name" : "Handlebar",
+            "key.nameoffset" : 997,
+            "key.typename" : "Bicycle.Handlebar.Type",
+            "key.doc.comment" : "Hardware used for steering.\n\n- Riser: A casual handlebar.\n- Café: An upright handlebar.\n- Drop: A classic handlebar.\n- Bullhorn: A powerful handlebar.",
             "key.name" : "Handlebar",
             "key.usr" : "s:OC7Bicycle7Bicycle9Handlebar",
-            "key.parsed_declaration" : "enum Handlebar",
+            "key.bodyoffset" : 1008,
             "key.namelength" : 9,
             "key.parsed_scope.end" : 42,
             "key.bodylength" : 47
           },
           {
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>let style: <Type usr=\"s:C7Bicycle7Bicycle\">Bicycle<\/Type>.<Type usr=\"s:OC7Bicycle7Bicycle5Style\">Style<\/Type><\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>style<\/decl.name>: <decl.var.type><ref.class usr=\"s:C7Bicycle7Bicycle\">Bicycle<\/ref.class>.<ref.enum usr=\"s:OC7Bicycle7Bicycle5Style\">Style<\/ref.enum><\/decl.var.type><\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 16,
-            "key.doc.declaration" : "let style: Bicycle.Bicycle.Style",
-            "key.doc.type" : "Other",
             "key.parsed_scope.start" : 45,
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1096,
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"45\" column=\"9\"><Name>style<\/Name><USR>s:vC7Bicycle7Bicycle5styleOS0_5Style<\/USR><Declaration>let style: Bicycle.Bicycle.Style<\/Declaration><Abstract><Para>The style of the bicycle.<\/Para><\/Abstract><\/Other>",
             "key.nameoffset" : 1100,
-            "key.doc.line" : 45,
             "key.typename" : "Bicycle.Style",
-            "key.doc.name" : "style",
-            "key.doc.column" : 9,
-            "key.name" : "style",
             "key.doc.comment" : "The style of the bicycle.",
+            "key.name" : "style",
             "key.usr" : "s:vC7Bicycle7Bicycle5styleOS0_5Style",
             "key.parsed_declaration" : "let style: Style",
             "key.namelength" : 5,
@@ -373,24 +329,22 @@
           },
           {
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>let gearing: <Type usr=\"s:C7Bicycle7Bicycle\">Bicycle<\/Type>.<Type usr=\"s:OC7Bicycle7Bicycle7Gearing\">Gearing<\/Type><\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>gearing<\/decl.name>: <decl.var.type><ref.class usr=\"s:C7Bicycle7Bicycle\">Bicycle<\/ref.class>.<ref.enum usr=\"s:OC7Bicycle7Bicycle7Gearing\">Gearing<\/ref.enum><\/decl.var.type><\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 20,
-            "key.doc.declaration" : "let gearing: Bicycle.Bicycle.Gearing",
-            "key.doc.type" : "Other",
             "key.parsed_scope.start" : 48,
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1154,
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"48\" column=\"9\"><Name>gearing<\/Name><USR>s:vC7Bicycle7Bicycle7gearingOS0_7Gearing<\/USR><Declaration>let gearing: Bicycle.Bicycle.Gearing<\/Declaration><Abstract><Para>The gearing of the bicycle.<\/Para><\/Abstract><\/Other>",
             "key.nameoffset" : 1158,
-            "key.doc.line" : 48,
             "key.typename" : "Bicycle.Gearing",
-            "key.doc.name" : "gearing",
-            "key.doc.column" : 9,
-            "key.name" : "gearing",
             "key.doc.comment" : "The gearing of the bicycle.",
+            "key.name" : "gearing",
             "key.usr" : "s:vC7Bicycle7Bicycle7gearingOS0_7Gearing",
             "key.parsed_declaration" : "let gearing: Gearing",
             "key.namelength" : 7,
@@ -398,24 +352,22 @@
           },
           {
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>let handlebar: <Type usr=\"s:C7Bicycle7Bicycle\">Bicycle<\/Type>.<Type usr=\"s:OC7Bicycle7Bicycle9Handlebar\">Handlebar<\/Type><\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>handlebar<\/decl.name>: <decl.var.type><ref.class usr=\"s:C7Bicycle7Bicycle\">Bicycle<\/ref.class>.<ref.enum usr=\"s:OC7Bicycle7Bicycle9Handlebar\">Handlebar<\/ref.enum><\/decl.var.type><\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 24,
-            "key.doc.declaration" : "let handlebar: Bicycle.Bicycle.Handlebar",
-            "key.doc.type" : "Other",
             "key.parsed_scope.start" : 51,
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1218,
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"51\" column=\"9\"><Name>handlebar<\/Name><USR>s:vC7Bicycle7Bicycle9handlebarOS0_9Handlebar<\/USR><Declaration>let handlebar: Bicycle.Bicycle.Handlebar<\/Declaration><Abstract><Para>The handlebar of the bicycle.<\/Para><\/Abstract><\/Other>",
             "key.nameoffset" : 1222,
-            "key.doc.line" : 51,
             "key.typename" : "Bicycle.Handlebar",
-            "key.doc.name" : "handlebar",
-            "key.doc.column" : 9,
-            "key.name" : "handlebar",
             "key.doc.comment" : "The handlebar of the bicycle.",
+            "key.name" : "handlebar",
             "key.usr" : "s:vC7Bicycle7Bicycle9handlebarOS0_9Handlebar",
             "key.parsed_declaration" : "let handlebar: Handlebar",
             "key.namelength" : 9,
@@ -423,24 +375,22 @@
           },
           {
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>let frameSize: <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>frameSize<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type><\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 18,
-            "key.doc.declaration" : "let frameSize: Int",
-            "key.doc.type" : "Other",
             "key.parsed_scope.start" : 54,
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1295,
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"54\" column=\"9\"><Name>frameSize<\/Name><USR>s:vC7Bicycle7Bicycle9frameSizeSi<\/USR><Declaration>let frameSize: Int<\/Declaration><Abstract><Para>The size of the frame, in centimeters.<\/Para><\/Abstract><\/Other>",
             "key.nameoffset" : 1299,
-            "key.doc.line" : 54,
             "key.typename" : "Int",
-            "key.doc.name" : "frameSize",
-            "key.doc.column" : 9,
-            "key.name" : "frameSize",
             "key.doc.comment" : "The size of the frame, in centimeters.",
+            "key.name" : "frameSize",
             "key.usr" : "s:vC7Bicycle7Bicycle9frameSizeSi",
             "key.parsed_declaration" : "let frameSize: Int",
             "key.namelength" : 9,
@@ -448,24 +398,22 @@
           },
           {
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>private(set) var numberOfTrips: <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>numberOfTrips<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type><\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 22,
-            "key.doc.declaration" : "private(set) var numberOfTrips: Int",
-            "key.doc.type" : "Other",
             "key.parsed_scope.start" : 57,
             "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.offset" : 1386,
             "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"57\" column=\"22\"><Name>numberOfTrips<\/Name><USR>s:vC7Bicycle7Bicycle13numberOfTripsSi<\/USR><Declaration>private(set) var numberOfTrips: Int<\/Declaration><Abstract><Para>The number of trips travelled by the bicycle.<\/Para><\/Abstract><\/Other>",
             "key.nameoffset" : 1390,
-            "key.doc.line" : 57,
             "key.typename" : "Int",
-            "key.doc.name" : "numberOfTrips",
-            "key.doc.column" : 22,
-            "key.name" : "numberOfTrips",
             "key.doc.comment" : "The number of trips travelled by the bicycle.",
+            "key.name" : "numberOfTrips",
             "key.usr" : "s:vC7Bicycle7Bicycle13numberOfTripsSi",
             "key.parsed_declaration" : "private(set) var numberOfTrips: Int",
             "key.namelength" : 13,
@@ -474,24 +422,22 @@
           },
           {
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>private(set) var distanceTravelled: <Type usr=\"s:Sd\">Double<\/Type><\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>distanceTravelled<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Sd\">Double<\/ref.struct><\/decl.var.type><\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 29,
-            "key.doc.declaration" : "private(set) var distanceTravelled: Double",
-            "key.doc.type" : "Other",
             "key.parsed_scope.start" : 60,
             "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+              }
+            ],
             "key.offset" : 1491,
             "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"60\" column=\"22\"><Name>distanceTravelled<\/Name><USR>s:vC7Bicycle7Bicycle17distanceTravelledSd<\/USR><Declaration>private(set) var distanceTravelled: Double<\/Declaration><Abstract><Para>The total distance travelled by the bicycle, in meters.<\/Para><\/Abstract><\/Other>",
             "key.nameoffset" : 1495,
-            "key.doc.line" : 60,
             "key.typename" : "Double",
-            "key.doc.name" : "distanceTravelled",
-            "key.doc.column" : 22,
-            "key.name" : "distanceTravelled",
             "key.doc.comment" : "The total distance travelled by the bicycle, in meters.",
+            "key.name" : "distanceTravelled",
             "key.usr" : "s:vC7Bicycle7Bicycle17distanceTravelledSd",
             "key.parsed_declaration" : "private(set) var distanceTravelled: Double",
             "key.namelength" : 17,
@@ -499,142 +445,85 @@
             "key.setter_accessibility" : "source.lang.swift.accessibility.private"
           },
           {
-            "key.bodylength" : 192,
+            "key.filepath" : "Bicycle.swift",
+            "key.parsed_declaration" : "init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)",
+            "key.annotated_decl" : "<Declaration>init(style: <Type usr=\"s:OC7Bicycle7Bicycle5Style\">Style<\/Type>, gearing: <Type usr=\"s:OC7Bicycle7Bicycle7Gearing\">Gearing<\/Type>, handlebar: <Type usr=\"s:OC7Bicycle7Bicycle9Handlebar\">Handlebar<\/Type>, frameSize centimeters: <Type usr=\"s:Si\">Int<\/Type>)<\/Declaration>",
             "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.substructure" : [
+
+            ],
             "key.length" : 281,
-            "key.doc.type" : "Function",
             "key.parsed_scope.start" : 72,
             "key.kind" : "source.lang.swift.decl.function.method.instance",
             "key.doc.full_as_xml" : "<Function file=\"Bicycle.swift\" line=\"72\" column=\"5\"><Name>init(style:gearing:handlebar:frameSize:)<\/Name><USR>s:FC7Bicycle7BicyclecFT5styleOS0_5Style7gearingOS0_7Gearing9handlebarOS0_9Handlebar9frameSizeSi_S0_<\/USR><Declaration>init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)<\/Declaration><Abstract><Para>Initializes a new bicycle with the provided parts and specifications.<\/Para><\/Abstract><Parameters><Parameter><Name>style<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The style of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>gearing<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The gearing of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>handlebar<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The handlebar of the bicycle<\/Para><\/Discussion><\/Parameter><Parameter><Name>centimeters<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The frame size of the bicycle, in centimeters<\/Para><\/Discussion><\/Parameter><\/Parameters><ResultDiscussion><Para>A beautiful, brand-new, custom built just for you.<\/Para><\/ResultDiscussion><\/Function>",
-            "key.nameoffset" : 1921,
-            "key.typename" : "Bicycle.Type -> (style: Bicycle.Style, gearing: Bicycle.Gearing, handlebar: Bicycle.Handlebar, frameSize: Int) -> Bicycle",
-            "key.doc.column" : 5,
-            "key.doc.comment" : "Initializes a new bicycle with the provided parts and specifications.\n\n- parameter style: The style of the bicycle\n- parameter gearing: The gearing of the bicycle\n- parameter handlebar: The handlebar of the bicycle\n- parameter centimeters: The frame size of the bicycle, in centimeters\n\n- returns: A beautiful, brand-new, custom built just for you.",
-            "key.bodyoffset" : 2009,
-            "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
-            "key.annotated_decl" : "<Declaration>init(style: <Type usr=\"s:OC7Bicycle7Bicycle5Style\">Style<\/Type>, gearing: <Type usr=\"s:OC7Bicycle7Bicycle7Gearing\">Gearing<\/Type>, handlebar: <Type usr=\"s:OC7Bicycle7Bicycle9Handlebar\">Handlebar<\/Type>, frameSize centimeters: <Type usr=\"s:Si\">Int<\/Type>)<\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>style<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.enum usr=\"s:OC7Bicycle7Bicycle5Style\">Style<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>gearing<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.enum usr=\"s:OC7Bicycle7Bicycle7Gearing\">Gearing<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>handlebar<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.enum usr=\"s:OC7Bicycle7Bicycle9Handlebar\">Handlebar<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>frameSize<\/decl.var.parameter.argument_label> <decl.var.parameter.name>centimeters<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.constructor>",
-            "key.doc.declaration" : "init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)",
-            "key.substructure" : [
-
-            ],
-            "key.doc.parameters" : [
+            "key.attributes" : [
               {
-                "name" : "style",
-                "discussion" : [
-                  {
-                    "Para" : "The style of the bicycle"
-                  }
-                ]
-              },
-              {
-                "name" : "gearing",
-                "discussion" : [
-                  {
-                    "Para" : "The gearing of the bicycle"
-                  }
-                ]
-              },
-              {
-                "name" : "handlebar",
-                "discussion" : [
-                  {
-                    "Para" : "The handlebar of the bicycle"
-                  }
-                ]
-              },
-              {
-                "name" : "centimeters",
-                "discussion" : [
-                  {
-                    "Para" : "The frame size of the bicycle, in centimeters"
-                  }
-                ]
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
               }
             ],
             "key.offset" : 1921,
-            "key.doc.line" : 72,
-            "key.doc.name" : "init(style:gearing:handlebar:frameSize:)",
+            "key.nameoffset" : 1921,
+            "key.typename" : "Bicycle.Type -> (style: Bicycle.Style, gearing: Bicycle.Gearing, handlebar: Bicycle.Handlebar, frameSize: Int) -> Bicycle",
+            "key.doc.comment" : "Initializes a new bicycle with the provided parts and specifications.\n\n- parameter style: The style of the bicycle\n- parameter gearing: The gearing of the bicycle\n- parameter handlebar: The handlebar of the bicycle\n- parameter centimeters: The frame size of the bicycle, in centimeters\n\n- returns: A beautiful, brand-new, custom built just for you.",
             "key.name" : "init(style:gearing:handlebar:frameSize:)",
             "key.usr" : "s:FC7Bicycle7BicyclecFT5styleOS0_5Style7gearingOS0_7Gearing9handlebarOS0_9Handlebar9frameSizeSi_S0_",
-            "key.parsed_declaration" : "init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)",
-            "key.doc.result_discussion" : [
-              {
-                "Para" : "A beautiful, brand-new, custom built just for you."
-              }
-            ],
+            "key.bodyoffset" : 2009,
             "key.namelength" : 86,
-            "key.parsed_scope.end" : 80
+            "key.parsed_scope.end" : 80,
+            "key.bodylength" : 192
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.length" : 151,
-            "key.doc.type" : "Function",
-            "key.parsed_scope.start" : 87,
-            "key.kind" : "source.lang.swift.decl.function.method.instance",
-            "key.doc.full_as_xml" : "<Function file=\"Bicycle.swift\" line=\"87\" column=\"10\"><Name>travel(distance:)<\/Name><USR>s:FC7Bicycle7Bicycle6travelFT8distanceSd_T_<\/USR><Declaration>func travel(distance meters: Double)<\/Declaration><Abstract><Para>Take a bike out for a spin.<\/Para><\/Abstract><Parameters><Parameter><Name>meters<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The distance to travel in meters.<\/Para><\/Discussion><\/Parameter><\/Parameters><\/Function>",
-            "key.nameoffset" : 2322,
-            "key.typename" : "(Bicycle) -> (distance: Double) -> ()",
-            "key.doc.column" : 10,
-            "key.doc.comment" : "Take a bike out for a spin.\n\n- parameter meters: The distance to travel in meters.",
-            "key.bodyoffset" : 2355,
             "key.filepath" : "Bicycle.swift",
-            "key.doc.file" : "Bicycle.swift",
+            "key.parsed_declaration" : "func travel(distance meters: Double)",
             "key.annotated_decl" : "<Declaration>func travel(distance meters: <Type usr=\"s:Sd\">Double<\/Type>)<\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>travel<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>distance<\/decl.var.parameter.argument_label> <decl.var.parameter.name>meters<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:Sd\">Double<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.method.instance>",
-            "key.doc.declaration" : "func travel(distance meters: Double)",
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.substructure" : [
 
             ],
-            "key.doc.parameters" : [
+            "key.length" : 151,
+            "key.parsed_scope.start" : 87,
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.doc.full_as_xml" : "<Function file=\"Bicycle.swift\" line=\"87\" column=\"10\"><Name>travel(distance:)<\/Name><USR>s:FC7Bicycle7Bicycle6travelFT8distanceSd_T_<\/USR><Declaration>func travel(distance meters: Double)<\/Declaration><Abstract><Para>Take a bike out for a spin.<\/Para><\/Abstract><Parameters><Parameter><Name>meters<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>The distance to travel in meters.<\/Para><\/Discussion><\/Parameter><\/Parameters><\/Function>",
+            "key.attributes" : [
               {
-                "name" : "meters",
-                "discussion" : [
-                  {
-                    "Para" : "The distance to travel in meters."
-                  }
-                ]
+                "key.attribute" : "source.decl.attribute.__raw_doc_comment"
               }
             ],
             "key.offset" : 2317,
-            "key.doc.line" : 87,
-            "key.doc.name" : "travel(distance:)",
+            "key.nameoffset" : 2322,
+            "key.typename" : "(Bicycle) -> (distance: Double) -> ()",
+            "key.doc.comment" : "Take a bike out for a spin.\n\n- parameter meters: The distance to travel in meters.",
             "key.name" : "travel(distance:)",
             "key.usr" : "s:FC7Bicycle7Bicycle6travelFT8distanceSd_T_",
-            "key.parsed_declaration" : "func travel(distance meters: Double)",
+            "key.bodyoffset" : 2355,
             "key.namelength" : 31,
             "key.parsed_scope.end" : 92,
             "key.bodylength" : 112
           }
         ],
+        "key.length" : 2238,
+        "key.runtime_name" : "_TtC8__main__7Bicycle",
+        "key.parsed_scope.start" : 8,
+        "key.kind" : "source.lang.swift.decl.class",
+        "key.doc.full_as_xml" : "<Class file=\"Bicycle.swift\" line=\"8\" column=\"14\"><Name>Bicycle<\/Name><USR>s:C7Bicycle7Bicycle<\/USR><Declaration>public class Bicycle<\/Declaration><Abstract><Para>🚲 A two-wheeled, human-powered mode of transportation.<\/Para><\/Abstract><\/Class>",
+        "key.attributes" : [
+          {
+            "key.attribute" : "source.decl.attribute.__raw_doc_comment"
+          }
+        ],
         "key.offset" : 232,
-        "key.doc.line" : 8,
-        "key.doc.name" : "Bicycle",
+        "key.nameoffset" : 238,
+        "key.typename" : "Bicycle.Type",
+        "key.doc.comment" : "🚲 A two-wheeled, human-powered mode of transportation.",
         "key.name" : "Bicycle",
         "key.usr" : "s:C7Bicycle7Bicycle",
-        "key.parsed_declaration" : "public class Bicycle",
+        "key.bodyoffset" : 247,
         "key.namelength" : 7,
         "key.parsed_scope.end" : 93,
         "key.bodylength" : 2222
       }
     ],
-    "key.diagnostics" : [
-      {
-        "key.filepath" : "Bicycle.swift",
-        "key.column" : 34,
-        "key.description" : "'=' has been replaced with ':' in attribute arguments",
-        "key.fixits" : [
-          {
-            "key.offset" : 78,
-            "key.sourcetext" : ":",
-            "key.length" : 1
-          }
-        ],
-        "key.line" : 4,
-        "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-        "key.severity" : "source.diagnostic.severity.error"
-      }
-    ]
+    "key.offset" : 0,
+    "key.length" : 2471
   }
 }

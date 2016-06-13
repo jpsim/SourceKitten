@@ -22,17 +22,17 @@ public struct SourceLocation {
     }
 }
 
-extension SourceLocation {
-    init(clangLocation: CXSourceLocation) {
-        var cxfile = CXFile(allocatingCapacity: 0)
-        var line: UInt32 = 0
-        var column: UInt32 = 0
-        var offset: UInt32 = 0
-        clang_getSpellingLocation(clangLocation, &cxfile, &line, &column, &offset)
-        self.init(file: clang_getFileName(cxfile).str() ?? "<none>",
-            line: line, column: column, offset: offset)
-    }
-}
+//extension SourceLocation {
+//    init(clangLocation: CXSourceLocation) {
+//        var cxfile = CXFile(allocatingCapacity: 0)
+//        var line: UInt32 = 0
+//        var column: UInt32 = 0
+//        var offset: UInt32 = 0
+//        clang_getSpellingLocation(clangLocation, &cxfile, &line, &column, &offset)
+//        self.init(file: clang_getFileName(cxfile).str() ?? "<none>",
+//            line: line, column: column, offset: offset)
+//    }
+//}
 
 // MARK: Comparable
 

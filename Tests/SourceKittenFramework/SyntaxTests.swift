@@ -18,7 +18,7 @@ func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
     XCTAssertEqual(syntaxMap, expectedSyntaxMap, "should generate expected syntax map")
 
     let syntaxJSON = syntaxMap.description
-    let jsonArray = try! NSJSONSerialization.jsonObject(with: syntaxJSON.data(using: NSUTF8StringEncoding)!, options: []) as? NSArray
+    let jsonArray = try! JSONSerialization.jsonObject(with: syntaxJSON.data(using: String.Encoding.utf8)!, options: []) as? NSArray
     XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
     XCTAssertEqual(jsonArray!, expectedSyntaxMap.tokens.map { $0.dictionaryValue }, "JSON should match expected syntax")
 }
@@ -30,7 +30,7 @@ class SyntaxTests: XCTestCase {
     }
 
     func testGenerateSameSyntaxMapFileAndContents() {
-        let fileContents = try! NSString(contentsOfFile: #file, encoding: NSUTF8StringEncoding) as String!
+        let fileContents = try! NSString(contentsOfFile: #file, encoding: String.Encoding.utf8.rawValue) as String!
         XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
             SyntaxMap(file: File(contents: fileContents!)),
             "should generate the same syntax map for a file as raw text")

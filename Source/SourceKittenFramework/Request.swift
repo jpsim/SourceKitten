@@ -11,6 +11,19 @@ import Foundation
 import SourceKit
 #endif
 
+private let sourcekitdLazyVar: Int = {
+    sourcekitd_initialize()
+    sourcekitd_set_notification_handler() { response in
+        if !sourcekitd_response_is_error(response!) {
+            fflush(stdout)
+            fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
+            sourceKitWaitingRestoredSemaphore.signal()
+        }
+        sourcekitd_response_dispose(response!)
+    }
+    return 0
+}()
+
 public protocol SourceKitRepresentable {
     func isEqualTo(_ rhs: SourceKitRepresentable) -> Bool
 }
@@ -94,10 +107,10 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
 }
 
 /// dispatch_once_t token used to only initialize SourceKit once per session.
-private var sourceKitInitializationToken: dispatch_once_t = 0
+private var sourceKitInitializationToken = 0
 
 /// dispatch_semaphore_t used when waiting for sourcekitd to be restored.
-private var sourceKitWaitingRestoredSemaphore = dispatch_semaphore_create(0)
+private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
 private let sourceKitWaitingRestoredTimeout = Int64(10 * NSEC_PER_SEC)
 
 /// SourceKit UID to String map.
@@ -163,7 +176,7 @@ private func swiftStringFrom(_ bytes: UnsafePointer<Int8>, length: Int) -> Strin
     let pointer = UnsafeMutablePointer<Int8>(bytes)
     // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
     // We'll try another encodings if fail.
-    let encodings = [NSUTF8StringEncoding, NSNEXTSTEPStringEncoding, NSASCIIStringEncoding]
+    let encodings = [String.Encoding.utf8, String.Encoding.nextstep, String.Encoding.ascii]
     for encoding in encodings {
         if let string = String(bytesNoCopy: pointer, length: length, encoding: encoding,
             freeWhenDone: false) {
@@ -321,9 +334,7 @@ public enum Request {
     - returns: SourceKit output as a dictionary.
     */
     public func send() -> [String: SourceKitRepresentable] {
-        dispatch_once(&sourceKitInitializationToken) {
-            sourcekitd_initialize()
-        }
+        _ = sourcekitdLazyVar
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response) }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
@@ -371,27 +382,16 @@ public enum Request {
     - throws: Request.Error on fail ()
     */
     public func failableSend() throws -> [String: SourceKitRepresentable] {
-        dispatch_once(&sourceKitInitializationToken) {
-            sourcekitd_initialize()
-            sourcekitd_set_notification_handler() { response in
-                if !sourcekitd_response_is_error(response!) {
-                    fflush(stdout)
-                    fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
-                    dispatch_semaphore_signal(sourceKitWaitingRestoredSemaphore!)
-                }
-                sourcekitd_response_dispose(response!)
-            }
-        }
+        _ = sourcekitdLazyVar
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response) }
-        if sourcekitd_response_is_error(response) {
-            let error = Request.Error(response: response)
-            if case .ConnectionInterrupted = error {
-                dispatch_semaphore_wait(sourceKitWaitingRestoredSemaphore!,
-                    dispatch_time(DISPATCH_TIME_NOW, sourceKitWaitingRestoredTimeout))
-            }
-            throw error
-        }
+//        if sourcekitd_response_is_error(response) {
+//            let error = Request.Error(response: response)
+//            if case .ConnectionInterrupted = error {
+//                sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now(dispatch_time_t(DispatchTime.now), sourceKitWaitingRestoredTimeout))
+//            }
+//            throw error
+//        }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
 }
