@@ -51,41 +51,6 @@ public struct SyntaxMap {
     public init(file: File) {
         self.init(sourceKitResponse: Request.EditorOpen(file: file).send())
     }
-
-    /**
-    Returns the range of the last contiguous doc comment block from the tokens in `self` prior to
-    `offset`. If finds identifier earlier than doc comment, stops searching and returns nil,
-    because doc comment belong to identifier.
-
-    - parameter offset: Last possible byte offset of the range's start.
-    */
-    public func commentRangeBeforeOffset(_ offset: Int) -> Range<Int>? {
-        let tokensBeforeOffset = tokens.reversed().filter { $0.offset < offset }
-
-        let docTypes = SyntaxKind.docComments().map({ $0.rawValue })
-        let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
-        let isNotDoc = { !isDoc($0) }
-
-        guard let commentBegin = tokensBeforeOffset.index(where: isDoc) else { return nil }
-        let tokensBeginningComment = tokensBeforeOffset.suffix(from: commentBegin)
-
-        // For avoiding declaring `var` with type annotation before `if let`, use `map()`
-        let commentEnd = tokensBeginningComment.index(where: isNotDoc)
-        let commentTokensImmediatelyPrecedingOffset = (
-            commentEnd.map(tokensBeginningComment.prefix(upTo:)) ?? tokensBeginningComment
-        ).reversed()
-
-        return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
-            return commentTokensImmediatelyPrecedingOffset.last.flatMap { lastToken in
-                let regularCommentTokensBetweenDocCommentAndOffset = tokensBeforeOffset
-                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .Comment })
-                if !regularCommentTokensBetweenDocCommentAndOffset.isEmpty {
-                    return nil // "doc comment" isn't actually a doc comment
-                }
-                return Range(firstToken.offset...lastToken.offset + lastToken.length)
-            }
-        }
-    }
 }
 
 // MARK: CustomStringConvertible

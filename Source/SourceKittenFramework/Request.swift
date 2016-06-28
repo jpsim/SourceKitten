@@ -93,12 +93,9 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
     }
 }
 
-/// dispatch_once_t token used to only initialize SourceKit once per session.
-private var sourceKitInitializationToken: dispatch_once_t = 0
-
 /// dispatch_semaphore_t used when waiting for sourcekitd to be restored.
-private var sourceKitWaitingRestoredSemaphore = dispatch_semaphore_create(0)
-private let sourceKitWaitingRestoredTimeout = Int64(10 * NSEC_PER_SEC)
+private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
+private let sourceKitWaitingRestoredTimeout = DispatchTime.now()
 
 /// SourceKit UID to String map.
 private var uidStringMap = [sourcekitd_uid_t: String]()
@@ -144,7 +141,6 @@ Returns SourceKitten defined enum's rawValue String from string
 */
 private func sourceKittenRawValueStringFrom(_ uidString: String) -> String? {
     return SwiftDocKey(rawValue: uidString)?.rawValue ??
-        SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
         SyntaxKind(rawValue: uidString)?.rawValue
 }
 
@@ -163,7 +159,7 @@ private func swiftStringFrom(_ bytes: UnsafePointer<Int8>, length: Int) -> Strin
     let pointer = UnsafeMutablePointer<Int8>(bytes)
     // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
     // We'll try another encodings if fail.
-    let encodings = [NSUTF8StringEncoding, NSNEXTSTEPStringEncoding, NSASCIIStringEncoding]
+    let encodings = [String.Encoding.utf8, String.Encoding.nextstep, String.Encoding.ascii]
     for encoding in encodings {
         if let string = String(bytesNoCopy: pointer, length: length, encoding: encoding,
             freeWhenDone: false) {
@@ -184,12 +180,8 @@ public enum Request {
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
     case CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
-    /// ObjC Swift Interface
-    case Interface(file: String, uuid: String)
     /// Find USR
     case FindUSR(file: String, usr: String)
-    /// Index
-    case Index(file: String)
     /// Format
     case Format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
     /// ReplaceText
@@ -199,19 +191,11 @@ public enum Request {
         var dict: [sourcekitd_uid_t : sourcekitd_object_t]
         switch self {
         case .EditorOpen(let file):
-            if let path = file.path {
-                dict = [
-                    sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
-                    sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(path),
-                    sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(path)
-                ]
-            } else {
-                dict = [
-                    sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
-                    sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(String(file.contents.hash)),
-                    sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(file.contents)
-                ]
-            }
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file.path),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file.path)
+            ]
         case .CursorInfo(let file, let offset, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
@@ -233,28 +217,11 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
-        case .Interface(let file, let uuid):
-            let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
-            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
-            dict = [
-                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),
-                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(uuid),
-                sourcekitd_uid_get_from_cstr("key.filepath"): sourcekitd_request_string_create(file),
-                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
-            ]
         case .FindUSR(let file, let usr):
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.find_usr")),
                 sourcekitd_uid_get_from_cstr("key.usr"): sourcekitd_request_string_create(usr),
                 sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file)
-            ]
-        case .Index(let file):
-            let arguments = ["-sdk", sdkPath(), "-j4", file ]
-            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
-            dict = [
-                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.indexsource")),
-                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
-                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
         case .Format(let file, let line, let useTabs, let indentWidth):
             let formatOptions: [sourcekitd_uid_t : sourcekitd_object_t] = [
@@ -321,9 +288,9 @@ public enum Request {
     - returns: SourceKit output as a dictionary.
     */
     public func send() -> [String: SourceKitRepresentable] {
-        dispatch_once(&sourceKitInitializationToken) {
+//        dispatch_once(&sourceKitInitializationToken) {
             sourcekitd_initialize()
-        }
+//        }
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response) }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
@@ -371,26 +338,19 @@ public enum Request {
     - throws: Request.Error on fail ()
     */
     public func failableSend() throws -> [String: SourceKitRepresentable] {
-        dispatch_once(&sourceKitInitializationToken) {
-            sourcekitd_initialize()
-            sourcekitd_set_notification_handler() { response in
-                if !sourcekitd_response_is_error(response!) {
-                    fflush(stdout)
-                    fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
-                    dispatch_semaphore_signal(sourceKitWaitingRestoredSemaphore!)
-                }
-                sourcekitd_response_dispose(response!)
+        sourcekitd_initialize()
+        sourcekitd_set_notification_handler() { response in
+            if !sourcekitd_response_is_error(response!) {
+                fflush(stdout)
+                fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
+                sourceKitWaitingRestoredSemaphore.signal()
             }
+            sourcekitd_response_dispose(response!)
         }
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response) }
         if sourcekitd_response_is_error(response) {
-            let error = Request.Error(response: response)
-            if case .ConnectionInterrupted = error {
-                dispatch_semaphore_wait(sourceKitWaitingRestoredSemaphore!,
-                    dispatch_time(DISPATCH_TIME_NOW, sourceKitWaitingRestoredTimeout))
-            }
-            throw error
+            throw Request.Error(response: response)
         }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
@@ -401,53 +361,4 @@ public enum Request {
 extension Request: CustomStringConvertible {
     /// A textual representation of `Request`.
     public var description: String { return String(validatingUTF8: sourcekitd_request_description_copy(sourcekitObject))! }
-}
-
-private func interfaceForModule(module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
-    var compilerargs = compilerArguments.map({ sourcekitd_request_string_create($0) })
-    let dict: [sourcekitd_uid_t : sourcekitd_object_t] = [
-        sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")),
-        sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
-        sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
-        sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create("SourceKittenFramework.\(module)")
-    ]
-    var keys = [sourcekitd_uid_t](dict.keys)
-    var values = [sourcekitd_object_t](dict.values)
-    return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
-}
-
-internal func libraryWrapperForModule(module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {
-    let sourceKitResponse = interfaceForModule(module: module, compilerArguments: compilerArguments)
-    let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
-    let source = sourceKitResponse["key.sourcetext"] as! String
-    let freeFunctions = substructure.filter({
-        SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .FunctionFree
-    }).flatMap { function -> String? in
-        let fullFunctionName = function["key.name"] as! String
-        let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
-        guard name != "clang_executeOnThread" else { // unsupported format
-            return nil
-        }
-
-        var parameters = [String]()
-        if let functionSubstructure = SwiftDocKey.getSubstructure(function) {
-            for parameterStructure in functionSubstructure {
-                parameters.append((parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String)
-            }
-        }
-        var returnTypes = [String]()
-        if let offset = SwiftDocKey.getOffset(function), length = SwiftDocKey.getLength(function) {
-            let start = source.index(source.startIndex, offsetBy: Int(offset))
-            let end = source.index(start, offsetBy: Int(length))
-            let functionDeclaration = source.substring(with: start..<end)
-            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwardsSearch, range: nil, locale: nil)?.lowerBound {
-                returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
-            }
-        }
-
-        return "internal let \(name): @convention(c) (\(parameters.joined(separator: ", "))) -> (\(returnTypes.joined(separator: ", "))) = library.loadSymbol(\"\(name)\")"
-    }
-    let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
-    let library = "private let library = toolchainLoader.load(\"\(loadPath)\")\n"
-    return spmImport + library + freeFunctions.joined(separator: "\n") + "\n"
 }

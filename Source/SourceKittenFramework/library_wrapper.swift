@@ -64,14 +64,14 @@ struct Loader {
 /// `launch-with-toolchain` sets the toolchain path to the
 /// "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable.
 private let xcodeDefaultToolchainOverride: String? =
-    NSProcessInfo.processInfo().environment["XCODE_DEFAULT_TOOLCHAIN_OVERRIDE"]
+    ProcessInfo.processInfo().environment["XCODE_DEFAULT_TOOLCHAIN_OVERRIDE"]
 
 /// Returns "TOOLCHAIN_DIR" environment variable
 ///
 /// `Xcode`/`xcodebuild` sets the toolchain path to the
 /// "TOOLCHAIN_DIR" environment variable.
 private let toolchainDir: String? =
-    NSProcessInfo.processInfo().environment["TOOLCHAIN_DIR"]
+    ProcessInfo.processInfo().environment["TOOLCHAIN_DIR"]
 
 /// Returns toolchain directory that parsed from result of `xcrun -find swift`
 ///
@@ -79,20 +79,20 @@ private let toolchainDir: String? =
 private let xcrunFindPath: String? = {
     let pathOfXcrun = "/usr/bin/xcrun"
 
-    if !NSFileManager.default().isExecutableFile(atPath: pathOfXcrun) {
+    if !FileManager.default().isExecutableFile(atPath: pathOfXcrun) {
         return nil
     }
 
-    let task = NSTask()
+    let task = Task()
     task.launchPath = pathOfXcrun
     task.arguments = ["-find", "swift"]
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
     task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
 
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    guard let output = String(data: data, encoding: NSUTF8StringEncoding) else {
+    guard let output = String(data: data, encoding: String.Encoding.utf8) else {
         return nil
     }
 

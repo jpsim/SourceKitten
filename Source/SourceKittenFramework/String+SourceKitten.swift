@@ -20,7 +20,7 @@ public struct Line {
     public let byteRange: NSRange
 }
 
-private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines()
+private let whitespaceAndNewlineCharacterSet = CharacterSet.whitespacesAndNewlines
 
 private let commentLinePrefixCharacterSet: NSCharacterSet = {
   let characterSet = NSMutableCharacterSet.whitespacesAndNewlines()
@@ -243,7 +243,7 @@ extension NSString {
 
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
-    public func absolutePathRepresentation(rootDirectory: String = NSFileManager.default().currentDirectoryPath) -> String {
+    public func absolutePathRepresentation(rootDirectory: String = FileManager.default().currentDirectoryPath) -> String {
         if isAbsolutePath {
             return self as String
         }
@@ -385,52 +385,11 @@ extension NSString {
     public func isSwiftFile() -> Bool {
         return pathExtension == "swift"
     }
-
-    /**
-    Returns a substring from a start and end SourceLocation.
-    */
-    public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
-        return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
-    }
 }
 
 extension String {
     internal var isFile: Bool {
-        return NSFileManager.default().fileExists(atPath: self)
-    }
-
-    /// Returns the `#pragma mark`s in the string.
-    /// Just the content; no leading dashes or leading `#pragma mark`.
-    public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
-        let regex = try! NSRegularExpression(pattern: "(#pragma\\smark|@name)[ -]*([^\\n]+)", options: []) // Safe to force try
-        let range: NSRange
-        if let limitRange = limitRange {
-            range = NSRange(location: limitRange.location, length: min(utf16.count - limitRange.location, limitRange.length))
-        } else {
-            range = NSRange(location: 0, length: utf16.count)
-        }
-        let matches = regex.matches(in: self, options: [], range: range)
-
-        return matches.flatMap { match in
-            let markRange = match.range(at: 2)
-            for excludedRange in excludeRanges {
-                if NSIntersectionRange(excludedRange, markRange).length > 0 {
-                    return nil
-                }
-            }
-            let markString = (self as NSString).substring(with: markRange).trimmingCharacters(in: .whitespaces())
-            if markString.isEmpty {
-                return nil
-            }
-            guard let markByteRange = self.NSRangeToByteRange(start: markRange.location, length: markRange.length) else {
-                return nil
-            }
-            let location = SourceLocation(file: filename,
-                line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
-                column: 1, offset: UInt32(markByteRange.location))
-            return SourceDeclaration(type: .Mark, location: location, extent: (location, location), name: markString,
-                usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [], swiftDeclaration: nil)
-        }
+        return FileManager.default().fileExists(atPath: self)
     }
 
     /**
@@ -464,7 +423,7 @@ extension String {
             $0.offset
         }
 
-        let regex = try! NSRegularExpression(pattern: "(///.*\\n|\\*/\\n)", options: []) // Safe to force try
+        let regex = try! RegularExpression(pattern: "(///.*\\n|\\*/\\n)", options: []) // Safe to force try
         let range = NSRange(location: 0, length: utf16.count)
         let matches = regex.matches(in: self, options: [], range: range)
 
@@ -480,13 +439,13 @@ extension String {
     */
     public func commentBody(range: NSRange? = nil) -> String? {
         let nsString = self as NSString
-        let patterns: [(pattern: String, options: NSRegularExpressionOptions)] = [
+        let patterns: [(pattern: String, options: RegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
             ("^\\s*\\/\\/\\/(.+)?",           .anchorsMatchLines)                               // single: ^\s*\/\/\/(.+)?
         ]
         let range = range ?? NSRange(location: 0, length: nsString.length)
         for pattern in patterns {
-            let regex = try! NSRegularExpression(pattern: pattern.pattern, options: pattern.options) // Safe to force try
+            let regex = try! RegularExpression(pattern: pattern.pattern, options: pattern.options) // Safe to force try
             let matches = regex.matches(in: self, options: [], range: range)
             let bodyParts = matches.flatMap { match -> [String] in
                 let numberOfRanges = match.numberOfRanges
@@ -564,8 +523,8 @@ extension String {
 
     /// Returns a copy of the string by trimming whitespace and the opening curly brace (`{`).
     internal func stringByTrimmingWhitespaceAndOpeningCurlyBrace() -> String? {
-        let unwantedSet = whitespaceAndNewlineCharacterSet.mutableCopy() as! NSMutableCharacterSet
-        unwantedSet.addCharacters(in: "{")
+        var unwantedSet = whitespaceAndNewlineCharacterSet
+        unwantedSet.insert(charactersIn: "{")
         return trimmingCharacters(in: unwantedSet)
     }
 }
