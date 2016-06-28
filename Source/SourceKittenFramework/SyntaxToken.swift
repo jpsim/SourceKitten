@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+import Foundation
+
 /// Represents a single Swift syntax token.
 public struct SyntaxToken {
     /// Token type. See SyntaxKind.
@@ -16,8 +18,8 @@ public struct SyntaxToken {
     public let length: Int
 
     /// Dictionary representation of SyntaxToken. Useful for NSJSONSerialization.
-    public var dictionaryValue: [String: AnyObject] {
-        return ["type": type, "offset": offset, "length": length]
+    public var dictionaryValue: NSDictionary {
+        return [NSString(string: "type"): NSString(string: type), NSString(string: "offset"): NSNumber(value: offset), NSString(string: "length"): NSNumber(value: length)]
     }
 
     /**

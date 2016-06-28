@@ -1,10 +1,15 @@
 #if SWIFT_PACKAGE
 import SourceKit
 #endif
-private let library = toolchainLoader.load("sourcekitd.framework/Versions/A/sourcekitd")
+#if os(Linux)
+private let path = "libsourcekitdInProc.so"
+#else
+private let path = "sourcekitd.framework/Versions/A/sourcekitd"
+#endif
+private let library = toolchainLoader.load(path)
 internal let sourcekitd_initialize: @convention(c) () -> () = library.loadSymbol("sourcekitd_initialize")
 internal let sourcekitd_shutdown: @convention(c) () -> () = library.loadSymbol("sourcekitd_shutdown")
-internal let sourcekitd_set_interrupted_connection_handler: @convention(c) (sourcekitd_interrupted_connection_handler_t) -> () = library.loadSymbol("sourcekitd_set_interrupted_connection_handler")
+//internal let sourcekitd_set_interrupted_connection_handler: @convention(c) (sourcekitd_interrupted_connection_handler_t) -> () = library.loadSymbol("sourcekitd_set_interrupted_connection_handler")
 internal let sourcekitd_uid_get_from_cstr: @convention(c) (UnsafePointer<Int8>) -> (sourcekitd_uid_t) = library.loadSymbol("sourcekitd_uid_get_from_cstr")
 internal let sourcekitd_uid_get_from_buf: @convention(c) (UnsafePointer<Int8>, Int) -> (sourcekitd_uid_t) = library.loadSymbol("sourcekitd_uid_get_from_buf")
 internal let sourcekitd_uid_get_length: @convention(c) (sourcekitd_uid_t) -> (Int) = library.loadSymbol("sourcekitd_uid_get_length")
@@ -40,7 +45,7 @@ internal let sourcekitd_variant_dictionary_get_string: @convention(c) (sourcekit
 internal let sourcekitd_variant_dictionary_get_int64: @convention(c) (sourcekitd_variant_t, sourcekitd_uid_t) -> (Int64) = library.loadSymbol("sourcekitd_variant_dictionary_get_int64")
 internal let sourcekitd_variant_dictionary_get_bool: @convention(c) (sourcekitd_variant_t, sourcekitd_uid_t) -> (Bool) = library.loadSymbol("sourcekitd_variant_dictionary_get_bool")
 internal let sourcekitd_variant_dictionary_get_uid: @convention(c) (sourcekitd_variant_t, sourcekitd_uid_t) -> (sourcekitd_uid_t) = library.loadSymbol("sourcekitd_variant_dictionary_get_uid")
-internal let sourcekitd_variant_dictionary_apply: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_dictionary_applier_t) -> (Bool) = library.loadSymbol("sourcekitd_variant_dictionary_apply")
+//internal let sourcekitd_variant_dictionary_apply: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_dictionary_applier_t) -> (Bool) = library.loadSymbol("sourcekitd_variant_dictionary_apply")
 internal let sourcekitd_variant_dictionary_apply_f: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_dictionary_applier_f_t, UnsafeMutablePointer<Void>) -> (Bool) = library.loadSymbol("sourcekitd_variant_dictionary_apply_f")
 internal let sourcekitd_variant_array_get_count: @convention(c) (sourcekitd_variant_t) -> (Int) = library.loadSymbol("sourcekitd_variant_array_get_count")
 internal let sourcekitd_variant_array_get_value: @convention(c) (sourcekitd_variant_t, Int) -> (sourcekitd_variant_t) = library.loadSymbol("sourcekitd_variant_array_get_value")
@@ -48,7 +53,7 @@ internal let sourcekitd_variant_array_get_string: @convention(c) (sourcekitd_var
 internal let sourcekitd_variant_array_get_int64: @convention(c) (sourcekitd_variant_t, Int) -> (Int64) = library.loadSymbol("sourcekitd_variant_array_get_int64")
 internal let sourcekitd_variant_array_get_bool: @convention(c) (sourcekitd_variant_t, Int) -> (Bool) = library.loadSymbol("sourcekitd_variant_array_get_bool")
 internal let sourcekitd_variant_array_get_uid: @convention(c) (sourcekitd_variant_t, Int) -> (sourcekitd_uid_t) = library.loadSymbol("sourcekitd_variant_array_get_uid")
-internal let sourcekitd_variant_array_apply: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_array_applier_t) -> (Bool) = library.loadSymbol("sourcekitd_variant_array_apply")
+//internal let sourcekitd_variant_array_apply: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_array_applier_t) -> (Bool) = library.loadSymbol("sourcekitd_variant_array_apply")
 internal let sourcekitd_variant_array_apply_f: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_array_applier_f_t, UnsafeMutablePointer<Void>) -> (Bool) = library.loadSymbol("sourcekitd_variant_array_apply_f")
 internal let sourcekitd_variant_int64_get_value: @convention(c) (sourcekitd_variant_t) -> (Int64) = library.loadSymbol("sourcekitd_variant_int64_get_value")
 internal let sourcekitd_variant_bool_get_value: @convention(c) (sourcekitd_variant_t) -> (Bool) = library.loadSymbol("sourcekitd_variant_bool_get_value")
@@ -62,8 +67,8 @@ internal let sourcekitd_variant_description_dump: @convention(c) (sourcekitd_var
 internal let sourcekitd_variant_description_dump_filedesc: @convention(c) (sourcekitd_variant_t, Int32) -> () = library.loadSymbol("sourcekitd_variant_description_dump_filedesc")
 internal let sourcekitd_variant_description_copy: @convention(c) (sourcekitd_variant_t) -> (UnsafeMutablePointer<Int8>) = library.loadSymbol("sourcekitd_variant_description_copy")
 internal let sourcekitd_send_request_sync: @convention(c) (sourcekitd_object_t) -> (sourcekitd_response_t) = library.loadSymbol("sourcekitd_send_request_sync")
-internal let sourcekitd_send_request: @convention(c) (sourcekitd_object_t, UnsafeMutablePointer<sourcekitd_request_handle_t>, sourcekitd_response_receiver_t?) -> () = library.loadSymbol("sourcekitd_send_request")
+//internal let sourcekitd_send_request: @convention(c) (sourcekitd_object_t, UnsafeMutablePointer<sourcekitd_request_handle_t>, sourcekitd_response_receiver_t?) -> () = library.loadSymbol("sourcekitd_send_request")
 internal let sourcekitd_cancel_request: @convention(c) (sourcekitd_request_handle_t) -> () = library.loadSymbol("sourcekitd_cancel_request")
-internal let sourcekitd_set_notification_handler: @convention(c) (sourcekitd_response_receiver_t!) -> () = library.loadSymbol("sourcekitd_set_notification_handler")
-internal let sourcekitd_set_uid_handler: @convention(c) (sourcekitd_uid_handler_t!) -> () = library.loadSymbol("sourcekitd_set_uid_handler")
-internal let sourcekitd_set_uid_handlers: @convention(c) (sourcekitd_uid_from_str_handler_t?, sourcekitd_str_from_uid_handler_t?) -> () = library.loadSymbol("sourcekitd_set_uid_handlers")
+//internal let sourcekitd_set_notification_handler: @convention(c) (sourcekitd_response_receiver_t!) -> () = library.loadSymbol("sourcekitd_set_notification_handler")
+//internal let sourcekitd_set_uid_handler: @convention(c) (sourcekitd_uid_handler_t!) -> () = library.loadSymbol("sourcekitd_set_uid_handler")
+//internal let sourcekitd_set_uid_handlers: @convention(c) (sourcekitd_uid_from_str_handler_t?, sourcekitd_str_from_uid_handler_t?) -> () = library.loadSymbol("sourcekitd_set_uid_handlers")

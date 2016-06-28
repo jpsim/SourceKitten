@@ -7,4 +7,4 @@
 //
 import SourceKittenFramework
 
-print(SyntaxMap(file: File(path: Process.arguments[1])))
+print(SyntaxMap(file: File(path: Process.arguments[1])!))

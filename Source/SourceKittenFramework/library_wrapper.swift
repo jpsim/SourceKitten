@@ -13,7 +13,7 @@ struct DynamicLinkLibrary {
     let handle: UnsafeMutablePointer<Void>
     
     func loadSymbol<T>(_ symbol: String) -> T {
-        let sym = Darwin.dlsym(handle, symbol)
+        let sym = dlsym(handle, symbol)
         if sym == nil {
             let errorString = String(validatingUTF8: dlerror())
             fatalError("Finding symbol \(symbol) failed: \(errorString)")
@@ -22,6 +22,9 @@ struct DynamicLinkLibrary {
     }
 }
 
+#if os(Linux)
+let toolchainLoader = Loader(searchPaths: [linuxSourceKitLibPath!])
+#else
 let toolchainLoader = Loader(searchPaths: [
     xcodeDefaultToolchainOverride,
     toolchainDir,
@@ -40,6 +43,7 @@ let toolchainLoader = Loader(searchPaths: [
         }
         return nil
     })
+#endif
 
 struct Loader {
     let searchPaths: [String]
@@ -58,6 +62,10 @@ struct Loader {
         fatalError("Loading \(path) failed")
     }
 }
+
+/// Returns "LINUX_SOURCEKIT_LIB_PATH" environment variable
+private let linuxSourceKitLibPath: String? =
+    ProcessInfo.processInfo().environment["LINUX_SOURCEKIT_LIB_PATH"]
 
 /// Returns "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable
 ///
@@ -113,11 +121,16 @@ private let xcrunFindPath: String? = {
     return xcrunFindPath
 }()
 
+#if os(Linux)
+private let applicationsDir: String? = nil
+private let userApplicationsDir: String? = nil
+#else
 private let applicationsDir: String? =
     NSSearchPathForDirectoriesInDomains(.applicationDirectory, .systemDomainMask, true).first
 
 private let userApplicationsDir: String? =
     NSSearchPathForDirectoriesInDomains(.applicationDirectory, .userDomainMask, true).first
+#endif
 
 private extension String {
     private var toolchainDir: String {
@@ -137,11 +150,14 @@ private extension String {
     }
 
     private func stringByAppendingPathComponent(str: String) -> String {
-        return (self as NSString).appendingPathComponent(str)
+        return try! URL(fileURLWithPath: self).appendingPathComponent(str).path!
     }
 
     private func deletingLastPathComponents(n: Int) -> String {
-        let pathComponents = NSString(string: self).pathComponents.dropLast(n)
-        return NSString.path(withComponents: Array(pathComponents))
+        var url = URL(fileURLWithPath: self)
+        for _ in 0..<n {
+            url = try! url.deletingLastPathComponent()
+        }
+        return url.path!
     }
 }

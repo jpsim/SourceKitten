@@ -20,7 +20,15 @@ public struct Line {
     public let byteRange: NSRange
 }
 
-private let whitespaceAndNewlineCharacterSet = CharacterSet.whitespacesAndNewlines
+extension String {
+    internal var isFile: Bool {
+        return FileManager.default().fileExists(atPath: self)
+    }
+}
+
+#if !os(Linux)
+
+private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines()
 
 private let commentLinePrefixCharacterSet: NSCharacterSet = {
   let characterSet = NSMutableCharacterSet.whitespacesAndNewlines()
@@ -385,11 +393,48 @@ extension NSString {
     public func isSwiftFile() -> Bool {
         return pathExtension == "swift"
     }
+
+    /**
+    Returns a substring from a start and end SourceLocation.
+    */
+    public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
+        return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
+    }
 }
 
 extension String {
-    internal var isFile: Bool {
-        return FileManager.default().fileExists(atPath: self)
+    /// Returns the `#pragma mark`s in the string.
+    /// Just the content; no leading dashes or leading `#pragma mark`.
+    public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
+        let regex = try! RegularExpression(pattern: "(#pragma\\smark|@name)[ -]*([^\\n]+)", options: []) // Safe to force try
+        let range: NSRange
+        if let limitRange = limitRange {
+            range = NSRange(location: limitRange.location, length: min(utf16.count - limitRange.location, limitRange.length))
+        } else {
+            range = NSRange(location: 0, length: utf16.count)
+        }
+        let matches = regex.matches(in: self, options: [], range: range)
+
+        return matches.flatMap { match in
+            let markRange = match.range(at: 2)
+            for excludedRange in excludeRanges {
+                if NSIntersectionRange(excludedRange, markRange).length > 0 {
+                    return nil
+                }
+            }
+            let markString = (self as NSString).substring(with: markRange).trimmingCharacters(in: .whitespaces)
+            if markString.isEmpty {
+                return nil
+            }
+            guard let markByteRange = self.NSRangeToByteRange(start: markRange.location, length: markRange.length) else {
+                return nil
+            }
+            let location = SourceLocation(file: filename,
+                line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
+                column: 1, offset: UInt32(markByteRange.location))
+            return SourceDeclaration(type: .Mark, location: location, extent: (location, location), name: markString,
+                usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [], swiftDeclaration: nil)
+        }
     }
 
     /**
@@ -528,3 +573,5 @@ extension String {
         return trimmingCharacters(in: unwantedSet)
     }
 }
+
+#endif

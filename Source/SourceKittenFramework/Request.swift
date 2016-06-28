@@ -56,25 +56,26 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
     switch sourcekitd_variant_get_type(sourcekitObject) {
     case SOURCEKITD_VARIANT_TYPE_ARRAY:
         var array = [SourceKitRepresentable]()
-        _ = sourcekitd_variant_array_apply(sourcekitObject) { index, value in
-            if let value = fromSourceKit(value) {
-                array.insert(value, at: Int(index))
-            }
-            return true
+        _ = withUnsafeMutablePointer(&array) { arrayPtr in
+            sourcekitd_variant_array_apply_f(sourcekitObject, { index, value, context in
+                if let value = fromSourceKit(value), context = context {
+                    let localArray = UnsafeMutablePointer<Array<SourceKitRepresentable>>(context)
+                    localArray.pointee.insert(value, at: Int(index))
+                }
+                return true
+            }, arrayPtr)
         }
         return array
     case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
-        var count: Int = 0
-        _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { _, _ in
-            count += 1
-            return true
-        }
-        var dict = [String: SourceKitRepresentable](minimumCapacity: count)
-        _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
-            if let key = stringForSourceKitUID(key!), value = fromSourceKit(value) {
-                dict[key] = value
-            }
-            return true
+        var dict = [String: SourceKitRepresentable]()
+        _ = withUnsafeMutablePointer(&dict) { dictPtr in
+            sourcekitd_variant_dictionary_apply_f(sourcekitObject, { key, value, context in
+                if let key = stringForSourceKitUID(key!), value = fromSourceKit(value), context = context {
+                    let localDict = UnsafeMutablePointer<[String: SourceKitRepresentable]>(context)
+                    localDict.pointee[key] = value
+                }
+                return true
+            }, dictPtr)
         }
         return dict
     case SOURCEKITD_VARIANT_TYPE_STRING:
@@ -92,10 +93,6 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         fatalError("Should never happen because we've checked all SourceKitRepresentable types")
     }
 }
-
-/// dispatch_semaphore_t used when waiting for sourcekitd to be restored.
-private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
-private let sourceKitWaitingRestoredTimeout = DispatchTime.now()
 
 /// SourceKit UID to String map.
 private var uidStringMap = [sourcekitd_uid_t: String]()
@@ -125,23 +122,10 @@ internal func stringForSourceKitUID(_ uid: sourcekitd_uid_t) -> String? {
         For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
         That does not cause calling `decomposedStringWithCanonicalMapping`.
         */
-        let uidString = sourceKittenRawValueStringFrom(uidString) ?? "\(uidString)"
-        uidStringMap[uid] = uidString
-        return uidString
+        uidStringMap[uid] = "\(uidString)"
+        return "\(uidString)"
     }
     return nil
-}
-
-/**
-Returns SourceKitten defined enum's rawValue String from string
-
-- parameter uidString: String created from sourcekitd_uid_get_string_ptr().
-
-- returns: rawValue String if defined in SourceKitten, nil otherwise.
-*/
-private func sourceKittenRawValueStringFrom(_ uidString: String) -> String? {
-    return SwiftDocKey(rawValue: uidString)?.rawValue ??
-        SyntaxKind(rawValue: uidString)?.rawValue
 }
 
 /**
@@ -180,8 +164,12 @@ public enum Request {
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
     case CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
+    /// ObjC Swift Interface
+    case Interface(file: String, uuid: String)
     /// Find USR
     case FindUSR(file: String, usr: String)
+    /// Index
+    case Index(file: String)
     /// Format
     case Format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
     /// ReplaceText
@@ -191,11 +179,19 @@ public enum Request {
         var dict: [sourcekitd_uid_t : sourcekitd_object_t]
         switch self {
         case .EditorOpen(let file):
-            dict = [
-                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
-                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file.path),
-                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file.path)
-            ]
+            if let path = file.path {
+                dict = [
+                    sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
+                    sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(path),
+                    sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(path)
+                ]
+            } else {
+                dict = [
+                    sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
+                    sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(String(file.contents.hash)),
+                    sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(file.contents)
+                ]
+            }
         case .CursorInfo(let file, let offset, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
@@ -217,17 +213,34 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
+        case .Interface(let file, let uuid):
+            let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
+            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(uuid),
+                sourcekitd_uid_get_from_cstr("key.filepath"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
+            ]
         case .FindUSR(let file, let usr):
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.find_usr")),
                 sourcekitd_uid_get_from_cstr("key.usr"): sourcekitd_request_string_create(usr),
                 sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file)
             ]
+        case .Index(let file):
+            let arguments = ["-sdk", sdkPath(), "-j4", file ]
+            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.indexsource")),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
+            ]
         case .Format(let file, let line, let useTabs, let indentWidth):
             let formatOptions: [sourcekitd_uid_t : sourcekitd_object_t] = [
                 sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth"): sourcekitd_request_int64_create(indentWidth),
                 sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth"): sourcekitd_request_int64_create(indentWidth),
-                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(Int64(Int(useTabs))),
+                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(useTabs ? 1 : 0),
             ]
             var formatOptionsKeys = [sourcekitd_uid_t](formatOptions.keys)
             var formatOptionsValues = [sourcekitd_object_t](formatOptions.values)
@@ -267,30 +280,12 @@ public enum Request {
     }
 
     /**
-    Send a Request.CursorInfo by updating its offset. Returns SourceKit response if successful.
-
-    - parameter request: sourcekitd_object_t representation of Request.CursorInfo
-    - parameter offset:  Offset to update request.
-
-    - returns: SourceKit response if successful.
-    */
-    internal static func sendCursorInfoRequest(_ request: sourcekitd_object_t, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
-        if offset == 0 {
-            return nil
-        }
-        sourcekitd_request_dictionary_set_int64(request, sourcekitd_uid_get_from_cstr(SwiftDocKey.Offset.rawValue), offset)
-        return try? Request.CustomRequest(request).failableSend()
-    }
-
-    /**
     Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
 
     - returns: SourceKit output as a dictionary.
     */
     public func send() -> [String: SourceKitRepresentable] {
-//        dispatch_once(&sourceKitInitializationToken) {
-            sourcekitd_initialize()
-//        }
+        sourcekitd_initialize()
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response) }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
@@ -329,30 +324,6 @@ public enum Request {
             default: self = .Unknown(description)
             }
         }
-    }
-
-    /**
-    Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
-     
-    - returns: SourceKit output as a dictionary.
-    - throws: Request.Error on fail ()
-    */
-    public func failableSend() throws -> [String: SourceKitRepresentable] {
-        sourcekitd_initialize()
-        sourcekitd_set_notification_handler() { response in
-            if !sourcekitd_response_is_error(response!) {
-                fflush(stdout)
-                fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
-                sourceKitWaitingRestoredSemaphore.signal()
-            }
-            sourcekitd_response_dispose(response!)
-        }
-        let response = sourcekitd_send_request_sync(sourcekitObject)
-        defer { sourcekitd_response_dispose(response) }
-        if sourcekitd_response_is_error(response) {
-            throw Request.Error(response: response)
-        }
-        return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
 }
 
