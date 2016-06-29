@@ -16,7 +16,7 @@ extension NSMutableDictionary {
     }
 }
 
-public struct CodeCompletionItem {
+public struct CodeCompletionItem: CustomStringConvertible {
     public let kind: String
     public let context: String
     public let name: String?
