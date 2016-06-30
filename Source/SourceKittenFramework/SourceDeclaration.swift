@@ -12,7 +12,6 @@
 import Clang_C
 #endif
 import Foundation
-//import SWXMLHash
 
 public func insertMarks(_ declarations: [SourceDeclaration], limitRange: NSRange? = nil) -> [SourceDeclaration] {
     guard declarations.count > 0 else { return [] }

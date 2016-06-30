@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SWXMLHash
 #if SWIFT_PACKAGE
 import SourceKit
 #endif
@@ -52,4 +53,19 @@ public final class File {
     internal func shouldTreatAsSameFile(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
         return path == SwiftDocKey.getFilePath(dictionary)
     }
+}
+
+/**
+Returns an `[SourceKitRepresentable]` of `[String: SourceKitRepresentable]` items from `indexer` children, if any.
+
+- parameter indexer: `XMLIndexer` to traverse.
+*/
+private func childrenAsArray(_ indexer: XMLIndexer) -> [SourceKitRepresentable]? {
+    let children = indexer.children
+    if children.count > 0 {
+        return children.flatMap({ $0.element }).map {
+            [$0.name: $0.text ?? ""] as [String: SourceKitRepresentable]
+        } as [SourceKitRepresentable]
+    }
+    return nil
 }

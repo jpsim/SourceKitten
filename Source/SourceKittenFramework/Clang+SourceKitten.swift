@@ -12,6 +12,7 @@
 import Clang_C
 #endif
 import Foundation
+import SWXMLHash
 
 private var interfaceUUIDMap: [String: String] = [:]
 
@@ -69,14 +70,13 @@ extension CXCursor {
         if comment.kind() == CXComment_Null {
             return str()
         }
-        return nil
-//        let commentXML = clang_FullComment_getAsXML(comment).str() ?? ""
-//        guard let rootXML = SWXMLHash.parse(commentXML).children.first else {
-//            fatalError("couldn't parse XML")
-//        }
-//        return rootXML["Declaration"].element?.text?
-//            .replacingOccurrences(of: "\n@end", with: "")
-//            .replacingOccurrences(of: "@property(", with: "@property (")
+        let commentXML = clang_FullComment_getAsXML(comment).str() ?? ""
+        guard let rootXML = SWXMLHash.parse(commentXML).children.first else {
+            fatalError("couldn't parse XML")
+        }
+        return rootXML["Declaration"].element?.text?
+            .replacingOccurrences(of: "\n@end", with: "")
+            .replacingOccurrences(of: "@property(", with: "@property (")
     }
 
     func objCKind() -> ObjCDeclarationKind {
@@ -177,13 +177,11 @@ extension CXCursor {
         }
 
         let cursorInfo = Request.CursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
-        _ = cursorInfo
-        return nil
-//        guard let docsXML = cursorInfo[SwiftDocKey.FullXMLDocs.rawValue] as? String,
-//            swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
-//                return nil
-//        }
-//        return swiftDeclaration
+        guard let docsXML = cursorInfo[SwiftDocKey.FullXMLDocs.rawValue] as? String,
+            swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
+                return nil
+        }
+        return swiftDeclaration
     }
 }
 
