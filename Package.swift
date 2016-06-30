@@ -1,7 +1,5 @@
 import PackageDescription
 
-let dependencies: [Package.Dependency]
-
 let package = Package(
   name: "SourceKitten",
   targets: [
