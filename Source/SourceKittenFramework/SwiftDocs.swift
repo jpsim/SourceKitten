@@ -52,19 +52,22 @@ public struct SwiftDocs {
         var dictionary = dictionary
         let syntaxMapData = dictionary.removeValue(forKey: SwiftDocKey.SyntaxMap.rawValue) as! [SourceKitRepresentable]
         let syntaxMap = SyntaxMap(data: syntaxMapData)
+        #if os(Linux)
         _ = syntaxMap
         docsDictionary = [:]
-//        dictionary = file.processDictionary(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
-//        if let cursorInfoRequest = cursorInfoRequest {
-//            let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap: syntaxMap)
-//            dictionary = file.furtherProcessDictionary(
-//                dictionary: dictionary,
-//                documentedTokenOffsets: documentedTokenOffsets,
-//                cursorInfoRequest: cursorInfoRequest,
-//                syntaxMap: syntaxMap
-//            )
-//        }
-//        docsDictionary = dictionary
+        #else
+        dictionary = file.processDictionary(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
+        if let cursorInfoRequest = cursorInfoRequest {
+            let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap: syntaxMap)
+            dictionary = file.furtherProcessDictionary(
+                dictionary: dictionary,
+                documentedTokenOffsets: documentedTokenOffsets,
+                cursorInfoRequest: cursorInfoRequest,
+                syntaxMap: syntaxMap
+            )
+        }
+        docsDictionary = dictionary
+        #endif
     }
 }
 
