@@ -1,5 +1,5 @@
 github "antitypical/Result" "2fe88d1d41615ed060489e8cd06fc1b3e8f0ca53"
-github "jpsim/SWXMLHash" "bb9dfa8edf5f8c5c7073d419ecbe51a48f21369d"
+github "jpsim/SWXMLHash" "a7e2de1994f7c9501ade6a78f1e0aa0343491a3c"
 github "jpsim/YamlSwift" "1c6b9b1e676ab17407f7711c94e770dc27086faa"
 github "jspahrsummers/xcconfigs" "0.9"
 github "jpsim/Commandant" "5.0.0"
