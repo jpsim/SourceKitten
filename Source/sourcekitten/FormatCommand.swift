@@ -40,8 +40,6 @@ struct FormatCommand: CommandType {
         guard !options.file.isEmpty else {
             return .failure(.InvalidArgument(description: "file must be set when calling format"))
         }
-        let absolutePath = (options.file as NSString).absolutePathRepresentation()
-        _ = absolutePath
         return .success()
     }
 }
