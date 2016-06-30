@@ -6,6 +6,11 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if os(Linux)
+import Glibc
+#else
+import Darwin
+#endif
 import Commandant
 import SourceKittenFramework
 
