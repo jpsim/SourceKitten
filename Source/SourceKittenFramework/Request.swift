@@ -280,6 +280,22 @@ public enum Request {
     }
 
     /**
+    Send a Request.CursorInfo by updating its offset. Returns SourceKit response if successful.
+
+    - parameter request: sourcekitd_object_t representation of Request.CursorInfo
+    - parameter offset:  Offset to update request.
+
+    - returns: SourceKit response if successful.
+    */
+    internal static func sendCursorInfoRequest(_ request: sourcekitd_object_t, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
+        if offset == 0 {
+            return nil
+        }
+        sourcekitd_request_dictionary_set_int64(request, sourcekitd_uid_get_from_cstr(SwiftDocKey.Offset.rawValue), offset)
+        return Request.CustomRequest(request).send()
+    }
+
+    /**
     Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
 
     - returns: SourceKit output as a dictionary.
