@@ -9,7 +9,7 @@
 	url = https://github.com/drmohundro/SWXMLHash.git
 [submodule "Carthage/Checkouts/Result"]
 	path = Carthage/Checkouts/Result
-	url = https://github.com/jpsim/Result.git
+	url = https://github.com/antitypical/Result.git
 [submodule "Carthage/Checkouts/YamlSwift"]
 	path = Carthage/Checkouts/YamlSwift
 	url = https://github.com/behrang/YamlSwift.git

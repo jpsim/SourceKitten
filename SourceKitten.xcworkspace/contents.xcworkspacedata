@@ -4,4 +4,10 @@
    <FileRef
       location = "group:SourceKitten.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Carthage/Checkouts/Commandant/Commandant.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Carthage/Checkouts/Result/Result.xcodeproj">
+   </FileRef>
 </Workspace>
