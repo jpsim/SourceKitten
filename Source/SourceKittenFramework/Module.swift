@@ -23,7 +23,7 @@ public struct Module {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
         return sourceFiles.flatMap {
-            let filename = ($0 as NSString).lastPathComponent
+            let filename = NSString(string: $0).lastPathComponent
             if let file = File(path: $0) {
                 fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
                 fileIndex += 1
@@ -63,6 +63,7 @@ public struct Module {
         sourceFiles = sources
     }
 
+#if !os(Linux)
     /**
     Failable initializer to create a Module by the arguments necessary pass in to `xcodebuild` to build it.
     Optionally pass in a `moduleName` and `path`.
@@ -99,6 +100,7 @@ public struct Module {
         self.compilerArguments = compilerArguments
         sourceFiles = compilerArguments.filter({ $0.isSwiftFile() && $0.isFile }).map { ($0 as NSString).resolvingSymlinksInPath }
     }
+#endif
 }
 
 // MARK: CustomStringConvertible
