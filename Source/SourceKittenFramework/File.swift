@@ -18,6 +18,10 @@ public final class File {
     public let path: String?
     /// File contents.
     public var contents: String
+    #if !os(Linux)
+    /// File lines.
+    public var lines: [Line]
+    #endif
 
     /**
     Failable initializer by path. Fails if file contents could not be read as a UTF8 string.
@@ -25,9 +29,16 @@ public final class File {
     - parameter path: File path.
     */
     public init?(path: String) {
-        self.path = path
+        #if os(Linux)
+            self.path = path
+        #else
+            self.path = (path as NSString).absolutePathRepresentation()
+        #endif
         do {
             contents = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
+            #if !os(Linux)
+                lines = contents.lines()
+            #endif
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
             return nil
@@ -42,6 +53,9 @@ public final class File {
     public init(contents: String) {
         path = nil
         self.contents = contents
+        #if !os(Linux)
+            lines = contents.lines()
+        #endif
     }
 
     /**
