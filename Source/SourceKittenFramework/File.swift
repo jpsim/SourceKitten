@@ -58,6 +58,7 @@ public final class File {
         #endif
     }
 
+    #if !os(Linux)
     /**
      Formats the file.
      */
@@ -70,7 +71,6 @@ public final class File {
         _ = Request.EditorOpen(file: self).send()
         var newContents = [String]()
         var offset = 0
-        #if !os(Linux)
         for line in lines {
             let formatResponse = Request.Format(file: path,
                                                 line: Int64(line.index),
@@ -95,7 +95,6 @@ public final class File {
                 ($0 as NSString).stringByTrimmingTrailingCharactersInSet(characterSet: .whitespaces())
             }
         }
-        #endif
 
         return newContents.joined(separator: "\n") + "\n"
     }
@@ -255,6 +254,7 @@ public final class File {
             }
         }
     }
+#endif
 }
 
 /**
