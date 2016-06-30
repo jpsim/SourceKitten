@@ -16,7 +16,7 @@ import SourceKittenFramework
 
 let registry = CommandRegistry<SourceKittenError>()
 registry.register(command: CompleteCommand())
-//registry.register(command: DocCommand())
+registry.register(command: DocCommand())
 registry.register(command: FormatCommand())
 registry.register(command: IndexCommand())
 registry.register(command: SyntaxCommand())
