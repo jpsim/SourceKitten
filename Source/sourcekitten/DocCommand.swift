@@ -39,11 +39,51 @@ struct DocCommand: CommandType {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
+        #if !os(Linux)
+        let args = options.arguments
+        if !options.spmModule.isEmpty {
+            if let docs = Module(spmName: options.spmModule)?.docs {
+                print(docs)
+                return .success()
+            }
+            return .failure(.DocFailed)
+        } else if options.objc {
+            return runObjC(options, args: args)
+        } else if options.singleFile {
+            return runSwiftSingleFile(args)
+        }
+        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
+        return runSwiftModule(moduleName, args: args)
+        #else
         return .success()
+        #endif
     }
 
 #if !os(Linux)
-    func runObjC(options: Options, args: [String]) -> Result<(), SourceKittenError> {
+    func runSwiftModule(_ moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
+        let module = Module(xcodeBuildArguments: args, name: moduleName)
+
+        if let docs = module?.docs {
+            print(docs)
+            return .success()
+        }
+        return .failure(.DocFailed)
+    }
+
+    func runSwiftSingleFile(_ args: [String]) -> Result<(), SourceKittenError> {
+        if args.isEmpty {
+            return .failure(.InvalidArgument(description: "at least 5 arguments are required when using `--single-file`"))
+        }
+        let sourcekitdArguments = Array(args.dropFirst(1))
+        if let file = File(path: args[0]),
+            docs = SwiftDocs(file: file, arguments: sourcekitdArguments) {
+            print(docs)
+            return .success()
+        }
+        return .failure(.ReadFailed(path: args[0]))
+    }
+
+    func runObjC(_ options: Options, args: [String]) -> Result<(), SourceKittenError> {
         if args.isEmpty {
             return .failure(.InvalidArgument(description: "at least 5 arguments are required when using `--objc`"))
         }
