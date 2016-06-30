@@ -206,7 +206,126 @@ public final class File {
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
     internal func furtherProcessDictionary(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
-        fatalError()
+        var dictionary = dictionary
+        let offsetMap = generateOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
+        for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
+            if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ processDictionary($0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
+                kind = SwiftDocKey.getKind(response),
+                _ = SwiftDeclarationKind(rawValue: kind),
+                parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
+                inserted = insertDoc(response, parent: dictionary, offset: parentOffset) {
+                dictionary = inserted
+            }
+        }
+        return dictionary
+    }
+
+    /**
+    Update input dictionary's substructure by running `processDictionary(_:cursorInfoRequest:syntaxMap:)` on
+    its elements, only keeping comment marks and declarations.
+
+    - parameter dictionary:        Input dictionary to process its substructure.
+    - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
+
+    - returns: A copy of the input dictionary's substructure processed by running
+               `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
+               and declarations.
+    */
+    private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
+        return SwiftDocKey.getSubstructure(dictionary)?
+            .map({ $0 as! [String: SourceKitRepresentable] })
+            .filter(isDeclarationOrCommentMark)
+            .map {
+                processDictionary($0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
+        }
+    }
+
+    /**
+    Returns an updated copy of the input dictionary with comment mark names and cursor.info information.
+
+    - parameter dictionary:        Dictionary to update.
+    - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
+    */
+    private func dictWithCommentMarkNamesCursorInfo(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
+        guard let kind = SwiftDocKey.getKind(dictionary) else {
+            return nil
+        }
+        // Only update dictionaries with a 'kind' key
+        if kind == SyntaxKind.CommentMark.rawValue, let markName = markNameFromDictionary(dictionary) {
+            // Update comment marks
+            return [SwiftDocKey.Name.rawValue: markName]
+        } else if let decl = SwiftDeclarationKind(rawValue: kind) where decl != .VarParameter {
+            // Update if kind is a declaration (but not a parameter)
+            var updateDict = Request.sendCursorInfoRequest(cursorInfoRequest,
+                atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [String: SourceKitRepresentable]()
+
+            // Skip kinds, since values from editor.open are more accurate than cursorinfo
+            updateDict.removeValue(forKey: SwiftDocKey.Kind.rawValue)
+
+            // Skip offset and length.
+            // Their values are same with "key.nameoffset" and "key.namelength" in most case.
+            // When kind is extension, their values locate **the type's declaration** in their declared file.
+            // That may be different from the file declaring extension.
+            updateDict.removeValue(forKey: SwiftDocKey.Offset.rawValue)
+            updateDict.removeValue(forKey: SwiftDocKey.Length.rawValue)
+            return updateDict
+        }
+        return nil
+    }
+
+    /**
+    Returns whether or not a doc should be inserted into a parent at the provided offset.
+
+    - parameter parent: Parent dictionary to evaluate.
+    - parameter offset: Offset to search for in parent dictionary.
+
+    - returns: True if a doc should be inserted in the parent at the provided offset.
+    */
+    private func shouldInsert(_ parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
+        return SwiftDocKey.getSubstructure(parent) != nil &&
+            ((offset == 0) ||
+            (shouldTreatAsSameFile(parent) && SwiftDocKey.getNameOffset(parent) == offset))
+    }
+
+    /**
+    Inserts a document dictionary at the specified offset.
+    Parent will be traversed until the offset is found.
+    Returns nil if offset could not be found.
+
+    - parameter doc:    Document dictionary to insert.
+    - parameter parent: Parent to traverse to find insertion point.
+    - parameter offset: Offset to insert document dictionary.
+
+    - returns: Parent with doc inserted if successful.
+    */
+    private func insertDoc(_ doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
+        var parent = parent
+        if shouldInsert(parent, offset: offset) {
+            var substructure = SwiftDocKey.getSubstructure(parent)!
+            var insertIndex = substructure.count
+            for (index, structure) in substructure.reversed().enumerated() {
+                if SwiftDocKey.getOffset(structure as! [String: SourceKitRepresentable])! < offset {
+                    break
+                }
+                insertIndex = substructure.count - index
+            }
+            substructure.insert(doc, at: insertIndex)
+            parent[SwiftDocKey.Substructure.rawValue] = substructure
+            return parent
+        }
+        for key in parent.keys {
+            if let subArray = parent[key] as? [SourceKitRepresentable] {
+                var subArray = subArray
+                for i in 0..<subArray.count {
+                    if let subDict = insertDoc(doc, parent: subArray[i] as! [String: SourceKitRepresentable], offset: offset) {
+                        subArray[i] = subDict
+                        parent[key] = subArray
+                        return parent
+                    }
+                }
+            }
+        }
+        return nil
     }
 
     /**
