@@ -14,18 +14,31 @@ import Darwin
 import Commandant
 import SourceKittenFramework
 
-let registry = CommandRegistry<SourceKittenError>()
-registry.register(command: CompleteCommand())
-registry.register(command: DocCommand())
-registry.register(command: FormatCommand())
-registry.register(command: IndexCommand())
-registry.register(command: SyntaxCommand())
-registry.register(command: StructureCommand())
-registry.register(command: VersionCommand())
+private func run() {
+    let registry = CommandRegistry<SourceKittenError>()
+    registry.register(command: CompleteCommand())
+    registry.register(command: DocCommand())
+    registry.register(command: FormatCommand())
+    registry.register(command: IndexCommand())
+    registry.register(command: SyntaxCommand())
+    registry.register(command: StructureCommand())
+    registry.register(command: VersionCommand())
 
-let helpCommand = HelpCommand(registry: registry)
-registry.register(command: helpCommand)
+    let helpCommand = HelpCommand(registry: registry)
+    registry.register(command: helpCommand)
 
-registry.main(defaultVerb: "help") { error in
-    fputs("\(error)\n", stderr)
+    registry.main(defaultVerb: "help") { error in
+        fputs("\(error)\n", stderr)
+    }
 }
+
+#if os(Linux)
+    run()
+#else
+    // `sourcekitd_set_notification_handler()` set the handler to be executed on main thread queue.
+    // So, we vacate main thread to `dispatchMain()`.
+    DispatchQueue.global(attributes: .qosDefault).async {
+        run()
+    }
+    dispatchMain()
+#endif
