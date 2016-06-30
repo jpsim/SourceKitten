@@ -341,6 +341,38 @@ public enum Request {
             }
         }
     }
+
+    /**
+    Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
+     
+    - returns: SourceKit output as a dictionary.
+    - throws: Request.Error on fail ()
+    */
+    public func failableSend() throws -> [String: SourceKitRepresentable] {
+        return send()
+//        dispatch_once(&sourceKitInitializationToken) {
+//            sourcekitd_initialize()
+//            sourcekitd_set_notification_handler() { response in
+//                if !sourcekitd_response_is_error(response!) {
+//                    fflush(stdout)
+//                    fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
+//                    dispatch_semaphore_signal(sourceKitWaitingRestoredSemaphore!)
+//                }
+//                sourcekitd_response_dispose(response!)
+//            }
+//        }
+//        let response = sourcekitd_send_request_sync(sourcekitObject)
+//        defer { sourcekitd_response_dispose(response) }
+//        if sourcekitd_response_is_error(response) {
+//            let error = Request.Error(response: response)
+//            if case .ConnectionInterrupted = error {
+//                dispatch_semaphore_wait(sourceKitWaitingRestoredSemaphore!,
+//                    dispatch_time(DISPATCH_TIME_NOW, sourceKitWaitingRestoredTimeout))
+//            }
+//            throw error
+//        }
+//        return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
+    }
 }
 
 // MARK: CustomStringConvertible
