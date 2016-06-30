@@ -75,7 +75,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/jp/Projects/SourceKitten/Source/sourcekitten/main.swift"
+            argument = "syntax --text &quot;import Foundation&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -14,8 +14,8 @@ import Darwin
 import Commandant
 import SourceKittenFramework
 
-//print(SyntaxMap(file: File(path: Process.arguments[1])!))
 let registry = CommandRegistry<SourceKittenError>()
+registry.register(command: SyntaxCommand())
 registry.register(command: VersionCommand())
 
 let helpCommand = HelpCommand(registry: registry)
