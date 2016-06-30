@@ -27,9 +27,7 @@ public struct Module {
             if let file = File(path: $0) {
                 fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
                 fileIndex += 1
-                _ = file
-                return nil
-                // return SwiftDocs(file: file, arguments: compilerArguments)
+                return SwiftDocs(file: file, arguments: compilerArguments)
             }
             fputs("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
             return nil
