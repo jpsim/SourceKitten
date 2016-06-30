@@ -350,6 +350,8 @@ extension Request: CustomStringConvertible {
     public var description: String { return String(validatingUTF8: sourcekitd_request_description_copy(sourcekitObject))! }
 }
 
+#if !os(Linux)
+
 private func interfaceForModule(module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
     var compilerargs = compilerArguments.map({ sourcekitd_request_string_create($0) })
     let dict: [sourcekitd_uid_t : sourcekitd_object_t] = [
@@ -398,3 +400,5 @@ internal func libraryWrapperForModule(module: String, loadPath: String, spmModul
     let library = "private let library = toolchainLoader.load(\"\(loadPath)\")\n"
     return spmImport + library + freeFunctions.joined(separator: "\n") + "\n"
 }
+
+#endif
