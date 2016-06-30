@@ -58,6 +58,16 @@ public final class File {
         #endif
     }
 
+    /**
+     Returns true if path is nil or if path has the same last path component as `key.filepath` in the
+     input dictionary.
+
+     - parameter dictionary: Dictionary to parse.
+     */
+    internal func shouldTreatAsSameFile(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
+        return path == SwiftDocKey.getFilePath(dictionary)
+    }
+
     #if !os(Linux)
     /**
      Formats the file.
@@ -197,16 +207,6 @@ public final class File {
     */
     internal func furtherProcessDictionary(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
         fatalError()
-    }
-
-    /**
-    Returns true if path is nil or if path has the same last path component as `key.filepath` in the
-    input dictionary.
-
-    - parameter dictionary: Dictionary to parse.
-    */
-    internal func shouldTreatAsSameFile(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
-        return path == SwiftDocKey.getFilePath(dictionary)
     }
 
     /**
