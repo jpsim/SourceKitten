@@ -11,17 +11,17 @@ import Foundation
 import XCTest
 
 private func run(_ executable: String, arguments: [String]) -> String? {
-    let task = NSTask()
+    let task = Task()
     task.launchPath = executable
     task.arguments = arguments
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
 
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let output = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+    let output = NSString(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue)
     file.closeFile()
     return output as String?
 }
@@ -155,7 +155,7 @@ class SourceKitTests: XCTestCase {
         let indexJSON = NSMutableString(string: toJSON(toAnyObject(Request.Index(file: file).send())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
-            try! NSRegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
+            try! RegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
         }
 
         // Replace the parts of the output that are dependent on the environment of the test running machine

@@ -19,13 +19,13 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse"
         ]
         let structure = Structure(file: File(contents: ""))
-        XCTAssertEqual(toAnyObject(structure.dictionary), expected, "should generate expected structure")
+        XCTAssertEqual(toAnyObject(structure.dictionary) as? NSDictionary, expected, "should generate expected structure")
     }
 
     func testGenerateSameStructureFileAndContents() {
-        let fileContents = try! NSString(contentsOfFile: #file, encoding: NSUTF8StringEncoding) as String!
+        let fileContents = try! String(contentsOfFile: #file, encoding: String.Encoding.utf8)
         XCTAssertEqual(Structure(file: File(path: #file)!),
-            Structure(file: File(contents: fileContents!)),
+            Structure(file: File(contents: fileContents)),
             "should generate the same structure for a file as raw text")
     }
 
@@ -69,7 +69,7 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 26
         ]
-        XCTAssertEqual(toAnyObject(structure.dictionary), expectedStructure, "should generate expected structure")
+        XCTAssertEqual(toAnyObject(structure.dictionary) as? NSDictionary, expectedStructure, "should generate expected structure")
     }
 
     func testStructurePrintValidJSON() {
@@ -105,11 +105,11 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 24
         ]
-        XCTAssertEqual(toAnyObject(structure.dictionary), expectedStructure, "should generate expected structure")
+        XCTAssertEqual(toAnyObject(structure.dictionary) as? NSDictionary, expectedStructure, "should generate expected structure")
 
         let structureJSON = structure.description
         do {
-            let jsonDictionary = try NSJSONSerialization.jsonObject(with: structureJSON.data(using: NSUTF8StringEncoding)!, options: []) as? NSDictionary
+            let jsonDictionary = try JSONSerialization.jsonObject(with: structureJSON.data(using: String.Encoding.utf8)!, options: []) as? NSDictionary
             XCTAssertNotNil(jsonDictionary, "JSON should be propery parsed")
             if let jsonDictionary = jsonDictionary {
                 XCTAssertEqual(jsonDictionary, expectedStructure, "JSON should match expected structure")

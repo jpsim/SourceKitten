@@ -16,20 +16,20 @@ func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringC
     let jsonString = String(jsonString).replacingOccurrences(of: escapedFixturesDirectory, with: "")
 
     // Strip out any other absolute paths after that, since it's also dependent on the test machine's setup
-    let absolutePathRegex = try! NSRegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
+    let absolutePathRegex = try! RegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
     let actualContent = absolutePathRegex.stringByReplacingMatches(in: jsonString, options: [], range: NSRange(location: 0, length: jsonString.utf16.count), withTemplate: "\"key\\.filepath\" : \"\",")
 
     let expectedFile = File(path: fixturesDirectory + name + ".json")!
 
     let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
-        _ = try? actualContent.data(using: NSUTF8StringEncoding)?.write(toFile: expectedFile.path!, options: .atomicWrite)
+        _ = try? actualContent.data(using: String.Encoding.utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: .atomicWrite)
         return
     }
 
     func jsonValue(_ jsonString: String) -> NSObject {
-        let data = jsonString.data(using: NSUTF8StringEncoding)!
-        let result = try! NSJSONSerialization.jsonObject(with: data, options: [])
+        let data = jsonString.data(using: String.Encoding.utf8)!
+        let result = try! JSONSerialization.jsonObject(with: data, options: [])
         return (result as? NSDictionary) ?? (result as! NSArray)
     }
 
@@ -72,6 +72,6 @@ class SwiftDocsTests: XCTestCase {
             ]],
             "key.doc.result_discussion": [["Para": "result_discussion"]]
         ]
-        XCTAssertEqual(toAnyObject(parsed), expected)
+        XCTAssertEqual(toAnyObject(parsed) as? NSDictionary, expected)
     }
 }
