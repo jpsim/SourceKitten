@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-#if !os(Linux)
-
 import Foundation
 import SourceKittenFramework
 import XCTest
@@ -18,6 +16,8 @@ let fixturesDirectory: String = {
     let fixturesURL = try! parentURL.appendingPathComponent("Fixtures")
     return fixturesURL.path! + "/"
 }()
+
+#if !os(Linux)
 
 class ClangTranslationUnitTests: XCTestCase {
 
