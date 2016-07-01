@@ -3,6 +3,5 @@ import XCTest
 @testable import SourceKittenFrameworkTestSuite
 
 XCTMain([
-  // testCase(SourceKittenFrameworkTests.allTests),
+  testCase(FileTests.allTests),
 ])
-

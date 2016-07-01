@@ -12,7 +12,12 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-let fixturesDirectory = (#file as NSString).deletingLastPathComponent + "/Fixtures/"
+let fixturesDirectory: String = {
+    let fileURL = URL(fileURLWithPath: #file)
+    let parentURL = try! fileURL.deletingLastPathComponent()
+    let fixturesURL = try! parentURL.appendingPathComponent("Fixtures")
+    return fixturesURL.path! + "/"
+}()
 
 class ClangTranslationUnitTests: XCTestCase {
 

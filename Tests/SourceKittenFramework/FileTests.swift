@@ -6,8 +6,6 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
-#if !os(Linux)
-
 import SourceKittenFramework
 import XCTest
 
@@ -17,6 +15,7 @@ class FileTests: XCTestCase {
         XCTAssert(File(path: "/dev/null") == nil)
     }
 
+#if !os(Linux)
     func testFormat() {
         let file = File(path: fixturesDirectory + "BicycleUnformatted.swift")
         let formattedFile = file?.format(trimmingTrailingWhitespace: true,
@@ -24,6 +23,15 @@ class FileTests: XCTestCase {
                                          indentWidth: 4)
         XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift"))
     }
+#endif
 }
 
+#if os(Linux)
+extension FileTests {
+    static var allTests: [(String, (FileTests) -> () throws -> Void)] {
+        return [
+            ("testUnreadablePath", testUnreadablePath),
+        ]
+    }
+}
 #endif
