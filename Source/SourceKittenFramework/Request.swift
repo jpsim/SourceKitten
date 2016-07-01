@@ -122,10 +122,24 @@ internal func stringForSourceKitUID(_ uid: sourcekitd_uid_t) -> String? {
         For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
         That does not cause calling `decomposedStringWithCanonicalMapping`.
         */
-        uidStringMap[uid] = "\(uidString)"
-        return "\(uidString)"
+        let uidString = sourceKittenRawValueStringFrom(uidString) ?? "\(uidString)"
+        uidStringMap[uid] = uidString
+        return uidString
     }
     return nil
+}
+
+/**
+Returns SourceKitten defined enum's rawValue String from string
+
+- parameter uidString: String created from sourcekitd_uid_get_string_ptr().
+
+- returns: rawValue String if defined in SourceKitten, nil otherwise.
+*/
+private func sourceKittenRawValueStringFrom(_ uidString: String) -> String? {
+    return SwiftDocKey(rawValue: uidString)?.rawValue ??
+        SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
+        SyntaxKind(rawValue: uidString)?.rawValue
 }
 
 /**
