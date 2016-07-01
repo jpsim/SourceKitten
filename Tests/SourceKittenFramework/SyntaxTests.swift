@@ -23,8 +23,6 @@ func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
     XCTAssertEqual(jsonArray!, expectedSyntaxMap.tokens.map { $0.dictionaryValue }, "JSON should match expected syntax")
 }
 
-#if !os(Linux)
-
 class SyntaxTests: XCTestCase {
 
     func testPrintEmptySyntax() {
@@ -61,5 +59,3 @@ class SyntaxTests: XCTestCase {
         )
     }
 }
-
-#endif
