@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-#if !os(Linux)
-
 import Foundation
 import SourceKittenFramework
 import XCTest
@@ -23,11 +21,13 @@ func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringC
 
     let expectedFile = File(path: fixturesDirectory + name + ".json")!
 
+    #if !os(Linux)
     let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: String.Encoding.utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: .atomicWrite)
         return
     }
+    #endif
 
     func jsonValue(_ jsonString: String) -> NSObject {
         let data = jsonString.data(using: String.Encoding.utf8)!
@@ -40,6 +40,8 @@ func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringC
         print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
     }
 }
+
+#if !os(Linux)
 
 func compareDocsWithFixturesName(_ name: String) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
