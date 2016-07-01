@@ -41,8 +41,6 @@ func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringC
     }
 }
 
-#if !os(Linux)
-
 func compareDocsWithFixturesName(_ name: String) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
     let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
@@ -59,6 +57,7 @@ class SwiftDocsTests: XCTestCase {
         compareDocsWithFixturesName("Bicycle")
     }
 
+#if !os(Linux)
     func testParseFullXMLDocs() {
         let xmlDocsString = "<Type file=\"file\" line=\"1\" column=\"2\"><Name>name</Name><USR>usr</USR><Declaration>declaration</Declaration><Abstract><Para>discussion</Para></Abstract><Parameters><Parameter><Name>param1</Name><Direction isExplicit=\"0\">in</Direction><Discussion><Para>param1_discussion</Para></Discussion></Parameter></Parameters><ResultDiscussion><Para>result_discussion</Para></ResultDiscussion></Type>"
         let parsed = parseFullXMLDocs(xmlDocsString)!
@@ -78,6 +77,5 @@ class SwiftDocsTests: XCTestCase {
         ]
         XCTAssertEqual(toAnyObject(parsed) as? NSDictionary, expected)
     }
-}
-
 #endif
+}
