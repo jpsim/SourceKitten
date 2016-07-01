@@ -161,7 +161,12 @@ public final class File {
     - returns: Mark name if successfully parsed.
     */
     private func markNameFromDictionary(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        return nil
+        precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.CommentMark.rawValue)
+        let offset = Int(SwiftDocKey.getOffset(dictionary)!)
+        let length = Int(SwiftDocKey.getLength(dictionary)!)
+        let fileContentsData = contents.data(using: String.Encoding.utf8)
+        let subdata = fileContentsData?.subdata(in: Range(offset..<(offset + length)))
+        return subdata.flatMap({ String(data: $0, encoding: String.Encoding.utf8) })
     }
 
     /**
@@ -173,6 +178,12 @@ public final class File {
     */
     public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
+        if let cursorInfoRequest = cursorInfoRequest {
+            dictionary = merge(
+                dictionary,
+                dictWithCommentMarkNamesCursorInfo(dictionary, cursorInfoRequest: cursorInfoRequest)
+            )
+        }
 
         // Parse declaration and add to dictionary
         if let parsedDeclaration = parseDeclaration(dictionary) {
@@ -193,6 +204,11 @@ public final class File {
         if let commentBody = (syntaxMap.flatMap { getDocumentationCommentBody(dictionary, syntaxMap: $0) }) {
             // Parse documentation comment and add to dictionary
             dictionary[SwiftDocKey.DocumentationComment.rawValue] = commentBody
+        }
+
+        // Update substructure
+        if let substructure = newSubstructure(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap) {
+            dictionary[SwiftDocKey.Substructure.rawValue] = substructure
         }
         return dictionary
     }
