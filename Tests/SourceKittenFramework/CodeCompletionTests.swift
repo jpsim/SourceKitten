@@ -6,8 +6,6 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
-#if !os(Linux)
-
 import Foundation
 import SourceKittenFramework
 import XCTest
@@ -15,13 +13,17 @@ import XCTest
 class CodeCompletionTests: XCTestCase {
 
     func testSimpleCodeCompletion() {
+        #if os(Linux)
+        let file = "\(NSUUID().UUIDString).swift"
+        #else
         let file = "\(NSUUID().uuidString).swift"
+        #endif
         let completionItems = CodeCompletionItem.parseResponse(
             response: Request.CodeCompletionRequest(file: file, contents: "0.", offset: 2,
                 arguments: ["-c", file, "-sdk", sdkPath()]).send())
+        #if !os(Linux)
         compareJSONStringWithFixturesName("SimpleCodeCompletion",
             jsonString: completionItems)
+        #endif
     }
 }
-
-#endif
