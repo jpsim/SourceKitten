@@ -6,6 +6,8 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 import Foundation
 @testable import SourceKittenFramework
 import XCTest
@@ -171,3 +173,5 @@ extension String: CustomStringConvertible {
         return self
     }
 }
+
+#endif

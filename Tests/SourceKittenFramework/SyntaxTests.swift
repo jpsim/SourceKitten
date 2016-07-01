@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 import Foundation
 import SourceKittenFramework
 import XCTest
@@ -59,3 +61,5 @@ class SyntaxTests: XCTestCase {
         )
     }
 }
+
+#endif

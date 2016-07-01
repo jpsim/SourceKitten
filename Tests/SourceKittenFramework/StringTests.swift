@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 import Foundation
 import SourceKittenFramework
 import XCTest
@@ -154,3 +156,5 @@ typealias LineRangeType = (start: Int, end: Int)
 func ==(lhs: LineRangeType, rhs: LineRangeType) -> Bool {
     return lhs.start == rhs.start && lhs.end == rhs.end
 }
+
+#endif

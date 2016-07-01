@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 import Foundation
 import SourceKittenFramework
 import XCTest
@@ -47,3 +49,5 @@ class ClangTranslationUnitTests: XCTestCase {
 //        compareClangFixture(fixture: "Realm/Realm")
 //    }
 }
+
+#endif

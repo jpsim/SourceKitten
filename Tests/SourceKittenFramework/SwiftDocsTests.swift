@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 import Foundation
 import SourceKittenFramework
 import XCTest
@@ -75,3 +77,5 @@ class SwiftDocsTests: XCTestCase {
         XCTAssertEqual(toAnyObject(parsed) as? NSDictionary, expected)
     }
 }
+
+#endif

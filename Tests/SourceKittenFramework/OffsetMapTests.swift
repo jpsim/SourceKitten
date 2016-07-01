@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 import Foundation
 import SourceKittenFramework
 import XCTest
@@ -33,3 +35,5 @@ class OffsetMapTests: XCTestCase {
         XCTAssertEqual(offsetMap, [:], "should generate empty offset map")
     }
 }
+
+#endif

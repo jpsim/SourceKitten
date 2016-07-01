@@ -6,6 +6,8 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 import SourceKittenFramework
 import XCTest
 
@@ -23,3 +25,5 @@ class FileTests: XCTestCase {
         XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift"))
     }
 }
+
+#endif
