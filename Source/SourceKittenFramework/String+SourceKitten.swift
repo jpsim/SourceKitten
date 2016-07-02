@@ -33,6 +33,17 @@ extension NSString {
     public func isSwiftFile() -> Bool {
         return pathExtension == "swift"
     }
+
+    /**
+     Returns an array of Lines for each line in the file.
+     */
+    public func lines() -> [Line] {
+        #if os(Linux)
+            return []
+        #else
+            return cacheContainer.lines
+        #endif
+    }
 }
 
 #if !os(Linux)
@@ -380,13 +391,6 @@ extension NSString {
             }
             return nil
         }
-    }
-
-    /**
-    Returns an array of Lines for each line in the file.
-    */
-    public func lines() -> [Line] {
-        return cacheContainer.lines
     }
 
     /**
