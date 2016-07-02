@@ -24,15 +24,6 @@ extension String {
     internal var isFile: Bool {
         return FileManager.default().fileExists(atPath: self)
     }
-}
-
-extension NSString {
-    /**
-     Returns true if self is a Swift file.
-     */
-    public func isSwiftFile() -> Bool {
-        return pathExtension == "swift"
-    }
 
     #if os(Linux)
     /**
@@ -42,6 +33,15 @@ extension NSString {
         return []
     }
     #endif
+}
+
+extension NSString {
+    /**
+     Returns true if self is a Swift file.
+     */
+    public func isSwiftFile() -> Bool {
+        return pathExtension == "swift"
+    }
 }
 
 #if !os(Linux)
