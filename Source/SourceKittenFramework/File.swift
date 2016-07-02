@@ -62,7 +62,6 @@ public final class File {
         return path == SwiftDocKey.getFilePath(dictionary)
     }
 
-    #if !os(Linux)
     /**
      Formats the file.
      */
@@ -94,15 +93,18 @@ public final class File {
             offset += 1 + newLength - oldLength
         }
 
+        #if !os(Linux)
         if trimmingTrailingWhitespace {
             newContents = newContents.map {
                 ($0 as NSString).stringByTrimmingTrailingCharactersInSet(characterSet: .whitespaces())
             }
         }
+        #endif
 
         return newContents.joined(separator: "\n") + "\n"
     }
 
+    #if !os(Linux)
     /**
     Parse source declaration string from SourceKit dictionary.
 
