@@ -37,17 +37,24 @@ struct CompleteCommand: CommandType {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        #if !os(Linux)
         let path: String
         let contents: String
         if !options.file.isEmpty {
-            path = options.file.absolutePathRepresentation()
+            #if os(Linux)
+                path = options.file
+            #else
+                path = options.file.absolutePathRepresentation()
+            #endif
             guard let file = File(path: path) else {
                 return .failure(.ReadFailed(path: options.file))
             }
             contents = file.contents
         } else {
-            path = "\(NSUUID().uuidString).swift"
+            #if os(Linux)
+                path = "\(NSUUID().UUIDString).swift"
+            #else
+                path = "\(NSUUID().uuidString).swift"
+            #endif
             contents = options.text
         }
 
@@ -63,7 +70,6 @@ struct CompleteCommand: CommandType {
             offset: Int64(options.offset),
             arguments: args)
         print(CodeCompletionItem.parseResponse(response: request.send()))
-        #endif
         return .success()
     }
 }
