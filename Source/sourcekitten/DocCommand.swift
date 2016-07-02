@@ -39,7 +39,6 @@ struct DocCommand: CommandType {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        #if !os(Linux)
         let args = options.arguments
         if !options.spmModule.isEmpty {
             if let docs = Module(spmName: options.spmModule)?.docs {
@@ -54,19 +53,17 @@ struct DocCommand: CommandType {
         }
         let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
         return runSwiftModule(moduleName, args: args)
-        #else
-        return .success()
-        #endif
     }
 
-#if !os(Linux)
     func runSwiftModule(_ moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
+        #if !os(Linux)
         let module = Module(xcodeBuildArguments: args, name: moduleName)
 
         if let docs = module?.docs {
             print(docs)
             return .success()
         }
+        #endif
         return .failure(.DocFailed)
     }
 
@@ -87,9 +84,10 @@ struct DocCommand: CommandType {
         if args.isEmpty {
             return .failure(.InvalidArgument(description: "at least 5 arguments are required when using `--objc`"))
         }
+        #if !os(Linux)
         let translationUnit = ClangTranslationUnit(headerFiles: [args[0]], compilerArguments: Array(args.dropFirst(1)))
         print(translationUnit)
+        #endif
         return .success()
     }
-#endif
 }
