@@ -121,10 +121,7 @@ private let xcrunFindPath: String? = {
     return xcrunFindPath
 }()
 
-#if os(Linux)
-private let applicationsDir: String? = nil
-private let userApplicationsDir: String? = nil
-#else
+#if !os(Linux)
 private let applicationsDir: String? =
     NSSearchPathForDirectoriesInDomains(.applicationDirectory, .systemDomainMask, true).first
 
