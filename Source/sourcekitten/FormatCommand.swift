@@ -41,18 +41,16 @@ struct FormatCommand: CommandType {
             return .failure(.InvalidArgument(description: "file must be set when calling format"))
         }
         #if os(Linux)
-            let absolutePath = options.file
             let writingOptions: Data.WritingOptions = []
         #else
-            let absolutePath = (options.file as NSString).absolutePathRepresentation()
             let writingOptions: Data.WritingOptions = [.atomicWrite]
         #endif
-        try! File(path: absolutePath)?
+        try! File(path: options.file)?
             .format(trimmingTrailingWhitespace: options.trimWhitespace,
                     useTabs: options.useTabs,
                     indentWidth: options.indentWidth)
             .data(using: String.Encoding.utf8)?
-            .write(to: URL(fileURLWithPath: absolutePath), options: writingOptions)
+            .write(to: URL(fileURLWithPath: options.file), options: writingOptions)
         return .success()
     }
 }
