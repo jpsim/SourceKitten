@@ -44,10 +44,9 @@ extension NSString {
     }
 }
 
-#if !os(Linux)
-
 private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines()
 
+#if !os(Linux)
 private let commentLinePrefixCharacterSet: NSCharacterSet = {
   let characterSet = NSMutableCharacterSet.whitespacesAndNewlines()
   /**
@@ -56,10 +55,13 @@ private let commentLinePrefixCharacterSet: NSCharacterSet = {
   characterSet.addCharacters(in: "*")
   return characterSet
 }()
+#endif
 
 private var keyCacheContainer = 0
 
 extension NSString {
+    #if !os(Linux)
+
     /**
     CacheContainer caches:
 
@@ -226,13 +228,19 @@ extension NSString {
         return cache
     }
 
+    #endif
+
     /**
     Returns line number and character for utf16 based offset.
 
     - parameter offset: utf16 based index.
     */
     public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         return cacheContainer.lineAndCharacterForCharacterOffset(offset: offset)
+        #endif
     }
 
     /**
@@ -241,7 +249,11 @@ extension NSString {
     - parameter offset: byte offset.
     */
     public func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         return cacheContainer.lineAndCharacterForByteOffset(offset: offset)
+        #endif
     }
 
     /**
@@ -251,6 +263,9 @@ extension NSString {
     - parameter characterSet: Character set to check for membership.
     */
     public func stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet) -> String {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         if length == 0 {
             return self as String
         }
@@ -262,6 +277,7 @@ extension NSString {
             }
         }
         return ""
+        #endif
     }
 
     /**
@@ -270,10 +286,14 @@ extension NSString {
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
     public func absolutePathRepresentation(rootDirectory: String = FileManager.default().currentDirectoryPath) -> String {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         if isAbsolutePath {
             return self as String
         }
         return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
+        #endif
     }
 
     /**
@@ -287,12 +307,16 @@ extension NSString {
     */
     public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
         if self.length == 0 { return nil }
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         let utf16Start = cacheContainer.locationFromByteOffset(byteOffset: start)
         if length == 0 {
             return NSRange(location: utf16Start, length: 0)
         }
         let utf16End = cacheContainer.locationFromByteOffset(byteOffset: start + length)
         return NSRange(location: utf16Start, length: utf16End - utf16Start)
+        #endif
     }
 
     /**
@@ -305,6 +329,9 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         let string = self as String
 
         let utf16View = string.utf16
@@ -333,6 +360,7 @@ extension NSString {
         // in most case.
         let length = utf8View.distance(from: startUTF8Index, to: endUTF8Index)
         return NSRange(location: byteOffset, length: length)
+        #endif
     }
 
     /**
@@ -395,7 +423,11 @@ extension NSString {
     Returns an array of Lines for each line in the file.
     */
     public func lines() -> [Line] {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         return cacheContainer.lines
+        #endif
     }
 
     /**
@@ -405,15 +437,18 @@ extension NSString {
         return ["h", "hpp", "hh"].contains(pathExtension)
     }
 
+#if !os(Linux)
     /**
     Returns a substring from a start and end SourceLocation.
     */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
         return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
     }
+#endif
 }
 
 extension String {
+#if !os(Linux)
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
@@ -447,6 +482,7 @@ extension String {
                 usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [], swiftDeclaration: nil)
         }
     }
+#endif
 
     /**
     Returns whether or not the `token` can be documented. Either because it is a
@@ -459,12 +495,16 @@ extension String {
     - parameter token: Token to process.
     */
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         if token.type == SyntaxKind.Keyword.rawValue {
             let keywordFunctions = ["subscript", "init", "deinit"]
             return ((self as NSString).substringWithByteRange(start: token.offset, length: token.length))
                 .map(keywordFunctions.contains) ?? false
         }
         return token.type == SyntaxKind.Identifier.rawValue
+        #endif
     }
 
     /**
@@ -494,6 +534,9 @@ extension String {
     - parameter range: Range to restrict the search for a comment body.
     */
     public func commentBody(range: NSRange? = nil) -> String? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         let nsString = self as NSString
         let patterns: [(pattern: String, options: RegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
@@ -535,12 +578,14 @@ extension String {
             }
         }
         return nil
+        #endif
     }
 
     /// Returns a copy of `self` with the leading whitespace common in each line removed.
     public func stringByRemovingCommonLeadingWhitespaceFromLines() -> String {
         var minLeadingCharacters = Int.max
 
+        #if !os(Linux)
         enumerateLines { line, _ in
             let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet)
             let lineLeadingCharacters = line.countOfLeadingCharactersInSet(characterSet: commentLinePrefixCharacterSet)
@@ -549,6 +594,7 @@ extension String {
                 minLeadingCharacters = lineLeadingCharacters
             }
         }
+        #endif
         var lines = [String]()
         enumerateLines { line, _ in
             if line.characters.count >= minLeadingCharacters {
@@ -584,5 +630,3 @@ extension String {
         return trimmingCharacters(in: unwantedSet)
     }
 }
-
-#endif
