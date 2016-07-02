@@ -40,15 +40,19 @@ struct FormatCommand: CommandType {
         guard !options.file.isEmpty else {
             return .failure(.InvalidArgument(description: "file must be set when calling format"))
         }
-        #if !os(Linux)
-        let absolutePath = (options.file as NSString).absolutePathRepresentation()
+        #if os(Linux)
+            let absolutePath = options.file
+            let writingOptions: Data.WritingOptions = []
+        #else
+            let absolutePath = (options.file as NSString).absolutePathRepresentation()
+            let writingOptions: Data.WritingOptions = [.atomicWrite]
+        #endif
         try! File(path: absolutePath)?
             .format(trimmingTrailingWhitespace: options.trimWhitespace,
                     useTabs: options.useTabs,
                     indentWidth: options.indentWidth)
             .data(using: String.Encoding.utf8)?
-            .write(to: URL(fileURLWithPath: absolutePath), options: .atomicWrite)
-        #endif
+            .write(to: URL(fileURLWithPath: absolutePath), options: writingOptions)
         return .success()
     }
 }
