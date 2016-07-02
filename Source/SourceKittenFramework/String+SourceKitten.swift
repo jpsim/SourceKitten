@@ -46,16 +46,14 @@ extension NSString {
 
 private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines()
 
-#if !os(Linux)
+/**
+ * For "wall of asterisk" comment blocks, such as this one.
+ */
 private let commentLinePrefixCharacterSet: NSCharacterSet = {
-  let characterSet = NSMutableCharacterSet.whitespacesAndNewlines()
-  /**
-   * For "wall of asterisk" comment blocks, such as this one.
-   */
-  characterSet.addCharacters(in: "*")
-  return characterSet
+    let characterSet: NSMutableCharacterSet = NSMutableCharacterSet.whitespacesAndNewlines()
+    characterSet.addCharacters(in: "*")
+    return characterSet
 }()
-#endif
 
 private var keyCacheContainer = 0
 
