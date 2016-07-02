@@ -26,6 +26,15 @@ extension String {
     }
 }
 
+extension NSString {
+    /**
+     Returns true if self is a Swift file.
+     */
+    public func isSwiftFile() -> Bool {
+        return pathExtension == "swift"
+    }
+}
+
 #if !os(Linux)
 
 private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines()
@@ -385,13 +394,6 @@ extension NSString {
     */
     public func isObjectiveCHeaderFile() -> Bool {
         return ["h", "hpp", "hh"].contains(pathExtension)
-    }
-
-    /**
-    Returns true if self is a Swift file.
-    */
-    public func isSwiftFile() -> Bool {
-        return pathExtension == "swift"
     }
 
     /**

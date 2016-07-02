@@ -86,6 +86,7 @@ public struct Module {
         }
         self.init(name: moduleName, compilerArguments: arguments)
     }
+#endif
 
     /**
     Initializer to create a Module by name and compiler arguments.
@@ -96,9 +97,12 @@ public struct Module {
     public init(name: String, compilerArguments: [String]) {
         self.name = name
         self.compilerArguments = compilerArguments
+        #if os(Linux)
+        sourceFiles = compilerArguments.filter({ NSString(string: $0).isSwiftFile() && $0.isFile })
+        #else
         sourceFiles = compilerArguments.filter({ $0.isSwiftFile() && $0.isFile }).map { ($0 as NSString).resolvingSymlinksInPath }
+        #endif
     }
-#endif
 }
 
 // MARK: CustomStringConvertible
