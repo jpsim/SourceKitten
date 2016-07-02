@@ -330,9 +330,10 @@ extension NSString {
     */
     public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
         #if os(Linux)
-        fatalError("unimplemented")
+        let string = "\(self)"
         #else
         let string = self as String
+        #endif
 
         let utf16View = string.utf16
         let startUTF16Index = utf16View.index(utf16View.startIndex, offsetBy: start)
@@ -344,6 +345,9 @@ extension NSString {
                 return nil
         }
 
+        #if os(Linux)
+        let byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
+        #else
         // Don't using `CacheContainer` if string is short.
         // There are two reasons for:
         // 1. Avoid using associatedObject on NSTaggedPointerString (< 7 bytes) because that does
@@ -355,12 +359,12 @@ extension NSString {
         } else {
             byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
         }
+        #endif
 
         // `cacheContainer` will hit for below, but that will be calculated from startUTF8Index
         // in most case.
         let length = utf8View.distance(from: startUTF8Index, to: endUTF8Index)
         return NSRange(location: byteOffset, length: length)
-        #endif
     }
 
     /**
