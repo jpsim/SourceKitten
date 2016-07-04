@@ -211,9 +211,6 @@ public final class File {
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
     internal func furtherProcessDictionary(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         var dictionary = dictionary
         let offsetMap = generateOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
@@ -226,7 +223,6 @@ public final class File {
             }
         }
         return dictionary
-        #endif
     }
 
     /**
