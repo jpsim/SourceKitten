@@ -98,7 +98,6 @@ public final class File {
         return newContents.joined(separator: "\n") + "\n"
     }
 
-    #if !os(Linux)
     /**
     Parse source declaration string from SourceKit dictionary.
 
@@ -107,6 +106,9 @@ public final class File {
     - returns: Source declaration if successfully parsed.
     */
     public func parseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         guard shouldParseDeclaration(dictionary),
             let start = SwiftDocKey.getOffset(dictionary).map({ Int($0) }) else {
             return nil
@@ -118,6 +120,7 @@ public final class File {
             substring = contents.substringLinesWithByteRange(start: start, length: 0)
         }
         return substring?.stringByTrimmingWhitespaceAndOpeningCurlyBrace()
+        #endif
     }
 
     /**
@@ -128,6 +131,9 @@ public final class File {
     - returns: Line numbers containing the declaration's implementation.
     */
     public func parseScopeRange(_ dictionary: [String: SourceKitRepresentable]) -> (start: Int, end: Int)? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         if !shouldParseDeclaration(dictionary) {
             return nil
         }
@@ -141,6 +147,7 @@ public final class File {
             let length = end - start
             return contents.lineRangeWithByteRange(start: start, length: length)
         }
+        #endif
     }
 
     /**
@@ -167,6 +174,9 @@ public final class File {
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
     public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
@@ -201,6 +211,7 @@ public final class File {
             dictionary[SwiftDocKey.Substructure.rawValue] = substructure
         }
         return dictionary
+        #endif
     }
 
     /**
@@ -212,6 +223,9 @@ public final class File {
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
     internal func furtherProcessDictionary(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         var dictionary = dictionary
         let offsetMap = generateOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
@@ -224,6 +238,7 @@ public final class File {
             }
         }
         return dictionary
+        #endif
     }
 
     /**
@@ -238,12 +253,16 @@ public final class File {
                and declarations.
     */
     private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         return SwiftDocKey.getSubstructure(dictionary)?
             .map({ $0 as! [String: SourceKitRepresentable] })
             .filter(isDeclarationOrCommentMark)
             .map {
                 processDictionary($0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
         }
+        #endif
     }
 
     /**
@@ -253,6 +272,9 @@ public final class File {
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
     private func dictWithCommentMarkNamesCursorInfo(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         guard let kind = SwiftDocKey.getKind(dictionary) else {
             return nil
         }
@@ -277,6 +299,7 @@ public final class File {
             return updateDict
         }
         return nil
+        #endif
     }
 
     /**
@@ -305,6 +328,9 @@ public final class File {
     - returns: Parent with doc inserted if successful.
     */
     private func insertDoc(_ doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         var parent = parent
         if shouldInsert(parent, offset: offset) {
             var substructure = SwiftDocKey.getSubstructure(parent)!
@@ -332,6 +358,7 @@ public final class File {
             }
         }
         return nil
+        #endif
     }
 
     /**
@@ -358,6 +385,9 @@ public final class File {
                syntax (`/** ... */` or `/// ...`).
     */
     public func getDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
+        #if os(Linux)
+        fatalError("unimplemented")
+        #else
         let isExtension = SwiftDocKey.getKind(dictionary).flatMap({ SwiftDeclarationKind(rawValue: $0) }) == .Extension
         let hasFullXMLDocs = dictionary.keys.contains(SwiftDocKey.FullXMLDocs.rawValue)
         let hasRawDocComment: Bool = {
@@ -378,8 +408,8 @@ public final class File {
                 }
             }
         }
+        #endif
     }
-#endif
 }
 
 /**
