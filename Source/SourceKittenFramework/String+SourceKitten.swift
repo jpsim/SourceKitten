@@ -245,21 +245,17 @@ extension NSString {
     - parameter characterSet: Character set to check for membership.
     */
     public func stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet) -> String {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         if length == 0 {
-            return self as String
+            return ""
         }
         var charBuffer = [unichar](repeating: 0, count: length)
-        getCharacters(&charBuffer)
+        getCharacters(&charBuffer, range: NSRange(location: 0, length: charBuffer.count))
         for newLength in (1...length).reversed() {
             if !characterSet.characterIsMember(charBuffer[newLength - 1]) {
                 return substring(with: NSRange(location: 0, length: newLength))
             }
         }
         return ""
-        #endif
     }
 
     /**
