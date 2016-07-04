@@ -245,16 +245,12 @@ public final class File {
                and declarations.
     */
     private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         return SwiftDocKey.getSubstructure(dictionary)?
             .map({ $0 as! [String: SourceKitRepresentable] })
             .filter(isDeclarationOrCommentMark)
             .map {
                 processDictionary($0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
         }
-        #endif
     }
 
     /**
