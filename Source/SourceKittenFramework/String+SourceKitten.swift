@@ -20,12 +20,6 @@ public struct Line {
     public let byteRange: NSRange
 }
 
-extension String {
-    internal var isFile: Bool {
-        return FileManager.default().fileExists(atPath: self)
-    }
-}
-
 private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines()
 
 /**
@@ -415,6 +409,10 @@ extension NSString {
 }
 
 extension String {
+    internal var isFile: Bool {
+        return FileManager.default().fileExists(atPath: self)
+    }
+
 #if !os(Linux)
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
