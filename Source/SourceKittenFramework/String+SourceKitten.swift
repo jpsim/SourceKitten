@@ -265,11 +265,10 @@ extension NSString {
     */
     public func absolutePathRepresentation(rootDirectory: String = FileManager.default().currentDirectoryPath) -> String {
         #if os(Linux)
-        fatalError("unimplemented")
+        if absolutePath { return "\(self)" }
+        return try! NSURL.fileURLWithPathComponents([rootDirectory, "\(self)"])!.standardizingPath().path!
         #else
-        if isAbsolutePath {
-            return self as String
-        }
+        if isAbsolutePath { return self as String }
         return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
         #endif
     }
