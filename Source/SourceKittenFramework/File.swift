@@ -91,7 +91,7 @@ public final class File {
 
         if trimmingTrailingWhitespace {
             newContents = newContents.map {
-                NSString(string: $0).stringByTrimmingTrailingCharactersInSet(characterSet: .whitespaces())
+                NSString(string: $0).stringByTrimmingTrailingCharactersInSet(characterSet: .whitespaces)
             }
         }
 
