@@ -6,8 +6,6 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
-#if !os(Linux)
-
 import Foundation
 @testable import SourceKittenFramework
 import XCTest
@@ -23,12 +21,15 @@ private func run(_ executable: String, arguments: [String]) -> String? {
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let output = NSString(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue)
+    let output = String(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8)
     file.closeFile()
-    return output as String?
+    return output
 }
 
 private func sourcekitStringsStartingWith(_ pattern: String) -> Set<String> {
+    #if os(Linux)
+    fatalError("unimplemented")
+    #else
     let sourceKitServicePath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
         .deletingLastPathComponent as NSString)
         .deletingLastPathComponent as NSString)
@@ -37,6 +38,7 @@ private func sourcekitStringsStartingWith(_ pattern: String) -> Set<String> {
     return Set(strings!.components(separatedBy: "\n").filter { string in
         return string.range(of: pattern)?.lowerBound == string.startIndex
     })
+    #endif
 }
 
 class SourceKitTests: XCTestCase {
@@ -157,14 +159,14 @@ class SourceKitTests: XCTestCase {
         let indexJSON = NSMutableString(string: toJSON(toAnyObject(Request.Index(file: file).send())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
-            try! RegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
+            _ = try! RegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
         }
 
         // Replace the parts of the output that are dependent on the environment of the test running machine
         replace("\"key\\.filepath\"[^\\n]*", withTemplate: "\"key\\.filepath\" : \"\",")
         replace("\"key\\.hash\"[^\\n]*", withTemplate: "\"key\\.hash\" : \"\",")
 
-        compareJSONStringWithFixturesName("BicycleIndex", jsonString: indexJSON as String)
+        compareJSONStringWithFixturesName("BicycleIndex", jsonString: "\(indexJSON)")
     }
 }
 
@@ -173,5 +175,3 @@ extension String: CustomStringConvertible {
         return self
     }
 }
-
-#endif
