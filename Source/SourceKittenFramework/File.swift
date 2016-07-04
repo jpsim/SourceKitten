@@ -260,9 +260,6 @@ public final class File {
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
     private func dictWithCommentMarkNamesCursorInfo(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         guard let kind = SwiftDocKey.getKind(dictionary) else {
             return nil
         }
@@ -287,7 +284,6 @@ public final class File {
             return updateDict
         }
         return nil
-        #endif
     }
 
     /**
