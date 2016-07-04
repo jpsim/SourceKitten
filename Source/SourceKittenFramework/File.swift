@@ -106,21 +106,17 @@ public final class File {
     - returns: Source declaration if successfully parsed.
     */
     public func parseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         guard shouldParseDeclaration(dictionary),
             let start = SwiftDocKey.getOffset(dictionary).map({ Int($0) }) else {
             return nil
         }
         let substring: String?
         if let end = SwiftDocKey.getBodyOffset(dictionary) {
-            substring = contents.substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
+            substring = NSString(string: contents).substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
         } else {
-            substring = contents.substringLinesWithByteRange(start: start, length: 0)
+            substring = NSString(string: contents).substringLinesWithByteRange(start: start, length: 0)
         }
         return substring?.stringByTrimmingWhitespaceAndOpeningCurlyBrace()
-        #endif
     }
 
     /**
