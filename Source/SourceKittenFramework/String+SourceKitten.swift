@@ -495,10 +495,7 @@ extension String {
     - parameter range: Range to restrict the search for a comment body.
     */
     public func commentBody(range: NSRange? = nil) -> String? {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
-        let nsString = self as NSString
+        let nsString = NSString(string: self)
         let patterns: [(pattern: String, options: RegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
             ("^\\s*\\/\\/\\/(.+)?",           .anchorsMatchLines)                               // single: ^\s*\/\/\/(.+)?
@@ -521,7 +518,12 @@ extension String {
                     var lineEnd = nsString.length
                     let indexRange = NSRange(location: range.location, length: 0)
                     nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: indexRange)
-                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet)
+                    #if os(Linux)
+                    let characterSet = whitespaceAndNewlineCharacterSet._bridgeToObjectiveC()
+                    #else
+                    let characterSet = whitespaceAndNewlineCharacterSet
+                    #endif
+                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(characterSet: characterSet)
                     let leadingWhitespaceToAdd = String(repeating: Character(" "), count: leadingWhitespaceCountToAdd)
 
                     let bodySubstring = nsString.substring(with: range)
@@ -532,14 +534,19 @@ extension String {
                 }
             }
             if bodyParts.count > 0 {
+                #if os(Linux)
+                return NSString(string: bodyParts.joined(separator: "\n"))
+                    .stringByTrimmingTrailingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet._bridgeToObjectiveC())
+                    .stringByRemovingCommonLeadingWhitespaceFromLines()
+                #else
                 return bodyParts
                     .joined(separator: "\n")
                     .stringByTrimmingTrailingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet)
                     .stringByRemovingCommonLeadingWhitespaceFromLines()
+                #endif
             }
         }
         return nil
-        #endif
     }
 
     /// Returns a copy of `self` with the leading whitespace common in each line removed.
