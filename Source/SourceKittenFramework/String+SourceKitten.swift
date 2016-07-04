@@ -548,10 +548,11 @@ extension String {
 
         enumerateLines { line, _ in
             #if os(Linux)
-            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet._bridgeToObjectiveC())
+            let characterSet = whitespaceAndNewlineCharacterSet._bridgeToObjectiveC()
             #else
-            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet)
+            let characterSet = whitespaceAndNewlineCharacterSet
             #endif
+            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: characterSet)
             let lineLeadingCharacters = line.countOfLeadingCharactersInSet(characterSet: commentLinePrefixCharacterSet)
             // Is this prefix smaller than our last and not entirely whitespace?
             if lineLeadingCharacters < minLeadingCharacters && lineLeadingWhitespace != line.characters.count {
