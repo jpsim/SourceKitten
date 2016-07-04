@@ -550,16 +550,19 @@ extension String {
     public func stringByRemovingCommonLeadingWhitespaceFromLines() -> String {
         var minLeadingCharacters = Int.max
 
-        #if !os(Linux)
         enumerateLines { line, _ in
+            #if os(Linux)
+            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet._bridgeToObjectiveC())
+            #else
             let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet)
+            #endif
             let lineLeadingCharacters = line.countOfLeadingCharactersInSet(characterSet: commentLinePrefixCharacterSet)
             // Is this prefix smaller than our last and not entirely whitespace?
             if lineLeadingCharacters < minLeadingCharacters && lineLeadingWhitespace != line.characters.count {
                 minLeadingCharacters = lineLeadingCharacters
             }
         }
-        #endif
+
         var lines = [String]()
         enumerateLines { line, _ in
             if line.characters.count >= minLeadingCharacters {
