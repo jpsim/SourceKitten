@@ -58,7 +58,6 @@ private let commentLinePrefixCharacterSet: NSCharacterSet = {
 private var keyCacheContainer = 0
 
 extension NSString {
-    #if !os(Linux)
 
     /**
     CacheContainer caches:
@@ -67,7 +66,7 @@ extension NSString {
     - UTF8-based NSRange
     - Line
     */
-    @objc private class CacheContainer: NSObject {
+    private class CacheContainer {
         let lines: [Line]
         let utf8View: String.UTF8View
 
@@ -95,7 +94,7 @@ extension NSString {
             var utf8indexStart = string.utf8.startIndex
             var utf16indexStart = string.utf16.startIndex
 
-            let nsstring = string as NSString
+            let nsstring = NSString(string: string)
             var lines = [Line]()
             while start < nsstring.length {
                 let range = NSRange(location: start, length: 0)
@@ -218,15 +217,17 @@ extension NSString {
     CacheContainer instance is stored to instance of NSString as associated object.
     */
     private var cacheContainer: CacheContainer {
+        #if os(Linux)
+        return CacheContainer(self)
+        #else
         if let cache = objc_getAssociatedObject(self, &keyCacheContainer) as? CacheContainer {
             return cache
         }
         let cache = CacheContainer(self)
         objc_setAssociatedObject(self, &keyCacheContainer, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return cache
+        #endif
     }
-
-    #endif
 
     /**
     Returns line number and character for utf16 based offset.
@@ -234,11 +235,7 @@ extension NSString {
     - parameter offset: utf16 based index.
     */
     public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         return cacheContainer.lineAndCharacterForCharacterOffset(offset: offset)
-        #endif
     }
 
     /**
@@ -247,11 +244,7 @@ extension NSString {
     - parameter offset: byte offset.
     */
     public func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         return cacheContainer.lineAndCharacterForByteOffset(offset: offset)
-        #endif
     }
 
     /**
@@ -305,16 +298,12 @@ extension NSString {
     */
     public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
         if self.length == 0 { return nil }
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         let utf16Start = cacheContainer.locationFromByteOffset(byteOffset: start)
         if length == 0 {
             return NSRange(location: utf16Start, length: 0)
         }
         let utf16End = cacheContainer.locationFromByteOffset(byteOffset: start + length)
         return NSRange(location: utf16Start, length: utf16End - utf16Start)
-        #endif
     }
 
     /**
@@ -343,9 +332,6 @@ extension NSString {
                 return nil
         }
 
-        #if os(Linux)
-        let byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
-        #else
         // Don't using `CacheContainer` if string is short.
         // There are two reasons for:
         // 1. Avoid using associatedObject on NSTaggedPointerString (< 7 bytes) because that does
@@ -357,7 +343,6 @@ extension NSString {
         } else {
             byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
         }
-        #endif
 
         // `cacheContainer` will hit for below, but that will be calculated from startUTF8Index
         // in most case.
@@ -425,11 +410,7 @@ extension NSString {
     Returns an array of Lines for each line in the file.
     */
     public func lines() -> [Line] {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         return cacheContainer.lines
-        #endif
     }
 
     /**
