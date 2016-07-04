@@ -30,7 +30,7 @@ extension String {
      Returns an array of Lines for each line in the file.
      */
     public func lines() -> [Line] {
-        return []
+        return NSString(string: self).lines()
     }
     #endif
 }
