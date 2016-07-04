@@ -27,11 +27,7 @@ public final class File {
     - parameter path: File path.
     */
     public init?(path: String) {
-        #if os(Linux)
-            self.path = path
-        #else
-            self.path = (path as NSString).absolutePathRepresentation()
-        #endif
+        self.path = NSString(string: path).absolutePathRepresentation()
         do {
             contents = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
             lines = NSString(string: contents).lines()
@@ -93,13 +89,11 @@ public final class File {
             offset += 1 + newLength - oldLength
         }
 
-        #if !os(Linux)
         if trimmingTrailingWhitespace {
             newContents = newContents.map {
-                ($0 as NSString).stringByTrimmingTrailingCharactersInSet(characterSet: .whitespaces())
+                NSString(string: $0).stringByTrimmingTrailingCharactersInSet(characterSet: .whitespaces())
             }
         }
-        #endif
 
         return newContents.joined(separator: "\n") + "\n"
     }
