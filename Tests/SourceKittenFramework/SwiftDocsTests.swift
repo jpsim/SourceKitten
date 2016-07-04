@@ -21,13 +21,16 @@ func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringC
 
     let expectedFile = File(path: fixturesDirectory + name + ".json")!
 
-    #if !os(Linux)
     let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
-        _ = try? actualContent.data(using: String.Encoding.utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: .atomicWrite)
+        #if os(Linux)
+            let writingOptions: Data.WritingOptions = []
+        #else
+            let writingOptions: Data.WritingOptions = [.atomicWrite]
+        #endif
+        _ = try? actualContent.data(using: String.Encoding.utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: writingOptions)
         return
     }
-    #endif
 
     func jsonValue(_ jsonString: String) -> NSObject {
         let data = jsonString.data(using: String.Encoding.utf8)!
