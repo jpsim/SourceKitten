@@ -131,9 +131,6 @@ public final class File {
     - returns: Line numbers containing the declaration's implementation.
     */
     public func parseScopeRange(_ dictionary: [String: SourceKitRepresentable]) -> (start: Int, end: Int)? {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         if !shouldParseDeclaration(dictionary) {
             return nil
         }
@@ -145,9 +142,8 @@ public final class File {
                 }
             } ?? start
             let length = end - start
-            return contents.lineRangeWithByteRange(start: start, length: length)
+            return NSString(string: contents).lineRangeWithByteRange(start: start, length: length)
         }
-        #endif
     }
 
     /**
