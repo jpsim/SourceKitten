@@ -15,7 +15,6 @@ class FileTests: XCTestCase {
         XCTAssert(File(path: "/dev/wtf") == nil)
     }
 
-#if !os(Linux)
     func testFormat() {
         let file = File(path: fixturesDirectory + "BicycleUnformatted.swift")
         let formattedFile = file?.format(trimmingTrailingWhitespace: true,
@@ -23,7 +22,6 @@ class FileTests: XCTestCase {
                                          indentWidth: 4)
         XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift"))
     }
-#endif
 }
 
 #if os(Linux)
