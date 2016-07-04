@@ -34,7 +34,7 @@ public final class File {
         #endif
         do {
             contents = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
-            lines = contents.lines()
+            lines = NSString(string: contents).lines()
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
             return nil
@@ -49,7 +49,7 @@ public final class File {
     public init(contents: String) {
         path = nil
         self.contents = contents
-        lines = contents.lines()
+        lines = NSString(string: contents).lines()
     }
 
     /**

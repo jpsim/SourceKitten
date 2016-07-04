@@ -24,15 +24,6 @@ extension String {
     internal var isFile: Bool {
         return FileManager.default().fileExists(atPath: self)
     }
-
-    #if os(Linux)
-    /**
-     Returns an array of Lines for each line in the file.
-     */
-    public func lines() -> [Line] {
-        return NSString(string: self).lines()
-    }
-    #endif
 }
 
 extension NSString {
