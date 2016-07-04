@@ -304,9 +304,6 @@ public final class File {
     - returns: Parent with doc inserted if successful.
     */
     private func insertDoc(_ doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         var parent = parent
         if shouldInsert(parent, offset: offset) {
             var substructure = SwiftDocKey.getSubstructure(parent)!
@@ -334,7 +331,6 @@ public final class File {
             }
         }
         return nil
-        #endif
     }
 
     /**
