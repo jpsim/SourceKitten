@@ -170,9 +170,6 @@ public final class File {
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
     public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
-        #if os(Linux)
-        fatalError("unimplemented")
-        #else
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
@@ -207,7 +204,6 @@ public final class File {
             dictionary[SwiftDocKey.Substructure.rawValue] = substructure
         }
         return dictionary
-        #endif
     }
 
     /**
