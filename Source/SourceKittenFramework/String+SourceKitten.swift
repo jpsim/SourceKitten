@@ -534,16 +534,9 @@ extension String {
                 }
             }
             if bodyParts.count > 0 {
-                #if os(Linux)
                 return NSString(string: bodyParts.joined(separator: "\n"))
                     .stringByTrimmingTrailingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet)
                     .stringByRemovingCommonLeadingWhitespaceFromLines()
-                #else
-                return bodyParts
-                    .joined(separator: "\n")
-                    .stringByTrimmingTrailingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet)
-                    .stringByRemovingCommonLeadingWhitespaceFromLines()
-                #endif
             }
         }
         return nil
