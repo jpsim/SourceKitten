@@ -540,7 +540,9 @@ extension String {
     public func stringByRemovingCommonLeadingWhitespaceFromLines() -> String {
         var minLeadingCharacters = Int.max
 
-        enumerateLines { line, _ in
+        let lineComponents = components(separatedBy: .newlines)
+
+        for line in lineComponents {
             #if os(Linux)
             let characterSet = whitespaceAndNewlineCharacterSet._bridgeToObjectiveC()
             #else
@@ -554,15 +556,12 @@ extension String {
             }
         }
 
-        var lines = [String]()
-        enumerateLines { line, _ in
+        return lineComponents.map { line in
             if line.characters.count >= minLeadingCharacters {
-                lines.append(line[line.index(line.startIndex, offsetBy: minLeadingCharacters)..<line.endIndex])
-            } else {
-                lines.append(line)
+                return line[line.index(line.startIndex, offsetBy: minLeadingCharacters)..<line.endIndex]
             }
-        }
-        return lines.joined(separator: "\n")
+            return line
+        }.joined(separator: "\n")
     }
 
     /**
