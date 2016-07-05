@@ -28,17 +28,17 @@ private func run(_ executable: String, arguments: [String]) -> String? {
 
 private func sourcekitStringsStartingWith(_ pattern: String) -> Set<String> {
     #if os(Linux)
-    fatalError("unimplemented")
+    let sourceKitPath = "/root/build/Ninja-DebugAssert/swift-linux-x86_64/lib/libsourcekitdInProc.so"
     #else
-    let sourceKitServicePath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
+    let sourceKitPath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
         .deletingLastPathComponent as NSString)
         .deletingLastPathComponent as NSString)
         .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
-    let strings = run("/usr/bin/strings", arguments: [sourceKitServicePath])
+    #endif
+    let strings = run("/usr/bin/strings", arguments: [sourceKitPath])
     return Set(strings!.components(separatedBy: "\n").filter { string in
         return string.range(of: pattern)?.lowerBound == string.startIndex
     })
-    #endif
 }
 
 class SourceKitTests: XCTestCase {
