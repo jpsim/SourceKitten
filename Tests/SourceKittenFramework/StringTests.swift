@@ -21,10 +21,10 @@ class StringTests: XCTestCase {
     }
 
     func testStringByTrimmingTrailingCharactersInSet() {
-        XCTAssertEqual(NSString(string: "").stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet.whitespacesAndNewlines()), "")
-        XCTAssertEqual(NSString(string: " a ").stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet.whitespacesAndNewlines()), " a")
-        XCTAssertEqual(NSString(string: " ").stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet.whitespacesAndNewlines()), "")
-        XCTAssertEqual(NSString(string: "a").stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet.whitespacesAndNewlines()), "a")
+        XCTAssertEqual(NSString(string: "").stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines), "")
+        XCTAssertEqual(NSString(string: " a ").stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines), " a")
+        XCTAssertEqual(NSString(string: " ").stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines), "")
+        XCTAssertEqual(NSString(string: "a").stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines), "a")
     }
 
     func testCommentBody() {

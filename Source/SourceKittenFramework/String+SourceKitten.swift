@@ -20,14 +20,14 @@ public struct Line {
     public let byteRange: NSRange
 }
 
-private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines()
+private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines
 
 /**
  * For "wall of asterisk" comment blocks, such as this one.
  */
-private let commentLinePrefixCharacterSet: NSCharacterSet = {
-    let characterSet: NSMutableCharacterSet = NSMutableCharacterSet.whitespacesAndNewlines()
-    characterSet.addCharacters(in: "*")
+private let commentLinePrefixCharacterSet: CharacterSet = {
+    var characterSet = NSMutableCharacterSet.whitespacesAndNewlines
+    characterSet.insert(charactersIn: "*")
     return characterSet
 }()
 
@@ -242,7 +242,7 @@ extension NSString {
 
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
-    public func absolutePathRepresentation(rootDirectory: String = FileManager.default().currentDirectoryPath) -> String {
+    public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
         #if os(Linux)
         if absolutePath { return "\(self)" }
         return try! NSURL.fileURLWithPathComponents([rootDirectory, "\(self)"])!.standardizingPath().path!
@@ -404,7 +404,7 @@ extension NSString {
 
 extension String {
     internal var isFile: Bool {
-        return FileManager.default().fileExists(atPath: self)
+        return FileManager.default.fileExists(atPath: self)
     }
 
 #if !os(Linux)

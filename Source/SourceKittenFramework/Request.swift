@@ -434,7 +434,7 @@ internal func libraryWrapperForModule(module: String, loadPath: String, spmModul
             let start = source.index(source.startIndex, offsetBy: Int(offset))
             let end = source.index(start, offsetBy: Int(length))
             let functionDeclaration = source.substring(with: start..<end)
-            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwardsSearch, range: nil, locale: nil)?.lowerBound {
+            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards, range: nil, locale: nil)?.lowerBound {
                 returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
             }
         }

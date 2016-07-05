@@ -70,7 +70,7 @@ public struct Module {
     - parameter name:                Module name. Will be parsed from `xcodebuild` output if nil.
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
-    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default().currentDirectoryPath) {
+    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
         let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
         guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .Swift, moduleName: name ?? moduleNameFromArguments(arguments: xcodeBuildArguments)) else {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)

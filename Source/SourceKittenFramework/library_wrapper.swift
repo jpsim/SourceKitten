@@ -65,21 +65,21 @@ struct Loader {
 
 /// Returns "LINUX_SOURCEKIT_LIB_PATH" environment variable
 private let linuxSourceKitLibPath: String? =
-    ProcessInfo.processInfo().environment["LINUX_SOURCEKIT_LIB_PATH"]
+    ProcessInfo.processInfo.environment["LINUX_SOURCEKIT_LIB_PATH"]
 
 /// Returns "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable
 ///
 /// `launch-with-toolchain` sets the toolchain path to the
 /// "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable.
 private let xcodeDefaultToolchainOverride: String? =
-    ProcessInfo.processInfo().environment["XCODE_DEFAULT_TOOLCHAIN_OVERRIDE"]
+    ProcessInfo.processInfo.environment["XCODE_DEFAULT_TOOLCHAIN_OVERRIDE"]
 
 /// Returns "TOOLCHAIN_DIR" environment variable
 ///
 /// `Xcode`/`xcodebuild` sets the toolchain path to the
 /// "TOOLCHAIN_DIR" environment variable.
 private let toolchainDir: String? =
-    ProcessInfo.processInfo().environment["TOOLCHAIN_DIR"]
+    ProcessInfo.processInfo.environment["TOOLCHAIN_DIR"]
 
 /// Returns toolchain directory that parsed from result of `xcrun -find swift`
 ///
@@ -87,7 +87,7 @@ private let toolchainDir: String? =
 private let xcrunFindPath: String? = {
     let pathOfXcrun = "/usr/bin/xcrun"
 
-    if !FileManager.default().isExecutableFile(atPath: pathOfXcrun) {
+    if !FileManager.default.isExecutableFile(atPath: pathOfXcrun) {
         return nil
     }
 
