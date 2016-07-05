@@ -25,3 +25,11 @@ class CodeCompletionTests: XCTestCase {
             jsonString: completionItems)
     }
 }
+
+extension CodeCompletionTests {
+    static var allTests: [(String, (CodeCompletionTests) -> () throws -> Void)] {
+        return [
+            // ("testSimpleCodeCompletion", testSimpleCodeCompletion),
+        ]
+    }
+}

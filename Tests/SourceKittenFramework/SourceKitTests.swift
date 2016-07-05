@@ -175,3 +175,17 @@ extension String: CustomStringConvertible {
         return self
     }
 }
+
+extension SourceKitTests {
+    static var allTests: [(String, (SourceKitTests) -> () throws -> Void)] {
+        return [
+            // These tests pass on Linux but take a long time, so they're disabled
+            // ("testStatementKinds", testStatementKinds),
+            // ("testSyntaxKinds", testSyntaxKinds),
+            // ("testSwiftDeclarationKind", testSwiftDeclarationKind),
+
+            // This test fails on Linux
+            // ("testIndex", testIndex),
+        ]
+    }
+}

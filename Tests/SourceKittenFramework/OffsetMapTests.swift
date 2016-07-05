@@ -33,3 +33,12 @@ class OffsetMapTests: XCTestCase {
         XCTAssertEqual(offsetMap, [:], "should generate empty offset map")
     }
 }
+
+extension OffsetMapTests {
+    static var allTests: [(String, (OffsetMapTests) -> () throws -> Void)] {
+        return [
+            ("testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented", testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented),
+            ("testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset", testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset),
+        ]
+    }
+}
