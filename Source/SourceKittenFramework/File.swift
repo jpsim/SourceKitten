@@ -357,7 +357,7 @@ public final class File {
                syntax (`/** ... */` or `/// ...`).
     */
     public func getDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
-        let isExtension = SwiftDocKey.getKind(dictionary).flatMap({ SwiftDeclarationKind(rawValue: $0) }) == .Extension
+        let isExtension = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init) == .Extension
         let hasFullXMLDocs = dictionary.keys.contains(SwiftDocKey.FullXMLDocs.rawValue)
         let hasRawDocComment: Bool = {
             if !dictionary.keys.contains("key.attributes") { return false }
@@ -370,8 +370,7 @@ public final class File {
         let hasDocumentationComment = (hasFullXMLDocs && !isExtension) || hasRawDocComment
         guard hasDocumentationComment else { return nil }
 
-        let maybeOffset = isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)
-        return maybeOffset.flatMap { offset in
+        return (isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)).flatMap { offset in
             return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
                 return NSString(string: contents).byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound).flatMap { nsRange in
                     return contents.commentBody(range: nsRange)
