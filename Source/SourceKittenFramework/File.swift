@@ -95,7 +95,7 @@ public final class File {
             }
         }
 
-        return newContents.joined(separator: "\n") + "\n"
+        return newContents.joined(separator: "\n")
     }
 
     /**
