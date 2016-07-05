@@ -49,16 +49,6 @@ public final class File {
     }
 
     /**
-     Returns true if path is nil or if path has the same last path component as `key.filepath` in the
-     input dictionary.
-
-     - parameter dictionary: Dictionary to parse.
-     */
-    internal func shouldTreatAsSameFile(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
-        return path == SwiftDocKey.getFilePath(dictionary)
-    }
-
-    /**
      Formats the file.
      */
     public func format(trimmingTrailingWhitespace: Bool,
@@ -331,6 +321,16 @@ public final class File {
             }
         }
         return nil
+    }
+
+    /**
+    Returns true if path is nil or if path has the same last path component as `key.filepath` in the
+    input dictionary.
+
+    - parameter dictionary: Dictionary to parse.
+    */
+    internal func shouldTreatAsSameFile(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
+        return path == SwiftDocKey.getFilePath(dictionary)
     }
 
     /**
