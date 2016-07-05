@@ -49,7 +49,7 @@ struct FormatCommand: CommandType {
             .format(trimmingTrailingWhitespace: options.trimWhitespace,
                     useTabs: options.useTabs,
                     indentWidth: options.indentWidth)
-            .data(using: String.Encoding.utf8)?
+            .data(using: .utf8)?
             .write(to: URL(fileURLWithPath: options.file), options: writingOptions)
         return .success()
     }

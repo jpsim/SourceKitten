@@ -85,7 +85,7 @@ extension CXCursor {
 
     func str() -> String? {
         let cursorExtent = extent()
-        let contents = try! String(contentsOfFile: cursorExtent.start.file, encoding: String.Encoding.utf8)
+        let contents = try! String(contentsOfFile: cursorExtent.start.file, encoding: .utf8)
         return contents.substringWithSourceRange(start: cursorExtent.start, end: cursorExtent.end)
     }
 
@@ -98,7 +98,7 @@ extension CXCursor {
             let prefix = "c:@EA@"
             assert(usrString.hasPrefix(prefix))
             let index = usrString.index(usrString.startIndex,
-                                        offsetBy: prefix.lengthOfBytes(using: String.Encoding.utf8))
+                                        offsetBy: prefix.lengthOfBytes(using: .utf8))
             return usrString.substring(from: index)
         } else if let usrNSString = usr() as NSString? where type == .Category {
             let ext = (usrNSString.range(of: "c:objc(ext)").location == 0)

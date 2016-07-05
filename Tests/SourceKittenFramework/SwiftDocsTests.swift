@@ -23,12 +23,12 @@ func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringC
 
     let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
-        _ = try? actualContent.data(using: String.Encoding.utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
+        _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
         return
     }
 
     func jsonValue(_ jsonString: String) -> NSObject {
-        let data = jsonString.data(using: String.Encoding.utf8)!
+        let data = jsonString.data(using: .utf8)!
         let result = try! JSONSerialization.jsonObject(with: data, options: [])
         return (result as? NSDictionary) ?? (result as! NSArray)
     }

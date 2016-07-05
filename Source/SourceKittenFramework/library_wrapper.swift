@@ -100,7 +100,7 @@ private let xcrunFindPath: String? = {
     task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
 
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    guard let output = String(data: data, encoding: String.Encoding.utf8) else {
+    guard let output = String(data: data, encoding: .utf8) else {
         return nil
     }
 

@@ -29,7 +29,7 @@ public final class File {
     public init?(path: String) {
         self.path = NSString(string: path).absolutePathRepresentation()
         do {
-            contents = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
+            contents = try String(contentsOfFile: path, encoding: .utf8)
             lines = NSString(string: contents).lines()
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
@@ -85,7 +85,7 @@ public final class File {
                                     length: Int64(line.byteRange.length - 1),
                                     sourceText: newText).send()
             let oldLength = line.byteRange.length
-            let newLength = newText.lengthOfBytes(using: String.Encoding.utf8)
+            let newLength = newText.lengthOfBytes(using: .utf8)
             offset += 1 + newLength - oldLength
         }
 
@@ -153,9 +153,9 @@ public final class File {
         precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.CommentMark.rawValue)
         let offset = Int(SwiftDocKey.getOffset(dictionary)!)
         let length = Int(SwiftDocKey.getLength(dictionary)!)
-        let fileContentsData = contents.data(using: String.Encoding.utf8)
+        let fileContentsData = contents.data(using: .utf8)
         let subdata = fileContentsData?.subdata(in: Range(offset..<(offset + length)))
-        return subdata.flatMap({ String(data: $0, encoding: String.Encoding.utf8) })
+        return subdata.flatMap({ String(data: $0, encoding: .utf8) })
     }
 
     /**

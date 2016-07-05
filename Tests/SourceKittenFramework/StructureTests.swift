@@ -25,7 +25,7 @@ class StructureTests: XCTestCase {
     }
 
     func testGenerateSameStructureFileAndContents() {
-        let fileContents = try! String(contentsOfFile: #file, encoding: String.Encoding.utf8)
+        let fileContents = try! String(contentsOfFile: #file, encoding: .utf8)
         XCTAssertEqual(Structure(file: File(path: #file)!),
             Structure(file: File(contents: fileContents)),
             "should generate the same structure for a file as raw text")
@@ -111,7 +111,7 @@ class StructureTests: XCTestCase {
 
         let structureJSON = structure.description
         do {
-            let jsonDictionary = try JSONSerialization.jsonObject(with: structureJSON.data(using: String.Encoding.utf8)!, options: []) as? NSDictionary
+            let jsonDictionary = try JSONSerialization.jsonObject(with: structureJSON.data(using: .utf8)!, options: []) as? NSDictionary
             XCTAssertNotNil(jsonDictionary, "JSON should be propery parsed")
             if let jsonDictionary = jsonDictionary {
                 XCTAssertEqual(jsonDictionary, expectedStructure, "JSON should match expected structure")

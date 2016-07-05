@@ -18,7 +18,7 @@ import Foundation
 public func toJSON(_ object: AnyObject) -> String {
     do {
         let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: .prettyPrinted)
-        if let jsonString = String(data: prettyJSONData, encoding: String.Encoding.utf8) {
+        if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
             return jsonString
         }
     } catch {}

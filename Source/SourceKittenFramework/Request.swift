@@ -157,8 +157,7 @@ private func swiftStringFrom(_ bytes: UnsafePointer<Int8>, length: Int) -> Strin
     let pointer = UnsafeMutablePointer<Int8>(bytes)
     // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
     // We'll try another encodings if fail.
-    let encodings = [String.Encoding.utf8, String.Encoding.nextstep, String.Encoding.ascii]
-    for encoding in encodings {
+    for encoding in [String.Encoding.utf8, .nextstep, .ascii] {
         if let string = String(bytesNoCopy: pointer, length: length, encoding: encoding,
             freeWhenDone: false) {
             return "\(string)"

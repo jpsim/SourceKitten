@@ -31,7 +31,7 @@ internal func runXcodeBuild(arguments: [String], inPath path: String) -> String?
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let xcodebuildOutput = String(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8)
+    let xcodebuildOutput = String(data: file.readDataToEndOfFile(), encoding: .utf8)
     file.closeFile()
 
     return xcodebuildOutput
@@ -181,7 +181,7 @@ public func sdkPath() -> String {
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let sdkPath = String(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8)
+    let sdkPath = String(data: file.readDataToEndOfFile(), encoding: .utf8)
     file.closeFile()
     return sdkPath?.replacingOccurrences(of: "\n", with: "") ?? ""
 }

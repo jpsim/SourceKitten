@@ -76,7 +76,7 @@ public struct Module {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
             fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
             let file = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
-            try! xcodeBuildOutput.data(using: String.Encoding.utf8)?.write(to: file!, options: .atomicWrite)
+            try! xcodeBuildOutput.data(using: .utf8)?.write(to: file!, options: .atomicWrite)
             fputs("Saved `xcodebuild` log file: \(file?.path!)\n", stderr)
             return nil
         }

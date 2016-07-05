@@ -21,7 +21,7 @@ private func run(_ executable: String, arguments: [String]) -> String? {
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let output = String(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8)
+    let output = String(data: file.readDataToEndOfFile(), encoding: .utf8)
     file.closeFile()
     return output
 }
