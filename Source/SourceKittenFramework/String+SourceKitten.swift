@@ -59,7 +59,11 @@ extension NSString {
             //
             // A reference to `NSString` is held by every cast `String` along with their views and
             // indices.
+            #if os(Linux)
+            let string = (string.mutableCopy() as! NSMutableString).bridge()
+            #else
             let string = string.mutableCopy() as! String
+            #endif
             utf8View = string.utf8
 
             var utf16CountSoFar = 0
