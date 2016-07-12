@@ -1,22 +1,17 @@
-language: objective-c
-osx_image: xcode8
+sudo: required
+language: generic
+services:
+  - docker
 git:
   submodules: false
 branches:
   only:
     - master
-script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
-matrix:
-  include:
-    - script: make test
-      env: JOB=Xcode
-    - script: make spm_test
-      env: JOB=SPM
-      before_install:
-        - make bootstrap
-        - make swift_snapshot_install
-  exclude:
-    - script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
+before_install:
+  - docker pull jpsim/sourcekit
+script:
+  - git clone https://github.com/jpsim/SourceKitten.git
+  - cd SourceKitten && git checkout jp-wip-linux && swift build && swift test
 notifications:
   email: false
   slack: realmio:vPdpsG9NLDo2DNlbqtcMAQuE
