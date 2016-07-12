@@ -2,7 +2,6 @@ FROM ubuntu:16.04
 MAINTAINER JP Simard <jp@jpsim.com>
 
 # Install Dependencies
-
 RUN apt-get update && \
     apt-get install -y \
       autoconf \
@@ -24,45 +23,32 @@ RUN apt-get update && \
       pkg-config \
       python \
       swig \
-      uuid-dev && \
+      uuid-dev \
       && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Clone & Check Out
-
-RUN mkdir swift-development
 WORKDIR swift-development
-RUN git clone https://github.com/apple/swift.git
-WORKDIR swift
-RUN utils/update-checkout --clone
 
-# Build With Dispatch
+# Clone & Build With Dispatch
+RUN git clone https://github.com/apple/swift.git && \
+    cd swift && \
+      utils/update-checkout --clone && \
+      utils/build-script --libdispatch && \
 
-RUN utils/build-script
-RUN utils/build-script --libdispatch
-
-# Build Swift With SourceKit
-
-RUN rm /swift-development/build/Ninja-DebugAssert/swift-linux-x86_64/CMakeCache.txt
-RUN git remote add jpsim https://github.com/jpsim/swift.git && \
-    git fetch jpsim && \
-    git cherry-pick -n 46b5263
-RUN utils/build-script --libdispatch
+# Build With SourceKit
+      rm /swift-development/build/Ninja-DebugAssert/swift-linux-x86_64/CMakeCache.txt && \
+      git remote add jpsim https://github.com/jpsim/swift.git && \
+      git fetch jpsim && \
+      git cherry-pick -n 46b5263 && \
+      utils/build-script --libdispatch && \
 
 # Build Toolchain
-
-RUN git reset --hard
-RUN utils/build-toolchain local.swift
-
-# Set Environment Variables
-
-ENV PATH="/swift-development/build/buildbot_linux/none-swift_package_sandbox_linux-x86_64/usr/bin:$PATH"
-ENV LINUX_SOURCEKIT_LIB_PATH="/swift-development/build/Ninja-DebugAssert/swift-linux-x86_64/lib"
+      git reset --hard && \
+      utils/build-toolchain local.swift && \
 
 # Clean Up
-
-RUN cd /swift-development && \
+    cd .. && \
       mv build /tmp && \
       rm -rf * && \
       mv /tmp/build . && \
@@ -77,3 +63,7 @@ RUN cd /swift-development && \
       mv Ninja-DebugAssert/swift-linux-x86_64/lib/libsourcekitdInProc.so Ninja-DebugAssert.tmp/swift-linux-x86_64/lib/libsourcekitdInProc.so && \
       rm -rf Ninja-DebugAssert && \
       mv Ninja-DebugAssert.tmp Ninja-DebugAssert
+
+# Set Environment Variables
+ENV PATH="/swift-development/build/buildbot_linux/none-swift_package_sandbox_linux-x86_64/usr/bin:$PATH"
+ENV LINUX_SOURCEKIT_LIB_PATH="/swift-development/build/Ninja-DebugAssert/swift-linux-x86_64/lib"
