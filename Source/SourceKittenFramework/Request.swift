@@ -34,7 +34,7 @@ extension SourceKitRepresentable {
         case let lhs as [String: SourceKitRepresentable]:
             for (key, value) in lhs {
                 if let rhs = rhs as? [String: SourceKitRepresentable],
-                    rhsValue = rhs[key] where rhsValue.isEqualTo(value) {
+                   let rhsValue = rhs[key] where rhsValue.isEqualTo(value) {
                     continue
                 }
                 return false
@@ -58,7 +58,7 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         var array = [SourceKitRepresentable]()
         _ = withUnsafeMutablePointer(&array) { arrayPtr in
             sourcekitd_variant_array_apply_f(sourcekitObject, { index, value, context in
-                if let value = fromSourceKit(value), context = context {
+                if let value = fromSourceKit(value), let context = context {
                     let localArray = UnsafeMutablePointer<Array<SourceKitRepresentable>>(context)
                     localArray.pointee.insert(value, at: Int(index))
                 }
@@ -70,7 +70,7 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         var dict = [String: SourceKitRepresentable]()
         _ = withUnsafeMutablePointer(&dict) { dictPtr in
             sourcekitd_variant_dictionary_apply_f(sourcekitObject, { key, value, context in
-                if let key = stringForSourceKitUID(key!), value = fromSourceKit(value), context = context {
+                if let key = stringForSourceKitUID(key!), let value = fromSourceKit(value), let context = context {
                     let localDict = UnsafeMutablePointer<[String: SourceKitRepresentable]>(context)
                     localDict.pointee[key] = value
                 }
@@ -321,7 +321,7 @@ public enum Request {
     }
 
     /// A enum representation of SOURCEKITD_ERROR_*
-    public enum Error: ErrorProtocol, CustomStringConvertible {
+    public enum Error: Swift.Error, CustomStringConvertible {
         case ConnectionInterrupted(String?)
         case Invalid(String?)
         case Failed(String?)
@@ -430,7 +430,7 @@ internal func libraryWrapperForModule(module: String, loadPath: String, spmModul
             }
         }
         var returnTypes = [String]()
-        if let offset = SwiftDocKey.getOffset(function), length = SwiftDocKey.getLength(function) {
+        if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
             let start = source.index(source.startIndex, offsetBy: Int(offset))
             let end = source.index(start, offsetBy: Int(length))
             let functionDeclaration = source.substring(with: start..<end)

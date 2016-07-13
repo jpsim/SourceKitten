@@ -73,7 +73,7 @@ struct DocCommand: CommandType {
         }
         let sourcekitdArguments = Array(args.dropFirst(1))
         if let file = File(path: args[0]),
-            docs = SwiftDocs(file: file, arguments: sourcekitdArguments) {
+           let docs = SwiftDocs(file: file, arguments: sourcekitdArguments) {
             print(docs)
             return .success()
         }

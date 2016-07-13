@@ -205,11 +205,11 @@ public final class File {
         let offsetMap = generateOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
             if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ processDictionary($0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
-                kind = SwiftDocKey.getKind(response),
-                _ = SwiftDeclarationKind(rawValue: kind),
-                parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
-                inserted = insertDoc(response, parent: dictionary, offset: parentOffset) {
-                dictionary = inserted
+               let kind = SwiftDocKey.getKind(response),
+               let _ = SwiftDeclarationKind(rawValue: kind),
+               let parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
+               let inserted = insertDoc(response, parent: dictionary, offset: parentOffset) {
+               dictionary = inserted
             }
         }
         return dictionary
