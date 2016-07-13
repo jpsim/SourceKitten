@@ -50,7 +50,8 @@ extension File {
         var offsetMap = offsetMap
         // Only map if we're in the correct file
         if let rangeStart = SwiftDocKey.getNameOffset(dictionary),
-           let rangeLength = SwiftDocKey.getNameLength(dictionary) where shouldTreatAsSameFile(dictionary) {
+           let rangeLength = SwiftDocKey.getNameLength(dictionary),
+           shouldTreatAsSameFile(dictionary) {
             let bodyLength = SwiftDocKey.getBodyLength(dictionary) ?? 0
             let rangeMax = Int(rangeStart + rangeLength + bodyLength)
             let rangeStart = Int(rangeStart)

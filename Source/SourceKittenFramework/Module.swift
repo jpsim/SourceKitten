@@ -37,7 +37,7 @@ public struct Module {
     public init?(spmName: String) {
         let yamlPath = ".build/debug.yaml"
         guard let yamlContents = try? String(contentsOfFile: yamlPath),
-            yamlCommands = Yaml.load(yamlContents).value?.dictionary?["commands"]?.dictionary?.values else {
+              let yamlCommands = Yaml.load(yamlContents).value?.dictionary?["commands"]?.dictionary?.values else {
                 return nil
         }
         guard let moduleCommand = yamlCommands.filter({ command in
@@ -52,8 +52,8 @@ public struct Module {
             return moduleCommand[key]?.array?.flatMap { $0.string }
         }
         guard let imports = stringArray("import-paths"),
-            otherArguments = stringArray("other-args"),
-            sources = stringArray("sources") else {
+              let otherArguments = stringArray("other-args"),
+              let sources = stringArray("sources") else {
                 return nil
         }
         name = spmName

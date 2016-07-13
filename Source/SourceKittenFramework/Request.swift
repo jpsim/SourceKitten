@@ -25,7 +25,7 @@ extension SourceKitRepresentable {
         switch self {
         case let lhs as [SourceKitRepresentable]:
             for (idx, value) in lhs.enumerated() {
-                if let rhs = rhs as? [SourceKitRepresentable] where rhs[idx].isEqualTo(value) {
+                if let rhs = rhs as? [SourceKitRepresentable], rhs[idx].isEqualTo(value) {
                     continue
                 }
                 return false
@@ -34,7 +34,7 @@ extension SourceKitRepresentable {
         case let lhs as [String: SourceKitRepresentable]:
             for (key, value) in lhs {
                 if let rhs = rhs as? [String: SourceKitRepresentable],
-                   let rhsValue = rhs[key] where rhsValue.isEqualTo(value) {
+                   let rhsValue = rhs[key], rhsValue.isEqualTo(value) {
                     continue
                 }
                 return false

@@ -249,7 +249,7 @@ public final class File {
         if kind == SyntaxKind.CommentMark.rawValue, let markName = markNameFromDictionary(dictionary) {
             // Update comment marks
             return [SwiftDocKey.Name.rawValue: markName]
-        } else if let decl = SwiftDeclarationKind(rawValue: kind) where decl != .VarParameter {
+        } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .VarParameter {
             // Update if kind is a declaration (but not a parameter)
             var updateDict = Request.sendCursorInfoRequest(cursorInfoRequest,
                 atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [String: SourceKitRepresentable]()

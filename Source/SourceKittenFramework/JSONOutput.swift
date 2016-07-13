@@ -72,7 +72,7 @@ private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: AnyObject
         }
     }
     func setA(_ key: SwiftDocKey, _ value: [AnyObject]?) {
-        if let value = value where value.count > 0 {
+        if let value = value, value.count > 0 {
             dict[key.rawValue] = value
         }
     }
