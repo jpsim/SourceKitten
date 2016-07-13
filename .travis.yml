@@ -10,7 +10,7 @@ branches:
 before_install:
   - docker pull jpsim/sourcekit
 script:
-  - docker run jpsim/sourcekit /bin/sh -c "git clone https://github.com/jpsim/SourceKitten.git && cd SourceKitten && git checkout jp-wip-linux && swift build && swift test"
+  - docker run -v `pwd`:/SourceKitten jpsim/sourcekit bash -c "cd /SourceKitten && swift build && swift test"
 notifications:
   email: false
   slack: realmio:vPdpsG9NLDo2DNlbqtcMAQuE
