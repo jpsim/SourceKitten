@@ -30,16 +30,16 @@ public struct CodeCompletionItem: CustomStringConvertible {
     /// Dictionary representation of CodeCompletionItem. Useful for NSJSONSerialization.
     public var dictionaryValue: NSDictionary {
         let dict: NSMutableDictionary = [
-            NSString(string: "kind"): NSString(string: kind),
-            NSString(string: "context"): NSString(string: context)
+            "kind".bridge(): kind.bridge(),
+            "context".bridge(): context.bridge()
         ]
-        dict.addIfNotNil("name", name.flatMap(NSString.init))
-        dict.addIfNotNil("descriptionKey", descriptionKey.flatMap(NSString.init))
-        dict.addIfNotNil("sourcetext", sourcetext.flatMap(NSString.init))
-        dict.addIfNotNil("typeName", typeName.flatMap(NSString.init))
-        dict.addIfNotNil("moduleName", moduleName.flatMap(NSString.init))
-        dict.addIfNotNil("docBrief", docBrief.flatMap(NSString.init))
-        dict.addIfNotNil("associatedUSRs", associatedUSRs.flatMap(NSString.init))
+        dict.addIfNotNil("name", name?.bridge())
+        dict.addIfNotNil("descriptionKey", descriptionKey?.bridge())
+        dict.addIfNotNil("sourcetext", sourcetext?.bridge())
+        dict.addIfNotNil("typeName", typeName?.bridge())
+        dict.addIfNotNil("moduleName", moduleName?.bridge())
+        dict.addIfNotNil("docBrief", docBrief?.bridge())
+        dict.addIfNotNil("associatedUSRs", associatedUSRs?.bridge())
         return dict
     }
 

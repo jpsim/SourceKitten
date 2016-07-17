@@ -32,11 +32,7 @@ struct IndexCommand: CommandType {
         guard !options.file.isEmpty else {
             return .failure(.InvalidArgument(description: "file must be set when calling index"))
         }
-        #if os(Linux)
-            let absoluteFile = options.file
-        #else
-            let absoluteFile = (options.file as NSString).absolutePathRepresentation()
-        #endif
+        let absoluteFile = options.file.bridge().absolutePathRepresentation()
         print(toJSON(toAnyObject(Request.Index(file: absoluteFile).send())))
         return .success()
     }

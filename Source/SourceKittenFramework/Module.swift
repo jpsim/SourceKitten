@@ -23,7 +23,7 @@ public struct Module {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
         return sourceFiles.flatMap {
-            let filename = NSString(string: $0).lastPathComponent
+            let filename = $0.bridge().lastPathComponent
             if let file = File(path: $0) {
                 fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
                 fileIndex += 1
@@ -70,7 +70,7 @@ public struct Module {
     - parameter name:                Module name. Will be parsed from `xcodebuild` output if nil.
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
-    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default().currentDirectoryPath) {
+    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = defaultFileManager.currentDirectoryPath) {
         let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
         guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .Swift, moduleName: name ?? moduleNameFromArguments(arguments: xcodeBuildArguments)) else {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
@@ -97,11 +97,11 @@ public struct Module {
     public init(name: String, compilerArguments: [String]) {
         self.name = name
         self.compilerArguments = compilerArguments
-        #if os(Linux)
-        sourceFiles = compilerArguments.filter({ NSString(string: $0).isSwiftFile() && $0.isFile })
-        #else
-        sourceFiles = compilerArguments.filter({ $0.isSwiftFile() && $0.isFile }).map { ($0 as NSString).resolvingSymlinksInPath }
-        #endif
+        sourceFiles = compilerArguments.filter({
+            $0.bridge().isSwiftFile() && $0.isFile
+        }).map {
+            try! URL(fileURLWithPath: $0).resolvingSymlinksInPath().path!
+        }
     }
 }
 

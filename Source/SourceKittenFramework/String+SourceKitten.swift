@@ -8,6 +8,20 @@
 
 import Foundation
 
+#if !os(Linux)
+    extension String {
+        public func bridge() -> NSString {
+            return self as NSString
+        }
+    }
+
+    extension NSString {
+        public func bridge() -> String {
+            return self as String
+        }
+    }
+#endif
+
 /// Representation of line in String
 public struct Line {
     /// origin = 0
@@ -20,14 +34,12 @@ public struct Line {
     public let byteRange: NSRange
 }
 
-private let whitespaceAndNewlineCharacterSet = NSCharacterSet.whitespacesAndNewlines()
-
 /**
  * For "wall of asterisk" comment blocks, such as this one.
  */
-private let commentLinePrefixCharacterSet: NSCharacterSet = {
-    let characterSet: NSMutableCharacterSet = NSMutableCharacterSet.whitespacesAndNewlines()
-    characterSet.addCharacters(in: "*")
+private let commentLinePrefixCharacterSet: CharacterSet = {
+    var characterSet = CharacterSet.whitespacesAndNewlines
+    characterSet.insert(charactersIn: "*")
     return characterSet
 }()
 
@@ -59,11 +71,7 @@ extension NSString {
             //
             // A reference to `NSString` is held by every cast `String` along with their views and
             // indices.
-            #if os(Linux)
             let string = (string.mutableCopy() as! NSMutableString).bridge()
-            #else
-            let string = string.mutableCopy() as! String
-            #endif
             utf8View = string.utf8
 
             var utf16CountSoFar = 0
@@ -242,10 +250,10 @@ extension NSString {
 
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
-    public func absolutePathRepresentation(rootDirectory: String = FileManager.default().currentDirectoryPath) -> String {
+    public func absolutePathRepresentation(rootDirectory: String = defaultFileManager.currentDirectoryPath) -> String {
         #if os(Linux)
-        if absolutePath { return "\(self)" }
-        return try! NSURL.fileURLWithPathComponents([rootDirectory, "\(self)"])!.standardizingPath().path!
+        if absolutePath { return bridge() }
+        return try! NSURL.fileURLWithPathComponents([rootDirectory, bridge()])!.standardizingPath().path!
         #else
         if isAbsolutePath { return self as String }
         return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
@@ -281,11 +289,7 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
-        #if os(Linux)
-        let string = "\(self)"
-        #else
-        let string = self as String
-        #endif
+        let string = bridge()
 
         let utf16View = string.utf16
         let startUTF16Index = utf16View.index(utf16View.startIndex, offsetBy: start)
@@ -404,7 +408,7 @@ extension NSString {
 
 extension String {
     internal var isFile: Bool {
-        return FileManager.default().fileExists(atPath: self)
+        return defaultFileManager.fileExists(atPath: self)
     }
 
 #if !os(Linux)
@@ -456,7 +460,7 @@ extension String {
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
         if token.type == SyntaxKind.Keyword.rawValue {
             let keywordFunctions = ["subscript", "init", "deinit"]
-            return (NSString(string: self).substringWithByteRange(start: token.offset, length: token.length))
+            return (bridge().substringWithByteRange(start: token.offset, length: token.length))
                 .map(keywordFunctions.contains) ?? false
         }
         return token.type == SyntaxKind.Identifier.rawValue
@@ -489,7 +493,7 @@ extension String {
     - parameter range: Range to restrict the search for a comment body.
     */
     public func commentBody(range: NSRange? = nil) -> String? {
-        let nsString = NSString(string: self)
+        let nsString = bridge()
         let patterns: [(pattern: String, options: RegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
             ("^\\s*\\/\\/\\/(.+)?",           .anchorsMatchLines)                               // single: ^\s*\/\/\/(.+)?
@@ -512,12 +516,7 @@ extension String {
                     var lineEnd = nsString.length
                     let indexRange = NSRange(location: range.location, length: 0)
                     nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: indexRange)
-                    #if os(Linux)
-                    let characterSet = whitespaceAndNewlineCharacterSet._bridgeToObjectiveC()
-                    #else
-                    let characterSet = whitespaceAndNewlineCharacterSet
-                    #endif
-                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(characterSet: characterSet)
+                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(characterSet: .whitespacesAndNewlines)
                     let leadingWhitespaceToAdd = String(repeating: Character(" "), count: leadingWhitespaceCountToAdd)
 
                     let bodySubstring = nsString.substring(with: range)
@@ -528,8 +527,8 @@ extension String {
                 }
             }
             if bodyParts.count > 0 {
-                return NSString(string: bodyParts.joined(separator: "\n"))
-                    .stringByTrimmingTrailingCharactersInSet(characterSet: whitespaceAndNewlineCharacterSet)
+                return bodyParts.joined(separator: "\n").bridge()
+                    .stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines)
                     .stringByRemovingCommonLeadingWhitespaceFromLines()
             }
         }
@@ -543,12 +542,7 @@ extension String {
         let lineComponents = components(separatedBy: .newlines)
 
         for line in lineComponents {
-            #if os(Linux)
-            let characterSet = whitespaceAndNewlineCharacterSet._bridgeToObjectiveC()
-            #else
-            let characterSet = whitespaceAndNewlineCharacterSet
-            #endif
-            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: characterSet)
+            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: .whitespacesAndNewlines)
             let lineLeadingCharacters = line.countOfLeadingCharactersInSet(characterSet: commentLinePrefixCharacterSet)
             // Is this prefix smaller than our last and not entirely whitespace?
             if lineLeadingCharacters < minLeadingCharacters && lineLeadingWhitespace != line.characters.count {
@@ -569,10 +563,10 @@ extension String {
 
     - parameter characterSet: Character set to check for membership.
     */
-    public func countOfLeadingCharactersInSet(characterSet: NSCharacterSet) -> Int {
-        let utf16View = utf16
+    public func countOfLeadingCharactersInSet(characterSet: CharacterSet) -> Int {
+        let characterSet = characterSet._bridgeToObjectiveC()
         var count = 0
-        for char in utf16View {
+        for char in utf16 {
             if !characterSet.characterIsMember(char) {
                 break
             }
@@ -583,7 +577,7 @@ extension String {
 
     /// Returns a copy of the string by trimming whitespace and the opening curly brace (`{`).
     internal func stringByTrimmingWhitespaceAndOpeningCurlyBrace() -> String? {
-        var unwantedSet = whitespaceAndNewlineCharacterSet
+        var unwantedSet = CharacterSet.whitespacesAndNewlines
         unwantedSet.insert(charactersIn: "{")
         return trimmingCharacters(in: unwantedSet)
     }

@@ -82,6 +82,12 @@
           "key.is_system" : true,
           "key.filepath" : "",
           "key.hash" : "",
+        },
+        {
+          "key.name" : "uuid",
+          "key.is_system" : true,
+          "key.filepath" : "",
+          "key.kind" : "source.lang.swift.import.module.clang"
         }
       ],
       "key.hash" : "",
@@ -90,9 +96,13 @@
   "key.hash" : "",
   "key.entities" : [
     {
-      "key.name" : "NSString",
-      "key.column" : 18,
+      "key.attributes" : [
+        {
+          "key.attribute" : "source.decl.attribute.objc.name"
+        }
+      ],
       "key.kind" : "source.lang.swift.decl.extension.class",
+      "key.line" : 5,
       "key.entities" : [
         {
           "key.name" : "NSString",
@@ -102,8 +112,9 @@
           "key.line" : 5
         }
       ],
+      "key.name" : "NSString",
       "key.usr" : "c:objc(cs)NSString",
-      "key.line" : 5
+      "key.column" : 18
     },
     {
       "key.name" : "Bicycle",
@@ -220,6 +231,11 @@
           "key.name" : "style",
           "key.column" : 9,
           "key.kind" : "source.lang.swift.decl.var.instance",
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.final"
+            }
+          ],
           "key.usr" : "s:vC7Bicycle7Bicycle5styleOS0_5Style",
           "key.line" : 45
         },
@@ -234,6 +250,11 @@
           "key.name" : "gearing",
           "key.column" : 9,
           "key.kind" : "source.lang.swift.decl.var.instance",
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.final"
+            }
+          ],
           "key.usr" : "s:vC7Bicycle7Bicycle7gearingOS0_7Gearing",
           "key.line" : 48
         },
@@ -248,6 +269,11 @@
           "key.name" : "handlebar",
           "key.column" : 9,
           "key.kind" : "source.lang.swift.decl.var.instance",
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.final"
+            }
+          ],
           "key.usr" : "s:vC7Bicycle7Bicycle9handlebarOS0_9Handlebar",
           "key.line" : 51
         },
@@ -262,6 +288,11 @@
           "key.name" : "frameSize",
           "key.column" : 9,
           "key.kind" : "source.lang.swift.decl.var.instance",
+          "key.attributes" : [
+            {
+              "key.attribute" : "source.decl.attribute.final"
+            }
+          ],
           "key.usr" : "s:vC7Bicycle7Bicycle9frameSizeSi",
           "key.line" : 54
         },
@@ -455,7 +486,7 @@
               "key.name" : ">(_:_:)",
               "key.column" : 19,
               "key.kind" : "source.lang.swift.ref.function.operator.infix",
-              "key.usr" : "s:ZFsoi1gFTSdSd_Sb",
+              "key.usr" : "s:ZFsoi1guRxs13FloatingPointrFTxx_Sb",
               "key.line" : 88
             },
             {

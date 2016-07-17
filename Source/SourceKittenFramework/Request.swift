@@ -320,8 +320,14 @@ public enum Request {
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
 
+    #if os(Linux)
+    private typealias SwiftError = Swift.Error
+    #else
+    private typealias SwiftError = Swift.ErrorProtocol
+    #endif
+
     /// A enum representation of SOURCEKITD_ERROR_*
-    public enum Error: Swift.Error, CustomStringConvertible {
+    public enum Error: SwiftError, CustomStringConvertible {
         case ConnectionInterrupted(String?)
         case Invalid(String?)
         case Failed(String?)
@@ -434,7 +440,7 @@ internal func libraryWrapperForModule(module: String, loadPath: String, spmModul
             let start = source.index(source.startIndex, offsetBy: Int(offset))
             let end = source.index(start, offsetBy: Int(length))
             let functionDeclaration = source.substring(with: start..<end)
-            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwardsSearch, range: nil, locale: nil)?.lowerBound {
+            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards, range: nil, locale: nil)?.lowerBound {
                 returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
             }
         }

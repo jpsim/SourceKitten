@@ -19,7 +19,7 @@ public struct SyntaxToken {
 
     /// Dictionary representation of SyntaxToken. Useful for NSJSONSerialization.
     public var dictionaryValue: NSDictionary {
-        return [NSString(string: "type"): NSString(string: type), NSString(string: "offset"): NSNumber(value: offset), NSString(string: "length"): NSNumber(value: length)]
+        return ["type".bridge(): type.bridge(), "offset".bridge(): NSNumber(value: offset), "length".bridge(): NSNumber(value: length)]
     }
 
     /**

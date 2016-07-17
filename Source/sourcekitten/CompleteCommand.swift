@@ -40,11 +40,7 @@ struct CompleteCommand: CommandType {
         let path: String
         let contents: String
         if !options.file.isEmpty {
-            #if os(Linux)
-                path = options.file
-            #else
-                path = options.file.absolutePathRepresentation()
-            #endif
+            path = options.file.bridge().absolutePathRepresentation()
             guard let file = File(path: path) else {
                 return .failure(.ReadFailed(path: options.file))
             }

@@ -35,22 +35,32 @@ public func toJSON(_ object: AnyObject) -> String {
 public func toAnyObject(_ dictionary: [String: SourceKitRepresentable]) -> AnyObject {
     let anyDictionary = NSMutableDictionary()
     for (key, object) in dictionary {
-        let key = NSString(string: key)
+        let key = key.bridge()
         switch object {
         case let object as AnyObject:
             anyDictionary[key] = object
         case let object as [SourceKitRepresentable]:
-            anyDictionary[key] = object.map { toAnyObject($0 as! [String: SourceKitRepresentable]) } as? AnyObject
+            let value = object.map { toAnyObject($0 as! [String: SourceKitRepresentable]) }
+            #if os(Linux)
+            anyDictionary[key] = value as? AnyObject
+            #else
+            anyDictionary[key] = value
+            #endif
         case let object as [[String: SourceKitRepresentable]]:
-            anyDictionary[key] = object.map { toAnyObject($0) } as? AnyObject
+            let value = object.map { toAnyObject($0) }
+            #if os(Linux)
+            anyDictionary[key] = value as? AnyObject
+            #else
+            anyDictionary[key] = value
+            #endif
         case let object as [String: SourceKitRepresentable]:
             anyDictionary[key] = toAnyObject(object)
         case let object as String:
-            anyDictionary[key] = object as? AnyObject
+            anyDictionary[key] = object.bridge()
         case let object as Int64:
-            anyDictionary[key] = NSNumber(value: object) as AnyObject
+            anyDictionary[key] = NSNumber(value: object)
         case let object as Bool:
-            anyDictionary[key] = NSNumber(value: object) as AnyObject
+            anyDictionary[key] = NSNumber(value: object)
         default:
             fatalError("Should never happen because we've checked all SourceKitRepresentable types")
         }

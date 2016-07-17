@@ -25,17 +25,17 @@ class ModuleTests: XCTestCase {
         XCTAssert(model == nil, "model initialization without any Xcode project should fail")
     }
 
-//    func testSourceKittenFrameworkDocsAreValidJSON() {
-//        let sourceKittenModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
-//        let docsJSON = sourceKittenModule.docs.description
-//        XCTAssert(docsJSON.rangeOfString("error type") == nil)
-//        do {
-//            let jsonArray = try NSJSONSerialization.JSONObjectWithData(docsJSON.dataUsingEncoding(NSUTF8StringEncoding)!, options: []) as? NSArray
-//            XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
-//        } catch {
-//            XCTFail("JSON should be propery parsed")
-//        }
-//    }
+    func testSourceKittenFrameworkDocsAreValidJSON() {
+        let sourceKittenModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
+        let docsJSON = sourceKittenModule.docs.description
+        XCTAssert(docsJSON.range(of: "error type") == nil)
+        do {
+            let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
+            XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
+        } catch {
+            XCTFail("JSON should be propery parsed")
+        }
+    }
 //
 //    func testCommandantDocs() {
 //        let commandantPath = projectRoot + "/Carthage/Checkouts/Commandant/"

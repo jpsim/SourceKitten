@@ -1,2 +1,2 @@
-github "jpsim/Commandant" ~> 5.0.0
+github "jpsim/Commandant" "jp-swift-3"
 github "jspahrsummers/xcconfigs"
