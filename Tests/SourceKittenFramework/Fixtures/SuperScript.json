@@ -36,7 +36,7 @@
               "key.usr" : "c:objc(cs)SuperScript(im)superSize:",
               "key.doc.file" : "SuperScript.h",
               "key.doc.full_as_xml" : "",
-              "key.swift_declaration" : "@IBAction func superSize(sender: AnyObject!)",
+              "key.swift_declaration" : "@IBAction func superSize(_ sender: AnyObject!)",
               "key.parsed_scope.start" : 13,
               "key.filepath" : "SuperScript.h"
             }

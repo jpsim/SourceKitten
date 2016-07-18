@@ -36,12 +36,12 @@ class ModuleTests: XCTestCase {
             XCTFail("JSON should be propery parsed")
         }
     }
-//
-//    func testCommandantDocs() {
-//        let commandantPath = projectRoot + "/Carthage/Checkouts/Commandant/"
-//        let commandantModule = Module(xcodeBuildArguments: ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"], name: nil, inPath: commandantPath)!
-//        compareJSONStringWithFixturesName("Commandant", jsonString: commandantModule.docs, rootDirectory: commandantPath)
-//    }
+
+    func testCommandantDocs() {
+        let commandantPath = projectRoot + "/Carthage/Checkouts/Commandant/"
+        let commandantModule = Module(xcodeBuildArguments: ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"], name: nil, inPath: commandantPath)!
+        compareJSONStringWithFixturesName("Commandant", jsonString: commandantModule.docs, rootDirectory: commandantPath)
+    }
 }
 
 #endif

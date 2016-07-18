@@ -36,23 +36,23 @@ class ClangTranslationUnitTests: XCTestCase {
         XCTAssertEqual(parsedXcodebuildArguments, xcodebuildArguments, "xcodebuild arguments should be parsed")
     }
 
-//    private func compareClangFixture(fixture: String) {
-//        let tu = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
-//                                      compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
-//        compareJSONStringWithFixturesName((fixture as NSString).lastPathComponent, jsonString: tu)
-//    }
-//
-//    func testBasicObjectiveCDocs() {
-//        compareClangFixture(fixture: "Musician")
-//    }
-//    
-//    func testUnicodeInObjectiveCDocs() {
-//        compareClangFixture(fixture: "SuperScript")
-//    }
-//
-//    func testRealmObjectiveCDocs() {
-//        compareClangFixture(fixture: "Realm/Realm")
-//    }
+    private func compareClangFixture(fixture: String) {
+        let tu = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
+                                      compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
+        compareJSONStringWithFixturesName(fixture.bridge().lastPathComponent, jsonString: tu)
+    }
+
+    func testBasicObjectiveCDocs() {
+        compareClangFixture(fixture: "Musician")
+    }
+
+    func testUnicodeInObjectiveCDocs() {
+        compareClangFixture(fixture: "SuperScript")
+    }
+
+    func testRealmObjectiveCDocs() {
+        compareClangFixture(fixture: "Realm/Realm")
+    }
 }
 
 #endif

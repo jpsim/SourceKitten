@@ -32,7 +32,8 @@ struct ClangIndex {
 
 extension CXString: CustomStringConvertible {
     func str() -> String? {
-        return String(validatingUTF8: clang_getCString(self))
+        let tmp: UnsafePointer<Int8>? = clang_getCString(self)
+        return tmp.flatMap { String(validatingUTF8: $0) }
     }
 
     public var description: String {
