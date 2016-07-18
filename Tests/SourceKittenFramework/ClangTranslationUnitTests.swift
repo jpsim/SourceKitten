@@ -10,12 +10,10 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-let fixturesDirectory: String = {
-    let fileURL = URL(fileURLWithPath: #file)
-    let parentURL = try! fileURL.deletingLastPathComponent()
-    let fixturesURL = try! parentURL.appendingPathComponent("Fixtures")
-    return fixturesURL.path! + "/"
-}()
+let fixturesDirectory = try! URL(fileURLWithPath: #file)
+    .deletingLastPathComponent()
+    .appendingPathComponent("Fixtures")
+    .path! + "/"
 
 #if !os(Linux)
 
