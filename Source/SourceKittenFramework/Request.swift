@@ -191,7 +191,7 @@ public enum Request {
     /// Find USR
     case FindUSR(file: String, usr: String)
     /// Index
-    case Index(file: String)
+    case Index(file: String, arguments: [String])
     /// Format
     case Format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
     /// ReplaceText
@@ -250,8 +250,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.usr"): sourcekitd_request_string_create(usr),
                 sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file)
             ]
-        case .Index(let file):
-            let arguments = ["-sdk", sdkPath(), "-j4", file ]
+        case .Index(let file, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.indexsource")),
