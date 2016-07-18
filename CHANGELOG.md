@@ -9,6 +9,9 @@
   multiple copies of the Swift libraries.  
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Require passing compiler arguments to `index` command.  
+  [Brian Gesiak](https://github.com/modocache)
+
 ##### Enhancements
 
 * None.
