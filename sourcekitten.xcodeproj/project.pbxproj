@@ -267,7 +267,9 @@
 				D0D1216E19E87B05005E4BAA /* SourceKittenFramework */,
 				D0D1217B19E87B05005E4BAA /* SourceKittenFrameworkTests */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 			usesTabs = 0;
 		};
 		D0D1211919E87861005E4BAA /* Products */ = {
