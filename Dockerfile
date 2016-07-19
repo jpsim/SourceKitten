@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:15.10
 MAINTAINER JP Simard <jp@jpsim.com>
 
 # Install Dependencies
@@ -30,21 +30,19 @@ RUN apt-get update && \
 
 WORKDIR swift-development
 
-# Clone & Build With Dispatch
+# Clone & Check Out
 RUN git clone https://github.com/apple/swift.git && \
     cd swift && \
       utils/update-checkout --clone && \
+
+# Build With Dispatch
       utils/build-script --libdispatch && \
 
 # Build With SourceKit
       rm /swift-development/build/Ninja-DebugAssert/swift-linux-x86_64/CMakeCache.txt && \
-      git remote add jpsim https://github.com/jpsim/swift.git && \
-      git fetch jpsim && \
-      git cherry-pick -n 46b5263 && \
-      utils/build-script --libdispatch && \
+      utils/build-script --libdispatch --extra-cmake-options="-DSWIFT_BUILD_SOURCEKIT:BOOL=TRUE" && \
 
 # Build Toolchain
-      git reset --hard && \
       utils/build-toolchain local.swift && \
 
 # Clean Up
