@@ -20,9 +20,9 @@ struct IndexCommand: CommandType {
         let compilerargs: String
 
         static func create(file: String) -> (compilerargs: String) -> Options {
-          return { compilerargs in
-            self.init(file: file, compilerargs: compilerargs)
-          }
+            return { compilerargs in
+                self.init(file: file, compilerargs: compilerargs)
+            }
         }
 
         static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
