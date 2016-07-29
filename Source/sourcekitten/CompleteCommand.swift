@@ -19,9 +19,9 @@ struct CompleteCommand: CommandType {
         let file: String
         let text: String
         let offset: Int
-        let compilerargs: String
+        let compilerargs: [String]
 
-        static func create(file: String) -> (text: String) -> (offset: Int) -> (compilerargs: String) -> Options {
+        static func create(file: String) -> (text: String) -> (offset: Int) -> (compilerargs: [String]) -> Options {
             return { text in { offset in { compilerargs in
                 self.init(file: file, text: text, offset: offset, compilerargs: compilerargs)
             }}}
@@ -32,7 +32,7 @@ struct CompleteCommand: CommandType {
                 <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
                 <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
                 <*> m <| Option(key: "offset", defaultValue: 0, usage: "Offset for which to generate code completion options.")
-                <*> m <| Option(key: "compilerargs", defaultValue: "", usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
+                <*> m <| Argument(defaultValue: [String](), usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
         }
     }
 
@@ -51,9 +51,8 @@ struct CompleteCommand: CommandType {
         }
 
         var args = ["-c", path]
-        if !options.compilerargs.isEmpty {
-            args.appendContentsOf(options.compilerargs.componentsSeparatedByString(" "))
-        }
+        args.appendContentsOf(options.compilerargs)
+
         if args.indexOf("-sdk") == nil {
             args.appendContentsOf(["-sdk", sdkPath()])
         }
