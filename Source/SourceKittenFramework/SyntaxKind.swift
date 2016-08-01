@@ -56,5 +56,4 @@ public enum SyntaxKind: String, SwiftLangSyntax {
     public var value: Swift.String {
         return rawValue
     }
-
 }

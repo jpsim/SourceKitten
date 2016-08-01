@@ -89,5 +89,4 @@ public enum SwiftDeclarationKind: String, SwiftLangSyntax {
     public var value: String {
         return rawValue
     }
-
 }
