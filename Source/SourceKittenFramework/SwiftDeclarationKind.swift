@@ -8,7 +8,7 @@
 
 /// Swift declaration kinds.
 /// Found in `strings SourceKitService | grep source.lang.swift.decl.`.
-public enum SwiftDeclarationKind: String {
+public enum SwiftDeclarationKind: String, SwiftLangSyntax {
     /// `associatedtype`.
     case Associatedtype = "source.lang.swift.decl.associatedtype"
     /// `class`.
@@ -85,4 +85,9 @@ public enum SwiftDeclarationKind: String {
     case VarParameter = "source.lang.swift.decl.var.parameter"
     /// `var.static`.
     case VarStatic = "source.lang.swift.decl.var.static"
+
+    public var value: String {
+        return rawValue
+    }
+
 }
