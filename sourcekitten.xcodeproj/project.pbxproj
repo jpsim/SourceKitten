@@ -27,6 +27,7 @@
 		D0DB09A419EA354200234B16 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB09A319EA354200234B16 /* SyntaxTests.swift */; };
 		D0E7B65319E9C6AD00EDBA4D /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; };
 		D0E7B65619E9C76900EDBA4D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1211B19E87861005E4BAA /* main.swift */; };
+		DA36F5A01D506A1A003605D5 /* DemangleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36F59F1D506A1A003605D5 /* DemangleCommand.swift */; };
 		E805A0481B55CBAF00EA654A /* SourceKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805A0471B55CBAF00EA654A /* SourceKitTests.swift */; };
 		E805A04A1B560FCA00EA654A /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805A0491B560FCA00EA654A /* FileTests.swift */; };
 		E80678051CF2749300AFC816 /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yaml.framework */; };
@@ -161,6 +162,7 @@
 		D0D1217D19E87B05005E4BAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0DB09A319EA354200234B16 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0E7B63219E9C64500EDBA4D /* sourcekitten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sourcekitten.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA36F59F1D506A1A003605D5 /* DemangleCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemangleCommand.swift; sourceTree = "<group>"; };
 		E805A0471B55CBAF00EA654A /* SourceKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceKitTests.swift; sourceTree = "<group>"; };
 		E805A0491B560FCA00EA654A /* FileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
 		E80604B21A5D452C0016D959 /* StructureCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureCommand.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			children = (
 				5499CA981A2394BD00783309 /* Supporting Files */,
 				E8F4AF111B9A56A70054C51C /* CompleteCommand.swift */,
+				DA36F59F1D506A1A003605D5 /* DemangleCommand.swift */,
 				E80604B41A5D474B0016D959 /* DocCommand.swift */,
 				E8D86D841A688EF20063E8E9 /* Errors.swift */,
 				E8DB29151CFA4818007C30E8 /* FormatCommand.swift */,
@@ -563,7 +566,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "sourcekitten" */;
+			buildConfigurationList = D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "SourceKitten" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -695,6 +698,7 @@
 				E8F4AF121B9A56A70054C51C /* CompleteCommand.swift in Sources */,
 				E8DD06E81AE447E9006D9C86 /* DocCommand.swift in Sources */,
 				E8D86D851A688EF20063E8E9 /* Errors.swift in Sources */,
+				DA36F5A01D506A1A003605D5 /* DemangleCommand.swift in Sources */,
 				D0E7B65619E9C76900EDBA4D /* main.swift in Sources */,
 				E813023B1CCD09DB0056E826 /* IndexCommand.swift in Sources */,
 				E8DD06E61AE44540006D9C86 /* StructureCommand.swift in Sources */,
@@ -948,7 +952,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "sourcekitten" */ = {
+		D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "SourceKitten" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0D1211D19E87861005E4BAA /* Debug */,
