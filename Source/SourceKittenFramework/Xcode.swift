@@ -19,7 +19,7 @@ Run `xcodebuild clean build` along with any passed in build arguments.
 internal func runXcodeBuild(arguments: [String], inPath path: String) -> String? {
     fputs("Running xcodebuild\n", stderr)
 
-    let task = Task()
+    let task = Process()
     task.launchPath = "/usr/bin/xcodebuild"
     task.currentDirectoryPath = path
     task.arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
@@ -130,7 +130,7 @@ internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Langu
     } else {
         pattern = "/usr/bin/swiftc.*"
     }
-    let regex = try! RegularExpression(pattern: pattern, options: []) // Safe to force try
+    let regex = try! NSRegularExpression(pattern: pattern, options: []) // Safe to force try
     let range = NSRange(location: 0, length: xcodebuildOutput.length)
 
     guard let regexMatch = regex.firstMatch(in: "\(xcodebuildOutput)", options: [], range: range) else {
@@ -170,7 +170,7 @@ public func parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: [Strin
 #endif
 
 public func sdkPath() -> String {
-    let task = Task()
+    let task = Process()
     task.launchPath = "/usr/bin/xcrun"
     task.arguments = ["--show-sdk-path"]
 

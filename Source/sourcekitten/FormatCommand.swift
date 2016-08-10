@@ -21,7 +21,7 @@ struct FormatCommand: CommandType {
         let useTabs: Bool
         let indentWidth: Int
 
-        static func create(file: String) -> (trimWhitespace: Bool) -> (useTabs: Bool) -> (indentWidth: Int) -> Options {
+        static func create(file: String) -> (_ trimWhitespace: Bool) -> (_ useTabs: Bool) -> (_ indentWidth: Int) -> Options {
             return { trimWhitespace in { useTabs in { indentWidth in
                 self.init(file: file, trimWhitespace: trimWhitespace, useTabs: useTabs, indentWidth: indentWidth)
             }}}

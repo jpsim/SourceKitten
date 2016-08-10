@@ -37,7 +37,7 @@ private func run() {
 #else
     // `sourcekitd_set_notification_handler()` set the handler to be executed on main thread queue.
     // So, we vacate main thread to `dispatchMain()`.
-    DispatchQueue.global(attributes: .qosDefault).async {
+    DispatchQueue.global(qos: .default).async {
         run()
     }
     dispatchMain()

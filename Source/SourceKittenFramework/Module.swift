@@ -72,12 +72,12 @@ public struct Module {
     */
     public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = defaultFileManager.currentDirectoryPath) {
         let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
-        guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .Swift, moduleName: name ?? moduleNameFromArguments(arguments: xcodeBuildArguments)) else {
+        guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .Swift, moduleName: name ?? moduleNameFromArguments(arguments: xcodeBuildArguments)) else {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
             fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
             let file = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
             try! xcodeBuildOutput.data(using: .utf8)?.write(to: file!, options: .atomicWrite)
-            fputs("Saved `xcodebuild` log file: \(file?.path!)\n", stderr)
+            fputs("Saved `xcodebuild` log file: \(file!.path)\n", stderr)
             return nil
         }
         guard let moduleName = moduleNameFromArguments(arguments: arguments) else {
@@ -100,7 +100,11 @@ public struct Module {
         sourceFiles = compilerArguments.filter({
             $0.bridge().isSwiftFile() && $0.isFile
         }).map {
-            try! URL(fileURLWithPath: $0).resolvingSymlinksInPath().path!
+            #if os(Linux)
+            return try! URL(fileURLWithPath: $0).resolvingSymlinksInPath().path!
+            #else
+            return URL(fileURLWithPath: $0).resolvingSymlinksInPath().path
+            #endif
         }
     }
 }

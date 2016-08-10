@@ -1,0 +1,54 @@
+{
+  "Subscript.swift" : {
+    "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+    "key.substructure" : [
+      {
+        "key.filepath" : "Subscript.swift",
+        "key.parsed_declaration" : "struct VoidStruct",
+        "key.annotated_decl" : "<Declaration>struct VoidStruct<\/Declaration>",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>VoidStruct<\/decl.name><\/decl.struct>",
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.substructure" : [
+          {
+            "key.filepath" : "Subscript.swift",
+            "key.doc.file" : "Subscript.swift",
+            "key.annotated_decl" : "<Declaration>subscript(key: <Type usr=\"s:SS\">String<\/Type>) -&gt; () { get set }<\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.function.subscript><syntaxtype.keyword>subscript<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.name>key<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><tuple>()<\/tuple><\/decl.function.returntype> { <syntaxtype.keyword>get<\/syntaxtype.keyword> <syntaxtype.keyword>set<\/syntaxtype.keyword> }<\/decl.function.subscript>",
+            "key.doc.declaration" : "subscript(key: String) -> () { get set }",
+            "key.length" : 9,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 3,
+            "key.typeusr" : "_TtFSST_",
+            "key.kind" : "source.lang.swift.decl.function.subscript",
+            "key.doc.full_as_xml" : "<Other file=\"Subscript.swift\" line=\"3\" column=\"5\"><Name>subscript(_:)<\/Name><USR>s:iV9Subscript10VoidStruct9subscriptFSST_<\/USR><Declaration>subscript(key: String) -&gt; () { get set }<\/Declaration><Abstract><Para>Returns or sets Void.<\/Para><\/Abstract><\/Other>",
+            "key.offset" : 54,
+            "key.doc.line" : 3,
+            "key.typename" : "(String) -> ()",
+            "key.doc.name" : "subscript(_:)",
+            "key.doc.column" : 5,
+            "key.name" : "subscript(_:)",
+            "key.doc.comment" : "Returns or sets Void.",
+            "key.usr" : "s:iV9Subscript10VoidStruct9subscriptFSST_",
+            "key.parsed_declaration" : "subscript(key: String) -> ()",
+            "key.parsed_scope.end" : 3
+          }
+        ],
+        "key.length" : 133,
+        "key.parsed_scope.start" : 1,
+        "key.typeusr" : "_Tt",
+        "key.kind" : "source.lang.swift.decl.struct",
+        "key.offset" : 0,
+        "key.nameoffset" : 7,
+        "key.typename" : "VoidStruct.Type",
+        "key.name" : "VoidStruct",
+        "key.usr" : "s:V9Subscript10VoidStruct",
+        "key.bodyoffset" : 19,
+        "key.namelength" : 10,
+        "key.parsed_scope.end" : 7,
+        "key.bodylength" : 113
+      }
+    ],
+    "key.offset" : 0,
+    "key.length" : 134
+  }
+}

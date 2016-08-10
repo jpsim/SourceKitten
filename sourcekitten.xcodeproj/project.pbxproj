@@ -437,7 +437,7 @@
 				D0DB09A319EA354200234B16 /* SyntaxTests.swift */,
 			);
 			name = SourceKittenFrameworkTests;
-			path = Tests/SourceKittenFramework;
+			path = Tests/SourceKittenFrameworkTests;
 			sourceTree = "<group>";
 		};
 		D0D1217C19E87B05005E4BAA /* Supporting Files */ = {
@@ -549,7 +549,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = SourceKitten;
 				TargetAttributes = {
 					D0D1216C19E87B05005E4BAA = {
@@ -726,6 +726,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1212619E878CC005E4BAA /* Debug.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -738,6 +740,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1212819E878CC005E4BAA /* Release.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -799,7 +803,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 				SWIFT_VERSION = 3.0;
@@ -811,7 +815,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 				SWIFT_VERSION = 3.0;
@@ -822,6 +826,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1212719E878CC005E4BAA /* Profile.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -858,7 +864,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 				SWIFT_VERSION = 3.0;
@@ -869,6 +875,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1212919E878CC005E4BAA /* Test.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -905,7 +913,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 				SWIFT_VERSION = 3.0;

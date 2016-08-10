@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSMutableDictionary {
-    private func addIfNotNil(_ key: NSString, _ value: NSString?) {
+    fileprivate func addIfNotNil(_ key: NSString, _ value: NSString?) {
         if let value = value {
             self[key] = value
         }

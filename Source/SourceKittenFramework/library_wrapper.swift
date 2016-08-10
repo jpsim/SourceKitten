@@ -7,16 +7,14 @@
 //
 
 import Foundation
-
 #if os(Linux)
-internal let defaultFileManager = FileManager.default()
-#else
-internal let defaultFileManager = FileManager.default
+typealias Process = Task
 #endif
+internal let defaultFileManager = FileManager.default
 
 struct DynamicLinkLibrary {
     let path: String
-    let handle: UnsafeMutablePointer<Void>
+    let handle: UnsafeMutableRawPointer
     
     func loadSymbol<T>(_ symbol: String) -> T {
         let sym = dlsym(handle, symbol)
@@ -70,11 +68,7 @@ struct Loader {
 }
 
 private func env(_ name: String) -> String? {
-    #if os(Linux)
-        return ProcessInfo.processInfo().environment[name]
-    #else
-        return ProcessInfo.processInfo.environment[name]
-    #endif
+    return ProcessInfo.processInfo.environment[name]
 }
 
 /// Returns "LINUX_SOURCEKIT_LIB_PATH" environment variable
@@ -102,7 +96,7 @@ private let xcrunFindPath: String? = {
         return nil
     }
 
-    let task = Task()
+    let task = Process()
     task.launchPath = pathOfXcrun
     task.arguments = ["-find", "swift"]
 
@@ -141,31 +135,43 @@ private let userApplicationsDir: String? =
 #endif
 
 private extension String {
-    private var toolchainDir: String {
+    var toolchainDir: String {
         return stringByAppendingPathComponent(str: "Toolchains/XcodeDefault.xctoolchain")
     }
 
-    private var xcodeDeveloperDir: String {
+    var xcodeDeveloperDir: String {
         return stringByAppendingPathComponent(str: "Xcode.app/Contents/Developer")
     }
     
-    private var xcodeBetaDeveloperDir: String {
+    var xcodeBetaDeveloperDir: String {
         return stringByAppendingPathComponent(str: "Xcode-beta.app/Contents/Developer")
     }
 
-    private var usrLibDir: String {
+    var usrLibDir: String {
         return stringByAppendingPathComponent(str: "/usr/lib")
     }
 
-    private func stringByAppendingPathComponent(str: String) -> String {
+    func stringByAppendingPathComponent(str: String) -> String {
+        #if os(Linux)
         return try! URL(fileURLWithPath: self).appendingPathComponent(str).path!
+        #else
+        return URL(fileURLWithPath: self).appendingPathComponent(str).path
+        #endif
     }
 
-    private func deletingLastPathComponents(n: Int) -> String {
+    func deletingLastPathComponents(n: Int) -> String {
         var url = URL(fileURLWithPath: self)
         for _ in 0..<n {
+            #if os(Linux)
             url = try! url.deletingLastPathComponent()
+            #else
+            url = url.deletingLastPathComponent()
+            #endif
         }
+        #if os(Linux)
         return url.path!
+        #else
+        return url.path
+        #endif
     }
 }

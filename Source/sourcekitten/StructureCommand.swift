@@ -19,7 +19,7 @@ struct StructureCommand: CommandType {
         let file: String
         let text: String
 
-        static func create(file: String) -> (text: String) -> Options {
+        static func create(file: String) -> (_ text: String) -> Options {
             return { text in
                 self.init(file: file, text: text)
             }

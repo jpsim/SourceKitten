@@ -19,7 +19,7 @@ struct IndexCommand: CommandType {
         let file: String
         let compilerargs: String
 
-        static func create(file: String) -> (compilerargs: String) -> Options {
+        static func create(file: String) -> (_ compilerargs: String) -> Options {
             return { compilerargs in
                 self.init(file: file, compilerargs: compilerargs)
             }
@@ -38,7 +38,7 @@ struct IndexCommand: CommandType {
         }
         let absoluteFile = options.file.bridge().absolutePathRepresentation()
         let request = Request.Index(file: absoluteFile, arguments: options.compilerargs.components(separatedBy: " "))
-        print(toJSON(toAnyObject(request.send())))
+        print(toJSON(toAny(request.send())))
         return .success()
     }
 }

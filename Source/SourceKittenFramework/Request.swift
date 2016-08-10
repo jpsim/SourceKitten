@@ -56,10 +56,10 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
     switch sourcekitd_variant_get_type(sourcekitObject) {
     case SOURCEKITD_VARIANT_TYPE_ARRAY:
         var array = [SourceKitRepresentable]()
-        _ = withUnsafeMutablePointer(&array) { arrayPtr in
+        _ = withUnsafeMutablePointer(to: &array) { arrayPtr in
             sourcekitd_variant_array_apply_f(sourcekitObject, { index, value, context in
                 if let value = fromSourceKit(value), let context = context {
-                    let localArray = UnsafeMutablePointer<Array<SourceKitRepresentable>>(context)
+                    let localArray = context.bindMemory(to: [SourceKitRepresentable].self, capacity: 1)
                     localArray.pointee.insert(value, at: Int(index))
                 }
                 return true
@@ -68,10 +68,10 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         return array
     case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
         var dict = [String: SourceKitRepresentable]()
-        _ = withUnsafeMutablePointer(&dict) { dictPtr in
+        _ = withUnsafeMutablePointer(to: &dict) { dictPtr in
             sourcekitd_variant_dictionary_apply_f(sourcekitObject, { key, value, context in
                 if let key = stringForSourceKitUID(key!), let value = fromSourceKit(value), let context = context {
-                    let localDict = UnsafeMutablePointer<[String: SourceKitRepresentable]>(context)
+                    let localDict = context.bindMemory(to: [String: SourceKitRepresentable].self, capacity: 1)
                     localDict.pointee[key] = value
                 }
                 return true
@@ -154,7 +154,7 @@ That is slower than Swift's native String on some scene.
 - returns: String Swift's native String
 */
 private func swiftStringFrom(_ bytes: UnsafePointer<Int8>, length: Int) -> String? {
-    let pointer = UnsafeMutablePointer<Int8>(bytes)
+    let pointer = UnsafeMutablePointer<Int8>(mutating: bytes)
     // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
     // We'll try another encodings if fail.
     for encoding in [String.Encoding.utf8, .nextstep, .ascii] {
@@ -188,7 +188,7 @@ public enum Request {
     /// ReplaceText
     case ReplaceText(file: String, offset: Int64, length: Int64, sourceText: String)
 
-    private var sourcekitObject: sourcekitd_object_t {
+    fileprivate var sourcekitObject: sourcekitd_object_t {
         var dict: [sourcekitd_uid_t : sourcekitd_object_t]
         switch self {
         case .EditorOpen(let file):
@@ -319,14 +319,8 @@ public enum Request {
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
 
-    #if os(Linux)
-    private typealias SwiftError = Swift.Error
-    #else
-    private typealias SwiftError = Swift.ErrorProtocol
-    #endif
-
     /// A enum representation of SOURCEKITD_ERROR_*
-    public enum Error: SwiftError, CustomStringConvertible {
+    public enum Error: Swift.Error, CustomStringConvertible {
         case ConnectionInterrupted(String?)
         case Invalid(String?)
         case Failed(String?)

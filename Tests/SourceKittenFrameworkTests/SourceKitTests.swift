@@ -11,7 +11,7 @@ import Foundation
 import XCTest
 
 private func run(_ executable: String, arguments: [String]) -> String? {
-    let task = Task()
+    let task = Process()
     task.launchPath = executable
     task.arguments = arguments
 
@@ -28,7 +28,7 @@ private func run(_ executable: String, arguments: [String]) -> String? {
 
 private func sourcekitStringsStartingWith(_ pattern: String) -> Set<String> {
     #if os(Linux)
-    let sourceKitPath = "\(ProcessInfo.processInfo().environment["LINUX_SOURCEKIT_LIB_PATH"]!)/libsourcekitdInProc.so"
+    let sourceKitPath = "\(ProcessInfo.processInfo.environment["LINUX_SOURCEKIT_LIB_PATH"]!)/libsourcekitdInProc.so"
     #else
     let sourceKitPath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
         .deletingLastPathComponent as NSString)
@@ -132,6 +132,7 @@ class SourceKitTests: XCTestCase {
             .FunctionSubscript,
             .GenericTypeParam,
             .Module,
+            .PrecedenceGroup,
             .Protocol,
             .Struct,
             .Typealias,
@@ -157,10 +158,10 @@ class SourceKitTests: XCTestCase {
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
-        let indexJSON = NSMutableString(string: toJSON(toAnyObject(Request.Index(file: file, arguments: arguments).send())) + "\n")
+        let indexJSON = NSMutableString(string: toJSON(toAny(Request.Index(file: file, arguments: arguments).send())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
-            _ = try! RegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
+            _ = try! NSRegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
         }
 
         // Replace the parts of the output that are dependent on the environment of the test running machine
@@ -168,12 +169,6 @@ class SourceKitTests: XCTestCase {
         replace("\"key\\.hash\"[^\\n]*", withTemplate: "\"key\\.hash\" : \"\",")
 
         compareJSONStringWithFixturesName("BicycleIndex", jsonString: "\(indexJSON)")
-    }
-}
-
-extension String: CustomStringConvertible {
-    public var description: String {
-        return self
     }
 }
 

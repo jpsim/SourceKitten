@@ -10,18 +10,22 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
+#if os(Linux)
+private typealias NSRegularExpression = RegularExpression
+#endif
+
 func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringConvertible, rootDirectory: String = fixturesDirectory) {
     // Strip out fixtures directory since it's dependent on the test machine's setup
     let escapedFixturesDirectory = rootDirectory.replacingOccurrences(of: "/", with: "\\/")
-    let jsonString = String(jsonString).replacingOccurrences(of: escapedFixturesDirectory, with: "")
+    let jsonString = String(describing: jsonString).replacingOccurrences(of: escapedFixturesDirectory, with: "")
 
     // Strip out any other absolute paths after that, since it's also dependent on the test machine's setup
-    let absolutePathRegex = try! RegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
+    let absolutePathRegex = try! NSRegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
     let actualContent = absolutePathRegex.stringByReplacingMatches(in: jsonString, options: [], range: NSRange(location: 0, length: jsonString.utf16.count), withTemplate: "\"key\\.filepath\" : \"\",")
 
     let expectedFile = File(path: fixturesDirectory + name + ".json")!
 
-    let overwrite = false
+    let overwrite = true
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
         return
@@ -73,7 +77,7 @@ class SwiftDocsTests: XCTestCase {
             ]],
             "key.doc.result_discussion": [["Para": "result_discussion"]]
         ]
-        XCTAssertEqual(toAnyObject(parsed) as? NSDictionary, expected)
+        XCTAssertEqual(toAny(parsed) as? NSDictionary, expected)
     }
 #endif
 }

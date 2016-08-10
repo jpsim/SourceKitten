@@ -38,7 +38,7 @@ public struct Structure {
 
 extension Structure: CustomStringConvertible {
     /// A textual JSON representation of `Structure`.
-    public var description: String { return toJSON(toAnyObject(dictionary)) }
+    public var description: String { return toJSON(toAny(dictionary)) }
 }
 
 // MARK: Equatable

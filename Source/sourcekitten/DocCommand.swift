@@ -22,7 +22,7 @@ struct DocCommand: CommandType {
         let objc: Bool
         let arguments: [String]
 
-        static func create(spmModule: String) -> (singleFile: Bool) -> (moduleName: String) -> (objc: Bool) -> (arguments: [String]) -> Options {
+        static func create(spmModule: String) -> (_ singleFile: Bool) -> (_ moduleName: String) -> (_ objc: Bool) -> (_ arguments: [String]) -> Options {
             return { singleFile in { moduleName in { objc in { arguments in
                 self.init(spmModule: spmModule, singleFile: singleFile, moduleName: moduleName, objc: objc, arguments: arguments)
             }}}}

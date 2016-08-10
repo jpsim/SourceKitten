@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import SourceKittenFrameworkTestSuite
+@testable import SourceKittenFrameworkTests
 
 XCTMain([
   // testCase(ClangTranslationUnitTests.allTests),

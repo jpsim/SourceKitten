@@ -15,7 +15,7 @@ import Foundation
 
  - returns: JSON string representation of the input object.
  */
-public func toJSON(_ object: AnyObject) -> String {
+public func toJSON(_ object: Any) -> String {
     do {
         let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: .prettyPrinted)
         if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
@@ -26,62 +26,51 @@ public func toJSON(_ object: AnyObject) -> String {
 }
 
 /**
- Convert [String: SourceKitRepresentable] to `[String: AnyObject]`.
+ Convert [String: SourceKitRepresentable] to `Any`.
 
  - parameter dictionary: [String: SourceKitRepresentable] to convert.
 
- - returns: JSON-serializable Dictionary.
+ - returns: JSON-serializable value.
  */
-public func toAnyObject(_ dictionary: [String: SourceKitRepresentable]) -> AnyObject {
-    let anyDictionary = NSMutableDictionary()
+public func toAny(_ dictionary: [String: SourceKitRepresentable]) -> Any {
+    var anyDictionary = [String: Any]()
     for (key, object) in dictionary {
-        let key = key.bridge()
         switch object {
-        case let object as AnyObject:
-            anyDictionary[key] = object
         case let object as [SourceKitRepresentable]:
-            let value = object.map { toAnyObject($0 as! [String: SourceKitRepresentable]) }
-            #if os(Linux)
-            anyDictionary[key] = value as? AnyObject
-            #else
-            anyDictionary[key] = value
-            #endif
+            anyDictionary[key] = object.map { toAny($0 as! [String: SourceKitRepresentable]) }
         case let object as [[String: SourceKitRepresentable]]:
-            let value = object.map { toAnyObject($0) }
-            #if os(Linux)
-            anyDictionary[key] = value as? AnyObject
-            #else
-            anyDictionary[key] = value
-            #endif
+            anyDictionary[key] = object.map { toAny($0) }
         case let object as [String: SourceKitRepresentable]:
-            anyDictionary[key] = toAnyObject(object)
+            anyDictionary[key] = toAny(object)
         case let object as String:
             anyDictionary[key] = object.bridge()
         case let object as Int64:
             anyDictionary[key] = NSNumber(value: object)
         case let object as Bool:
             anyDictionary[key] = NSNumber(value: object)
+        case let object as Any:
+            anyDictionary[key] = object
         default:
             fatalError("Should never happen because we've checked all SourceKitRepresentable types")
         }
     }
-    return anyDictionary as AnyObject
+    return anyDictionary
 }
 
 #if !os(Linux)
 
 public func declarationsToJSON(_ decl: [String: [SourceDeclaration]]) -> String {
-    return toJSON(decl.map({ [$0: toOutputDictionary($1)] }).sorted { $0.keys.first < $1.keys.first })
+    return toJSON(decl.map({ [$0: toOutputDictionary($1)] }).sorted { $0.keys.first! < $1.keys.first! })
 }
 
-private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: AnyObject] {
-    var dict = [String: AnyObject]()
-    func set(_ key: SwiftDocKey, _ value: AnyObject?) {
+private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: Any] {
+    var dict = [String: Any]()
+    func set(_ key: SwiftDocKey, _ value: Any?) {
         if let value = value {
             dict[key.rawValue] = value
         }
     }
-    func setA(_ key: SwiftDocKey, _ value: [AnyObject]?) {
+    func setA(_ key: SwiftDocKey, _ value: [Any]?) {
         if let value = value, value.count > 0 {
             dict[key.rawValue] = value
         }
@@ -111,18 +100,18 @@ private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: AnyObject
     return dict
 }
 
-private func toOutputDictionary(_ decl: [SourceDeclaration]) -> [String: AnyObject] {
+private func toOutputDictionary(_ decl: [SourceDeclaration]) -> [String: Any] {
     return ["key.substructure": decl.map(toOutputDictionary), "key.diagnostic_stage": ""]
 }
 
-private func toOutputDictionary(_ param: Parameter) -> [String: AnyObject] {
+private func toOutputDictionary(_ param: Parameter) -> [String: Any] {
     return ["name": param.name, "discussion": param.discussion.map(toOutputDictionary)]
 }
 
-private func toOutputDictionary(_ text: Text) -> [String: AnyObject] {
+private func toOutputDictionary(_ text: Text) -> [String: Any] {
     switch text {
     case .Para(let str, let kind):
-        return ["kind": kind ?? "", "Para": str]
+        return ["kind": kind, "Para": str]
     case .Verbatim(let str):
         return ["kind": "", "Verbatim": str]
     }

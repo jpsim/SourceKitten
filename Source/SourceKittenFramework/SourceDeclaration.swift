@@ -73,10 +73,10 @@ public struct SourceDeclaration {
         let pyStartIndex = usr.range(of: "(py)")!.lowerBound
         let usrPrefix = usr.substring(to: pyStartIndex)
         let fullDeclarationRange = NSRange(location: 0, length: (declaration as NSString).length)
-        let regex = try! RegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)", options: [])
+        let regex = try! NSRegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)", options: [])
         let matches = regex.matches(in: declaration, options: [], range: fullDeclarationRange)
         if matches.count > 0 {
-            let accessorName = (declaration as NSString).substring(with: matches[0].range(at: 1))
+            let accessorName = (declaration as NSString).substring(with: matches[0].rangeAt(1))
             return usrPrefix + "(im)\(accessorName)"
         } else if getter {
             return usr.replacingOccurrences(of: "(py)", with: "(im)")

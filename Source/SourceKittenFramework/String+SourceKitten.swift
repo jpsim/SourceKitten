@@ -8,6 +8,17 @@
 
 import Foundation
 
+#if os(Linux)
+internal typealias NSRegularExpression = RegularExpression
+
+private extension TextCheckingResult {
+    func rangeAt(_ index: Int) -> NSRange {
+        return range(at: index)
+    }
+}
+
+#endif
+
 #if !os(Linux)
     extension String {
         public func bridge() -> NSString {
@@ -238,7 +249,7 @@ extension NSString {
         var charBuffer = [unichar](repeating: 0, count: length)
         getCharacters(&charBuffer, range: NSRange(location: 0, length: charBuffer.count))
         for newLength in (1...length).reversed() {
-            if !characterSet.contains(UnicodeScalar(charBuffer[newLength - 1])) {
+            if !characterSet.contains(UnicodeScalar(charBuffer[newLength - 1])!) {
                 return substring(with: NSRange(location: 0, length: newLength))
             }
         }
@@ -255,7 +266,7 @@ extension NSString {
         if absolutePath { return bridge() }
         return try! NSURL.fileURLWithPathComponents([rootDirectory, bridge()])!.standardizingPath().path!
         #else
-        if isAbsolutePath { return self as String }
+        if isAbsolutePath { return bridge() }
         return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
         #endif
     }
@@ -415,7 +426,7 @@ extension String {
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
-        let regex = try! RegularExpression(pattern: "(#pragma\\smark|@name)[ -]*([^\\n]+)", options: []) // Safe to force try
+        let regex = try! NSRegularExpression(pattern: "(#pragma\\smark|@name)[ -]*([^\\n]+)", options: []) // Safe to force try
         let range: NSRange
         if let limitRange = limitRange {
             range = NSRange(location: limitRange.location, length: min(utf16.count - limitRange.location, limitRange.length))
@@ -425,7 +436,7 @@ extension String {
         let matches = regex.matches(in: self, options: [], range: range)
 
         return matches.flatMap { match in
-            let markRange = match.range(at: 2)
+            let markRange = match.rangeAt(2)
             for excludedRange in excludeRanges {
                 if NSIntersectionRange(excludedRange, markRange).length > 0 {
                     return nil
@@ -478,7 +489,7 @@ extension String {
             $0.offset
         }
 
-        let regex = try! RegularExpression(pattern: "(///.*\\n|\\*/\\n)", options: []) // Safe to force try
+        let regex = try! NSRegularExpression(pattern: "(///.*\\n|\\*/\\n)", options: []) // Safe to force try
         let range = NSRange(location: 0, length: utf16.count)
         let matches = regex.matches(in: self, options: [], range: range)
 
@@ -494,13 +505,13 @@ extension String {
     */
     public func commentBody(range: NSRange? = nil) -> String? {
         let nsString = bridge()
-        let patterns: [(pattern: String, options: RegularExpression.Options)] = [
+        let patterns: [(pattern: String, options: NSRegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
             ("^\\s*\\/\\/\\/(.+)?",           .anchorsMatchLines)                               // single: ^\s*\/\/\/(.+)?
         ]
         let range = range ?? NSRange(location: 0, length: nsString.length)
         for pattern in patterns {
-            let regex = try! RegularExpression(pattern: pattern.pattern, options: pattern.options) // Safe to force try
+            let regex = try! NSRegularExpression(pattern: pattern.pattern, options: pattern.options) // Safe to force try
             let matches = regex.matches(in: self, options: [], range: range)
             let bodyParts = matches.flatMap { match -> [String] in
                 let numberOfRanges = match.numberOfRanges
@@ -508,7 +519,7 @@ extension String {
                     return []
                 }
                 return (1..<numberOfRanges).map { rangeIndex in
-                    let range = match.range(at: rangeIndex)
+                    let range = match.rangeAt(rangeIndex)
                     if range.location == NSNotFound {
                         return "" // empty capture group, return empty string
                     }
@@ -517,7 +528,7 @@ extension String {
                     let indexRange = NSRange(location: range.location, length: 0)
                     nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: indexRange)
                     let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(characterSet: .whitespacesAndNewlines)
-                    let leadingWhitespaceToAdd = String(repeating: Character(" "), count: leadingWhitespaceCountToAdd)
+                    let leadingWhitespaceToAdd = String(repeating: " ", count: leadingWhitespaceCountToAdd)
 
                     let bodySubstring = nsString.substring(with: range)
                     if bodySubstring.contains("@name") {

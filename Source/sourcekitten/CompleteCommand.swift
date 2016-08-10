@@ -21,7 +21,7 @@ struct CompleteCommand: CommandType {
         let offset: Int
         let compilerargs: String
 
-        static func create(file: String) -> (text: String) -> (offset: Int) -> (compilerargs: String) -> Options {
+        static func create(file: String) -> (_ text: String) -> (_ offset: Int) -> (_ compilerargs: String) -> Options {
             return { text in { offset in { compilerargs in
                 self.init(file: file, text: text, offset: offset, compilerargs: compilerargs)
             }}}
@@ -46,11 +46,7 @@ struct CompleteCommand: CommandType {
             }
             contents = file.contents
         } else {
-            #if os(Linux)
-                path = "\(NSUUID().UUIDString).swift"
-            #else
-                path = "\(NSUUID().uuidString).swift"
-            #endif
+            path = "\(NSUUID().uuidString).swift"
             contents = options.text
         }
 

@@ -103,12 +103,12 @@ extension CXCursor {
             return usrString.substring(from: index)
         } else if type == .Category, let usrNSString = usr() as NSString? {
             let ext = (usrNSString.range(of: "c:objc(ext)").location == 0)
-            let regex = try! RegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
+            let regex = try! NSRegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
             let range = NSRange(location: 0, length: usrNSString.length)
             let matches = regex.matches(in: usrNSString as String, options: [], range: range)
             if matches.count > 0 {
-                let categoryOn = usrNSString.substring(with: matches[0].range(at: 1))
-                let categoryName = ext ? "" : usrNSString.substring(with: matches[0].range(at: 2))
+                let categoryOn = usrNSString.substring(with: matches[0].rangeAt(1))
+                let categoryName = ext ? "" : usrNSString.substring(with: matches[0].rangeAt(2))
                 return "\(categoryOn)(\(categoryName))"
             } else {
                 fatalError("Couldn't get category name")
@@ -133,7 +133,7 @@ extension CXCursor {
         return clang_Cursor_getParsedComment(self)
     }
 
-    func flatMap<T>(block: (CXCursor) -> T?) -> [T] {
+    func flatMap<T>(block: @escaping (CXCursor) -> T?) -> [T] {
         var ret = [T]()
         visit() { cursor, _ in
             if let val = block(cursor) {

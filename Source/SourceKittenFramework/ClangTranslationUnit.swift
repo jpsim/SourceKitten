@@ -40,7 +40,7 @@ extension Dictionary {
         }
     }
 
-    func map<OutValue>(transform: @noescape (Value) throws -> (OutValue)) rethrows -> [Key: OutValue] {
+    func map<OutValue>(transform: (Value) throws -> (OutValue)) rethrows -> [Key: OutValue] {
         return Dictionary<Key, OutValue>(try map { (k, v) in (k, try transform(v)) })
     }
 }
@@ -80,7 +80,7 @@ public struct ClangTranslationUnit {
     */
     public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = FileManager.default.currentDirectoryPath) {
         let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
-        guard let clangArguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .ObjC, moduleName: nil) else {
+        guard let clangArguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .ObjC, moduleName: nil) else {
             fputs("could not parse compiler arguments\n", stderr)
             fputs("\(xcodeBuildOutput)\n", stderr)
             return nil

@@ -6,14 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-#if os(Linux)
-private typealias SwiftError = Swift.Error
-#else
-private typealias SwiftError = Swift.ErrorProtocol
-#endif
-
 /// Possible errors within SourceKitten.
-enum SourceKittenError: SwiftError, CustomStringConvertible {
+enum SourceKittenError: Error, CustomStringConvertible {
     /// One or more argument was invalid.
     case InvalidArgument(description: String)
 
