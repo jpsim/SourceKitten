@@ -126,7 +126,7 @@ extension CXCursor {
         return clang_getCursorUSR(self).str()
     }
 
-    func visit(block: CXCursorVisitorBlock) {
+    func visit(block: @escaping (CXCursor, CXCursor) -> CXChildVisitResult) {
         _ = clang_visitChildrenWithBlock(self, block)
     }
 

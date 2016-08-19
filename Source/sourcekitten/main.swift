@@ -32,7 +32,7 @@ private func run() {
     }
 }
 
-#if os(Linux)
+#if SWIFT_PACKAGE
     run()
 #else
     // `sourcekitd_set_notification_handler()` set the handler to be executed on main thread queue.
