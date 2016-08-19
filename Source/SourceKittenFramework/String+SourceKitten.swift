@@ -8,31 +8,6 @@
 
 import Foundation
 
-#if os(Linux)
-internal typealias NSRegularExpression = RegularExpression
-
-private extension TextCheckingResult {
-    func rangeAt(_ index: Int) -> NSRange {
-        return range(at: index)
-    }
-}
-
-#endif
-
-#if !os(Linux)
-    extension String {
-        public func bridge() -> NSString {
-            return self as NSString
-        }
-    }
-
-    extension NSString {
-        public func bridge() -> String {
-            return self as String
-        }
-    }
-#endif
-
 /// Representation of line in String
 public struct Line {
     /// origin = 0
@@ -261,11 +236,10 @@ extension NSString {
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
     public func absolutePathRepresentation(rootDirectory: String = defaultFileManager.currentDirectoryPath) -> String {
+        if isAbsolutePath { return bridge() }
         #if os(Linux)
-        if absolutePath { return bridge() }
         return try! NSURL.fileURLWithPathComponents([rootDirectory, bridge()])!.standardizingPath().path!
         #else
-        if isAbsolutePath { return bridge() }
         return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
         #endif
     }

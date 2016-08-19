@@ -10,10 +10,6 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-#if os(Linux)
-private typealias NSRegularExpression = RegularExpression
-#endif
-
 func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringConvertible, rootDirectory: String = fixturesDirectory) {
     // Strip out fixtures directory since it's dependent on the test machine's setup
     let escapedFixturesDirectory = rootDirectory.replacingOccurrences(of: "/", with: "\\/")

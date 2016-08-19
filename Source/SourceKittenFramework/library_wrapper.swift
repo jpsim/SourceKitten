@@ -7,9 +7,7 @@
 //
 
 import Foundation
-#if os(Linux)
-typealias Process = Task
-#endif
+
 internal let defaultFileManager = FileManager.default
 
 struct DynamicLinkLibrary {

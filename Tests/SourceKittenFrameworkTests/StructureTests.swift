@@ -107,11 +107,13 @@ class StructureTests: XCTestCase {
         ]
         XCTAssertEqual(toNSDictionary(structure.dictionary), expected.bridge(), "should generate expected structure")
 
-        #if !os(Linux)
         let jsonData = structure.description.data(using: .utf8)!
-        let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? NSDictionary
-        XCTAssertEqual(jsonDictionary!, expected.bridge(), "JSON should match expected structure")
+        #if os(Linux)
+            let jsonDictionary = try! (JSONSerialization.jsonObject(with: jsonData, options: []) as! [AnyHashable: Any]).bridge()
+        #else
+            let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! NSDictionary
         #endif
+        XCTAssertEqual(jsonDictionary, expected.bridge(), "JSON should match expected structure")
     }
 }
 

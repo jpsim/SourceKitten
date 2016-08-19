@@ -10,19 +10,6 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-#if !os(Linux)
-extension Dictionary {
-    func bridge() -> NSDictionary {
-        return self as NSDictionary
-    }
-}
-extension Array {
-    func bridge() -> NSArray {
-        return self as NSArray
-    }
-}
-#endif
-
 func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
     let expectedSyntaxMap = SyntaxMap(tokens: expectedTokens.map { tokenTuple in
         return SyntaxToken(type: tokenTuple.0.rawValue, offset: tokenTuple.1, length: tokenTuple.2)

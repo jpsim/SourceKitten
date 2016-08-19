@@ -8,19 +8,6 @@
 
 import Foundation
 
-#if !os(Linux)
-extension Dictionary {
-    func bridge() -> NSDictionary {
-        return self as NSDictionary
-    }
-}
-extension Array {
-    func bridge() -> NSArray {
-        return self as NSArray
-    }
-}
-#endif
-
 /**
  JSON Object to JSON String.
 
