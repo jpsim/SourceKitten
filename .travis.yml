@@ -1,23 +1,16 @@
 matrix:
   include:
-    - script: make test
-      env: JOB=Xcode
-      os: osx
-      osx_image: xcode8
-    - script: make spm_test
-      env: JOB=SPM
-      os: osx
-      osx_image: xcode8
+    - sudo: required
+      language: generic
+      services:
+        - docker
       before_install:
-        - make bootstrap
-        - make swift_snapshot_install
-    - script: docker run -v `pwd`:/SourceKitten jpsim/sourcekit bash -c "cd /SourceKitten && swift build && swift test"
-      env: JOB=Linux
-      sudo: required
-      services: docker
-      before_install: docker pull jpsim/sourcekit
+        - docker pull jpsim/sourcekit
+      script:
+        - docker run -v `pwd`:/SourceKitten jpsim/sourcekit bash -c "cd /SourceKitten && swift build && swift test"
 branches:
-  only: master
+  only:
+    - master
 notifications:
   email: false
   slack: realmio:vPdpsG9NLDo2DNlbqtcMAQuE
