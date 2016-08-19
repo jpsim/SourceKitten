@@ -16,6 +16,11 @@ extension Dictionary {
         return self as NSDictionary
     }
 }
+extension Array {
+    func bridge() -> NSArray {
+        return self as NSArray
+    }
+}
 #endif
 
 func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
@@ -25,10 +30,17 @@ func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
     let syntaxMap = SyntaxMap(file: file)
     XCTAssertEqual(syntaxMap, expectedSyntaxMap, "should generate expected syntax map")
 
-    let syntaxJSON = syntaxMap.description
-    let jsonArray = try! JSONSerialization.jsonObject(with: syntaxJSON.data(using: .utf8)!, options: []) as? [NSDictionary]
-    XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
-    XCTAssertEqual(jsonArray!, expectedSyntaxMap.tokens.map { $0.dictionaryValue.bridge() }, "JSON should match expected syntax")
+    #if os(Linux)
+        typealias JSONType = Any
+    #else
+        typealias JSONType = NSDictionary
+    #endif
+    let syntaxData = syntaxMap.description.data(using: .utf8)!
+    XCTAssertEqual(
+        try! (JSONSerialization.jsonObject(with: syntaxData, options: []) as! [JSONType]).bridge(),
+        expectedSyntaxMap.tokens.map({ $0.dictionaryValue.bridge() }).bridge(),
+        "JSON should match expected syntax"
+    )
 }
 
 class SyntaxTests: XCTestCase {
@@ -71,10 +83,10 @@ class SyntaxTests: XCTestCase {
 extension SyntaxTests {
     static var allTests: [(String, (SyntaxTests) -> () throws -> Void)] {
         return [
-            // ("testPrintEmptySyntax", testPrintEmptySyntax),
+            ("testPrintEmptySyntax", testPrintEmptySyntax),
             ("testGenerateSameSyntaxMapFileAndContents", testGenerateSameSyntaxMapFileAndContents),
-            // ("testSubscript", testSubscript),
-            // ("testSyntaxMapPrintValidJSON", testSyntaxMapPrintValidJSON),
+            ("testSubscript", testSubscript),
+            ("testSyntaxMapPrintValidJSON", testSyntaxMapPrintValidJSON),
         ]
     }
 }

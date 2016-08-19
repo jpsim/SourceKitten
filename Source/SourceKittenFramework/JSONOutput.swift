@@ -8,6 +8,19 @@
 
 import Foundation
 
+#if !os(Linux)
+extension Dictionary {
+    func bridge() -> NSDictionary {
+        return self as NSDictionary
+    }
+}
+extension Array {
+    func bridge() -> NSArray {
+        return self as NSArray
+    }
+}
+#endif
+
 /**
  JSON Object to JSON String.
 
@@ -15,7 +28,20 @@ import Foundation
 
  - returns: JSON string representation of the input object.
  */
-public func toJSON(_ object: Any) -> String {
+public func toJSON<Element>(_ object: Array<Element>) -> String {
+    if object.isEmpty {
+        return "[\n\n]"
+    }
+    do {
+        let prettyJSONData = try JSONSerialization.data(withJSONObject: object.bridge(), options: .prettyPrinted)
+        if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
+            return jsonString
+        }
+    } catch {}
+    return ""
+}
+
+public func toJSON(_ object: NSDictionary) -> String {
     do {
         let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: .prettyPrinted)
         if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
@@ -32,16 +58,16 @@ public func toJSON(_ object: Any) -> String {
 
  - returns: JSON-serializable value.
  */
-public func toAny(_ dictionary: [String: SourceKitRepresentable]) -> Any {
+public func toNSDictionary(_ dictionary: [String: SourceKitRepresentable]) -> NSDictionary {
     var anyDictionary = [String: Any]()
     for (key, object) in dictionary {
         switch object {
         case let object as [SourceKitRepresentable]:
-            anyDictionary[key] = object.map { toAny($0 as! [String: SourceKitRepresentable]) }
+            anyDictionary[key] = object.map { toNSDictionary($0 as! [String: SourceKitRepresentable]) }
         case let object as [[String: SourceKitRepresentable]]:
-            anyDictionary[key] = object.map { toAny($0) }
+            anyDictionary[key] = object.map { toNSDictionary($0) }
         case let object as [String: SourceKitRepresentable]:
-            anyDictionary[key] = toAny(object)
+            anyDictionary[key] = toNSDictionary(object)
         case let object as String:
             anyDictionary[key] = object.bridge()
         case let object as Int64:
@@ -54,7 +80,7 @@ public func toAny(_ dictionary: [String: SourceKitRepresentable]) -> Any {
             fatalError("Should never happen because we've checked all SourceKitRepresentable types")
         }
     }
-    return anyDictionary
+    return anyDictionary.bridge()
 }
 
 #if !os(Linux)

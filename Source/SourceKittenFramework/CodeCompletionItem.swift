@@ -41,7 +41,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
     }
 
     public var description: String {
-        return toJSON(dictionaryValue)
+        return toJSON(dictionaryValue.bridge())
     }
 
     public static func parseResponse(response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {

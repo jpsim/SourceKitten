@@ -38,7 +38,7 @@ struct IndexCommand: CommandType {
         }
         let absoluteFile = options.file.bridge().absolutePathRepresentation()
         let request = Request.Index(file: absoluteFile, arguments: options.compilerargs.components(separatedBy: " "))
-        print(toJSON(toAny(request.send())))
+        print(toJSON(toNSDictionary(request.send())))
         return .success()
     }
 }

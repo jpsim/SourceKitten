@@ -19,7 +19,7 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse"
         ]
         let structure = Structure(file: File(contents: ""))
-        XCTAssertEqual((toAny(structure.dictionary) as! [String: Any]).bridge(), expected.bridge(), "should generate expected structure")
+        XCTAssertEqual(toNSDictionary(structure.dictionary), expected.bridge(), "should generate expected structure")
     }
 
     func testGenerateSameStructureFileAndContents() {
@@ -69,7 +69,7 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 26
         ]
-        XCTAssertEqual((toAny(structure.dictionary) as! [String: Any]).bridge(), expected.bridge(), "should generate expected structure")
+        XCTAssertEqual(toNSDictionary(structure.dictionary), expected.bridge(), "should generate expected structure")
     }
 
     func testStructurePrintValidJSON() {
@@ -105,7 +105,7 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 24
         ]
-        XCTAssertEqual((toAny(structure.dictionary) as! [String: Any]).bridge(), expected.bridge(), "should generate expected structure")
+        XCTAssertEqual(toNSDictionary(structure.dictionary), expected.bridge(), "should generate expected structure")
 
         #if !os(Linux)
         let jsonData = structure.description.data(using: .utf8)!

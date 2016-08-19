@@ -77,7 +77,7 @@ class SwiftDocsTests: XCTestCase {
             ]],
             "key.doc.result_discussion": [["Para": "result_discussion"]]
         ]
-        XCTAssertEqual(toAny(parsed) as? NSDictionary, expected)
+        XCTAssertEqual(toNSDictionary(parsed), expected)
     }
 #endif
 }

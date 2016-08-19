@@ -56,5 +56,5 @@ public func ==(lhs: SyntaxToken, rhs: SyntaxToken) -> Bool {
 
 extension SyntaxToken: CustomStringConvertible {
     /// A textual JSON representation of `SyntaxToken`.
-    public var description: String { return toJSON(dictionaryValue) }
+    public var description: String { return toJSON(dictionaryValue.bridge()) }
 }
