@@ -66,19 +66,13 @@ Partially filters compiler arguments from `xcodebuild` to something that SourceK
           more flags to remove in `.1`.
 */
 private func partiallyFilterArguments(args: [String]) -> ([String], Bool) {
-    var args = args
-    var didRemove = false
-    let flagsToRemove = [
-        "-output-file-map"
-    ]
-    for flag in flagsToRemove {
-        if let index = args.index(of: flag) {
-            didRemove = true
-            _ = args.remove(at: args.index(after: index))
-            args.remove(at: index)
-        }
+    guard let indexOfFlagToRemove = args.index(of: "-output-file-map") else {
+        return (args, false)
     }
-    return (args, didRemove)
+    var args = args
+    args.remove(at: args.index(after: indexOfFlagToRemove))
+    args.remove(at: indexOfFlagToRemove)
+    return (args, true)
 }
 
 /**
