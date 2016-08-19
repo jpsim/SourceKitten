@@ -2,11 +2,6 @@ sudo: required
 language: generic
 services:
   - docker
-git:
-  submodules: false
-branches:
-  only:
-    - master
 before_install:
   - docker pull jpsim/sourcekit
 script:
