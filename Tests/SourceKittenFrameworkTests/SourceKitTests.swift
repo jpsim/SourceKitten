@@ -155,6 +155,28 @@ class SourceKitTests: XCTestCase {
         }
     }
 
+#if !os(Linux)
+    func testLibraryWrappersAreUpToDate() {
+        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
+        let modules: [(module: String, path: String, linuxPath: String?, spmModule: String)] = [
+            ("CXString", "libclang.dylib", nil, "Clang_C"),
+            ("Documentation", "libclang.dylib", nil, "Clang_C"),
+            ("Index", "libclang.dylib", nil, "Clang_C"),
+            ("sourcekitd", "sourcekitd.framework/Versions/A/sourcekitd", "libsourcekitdInProc.so", "SourceKit")
+        ]
+        for (module, path, linuxPath, spmModule) in modules {
+            let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
+            let existingWrapper = try! String(contentsOfFile: wrapperPath)
+            let generatedWrapper = libraryWrapperForModule(module: module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
+            XCTAssertEqual(existingWrapper, generatedWrapper)
+            let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
+            if existingWrapper != generatedWrapper && overwrite {
+                try! generatedWrapper.data(using: .utf8)?.write(to: URL(fileURLWithPath: wrapperPath))
+            }
+        }
+    }
+#endif
+
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]

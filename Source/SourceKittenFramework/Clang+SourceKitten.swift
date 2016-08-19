@@ -14,26 +14,27 @@ import Clang_C
 import Foundation
 import SWXMLHash
 
-private var interfaceUUIDMap: [String: String] = [:]
+private var interfaceUUIDMap = [String: String]()
 
 struct ClangIndex {
     private let cx = clang_createIndex(0, 1)
 
-    func open(file: String, args: [UnsafePointer<Int8>]) -> CXTranslationUnit {
-        var unusedArgument = CXUnsavedFile()
+    func open(file: String, args: [UnsafePointer<Int8>?]) -> CXTranslationUnit {
         return clang_createTranslationUnitFromSourceFile(cx,
             file,
             Int32(args.count),
             args,
             0,
-            &unusedArgument)
+            nil)!
     }
 }
 
 extension CXString: CustomStringConvertible {
     func str() -> String? {
-        let tmp: UnsafePointer<Int8>? = clang_getCString(self)
-        return tmp.flatMap { String(validatingUTF8: $0) }
+        if let cString = clang_getCString(self) as UnsafePointer<Int8>? {
+            return String(validatingUTF8: cString)
+        }
+        return nil
     }
 
     public var description: String {

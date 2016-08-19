@@ -111,7 +111,7 @@ private func toOutputDictionary(_ param: Parameter) -> [String: Any] {
 private func toOutputDictionary(_ text: Text) -> [String: Any] {
     switch text {
     case .Para(let str, let kind):
-        return ["kind": kind, "Para": str]
+        return ["kind": kind ?? "", "Para": str]
     case .Verbatim(let str):
         return ["kind": "", "Verbatim": str]
     }

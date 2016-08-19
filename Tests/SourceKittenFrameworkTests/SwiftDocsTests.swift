@@ -25,7 +25,7 @@ func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringC
 
     let expectedFile = File(path: fixturesDirectory + name + ".json")!
 
-    let overwrite = true
+    let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
         return

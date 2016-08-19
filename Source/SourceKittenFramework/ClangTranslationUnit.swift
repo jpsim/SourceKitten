@@ -59,7 +59,7 @@ public struct ClangTranslationUnit {
     - parameter compilerArguments: Clang compiler arguments.
     */
     public init(headerFiles: [String], compilerArguments: [String]) {
-        let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).utf8String! }
+        let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).utf8String }
         let clangIndex = ClangIndex()
         clangTranslationUnits = headerFiles.map { clangIndex.open(file: $0, args: cStringCompilerArguments) }
         declarations = clangTranslationUnits
