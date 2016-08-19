@@ -19,23 +19,17 @@ public func toJSON<Element>(_ object: Array<Element>) -> String {
     if object.isEmpty {
         return "[\n\n]"
     }
-    do {
-        let prettyJSONData = try JSONSerialization.data(withJSONObject: object.bridge(), options: .prettyPrinted)
-        if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
-            return jsonString
-        }
-    } catch {}
-    return ""
+    return toJSON(any: object)
 }
 
 public func toJSON(_ object: NSDictionary) -> String {
-    do {
-        let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: .prettyPrinted)
-        if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
-            return jsonString
-        }
-    } catch {}
-    return ""
+    return toJSON(any: object)
+}
+
+private func toJSON(any: Any) -> String {
+    return (try? JSONSerialization.data(withJSONObject: any, options: .prettyPrinted)).flatMap { data in
+        return String(data: data, encoding: .utf8)
+    } ?? ""
 }
 
 /**
