@@ -19,7 +19,7 @@ public func toJSON<Element>(_ object: Array<Element>) -> String {
     if object.isEmpty {
         return "[\n\n]"
     }
-    return toJSON(any: object)
+    return toJSON(any: object.bridge())
 }
 
 public func toJSON(_ object: NSDictionary) -> String {
