@@ -33,7 +33,7 @@ private func toJSON(any: Any) -> String {
 }
 
 /**
- Convert [String: SourceKitRepresentable] to `Any`.
+ Convert [String: SourceKitRepresentable] to `NSDictionary`.
 
  - parameter dictionary: [String: SourceKitRepresentable] to convert.
 
