@@ -57,7 +57,6 @@ private let commentLinePrefixCharacterSet: CharacterSet = {
 private var keyCacheContainer = 0
 
 extension NSString {
-
     /**
     CacheContainer caches:
 

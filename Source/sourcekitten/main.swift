@@ -35,7 +35,7 @@ private func run() {
 #if SWIFT_PACKAGE
     run()
 #else
-    // `sourcekitd_set_notification_handler()` set the handler to be executed on main thread queue.
+    // `sourcekitd_set_notification_handler()` sets the handler to be executed on main thread queue.
     // So, we vacate main thread to `dispatchMain()`.
     DispatchQueue.global(qos: .default).async {
         run()

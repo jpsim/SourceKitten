@@ -18,8 +18,8 @@ public struct SyntaxToken {
     public let length: Int
 
     /// Dictionary representation of SyntaxToken. Useful for NSJSONSerialization.
-    public var dictionaryValue: NSDictionary {
-        return ["type".bridge(): type.bridge(), "offset".bridge(): NSNumber(value: offset), "length".bridge(): NSNumber(value: length)]
+    public var dictionaryValue: [String: Any] {
+        return ["type": type, "offset": offset, "length": length]
     }
 
     /**

@@ -206,7 +206,7 @@ public final class File {
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
             if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ processDictionary($0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
                let kind = SwiftDocKey.getKind(response),
-               let _ = SwiftDeclarationKind(rawValue: kind),
+               SwiftDeclarationKind(rawValue: kind) != nil,
                let parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
                let inserted = insertDoc(response, parent: dictionary, offset: parentOffset) {
                dictionary = inserted

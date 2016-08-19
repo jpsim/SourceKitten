@@ -30,9 +30,9 @@ private func sourcekitStringsStartingWith(_ pattern: String) -> Set<String> {
     #if os(Linux)
     let sourceKitPath = "\(ProcessInfo.processInfo.environment["LINUX_SOURCEKIT_LIB_PATH"]!)/libsourcekitdInProc.so"
     #else
-    let sourceKitPath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
-        .deletingLastPathComponent as NSString)
-        .deletingLastPathComponent as NSString)
+    let sourceKitPath = run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])!.bridge()
+        .deletingLastPathComponent.bridge()
+        .deletingLastPathComponent.bridge()
         .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
     #endif
     let strings = run("/usr/bin/strings", arguments: [sourceKitPath])

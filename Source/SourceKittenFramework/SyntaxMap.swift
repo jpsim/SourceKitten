@@ -93,7 +93,7 @@ public struct SyntaxMap {
 extension SyntaxMap: CustomStringConvertible {
     /// A textual JSON representation of `SyntaxMap`.
     public var description: String {
-        return toJSON(NSArray(array: tokens.map({ $0.dictionaryValue })) as AnyObject)
+        return toJSON(tokens.map { $0.dictionaryValue })
     }
 }
 

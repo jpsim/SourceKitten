@@ -10,6 +10,14 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
+#if !os(Linux)
+private extension Dictionary {
+    func bridge() -> NSDictionary {
+        return self as NSDictionary
+    }
+}
+#endif
+
 func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
     let expectedSyntaxMap = SyntaxMap(tokens: expectedTokens.map { tokenTuple in
         return SyntaxToken(type: tokenTuple.0.rawValue, offset: tokenTuple.1, length: tokenTuple.2)
@@ -20,7 +28,7 @@ func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
     let syntaxJSON = syntaxMap.description
     let jsonArray = try! JSONSerialization.jsonObject(with: syntaxJSON.data(using: .utf8)!, options: []) as? [NSDictionary]
     XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
-    XCTAssertEqual(jsonArray!, expectedSyntaxMap.tokens.map { $0.dictionaryValue }, "JSON should match expected syntax")
+    XCTAssertEqual(jsonArray!, expectedSyntaxMap.tokens.map { $0.dictionaryValue.bridge() }, "JSON should match expected syntax")
 }
 
 class SyntaxTests: XCTestCase {

@@ -41,12 +41,12 @@ let toolchainLoader = Loader(searchPaths: [
     applicationsDir?.xcodeBetaDeveloperDir.toolchainDir,
     userApplicationsDir?.xcodeDeveloperDir.toolchainDir,
     userApplicationsDir?.xcodeBetaDeveloperDir.toolchainDir,
-    ].flatMap { path in
-        if let fullPath = path?.usrLibDir, fullPath.isFile {
-            return fullPath
-        }
-        return nil
-    })
+].flatMap { path in
+    if let fullPath = path?.usrLibDir, fullPath.isFile {
+        return fullPath
+    }
+    return nil
+})
 #endif
 
 struct Loader {

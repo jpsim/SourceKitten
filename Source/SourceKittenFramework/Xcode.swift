@@ -127,7 +127,7 @@ internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Langu
     let regex = try! NSRegularExpression(pattern: pattern, options: []) // Safe to force try
     let range = NSRange(location: 0, length: xcodebuildOutput.length)
 
-    guard let regexMatch = regex.firstMatch(in: "\(xcodebuildOutput)", options: [], range: range) else {
+    guard let regexMatch = regex.firstMatch(in: xcodebuildOutput.bridge(), options: [], range: range) else {
         return nil
     }
 

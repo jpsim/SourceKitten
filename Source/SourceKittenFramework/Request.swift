@@ -189,7 +189,7 @@ public enum Request {
     case ReplaceText(file: String, offset: Int64, length: Int64, sourceText: String)
 
     fileprivate var sourcekitObject: sourcekitd_object_t {
-        var dict: [sourcekitd_uid_t : sourcekitd_object_t]
+        var dict: [sourcekitd_uid_t: sourcekitd_object_t?]
         switch self {
         case .EditorOpen(let file):
             if let path = file.path {
@@ -249,13 +249,13 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.compilerargs")!: sourcekitd_request_array_create(&compilerargs, compilerargs.count)!
             ]
         case .Format(let file, let line, let useTabs, let indentWidth):
-            let formatOptions: [sourcekitd_uid_t: sourcekitd_object_t] = [
+            let formatOptions: [sourcekitd_uid_t: sourcekitd_object_t?] = [
                 sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth")!: sourcekitd_request_int64_create(indentWidth)!,
                 sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth")!: sourcekitd_request_int64_create(indentWidth)!,
                 sourcekitd_uid_get_from_cstr("key.editor.format.usetabs")!: sourcekitd_request_int64_create(useTabs ? 1 : 0)!,
             ]
             var formatOptionsKeys = Array(formatOptions.keys.map({ $0 as sourcekitd_uid_t? }))
-            var formatOptionsValues = Array(formatOptions.values.map({ $0 as sourcekitd_object_t? }))
+            var formatOptionsValues = Array(formatOptions.values)
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.formattext")!)!,
                 sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(file)!,
@@ -272,7 +272,7 @@ public enum Request {
             ]
         }
         var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
-        var values = Array(dict.values.map({ $0 as sourcekitd_object_t? }))
+        var values = Array(dict.values)
         return sourcekitd_request_dictionary_create(&keys, &values, dict.count)!
     }
 
@@ -397,15 +397,15 @@ extension Request: CustomStringConvertible {
 #if !os(Linux)
 
 private func interfaceForModule(module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
-    var compilerargs = compilerArguments.map({ sourcekitd_request_string_create($0) })
-    let dict: [sourcekitd_uid_t: sourcekitd_object_t] = [
+    var compilerargs = compilerArguments.map { sourcekitd_request_string_create($0) }
+    let dict: [sourcekitd_uid_t: sourcekitd_object_t?] = [
         sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")!)!,
         sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(NSUUID().uuidString)!,
         sourcekitd_uid_get_from_cstr("key.compilerargs")!: sourcekitd_request_array_create(&compilerargs, compilerargs.count)!,
         sourcekitd_uid_get_from_cstr("key.modulename")!: sourcekitd_request_string_create("SourceKittenFramework.\(module)")!
     ]
     var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
-    var values = Array(dict.values.map({ $0 as sourcekitd_object_t? }))
+    var values = Array(dict.values)
     return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)!).send()
 }
 

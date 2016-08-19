@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension NSMutableDictionary {
-    fileprivate func addIfNotNil(_ key: NSString, _ value: NSString?) {
+fileprivate extension Dictionary {
+    mutating func addIfNotNil(_ key: Key, _ value: Value?) {
         if let value = value {
             self[key] = value
         }
@@ -28,18 +28,15 @@ public struct CodeCompletionItem: CustomStringConvertible {
     public let associatedUSRs: String?
 
     /// Dictionary representation of CodeCompletionItem. Useful for NSJSONSerialization.
-    public var dictionaryValue: NSDictionary {
-        let dict: NSMutableDictionary = [
-            "kind".bridge(): kind.bridge(),
-            "context".bridge(): context.bridge()
-        ]
-        dict.addIfNotNil("name", name?.bridge())
-        dict.addIfNotNil("descriptionKey", descriptionKey?.bridge())
-        dict.addIfNotNil("sourcetext", sourcetext?.bridge())
-        dict.addIfNotNil("typeName", typeName?.bridge())
-        dict.addIfNotNil("moduleName", moduleName?.bridge())
-        dict.addIfNotNil("docBrief", docBrief?.bridge())
-        dict.addIfNotNil("associatedUSRs", associatedUSRs?.bridge())
+    public var dictionaryValue: [String: Any] {
+        var dict = ["kind": kind, "context": context]
+        dict.addIfNotNil("name", name)
+        dict.addIfNotNil("descriptionKey", descriptionKey)
+        dict.addIfNotNil("sourcetext", sourcetext)
+        dict.addIfNotNil("typeName", typeName)
+        dict.addIfNotNil("moduleName", moduleName)
+        dict.addIfNotNil("docBrief", docBrief)
+        dict.addIfNotNil("associatedUSRs", associatedUSRs)
         return dict
     }
 

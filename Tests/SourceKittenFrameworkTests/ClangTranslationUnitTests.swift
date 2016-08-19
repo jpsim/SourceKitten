@@ -41,22 +41,22 @@ class ClangTranslationUnitTests: XCTestCase {
         XCTAssertEqual(parsedXcodebuildArguments, xcodebuildArguments, "xcodebuild arguments should be parsed")
     }
 
-    private func compareClangFixture(fixture: String) {
+    private func compareClangFixture(_ fixture: String) {
         let tu = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
                                       compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
         compareJSONStringWithFixturesName(fixture.bridge().lastPathComponent, jsonString: tu)
     }
 
     func testBasicObjectiveCDocs() {
-        compareClangFixture(fixture: "Musician")
+        compareClangFixture("Musician")
     }
 
     func testUnicodeInObjectiveCDocs() {
-        compareClangFixture(fixture: "SuperScript")
+        compareClangFixture("SuperScript")
     }
 
     func testRealmObjectiveCDocs() {
-        compareClangFixture(fixture: "Realm/Realm")
+        compareClangFixture("Realm/Realm")
     }
 }
 
