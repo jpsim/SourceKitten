@@ -11,7 +11,7 @@ import SourceKittenFramework
 import XCTest
 
 #if !os(Linux)
-private extension Dictionary {
+extension Dictionary {
     func bridge() -> NSDictionary {
         return self as NSDictionary
     }
