@@ -25,7 +25,7 @@ struct DynamicLinkLibrary {
 }
 
 #if os(Linux)
-let toolchainLoader = Loader(searchPaths: [linuxSourceKitLibPath!])
+let toolchainLoader = Loader(searchPaths: [linuxSourceKitLibPath, ""].flatMap {$0})
 #else
 let toolchainLoader = Loader(searchPaths: [
     xcodeDefaultToolchainOverride,
