@@ -63,5 +63,6 @@ internal let sourcekitd_response_description_copy: @convention(c) (sourcekitd_re
 internal let sourcekitd_variant_description_dump: @convention(c) (sourcekitd_variant_t) -> () = library.loadSymbol("sourcekitd_variant_description_dump")
 internal let sourcekitd_variant_description_dump_filedesc: @convention(c) (sourcekitd_variant_t, Int32) -> () = library.loadSymbol("sourcekitd_variant_description_dump_filedesc")
 internal let sourcekitd_variant_description_copy: @convention(c) (sourcekitd_variant_t) -> (UnsafeMutablePointer<Int8>!) = library.loadSymbol("sourcekitd_variant_description_copy")
+internal let sourcekitd_variant_json_description_copy: @convention(c) (sourcekitd_variant_t) -> (UnsafeMutablePointer<Int8>!) = library.loadSymbol("sourcekitd_variant_json_description_copy")
 internal let sourcekitd_send_request_sync: @convention(c) (sourcekitd_object_t) -> (sourcekitd_response_t!) = library.loadSymbol("sourcekitd_send_request_sync")
 internal let sourcekitd_cancel_request: @convention(c) (sourcekitd_request_handle_t?) -> () = library.loadSymbol("sourcekitd_cancel_request")
