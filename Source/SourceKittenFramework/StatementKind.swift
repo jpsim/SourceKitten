@@ -8,7 +8,7 @@
 
 /// Swift declaration kinds.
 /// Found in `strings SourceKitService | grep source.lang.swift.stmt.`.
-public enum StatementKind: String {
+public enum StatementKind: String, SwiftLangSyntax {
     /// `brace`.
     case Brace = "source.lang.swift.stmt.brace"
     /// `case`.
@@ -27,4 +27,8 @@ public enum StatementKind: String {
     case Switch = "source.lang.swift.stmt.switch"
     /// `while`.
     case While = "source.lang.swift.stmt.while"
+
+    public var value: String {
+        return rawValue
+    }
 }

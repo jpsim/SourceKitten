@@ -8,7 +8,7 @@
 
 /// Syntax kind values.
 /// Found in `strings SourceKitService | grep source.lang.swift.syntaxtype.`.
-public enum SyntaxKind: String {
+public enum SyntaxKind: String, SwiftLangSyntax {
     /// `argument`.
     case Argument = "source.lang.swift.syntaxtype.argument"
     /// `attribute.builtin`.
@@ -51,5 +51,9 @@ public enum SyntaxKind: String {
     /// Returns the valid documentation comment syntax kinds.
     internal static func docComments() -> [SyntaxKind] {
         return [CommentURL, DocComment, DocCommentField]
+    }
+
+    public var value: Swift.String {
+        return rawValue
     }
 }

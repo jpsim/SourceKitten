@@ -9,7 +9,7 @@
 import Foundation
 
 /// SourceKit response dictionary keys.
-internal enum SwiftDocKey: String {
+public enum SwiftDocKey: String {
     // MARK: SourceKit Keys
 
     /// Annotated declaration (String).
@@ -42,6 +42,8 @@ internal enum SwiftDocKey: String {
     case SyntaxMap            = "key.syntaxmap"
     /// Type name (String).
     case TypeName             = "key.typename"
+    /// Inheritedtype ([SourceKitRepresentable])
+    case Inheritedtypes       = "key.inheritedtypes"
 
     // MARK: Custom Keys
 

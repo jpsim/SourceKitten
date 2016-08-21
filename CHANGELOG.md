@@ -14,7 +14,9 @@
 
 ##### Enhancements
 
-* None.
+* Refactor to unite swift lang syntax types with SwiftLangSyntax protocol
+* Make SwiftDocKey public
+  [Evgeny Suvorov](https://github.com/esuvorov)
 
 ##### Bug Fixes
 
