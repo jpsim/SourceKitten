@@ -14,8 +14,8 @@ public struct Parameter {
     let name: String
     let discussion: [Text]
 
-    init(comment: CXComment) {
-        name = comment.paramName() ?? "<none>"
-        discussion = comment.paragraph().paragraphToString()
-    }
+//    init(comment: CXComment) {
+//        name = comment.paramName() ?? "<none>"
+//        discussion = comment.paragraph().paragraphToString()
+//    }
 }

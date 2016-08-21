@@ -22,24 +22,24 @@ public struct SourceLocation {
     }
 }
 
-extension SourceLocation {
-    init(clangLocation: CXSourceLocation) {
-        var cxfile = CXFile.alloc(1)
-        var line: UInt32 = 0
-        var column: UInt32 = 0
-        var offset: UInt32 = 0
-        clang_getSpellingLocation(clangLocation, &cxfile, &line, &column, &offset)
-        self.init(file: clang_getFileName(cxfile).str() ?? "<none>",
-            line: line, column: column, offset: offset)
-    }
-}
+//extension SourceLocation {
+//    init(clangLocation: CXSourceLocation) {
+//        var cxfile = CXFile(allocatingCapacity: 0)
+//        var line: UInt32 = 0
+//        var column: UInt32 = 0
+//        var offset: UInt32 = 0
+//        clang_getSpellingLocation(clangLocation, &cxfile, &line, &column, &offset)
+//        self.init(file: clang_getFileName(cxfile).str() ?? "<none>",
+//            line: line, column: column, offset: offset)
+//    }
+//}
 
 // MARK: Comparable
 
 extension SourceLocation: Comparable {}
 
 public func ==(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
-    return lhs.file.compare(rhs.file) == .OrderedSame &&
+    return lhs.file.compare(rhs.file) == .orderedSame &&
         lhs.line == rhs.line &&
         lhs.column == rhs.column &&
         lhs.offset == rhs.offset
@@ -50,11 +50,11 @@ public func ==(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
 public func <(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
     // Sort by file path.
     switch lhs.file.compare(rhs.file) {
-    case .OrderedDescending:
+    case .orderedDescending:
         return false
-    case .OrderedAscending:
+    case .orderedAscending:
         return true
-    case .OrderedSame:
+    case .orderedSame:
         break
     }
 

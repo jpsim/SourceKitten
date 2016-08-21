@@ -19,19 +19,19 @@ Run `xcodebuild clean build` along with any passed in build arguments.
 internal func runXcodeBuild(arguments: [String], inPath path: String) -> String? {
     fputs("Running xcodebuild\n", stderr)
 
-    let task = NSTask()
+    let task = Task()
     task.launchPath = "/usr/bin/xcodebuild"
     task.currentDirectoryPath = path
     task.arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
     task.standardError = pipe
 
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let xcodebuildOutput = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+    let xcodebuildOutput = NSString(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue)
     file.closeFile()
 
     return xcodebuildOutput as String?
@@ -49,7 +49,7 @@ Will the following values, in this priority: module name, target name, scheme na
 internal func moduleNameFromArguments(arguments: [String]) -> String? {
     let flags = ["-module-name", "-target", "-scheme"]
     for flag in flags {
-        if let flagIndex = arguments.indexOf(flag) {
+        if let flagIndex = arguments.index(of: flag) {
             if flagIndex + 1 < arguments.count {
                 return arguments[flagIndex + 1]
             }
@@ -73,10 +73,10 @@ private func partiallyFilterArguments(args: [String]) -> ([String], Bool) {
         "-output-file-map"
     ]
     for flag in flagsToRemove {
-        if let index = args.indexOf(flag) {
+        if let index = args.index(of: flag) {
             didRemove = true
-            args.removeAtIndex(index.successor())
-            args.removeAtIndex(index)
+            _ = args.remove(at: args.index(after: index))
+            args.remove(at: index)
         }
     }
     return (args, didRemove)
@@ -91,10 +91,10 @@ Filters compiler arguments from `xcodebuild` to something that SourceKit/Clang w
 */
 private func filterArguments(args: [String]) -> [String] {
     var args = args
-    args.appendContentsOf(["-D", "DEBUG"])
+    args.append(contentsOf: ["-D", "DEBUG"])
     var shouldContinueToFilterArguments = true
     while shouldContinueToFilterArguments {
-        (args, shouldContinueToFilterArguments) = partiallyFilterArguments(args)
+        (args, shouldContinueToFilterArguments) = partiallyFilterArguments(args: args)
     }
     return args.filter {
         ![
@@ -131,22 +131,22 @@ internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Langu
     } else {
         pattern = "/usr/bin/swiftc.*"
     }
-    let regex = try! NSRegularExpression(pattern: pattern, options: []) // Safe to force try
+    let regex = try! RegularExpression(pattern: pattern, options: []) // Safe to force try
     let range = NSRange(location: 0, length: xcodebuildOutput.length)
 
-    guard let regexMatch = regex.firstMatchInString(xcodebuildOutput as String, options: [], range: range) else {
+    guard let regexMatch = regex.firstMatch(in: xcodebuildOutput as String, options: [], range: range) else {
         return nil
     }
 
     let escapedSpacePlaceholder = "\u{0}"
-    let args = filterArguments(xcodebuildOutput
-        .substringWithRange(regexMatch.range)
-        .stringByReplacingOccurrencesOfString("\\ ", withString: escapedSpacePlaceholder)
-        .componentsSeparatedByString(" "))
+    let args = filterArguments(args: xcodebuildOutput
+        .substring(with: regexMatch.range)
+        .replacingOccurrences(of: "\\ ", with: escapedSpacePlaceholder)
+        .components(separatedBy: " "))
 
     // Remove first argument (swiftc/clang) and re-add spaces in arguments
     return (args[1..<args.count]).map {
-        $0.stringByReplacingOccurrencesOfString(escapedSpacePlaceholder, withString: " ")
+        $0.replacingOccurrences(of: escapedSpacePlaceholder, with: " ")
     }
 }
 
@@ -161,23 +161,23 @@ public func parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: [Strin
     var xcodebuildArguments = sourcekittenArguments
     var headerFiles = [String]()
     while let headerFile = xcodebuildArguments.first where headerFile.isObjectiveCHeaderFile() {
-        headerFiles.append(xcodebuildArguments.removeAtIndex(0).absolutePathRepresentation())
+        headerFiles.append(xcodebuildArguments.remove(at: 0).absolutePathRepresentation())
     }
     return (headerFiles, xcodebuildArguments)
 }
 
 public func sdkPath() -> String {
-    let task = NSTask()
+    let task = Task()
     task.launchPath = "/usr/bin/xcrun"
     task.arguments = ["--show-sdk-path"]
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
 
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let sdkPath = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+    let sdkPath = NSString(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue)
     file.closeFile()
-    return sdkPath?.stringByReplacingOccurrencesOfString("\n", withString: "") ?? ""
+    return sdkPath?.replacingOccurrences(of: "\n", with: "") ?? ""
 }

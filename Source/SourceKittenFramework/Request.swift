@@ -11,8 +11,21 @@ import Foundation
 import SourceKit
 #endif
 
+private let sourcekitdLazyVar: Int = {
+    sourcekitd_initialize()
+    sourcekitd_set_notification_handler() { response in
+        if !sourcekitd_response_is_error(response!) {
+            fflush(stdout)
+            fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
+            sourceKitWaitingRestoredSemaphore.signal()
+        }
+        sourcekitd_response_dispose(response!)
+    }
+    return 0
+}()
+
 public protocol SourceKitRepresentable {
-    func isEqualTo(rhs: SourceKitRepresentable) -> Bool
+    func isEqualTo(_ rhs: SourceKitRepresentable) -> Bool
 }
 extension Array: SourceKitRepresentable {}
 extension Dictionary: SourceKitRepresentable {}
@@ -21,10 +34,10 @@ extension Int64: SourceKitRepresentable {}
 extension Bool: SourceKitRepresentable {}
 
 extension SourceKitRepresentable {
-    public func isEqualTo(rhs: SourceKitRepresentable) -> Bool {
+    public func isEqualTo(_ rhs: SourceKitRepresentable) -> Bool {
         switch self {
         case let lhs as [SourceKitRepresentable]:
-            for (idx, value) in lhs.enumerate() {
+            for (idx, value) in lhs.enumerated() {
                 if let rhs = rhs as? [SourceKitRepresentable] where rhs[idx].isEqualTo(value) {
                     continue
                 }
@@ -52,36 +65,34 @@ extension SourceKitRepresentable {
     }
 }
 
-private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRepresentable? {
+private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKitRepresentable? {
     switch sourcekitd_variant_get_type(sourcekitObject) {
     case SOURCEKITD_VARIANT_TYPE_ARRAY:
         var array = [SourceKitRepresentable]()
-        sourcekitd_variant_array_apply(sourcekitObject) { index, value in
+        _ = sourcekitd_variant_array_apply(sourcekitObject) { index, value in
             if let value = fromSourceKit(value) {
-                array.insert(value, atIndex: Int(index))
+                array.insert(value, at: Int(index))
             }
             return true
         }
         return array
     case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
         var count: Int = 0
-        sourcekitd_variant_dictionary_apply(sourcekitObject) { _, _ in
+        _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { _, _ in
             count += 1
             return true
         }
         var dict = [String: SourceKitRepresentable](minimumCapacity: count)
-        sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
-            if let key = stringForSourceKitUID(key), value = fromSourceKit(value) {
+        _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
+            if let key = stringForSourceKitUID(key!), value = fromSourceKit(value) {
                 dict[key] = value
             }
             return true
         }
         return dict
     case SOURCEKITD_VARIANT_TYPE_STRING:
-        let length = sourcekitd_variant_string_get_length(sourcekitObject)
-        let ptr = sourcekitd_variant_string_get_ptr(sourcekitObject)
-        let string = swiftStringFrom(ptr, length: length)
-        return string
+        return swiftStringFrom(sourcekitd_variant_string_get_ptr(sourcekitObject),
+                               length: sourcekitd_variant_string_get_length(sourcekitObject))
     case SOURCEKITD_VARIANT_TYPE_INT64:
         return sourcekitd_variant_int64_get_value(sourcekitObject)
     case SOURCEKITD_VARIANT_TYPE_BOOL:
@@ -96,10 +107,10 @@ private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRe
 }
 
 /// dispatch_once_t token used to only initialize SourceKit once per session.
-private var sourceKitInitializationToken: dispatch_once_t = 0
+private var sourceKitInitializationToken = 0
 
 /// dispatch_semaphore_t used when waiting for sourcekitd to be restored.
-private var sourceKitWaitingRestoredSemaphore = dispatch_semaphore_create(0)
+private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
 private let sourceKitWaitingRestoredTimeout = Int64(10 * NSEC_PER_SEC)
 
 /// SourceKit UID to String map.
@@ -112,7 +123,7 @@ Cache SourceKit requests for strings from UIDs
 
 - returns: Cached UID string if available, nil otherwise.
 */
-internal func stringForSourceKitUID(uid: sourcekitd_uid_t) -> String? {
+internal func stringForSourceKitUID(_ uid: sourcekitd_uid_t) -> String? {
     if let string = uidStringMap[uid] {
         return string
     }
@@ -144,7 +155,7 @@ Returns SourceKitten defined enum's rawValue String from string
 
 - returns: rawValue String if defined in SourceKitten, nil otherwise.
 */
-private func sourceKittenRawValueStringFrom(uidString: String) -> String? {
+private func sourceKittenRawValueStringFrom(_ uidString: String) -> String? {
     return SwiftDocKey(rawValue: uidString)?.rawValue ??
         SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
         SyntaxKind(rawValue: uidString)?.rawValue
@@ -161,11 +172,11 @@ That is slower than Swift's native String on some scene.
 
 - returns: String Swift's native String
 */
-private func swiftStringFrom(bytes: UnsafePointer<Int8>, length: Int) -> String? {
+private func swiftStringFrom(_ bytes: UnsafePointer<Int8>, length: Int) -> String? {
     let pointer = UnsafeMutablePointer<Int8>(bytes)
     // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
     // We'll try another encodings if fail.
-    let encodings = [NSUTF8StringEncoding, NSNEXTSTEPStringEncoding, NSASCIIStringEncoding]
+    let encodings = [String.Encoding.utf8, String.Encoding.nextstep, String.Encoding.ascii]
     for encoding in encodings {
         if let string = String(bytesNoCopy: pointer, length: length, encoding: encoding,
             freeWhenDone: false) {
@@ -178,7 +189,7 @@ private func swiftStringFrom(bytes: UnsafePointer<Int8>, length: Int) -> String?
 /// Represents a SourceKit request.
 public enum Request {
     /// An `editor.open` request for the given File.
-    case EditorOpen(File)
+    case EditorOpen(file: File)
     /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
     case CursorInfo(file: String, offset: Int64, arguments: [String])
     /// A custom request by passing in the sourcekitd_object_t directly.
@@ -258,13 +269,13 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
         case .Format(let file, let line, let useTabs, let indentWidth):
-            let formatOptions = [
+            let formatOptions: [sourcekitd_uid_t : sourcekitd_object_t] = [
                 sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth"): sourcekitd_request_int64_create(indentWidth),
                 sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth"): sourcekitd_request_int64_create(indentWidth),
                 sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(Int64(Int(useTabs))),
             ]
-            var formatOptionsKeys = Array(formatOptions.keys)
-            var formatOptionsValues = Array(formatOptions.values)
+            var formatOptionsKeys = [sourcekitd_uid_t](formatOptions.keys)
+            var formatOptionsValues = [sourcekitd_object_t](formatOptions.values)
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.formattext")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
@@ -280,8 +291,8 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(sourceText),
             ]
         }
-        var keys = Array(dict.keys)
-        var values = Array(dict.values)
+        var keys = [sourcekitd_uid_t](dict.keys)
+        var values = [sourcekitd_object_t](dict.values)
         return sourcekitd_request_dictionary_create(&keys, &values, dict.count)
     }
 
@@ -308,7 +319,7 @@ public enum Request {
 
     - returns: SourceKit response if successful.
     */
-    internal static func sendCursorInfoRequest(request: sourcekitd_object_t, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
+    internal static func sendCursorInfoRequest(_ request: sourcekitd_object_t, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
         if offset == 0 {
             return nil
         }
@@ -322,16 +333,14 @@ public enum Request {
     - returns: SourceKit output as a dictionary.
     */
     public func send() -> [String: SourceKitRepresentable] {
-        dispatch_once(&sourceKitInitializationToken) {
-            sourcekitd_initialize()
-        }
+        _ = sourcekitdLazyVar
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response) }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
-    
+
     /// A enum representation of SOURCEKITD_ERROR_*
-    public enum Error: ErrorType, CustomStringConvertible {
+    public enum Error: ErrorProtocol, CustomStringConvertible {
         case ConnectionInterrupted(String?)
         case Invalid(String?)
         case Failed(String?)
@@ -354,7 +363,7 @@ public enum Request {
         }
         
         private init(response: sourcekitd_response_t) {
-            let description = String(UTF8String: sourcekitd_response_error_get_description(response))
+            let description = String(validatingUTF8: sourcekitd_response_error_get_description(response))
             switch sourcekitd_response_error_get_kind(response) {
             case SOURCEKITD_ERROR_CONNECTION_INTERRUPTED: self = .ConnectionInterrupted(description)
             case SOURCEKITD_ERROR_REQUEST_INVALID: self = .Invalid(description)
@@ -364,7 +373,7 @@ public enum Request {
             }
         }
     }
-    
+
     /**
     Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
      
@@ -372,27 +381,16 @@ public enum Request {
     - throws: Request.Error on fail ()
     */
     public func failableSend() throws -> [String: SourceKitRepresentable] {
-        dispatch_once(&sourceKitInitializationToken) {
-            sourcekitd_initialize()
-            sourcekitd_set_notification_handler() { response in
-                if !sourcekitd_response_is_error(response) {
-                    fflush(stdout)
-                    fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
-                    dispatch_semaphore_signal(sourceKitWaitingRestoredSemaphore)
-                }
-                sourcekitd_response_dispose(response)
-            }
-        }
+        _ = sourcekitdLazyVar
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response) }
-        if sourcekitd_response_is_error(response) {
-            let error = Request.Error(response: response)
-            if case .ConnectionInterrupted = error {
-                dispatch_semaphore_wait(sourceKitWaitingRestoredSemaphore,
-                    dispatch_time(DISPATCH_TIME_NOW, sourceKitWaitingRestoredTimeout))
-            }
-            throw error
-        }
+//        if sourcekitd_response_is_error(response) {
+//            let error = Request.Error(response: response)
+//            if case .ConnectionInterrupted = error {
+//                sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now(dispatch_time_t(DispatchTime.now), sourceKitWaitingRestoredTimeout))
+//            }
+//            throw error
+//        }
         return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
     }
 }
@@ -401,31 +399,31 @@ public enum Request {
 
 extension Request: CustomStringConvertible {
     /// A textual representation of `Request`.
-    public var description: String { return String(UTF8String: sourcekitd_request_description_copy(sourcekitObject))! }
+    public var description: String { return String(validatingUTF8: sourcekitd_request_description_copy(sourcekitObject))! }
 }
 
 private func interfaceForModule(module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
     var compilerargs = compilerArguments.map({ sourcekitd_request_string_create($0) })
-    let dict = [
+    let dict: [sourcekitd_uid_t : sourcekitd_object_t] = [
         sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")),
-        sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().UUIDString),
+        sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
         sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
         sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create("SourceKittenFramework.\(module)")
     ]
-    var keys = Array(dict.keys)
-    var values = Array(dict.values)
+    var keys = [sourcekitd_uid_t](dict.keys)
+    var values = [sourcekitd_object_t](dict.values)
     return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
 internal func libraryWrapperForModule(module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {
-    let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
+    let sourceKitResponse = interfaceForModule(module: module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = substructure.filter({
         SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .FunctionFree
     }).flatMap { function -> String? in
         let fullFunctionName = function["key.name"] as! String
-        let name = fullFunctionName.substringToIndex(fullFunctionName.rangeOfString("(")!.startIndex)
+        let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
         guard name != "clang_executeOnThread" else { // unsupported format
             return nil
         }
@@ -438,17 +436,17 @@ internal func libraryWrapperForModule(module: String, loadPath: String, spmModul
         }
         var returnTypes = [String]()
         if let offset = SwiftDocKey.getOffset(function), length = SwiftDocKey.getLength(function) {
-            let start = source.startIndex.advancedBy(Int(offset))
-            let end = start.advancedBy(Int(length))
-            let functionDeclaration = source.substringWithRange(start..<end)
-            if let startOfReturnArrow = functionDeclaration.rangeOfString("->", options: NSStringCompareOptions.BackwardsSearch, range: nil, locale: nil)?.startIndex {
-                returnTypes.append(functionDeclaration.substringFromIndex(startOfReturnArrow.advancedBy(3)))
+            let start = source.index(source.startIndex, offsetBy: Int(offset))
+            let end = source.index(start, offsetBy: Int(length))
+            let functionDeclaration = source.substring(with: start..<end)
+            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwardsSearch, range: nil, locale: nil)?.lowerBound {
+                returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
             }
         }
 
-        return "internal let \(name): @convention(c) (\(parameters.joinWithSeparator(", "))) -> (\(returnTypes.joinWithSeparator(", "))) = library.loadSymbol(\"\(name)\")"
+        return "internal let \(name): @convention(c) (\(parameters.joined(separator: ", "))) -> (\(returnTypes.joined(separator: ", "))) = library.loadSymbol(\"\(name)\")"
     }
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
     let library = "private let library = toolchainLoader.load(\"\(loadPath)\")\n"
-    return spmImport + library + freeFunctions.joinWithSeparator("\n") + "\n"
+    return spmImport + library + freeFunctions.joined(separator: "\n") + "\n"
 }

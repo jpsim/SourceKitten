@@ -1,2 +1,2 @@
-github "Carthage/Commandant"
+github "jpsim/Commandant" "jp-05-31-snapshot"
 github "jspahrsummers/xcconfigs"

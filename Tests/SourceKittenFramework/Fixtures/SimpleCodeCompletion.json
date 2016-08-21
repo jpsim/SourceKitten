@@ -1,128 +1,128 @@
 [{
   "descriptionKey" : "advancedBy(n: Distance)",
-  "associatedUSRs" : "s:FSi10advancedByFSiSi s:FPs21RandomAccessIndexType10advancedByFwx8Distancex s:FPs16ForwardIndexType10advancedByFwx8Distancex s:FPs10Strideable10advancedByFwx6Stridex",
   "kind" : "source.lang.swift.decl.function.method.instance",
+  "name" : "advancedBy(:)",
   "sourcetext" : "advancedBy(<#T##n: Distance##Distance#>)",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "Int",
+  "associatedUSRs" : "s:FSi10advancedByFSiSi s:FPs21RandomAccessIndexType10advancedByFwx8Distancex s:FPs16ForwardIndexType10advancedByFwx8Distancex s:FPs10Strideable10advancedByFwx6Stridex",
   "moduleName" : "Swift",
-  "name" : "advancedBy(:)"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "advancedBy(n: Int, limit: Int)",
-  "associatedUSRs" : "s:FEsPs21RandomAccessIndexType10advancedByFTwx8Distance5limitx_x",
   "kind" : "source.lang.swift.decl.function.method.instance",
+  "name" : "advancedBy(:limit:)",
   "sourcetext" : "advancedBy(<#T##n: Int##Int#>, limit: <#T##Int#>)",
-  "context" : "source.codecompletion.context.superclass",
   "typeName" : "Int",
+  "associatedUSRs" : "s:FEsPs21RandomAccessIndexType10advancedByFTwx8Distance5limitx_x",
   "moduleName" : "Swift",
-  "name" : "advancedBy(:limit:)"
+  "context" : "source.codecompletion.context.superclass"
 }, {
   "descriptionKey" : "bigEndian",
-  "docBrief" : "Returns the big-endian representation of the integer, changing the byte order if necessary.",
   "kind" : "source.lang.swift.decl.var.instance",
-  "associatedUSRs" : "s:vSi9bigEndianSi",
+  "name" : "bigEndian",
   "sourcetext" : "bigEndian",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "Int",
+  "docBrief" : "Returns the big-endian representation of the integer, changing the byte order if necessary.",
+  "associatedUSRs" : "s:vSi9bigEndianSi",
   "moduleName" : "Swift",
-  "name" : "bigEndian"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "byteSwapped",
-  "docBrief" : "Returns the current integer with the byte order swapped.",
   "kind" : "source.lang.swift.decl.var.instance",
-  "associatedUSRs" : "s:vSi11byteSwappedSi",
+  "name" : "byteSwapped",
   "sourcetext" : "byteSwapped",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "Int",
+  "docBrief" : "Returns the current integer with the byte order swapped.",
+  "associatedUSRs" : "s:vSi11byteSwappedSi",
   "moduleName" : "Swift",
-  "name" : "byteSwapped"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "description",
-  "docBrief" : "A textual representation of self.",
   "kind" : "source.lang.swift.decl.var.instance",
-  "associatedUSRs" : "s:vSi11descriptionSS s:vPs23CustomStringConvertible11descriptionSS",
+  "name" : "description",
   "sourcetext" : "description",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "String",
+  "docBrief" : "A textual representation of self.",
+  "associatedUSRs" : "s:vSi11descriptionSS s:vPs23CustomStringConvertible11descriptionSS",
   "moduleName" : "Swift",
-  "name" : "description"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "distanceTo(other: Int)",
-  "associatedUSRs" : "s:FSi10distanceToFSiSi s:FPs21RandomAccessIndexType10distanceToFxwx8Distance s:FPs16ForwardIndexType10distanceToFxwx8Distance s:FPs10Strideable10distanceToFxwx6Stride",
   "kind" : "source.lang.swift.decl.function.method.instance",
+  "name" : "distanceTo(:)",
   "sourcetext" : "distanceTo(<#T##other: Int##Int#>)",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "Distance",
+  "associatedUSRs" : "s:FSi10distanceToFSiSi s:FPs21RandomAccessIndexType10distanceToFxwx8Distance s:FPs16ForwardIndexType10distanceToFxwx8Distance s:FPs10Strideable10distanceToFxwx6Stride",
   "moduleName" : "Swift",
-  "name" : "distanceTo(:)"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "hashValue",
-  "docBrief" : "The hash value.",
   "kind" : "source.lang.swift.decl.var.instance",
-  "associatedUSRs" : "s:vSi9hashValueSi s:vPs8Hashable9hashValueSi",
+  "name" : "hashValue",
   "sourcetext" : "hashValue",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "Int",
+  "docBrief" : "The hash value.",
+  "associatedUSRs" : "s:vSi9hashValueSi s:vPs8Hashable9hashValueSi",
   "moduleName" : "Swift",
-  "name" : "hashValue"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "littleEndian",
-  "docBrief" : "Returns the little-endian representation of the integer, changing the byte order if necessary.",
   "kind" : "source.lang.swift.decl.var.instance",
-  "associatedUSRs" : "s:vSi12littleEndianSi",
+  "name" : "littleEndian",
   "sourcetext" : "littleEndian",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "Int",
+  "docBrief" : "Returns the little-endian representation of the integer, changing the byte order if necessary.",
+  "associatedUSRs" : "s:vSi12littleEndianSi",
   "moduleName" : "Swift",
-  "name" : "littleEndian"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "predecessor()",
-  "docBrief" : "Returns the previous consecutive value before self.",
   "kind" : "source.lang.swift.decl.function.method.instance",
-  "associatedUSRs" : "s:FSi11predecessorFT_Si s:FPs22BidirectionalIndexType11predecessorFT_x",
+  "name" : "predecessor()",
   "sourcetext" : "predecessor()",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "Int",
+  "docBrief" : "Returns the previous consecutive value before self.",
+  "associatedUSRs" : "s:FSi11predecessorFT_Si s:FPs22BidirectionalIndexType11predecessorFT_x",
   "moduleName" : "Swift",
-  "name" : "predecessor()"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "stride(through: Int, by: Distance)",
-  "docBrief" : "Returns the sequence of values (self, self + stride, self + stride + stride, ... last) where last is the last value in the progression less than or equal to end.",
   "kind" : "source.lang.swift.decl.function.method.instance",
-  "associatedUSRs" : "s:FEsPs10Strideable6strideFT7throughx2bywx6Stride_GVs13StrideThroughx_",
+  "name" : "stride(through:by:)",
   "sourcetext" : "stride(through: <#T##Int#>, by: <#T##Distance#>)",
-  "context" : "source.codecompletion.context.superclass",
   "typeName" : "StrideThrough<Int>",
+  "docBrief" : "Returns the sequence of values (self, self + stride, self + stride + stride, ... last) where last is the last value in the progression less than or equal to end.",
+  "associatedUSRs" : "s:FEsPs10Strideable6strideFT7throughx2bywx6Stride_GVs13StrideThroughx_",
   "moduleName" : "Swift",
-  "name" : "stride(through:by:)"
+  "context" : "source.codecompletion.context.superclass"
 }, {
   "descriptionKey" : "stride(to: Int, by: Distance)",
-  "docBrief" : "Returns the sequence of values (self, self + stride, self + stride + stride, ... last) where last is the last value in the progression that is less than end.",
   "kind" : "source.lang.swift.decl.function.method.instance",
-  "associatedUSRs" : "s:FEsPs10Strideable6strideFT2tox2bywx6Stride_GVs8StrideTox_",
+  "name" : "stride(to:by:)",
   "sourcetext" : "stride(to: <#T##Int#>, by: <#T##Distance#>)",
-  "context" : "source.codecompletion.context.superclass",
   "typeName" : "StrideTo<Int>",
+  "docBrief" : "Returns the sequence of values (self, self + stride, self + stride + stride, ... last) where last is the last value in the progression that is less than end.",
+  "associatedUSRs" : "s:FEsPs10Strideable6strideFT2tox2bywx6Stride_GVs8StrideTox_",
   "moduleName" : "Swift",
-  "name" : "stride(to:by:)"
+  "context" : "source.codecompletion.context.superclass"
 }, {
   "descriptionKey" : "successor()",
-  "docBrief" : "Returns the next consecutive value after self.",
   "kind" : "source.lang.swift.decl.function.method.instance",
-  "associatedUSRs" : "s:FSi9successorFT_Si s:FPs14_Incrementable9successorFT_x",
+  "name" : "successor()",
   "sourcetext" : "successor()",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "Int",
+  "docBrief" : "Returns the next consecutive value after self.",
+  "associatedUSRs" : "s:FSi9successorFT_Si s:FPs14_Incrementable9successorFT_x",
   "moduleName" : "Swift",
-  "name" : "successor()"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "toIntMax()",
-  "docBrief" : "Represent this number using Swift's widest native signed integer type.",
   "kind" : "source.lang.swift.decl.function.method.instance",
-  "associatedUSRs" : "s:FSi8toIntMaxFT_Vs5Int64 s:FPs18_SignedIntegerType8toIntMaxFT_Vs5Int64 s:FPs21IntegerArithmeticType8toIntMaxFT_Vs5Int64 s:FPs17SignedIntegerType8toIntMaxFT_Vs5Int64",
+  "name" : "toIntMax()",
   "sourcetext" : "toIntMax()",
-  "context" : "source.codecompletion.context.thisclass",
   "typeName" : "IntMax",
+  "docBrief" : "Represent this number using Swift's widest native signed integer type.",
+  "associatedUSRs" : "s:FSi8toIntMaxFT_Vs5Int64 s:FPs18_SignedIntegerType8toIntMaxFT_Vs5Int64 s:FPs21IntegerArithmeticType8toIntMaxFT_Vs5Int64 s:FPs17SignedIntegerType8toIntMaxFT_Vs5Int64",
   "moduleName" : "Swift",
-  "name" : "toIntMax()"
+  "context" : "source.codecompletion.context.thisclass"
 }]

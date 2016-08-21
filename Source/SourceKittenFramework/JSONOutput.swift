@@ -15,10 +15,10 @@ import Foundation
 
  - returns: JSON string representation of the input object.
  */
-public func toJSON(object: AnyObject) -> String {
+public func toJSON(_ object: AnyObject) -> String {
     do {
-        let prettyJSONData = try NSJSONSerialization.dataWithJSONObject(object, options: .PrettyPrinted)
-        if let jsonString = NSString(data: prettyJSONData, encoding: NSUTF8StringEncoding) as? String {
+        let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: .prettyPrinted)
+        if let jsonString = NSString(data: prettyJSONData, encoding: String.Encoding.utf8.rawValue) as? String {
             return jsonString
         }
     } catch {}
@@ -32,7 +32,7 @@ public func toJSON(object: AnyObject) -> String {
 
  - returns: JSON-serializable Dictionary.
  */
-public func toAnyObject(dictionary: [String: SourceKitRepresentable]) -> [String: AnyObject] {
+public func toAnyObject(_ dictionary: [String: SourceKitRepresentable]) -> [String: AnyObject] {
     var anyDictionary = [String: AnyObject]()
     for (key, object) in dictionary {
         switch object {
@@ -47,9 +47,9 @@ public func toAnyObject(dictionary: [String: SourceKitRepresentable]) -> [String
         case let object as String:
             anyDictionary[key] = object
         case let object as Int64:
-            anyDictionary[key] = NSNumber(longLong: object)
+            anyDictionary[key] = NSNumber(value: object)
         case let object as Bool:
-            anyDictionary[key] = NSNumber(bool: object)
+            anyDictionary[key] = NSNumber(value: object)
         default:
             fatalError("Should never happen because we've checked all SourceKitRepresentable types")
         }
@@ -57,18 +57,18 @@ public func toAnyObject(dictionary: [String: SourceKitRepresentable]) -> [String
     return anyDictionary
 }
 
-public func declarationsToJSON(decl: [String: [SourceDeclaration]]) -> String {
-    return toJSON(decl.map({ [$0: toOutputDictionary($1)] }).sort({ $0.keys.first < $1.keys.first }))
+public func declarationsToJSON(_ decl: [String: [SourceDeclaration]]) -> String {
+    return toJSON(decl.map({ [$0: toOutputDictionary($1)] }).sorted { $0.keys.first < $1.keys.first })
 }
 
-private func toOutputDictionary(decl: SourceDeclaration) -> [String: AnyObject] {
+private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: AnyObject] {
     var dict = [String: AnyObject]()
-    func set(key: SwiftDocKey, _ value: AnyObject?) {
+    func set(_ key: SwiftDocKey, _ value: AnyObject?) {
         if let value = value {
             dict[key.rawValue] = value
         }
     }
-    func setA(key: SwiftDocKey, _ value: [AnyObject]?) {
+    func setA(_ key: SwiftDocKey, _ value: [AnyObject]?) {
         if let value = value where value.count > 0 {
             dict[key.rawValue] = value
         }
@@ -98,15 +98,15 @@ private func toOutputDictionary(decl: SourceDeclaration) -> [String: AnyObject] 
     return dict
 }
 
-private func toOutputDictionary(decl: [SourceDeclaration]) -> [String: AnyObject] {
+private func toOutputDictionary(_ decl: [SourceDeclaration]) -> [String: AnyObject] {
     return ["key.substructure": decl.map(toOutputDictionary), "key.diagnostic_stage": ""]
 }
 
-private func toOutputDictionary(param: Parameter) -> [String: AnyObject] {
+private func toOutputDictionary(_ param: Parameter) -> [String: AnyObject] {
     return ["name": param.name, "discussion": param.discussion.map(toOutputDictionary)]
 }
 
-private func toOutputDictionary(text: Text) -> [String: AnyObject] {
+private func toOutputDictionary(_ text: Text) -> [String: AnyObject] {
     switch text {
     case .Para(let str, let kind):
         return ["kind": kind ?? "", "Para": str]

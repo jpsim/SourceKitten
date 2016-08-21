@@ -10,30 +10,30 @@ import Foundation
 @testable import SourceKittenFramework
 import XCTest
 
-private func run(executable: String, arguments: [String]) -> String? {
-    let task = NSTask()
+private func run(_ executable: String, arguments: [String]) -> String? {
+    let task = Task()
     task.launchPath = executable
     task.arguments = arguments
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
 
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let output = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+    let output = NSString(data: file.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue)
     file.closeFile()
     return output as String?
 }
 
-private func sourcekitStringsStartingWith(pattern: String) -> Set<String> {
+private func sourcekitStringsStartingWith(_ pattern: String) -> Set<String> {
     let sourceKitServicePath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
-        .stringByDeletingLastPathComponent as NSString)
-        .stringByDeletingLastPathComponent as NSString)
-        .stringByAppendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
+        .deletingLastPathComponent as NSString)
+        .deletingLastPathComponent as NSString)
+        .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
     let strings = run("/usr/bin/strings", arguments: [sourceKitServicePath])
-    return Set(strings!.componentsSeparatedByString("\n").filter { string in
-        return string.rangeOfString(pattern)?.startIndex == string.startIndex
+    return Set(strings!.components(separatedBy: "\n").filter { string in
+        return string.range(of: pattern)?.lowerBound == string.startIndex
     })
 }
 
@@ -59,8 +59,8 @@ class SourceKitTests: XCTestCase {
             expectedStrings
         )
         if actual != expectedStrings {
-            print("the following strings were added: \(actual.subtract(expectedStrings))")
-            print("the following strings were removed: \(expectedStrings.subtract(actual))")
+            print("the following strings were added: \(actual.subtracting(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
     }
 
@@ -93,8 +93,8 @@ class SourceKitTests: XCTestCase {
             expectedStrings
         )
         if actual != expectedStrings {
-            print("the following strings were added: \(actual.subtract(expectedStrings))")
-            print("the following strings were removed: \(expectedStrings.subtract(actual))")
+            print("the following strings were added: \(actual.subtracting(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
     }
 
@@ -145,28 +145,8 @@ class SourceKitTests: XCTestCase {
             expectedStrings
         )
         if actual != expectedStrings {
-            print("the following strings were added: \(actual.subtract(expectedStrings))")
-            print("the following strings were removed: \(expectedStrings.subtract(actual))")
-        }
-    }
-
-    func testLibraryWrappersAreUpToDate() {
-        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
-        let modules: [(module: String, path: String, spmModule: String)] = [
-            ("CXString", "libclang.dylib", "Clang_C"),
-            ("Documentation", "libclang.dylib", "Clang_C"),
-            ("Index", "libclang.dylib", "Clang_C"),
-            ("sourcekitd", "sourcekitd.framework/Versions/A/sourcekitd", "SourceKit")
-        ]
-        for (module, path, spmModule) in modules {
-            let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
-            let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
-            XCTAssertEqual(existingWrapper, generatedWrapper)
-            let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
-            if existingWrapper != generatedWrapper && overwrite {
-                generatedWrapper.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(wrapperPath, atomically: true)
-            }
+            print("the following strings were added: \(actual.subtracting(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
     }
 
@@ -175,8 +155,8 @@ class SourceKitTests: XCTestCase {
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
         let indexJSON = NSMutableString(string: toJSON(toAnyObject(Request.Index(file: file, arguments: arguments).send())) + "\n")
 
-        func replace(pattern: String, withTemplate template: String) {
-            try! NSRegularExpression(pattern: pattern, options: []).replaceMatchesInString(indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
+        func replace(_ pattern: String, withTemplate template: String) {
+            try! RegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
         }
 
         // Replace the parts of the output that are dependent on the environment of the test running machine

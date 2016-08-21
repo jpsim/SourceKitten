@@ -21,10 +21,10 @@ class StringTests: XCTestCase {
     }
 
     func testStringByTrimmingTrailingCharactersInSet() {
-        XCTAssertEqual("".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "")
-        XCTAssertEqual(" a ".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), " a")
-        XCTAssertEqual(" ".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "")
-        XCTAssertEqual("a".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "a")
+        XCTAssertEqual("".stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet.whitespacesAndNewlines()), "")
+        XCTAssertEqual(" a ".stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet.whitespacesAndNewlines()), " a")
+        XCTAssertEqual(" ".stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet.whitespacesAndNewlines()), "")
+        XCTAssertEqual("a".stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet.whitespacesAndNewlines()), "a")
     }
 
     func testCommentBody() {
@@ -77,7 +77,7 @@ class StringTests: XCTestCase {
     }
 
     func testAbsolutePath() {
-        XCTAssert(("LICENSE".absolutePathRepresentation() as NSString).absolutePath, "absolutePathRepresentation() of a relative path should be an absolute path")
+        XCTAssert(("LICENSE".absolutePathRepresentation() as NSString).isAbsolutePath, "absolutePathRepresentation() of a relative path should be an absolute path")
         XCTAssertEqual(#file.absolutePathRepresentation(), #file, "absolutePathRepresentation() should return the caller if it's already an absolute path")
     }
 
@@ -108,19 +108,19 @@ class StringTests: XCTestCase {
     func testGenerateDocumentedTokenOffsets() {
         let fileContents = "/// Comment\nlet global = 0"
         let syntaxMap = SyntaxMap(file: File(contents: fileContents))
-        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap), [16], "should generate documented token offsets")
+        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap), [16], "should generate documented token offsets")
     }
 
     func testDocumentedTokenOffsetsWithSubscript() {
         let file = File(path: fixturesDirectory + "Subscript.swift")!
         let syntaxMap = SyntaxMap(file: file)
-        XCTAssertEqual(file.contents.documentedTokenOffsets(syntaxMap), [54], "should generate documented token offsets")
+        XCTAssertEqual(file.contents.documentedTokenOffsets(syntaxMap: syntaxMap), [54], "should generate documented token offsets")
     }
 
     func testGenerateDocumentedTokenOffsetsEmpty() {
         let fileContents = "// Comment\nlet global = 0"
         let syntaxMap = SyntaxMap(file: File(contents: fileContents))
-        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
+        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
     }
 
     func testSubstringWithByteRange() {
