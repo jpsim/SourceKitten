@@ -6,30 +6,35 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
 import Foundation
 import SWXMLHash
 
-private var interfaceUUIDMap: [String: String] = [:]
+private var interfaceUUIDMap = [String: String]()
 
 struct ClangIndex {
     private let cx = clang_createIndex(0, 1)
 
-    func open(file file: String, args: [UnsafePointer<Int8>]) -> CXTranslationUnit {
+    func open(file: String, args: [UnsafePointer<Int8>?]) -> CXTranslationUnit {
         return clang_createTranslationUnitFromSourceFile(cx,
             file,
             Int32(args.count),
             args,
             0,
-            nil)
+            nil)!
     }
 }
 
 extension CXString: CustomStringConvertible {
     func str() -> String? {
-        return String.fromCString(clang_getCString(self))
+        if let cString = clang_getCString(self) as UnsafePointer<Int8>? {
+            return String(validatingUTF8: cString)
+        }
+        return nil
     }
 
     public var description: String {
@@ -72,38 +77,39 @@ extension CXCursor {
             fatalError("couldn't parse XML")
         }
         return rootXML["Declaration"].element?.text?
-            .stringByReplacingOccurrencesOfString("\n@end", withString: "")
-            .stringByReplacingOccurrencesOfString("@property(", withString: "@property (")
+            .replacingOccurrences(of: "\n@end", with: "")
+            .replacingOccurrences(of: "@property(", with: "@property (")
     }
 
     func objCKind() -> ObjCDeclarationKind {
-        return ObjCDeclarationKind.fromClang(kind)
+        return ObjCDeclarationKind.fromClang(kind: kind)
     }
 
     func str() -> String? {
         let cursorExtent = extent()
-        let contents = try! NSString(contentsOfFile: cursorExtent.start.file, encoding: NSUTF8StringEncoding)
-        return contents.substringWithSourceRange(cursorExtent.start, end: cursorExtent.end)
+        let contents = try! String(contentsOfFile: cursorExtent.start.file, encoding: .utf8)
+        return contents.substringWithSourceRange(start: cursorExtent.start, end: cursorExtent.end)
     }
 
     func name() -> String {
         let spelling = clang_getCursorSpelling(self).str()!
         let type = objCKind()
-        if let usrString = usr() where spelling.isEmpty && type == .Enum {
+        if let usrString = usr(), spelling.isEmpty && type == .Enum {
             // libClang considers enums declared like `typedef enum {} name;` rather than `NS_ENUM()`
             // to have a cursor spelling of "" (empty string). So we parse the USR to extract the actual name.
             let prefix = "c:@EA@"
             assert(usrString.hasPrefix(prefix))
-            let index = usrString.startIndex.advancedBy(prefix.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-            return usrString.substringFromIndex(index)
-        } else if let usrNSString = usr() as NSString? where type == .Category {
-            let ext = (usrNSString.rangeOfString("c:objc(ext)").location == 0)
+            let index = usrString.index(usrString.startIndex,
+                                        offsetBy: prefix.lengthOfBytes(using: .utf8))
+            return usrString.substring(from: index)
+        } else if type == .Category, let usrNSString = usr() as NSString? {
+            let ext = (usrNSString.range(of: "c:objc(ext)").location == 0)
             let regex = try! NSRegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
             let range = NSRange(location: 0, length: usrNSString.length)
-            let matches = regex.matchesInString(usrNSString as String, options: [], range: range)
+            let matches = regex.matches(in: usrNSString as String, options: [], range: range)
             if matches.count > 0 {
-                let categoryOn = usrNSString.substringWithRange(matches[0].rangeAtIndex(1))
-                let categoryName = ext ? "" : usrNSString.substringWithRange(matches[0].rangeAtIndex(2))
+                let categoryOn = usrNSString.substring(with: matches[0].rangeAt(1))
+                let categoryName = ext ? "" : usrNSString.substring(with: matches[0].rangeAt(2))
                 return "\(categoryOn)(\(categoryName))"
             } else {
                 fatalError("Couldn't get category name")
@@ -120,15 +126,15 @@ extension CXCursor {
         return clang_getCursorUSR(self).str()
     }
 
-    func visit(block: CXCursorVisitorBlock) {
-        clang_visitChildrenWithBlock(self, block)
+    func visit(block: @escaping (CXCursor, CXCursor) -> CXChildVisitResult) {
+        _ = clang_visitChildrenWithBlock(self, block)
     }
 
     func parsedComment() -> CXComment {
         return clang_Cursor_getParsedComment(self)
     }
 
-    func flatMap<T>(block: (CXCursor) -> T?) -> [T] {
+    func flatMap<T>(block: @escaping (CXCursor) -> T?) -> [T] {
         var ret = [T]()
         visit() { cursor, _ in
             if let val = block(cursor) {
@@ -150,7 +156,7 @@ extension CXCursor {
         ]
         var commentBody = rawComment?.commentBody()
         for (original, replacement) in replacements {
-            commentBody = commentBody?.stringByReplacingOccurrencesOfString(original, withString: replacement)
+            commentBody = commentBody?.replacingOccurrences(of: original, with: replacement)
         }
         return commentBody
     }
@@ -161,20 +167,20 @@ extension CXCursor {
         if let uuid = interfaceUUIDMap[file] {
             swiftUUID = uuid
         } else {
-            swiftUUID = NSUUID().UUIDString
+            swiftUUID = NSUUID().uuidString
             interfaceUUIDMap[file] = swiftUUID
             // Generate Swift interface, associating it with the UUID
             _ = Request.Interface(file: file, uuid: swiftUUID).send()
         }
 
         guard let usr = usr(),
-            usrOffset = Request.FindUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.Offset.rawValue] as? Int64 else {
+              let usrOffset = Request.FindUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.Offset.rawValue] as? Int64 else {
             return nil
         }
 
         let cursorInfo = Request.CursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
         guard let docsXML = cursorInfo[SwiftDocKey.FullXMLDocs.rawValue] as? String,
-            swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
+              let swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
                 return nil
         }
         return swiftDeclaration
@@ -194,14 +200,10 @@ extension CXComment {
     func paragraphToString(kindString: String? = nil) -> [Text] {
         if kind() == CXComment_VerbatimLine {
             return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
-        }
-        if kind() == CXComment_BlockCommand  {
-            var ret = [Text]()
-            for i in 0..<clang_Comment_getNumChildren(self) {
-                let child = clang_Comment_getChild(self, i)
-                ret += child.paragraphToString()
+        } else if kind() == CXComment_BlockCommand  {
+            return (0..<count()).reduce([]) { returnValue, childIndex in
+                return returnValue + self[childIndex].paragraphToString()
             }
-            return ret
         }
 
         guard kind() == CXComment_Paragraph else {
@@ -209,24 +211,17 @@ extension CXComment {
             return []
         }
 
-        var ret = ""
-        for i in 0..<clang_Comment_getNumChildren(self) {
-            let child = clang_Comment_getChild(self, i)
+        let paragraphString = (0..<count()).reduce("") { paragraphString, childIndex in
+            let child = self[childIndex]
             if let text = clang_TextComment_getText(child).str() {
-                if ret != "" {
-                    ret += "\n"
-                }
-                ret += text
-            }
-            else if child.kind() == CXComment_InlineCommand {
+                return paragraphString + (paragraphString != "" ? "\n" : "") + text
+            } else if child.kind() == CXComment_InlineCommand {
                 // @autoreleasepool etc. get parsed as commands when not in code blocks
-                ret += "@" + clang_InlineCommandComment_getCommandName(child).str()!
+                return paragraphString + "@" + child.commandName()!
             }
-            else {
-                print("not text: \(child.kind())")
-            }
+            fatalError("not text: \(child.kind())")
         }
-        return [.Para(ret.stringByRemovingCommonLeadingWhitespaceFromLines(), kindString)]
+        return [.Para(paragraphString.stringByRemovingCommonLeadingWhitespaceFromLines(), kindString)]
     }
 
     func kind() -> CXCommentKind {
@@ -245,3 +240,5 @@ extension CXComment {
         return clang_Comment_getChild(self, idx)
     }
 }
+
+#endif

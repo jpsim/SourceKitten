@@ -1,2 +1,2 @@
-github "drmohundro/SWXMLHash"
-github "behrang/YamlSwift" "master"
+github "jpsim/SWXMLHash" "2.4.5"
+github "jpsim/YamlSwift" "1.6.2"

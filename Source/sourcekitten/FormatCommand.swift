@@ -21,13 +21,13 @@ struct FormatCommand: CommandType {
         let useTabs: Bool
         let indentWidth: Int
 
-        static func create(file: String) -> (trimWhitespace: Bool) -> (useTabs: Bool) -> (indentWidth: Int) -> Options {
+        static func create(file: String) -> (_ trimWhitespace: Bool) -> (_ useTabs: Bool) -> (_ indentWidth: Int) -> Options {
             return { trimWhitespace in { useTabs in { indentWidth in
                 self.init(file: file, trimWhitespace: trimWhitespace, useTabs: useTabs, indentWidth: indentWidth)
             }}}
         }
 
-        static func evaluate(m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+        static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
                 <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to format")
                 <*> m <| Option(key: "trim-whitespace", defaultValue: true, usage: "trim trailing whitespace")
@@ -36,17 +36,16 @@ struct FormatCommand: CommandType {
         }
     }
 
-    func run(options: Options) -> Result<(), SourceKittenError> {
+    func run(_ options: Options) -> Result<(), SourceKittenError> {
         guard !options.file.isEmpty else {
-            return .Failure(.InvalidArgument(description: "file must be set when calling format"))
+            return .failure(.InvalidArgument(description: "file must be set when calling format"))
         }
-        let absolutePath = (options.file as NSString).absolutePathRepresentation()
-        try! File(path: absolutePath)?
+        try! File(path: options.file)?
             .format(trimmingTrailingWhitespace: options.trimWhitespace,
                     useTabs: options.useTabs,
                     indentWidth: options.indentWidth)
-            .dataUsingEncoding(NSUTF8StringEncoding)?
-            .writeToFile(absolutePath, options: [])
-        return .Success()
+            .data(using: .utf8)?
+            .write(to: URL(fileURLWithPath: options.file), options: [])
+        return .success()
     }
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
@@ -24,7 +26,7 @@ public struct SourceLocation {
 
 extension SourceLocation {
     init(clangLocation: CXSourceLocation) {
-        var cxfile = CXFile.alloc(1)
+        var cxfile: CXFile? = .allocate(bytes: 1, alignedTo: 0)
         var line: UInt32 = 0
         var column: UInt32 = 0
         var offset: UInt32 = 0
@@ -39,7 +41,7 @@ extension SourceLocation {
 extension SourceLocation: Comparable {}
 
 public func ==(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
-    return lhs.file.compare(rhs.file) == .OrderedSame &&
+    return lhs.file.compare(rhs.file) == .orderedSame &&
         lhs.line == rhs.line &&
         lhs.column == rhs.column &&
         lhs.offset == rhs.offset
@@ -50,14 +52,16 @@ public func ==(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
 public func <(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
     // Sort by file path.
     switch lhs.file.compare(rhs.file) {
-    case .OrderedDescending:
+    case .orderedDescending:
         return false
-    case .OrderedAscending:
+    case .orderedAscending:
         return true
-    case .OrderedSame:
+    case .orderedSame:
         break
     }
 
     // Then offset.
     return lhs.offset < rhs.offset
 }
+
+#endif

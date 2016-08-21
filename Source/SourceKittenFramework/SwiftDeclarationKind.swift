@@ -65,8 +65,10 @@ public enum SwiftDeclarationKind: String, SwiftLangSyntax {
     case FunctionSubscript = "source.lang.swift.decl.function.subscript"
     /// `generic_type_param`.
     case GenericTypeParam = "source.lang.swift.decl.generic_type_param"
-    /// `module`
+    /// `module`.
     case Module = "source.lang.swift.decl.module"
+    /// `precedencegroup`.
+    case PrecedenceGroup = "source.lang.swift.decl.precedencegroup"
     /// `protocol`.
     case `Protocol` = "source.lang.swift.decl.protocol"
     /// `struct`.

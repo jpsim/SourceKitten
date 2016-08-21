@@ -23,7 +23,7 @@ public struct Module {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
         return sourceFiles.flatMap {
-            let filename = ($0 as NSString).lastPathComponent
+            let filename = $0.bridge().lastPathComponent
             if let file = File(path: $0) {
                 fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
                 fileIndex += 1
@@ -37,7 +37,7 @@ public struct Module {
     public init?(spmName: String) {
         let yamlPath = ".build/debug.yaml"
         guard let yamlContents = try? String(contentsOfFile: yamlPath),
-            yamlCommands = Yaml.load(yamlContents).value?.dictionary?["commands"]?.dictionary?.values else {
+              let yamlCommands = Yaml.load(yamlContents).value?.dictionary?["commands"]?.dictionary?.values else {
                 return nil
         }
         guard let moduleCommand = yamlCommands.filter({ command in
@@ -45,15 +45,15 @@ public struct Module {
         }).first?.dictionary else {
             fputs("Could not find SPM module '\(spmName)'. Here are the modules available:\n", stderr)
             let availableModules = yamlCommands.flatMap({ $0.dictionary?["module-name"]?.string })
-            fputs("\(availableModules.map({ "  - " + $0 }).joinWithSeparator("\n"))\n", stderr)
+            fputs("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n", stderr)
             return nil
         }
-        func stringArray(key: Yaml) -> [String]? {
+        func stringArray(_ key: Yaml) -> [String]? {
             return moduleCommand[key]?.array?.flatMap { $0.string }
         }
         guard let imports = stringArray("import-paths"),
-            otherArguments = stringArray("other-args"),
-            sources = stringArray("sources") else {
+              let otherArguments = stringArray("other-args"),
+              let sources = stringArray("sources") else {
                 return nil
         }
         name = spmName
@@ -61,6 +61,7 @@ public struct Module {
         sourceFiles = sources
     }
 
+#if !os(Linux)
     /**
     Failable initializer to create a Module by the arguments necessary pass in to `xcodebuild` to build it.
     Optionally pass in a `moduleName` and `path`.
@@ -69,22 +70,23 @@ public struct Module {
     - parameter name:                Module name. Will be parsed from `xcodebuild` output if nil.
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
-    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = NSFileManager.defaultManager().currentDirectoryPath) {
-        let xcodeBuildOutput = runXcodeBuild(xcodeBuildArguments, inPath: path) ?? ""
-        guard let arguments = parseCompilerArguments(xcodeBuildOutput, language: .Swift, moduleName: name ?? moduleNameFromArguments(xcodeBuildArguments)) else {
+    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = defaultFileManager.currentDirectoryPath) {
+        let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
+        guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .Swift, moduleName: name ?? moduleNameFromArguments(arguments: xcodeBuildArguments)) else {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
             fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
-            let file = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("xcodebuild-\(NSUUID().UUIDString).log")
-            xcodeBuildOutput.dataUsingEncoding(NSUTF8StringEncoding)?.writeToURL(file, atomically: true)
-            fputs("Saved `xcodebuild` log file: \(file.path!)\n", stderr)
+            let file = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
+            try! xcodeBuildOutput.data(using: .utf8)?.write(to: file!, options: .atomicWrite)
+            fputs("Saved `xcodebuild` log file: \(file!.path)\n", stderr)
             return nil
         }
-        guard let moduleName = moduleNameFromArguments(arguments) else {
+        guard let moduleName = moduleNameFromArguments(arguments: arguments) else {
             fputs("Could not parse module name from compiler arguments.\n", stderr)
             return nil
         }
         self.init(name: moduleName, compilerArguments: arguments)
     }
+#endif
 
     /**
     Initializer to create a Module by name and compiler arguments.
@@ -95,7 +97,15 @@ public struct Module {
     public init(name: String, compilerArguments: [String]) {
         self.name = name
         self.compilerArguments = compilerArguments
-        sourceFiles = compilerArguments.filter({ $0.isSwiftFile() && $0.isFile }).map { ($0 as NSString).stringByResolvingSymlinksInPath }
+        sourceFiles = compilerArguments.filter({
+            $0.bridge().isSwiftFile() && $0.isFile
+        }).map {
+            #if os(Linux)
+            return try! URL(fileURLWithPath: $0).resolvingSymlinksInPath().path!
+            #else
+            return URL(fileURLWithPath: $0).resolvingSymlinksInPath().path
+            #endif
+        }
     }
 }
 

@@ -15,8 +15,8 @@ struct VersionCommand: CommandType {
     let verb = "version"
     let function = "Display the current version of SourceKitten"
 
-    func run(options: NoOptions<SourceKittenError>) -> Result<(), SourceKittenError> {
+    func run(_ options: NoOptions<SourceKittenError>) -> Result<(), SourceKittenError> {
         print(version)
-        return .Success()
+        return .success()
     }
 }

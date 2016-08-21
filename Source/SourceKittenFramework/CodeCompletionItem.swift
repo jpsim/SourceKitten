@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension Dictionary {
-    private mutating func addIfNotNil(key: Key, _ value: Value?) {
+fileprivate extension Dictionary {
+    mutating func addIfNotNil(_ key: Key, _ value: Value?) {
         if let value = value {
             self[key] = value
         }
@@ -28,11 +28,8 @@ public struct CodeCompletionItem: CustomStringConvertible {
     public let associatedUSRs: String?
 
     /// Dictionary representation of CodeCompletionItem. Useful for NSJSONSerialization.
-    public var dictionaryValue: [String: AnyObject] {
-        var dict = [
-            "kind": kind,
-            "context": context
-        ]
+    public var dictionaryValue: [String: Any] {
+        var dict = ["kind": kind, "context": context]
         dict.addIfNotNil("name", name)
         dict.addIfNotNil("descriptionKey", descriptionKey)
         dict.addIfNotNil("sourcetext", sourcetext)
@@ -44,7 +41,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
     }
 
     public var description: String {
-        return toJSON(dictionaryValue)
+        return toJSON(dictionaryValue.bridge())
     }
 
     public static func parseResponse(response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {

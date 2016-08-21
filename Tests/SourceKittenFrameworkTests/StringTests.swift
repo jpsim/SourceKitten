@@ -21,10 +21,10 @@ class StringTests: XCTestCase {
     }
 
     func testStringByTrimmingTrailingCharactersInSet() {
-        XCTAssertEqual("".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "")
-        XCTAssertEqual(" a ".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), " a")
-        XCTAssertEqual(" ".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "")
-        XCTAssertEqual("a".stringByTrimmingTrailingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), "a")
+        XCTAssertEqual("".bridge().stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines), "")
+        XCTAssertEqual(" a ".bridge().stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines), " a")
+        XCTAssertEqual(" ".bridge().stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines), "")
+        XCTAssertEqual("a".bridge().stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines), "a")
     }
 
     func testCommentBody() {
@@ -58,7 +58,7 @@ class StringTests: XCTestCase {
             "badswift",
             "bad.Swift"
         ]
-        XCTAssertEqual((good + bad).filter({ $0.isSwiftFile() }), good, "should parse Swift files in an Array")
+        XCTAssertEqual((good + bad).filter({ $0.bridge().isSwiftFile() }), good, "should parse Swift files in an Array")
     }
 
     func testIsObjectiveCHeaderFile() {
@@ -73,12 +73,16 @@ class StringTests: XCTestCase {
             "badshh",
             "bad.H"
         ]
-        XCTAssertEqual((good + bad).filter({ $0.isObjectiveCHeaderFile() }), good, "should parse Objective-C header files in an Array")
+        XCTAssertEqual((good + bad).filter({ $0.bridge().isObjectiveCHeaderFile() }), good, "should parse Objective-C header files in an Array")
     }
 
     func testAbsolutePath() {
-        XCTAssert(("LICENSE".absolutePathRepresentation() as NSString).absolutePath, "absolutePathRepresentation() of a relative path should be an absolute path")
-        XCTAssertEqual(#file.absolutePathRepresentation(), #file, "absolutePathRepresentation() should return the caller if it's already an absolute path")
+        #if os(Linux)
+        XCTAssert("LICENSE".bridge().absolutePathRepresentation().bridge().absolutePath, "absolutePath of a relative path should be an absolute path")
+        #else
+        XCTAssert("LICENSE".absolutePathRepresentation().bridge().isAbsolutePath, "absolutePathRepresentation() of a relative path should be an absolute path")
+        #endif
+        XCTAssertEqual(#file.bridge().absolutePathRepresentation(), #file, "absolutePathRepresentation() should return the caller if it's already an absolute path")
     }
 
     func testIsTokenDocumentable() {
@@ -108,39 +112,39 @@ class StringTests: XCTestCase {
     func testGenerateDocumentedTokenOffsets() {
         let fileContents = "/// Comment\nlet global = 0"
         let syntaxMap = SyntaxMap(file: File(contents: fileContents))
-        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap), [16], "should generate documented token offsets")
+        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap), [16], "should generate documented token offsets")
     }
 
     func testDocumentedTokenOffsetsWithSubscript() {
         let file = File(path: fixturesDirectory + "Subscript.swift")!
         let syntaxMap = SyntaxMap(file: file)
-        XCTAssertEqual(file.contents.documentedTokenOffsets(syntaxMap), [54], "should generate documented token offsets")
+        XCTAssertEqual(file.contents.documentedTokenOffsets(syntaxMap: syntaxMap), [54], "should generate documented token offsets")
     }
 
     func testGenerateDocumentedTokenOffsetsEmpty() {
         let fileContents = "// Comment\nlet global = 0"
         let syntaxMap = SyntaxMap(file: File(contents: fileContents))
-        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
+        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
     }
 
     func testSubstringWithByteRange() {
-        let string = "👨‍👩‍👧‍👧123"
+        let string = "👨‍👩‍👧‍👧123".bridge()
         XCTAssertEqual(string.substringWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧")
         XCTAssertEqual(string.substringWithByteRange(start: 25, length: 1)!, "1")
     }
 
     func testSubstringLinesWithByteRange() {
-        let string = "👨‍👩‍👧‍👧\n123"
+        let string = "👨‍👩‍👧‍👧\n123".bridge()
         XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 0)!, "👨‍👩‍👧‍👧\n")
         XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧\n")
         XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 26)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 27)!, string)
+        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 27)!, string.bridge())
         XCTAssertEqual(string.substringLinesWithByteRange(start: 27, length: 0)!, "123")
     }
 
     func testLineRangeWithByteRange() {
-        XCTAssert("".lineRangeWithByteRange(start: 0, length: 0) == nil)
-        let string = "👨‍👩‍👧‍👧\n123"
+        XCTAssert("".bridge().lineRangeWithByteRange(start: 0, length: 0) == nil)
+        let string = "👨‍👩‍👧‍👧\n123".bridge()
         XCTAssert(string.lineRangeWithByteRange(start: 0, length: 0)! == (1, 1))
         XCTAssert(string.lineRangeWithByteRange(start: 0, length: 25)! == (1, 1))
         XCTAssert(string.lineRangeWithByteRange(start: 0, length: 26)! == (1, 2))
@@ -153,4 +157,25 @@ typealias LineRangeType = (start: Int, end: Int)
 
 func ==(lhs: LineRangeType, rhs: LineRangeType) -> Bool {
     return lhs.start == rhs.start && lhs.end == rhs.end
+}
+
+extension StringTests {
+    static var allTests: [(String, (StringTests) -> () throws -> Void)] {
+        return [
+            ("testStringByRemovingCommonLeadingWhitespaceFromLines", testStringByRemovingCommonLeadingWhitespaceFromLines),
+            ("testStringByTrimmingTrailingCharactersInSet", testStringByTrimmingTrailingCharactersInSet),
+            ("testCommentBody", testCommentBody),
+            ("testIsSwiftFile", testIsSwiftFile),
+            ("testIsObjectiveCHeaderFile", testIsObjectiveCHeaderFile),
+            ("testAbsolutePath", testAbsolutePath),
+            ("testIsTokenDocumentable", testIsTokenDocumentable),
+            ("testParseDeclaration", testParseDeclaration),
+            ("testGenerateDocumentedTokenOffsets", testGenerateDocumentedTokenOffsets),
+            ("testDocumentedTokenOffsetsWithSubscript", testDocumentedTokenOffsetsWithSubscript),
+            ("testGenerateDocumentedTokenOffsetsEmpty", testGenerateDocumentedTokenOffsetsEmpty),
+            ("testSubstringWithByteRange", testSubstringWithByteRange),
+            ("testSubstringLinesWithByteRange", testSubstringLinesWithByteRange),
+            ("testLineRangeWithByteRange", testLineRangeWithByteRange),
+        ]
+    }
 }

@@ -6,28 +6,39 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if os(Linux)
+import Glibc
+#else
 import Darwin
-import Foundation
+#endif
 import Commandant
+import SourceKittenFramework
 
-// `sourcekitd_set_notification_handler()` set the handler to be executed on main thread queue.
-// So, we vacate main thread to `dispatch_main()`.
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+private func run() {
     let registry = CommandRegistry<SourceKittenError>()
-    registry.register(CompleteCommand())
-    registry.register(DocCommand())
-    registry.register(FormatCommand())
-    registry.register(IndexCommand())
-    registry.register(SyntaxCommand())
-    registry.register(StructureCommand())
-    registry.register(VersionCommand())
+    registry.register(command: CompleteCommand())
+    registry.register(command: DocCommand())
+    registry.register(command: FormatCommand())
+    registry.register(command: IndexCommand())
+    registry.register(command: SyntaxCommand())
+    registry.register(command: StructureCommand())
+    registry.register(command: VersionCommand())
 
     let helpCommand = HelpCommand(registry: registry)
-    registry.register(helpCommand)
+    registry.register(command: helpCommand)
 
     registry.main(defaultVerb: "help") { error in
         fputs("\(error)\n", stderr)
     }
 }
 
-dispatch_main()
+#if SWIFT_PACKAGE
+    run()
+#else
+    // `sourcekitd_set_notification_handler()` sets the handler to be executed on main thread queue.
+    // So, we vacate main thread to `dispatchMain()`.
+    DispatchQueue.global(qos: .default).async {
+        run()
+    }
+    dispatchMain()
+#endif

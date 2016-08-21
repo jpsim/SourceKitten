@@ -10,17 +10,24 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-func compareSyntax(file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
+func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
     let expectedSyntaxMap = SyntaxMap(tokens: expectedTokens.map { tokenTuple in
         return SyntaxToken(type: tokenTuple.0.rawValue, offset: tokenTuple.1, length: tokenTuple.2)
     })
     let syntaxMap = SyntaxMap(file: file)
     XCTAssertEqual(syntaxMap, expectedSyntaxMap, "should generate expected syntax map")
 
-    let syntaxJSON = syntaxMap.description
-    let jsonArray = try! NSJSONSerialization.JSONObjectWithData(syntaxJSON.dataUsingEncoding(NSUTF8StringEncoding)!, options: []) as? NSArray
-    XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
-    XCTAssertEqual(jsonArray!, expectedSyntaxMap.tokens.map { $0.dictionaryValue }, "JSON should match expected syntax")
+    #if os(Linux)
+        typealias JSONType = Any
+    #else
+        typealias JSONType = NSDictionary
+    #endif
+    let syntaxData = syntaxMap.description.data(using: .utf8)!
+    XCTAssertEqual(
+        try! (JSONSerialization.jsonObject(with: syntaxData, options: []) as! [JSONType]).bridge(),
+        expectedSyntaxMap.tokens.map({ $0.dictionaryValue.bridge() }).bridge(),
+        "JSON should match expected syntax"
+    )
 }
 
 class SyntaxTests: XCTestCase {
@@ -30,7 +37,7 @@ class SyntaxTests: XCTestCase {
     }
 
     func testGenerateSameSyntaxMapFileAndContents() {
-        let fileContents = try! NSString(contentsOfFile: #file, encoding: NSUTF8StringEncoding) as String!
+        let fileContents = try! String(contentsOfFile: #file, encoding: .utf8)
         XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
             SyntaxMap(file: File(contents: fileContents)),
             "should generate the same syntax map for a file as raw text")
@@ -57,5 +64,16 @@ class SyntaxTests: XCTestCase {
                 (.Comment, 18, 15)
             ]
         )
+    }
+}
+
+extension SyntaxTests {
+    static var allTests: [(String, (SyntaxTests) -> () throws -> Void)] {
+        return [
+            ("testPrintEmptySyntax", testPrintEmptySyntax),
+            ("testGenerateSameSyntaxMapFileAndContents", testGenerateSameSyntaxMapFileAndContents),
+            ("testSubscript", testSubscript),
+            ("testSyntaxMapPrintValidJSON", testSyntaxMapPrintValidJSON),
+        ]
     }
 }

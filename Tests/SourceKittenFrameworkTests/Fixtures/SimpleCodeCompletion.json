@@ -1,0 +1,98 @@
+[{
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.superclass",
+  "associatedUSRs" : "s:FEsPs13SignedInteger8advancedFT2bySi_x",
+  "typeName" : "Int",
+  "kind" : "source.lang.swift.decl.function.method.instance",
+  "sourcetext" : "advanced(by: <#T##Int#>)",
+  "name" : "advanced(by:)",
+  "descriptionKey" : "advanced(by: Int)"
+}, {
+  "docBrief" : "Returns the big-endian representation of the integer, changing the byte order if necessary.",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass",
+  "associatedUSRs" : "s:vSi9bigEndianSi",
+  "typeName" : "Int",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "sourcetext" : "bigEndian",
+  "name" : "bigEndian",
+  "descriptionKey" : "bigEndian"
+}, {
+  "docBrief" : "Returns the current integer with the byte order swapped.",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass",
+  "associatedUSRs" : "s:vSi11byteSwappedSi",
+  "typeName" : "Int",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "sourcetext" : "byteSwapped",
+  "name" : "byteSwapped",
+  "descriptionKey" : "byteSwapped"
+}, {
+  "docBrief" : "A mirror that reflects the Int instance.",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass",
+  "associatedUSRs" : "s:vSi12customMirrorVs6Mirror s:vPs17CustomReflectable12customMirrorVs6Mirror",
+  "typeName" : "Mirror",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "sourcetext" : "customMirror",
+  "name" : "customMirror",
+  "descriptionKey" : "customMirror"
+}, {
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass",
+  "associatedUSRs" : "s:vSi25customPlaygroundQuickLookOs19PlaygroundQuickLook s:vPs29CustomPlaygroundQuickLookable25customPlaygroundQuickLookOs19PlaygroundQuickLook",
+  "typeName" : "PlaygroundQuickLook",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "sourcetext" : "customPlaygroundQuickLook",
+  "name" : "customPlaygroundQuickLook",
+  "descriptionKey" : "customPlaygroundQuickLook"
+}, {
+  "docBrief" : "A textual representation of self.",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass",
+  "associatedUSRs" : "s:vSi11descriptionSS s:vPs23CustomStringConvertible11descriptionSS",
+  "typeName" : "String",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "sourcetext" : "description",
+  "name" : "description",
+  "descriptionKey" : "description"
+}, {
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.superclass",
+  "associatedUSRs" : "s:FEsPs13SignedInteger8distanceFT2tox_Si",
+  "typeName" : "Int",
+  "kind" : "source.lang.swift.decl.function.method.instance",
+  "sourcetext" : "distance(to: <#T##Int#>)",
+  "name" : "distance(to:)",
+  "descriptionKey" : "distance(to: Int)"
+}, {
+  "docBrief" : "The hash value.",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass",
+  "associatedUSRs" : "s:vSi9hashValueSi s:vPs8Hashable9hashValueSi",
+  "typeName" : "Int",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "sourcetext" : "hashValue",
+  "name" : "hashValue",
+  "descriptionKey" : "hashValue"
+}, {
+  "docBrief" : "Returns the little-endian representation of the integer, changing the byte order if necessary.",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass",
+  "associatedUSRs" : "s:vSi12littleEndianSi",
+  "typeName" : "Int",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "sourcetext" : "littleEndian",
+  "name" : "littleEndian",
+  "descriptionKey" : "littleEndian"
+}, {
+  "docBrief" : "Represent this number using Swift’s widest native signed integer type.",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass",
+  "associatedUSRs" : "s:FSi8toIntMaxFT_Vs5Int64 s:FPs14_SignedInteger8toIntMaxFT_Vs5Int64 s:FPs17IntegerArithmetic8toIntMaxFT_Vs5Int64 s:FPs13SignedInteger8toIntMaxFT_Vs5Int64",
+  "typeName" : "IntMax",
+  "kind" : "source.lang.swift.decl.function.method.instance",
+  "sourcetext" : "toIntMax()",
+  "name" : "toIntMax()",
+  "descriptionKey" : "toIntMax()"
+}]
