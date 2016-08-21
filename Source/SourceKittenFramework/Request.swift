@@ -189,7 +189,7 @@ public enum Request {
     case ReplaceText(file: String, offset: Int64, length: Int64, sourceText: String)
 
     fileprivate var sourcekitObject: sourcekitd_object_t {
-        var dict: [sourcekitd_uid_t: sourcekitd_object_t?]
+        let dict: [sourcekitd_uid_t: sourcekitd_object_t?]
         switch self {
         case .EditorOpen(let file):
             if let path = file.path {
