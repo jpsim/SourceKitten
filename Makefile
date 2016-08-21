@@ -70,7 +70,7 @@ package: installables
 
 archive:
 	carthage build --no-skip-current --platform mac
-	carthage archive SourceKittenFramework
+	carthage archive SourceKittenFramework Yaml SWXMLHash
 
 release: package archive
 
