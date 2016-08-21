@@ -202,7 +202,7 @@ extension CXComment {
             return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
         } else if kind() == CXComment_BlockCommand  {
             return (0..<clang_Comment_getNumChildren(self)).reduce([]) { returnValue, childIndex in
-                return returnValue + clang_Comment_getChild(self, childIndex).paragraphToString()
+                return returnValue + self[childIndex].paragraphToString()
             }
         }
 
@@ -212,7 +212,7 @@ extension CXComment {
         }
 
         let paragraphString = (0..<clang_Comment_getNumChildren(self)).reduce("") { paragraphString, childIndex in
-            let child = clang_Comment_getChild(self, childIndex)
+            let child = self[childIndex]
             if let text = clang_TextComment_getText(child).str() {
                 return paragraphString + (paragraphString != "" ? "\n" : "") + text
             } else if child.kind() == CXComment_InlineCommand {
