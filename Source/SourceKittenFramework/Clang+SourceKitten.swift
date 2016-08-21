@@ -217,7 +217,7 @@ extension CXComment {
                 return paragraphString + (paragraphString != "" ? "\n" : "") + text
             } else if child.kind() == CXComment_InlineCommand {
                 // @autoreleasepool etc. get parsed as commands when not in code blocks
-                return paragraphString + "@" + clang_InlineCommandComment_getCommandName(child).str()!
+                return paragraphString + "@" + child.commandName()!
             }
             fatalError("not text: \(child.kind())")
         }
