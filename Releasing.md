@@ -22,7 +22,8 @@ For SourceKitten contributors, follow these steps to cut a release:
     * Specify the tag you just pushed from the dropdown.
     * Set the release title to the new version number & release name.
     * Add the changelog section to the release description text box.
-    * Upload the pkg installer and Carthage zip you just built to the GitHub
+    * Upload the pkg installer and Carthage zip
+      (`SourceKittenFramework.framework.zip`) you just built to the GitHub
       release binaries.
     * Click "Publish release"
 9. File a PR towards Homebrew bumping the `tag`, `revision` & Xcode version
