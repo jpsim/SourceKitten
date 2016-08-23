@@ -987,7 +987,7 @@
         "key.typename" : "NSCharacterSet.Type",
         "key.usr" : "c:objc(cs)NSCharacterSet",
         "key.nameoffset" : 1613,
-        "key.annotated_decl" : "<Declaration>class NSCharacterSet : <Type usr=\"c:objc(cs)NSObject\">NSObject<\/Type>, <Type usr=\"c:objc(pl)NSCopying\">NSCopying<\/Type>, <Type usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/Type>, <Type usr=\"c:objc(pl)NSCoding\">NSCoding<\/Type><\/Declaration>",
+        "key.annotated_decl" : "<Declaration>class NSCharacterSet : <Type usr=\"c:objc(cs)NSObject\">NSObject<\/Type>, <Type usr=\"c:objc(pl)NSCopying\">NSCopying<\/Type>, <Type usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/Type>, <Type usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/Type><\/Declaration>",
         "key.is_system" : true,
         "key.substructure" : [
           {
@@ -4303,7 +4303,7 @@
             "key.annotated_decl" : "<RelatedName usr=\"s:ZFPs9Equatableoi2eeFTxx_Sb\">==(_: Self, _: Self) -&gt; Bool<\/RelatedName>"
           },
           {
-            "key.annotated_decl" : "<RelatedName usr=\"s:ZF6Resultoi2eeu0_Rxs9Equatable_S0__s9ErrorTyperFTGOS_6Resultxq__GS2_xq___Sb\">==&lt;T : Equatable, Error : Equatable&gt;(_: Result&lt;T, Error&gt;, _: Result&lt;T, Error&gt;) -&gt; Bool<\/RelatedName>"
+            "key.annotated_decl" : "<RelatedName usr=\"s:ZF6Resultoi2eeuRxS_10ResultTypewx5Errors9Equatablewx5ValueS2_rFTxx_Sb\">==&lt;T : ResultType where T.Value : Equatable, T.Error : Equatable&gt;(_: T, _: T) -&gt; Bool<\/RelatedName>"
           }
         ],
         "key.nameoffset" : 585,
