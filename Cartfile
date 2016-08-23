@@ -1,2 +1,2 @@
-github "drmohundro/SWXMLHash" "master"
+github "norio-nomura/SWXMLHash" "swift2.3"
 github "behrang/YamlSwift" "master"
