@@ -12,6 +12,9 @@
 * Require passing compiler arguments to `index` command.  
   [Brian Gesiak](https://github.com/modocache)
 
+* Remove `--compilerargs` CLI flag. Arguments are now passed after `--`
+  [Keith Smiley](https://github.com/keith)
+
 ##### Enhancements
 
 * Refactor to unite swift lang syntax types with SwiftLangSyntax protocol
