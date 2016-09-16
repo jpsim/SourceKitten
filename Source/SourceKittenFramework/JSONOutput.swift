@@ -86,6 +86,10 @@ private func toOutputDictionary(decl: SourceDeclaration) -> [String: AnyObject] 
     set(.ParsedScopeStart, Int(decl.extent.start.line))
     set(.ParsedScopeEnd, Int(decl.extent.end.line))
     set(.SwiftDeclaration, decl.swiftDeclaration)
+    set(.AlwaysDeprecated, decl.availability?.alwaysDeprecated)
+    set(.AlwaysUnavailable, decl.availability?.alwaysUnavailable)
+    set(.DeprecationMessage, decl.availability?.deprecationMessage)
+    set(.UnavailableMessage, decl.availability?.unavailableMessage)
 
     setA(.DocResultDiscussion, decl.documentation?.returnDiscussion.map(toOutputDictionary))
     setA(.DocParameters, decl.documentation?.parameters.map(toOutputDictionary))

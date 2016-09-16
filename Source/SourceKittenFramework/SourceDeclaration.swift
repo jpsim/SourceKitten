@@ -41,6 +41,7 @@ public struct SourceDeclaration {
     let commentBody: String?
     var children: [SourceDeclaration]
     let swiftDeclaration: String?
+    let availability: ClangAvailability?
 
     /// Range
     var range: NSRange {
@@ -104,6 +105,7 @@ extension SourceDeclaration {
             SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
         }).rejectPropertyMethods()
         swiftDeclaration = cursor.swiftDeclaration(compilerArguments)
+        availability = cursor.platformAvailability()
     }
 }
 
