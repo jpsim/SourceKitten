@@ -14,6 +14,7 @@
           "key.doc.file" : "Realm\/RLMArray.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMArray",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -27,17 +28,21 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
-              "key.doc.file" : "Realm\/RLMArray.h",
               "key.parsed_declaration" : "@property (readonly, assign, nonatomic) NSUInteger count;",
               "key.doc.comment" : "Number of objects in the array.",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 69,
               "key.name" : "count",
-              "key.parsed_scope.start" : 69,
               "key.doc.column" : 52,
               "key.parsed_scope.end" : 69,
-              "key.filepath" : "Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(py)count"
+              "key.usr" : "c:objc(cs)RLMArray(py)count",
+              "key.doc.file" : "Realm\/RLMArray.h",
+              "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 69,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMArray.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
@@ -51,7 +56,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var objectClassName: String! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 74,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -66,7 +75,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var realm: UnsafeMutablePointer",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 79,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -81,7 +94,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var invalidated: Bool { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 84,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -123,7 +140,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func objectAtIndex(index: UInt) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 95,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -144,7 +165,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func firstObject() -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 104,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -165,7 +190,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func lastObject() -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 113,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -201,7 +230,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func addObject(object: AnyObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 126,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -227,7 +260,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func addObjects(objects: NSFastEnumeration!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 136,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -262,7 +299,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func insertObject(anObject: AnyObject!, atIndex index: UInt)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 148,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -288,7 +329,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func removeObjectAtIndex(index: UInt)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 159,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -303,7 +348,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func removeLastObject()",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 166,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -318,7 +367,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func removeAllObjects()",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 173,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -353,7 +406,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func replaceObjectAtIndex(index: UInt, withObject anObject: AnyObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 185,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -388,7 +445,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func moveObjectAtIndex(sourceIndex: UInt, toIndex destinationIndex: UInt)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 198,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -423,7 +484,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func exchangeObjectAtIndex(index1: UInt, withObjectAtIndex index2: UInt)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 210,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -459,7 +524,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func indexOfObject(object: AnyObject!) -> UInt",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 221,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -490,7 +559,11 @@
               "key.usr" : "c:objc(cs)RLMArray(im)indexOfObjectWhere:",
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 230,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -522,7 +595,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func indexOfObjectWithPredicate(predicate: NSPredicate!) -> UInt",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 239,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -553,7 +630,11 @@
               "key.usr" : "c:objc(cs)RLMArray(im)objectsWhere:",
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 248,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -585,7 +666,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func objectsWithPredicate(predicate: NSPredicate!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 257,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -626,7 +711,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func sortedResultsUsingProperty(property: String!, ascending: Bool) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 267,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -658,32 +747,44 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func sortedResultsUsingDescriptors(properties: [AnyObject]!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 276,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (RLMObjectType)objectAtIndexedSubscript:(NSUInteger)index;",
               "key.doc.line" : 278,
               "key.name" : "-objectAtIndexedSubscript:",
-              "key.parsed_scope.start" : 278,
               "key.doc.column" : 18,
               "key.parsed_scope.end" : 278,
-              "key.filepath" : "Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)objectAtIndexedSubscript:"
+              "key.usr" : "c:objc(cs)RLMArray(im)objectAtIndexedSubscript:",
+              "key.doc.file" : "Realm\/RLMArray.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 278,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMArray.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (void)setObject:(RLMObjectType)newValue atIndexedSubscript:(NSUInteger)index;",
               "key.doc.line" : 279,
               "key.name" : "-setObject:atIndexedSubscript:",
-              "key.parsed_scope.start" : 279,
               "key.doc.column" : 9,
               "key.parsed_scope.end" : 279,
-              "key.filepath" : "Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)setObject:atIndexedSubscript:"
+              "key.usr" : "c:objc(cs)RLMArray(im)setObject:atIndexedSubscript:",
+              "key.doc.file" : "Realm\/RLMArray.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 279,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMArray.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -697,34 +798,45 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (nonnull instancetype)init;",
               "key.doc.comment" : "-[RLMArray init] is not available because RLMArrays cannot be created directly.\nRLMArray properties on RLMObjects are lazily created when accessed, or can be obtained by querying a Realm.",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 287,
               "key.name" : "-init",
-              "key.parsed_scope.start" : 287,
               "key.doc.column" : 17,
               "key.parsed_scope.end" : 287,
-              "key.filepath" : "Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)init"
+              "key.usr" : "c:objc(cs)RLMArray(im)init",
+              "key.doc.file" : "Realm\/RLMArray.h",
+              "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : true,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 287,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "RLMArrays cannot be created directly",
+              "key.filepath" : "Realm\/RLMArray.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
-              "key.doc.file" : "Realm\/RLMArray.h",
               "key.parsed_declaration" : "+ (nonnull instancetype) new;",
               "key.doc.comment" : "+[RLMArray new] is not available because RLMArrays cannot be created directly.\nRLMArray properties on RLMObjects are lazily created when accessed, or can be obtained by querying a Realm.",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 293,
               "key.name" : "+new",
-              "key.parsed_scope.start" : 293,
               "key.doc.column" : 17,
               "key.parsed_scope.end" : 293,
-              "key.filepath" : "Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(cm)new"
+              "key.usr" : "c:objc(cs)RLMArray(cm)new",
+              "key.doc.file" : "Realm\/RLMArray.h",
+              "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : true,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 293,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "RLMArrays cannot be created directly",
+              "key.filepath" : "Realm\/RLMArray.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 62,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMArray.h"
         },
         {
@@ -739,6 +851,7 @@
           "key.doc.file" : "Realm\/RLMArray.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMSortDescriptor : NSObject",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -762,7 +875,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var property: String! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 310,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -777,7 +894,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var ascending: Bool { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 315,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -802,7 +923,11 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "convenience init!(property propertyName: String!, ascending: Bool)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 322,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             },
             {
@@ -817,11 +942,18 @@
               "key.doc.file" : "Realm\/RLMArray.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func reversedSortDescriptor() -> Self!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 327,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMArray.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 303,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMArray.h"
         },
         {
@@ -835,21 +967,29 @@
           "key.usr" : "c:objc(cy)RLMArray@Swift",
           "key.doc.file" : "Realm\/RLMArray.h",
           "key.doc.full_as_xml" : "",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMArray.h",
               "key.parsed_declaration" : "- (instancetype)initWithObjectClassName:(NSString *)objectClassName;",
               "key.doc.line" : 334,
               "key.name" : "-initWithObjectClassName:",
-              "key.parsed_scope.start" : 334,
               "key.doc.column" : 17,
               "key.parsed_scope.end" : 334,
-              "key.filepath" : "Realm\/RLMArray.h",
-              "key.usr" : "c:objc(cs)RLMArray(im)initWithObjectClassName:"
+              "key.usr" : "c:objc(cs)RLMArray(im)initWithObjectClassName:",
+              "key.doc.file" : "Realm\/RLMArray.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 334,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMArray.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 332,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMArray.h"
         }
       ],
@@ -871,6 +1011,7 @@
           "key.doc.file" : "Realm\/RLMCollection.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "protocol RLMCollection",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -894,22 +1035,30 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var count: Int32 { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 37,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
-              "key.doc.file" : "Realm\/RLMCollection.h",
               "key.parsed_declaration" : "@required\n@property (readonly, copy, nonatomic) NSString *_Nonnull objectClassName;",
               "key.doc.comment" : "The class name (i.e. type) of the RLMObjects contained in this RLMCollection.",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 42,
               "key.name" : "objectClassName",
-              "key.parsed_scope.start" : 42,
               "key.doc.column" : 49,
               "key.parsed_scope.end" : 42,
-              "key.filepath" : "Realm\/RLMCollection.h",
-              "key.usr" : "c:objc(pl)RLMCollection(py)objectClassName"
+              "key.usr" : "c:objc(pl)RLMCollection(py)objectClassName",
+              "key.doc.file" : "Realm\/RLMCollection.h",
+              "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 42,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
@@ -923,7 +1072,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var realm: UnsafeMutablePointer",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 47,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -965,7 +1118,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func objectAtIndex(index: AnyObject!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 58,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -986,7 +1143,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func firstObject() -> AnyObject?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 67,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1007,7 +1168,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func lastObject() -> AnyObject?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 76,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1043,7 +1208,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func indexOfObject(object: AnyObject!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 87,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1074,7 +1243,11 @@
               "key.usr" : "c:objc(pl)RLMCollection(im)indexOfObjectWhere:",
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 96,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1106,7 +1279,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func indexOfObjectWithPredicate(predicate: AnyObject!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 105,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1137,7 +1314,11 @@
               "key.usr" : "c:objc(pl)RLMCollection(im)objectsWhere:",
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 114,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1169,7 +1350,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func objectsWithPredicate(predicate: AnyObject!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 123,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1210,7 +1395,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func sortedResultsUsingProperty(property: AnyObject!, ascending: AnyObject!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 133,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1242,20 +1431,28 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func sortedResultsUsingDescriptors(properties: AnyObject!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 142,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMCollection.h",
               "key.parsed_declaration" : "- (id)objectAtIndexedSubscript:(NSUInteger)index;",
               "key.doc.line" : 144,
               "key.name" : "-objectAtIndexedSubscript:",
-              "key.parsed_scope.start" : 144,
               "key.doc.column" : 7,
               "key.parsed_scope.end" : 144,
-              "key.filepath" : "Realm\/RLMCollection.h",
-              "key.usr" : "c:objc(pl)RLMCollection(im)objectAtIndexedSubscript:"
+              "key.usr" : "c:objc(pl)RLMCollection(im)objectAtIndexedSubscript:",
+              "key.doc.file" : "Realm\/RLMCollection.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 144,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
@@ -1286,7 +1483,11 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func valueForKey(key: AnyObject!) -> AnyObject?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 153,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             },
             {
@@ -1321,11 +1522,18 @@
               "key.doc.file" : "Realm\/RLMCollection.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func setValue(value: AnyObject?, forKey key: AnyObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 163,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMCollection.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 28,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMCollection.h"
         }
       ],
@@ -1357,6 +1565,7 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "enum RLMPropertyType : Int32",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -1380,7 +1589,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Int",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 34,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1395,7 +1608,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Bool",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 36,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1410,7 +1627,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Float",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 38,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1425,7 +1646,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Double",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 40,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1450,7 +1675,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case String",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 45,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1465,7 +1694,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Data",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 47,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1480,7 +1713,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Any",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 49,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1495,7 +1732,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Date",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 51,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1520,7 +1761,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Object",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 56,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1535,26 +1780,37 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Array",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 58,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 29,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.typedef",
-          "key.doc.file" : "Realm\/RLMConstants.h",
           "key.parsed_declaration" : "typedef enum RLMPropertyType RLMPropertyType",
           "key.doc.comment" : "Property types supported in Realm models.\n\nSee [Realm Models](http:\/\/realm.io\/docs\/objc\/latest\/#models)",
-          "key.doc.full_as_xml" : "",
           "key.doc.line" : 29,
           "key.name" : "RLMPropertyType",
-          "key.parsed_scope.start" : 29,
           "key.doc.column" : 26,
           "key.parsed_scope.end" : 29,
-          "key.filepath" : "Realm\/RLMConstants.h",
-          "key.usr" : "c:RLMConstants.h@T@RLMPropertyType"
+          "key.usr" : "c:RLMConstants.h@T@RLMPropertyType",
+          "key.doc.file" : "Realm\/RLMConstants.h",
+          "key.doc.full_as_xml" : "",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 29,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.enum",
@@ -1568,6 +1824,7 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "enum RLMError : Int",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.enumcase",
@@ -1581,7 +1838,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case Fail",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 66,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1596,7 +1857,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case FileAccessError",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 68,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1611,7 +1876,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case FilePermissionDenied",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 71,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1626,7 +1895,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case FileExists",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 73,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1641,7 +1914,11 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case FileNotFound",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 75,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             },
             {
@@ -1656,26 +1933,37 @@
               "key.doc.file" : "Realm\/RLMConstants.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "case IncompatibleLockFile",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 79,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMConstants.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 64,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.typedef",
-          "key.doc.file" : "Realm\/RLMConstants.h",
           "key.parsed_declaration" : "typedef enum RLMError RLMError",
           "key.doc.comment" : "Enum representing all recoverable errors in Realm.",
-          "key.doc.full_as_xml" : "",
           "key.doc.line" : 64,
           "key.name" : "RLMError",
-          "key.parsed_scope.start" : 64,
           "key.doc.column" : 28,
           "key.parsed_scope.end" : 64,
-          "key.filepath" : "Realm\/RLMConstants.h",
-          "key.usr" : "c:RLMConstants.h@T@RLMError"
+          "key.usr" : "c:RLMConstants.h@T@RLMError",
+          "key.doc.file" : "Realm\/RLMConstants.h",
+          "key.doc.full_as_xml" : "",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 64,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -1709,7 +1997,11 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "let RLMRealmRefreshRequiredNotification: String",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 94,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
@@ -1724,7 +2016,11 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "let RLMRealmDidChangeNotification: String",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 107,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
@@ -1749,7 +2045,11 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "let RLMNotVersioned: UInt64",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 112,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
@@ -1764,7 +2064,11 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "let RLMErrorDomain: String",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 115,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
@@ -1779,7 +2083,11 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "let RLMExceptionName: String",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 118,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
@@ -1794,7 +2102,11 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "let RLMRealmVersionKey: String",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 121,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
@@ -1809,7 +2121,11 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "let RLMRealmCoreVersionKey: String",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 124,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         },
         {
@@ -1824,7 +2140,11 @@
           "key.doc.file" : "Realm\/RLMConstants.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "let RLMInvalidatedKey: String",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 127,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMConstants.h"
         }
       ],
@@ -1836,15 +2156,19 @@
       "key.substructure" : [
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.typedef",
-          "key.doc.file" : "Realm\/RLMMigration.h",
           "key.parsed_declaration" : "typedef void (^RLMObjectMigrationBlock)(RLMObject * __nullable oldObject, RLMObject * __nullable newObject)",
           "key.doc.line" : 28,
           "key.name" : "RLMObjectMigrationBlock",
-          "key.parsed_scope.start" : 28,
           "key.doc.column" : 16,
           "key.parsed_scope.end" : 28,
-          "key.filepath" : "Realm\/RLMMigration.h",
-          "key.usr" : "c:RLMMigration.h@T@RLMObjectMigrationBlock"
+          "key.usr" : "c:RLMMigration.h@T@RLMObjectMigrationBlock",
+          "key.doc.file" : "Realm\/RLMMigration.h",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 28,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMMigration.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.class",
@@ -1858,6 +2182,7 @@
           "key.doc.file" : "Realm\/RLMMigration.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMMigration : NSObject",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -1881,7 +2206,11 @@
               "key.doc.file" : "Realm\/RLMMigration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var oldSchema: UnsafeMutablePointer",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 44,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMMigration.h"
             },
             {
@@ -1896,7 +2225,11 @@
               "key.doc.file" : "Realm\/RLMMigration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var newSchema: UnsafeMutablePointer",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 50,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMMigration.h"
             },
             {
@@ -1932,7 +2265,11 @@
               "key.doc.file" : "Realm\/RLMMigration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func enumerateObjects(className: String!, block: RLMObjectMigrationBlock!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 65,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMMigration.h"
             },
             {
@@ -1967,7 +2304,11 @@
               "key.doc.file" : "Realm\/RLMMigration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func createObject(className: String!, withValue value: AnyObject!) -> RLMObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 78,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMMigration.h"
             },
             {
@@ -1993,7 +2334,11 @@
               "key.doc.file" : "Realm\/RLMMigration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func deleteObject(object: RLMObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 85,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMMigration.h"
             },
             {
@@ -2025,11 +2370,18 @@
               "key.doc.file" : "Realm\/RLMMigration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func deleteDataForClassName(name: String!) -> Bool",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 96,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMMigration.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 36,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMMigration.h"
         }
       ],
@@ -2051,6 +2403,7 @@
           "key.doc.file" : "Realm\/RLMObject.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMObject",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -2074,7 +2427,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "init!()",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 99,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2089,7 +2446,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "init!(value: AnyObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 110,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2110,7 +2471,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func className() -> String!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 121,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2136,7 +2501,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func createInDefaultRealmWithValue(value: AnyObject!) -> Self!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 141,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2171,7 +2540,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func createInRealm(realm: AnyObject!, withValue value: AnyObject!) -> Self!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 162,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2197,7 +2570,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func createOrUpdateInDefaultRealmWithValue(value: AnyObject!) -> Self!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 185,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2232,7 +2609,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func createOrUpdateInRealm(realm: AnyObject!, withValue value: AnyObject!) -> Self!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 209,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2257,7 +2638,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var realm: UnsafeMutablePointer",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 216,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2272,7 +2657,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var objectSchema: RLMObjectSchema! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 221,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2287,7 +2676,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var invalidated: Bool { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 229,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2318,7 +2711,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func indexedProperties() -> [AnyObject]!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 239,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2339,7 +2736,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func defaultPropertyValues() -> [NSObject : AnyObject]?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 246,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2360,7 +2761,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func primaryKey() -> String?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 256,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2381,7 +2786,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func ignoredProperties() -> [AnyObject]?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 264,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2402,7 +2811,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func requiredProperties() -> [AnyObject]!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 279,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2433,7 +2846,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func allObjects() -> RLMResults!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 289,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2464,7 +2881,11 @@
               "key.usr" : "c:objc(cs)RLMObject(cm)objectsWhere:",
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 298,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2496,7 +2917,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func objectsWithPredicate(predicate: NSPredicate?) -> RLMResults!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 308,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2517,7 +2942,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "convenience init?(forPrimaryKey primaryKey: AnyObject?)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 322,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2559,7 +2988,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func allObjectsInRealm(realm: AnyObject!) -> RLMResults!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 334,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2599,7 +3032,11 @@
               "key.usr" : "c:objc(cs)RLMObject(cm)objectsInRealm:where:",
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 344,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2640,7 +3077,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func objectsInRealm(realm: AnyObject!, withPredicate predicate: NSPredicate?) -> RLMResults!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 354,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2661,7 +3102,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "convenience init?(inRealm realm: AnyObject!, forPrimaryKey primaryKey: AnyObject?)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 368,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2712,7 +3157,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func linkingObjectsOfClass(className: String!, forProperty property: String!) -> [AnyObject]!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 381,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2744,7 +3193,11 @@
               "key.doc.file" : "Realm\/RLMObject.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func isEqualToObject(object: RLMObject!) -> Bool",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 392,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObject.h"
             },
             {
@@ -2759,30 +3212,41 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMObject.h",
               "key.parsed_declaration" : "- (nullable id)objectForKeyedSubscript:(NSString *)key;",
               "key.doc.line" : 396,
               "key.name" : "-objectForKeyedSubscript:",
-              "key.parsed_scope.start" : 396,
               "key.doc.column" : 16,
               "key.parsed_scope.end" : 396,
-              "key.filepath" : "Realm\/RLMObject.h",
-              "key.usr" : "c:objc(cs)RLMObject(im)objectForKeyedSubscript:"
+              "key.usr" : "c:objc(cs)RLMObject(im)objectForKeyedSubscript:",
+              "key.doc.file" : "Realm\/RLMObject.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 396,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMObject.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMObject.h",
               "key.parsed_declaration" : "- (void)setObject:(nullable id)obj forKeyedSubscript:(NSString *)key;",
               "key.doc.line" : 397,
               "key.name" : "-setObject:forKeyedSubscript:",
-              "key.parsed_scope.start" : 397,
               "key.doc.column" : 9,
               "key.parsed_scope.end" : 397,
-              "key.filepath" : "Realm\/RLMObject.h",
-              "key.usr" : "c:objc(cs)RLMObject(im)setObject:forKeyedSubscript:"
+              "key.usr" : "c:objc(cs)RLMObject(im)setObject:forKeyedSubscript:",
+              "key.doc.file" : "Realm\/RLMObject.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 397,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMObject.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 87,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMObject.h"
         },
         {
@@ -2804,65 +3268,85 @@
       "key.substructure" : [
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.class",
-          "key.doc.file" : "Realm\/RLMObjectBase.h",
           "key.parsed_declaration" : "@interface RLMObjectBase : NSObject\n\n@property (nonatomic, readonly, getter = isInvalidated) BOOL invalidated;\n\n- (instancetype)init;\n\n+ (NSString *)className;\n\n\/\/ Returns whether the class is included in the default set of classes persisted in a Realm.\n+ (BOOL)shouldIncludeInDefaultSchema;\n\n@end",
           "key.doc.line" : 28,
+          "key.name" : "RLMObjectBase",
+          "key.doc.column" : 12,
+          "key.parsed_scope.end" : 39,
+          "key.usr" : "c:objc(cs)RLMObjectBase",
+          "key.doc.file" : "Realm\/RLMObjectBase.h",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
-              "key.doc.file" : "Realm\/RLMObjectBase.h",
               "key.parsed_declaration" : "@property (nonatomic, readonly, getter = isInvalidated) BOOL invalidated",
               "key.doc.line" : 30,
               "key.name" : "invalidated",
-              "key.parsed_scope.start" : 30,
               "key.doc.column" : 62,
               "key.parsed_scope.end" : 30,
-              "key.filepath" : "Realm\/RLMObjectBase.h",
-              "key.usr" : "c:objc(cs)RLMObjectBase(py)invalidated"
+              "key.usr" : "c:objc(cs)RLMObjectBase(py)invalidated",
+              "key.doc.file" : "Realm\/RLMObjectBase.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 30,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMObjectBase.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMObjectBase.h",
               "key.parsed_declaration" : "- (instancetype)init;",
               "key.doc.line" : 32,
               "key.name" : "-init",
-              "key.parsed_scope.start" : 32,
               "key.doc.column" : 17,
               "key.parsed_scope.end" : 32,
-              "key.filepath" : "Realm\/RLMObjectBase.h",
-              "key.usr" : "c:objc(cs)RLMObjectBase(im)init"
+              "key.usr" : "c:objc(cs)RLMObjectBase(im)init",
+              "key.doc.file" : "Realm\/RLMObjectBase.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 32,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMObjectBase.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
-              "key.doc.file" : "Realm\/RLMObjectBase.h",
               "key.parsed_declaration" : "+ (NSString *)className;",
               "key.doc.line" : 34,
               "key.name" : "+className",
-              "key.parsed_scope.start" : 34,
               "key.doc.column" : 15,
               "key.parsed_scope.end" : 34,
-              "key.filepath" : "Realm\/RLMObjectBase.h",
-              "key.usr" : "c:objc(cs)RLMObjectBase(cm)className"
+              "key.usr" : "c:objc(cs)RLMObjectBase(cm)className",
+              "key.doc.file" : "Realm\/RLMObjectBase.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 34,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMObjectBase.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
-              "key.doc.file" : "Realm\/RLMObjectBase.h",
               "key.parsed_declaration" : "+ (BOOL)shouldIncludeInDefaultSchema;",
               "key.doc.line" : 37,
               "key.name" : "+shouldIncludeInDefaultSchema",
-              "key.parsed_scope.start" : 37,
               "key.doc.column" : 9,
               "key.parsed_scope.end" : 37,
-              "key.filepath" : "Realm\/RLMObjectBase.h",
-              "key.usr" : "c:objc(cs)RLMObjectBase(cm)shouldIncludeInDefaultSchema"
+              "key.usr" : "c:objc(cs)RLMObjectBase(cm)shouldIncludeInDefaultSchema",
+              "key.doc.file" : "Realm\/RLMObjectBase.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 37,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMObjectBase.h"
             }
           ],
-          "key.name" : "RLMObjectBase",
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 28,
-          "key.doc.column" : 12,
-          "key.parsed_scope.end" : 39,
-          "key.filepath" : "Realm\/RLMObjectBase.h",
-          "key.usr" : "c:objc(cs)RLMObjectBase"
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMObjectBase.h"
         }
       ],
       "key.diagnostic_stage" : ""
@@ -2883,6 +3367,7 @@
           "key.doc.file" : "Realm\/RLMObjectSchema.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMObjectSchema : NSObject, NSCopying",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -2906,7 +3391,11 @@
               "key.doc.file" : "Realm\/RLMObjectSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var properties: [AnyObject]! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 43,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObjectSchema.h"
             },
             {
@@ -2921,7 +3410,11 @@
               "key.doc.file" : "Realm\/RLMObjectSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var className: String! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 48,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObjectSchema.h"
             },
             {
@@ -2936,7 +3429,11 @@
               "key.doc.file" : "Realm\/RLMObjectSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var primaryKeyProperty: UnsafeMutablePointer",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 53,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObjectSchema.h"
             },
             {
@@ -2978,7 +3475,11 @@
               "key.doc.file" : "Realm\/RLMObjectSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "subscript (propertyName: NSCopying!) -> AnyObject! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 64,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObjectSchema.h"
             },
             {
@@ -2993,11 +3494,18 @@
               "key.doc.file" : "Realm\/RLMObjectSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func isEqualToObjectSchema(objectSchema: RLMObjectSchema!) -> Bool",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 69,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMObjectSchema.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 34,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMObjectSchema.h"
         }
       ],
@@ -3009,63 +3517,83 @@
       "key.substructure" : [
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.protocol",
-          "key.doc.file" : "Realm\/RLMProperty.h",
           "key.parsed_declaration" : "@protocol RLMInt\n@end",
           "key.doc.line" : 25,
           "key.name" : "RLMInt",
-          "key.parsed_scope.start" : 25,
           "key.doc.column" : 11,
           "key.parsed_scope.end" : 26,
-          "key.filepath" : "Realm\/RLMProperty.h",
-          "key.usr" : "c:objc(pl)RLMInt"
+          "key.usr" : "c:objc(pl)RLMInt",
+          "key.doc.file" : "Realm\/RLMProperty.h",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 25,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMProperty.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.protocol",
-          "key.doc.file" : "Realm\/RLMProperty.h",
           "key.parsed_declaration" : "@protocol RLMBool\n@end",
           "key.doc.line" : 27,
           "key.name" : "RLMBool",
-          "key.parsed_scope.start" : 27,
           "key.doc.column" : 11,
           "key.parsed_scope.end" : 28,
-          "key.filepath" : "Realm\/RLMProperty.h",
-          "key.usr" : "c:objc(pl)RLMBool"
+          "key.usr" : "c:objc(pl)RLMBool",
+          "key.doc.file" : "Realm\/RLMProperty.h",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 27,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMProperty.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.protocol",
-          "key.doc.file" : "Realm\/RLMProperty.h",
           "key.parsed_declaration" : "@protocol RLMDouble\n@end",
           "key.doc.line" : 29,
           "key.name" : "RLMDouble",
-          "key.parsed_scope.start" : 29,
           "key.doc.column" : 11,
           "key.parsed_scope.end" : 30,
-          "key.filepath" : "Realm\/RLMProperty.h",
-          "key.usr" : "c:objc(pl)RLMDouble"
+          "key.usr" : "c:objc(pl)RLMDouble",
+          "key.doc.file" : "Realm\/RLMProperty.h",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 29,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMProperty.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.protocol",
-          "key.doc.file" : "Realm\/RLMProperty.h",
           "key.parsed_declaration" : "@protocol RLMFloat\n@end",
           "key.doc.line" : 31,
           "key.name" : "RLMFloat",
-          "key.parsed_scope.start" : 31,
           "key.doc.column" : 11,
           "key.parsed_scope.end" : 32,
-          "key.filepath" : "Realm\/RLMProperty.h",
-          "key.usr" : "c:objc(pl)RLMFloat"
+          "key.usr" : "c:objc(pl)RLMFloat",
+          "key.doc.file" : "Realm\/RLMProperty.h",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 31,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMProperty.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.category",
-          "key.doc.file" : "Realm\/RLMProperty.h",
           "key.parsed_declaration" : "@interface NSNumber ()<RLMInt, RLMBool, RLMDouble, RLMFloat>\n@end",
           "key.doc.line" : 34,
           "key.name" : "NSNumber()",
-          "key.parsed_scope.start" : 34,
           "key.doc.column" : 12,
           "key.parsed_scope.end" : 35,
-          "key.filepath" : "Realm\/RLMProperty.h",
-          "key.usr" : "c:objc(ext)NSNumber@RLMProperty.h@960"
+          "key.usr" : "c:objc(ext)NSNumber@RLMProperty.h@960",
+          "key.doc.file" : "Realm\/RLMProperty.h",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 34,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMProperty.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.class",
@@ -3079,6 +3607,7 @@
           "key.doc.file" : "Realm\/RLMProperty.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMProperty : NSObject",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -3102,7 +3631,11 @@
               "key.doc.file" : "Realm\/RLMProperty.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var name: String! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 52,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMProperty.h"
             },
             {
@@ -3117,7 +3650,11 @@
               "key.doc.file" : "Realm\/RLMProperty.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var type: Int32 { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 59,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMProperty.h"
             },
             {
@@ -3132,7 +3669,11 @@
               "key.doc.file" : "Realm\/RLMProperty.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var indexed: Bool { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 66,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMProperty.h"
             },
             {
@@ -3147,7 +3688,11 @@
               "key.doc.file" : "Realm\/RLMProperty.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var objectClassName: String? { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 71,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMProperty.h"
             },
             {
@@ -3162,7 +3707,11 @@
               "key.doc.file" : "Realm\/RLMProperty.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var optional: Bool { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 76,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMProperty.h"
             },
             {
@@ -3187,11 +3736,18 @@
               "key.doc.file" : "Realm\/RLMProperty.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func isEqualToProperty(property: RLMProperty!) -> Bool",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 83,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMProperty.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 45,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMProperty.h"
         }
       ],
@@ -3213,6 +3769,7 @@
           "key.doc.file" : "Realm\/RLMRealm.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMRealm : NSObject",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -3242,7 +3799,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func defaultRealm() -> Self!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 67,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3283,7 +3844,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "convenience init(configuration: RLMRealmConfiguration!) throws",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 79,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3315,7 +3880,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "convenience init!(path: String!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 88,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3330,7 +3899,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var path: String! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 93,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3345,7 +3918,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var readOnly: Bool { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 98,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3360,7 +3937,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var schema: RLMSchema! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 103,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3375,7 +3956,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var inWriteTransaction: Bool { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 113,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3390,7 +3975,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var configuration: RLMRealmConfiguration! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 118,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3405,7 +3994,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var isEmpty: Bool { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 123,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3457,7 +4050,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func addNotificationBlock(block: RLMNotificationBlock!) -> RLMNotificationToken!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 151,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3483,7 +4080,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func removeNotification(notificationToken: RLMNotificationToken!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 160,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3518,7 +4119,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func beginWriteTransaction()",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 186,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3533,7 +4138,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func commitWriteTransaction()",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 195,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3565,7 +4174,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func commitWriteTransaction(error: NSErrorPointer) -> Bool",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 210,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3580,7 +4193,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func cancelWriteTransaction()",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 237,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3595,7 +4212,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func transactionWithBlock(block: (() -> Void)!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 242,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3636,7 +4257,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func transactionWithBlock(block: (() -> Void)!, error: ()) throws",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 254,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3657,7 +4282,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func refresh() -> Bool",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 261,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3672,7 +4301,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var autorefresh: Bool { get set }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 288,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3713,7 +4346,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func writeCopyToPath(path: String!) throws",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 302,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3763,7 +4400,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func writeCopyToPath(path: String!, encryptionKey key: NSData!) throws",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 317,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3778,7 +4419,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func invalidate()",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 339,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3824,7 +4469,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func addObject(object: RLMObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 362,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3850,7 +4499,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func addObjects(array: NSFastEnumeration!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 374,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3876,7 +4529,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func addOrUpdateObject(object: RLMObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 387,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3902,7 +4559,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func addOrUpdateObjectsFromArray(array: AnyObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 398,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3928,7 +4589,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func deleteObject(object: RLMObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 405,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3954,7 +4619,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func deleteObjects(array: AnyObject!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 412,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -3969,7 +4638,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func deleteAllObjects()",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 417,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -4020,7 +4693,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func schemaVersionAtPath(realmPath: String!, error: NSErrorPointer) -> UInt64",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 443,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -4070,7 +4747,11 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func schemaVersionAtPath(realmPath: String!, encryptionKey key: NSData?, error: NSErrorPointer) -> UInt64",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 456,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             },
             {
@@ -4102,24 +4783,35 @@
               "key.doc.file" : "Realm\/RLMRealm.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func migrateRealm(configuration: RLMRealmConfiguration!) -> NSError!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 470,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealm.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 49,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMRealm.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.typedef",
-          "key.doc.file" : "Realm\/RLMRealm.h",
           "key.parsed_declaration" : "typedef void(^RLMNotificationBlock)(NSString *notification, RLMRealm *realm)",
           "key.doc.line" : 127,
           "key.name" : "RLMNotificationBlock",
-          "key.parsed_scope.start" : 127,
           "key.doc.column" : 15,
           "key.parsed_scope.end" : 127,
-          "key.filepath" : "Realm\/RLMRealm.h",
-          "key.usr" : "c:RLMRealm.h@T@RLMNotificationBlock"
+          "key.usr" : "c:RLMRealm.h@T@RLMNotificationBlock",
+          "key.doc.file" : "Realm\/RLMRealm.h",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
+          "key.parsed_scope.start" : 127,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
+          "key.filepath" : "Realm\/RLMRealm.h"
         },
         {
           "key.kind" : "sourcekitten.source.lang.objc.decl.typedef",
@@ -4153,7 +4845,11 @@
           "key.doc.file" : "Realm\/RLMRealm.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "typealias RLMMigrationBlock = (RLMMigration!, UInt64) -> Void",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 431,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMRealm.h"
         },
         {
@@ -4168,7 +4864,11 @@
           "key.doc.file" : "Realm\/RLMRealm.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMNotificationToken : NSObject",
+          "key.always_unavailable" : false,
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 477,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMRealm.h"
         }
       ],
@@ -4190,6 +4890,7 @@
           "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMRealmConfiguration : NSObject, NSCopying",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -4219,7 +4920,11 @@
               "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func defaultConfiguration() -> Self!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 38,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             },
             {
@@ -4245,7 +4950,11 @@
               "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "class func setDefaultConfiguration(configuration: RLMRealmConfiguration!)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 45,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             },
             {
@@ -4270,7 +4979,11 @@
               "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var path: String? { get set }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 50,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             },
             {
@@ -4285,7 +4998,11 @@
               "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var inMemoryIdentifier: String? { get set }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 53,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             },
             {
@@ -4300,7 +5017,11 @@
               "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "@NSCopying var encryptionKey: NSData? { get set }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 56,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             },
             {
@@ -4315,7 +5036,11 @@
               "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var readOnly: Bool { get set }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 59,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             },
             {
@@ -4330,22 +5055,30 @@
               "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var schemaVersion: UInt64 { get set }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 62,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
-              "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.parsed_declaration" : "@property (readwrite, copy, nonatomic, nullable)\n    RLMMigrationBlock migrationBlock;",
               "key.doc.comment" : "The block which migrates the Realm to the current version.",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 65,
               "key.name" : "migrationBlock",
-              "key.parsed_scope.start" : 65,
               "key.doc.column" : 57,
               "key.parsed_scope.end" : 65,
-              "key.filepath" : "Realm\/RLMRealmConfiguration.h",
-              "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)migrationBlock"
+              "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)migrationBlock",
+              "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
+              "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 65,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
@@ -4359,11 +5092,18 @@
               "key.doc.file" : "Realm\/RLMRealmConfiguration.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var objectClasses: [AnyObject]? { get set }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 68,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMRealmConfiguration.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 28,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMRealmConfiguration.h"
         }
       ],
@@ -4385,6 +5125,7 @@
           "key.doc.file" : "Realm\/RLMResults.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMResults",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -4398,17 +5139,21 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
-              "key.doc.file" : "Realm\/RLMResults.h",
               "key.parsed_declaration" : "@property (readonly, assign, nonatomic) NSUInteger count;",
               "key.doc.comment" : "Number of objects in the results.",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 43,
               "key.name" : "count",
-              "key.parsed_scope.start" : 43,
               "key.doc.column" : 52,
               "key.parsed_scope.end" : 43,
-              "key.filepath" : "Realm\/RLMResults.h",
-              "key.usr" : "c:objc(cs)RLMResults(py)count"
+              "key.usr" : "c:objc(cs)RLMResults(py)count",
+              "key.doc.file" : "Realm\/RLMResults.h",
+              "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 43,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMResults.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
@@ -4422,7 +5167,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var objectClassName: String! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 48,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4437,7 +5186,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var realm: UnsafeMutablePointer",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 53,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4479,7 +5232,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func objectAtIndex(index: UInt) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 64,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4500,7 +5257,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func firstObject() -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 73,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4521,7 +5282,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func lastObject() -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 82,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4557,7 +5322,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func indexOfObject(object: AnyObject!) -> UInt",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 96,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4588,7 +5357,11 @@
               "key.usr" : "c:objc(cs)RLMResults(im)indexOfObjectWhere:",
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 105,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4620,7 +5393,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func indexOfObjectWithPredicate(predicate: NSPredicate!) -> UInt",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 114,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4651,7 +5428,11 @@
               "key.usr" : "c:objc(cs)RLMResults(im)objectsWhere:",
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 123,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4682,7 +5463,11 @@
               "key.usr" : "c:objc(cs)RLMResults(im)objectsWithPredicate:",
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 132,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4722,7 +5507,11 @@
               "key.usr" : "c:objc(cs)RLMResults(im)sortedResultsUsingProperty:ascending:",
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 142,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4753,7 +5542,11 @@
               "key.usr" : "c:objc(cs)RLMResults(im)sortedResultsUsingDescriptors:",
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 151,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4795,7 +5588,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func minOfProperty(property: String!) -> AnyObject?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 167,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4827,7 +5624,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func maxOfProperty(property: String!) -> AnyObject?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 180,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4859,7 +5660,11 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func sumOfProperty(property: String!) -> NSNumber!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 193,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
@@ -4891,20 +5696,28 @@
               "key.doc.file" : "Realm\/RLMResults.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func averageOfProperty(property: String!) -> NSNumber?",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 207,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMResults.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (id)objectAtIndexedSubscript:(NSUInteger)index;",
               "key.doc.line" : 209,
               "key.name" : "-objectAtIndexedSubscript:",
-              "key.parsed_scope.start" : 209,
               "key.doc.column" : 7,
               "key.parsed_scope.end" : 209,
-              "key.filepath" : "Realm\/RLMResults.h",
-              "key.usr" : "c:objc(cs)RLMResults(im)objectAtIndexedSubscript:"
+              "key.usr" : "c:objc(cs)RLMResults(im)objectAtIndexedSubscript:",
+              "key.doc.file" : "Realm\/RLMResults.h",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 209,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
+              "key.filepath" : "Realm\/RLMResults.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -4918,34 +5731,45 @@
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
-              "key.doc.file" : "Realm\/RLMResults.h",
               "key.parsed_declaration" : "- (nonnull instancetype)init;",
               "key.doc.comment" : "-[RLMResults init] is not available because RLMResults cannot be created directly.\nRLMResults can be obtained by querying a Realm.",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 217,
               "key.name" : "-init",
-              "key.parsed_scope.start" : 217,
               "key.doc.column" : 17,
               "key.parsed_scope.end" : 217,
-              "key.filepath" : "Realm\/RLMResults.h",
-              "key.usr" : "c:objc(cs)RLMResults(im)init"
+              "key.usr" : "c:objc(cs)RLMResults(im)init",
+              "key.doc.file" : "Realm\/RLMResults.h",
+              "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : true,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 217,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "RLMResults cannot be created directly",
+              "key.filepath" : "Realm\/RLMResults.h"
             },
             {
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.class",
-              "key.doc.file" : "Realm\/RLMResults.h",
               "key.parsed_declaration" : "+ (nonnull instancetype) new;",
               "key.doc.comment" : "+[RLMResults new] is not available because RLMResults cannot be created directly.\nRLMResults can be obtained by querying a Realm.",
-              "key.doc.full_as_xml" : "",
               "key.doc.line" : 223,
               "key.name" : "+new",
-              "key.parsed_scope.start" : 223,
               "key.doc.column" : 17,
               "key.parsed_scope.end" : 223,
-              "key.filepath" : "Realm\/RLMResults.h",
-              "key.usr" : "c:objc(cs)RLMResults(cm)new"
+              "key.usr" : "c:objc(cs)RLMResults(cm)new",
+              "key.doc.file" : "Realm\/RLMResults.h",
+              "key.doc.full_as_xml" : "",
+              "key.always_unavailable" : true,
+              "key.always_deprecated" : false,
+              "key.parsed_scope.start" : 223,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "RLMResults cannot be created directly",
+              "key.filepath" : "Realm\/RLMResults.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 36,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMResults.h"
         }
       ],
@@ -4967,6 +5791,7 @@
           "key.doc.file" : "Realm\/RLMSchema.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class RLMSchema : NSObject, NSCopying",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -4990,7 +5815,11 @@
               "key.doc.file" : "Realm\/RLMSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var objectSchema: [AnyObject]! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 44,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMSchema.h"
             },
             {
@@ -5032,7 +5861,11 @@
               "key.doc.file" : "Realm\/RLMSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func schemaForClassName(className: String!) -> AnyObject!",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 56,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMSchema.h"
             },
             {
@@ -5064,7 +5897,11 @@
               "key.doc.file" : "Realm\/RLMSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "subscript (className: NSCopying!) -> AnyObject! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 67,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMSchema.h"
             },
             {
@@ -5079,11 +5916,18 @@
               "key.doc.file" : "Realm\/RLMSchema.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "func isEqualToSchema(schema: RLMSchema!) -> Bool",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 72,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Realm\/RLMSchema.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 34,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Realm\/RLMSchema.h"
         }
       ],
