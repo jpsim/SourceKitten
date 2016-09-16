@@ -411,12 +411,12 @@ public func parseFullXMLDocs(xmlDocs: String) -> [String: SourceKitRepresentable
     return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
         var docs = [String: SourceKitRepresentable]()
         docs[SwiftDocKey.DocType.rawValue] = rootXML.element?.name
-        docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.attributes["file"]
-        docs[SwiftDocKey.DocLine.rawValue] = rootXML.element?.attributes["line"].flatMap {
-            Int64($0)
+        docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.allAttributes["file"].map { $0.text }
+        docs[SwiftDocKey.DocLine.rawValue] = rootXML.element?.allAttributes["line"].flatMap {
+            Int64($0.text)
         }
-        docs[SwiftDocKey.DocColumn.rawValue] = rootXML.element?.attributes["column"].flatMap {
-            Int64($0)
+        docs[SwiftDocKey.DocColumn.rawValue] = rootXML.element?.allAttributes["column"].flatMap {
+            Int64($0.text)
         }
         docs[SwiftDocKey.DocName.rawValue] = rootXML["Name"].element?.text
         docs[SwiftDocKey.USR.rawValue] = rootXML["USR"].element?.text
