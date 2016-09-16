@@ -1,2 +1,2 @@
-github "drmohundro/SWXMLHash" "master"
-github "behrang/YamlSwift" "master"
+github "drmohundro/SWXMLHash" ~> 2.5.1
+github "behrang/YamlSwift" "eecbc91"
