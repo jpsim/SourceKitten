@@ -16,7 +16,7 @@ matrix:
       env: JOB=Linux
       sudo: required
       services: docker
-      before_install: docker pull jpsim/sourcekit
+      before_install: docker pull norionomura/sourcekit:30
 git:
   submodules: false
 notifications:
