@@ -12,7 +12,7 @@ matrix:
       before_install:
         - make bootstrap
         - make swift_snapshot_install
-    - script: docker run -v `pwd`:/SourceKitten jpsim/sourcekit bash -c "cd /SourceKitten && swift build && swift test"
+    - script: docker run -v `pwd`:/SourceKitten norionomura/sourcekit:30 bash -c "cd /SourceKitten && swift build && swift test"
       env: JOB=Linux
       sudo: required
       services: docker
