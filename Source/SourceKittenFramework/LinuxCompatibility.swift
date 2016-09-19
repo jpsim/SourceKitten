@@ -20,6 +20,26 @@ extension TextCheckingResult {
 extension NSString {
     var isAbsolutePath: Bool { return absolutePath }
 }
+extension Dictionary {
+    public func bridge() -> NSDictionary {
+        return NSDictionary(dictionary: self)
+    }
+}
+extension Array {
+    public func bridge() -> NSArray {
+        return NSArray(array: self)
+    }
+}
+extension String {
+    public func bridge() -> NSString {
+        return NSString(string: self)
+    }
+}
+extension NSString {
+    public func bridge() -> String {
+        return _bridgeToSwift()
+    }
+}
 #else
 extension Dictionary {
     public func bridge() -> NSDictionary {

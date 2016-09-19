@@ -238,7 +238,7 @@ extension NSString {
     public func absolutePathRepresentation(rootDirectory: String = defaultFileManager.currentDirectoryPath) -> String {
         if isAbsolutePath { return bridge() }
         #if os(Linux)
-        return try! NSURL.fileURLWithPathComponents([rootDirectory, bridge()])!.standardizingPath().path!
+        return NSURL(fileURLWithPath: NSURL.fileURL(withPathComponents: [rootDirectory, _bridgeToSwift()])!.path).standardizingPath!.path
         #else
         return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
         #endif

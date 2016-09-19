@@ -150,26 +150,14 @@ private extension String {
     }
 
     func stringByAppendingPathComponent(str: String) -> String {
-        #if os(Linux)
-        return try! URL(fileURLWithPath: self).appendingPathComponent(str).path!
-        #else
         return URL(fileURLWithPath: self).appendingPathComponent(str).path
-        #endif
     }
 
     func deletingLastPathComponents(n: Int) -> String {
         var url = URL(fileURLWithPath: self)
         for _ in 0..<n {
-            #if os(Linux)
-            url = try! url.deletingLastPathComponent()
-            #else
             url = url.deletingLastPathComponent()
-            #endif
         }
-        #if os(Linux)
-        return url.path!
-        #else
         return url.path
-        #endif
     }
 }

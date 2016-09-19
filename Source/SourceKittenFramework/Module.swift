@@ -100,11 +100,7 @@ public struct Module {
         sourceFiles = compilerArguments.filter({
             $0.bridge().isSwiftFile() && $0.isFile
         }).map {
-            #if os(Linux)
-            return try! URL(fileURLWithPath: $0).resolvingSymlinksInPath().path!
-            #else
             return URL(fileURLWithPath: $0).resolvingSymlinksInPath().path
-            #endif
         }
     }
 }
