@@ -18,8 +18,10 @@
 ##### Enhancements
 
 * Refactor to unite swift lang syntax types with SwiftLangSyntax protocol.
+
 * Make SwiftDocKey public.  
   [Evgeny Suvorov](https://github.com/esuvorov)
+
 * Swift 2.3 support.  
   [Syo Ikeda](https://github.com/ikesyo)
 
