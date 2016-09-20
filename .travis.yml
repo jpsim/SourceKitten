@@ -5,6 +5,9 @@ branches:
   only:
     - master
 script: placeholder # workaround for https://github.com/travis-ci/travis-ci/issues/4681
+before_script:
+  - gem install danger --version '~> 3.0' && danger
+
 matrix:
   include:
     - script: make test
