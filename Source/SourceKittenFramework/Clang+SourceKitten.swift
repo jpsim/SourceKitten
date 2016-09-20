@@ -27,6 +27,13 @@ struct ClangIndex {
     }
 }
 
+struct ClangAvailability {
+    let alwaysDeprecated: Bool
+    let alwaysUnavailable: Bool
+    let deprecationMessage: String?
+    let unavailableMessage: String?
+}
+
 extension CXString: CustomStringConvertible {
     func str() -> String? {
         return String.fromCString(clang_getCString(self))
@@ -118,6 +125,25 @@ extension CXCursor {
 
     func usr() -> String? {
         return clang_getCursorUSR(self).str()
+    }
+
+    func platformAvailability() -> ClangAvailability {
+        var alwaysDeprecated: Int32 = 0
+        var alwaysUnavailable: Int32 = 0
+        var deprecationString = CXString()
+        var unavailableString = CXString()
+
+        clang_getCursorPlatformAvailability(self,
+                                            &alwaysDeprecated,
+                                            &deprecationString,
+                                            &alwaysUnavailable,
+                                            &unavailableString,
+                                            nil,
+                                            0)
+        return ClangAvailability(alwaysDeprecated: alwaysDeprecated != 0,
+                                 alwaysUnavailable: alwaysUnavailable != 0,
+                                 deprecationMessage: deprecationString.description,
+                                 unavailableMessage: unavailableString.description)
     }
 
     func visit(block: CXCursorVisitorBlock) {

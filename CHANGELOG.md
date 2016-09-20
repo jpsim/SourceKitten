@@ -25,6 +25,14 @@
 * Swift 2.3 support.  
   [Syo Ikeda](https://github.com/ikesyo)
 
+* The following availability and deprecation values are now exposed for Objective-C APIs.
+
+  * key.always_deprecated
+  * key.always_unavailable
+  * key.deprecation_message
+  * key.unavailable_message  
+  [Jeff Verkoeyen](https://github.com/jverkoey)
+
 ##### Bug Fixes
 
 * Fix issue where single-line declaration+bodies would include the body in the

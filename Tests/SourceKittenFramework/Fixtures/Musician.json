@@ -14,6 +14,7 @@
           "key.doc.file" : "Musician.h",
           "key.doc.full_as_xml" : "",
           "key.swift_declaration" : "class JAZMusician : NSObject",
+          "key.always_unavailable" : false,
           "key.substructure" : [
             {
               "key.kind" : "sourcekitten.source.lang.objc.mark",
@@ -37,7 +38,11 @@
               "key.doc.file" : "Musician.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var name: String! { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 19,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Musician.h"
             },
             {
@@ -52,7 +57,11 @@
               "key.doc.file" : "Musician.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "var birthyear: UInt { get }",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 24,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Musician.h"
             },
             {
@@ -103,11 +112,18 @@
               "key.doc.file" : "Musician.h",
               "key.doc.full_as_xml" : "",
               "key.swift_declaration" : "init!(name: String!, birthyear: UInt)",
+              "key.always_unavailable" : false,
+              "key.always_deprecated" : false,
               "key.parsed_scope.start" : 40,
+              "key.deprecation_message" : "",
+              "key.unavailable_message" : "",
               "key.filepath" : "Musician.h"
             }
           ],
+          "key.always_deprecated" : false,
           "key.parsed_scope.start" : 12,
+          "key.deprecation_message" : "",
+          "key.unavailable_message" : "",
           "key.filepath" : "Musician.h"
         }
       ],

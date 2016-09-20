@@ -430,7 +430,7 @@ extension String {
                 line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
                 column: 1, offset: UInt32(markByteRange.location))
             return SourceDeclaration(type: .Mark, location: location, extent: (location, location), name: markString,
-                usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [], swiftDeclaration: nil)
+                usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [], swiftDeclaration: nil, availability: nil)
         }
     }
 
