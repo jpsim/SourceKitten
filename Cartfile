@@ -1,2 +1,2 @@
-github "drmohundro/SWXMLHash" ~> 2.5.1
-github "behrang/YamlSwift" ~> 1.5
+github "drmohundro/SWXMLHash" ~> 3.0
+github "behrang/YamlSwift" ~> 2.0
