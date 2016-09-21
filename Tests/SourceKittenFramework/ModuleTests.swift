@@ -11,14 +11,14 @@ import SourceKittenFramework
 import XCTest
 
 let projectRoot = (((#file as NSString)
-    .stringByDeletingLastPathComponent as NSString)
-    .stringByDeletingLastPathComponent as NSString)
-    .stringByDeletingLastPathComponent
+    .deletingLastPathComponent as NSString)
+    .deletingLastPathComponent as NSString)
+    .deletingLastPathComponent
 
 class ModuleTests: XCTestCase {
 
     func testModuleNilInPathWithNoXcodeProject() {
-        let pathWithNoXcodeProject = (#file as NSString).stringByDeletingLastPathComponent
+        let pathWithNoXcodeProject = (#file as NSString).deletingLastPathComponent
         let model = Module(xcodeBuildArguments: [], name: nil, inPath: pathWithNoXcodeProject)
         XCTAssert(model == nil, "model initialization without any Xcode project should fail")
     }
@@ -26,9 +26,9 @@ class ModuleTests: XCTestCase {
     func testSourceKittenFrameworkDocsAreValidJSON() {
         let sourceKittenModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
         let docsJSON = sourceKittenModule.docs.description
-        XCTAssert(docsJSON.rangeOfString("error type") == nil)
+        XCTAssert(docsJSON.range(of: "error type") == nil)
         do {
-            let jsonArray = try NSJSONSerialization.JSONObjectWithData(docsJSON.dataUsingEncoding(NSUTF8StringEncoding)!, options: []) as? NSArray
+            let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
             XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
         } catch {
             XCTFail("JSON should be propery parsed")

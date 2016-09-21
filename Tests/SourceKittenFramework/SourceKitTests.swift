@@ -10,30 +10,30 @@ import Foundation
 @testable import SourceKittenFramework
 import XCTest
 
-private func run(executable: String, arguments: [String]) -> String? {
-    let task = NSTask()
+private func run(_ executable: String, arguments: [String]) -> String? {
+    let task = Process()
     task.launchPath = executable
     task.arguments = arguments
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
 
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let output = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+    let output = String(data: file.readDataToEndOfFile(), encoding: .utf8)
     file.closeFile()
-    return output as String?
+    return output
 }
 
 private func sourcekitStringsStartingWith(pattern: String) -> Set<String> {
     let sourceKitServicePath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
-        .stringByDeletingLastPathComponent as NSString)
-        .stringByDeletingLastPathComponent as NSString)
-        .stringByAppendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
+        .deletingLastPathComponent as NSString)
+        .deletingLastPathComponent as NSString)
+        .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
     let strings = run("/usr/bin/strings", arguments: [sourceKitServicePath])
-    return Set(strings!.componentsSeparatedByString("\n").filter { string in
-        return string.rangeOfString(pattern)?.startIndex == string.startIndex
+    return Set(strings!.components(separatedBy: "\n").filter { string in
+        return string.range(of: pattern)?.lowerBound == string.startIndex
     })
 }
 
@@ -52,15 +52,15 @@ class SourceKitTests: XCTestCase {
             .While,
         ]
 
-        let actual = sourcekitStringsStartingWith("source.lang.swift.stmt.")
+        let actual = sourcekitStringsStartingWith(pattern: "source.lang.swift.stmt.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
             expectedStrings
         )
         if actual != expectedStrings {
-            print("the following strings were added: \(actual.subtract(expectedStrings))")
-            print("the following strings were removed: \(expectedStrings.subtract(actual))")
+            print("the following strings were added: \(actual.subtracting(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
     }
 
@@ -86,15 +86,15 @@ class SourceKitTests: XCTestCase {
             .StringInterpolationAnchor,
             .Typeidentifier
         ]
-        let actual = sourcekitStringsStartingWith("source.lang.swift.syntaxtype.")
+        let actual = sourcekitStringsStartingWith(pattern: "source.lang.swift.syntaxtype.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
             expectedStrings
         )
         if actual != expectedStrings {
-            print("the following strings were added: \(actual.subtract(expectedStrings))")
-            print("the following strings were removed: \(expectedStrings.subtract(actual))")
+            print("the following strings were added: \(actual.subtracting(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
     }
 
@@ -128,6 +128,7 @@ class SourceKitTests: XCTestCase {
             .FunctionSubscript,
             .GenericTypeParam,
             .Module,
+            .PrecedenceGroup,
             .Protocol,
             .Struct,
             .Typealias,
@@ -138,15 +139,15 @@ class SourceKitTests: XCTestCase {
             .VarParameter,
             .VarStatic
         ]
-        let actual = sourcekitStringsStartingWith("source.lang.swift.decl.")
+        let actual = sourcekitStringsStartingWith(pattern: "source.lang.swift.decl.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
             expectedStrings
         )
         if actual != expectedStrings {
-            print("the following strings were added: \(actual.subtract(expectedStrings))")
-            print("the following strings were removed: \(expectedStrings.subtract(actual))")
+            print("the following strings were added: \(actual.subtracting(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
     }
 
@@ -161,11 +162,11 @@ class SourceKitTests: XCTestCase {
         for (module, path, spmModule) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
+            let generatedWrapper = libraryWrapperForModule(module: module, loadPath: path, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
             if existingWrapper != generatedWrapper && overwrite {
-                generatedWrapper.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(wrapperPath, atomically: true)
+                try! generatedWrapper.data(using: .utf8)?.write(to: URL(fileURLWithPath: wrapperPath))
             }
         }
     }
@@ -173,10 +174,10 @@ class SourceKitTests: XCTestCase {
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
-        let indexJSON = NSMutableString(string: toJSON(toAnyObject(Request.Index(file: file, arguments: arguments).send())) + "\n")
+        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(Request.Index(file: file, arguments: arguments).send())) + "\n")
 
-        func replace(pattern: String, withTemplate template: String) {
-            try! NSRegularExpression(pattern: pattern, options: []).replaceMatchesInString(indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
+        func replace(_ pattern: String, withTemplate template: String) {
+            _ = try! NSRegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
         }
 
         // Replace the parts of the output that are dependent on the environment of the test running machine
@@ -184,11 +185,5 @@ class SourceKitTests: XCTestCase {
         replace("\"key\\.hash\"[^\\n]*", withTemplate: "\"key\\.hash\" : \"\",")
 
         compareJSONStringWithFixturesName("BicycleIndex", jsonString: indexJSON as String)
-    }
-}
-
-extension String: CustomStringConvertible {
-    public var description: String {
-        return self
     }
 }
