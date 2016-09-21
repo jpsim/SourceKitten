@@ -11,23 +11,23 @@ import Foundation
 import Result
 import SourceKittenFramework
 
-struct CompleteCommand: CommandType {
+struct CompleteCommand: CommandProtocol {
     let verb = "complete"
     let function = "Generate code completion options"
 
-    struct Options: OptionsType {
+    struct Options: OptionsProtocol {
         let file: String
         let text: String
         let offset: Int
         let compilerargs: [String]
 
-        static func create(file: String) -> (text: String) -> (offset: Int) -> (compilerargs: [String]) -> Options {
+        static func create(file: String) -> (_ text: String) -> (_ offset: Int) -> (_ compilerargs: [String]) -> Options {
             return { text in { offset in { compilerargs in
                 self.init(file: file, text: text, offset: offset, compilerargs: compilerargs)
             }}}
         }
 
-        static func evaluate(m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+        static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
                 <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
                 <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
@@ -36,31 +36,31 @@ struct CompleteCommand: CommandType {
         }
     }
 
-    func run(options: Options) -> Result<(), SourceKittenError> {
+    func run(_ options: Options) -> Result<(), SourceKittenError> {
         let path: String
         let contents: String
         if !options.file.isEmpty {
             path = options.file.absolutePathRepresentation()
             guard let file = File(path: path) else {
-                return .Failure(.ReadFailed(path: options.file))
+                return .failure(.ReadFailed(path: options.file))
             }
             contents = file.contents
         } else {
-            path = "\(NSUUID().UUIDString).swift"
+            path = "\(NSUUID().uuidString).swift"
             contents = options.text
         }
 
         var args = ["-c", path]
-        args.appendContentsOf(options.compilerargs)
+        args.append(contentsOf: options.compilerargs)
 
-        if args.indexOf("-sdk") == nil {
-            args.appendContentsOf(["-sdk", sdkPath()])
+        if args.index(of: "-sdk") == nil {
+            args.append(contentsOf: ["-sdk", sdkPath()])
         }
 
         let request = Request.CodeCompletionRequest(file: path, contents: contents,
             offset: Int64(options.offset),
             arguments: args)
-        print(CodeCompletionItem.parseResponse(request.send()))
-        return .Success()
+        print(CodeCompletionItem.parseResponse(response: request.send()))
+        return .success()
     }
 }

@@ -9,9 +9,9 @@
 import Darwin
 import Commandant
 
-// `sourcekitd_set_notification_handler()` set the handler to be executed on main thread queue.
-// So, we vacate main thread to `dispatch_main()`.
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+// `sourcekitd_set_notification_handler()` sets the handler to be executed on main thread queue.
+// So, we vacate main thread to `dispatchMain()`.
+DispatchQueue.global(qos: .default).async {
     let registry = CommandRegistry<SourceKittenError>()
     registry.register(CompleteCommand())
     registry.register(DocCommand())
@@ -20,13 +20,11 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
     registry.register(SyntaxCommand())
     registry.register(StructureCommand())
     registry.register(VersionCommand())
-
-    let helpCommand = HelpCommand(registry: registry)
-    registry.register(helpCommand)
+    registry.register(HelpCommand(registry: registry))
 
     registry.main(defaultVerb: "help") { error in
         fputs("\(error)\n", stderr)
     }
 }
 
-dispatch_main()
+dispatchMain()
