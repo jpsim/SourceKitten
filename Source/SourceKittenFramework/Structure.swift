@@ -20,7 +20,7 @@ public struct Structure {
     */
     public init(sourceKitResponse: [String: SourceKitRepresentable]) {
         var sourceKitResponse = sourceKitResponse
-        _ = sourceKitResponse.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue)
+        _ = sourceKitResponse.removeValue(forKey: SwiftDocKey.SyntaxMap.rawValue)
         dictionary = sourceKitResponse
     }
 
@@ -30,7 +30,7 @@ public struct Structure {
     - parameter file: File to parse for structural information.
     */
     public init(file: File) {
-        self.init(sourceKitResponse: Request.EditorOpen(file).send())
+        self.init(sourceKitResponse: Request.EditorOpen(file: file).send())
     }
 }
 
@@ -38,7 +38,7 @@ public struct Structure {
 
 extension Structure: CustomStringConvertible {
     /// A textual JSON representation of `Structure`.
-    public var description: String { return toJSON(toAnyObject(dictionary)) }
+    public var description: String { return toJSON(toNSDictionary(dictionary)) }
 }
 
 // MARK: Equatable
