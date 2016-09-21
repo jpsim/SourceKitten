@@ -7,7 +7,7 @@
 //
 
 /// Possible errors within SourceKitten.
-enum SourceKittenError: ErrorType, CustomStringConvertible {
+enum SourceKittenError: Error, CustomStringConvertible {
     /// One or more argument was invalid.
     case InvalidArgument(description: String)
 
