@@ -20,6 +20,6 @@ class FileTests: XCTestCase {
         let formattedFile = file?.format(trimmingTrailingWhitespace: true,
                                          useTabs: false,
                                          indentWidth: 4)
-        XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift"))
+        XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift", encoding: .utf8))
     }
 }
