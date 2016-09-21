@@ -16,7 +16,7 @@ public struct SyntaxToken {
     public let length: Int
 
     /// Dictionary representation of SyntaxToken. Useful for NSJSONSerialization.
-    public var dictionaryValue: [String: AnyObject] {
+    public var dictionaryValue: [String: Any] {
         return ["type": type, "offset": offset, "length": length]
     }
 
@@ -54,5 +54,5 @@ public func ==(lhs: SyntaxToken, rhs: SyntaxToken) -> Bool {
 
 extension SyntaxToken: CustomStringConvertible {
     /// A textual JSON representation of `SyntaxToken`.
-    public var description: String { return toJSON(dictionaryValue) }
+    public var description: String { return toJSON(dictionaryValue as NSDictionary) }
 }

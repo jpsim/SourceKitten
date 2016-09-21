@@ -17,13 +17,13 @@ private var interfaceUUIDMap = [String: String]()
 struct ClangIndex {
     private let cx = clang_createIndex(0, 1)
 
-    func open(file file: String, args: [UnsafePointer<Int8>]) -> CXTranslationUnit {
+    func open(file: String, args: [UnsafePointer<Int8>?]) -> CXTranslationUnit {
         return clang_createTranslationUnitFromSourceFile(cx,
             file,
             Int32(args.count),
             args,
             0,
-            nil)
+            nil)!
     }
 }
 
@@ -36,7 +36,10 @@ struct ClangAvailability {
 
 extension CXString: CustomStringConvertible {
     func str() -> String? {
-        return String.fromCString(clang_getCString(self))
+        if let cString = clang_getCString(self) as UnsafePointer<Int8>? {
+            return String(validatingUTF8: cString)
+        }
+        return nil
     }
 
     public var description: String {
@@ -79,38 +82,39 @@ extension CXCursor {
             fatalError("couldn't parse XML")
         }
         return rootXML["Declaration"].element?.text?
-            .stringByReplacingOccurrencesOfString("\n@end", withString: "")
-            .stringByReplacingOccurrencesOfString("@property(", withString: "@property (")
+            .replacingOccurrences(of: "\n@end", with: "")
+            .replacingOccurrences(of: "@property(", with: "@property (")
     }
 
     func objCKind() -> ObjCDeclarationKind {
-        return ObjCDeclarationKind.fromClang(kind)
+        return ObjCDeclarationKind.fromClang(kind: kind)
     }
 
     func str() -> String? {
         let cursorExtent = extent()
-        let contents = try! NSString(contentsOfFile: cursorExtent.start.file, encoding: NSUTF8StringEncoding)
-        return contents.substringWithSourceRange(cursorExtent.start, end: cursorExtent.end)
+        let contents = try! String(contentsOfFile: cursorExtent.start.file, encoding: .utf8)
+        return contents.substringWithSourceRange(start: cursorExtent.start, end: cursorExtent.end)
     }
 
     func name() -> String {
         let spelling = clang_getCursorSpelling(self).str()!
         let type = objCKind()
-        if let usrString = usr() where spelling.isEmpty && type == .Enum {
+        if let usrString = usr(), spelling.isEmpty && type == .Enum {
             // libClang considers enums declared like `typedef enum {} name;` rather than `NS_ENUM()`
             // to have a cursor spelling of "" (empty string). So we parse the USR to extract the actual name.
             let prefix = "c:@EA@"
             assert(usrString.hasPrefix(prefix))
-            let index = usrString.startIndex.advancedBy(prefix.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
-            return usrString.substringFromIndex(index)
-        } else if let usrNSString = usr() as NSString? where type == .Category {
-            let ext = (usrNSString.rangeOfString("c:objc(ext)").location == 0)
+            let index = usrString.index(usrString.startIndex,
+                                        offsetBy: prefix.lengthOfBytes(using: .utf8))
+            return usrString.substring(from: index)
+        } else if type == .Category, let usrNSString = usr() as NSString? {
+            let ext = (usrNSString.range(of: "c:objc(ext)").location == 0)
             let regex = try! NSRegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
             let range = NSRange(location: 0, length: usrNSString.length)
-            let matches = regex.matchesInString(usrNSString as String, options: [], range: range)
+            let matches = regex.matches(in: usrNSString as String, options: [], range: range)
             if matches.count > 0 {
-                let categoryOn = usrNSString.substringWithRange(matches[0].rangeAtIndex(1))
-                let categoryName = ext ? "" : usrNSString.substringWithRange(matches[0].rangeAtIndex(2))
+                let categoryOn = usrNSString.substring(with: matches[0].rangeAt(1))
+                let categoryName = ext ? "" : usrNSString.substring(with: matches[0].rangeAt(2))
                 return "\(categoryOn)(\(categoryName))"
             } else {
                 fatalError("Couldn't get category name")
@@ -133,28 +137,28 @@ extension CXCursor {
         var deprecationString = CXString()
         var unavailableString = CXString()
 
-        clang_getCursorPlatformAvailability(self,
-                                            &alwaysDeprecated,
-                                            &deprecationString,
-                                            &alwaysUnavailable,
-                                            &unavailableString,
-                                            nil,
-                                            0)
+        _ = clang_getCursorPlatformAvailability(self,
+                                                &alwaysDeprecated,
+                                                &deprecationString,
+                                                &alwaysUnavailable,
+                                                &unavailableString,
+                                                nil,
+                                                0)
         return ClangAvailability(alwaysDeprecated: alwaysDeprecated != 0,
                                  alwaysUnavailable: alwaysUnavailable != 0,
                                  deprecationMessage: deprecationString.description,
                                  unavailableMessage: unavailableString.description)
     }
 
-    func visit(block: CXCursorVisitorBlock) {
-        clang_visitChildrenWithBlock(self, block)
+    func visit(_ block: @escaping (CXCursor, CXCursor) -> CXChildVisitResult) {
+        _ = clang_visitChildrenWithBlock(self, block)
     }
 
     func parsedComment() -> CXComment {
         return clang_Cursor_getParsedComment(self)
     }
 
-    func flatMap<T>(block: (CXCursor) -> T?) -> [T] {
+    func flatMap<T>(_ block: @escaping (CXCursor) -> T?) -> [T] {
         var ret = [T]()
         visit() { cursor, _ in
             if let val = block(cursor) {
@@ -176,7 +180,7 @@ extension CXCursor {
         ]
         var commentBody = rawComment?.commentBody()
         for (original, replacement) in replacements {
-            commentBody = commentBody?.stringByReplacingOccurrencesOfString(original, withString: replacement)
+            commentBody = commentBody?.replacingOccurrences(of: original, with: replacement)
         }
         return commentBody
     }
@@ -187,20 +191,20 @@ extension CXCursor {
         if let uuid = interfaceUUIDMap[file] {
             swiftUUID = uuid
         } else {
-            swiftUUID = NSUUID().UUIDString
+            swiftUUID = NSUUID().uuidString
             interfaceUUIDMap[file] = swiftUUID
             // Generate Swift interface, associating it with the UUID
             _ = Request.Interface(file: file, uuid: swiftUUID).send()
         }
 
         guard let usr = usr(),
-            usrOffset = Request.FindUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.Offset.rawValue] as? Int64 else {
+              let usrOffset = Request.FindUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.Offset.rawValue] as? Int64 else {
             return nil
         }
 
         let cursorInfo = Request.CursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
         guard let docsXML = cursorInfo[SwiftDocKey.FullXMLDocs.rawValue] as? String,
-            swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
+              let swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
                 return nil
         }
         return swiftDeclaration

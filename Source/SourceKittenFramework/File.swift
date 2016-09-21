@@ -27,9 +27,9 @@ public final class File {
     - parameter path: File path.
     */
     public init?(path: String) {
-        self.path = (path as NSString).absolutePathRepresentation()
+        self.path = path.absolutePathRepresentation()
         do {
-            contents = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding) as String
+            contents = try String(contentsOfFile: path, encoding: .utf8)
             lines = contents.lines()
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
@@ -51,13 +51,13 @@ public final class File {
     /**
      Formats the file.
      */
-    public func format(trimmingTrailingWhitespace trimmingTrailingWhitespace: Bool,
-                                                  useTabs: Bool,
-                                                  indentWidth: Int) -> String {
+    public func format(trimmingTrailingWhitespace: Bool,
+                       useTabs: Bool,
+                       indentWidth: Int) -> String {
         guard let path = path else {
             return contents
         }
-        Request.EditorOpen(self).send()
+        _ = Request.EditorOpen(file: self).send()
         var newContents = [String]()
         var offset = 0
         for line in lines {
@@ -70,22 +70,22 @@ public final class File {
 
             guard newText != line.content else { continue }
 
-            Request.ReplaceText(file: path,
-                                offset: Int64(line.byteRange.location + offset),
-                                length: Int64(line.byteRange.length - 1),
-                                sourceText: newText).send()
+            _ = Request.ReplaceText(file: path,
+                                    offset: Int64(line.byteRange.location + offset),
+                                    length: Int64(line.byteRange.length - 1),
+                                    sourceText: newText).send()
             let oldLength = line.byteRange.length
-            let newLength = newText.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+            let newLength = newText.lengthOfBytes(using: .utf8)
             offset += 1 + newLength - oldLength
         }
 
         if trimmingTrailingWhitespace {
             newContents = newContents.map {
-                ($0 as NSString).stringByTrimmingTrailingCharactersInSet(.whitespaceCharacterSet())
+                $0.stringByTrimmingTrailingCharactersInSet(characterSet: .whitespaces)
             }
         }
 
-        return newContents.joinWithSeparator("\n") + "\n"
+        return newContents.joined(separator: "\n") + "\n"
     }
 
     /**
@@ -95,7 +95,7 @@ public final class File {
 
     - returns: Source declaration if successfully parsed.
     */
-    public func parseDeclaration(dictionary: [String: SourceKitRepresentable]) -> String? {
+    public func parseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         guard shouldParseDeclaration(dictionary),
             let start = SwiftDocKey.getOffset(dictionary).map({ Int($0) }) else {
             return nil
@@ -116,7 +116,7 @@ public final class File {
     
     - returns: Line numbers containing the declaration's implementation.
     */
-    public func parseScopeRange(dictionary: [String: SourceKitRepresentable]) -> (start: Int, end: Int)? {
+    public func parseScopeRange(_ dictionary: [String: SourceKitRepresentable]) -> (start: Int, end: Int)? {
         if !shouldParseDeclaration(dictionary) {
             return nil
         }
@@ -139,16 +139,13 @@ public final class File {
 
     - returns: Mark name if successfully parsed.
     */
-    private func markNameFromDictionary(dictionary: [String: SourceKitRepresentable]) -> String? {
+    private func markNameFromDictionary(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.CommentMark.rawValue)
         let offset = Int(SwiftDocKey.getOffset(dictionary)!)
         let length = Int(SwiftDocKey.getLength(dictionary)!)
-        if let fileContentsData = contents.dataUsingEncoding(NSUTF8StringEncoding),
-            subdata = Optional(fileContentsData.subdataWithRange(NSRange(location: offset, length: length))),
-            substring = NSString(data: subdata, encoding: NSUTF8StringEncoding) as String? {
-            return substring
-        }
-        return nil
+        let fileContentsData = contents.data(using: .utf8)
+        let subdata = fileContentsData?.subdata(in: Range(offset..<(offset + length)))
+        return subdata.flatMap({ String(data: $0, encoding: .utf8) })
     }
 
     /**
@@ -158,7 +155,7 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func processDictionary(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
+    public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
@@ -205,14 +202,14 @@ public final class File {
     */
     internal func furtherProcessDictionary(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
-        let offsetMap = generateOffsetMap(documentedTokenOffsets, dictionary: dictionary)
-        for offset in offsetMap.keys.reverse() { // Do this in reverse to insert the doc at the correct offset
+        let offsetMap = generateOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
+        for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
             if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ processDictionary($0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
-                kind = SwiftDocKey.getKind(response),
-                _ = SwiftDeclarationKind(rawValue: kind),
-                parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
-                inserted = insertDoc(response, parent: dictionary, offset: parentOffset) {
-                dictionary = inserted
+               let kind = SwiftDocKey.getKind(response),
+               SwiftDeclarationKind(rawValue: kind) != nil,
+               let parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
+               let inserted = insertDoc(response, parent: dictionary, offset: parentOffset) {
+               dictionary = inserted
             }
         }
         return dictionary
@@ -229,7 +226,7 @@ public final class File {
                `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
                and declarations.
     */
-    private func newSubstructure(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
+    private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
         return SwiftDocKey.getSubstructure(dictionary)?
             .map({ $0 as! [String: SourceKitRepresentable] })
             .filter(isDeclarationOrCommentMark)
@@ -244,7 +241,7 @@ public final class File {
     - parameter dictionary:        Dictionary to update.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    private func dictWithCommentMarkNamesCursorInfo(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
+    private func dictWithCommentMarkNamesCursorInfo(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
         guard let kind = SwiftDocKey.getKind(dictionary) else {
             return nil
         }
@@ -252,20 +249,20 @@ public final class File {
         if kind == SyntaxKind.CommentMark.rawValue, let markName = markNameFromDictionary(dictionary) {
             // Update comment marks
             return [SwiftDocKey.Name.rawValue: markName]
-        } else if let decl = SwiftDeclarationKind(rawValue: kind) where decl != .VarParameter {
+        } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .VarParameter {
             // Update if kind is a declaration (but not a parameter)
             var updateDict = Request.sendCursorInfoRequest(cursorInfoRequest,
                 atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [String: SourceKitRepresentable]()
 
             // Skip kinds, since values from editor.open are more accurate than cursorinfo
-            updateDict.removeValueForKey(SwiftDocKey.Kind.rawValue)
+            updateDict.removeValue(forKey: SwiftDocKey.Kind.rawValue)
 
             // Skip offset and length.
             // Their values are same with "key.nameoffset" and "key.namelength" in most case.
             // When kind is extension, their values locate **the type's declaration** in their declared file.
             // That may be different from the file declaring extension.
-            updateDict.removeValueForKey(SwiftDocKey.Offset.rawValue)
-            updateDict.removeValueForKey(SwiftDocKey.Length.rawValue)
+            updateDict.removeValue(forKey: SwiftDocKey.Offset.rawValue)
+            updateDict.removeValue(forKey: SwiftDocKey.Length.rawValue)
             return updateDict
         }
         return nil
@@ -279,7 +276,7 @@ public final class File {
 
     - returns: True if a doc should be inserted in the parent at the provided offset.
     */
-    private func shouldInsert(parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
+    private func shouldInsert(_ parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
         return SwiftDocKey.getSubstructure(parent) != nil &&
             ((offset == 0) ||
             (shouldTreatAsSameFile(parent) && SwiftDocKey.getNameOffset(parent) == offset))
@@ -296,18 +293,18 @@ public final class File {
 
     - returns: Parent with doc inserted if successful.
     */
-    private func insertDoc(doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
+    private func insertDoc(_ doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
         var parent = parent
         if shouldInsert(parent, offset: offset) {
             var substructure = SwiftDocKey.getSubstructure(parent)!
             var insertIndex = substructure.count
-            for (index, structure) in substructure.reverse().enumerate() {
+            for (index, structure) in substructure.reversed().enumerated() {
                 if SwiftDocKey.getOffset(structure as! [String: SourceKitRepresentable])! < offset {
                     break
                 }
                 insertIndex = substructure.count - index
             }
-            substructure.insert(doc, atIndex: insertIndex)
+            substructure.insert(doc, at: insertIndex)
             parent[SwiftDocKey.Substructure.rawValue] = substructure
             return parent
         }
@@ -332,7 +329,7 @@ public final class File {
 
     - parameter dictionary: Dictionary to parse.
     */
-    internal func shouldTreatAsSameFile(dictionary: [String: SourceKitRepresentable]) -> Bool {
+    internal func shouldTreatAsSameFile(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
         return path == SwiftDocKey.getFilePath(dictionary)
     }
 
@@ -341,7 +338,7 @@ public final class File {
 
     - parameter dictionary: Dictionary to parse.
     */
-    private func shouldParseDeclaration(dictionary: [String: SourceKitRepresentable]) -> Bool {
+    private func shouldParseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
         let sameFile                = shouldTreatAsSameFile(dictionary)
         let hasTypeName             = SwiftDocKey.getTypeName(dictionary) != nil
         let hasAnnotatedDeclaration = SwiftDocKey.getAnnotatedDeclaration(dictionary) != nil
@@ -359,7 +356,7 @@ public final class File {
     - returns: `dictionary`'s documentation comment body as a string, without any documentation
                syntax (`/** ... */` or `/// ...`).
     */
-    public func getDocumentationCommentBody(dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
+    public func getDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
         let isExtension = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init) == .Extension
         let hasFullXMLDocs = dictionary.keys.contains(SwiftDocKey.FullXMLDocs.rawValue)
         let hasRawDocComment: Bool = {
@@ -375,8 +372,8 @@ public final class File {
 
         return (isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)).flatMap { offset in
             return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
-                return contents.byteRangeToNSRange(start: commentByteRange.startIndex, length: commentByteRange.endIndex - commentByteRange.startIndex).flatMap { nsRange in
-                    return contents.commentBody(nsRange)
+                return contents.byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound).flatMap { nsRange in
+                    return contents.commentBody(range: nsRange)
                 }
             }
         }
@@ -388,7 +385,7 @@ Returns true if the dictionary represents a source declaration or a mark-style c
 
 - parameter dictionary: Dictionary to parse.
 */
-private func isDeclarationOrCommentMark(dictionary: [String: SourceKitRepresentable]) -> Bool {
+private func isDeclarationOrCommentMark(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
     if let kind = SwiftDocKey.getKind(dictionary) {
         return kind != SwiftDeclarationKind.VarParameter.rawValue &&
             (kind == SyntaxKind.CommentMark.rawValue || SwiftDeclarationKind(rawValue: kind) != nil)
@@ -403,20 +400,20 @@ Parse XML from `key.doc.full_as_xml` from `cursor.info` request.
 
 - returns: XML parsed as an `[String: SourceKitRepresentable]`.
 */
-public func parseFullXMLDocs(xmlDocs: String) -> [String: SourceKitRepresentable]? {
-    let cleanXMLDocs = xmlDocs.stringByReplacingOccurrencesOfString("<rawHTML>", withString: "")
-        .stringByReplacingOccurrencesOfString("</rawHTML>", withString: "")
-        .stringByReplacingOccurrencesOfString("<codeVoice>", withString: "`")
-        .stringByReplacingOccurrencesOfString("</codeVoice>", withString: "`")
+public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentable]? {
+    let cleanXMLDocs = xmlDocs.replacingOccurrences(of: "<rawHTML>", with: "")
+        .replacingOccurrences(of: "</rawHTML>", with: "")
+        .replacingOccurrences(of: "<codeVoice>", with: "`")
+        .replacingOccurrences(of: "</codeVoice>", with: "`")
     return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
         var docs = [String: SourceKitRepresentable]()
         docs[SwiftDocKey.DocType.rawValue] = rootXML.element?.name
-        docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.allAttributes["file"].map { $0.text }
-        docs[SwiftDocKey.DocLine.rawValue] = rootXML.element?.allAttributes["line"].flatMap {
-            Int64($0.text)
+        docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.allAttributes["file"]?.text
+        docs[SwiftDocKey.DocLine.rawValue] = (rootXML.element?.allAttributes["line"]?.text).flatMap {
+            Int64($0)
         }
-        docs[SwiftDocKey.DocColumn.rawValue] = rootXML.element?.allAttributes["column"].flatMap {
-            Int64($0.text)
+        docs[SwiftDocKey.DocColumn.rawValue] = (rootXML.element?.allAttributes["column"]?.text).flatMap {
+            Int64($0)
         }
         docs[SwiftDocKey.DocName.rawValue] = rootXML["Name"].element?.text
         docs[SwiftDocKey.USR.rawValue] = rootXML["USR"].element?.text
@@ -441,7 +438,7 @@ Returns an `[SourceKitRepresentable]` of `[String: SourceKitRepresentable]` item
 
 - parameter indexer: `XMLIndexer` to traverse.
 */
-private func childrenAsArray(indexer: XMLIndexer) -> [SourceKitRepresentable]? {
+private func childrenAsArray(_ indexer: XMLIndexer) -> [SourceKitRepresentable]? {
     let children = indexer.children
     if children.count > 0 {
         return children.flatMap({ $0.element }).map {

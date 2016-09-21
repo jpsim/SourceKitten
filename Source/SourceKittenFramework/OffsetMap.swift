@@ -28,10 +28,10 @@ extension File {
         for offset in documentedTokenOffsets {
             offsetMap[offset] = 0
         }
-        offsetMap = mapOffsets(dictionary, offsetMap: offsetMap)
+        offsetMap = mapOffsets(dictionary: dictionary, offsetMap: offsetMap)
         let alreadyDocumentedOffsets = offsetMap.filter({ $0.0 == $0.1 }).map { $0.0 }
         for alreadyDocumentedOffset in alreadyDocumentedOffsets {
-            offsetMap.removeValueForKey(alreadyDocumentedOffset)
+            offsetMap.removeValue(forKey: alreadyDocumentedOffset)
         }
         return offsetMap
     }
@@ -50,8 +50,8 @@ extension File {
         var offsetMap = offsetMap
         // Only map if we're in the correct file
         if let rangeStart = SwiftDocKey.getNameOffset(dictionary),
-            rangeLength = SwiftDocKey.getNameLength(dictionary) where
-            shouldTreatAsSameFile(dictionary) {
+           let rangeLength = SwiftDocKey.getNameLength(dictionary),
+           shouldTreatAsSameFile(dictionary) {
             let bodyLength = SwiftDocKey.getBodyLength(dictionary) ?? 0
             let rangeMax = Int(rangeStart + rangeLength + bodyLength)
             let rangeStart = Int(rangeStart)
@@ -65,7 +65,7 @@ extension File {
         // Recurse!
         if let substructure = SwiftDocKey.getSubstructure(dictionary) {
             for subDict in substructure {
-                offsetMap = mapOffsets(subDict as! [String: SourceKitRepresentable], offsetMap: offsetMap)
+                offsetMap = mapOffsets(dictionary: subDict as! [String: SourceKitRepresentable], offsetMap: offsetMap)
             }
         }
         return offsetMap
