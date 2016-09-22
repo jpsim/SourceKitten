@@ -33,6 +33,9 @@
   * key.unavailable_message  
   [Jeff Verkoeyen](https://github.com/jverkoey)
 
+* Add `SwiftDeclarationKind.PrecedenceGroup`.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * Fix issue where single-line declaration+bodies would include the body in the
