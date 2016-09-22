@@ -46,12 +46,9 @@ Will the following values, in this priority: module name, target name, scheme na
 - returns: Module name if successful.
 */
 internal func moduleNameFromArguments(arguments: [String]) -> String? {
-    let flags = ["-module-name", "-target", "-scheme"]
-    for flag in flags {
-        if let flagIndex = arguments.indexOf(flag) {
-            if flagIndex + 1 < arguments.count {
-                return arguments[flagIndex + 1]
-            }
+    for flag in ["-module-name", "-target", "-scheme"] {
+        if let flagIndex = arguments.indexOf(flag) where flagIndex + 1 < arguments.count {
+            return arguments[flagIndex + 1]
         }
     }
     return nil
