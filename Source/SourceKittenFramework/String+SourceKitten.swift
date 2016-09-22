@@ -517,7 +517,9 @@ extension String {
     public func stringByRemovingCommonLeadingWhitespaceFromLines() -> String {
         var minLeadingCharacters = Int.max
 
-        enumerateLines { line, _ in
+        let lineComponents = componentsSeparatedByCharactersInSet(.newlineCharacterSet())
+
+        for line in lineComponents {
             let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(whitespaceAndNewlineCharacterSet)
             let lineLeadingCharacters = line.countOfLeadingCharactersInSet(commentLinePrefixCharacterSet)
             // Is this prefix smaller than our last and not entirely whitespace?
@@ -525,15 +527,13 @@ extension String {
                 minLeadingCharacters = lineLeadingCharacters
             }
         }
-        var lines = [String]()
-        enumerateLines { line, _ in
+
+        return lineComponents.map { line in
             if line.characters.count >= minLeadingCharacters {
-                lines.append(line[line.startIndex.advancedBy(minLeadingCharacters)..<line.endIndex])
-            } else {
-                lines.append(line)
+                return line[line.startIndex.advancedBy(minLeadingCharacters)..<line.endIndex]
             }
-        }
-        return lines.joinWithSeparator("\n")
+            return line
+        }.joinWithSeparator("\n")
     }
 
     /**
