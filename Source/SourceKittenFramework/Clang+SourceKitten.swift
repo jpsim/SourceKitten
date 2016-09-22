@@ -12,7 +12,7 @@ import Clang_C
 import Foundation
 import SWXMLHash
 
-private var interfaceUUIDMap: [String: String] = [:]
+private var interfaceUUIDMap = [String: String]()
 
 struct ClangIndex {
     private let cx = clang_createIndex(0, 1)

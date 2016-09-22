@@ -31,10 +31,9 @@ internal func runXcodeBuild(arguments: [String], inPath path: String) -> String?
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let xcodebuildOutput = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
-    file.closeFile()
+    defer { file.closeFile() }
 
-    return xcodebuildOutput as String?
+    return String(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
 }
 
 /**
@@ -47,12 +46,9 @@ Will the following values, in this priority: module name, target name, scheme na
 - returns: Module name if successful.
 */
 internal func moduleNameFromArguments(arguments: [String]) -> String? {
-    let flags = ["-module-name", "-target", "-scheme"]
-    for flag in flags {
-        if let flagIndex = arguments.indexOf(flag) {
-            if flagIndex + 1 < arguments.count {
-                return arguments[flagIndex + 1]
-            }
+    for flag in ["-module-name", "-target", "-scheme"] {
+        if let flagIndex = arguments.indexOf(flag) where flagIndex + 1 < arguments.count {
+            return arguments[flagIndex + 1]
         }
     }
     return nil
@@ -67,19 +63,13 @@ Partially filters compiler arguments from `xcodebuild` to something that SourceK
           more flags to remove in `.1`.
 */
 private func partiallyFilterArguments(args: [String]) -> ([String], Bool) {
-    var args = args
-    var didRemove = false
-    let flagsToRemove = [
-        "-output-file-map"
-    ]
-    for flag in flagsToRemove {
-        if let index = args.indexOf(flag) {
-            didRemove = true
-            args.removeAtIndex(index.successor())
-            args.removeAtIndex(index)
-        }
+    guard let indexOfFlagToRemove = args.indexOf("-output-file-map") else {
+        return (args, false)
     }
-    return (args, didRemove)
+    var args = args
+    args.removeAtIndex(indexOfFlagToRemove.successor())
+    args.removeAtIndex(indexOfFlagToRemove)
+    return (args, true)
 }
 
 /**
