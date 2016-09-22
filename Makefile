@@ -2,7 +2,10 @@ TEMPORARY_FOLDER?=/tmp/SourceKitten.dst
 PREFIX?=/usr/local
 BUILD_TOOL?=xcodebuild
 
-XCODEFLAGS=-workspace 'SourceKitten.xcworkspace' -scheme 'sourcekitten' DSTROOT=$(TEMPORARY_FOLDER)
+XCODEFLAGS=-workspace 'SourceKitten.xcworkspace' \
+	-scheme 'sourcekitten' \
+	DSTROOT=$(TEMPORARY_FOLDER) \
+	OTHER_LDFLAGS=-Wl,-headerpad_max_install_names
 
 BUILT_BUNDLE=$(TEMPORARY_FOLDER)/Applications/sourcekitten.app
 SOURCEKITTEN_FRAMEWORK_BUNDLE=$(BUILT_BUNDLE)/Contents/Frameworks/SourceKittenFramework.framework
