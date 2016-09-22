@@ -41,11 +41,7 @@ struct DocCommand: CommandType {
     func run(options: Options) -> Result<(), SourceKittenError> {
         let args = options.arguments
         if !options.spmModule.isEmpty {
-            if let docs = Module(spmName: options.spmModule)?.docs {
-                print(docs)
-                return .Success()
-            }
-            return .Failure(.DocFailed)
+            return runSPMModule(options.spmModule)
         } else if options.objc {
             return runObjC(options, args: args)
         } else if options.singleFile {
@@ -53,6 +49,14 @@ struct DocCommand: CommandType {
         }
         let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
         return runSwiftModule(moduleName, args: args)
+    }
+
+    func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
+        if let docs = Module(spmName: moduleName)?.docs {
+            print(docs)
+            return .Success()
+        }
+        return .Failure(.DocFailed)
     }
 
     func runSwiftModule(moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
