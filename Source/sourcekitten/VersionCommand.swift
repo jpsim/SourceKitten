@@ -9,7 +9,7 @@
 import Commandant
 import Result
 
-private let version = "0.13.0"
+private let version = "0.14.0"
 
 struct VersionCommand: CommandType {
     let verb = "version"
