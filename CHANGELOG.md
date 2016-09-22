@@ -1,4 +1,7 @@
-## Master
+## 0.14.0
+
+This is the last release to support Swift 2.2 and Swift 2.3.
+The next release will require Swift 3.0.
 
 ##### Breaking
 
