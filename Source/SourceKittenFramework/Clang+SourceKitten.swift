@@ -220,14 +220,10 @@ extension CXComment {
     func paragraphToString(kindString: String? = nil) -> [Text] {
         if kind() == CXComment_VerbatimLine {
             return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
-        }
-        if kind() == CXComment_BlockCommand  {
-            var ret = [Text]()
-            for i in 0..<clang_Comment_getNumChildren(self) {
-                let child = clang_Comment_getChild(self, i)
-                ret += child.paragraphToString()
+        } else if kind() == CXComment_BlockCommand  {
+            return (0..<count()).reduce([]) { returnValue, childIndex in
+                return returnValue + self[childIndex].paragraphToString()
             }
-            return ret
         }
 
         guard kind() == CXComment_Paragraph else {
@@ -235,24 +231,17 @@ extension CXComment {
             return []
         }
 
-        var ret = ""
-        for i in 0..<clang_Comment_getNumChildren(self) {
-            let child = clang_Comment_getChild(self, i)
+        let paragraphString = (0..<count()).reduce("") { paragraphString, childIndex in
+            let child = self[childIndex]
             if let text = clang_TextComment_getText(child).str() {
-                if ret != "" {
-                    ret += "\n"
-                }
-                ret += text
-            }
-            else if child.kind() == CXComment_InlineCommand {
+                return paragraphString + (paragraphString != "" ? "\n" : "") + text
+            } else if child.kind() == CXComment_InlineCommand {
                 // @autoreleasepool etc. get parsed as commands when not in code blocks
-                ret += "@" + clang_InlineCommandComment_getCommandName(child).str()!
+                return paragraphString + "@" + child.commandName()!
             }
-            else {
-                print("not text: \(child.kind())")
-            }
+            fatalError("not text: \(child.kind())")
         }
-        return [.Para(ret.stringByRemovingCommonLeadingWhitespaceFromLines(), kindString)]
+        return [.Para(paragraphString.stringByRemovingCommonLeadingWhitespaceFromLines(), kindString)]
     }
 
     func kind() -> CXCommentKind {
