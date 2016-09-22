@@ -61,42 +61,32 @@ extension NSString {
             let string = string.mutableCopy() as! String
             utf8View = string.utf8
 
-            var start = 0       // line start
-            var end = 0         // line end
-            var contentsEnd = 0 // line end without line delimiter
-            var lineIndex = 1   // start by 1
-            var byteOffsetStart = 0
-            var utf8indexStart = string.utf8.startIndex
-            var utf16indexStart = string.utf16.startIndex
-
-            let nsstring = string as NSString
+            var utf16CountSoFar = 0
+            var bytesSoFar = 0
             var lines = [Line]()
-            while start < nsstring.length {
-                let range = NSRange(location: start, length: 0)
-                nsstring.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, forRange: range)
-                
-                // range
-                let lineRange = NSRange(location: start, length: end - start)
-                let contentsRange = NSRange(location: start, length: contentsEnd - start)
-                
-                // byteRange
-                let utf16indexEnd = utf16indexStart.advancedBy(end - start)
-                let utf8indexEnd = utf16indexEnd.samePositionIn(utf8View)!
-                let byteLength = utf8indexStart.distanceTo(utf8indexEnd)
-                let byteRange = NSRange(location: byteOffsetStart, length: byteLength)
-                
-                // line
-                let line = Line(index: lineIndex,
-                    content: nsstring.substringWithRange(contentsRange),
-                    range: lineRange, byteRange: byteRange)
-                
+            let lineContents = string.componentsSeparatedByCharactersInSet(.newlineCharacterSet())
+            for (index, content) in lineContents.enumerate() {
+                let index = index + 1
+                let rangeStart = utf16CountSoFar
+                let utf16Count = content.utf16.count
+                utf16CountSoFar += utf16Count
+
+                let byteRangeStart = bytesSoFar
+                let byteCount = content.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+                bytesSoFar += byteCount
+
+                let newlineLength = index != lineContents.count ? 1 : 0 // FIXME: assumes \n
+
+                let line = Line(
+                    index: index,
+                    content: content,
+                    range: NSRange(location: rangeStart, length: utf16Count + newlineLength),
+                    byteRange: NSRange(location: byteRangeStart, length: byteCount + newlineLength)
+                )
                 lines.append(line)
-                
-                lineIndex += 1
-                start = end
-                utf16indexStart = utf16indexEnd
-                utf8indexStart = utf8indexEnd
-                byteOffsetStart += byteLength
+
+                utf16CountSoFar += newlineLength
+                bytesSoFar += newlineLength
             }
             self.lines = lines
         }
