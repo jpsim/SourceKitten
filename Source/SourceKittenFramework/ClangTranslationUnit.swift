@@ -79,8 +79,7 @@ public struct ClangTranslationUnit {
     public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = NSFileManager.defaultManager().currentDirectoryPath) {
         let xcodeBuildOutput = runXcodeBuild(xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
         guard let clangArguments = parseCompilerArguments(xcodeBuildOutput, language: .ObjC, moduleName: nil) else {
-            fputs("could not parse compiler arguments\n", stderr)
-            fputs("\(xcodeBuildOutput)\n", stderr)
+            fputs("could not parse compiler arguments\n\(xcodeBuildOutput)\n", stderr)
             return nil
         }
         self.init(headerFiles: headerFiles, compilerArguments: clangArguments)
