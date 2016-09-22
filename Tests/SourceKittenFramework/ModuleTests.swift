@@ -38,10 +38,6 @@ class ModuleTests: XCTestCase {
     func testCommandantDocs() {
         let commandantPath = projectRoot + "/Carthage/Checkouts/Commandant/"
         let commandantModule = Module(xcodeBuildArguments: ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"], name: nil, inPath: commandantPath)!
-#if swift(>=2.3)
-        compareJSONStringWithFixturesName("Commandant-swift2.3", jsonString: commandantModule.docs, rootDirectory: commandantPath)
-#else
-        compareJSONStringWithFixturesName("Commandant-swift2.2", jsonString: commandantModule.docs, rootDirectory: commandantPath)
-#endif
+        compareJSONStringWithFixturesName("Commandant", jsonString: commandantModule.docs, rootDirectory: commandantPath)
     }
 }
