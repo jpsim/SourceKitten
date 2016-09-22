@@ -1,4 +1,4 @@
-## Master
+## 0.14.1
 
 ##### Breaking
 
@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Fixed Homebrew distribution.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ## 0.14.0
 
