@@ -7,7 +7,6 @@
 //
 
 import Darwin
-import Foundation
 import Commandant
 
 // `sourcekitd_set_notification_handler()` set the handler to be executed on main thread queue.
