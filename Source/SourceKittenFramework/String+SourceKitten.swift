@@ -41,7 +41,7 @@ extension NSString {
     - UTF8-based NSRange
     - Line
     */
-    @objc private class CacheContainer: NSObject {
+    private class CacheContainer {
         let lines: [Line]
         let utf8View: String.UTF8View
 
