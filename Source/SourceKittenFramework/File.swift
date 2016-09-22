@@ -85,7 +85,7 @@ public final class File {
             }
         }
 
-        return newContents.joinWithSeparator("\n") + "\n"
+        return newContents.joinWithSeparator("\n")
     }
 
     /**
