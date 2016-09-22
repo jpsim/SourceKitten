@@ -60,19 +60,21 @@ struct Loader {
     }
 }
 
+private func env(name: String) -> String? {
+    return NSProcessInfo.processInfo().environment[name]
+}
+
 /// Returns "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable
 ///
 /// `launch-with-toolchain` sets the toolchain path to the
 /// "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable.
-private let xcodeDefaultToolchainOverride: String? =
-    NSProcessInfo.processInfo().environment["XCODE_DEFAULT_TOOLCHAIN_OVERRIDE"]
+private let xcodeDefaultToolchainOverride = env("XCODE_DEFAULT_TOOLCHAIN_OVERRIDE")
 
 /// Returns "TOOLCHAIN_DIR" environment variable
 ///
 /// `Xcode`/`xcodebuild` sets the toolchain path to the
 /// "TOOLCHAIN_DIR" environment variable.
-private let toolchainDir: String? =
-    NSProcessInfo.processInfo().environment["TOOLCHAIN_DIR"]
+private let toolchainDir = env("TOOLCHAIN_DIR")
 
 /// Returns toolchain directory that parsed from result of `xcrun -find swift`
 ///
