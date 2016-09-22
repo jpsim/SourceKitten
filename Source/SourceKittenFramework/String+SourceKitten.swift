@@ -226,7 +226,7 @@ extension NSString {
     */
     public func stringByTrimmingTrailingCharactersInSet(characterSet: NSCharacterSet) -> String {
         if length == 0 {
-            return self as String
+            return ""
         }
         var charBuffer = [unichar](count: length, repeatedValue: 0)
         getCharacters(&charBuffer)
