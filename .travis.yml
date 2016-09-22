@@ -4,8 +4,6 @@ git:
 branches:
   only:
     - master
-before_script:
-  - gem install danger --version '~> 3.0' && danger
 script: make test
 osx_image: xcode8
 notifications:
