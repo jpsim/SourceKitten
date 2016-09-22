@@ -31,10 +31,9 @@ internal func runXcodeBuild(arguments: [String], inPath path: String) -> String?
     task.launch()
 
     let file = pipe.fileHandleForReading
-    let xcodebuildOutput = NSString(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
-    file.closeFile()
+    defer { file.closeFile() }
 
-    return xcodebuildOutput as String?
+    return String(data: file.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
 }
 
 /**
