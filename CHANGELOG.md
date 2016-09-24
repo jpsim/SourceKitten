@@ -10,7 +10,10 @@
 
 ##### Bug Fixes
 
-* None.
+* `NSString.lines()` generated surplus line when string ended with newline
+  character.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#259](https://github.com/jpsim/SourceKitten/issues/259)
 
 ## 0.14.1
 

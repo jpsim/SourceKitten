@@ -65,7 +65,14 @@ extension NSString {
             var bytesSoFar = 0
             var lines = [Line]()
             let lineContents = string.componentsSeparatedByCharactersInSet(.newlineCharacterSet())
-            for (index, content) in lineContents.enumerate() {
+            // Be compatible with `NSString.getLineStart(_:end:contentsEnd:forRange:)`
+            let endsWithNewLineCharacter = string.utf16.last
+                .map(NSCharacterSet.newlineCharacterSet().characterIsMember) ?? false
+            // if string ends with new line character, no empty line is generated after that.
+            let enumerator = endsWithNewLineCharacter
+                ? AnySequence(lineContents.dropLast().enumerate())
+                : AnySequence(lineContents.enumerate())
+            for (index, content) in enumerator {
                 let index = index + 1
                 let rangeStart = utf16CountSoFar
                 let utf16Count = content.utf16.count
