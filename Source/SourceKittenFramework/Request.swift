@@ -53,7 +53,9 @@ extension SourceKitRepresentable {
 }
 
 private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRepresentable? {
-    switch sourcekitd_variant_get_type(sourcekitObject) {
+    let type = sourcekitd_variant_get_type(sourcekitObject)
+    print("type: \(type)")
+    switch type {
     case SOURCEKITD_VARIANT_TYPE_ARRAY:
         var array = [SourceKitRepresentable]()
         sourcekitd_variant_array_apply(sourcekitObject) { index, value in
@@ -89,6 +91,7 @@ private func fromSourceKit(sourcekitObject: sourcekitd_variant_t) -> SourceKitRe
     case SOURCEKITD_VARIANT_TYPE_UID:
         return stringForSourceKitUID(sourcekitd_variant_uid_get_value(sourcekitObject))!
     case SOURCEKITD_VARIANT_TYPE_NULL:
+        print("Here I am, I'm null!")
         return nil
     default:
         fatalError("Should never happen because we've checked all SourceKitRepresentable types")
@@ -186,6 +189,8 @@ public enum Request {
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
     case CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
+    /// A `demangle` request for the given mangled names.
+    case Demangle(names: [String])
     /// ObjC Swift Interface
     case Interface(file: String, uuid: String)
     /// Find USR
@@ -235,6 +240,14 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
+        case .Demangle(let names):
+            print("demangling names: \(names)")
+            var mangledNames = names.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.demangle")),
+                sourcekitd_uid_get_from_cstr("key.names"): sourcekitd_request_array_create(&mangledNames, mangledNames.count)
+            ]
+            print("dict: \(dict)")
         case .Interface(let file, let uuid):
             let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
@@ -326,8 +339,11 @@ public enum Request {
             sourcekitd_initialize()
         }
         let response = sourcekitd_send_request_sync(sourcekitObject)
+        print("response: \(response)")
         defer { sourcekitd_response_dispose(response) }
-        return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
+        let value = sourcekitd_response_get_value(response)
+        print("response value: \(value)")
+        return fromSourceKit(value) as! [String: SourceKitRepresentable]
     }
     
     /// A enum representation of SOURCEKITD_ERROR_*
