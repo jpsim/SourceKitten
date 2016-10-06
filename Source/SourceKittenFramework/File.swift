@@ -57,7 +57,7 @@ public final class File {
         guard let path = path else {
             return contents
         }
-        _ = Request.EditorOpen(file: self).send()
+        _ = Request.EditorOpen(self).send()
         var newContents = [String]()
         var offset = 0
         for line in lines {

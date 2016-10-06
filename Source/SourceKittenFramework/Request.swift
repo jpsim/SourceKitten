@@ -189,7 +189,7 @@ private func swiftStringFrom(bytes: UnsafePointer<Int8>, length: Int) -> String?
 /// Represents a SourceKit request.
 public enum Request {
     /// An `editor.open` request for the given File.
-    case EditorOpen(file: File)
+    case EditorOpen(File)
     /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
     case CursorInfo(file: String, offset: Int64, arguments: [String])
     /// A custom request by passing in the sourcekitd_object_t directly.
