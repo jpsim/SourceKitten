@@ -36,7 +36,7 @@ struct ClangAvailability {
 
 extension CXString: CustomStringConvertible {
     func str() -> String? {
-        if let cString = clang_getCString(self) as UnsafePointer<Int8>? {
+        if let cString = clang_getCString(self) {
             return String(validatingUTF8: cString)
         }
         return nil
