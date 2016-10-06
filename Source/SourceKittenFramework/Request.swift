@@ -87,7 +87,7 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
     case SOURCEKITD_VARIANT_TYPE_BOOL:
         return sourcekitd_variant_bool_get_value(sourcekitObject)
     case SOURCEKITD_VARIANT_TYPE_UID:
-        return stringForSourceKitUID(sourcekitd_variant_uid_get_value(sourcekitObject)!)!
+        return stringForSourceKitUID(sourcekitd_variant_uid_get_value(sourcekitObject))
     case SOURCEKITD_VARIANT_TYPE_NULL:
         return nil
     default:
@@ -214,86 +214,86 @@ public enum Request {
         case .EditorOpen(let file):
             if let path = file.path {
                 dict = [
-                    sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")!)!,
-                    sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(path)!,
-                    sourcekitd_uid_get_from_cstr("key.sourcefile")!: sourcekitd_request_string_create(path)!
+                    sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
+                    sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(path),
+                    sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(path)
                 ]
             } else {
                 dict = [
-                    sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")!)!,
-                    sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(String(file.contents.hash))!,
-                    sourcekitd_uid_get_from_cstr("key.sourcetext")!: sourcekitd_request_string_create(file.contents)!
+                    sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
+                    sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(String(file.contents.hash)),
+                    sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(file.contents)
                 ]
             }
         case .CursorInfo(let file, let offset, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.cursorinfo")!)!,
-                sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(file)!,
-                sourcekitd_uid_get_from_cstr("key.sourcefile")!: sourcekitd_request_string_create(file)!,
-                sourcekitd_uid_get_from_cstr("key.offset")!: sourcekitd_request_int64_create(offset)!,
-                sourcekitd_uid_get_from_cstr("key.compilerargs")!: sourcekitd_request_array_create(&compilerargs, compilerargs.count)!
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.cursorinfo")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
         case .CustomRequest(let request):
             return request
         case .CodeCompletionRequest(let file, let contents, let offset, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.codecomplete")!)!,
-                sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(file)!,
-                sourcekitd_uid_get_from_cstr("key.sourcefile")!: sourcekitd_request_string_create(file)!,
-                sourcekitd_uid_get_from_cstr("key.sourcetext")!: sourcekitd_request_string_create(contents)!,
-                sourcekitd_uid_get_from_cstr("key.offset")!: sourcekitd_request_int64_create(offset)!,
-                sourcekitd_uid_get_from_cstr("key.compilerargs")!: sourcekitd_request_array_create(&compilerargs, compilerargs.count)!
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.codecomplete")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(contents),
+                sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
         case .Interface(let file, let uuid):
             let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")!)!,
-                sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(uuid)!,
-                sourcekitd_uid_get_from_cstr("key.filepath")!: sourcekitd_request_string_create(file)!,
-                sourcekitd_uid_get_from_cstr("key.compilerargs")!: sourcekitd_request_array_create(&compilerargs, compilerargs.count)!
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(uuid),
+                sourcekitd_uid_get_from_cstr("key.filepath"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
         case .FindUSR(let file, let usr):
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.find_usr")!)!,
-                sourcekitd_uid_get_from_cstr("key.usr")!: sourcekitd_request_string_create(usr)!,
-                sourcekitd_uid_get_from_cstr("key.sourcefile")!: sourcekitd_request_string_create(file)!
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.find_usr")),
+                sourcekitd_uid_get_from_cstr("key.usr"): sourcekitd_request_string_create(usr),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file)
             ]
         case .Index(let file, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.indexsource")!)!,
-                sourcekitd_uid_get_from_cstr("key.sourcefile")!: sourcekitd_request_string_create(file)!,
-                sourcekitd_uid_get_from_cstr("key.compilerargs")!: sourcekitd_request_array_create(&compilerargs, compilerargs.count)!
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.indexsource")),
+                sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
         case .Format(let file, let line, let useTabs, let indentWidth):
-            let formatOptions: [sourcekitd_uid_t: sourcekitd_object_t?] = [
-                sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth")!: sourcekitd_request_int64_create(indentWidth)!,
-                sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth")!: sourcekitd_request_int64_create(indentWidth)!,
-                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs")!: sourcekitd_request_int64_create(useTabs ? 1 : 0)!,
+            let formatOptions = [
+                sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth"): sourcekitd_request_int64_create(indentWidth),
+                sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth"): sourcekitd_request_int64_create(indentWidth),
+                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(useTabs ? 1 : 0),
             ]
             var formatOptionsKeys = Array(formatOptions.keys.map({ $0 as sourcekitd_uid_t? }))
             var formatOptionsValues = Array(formatOptions.values)
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.formattext")!)!,
-                sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(file)!,
-                sourcekitd_uid_get_from_cstr("key.line")!: sourcekitd_request_int64_create(line)!,
-                sourcekitd_uid_get_from_cstr("key.editor.format.options")!: sourcekitd_request_dictionary_create(&formatOptionsKeys, &formatOptionsValues, formatOptions.count)!
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.formattext")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.line"): sourcekitd_request_int64_create(line),
+                sourcekitd_uid_get_from_cstr("key.editor.format.options"): sourcekitd_request_dictionary_create(&formatOptionsKeys, &formatOptionsValues, formatOptions.count)
             ]
         case .ReplaceText(let file, let offset, let length, let sourceText):
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.replacetext")!)!,
-                sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(file)!,
-                sourcekitd_uid_get_from_cstr("key.offset")!: sourcekitd_request_int64_create(offset)!,
-                sourcekitd_uid_get_from_cstr("key.length")!: sourcekitd_request_int64_create(length)!,
-                sourcekitd_uid_get_from_cstr("key.sourcetext")!: sourcekitd_request_string_create(sourceText)!,
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.replacetext")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
+                sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
+                sourcekitd_uid_get_from_cstr("key.length"): sourcekitd_request_int64_create(length),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(sourceText),
             ]
         }
         var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
         var values = Array(dict.values)
-        return sourcekitd_request_dictionary_create(&keys, &values, dict.count)!
+        return sourcekitd_request_dictionary_create(&keys, &values, dict.count)
     }
 
     /**
