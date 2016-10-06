@@ -13,12 +13,11 @@ struct DynamicLinkLibrary {
     let handle: UnsafeMutableRawPointer
     
     func loadSymbol<T>(_ symbol: String) -> T {
-        let sym = dlsym(handle, symbol)
-        if sym == nil {
-            let errorString = String(validatingUTF8: dlerror())
-            fatalError("Finding symbol \(symbol) failed: \(errorString)")
+        if let sym = dlsym(handle, symbol) {
+            return unsafeBitCast(sym, to: T.self)
         }
-        return unsafeBitCast(sym, to: T.self)
+        let errorString = String(validatingUTF8: dlerror())
+        fatalError("Finding symbol \(symbol) failed: \(errorString)")
     }
 }
 
@@ -45,7 +44,7 @@ struct Loader {
     let searchPaths: [String]
 
     func load(_ path: String) -> DynamicLinkLibrary {
-        let fullPaths = searchPaths.map { $0.stringByAppendingPathComponent(str: path) }.filter { $0.isFile }
+        let fullPaths = searchPaths.map { $0.stringByAppendingPathComponent(path) }.filter { $0.isFile }
 
         // try all fullPaths that contains target file,
         // then try loading with simple path that depends resolving to DYLD
@@ -106,7 +105,7 @@ private let xcrunFindPath: String? = {
     guard xcrunFindSwiftPath.hasSuffix("/usr/bin/swift") else {
         return nil
     }
-    let xcrunFindPath = xcrunFindSwiftPath.deletingLastPathComponents(n: 3)
+    let xcrunFindPath = xcrunFindSwiftPath.deletingLastPathComponents(3)
     // Return nil if xcrunFindPath points to "Command Line Tools OS X for Xcode"
     // because it doesn't contain `sourcekitd.framework`.
     if xcrunFindPath == "/Library/Developer/CommandLineTools" {
@@ -123,26 +122,26 @@ private let userApplicationsDir: String? =
 
 private extension String {
     var toolchainDir: String {
-        return stringByAppendingPathComponent(str: "Toolchains/XcodeDefault.xctoolchain")
+        return stringByAppendingPathComponent("Toolchains/XcodeDefault.xctoolchain")
     }
 
     var xcodeDeveloperDir: String {
-        return stringByAppendingPathComponent(str: "Xcode.app/Contents/Developer")
+        return stringByAppendingPathComponent("Xcode.app/Contents/Developer")
     }
     
     var xcodeBetaDeveloperDir: String {
-        return stringByAppendingPathComponent(str: "Xcode-beta.app/Contents/Developer")
+        return stringByAppendingPathComponent("Xcode-beta.app/Contents/Developer")
     }
 
     var usrLibDir: String {
-        return stringByAppendingPathComponent(str: "/usr/lib")
+        return stringByAppendingPathComponent("/usr/lib")
     }
 
-    func stringByAppendingPathComponent(str: String) -> String {
+    func stringByAppendingPathComponent(_ str: String) -> String {
         return URL(fileURLWithPath: self).appendingPathComponent(str).path
     }
 
-    func deletingLastPathComponents(n: Int) -> String {
+    func deletingLastPathComponents(_ n: Int) -> String {
         var url = URL(fileURLWithPath: self)
         for _ in 0..<n {
             url = url.deletingLastPathComponent()

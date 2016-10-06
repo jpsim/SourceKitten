@@ -44,7 +44,7 @@ public struct SourceDeclaration {
 
     /// Range
     var range: NSRange {
-        return extent.start.rangeToEndLocation(end: extent.end)
+        return extent.start.rangeToEndLocation(extent.end)
     }
 
     /// Returns the USR for the auto-generated getter for this property.
@@ -103,7 +103,7 @@ extension SourceDeclaration {
         children = cursor.flatMap({
             SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
         }).rejectPropertyMethods()
-        swiftDeclaration = cursor.swiftDeclaration(compilerArguments: compilerArguments)
+        swiftDeclaration = cursor.swiftDeclaration(compilerArguments)
         availability = cursor.platformAvailability()
     }
 }

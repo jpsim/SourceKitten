@@ -108,7 +108,7 @@ extension NSString {
 
         - returns: UTF16 based offset of string.
         */
-        func locationFromByteOffset(byteOffset: Int) -> Int {
+        func locationFromByteOffset(_ byteOffset: Int) -> Int {
             if lines.isEmpty {
                 return 0
             }
@@ -137,7 +137,7 @@ extension NSString {
 
         - returns: UTF8 based offset of string.
         */
-        func byteOffsetFromLocation(location: Int) -> Int {
+        func byteOffsetFromLocation(_ location: Int) -> Int {
             if lines.isEmpty {
                 return 0
             }
@@ -259,11 +259,11 @@ extension NSString {
     */
     public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
         if self.length == 0 { return nil }
-        let utf16Start = cacheContainer.locationFromByteOffset(byteOffset: start)
+        let utf16Start = cacheContainer.locationFromByteOffset(start)
         if length == 0 {
             return NSRange(location: utf16Start, length: 0)
         }
-        let utf16End = cacheContainer.locationFromByteOffset(byteOffset: start + length)
+        let utf16End = cacheContainer.locationFromByteOffset(start + length)
         return NSRange(location: utf16Start, length: utf16End - utf16Start)
     }
 
@@ -296,7 +296,7 @@ extension NSString {
         // 2. Using cache is overkill for short string.
         let byteOffset: Int
         if utf16View.count > 50 {
-            byteOffset = cacheContainer.byteOffsetFromLocation(location: start)
+            byteOffset = cacheContainer.byteOffsetFromLocation(start)
         } else {
             byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
         }
@@ -387,7 +387,7 @@ extension NSString {
     /**
     Returns a substring from a start and end SourceLocation.
     */
-    public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
+    public func substringWithSourceRange(_ start: SourceLocation, end: SourceLocation) -> String? {
         return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
     }
 }
@@ -457,7 +457,7 @@ extension String {
 
     - returns: Array of documented token offsets.
     */
-    public func documentedTokenOffsets(syntaxMap: SyntaxMap) -> [Int] {
+    public func documentedTokenOffsets(_ syntaxMap: SyntaxMap) -> [Int] {
         let documentableOffsets = syntaxMap.tokens.filter(isTokenDocumentable).map {
             $0.offset
         }
@@ -476,7 +476,7 @@ extension String {
 
     - parameter range: Range to restrict the search for a comment body.
     */
-    public func commentBody(range: NSRange? = nil) -> String? {
+    public func commentBody(_ range: NSRange? = nil) -> String? {
         let nsString = self as NSString
         let patterns: [(pattern: String, options: NSRegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
@@ -500,7 +500,7 @@ extension String {
                     var lineEnd = nsString.length
                     let indexRange = NSRange(location: range.location, length: 0)
                     nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: indexRange)
-                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(characterSet: .whitespacesAndNewlines)
+                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(.whitespacesAndNewlines)
                     let leadingWhitespaceToAdd = String(repeating: " ", count: leadingWhitespaceCountToAdd)
 
                     let bodySubstring = nsString.substring(with: range)
@@ -526,8 +526,8 @@ extension String {
         let lineComponents = components(separatedBy: .newlines)
 
         for line in lineComponents {
-            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(characterSet: .whitespacesAndNewlines)
-            let lineLeadingCharacters = line.countOfLeadingCharactersInSet(characterSet: commentLinePrefixCharacterSet)
+            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(.whitespacesAndNewlines)
+            let lineLeadingCharacters = line.countOfLeadingCharactersInSet(commentLinePrefixCharacterSet)
             // Is this prefix smaller than our last and not entirely whitespace?
             if lineLeadingCharacters < minLeadingCharacters && lineLeadingWhitespace != line.characters.count {
                 minLeadingCharacters = lineLeadingCharacters
@@ -547,7 +547,7 @@ extension String {
 
     - parameter characterSet: Character set to check for membership.
     */
-    public func countOfLeadingCharactersInSet(characterSet: CharacterSet) -> Int {
+    public func countOfLeadingCharactersInSet(_ characterSet: CharacterSet) -> Int {
         let characterSet = characterSet as NSCharacterSet
         var count = 0
         for char in utf16 {

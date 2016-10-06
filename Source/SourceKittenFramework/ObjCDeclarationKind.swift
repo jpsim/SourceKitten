@@ -53,7 +53,7 @@ public enum ObjCDeclarationKind: String {
     /// `UnexposedDecl`
     case UnexposedDecl = "sourcekitten.source.lang.objc.decl.unexposed"
 
-    public static func fromClang(kind: CXCursorKind) -> ObjCDeclarationKind {
+    public static func fromClang(_ kind: CXCursorKind) -> ObjCDeclarationKind {
         switch kind.rawValue {
         case CXCursor_ObjCCategoryDecl.rawValue: return .Category
         case CXCursor_ObjCInterfaceDecl.rawValue: return .Class

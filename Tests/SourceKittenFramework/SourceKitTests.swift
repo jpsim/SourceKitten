@@ -26,7 +26,7 @@ private func run(_ executable: String, arguments: [String]) -> String? {
     return output
 }
 
-private func sourcekitStringsStartingWith(pattern: String) -> Set<String> {
+private func sourcekitStringsStartingWith(_ pattern: String) -> Set<String> {
     let sourceKitServicePath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
         .deletingLastPathComponent as NSString)
         .deletingLastPathComponent as NSString)
@@ -52,7 +52,7 @@ class SourceKitTests: XCTestCase {
             .While,
         ]
 
-        let actual = sourcekitStringsStartingWith(pattern: "source.lang.swift.stmt.")
+        let actual = sourcekitStringsStartingWith("source.lang.swift.stmt.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
@@ -86,7 +86,7 @@ class SourceKitTests: XCTestCase {
             .StringInterpolationAnchor,
             .Typeidentifier
         ]
-        let actual = sourcekitStringsStartingWith(pattern: "source.lang.swift.syntaxtype.")
+        let actual = sourcekitStringsStartingWith("source.lang.swift.syntaxtype.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
@@ -139,7 +139,7 @@ class SourceKitTests: XCTestCase {
             .VarParameter,
             .VarStatic
         ]
-        let actual = sourcekitStringsStartingWith(pattern: "source.lang.swift.decl.")
+        let actual = sourcekitStringsStartingWith("source.lang.swift.decl.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
@@ -162,7 +162,7 @@ class SourceKitTests: XCTestCase {
         for (module, path, spmModule) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = libraryWrapperForModule(module: module, loadPath: path, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
+            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
             if existingWrapper != generatedWrapper && overwrite {

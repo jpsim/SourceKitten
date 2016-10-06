@@ -17,7 +17,7 @@ public struct SourceLocation {
     let column: UInt32
     let offset: UInt32
 
-    public func rangeToEndLocation(end: SourceLocation) -> NSRange {
+    public func rangeToEndLocation(_ end: SourceLocation) -> NSRange {
         return NSRange(location: Int(offset), length: Int(end.offset - offset))
     }
 }
