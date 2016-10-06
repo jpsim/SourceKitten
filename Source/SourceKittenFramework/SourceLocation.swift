@@ -24,7 +24,7 @@ public struct SourceLocation {
 
 extension SourceLocation {
     init(clangLocation: CXSourceLocation) {
-        var cxfile: CXFile? = .allocate(bytes: 1, alignedTo: 0)
+        var cxfile: CXFile? = nil
         var line: UInt32 = 0
         var column: UInt32 = 0
         var offset: UInt32 = 0
