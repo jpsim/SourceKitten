@@ -548,7 +548,7 @@ extension String {
     - parameter characterSet: Character set to check for membership.
     */
     public func countOfLeadingCharactersInSet(characterSet: CharacterSet) -> Int {
-        let characterSet = characterSet._bridgeToObjectiveC()
+        let characterSet = characterSet as NSCharacterSet
         var count = 0
         for char in utf16 {
             if !characterSet.characterIsMember(char) {
