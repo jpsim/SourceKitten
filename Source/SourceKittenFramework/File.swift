@@ -81,7 +81,7 @@ public final class File {
 
         if trimmingTrailingWhitespace {
             newContents = newContents.map {
-                $0.stringByTrimmingTrailingCharactersInSet(characterSet: .whitespaces)
+                $0.stringByTrimmingTrailingCharactersInSet(.whitespaces)
             }
         }
 

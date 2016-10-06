@@ -159,7 +159,7 @@ extension NSString {
             return line.byteRange.location + byteDiff
         }
 
-        func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
+        func lineAndCharacterForCharacterOffset(_ offset: Int) -> (line: Int, character: Int)? {
             let index = lines.index(where: { NSLocationInRange(offset, $0.range) })
             return index.map {
                 let line = lines[$0]
@@ -167,7 +167,7 @@ extension NSString {
             }
         }
 
-        func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
+        func lineAndCharacterForByteOffset(_ offset: Int) -> (line: Int, character: Int)? {
             let index = lines.index(where: { NSLocationInRange(offset, $0.byteRange) })
             return index.map {
                 let line = lines[$0]
@@ -205,8 +205,8 @@ extension NSString {
 
     - parameter offset: utf16 based index.
     */
-    public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
-        return cacheContainer.lineAndCharacterForCharacterOffset(offset: offset)
+    public func lineAndCharacterForCharacterOffset(_ offset: Int) -> (line: Int, character: Int)? {
+        return cacheContainer.lineAndCharacterForCharacterOffset(offset)
     }
 
     /**
@@ -214,8 +214,8 @@ extension NSString {
 
     - parameter offset: byte offset.
     */
-    public func lineAndCharacterForByteOffset(offset: Int) -> (line: Int, character: Int)? {
-        return cacheContainer.lineAndCharacterForByteOffset(offset: offset)
+    public func lineAndCharacterForByteOffset(_ offset: Int) -> (line: Int, character: Int)? {
+        return cacheContainer.lineAndCharacterForByteOffset(offset)
     }
 
     /**
@@ -224,7 +224,7 @@ extension NSString {
 
     - parameter characterSet: Character set to check for membership.
     */
-    public func stringByTrimmingTrailingCharactersInSet(characterSet: CharacterSet) -> String {
+    public func stringByTrimmingTrailingCharactersInSet(_ characterSet: CharacterSet) -> String {
         if length == 0 {
             return ""
         }
@@ -243,7 +243,7 @@ extension NSString {
 
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
-    public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
+    public func absolutePathRepresentation(_ rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
         if isAbsolutePath { return self as String }
         return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
     }
@@ -512,7 +512,7 @@ extension String {
             }
             if bodyParts.count > 0 {
                 return bodyParts.joined(separator: "\n")
-                    .stringByTrimmingTrailingCharactersInSet(characterSet: .whitespacesAndNewlines)
+                    .stringByTrimmingTrailingCharactersInSet(.whitespacesAndNewlines)
                     .stringByRemovingCommonLeadingWhitespaceFromLines()
             }
         }
