@@ -96,10 +96,10 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
 }
 
 /// Lazily and singly computed Void constants to initialize SourceKit once per session.
-private let initializeSourceKit: () = {
+private let initializeSourceKit: Void = {
     sourcekitd_initialize()
 }()
-private let initializeSourceKitFailable: () = {
+private let initializeSourceKitFailable: Void = {
     sourcekitd_initialize()
     sourcekitd_set_notification_handler() { response in
         if !sourcekitd_response_is_error(response!) {
