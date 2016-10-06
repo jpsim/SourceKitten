@@ -60,7 +60,7 @@ struct CompleteCommand: CommandProtocol {
         let request = Request.CodeCompletionRequest(file: path, contents: contents,
             offset: Int64(options.offset),
             arguments: args)
-        print(CodeCompletionItem.parseResponse(response: request.send()))
+        print(CodeCompletionItem.parseResponse(request.send()))
         return .success()
     }
 }
