@@ -200,9 +200,9 @@ public final class File {
     - parameter documentedTokenOffsets: Offsets that are likely documented.
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
-    internal func furtherProcessDictionary(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
+    internal func furtherProcessDictionary(_ dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
-        let offsetMap = generateOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
+        let offsetMap = generateOffsetMap(documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
             if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ processDictionary($0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
                let kind = SwiftDocKey.getKind(response),
@@ -373,7 +373,7 @@ public final class File {
         return (isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)).flatMap { offset in
             return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
                 return contents.byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound).flatMap { nsRange in
-                    return contents.commentBody(range: nsRange)
+                    return contents.commentBody(nsRange)
                 }
             }
         }

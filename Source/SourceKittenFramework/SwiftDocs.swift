@@ -30,7 +30,7 @@ public struct SwiftDocs {
             self.init(
                 file: file,
                 dictionary: try Request.EditorOpen(file).failableSend(),
-                cursorInfoRequest: Request.cursorInfoRequestForFilePath(filePath: file.path, arguments: arguments)
+                cursorInfoRequest: Request.cursorInfoRequestForFilePath(file.path, arguments: arguments)
             )
         } catch let error as Request.Error {
             fputs(error.description, stderr)
@@ -54,9 +54,9 @@ public struct SwiftDocs {
         let syntaxMap = SyntaxMap(data: syntaxMapData)
         dictionary = file.processDictionary(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
         if let cursorInfoRequest = cursorInfoRequest {
-           let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap: syntaxMap)
+            let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap)
             dictionary = file.furtherProcessDictionary(
-                dictionary: dictionary,
+                dictionary,
                 documentedTokenOffsets: documentedTokenOffsets,
                 cursorInfoRequest: cursorInfoRequest,
                 syntaxMap: syntaxMap

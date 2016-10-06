@@ -87,13 +87,13 @@ extension CXCursor {
     }
 
     func objCKind() -> ObjCDeclarationKind {
-        return ObjCDeclarationKind.fromClang(kind: kind)
+        return ObjCDeclarationKind.fromClang(kind)
     }
 
     func str() -> String? {
         let cursorExtent = extent()
         let contents = try! String(contentsOfFile: cursorExtent.start.file, encoding: .utf8)
-        return contents.substringWithSourceRange(start: cursorExtent.start, end: cursorExtent.end)
+        return contents.substringWithSourceRange(cursorExtent.start, end: cursorExtent.end)
     }
 
     func name() -> String {
@@ -185,7 +185,7 @@ extension CXCursor {
         return commentBody
     }
 
-    func swiftDeclaration(compilerArguments: [String]) -> String? {
+    func swiftDeclaration(_ compilerArguments: [String]) -> String? {
         let file = location().file
         let swiftUUID: String
         if let uuid = interfaceUUIDMap[file] {

@@ -80,7 +80,7 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
     case SOURCEKITD_VARIANT_TYPE_STRING:
         let length = sourcekitd_variant_string_get_length(sourcekitObject)
         let ptr = sourcekitd_variant_string_get_ptr(sourcekitObject)
-        let string = swiftStringFrom(bytes: ptr!, length: length)
+        let string = swiftStringFrom(ptr!, length: length)
         return string
     case SOURCEKITD_VARIANT_TYPE_INT64:
         return sourcekitd_variant_int64_get_value(sourcekitObject)
@@ -130,7 +130,7 @@ internal func stringForSourceKitUID(_ uid: sourcekitd_uid_t) -> String? {
     }
     let length = sourcekitd_uid_get_length(uid)
     let bytes = sourcekitd_uid_get_string_ptr(uid)
-    if let uidString = swiftStringFrom(bytes: bytes!, length: length) {
+    if let uidString = swiftStringFrom(bytes!, length: length) {
         /*
         `String` created by `String(UTF8String:)` is based on `NSString`.
         `NSString` base `String` has performance penalty on getting `hashValue`.
@@ -142,7 +142,7 @@ internal func stringForSourceKitUID(_ uid: sourcekitd_uid_t) -> String? {
         For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
         That does not cause calling `decomposedStringWithCanonicalMapping`.
         */
-        let uidString = sourceKittenRawValueStringFrom(uidString: uidString) ?? "\(uidString)"
+        let uidString = sourceKittenRawValueStringFrom(uidString) ?? "\(uidString)"
         uidStringMap[uid] = uidString
         return uidString
     }
@@ -156,7 +156,7 @@ Returns SourceKitten defined enum's rawValue String from string
 
 - returns: rawValue String if defined in SourceKitten, nil otherwise.
 */
-private func sourceKittenRawValueStringFrom(uidString: String) -> String? {
+private func sourceKittenRawValueStringFrom(_ uidString: String) -> String? {
     return SwiftDocKey(rawValue: uidString)?.rawValue ??
         SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
         SyntaxKind(rawValue: uidString)?.rawValue
@@ -173,7 +173,7 @@ That is slower than Swift's native String on some scene.
 
 - returns: String Swift's native String
 */
-private func swiftStringFrom(bytes: UnsafePointer<Int8>, length: Int) -> String? {
+private func swiftStringFrom(_ bytes: UnsafePointer<Int8>, length: Int) -> String? {
     let pointer = UnsafeMutablePointer<Int8>(mutating: bytes)
     // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
     // We'll try another encodings if fail.
@@ -304,7 +304,7 @@ public enum Request {
 
     - returns: sourcekitd_object_t representation of the Request, if successful.
     */
-    internal static func cursorInfoRequestForFilePath(filePath: String?, arguments: [String]) -> sourcekitd_object_t? {
+    internal static func cursorInfoRequestForFilePath(_ filePath: String?, arguments: [String]) -> sourcekitd_object_t? {
         if let path = filePath {
             return Request.CursorInfo(file: path, offset: 0, arguments: arguments).sourcekitObject
         }
@@ -402,21 +402,21 @@ extension Request: CustomStringConvertible {
     public var description: String { return String(validatingUTF8: sourcekitd_request_description_copy(sourcekitObject)!)! }
 }
 
-private func interfaceForModule(module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
+private func interfaceForModule(_ module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
     var compilerargs = compilerArguments.map { sourcekitd_request_string_create($0) }
-    let dict: [sourcekitd_uid_t: sourcekitd_object_t?] = [
-        sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")!)!,
-        sourcekitd_uid_get_from_cstr("key.name")!: sourcekitd_request_string_create(NSUUID().uuidString)!,
-        sourcekitd_uid_get_from_cstr("key.compilerargs")!: sourcekitd_request_array_create(&compilerargs, compilerargs.count)!,
-        sourcekitd_uid_get_from_cstr("key.modulename")!: sourcekitd_request_string_create("SourceKittenFramework.\(module)")!
+    let dict = [
+        sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")),
+        sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
+        sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
+        sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create("SourceKittenFramework.\(module)")
     ]
     var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
     var values = Array(dict.values)
-    return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)!).send()
+    return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
-internal func libraryWrapperForModule(module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {
-    let sourceKitResponse = interfaceForModule(module: module, compilerArguments: compilerArguments)
+internal func libraryWrapperForModule(_ module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {
+    let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = substructure.filter({
