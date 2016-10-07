@@ -8,7 +8,7 @@ SourceKitten links and communicates with `sourcekitd.framework` to parse the Swi
 
 ## Installation
 
-Building SourceKitten requires Xcode 7.3.
+Building SourceKitten requires Xcode 8.0.
 
 SourceKitten typically supports previous versions of SourceKit.
 
