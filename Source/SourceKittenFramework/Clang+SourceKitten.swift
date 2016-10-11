@@ -185,7 +185,7 @@ extension CXCursor {
         return commentBody
     }
 
-    func swiftDeclaration(_ compilerArguments: [String]) -> String? {
+    func swiftDeclaration(compilerArguments: [String]) -> String? {
         let file = location().file
         let swiftUUID: String
         if let uuid = interfaceUUIDMap[file] {

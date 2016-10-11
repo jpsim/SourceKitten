@@ -103,7 +103,7 @@ extension SourceDeclaration {
         children = cursor.flatMap({
             SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
         }).rejectPropertyMethods()
-        swiftDeclaration = cursor.swiftDeclaration(compilerArguments)
+        swiftDeclaration = cursor.swiftDeclaration(compilerArguments: compilerArguments)
         availability = cursor.platformAvailability()
     }
 }
