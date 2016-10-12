@@ -10,7 +10,7 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringConvertible, rootDirectory: String = fixturesDirectory) {
+func compareJSONString(withFixtureNamed name: String, jsonString: CustomStringConvertible, rootDirectory: String = fixturesDirectory) {
     // Strip out fixtures directory since it's dependent on the test machine's setup
     let escapedFixturesDirectory = rootDirectory.replacingOccurrences(of: "/", with: "\\/")
     let jsonString = String(describing: jsonString).replacingOccurrences(of: escapedFixturesDirectory, with: "")
@@ -39,20 +39,20 @@ func compareJSONStringWithFixturesName(_ name: String, jsonString: CustomStringC
     }
 }
 
-func compareDocsWithFixturesName(_ name: String) {
+private func compareDocs(withFixtureNamed name: String) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
     let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
-    compareJSONStringWithFixturesName(name, jsonString: docs)
+    compareJSONString(withFixtureNamed: name, jsonString: docs)
 }
 
 class SwiftDocsTests: XCTestCase {
 
     func testSubscript() {
-        compareDocsWithFixturesName("Subscript")
+        compareDocs(withFixtureNamed: "Subscript")
     }
 
     func testBicycle() {
-        compareDocsWithFixturesName("Bicycle")
+        compareDocs(withFixtureNamed: "Bicycle")
     }
 
     func testParseFullXMLDocs() {

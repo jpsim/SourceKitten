@@ -10,7 +10,7 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-func compareSyntax(_ file: File, _ expectedTokens: [(SyntaxKind, Int, Int)]) {
+private func compareSyntax(file: File, expectedTokens: [(SyntaxKind, Int, Int)]) {
     let expectedSyntaxMap = SyntaxMap(tokens: expectedTokens.map { tokenTuple in
         return SyntaxToken(type: tokenTuple.0.rawValue, offset: tokenTuple.1, length: tokenTuple.2)
     })
@@ -37,8 +37,8 @@ class SyntaxTests: XCTestCase {
     }
 
     func testSubscript() {
-        compareSyntax(File(contents: "struct A { subscript(index: Int) -> () { return () } }"),
-            [
+        compareSyntax(file: File(contents: "struct A { subscript(index: Int) -> () { return () } }"),
+            expectedTokens: [
                 (.keyword, 0, 6),
                 (.identifier, 7, 1),
                 (.keyword, 11, 9),
@@ -50,8 +50,8 @@ class SyntaxTests: XCTestCase {
     }
 
     func testSyntaxMapPrintValidJSON() {
-        compareSyntax(File(contents: "import Foundation // Hello World!"),
-            [
+        compareSyntax(file: File(contents: "import Foundation // Hello World!"),
+            expectedTokens: [
                 (.keyword, 0, 6),
                 (.identifier, 7, 10),
                 (.comment, 18, 15)
