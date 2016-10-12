@@ -440,7 +440,7 @@
 				D0DB09A319EA354200234B16 /* SyntaxTests.swift */,
 			);
 			name = SourceKittenFrameworkTests;
-			path = Tests/SourceKittenFramework;
+			path = Tests/SourceKittenFrameworkTests;
 			sourceTree = "<group>";
 		};
 		D0D1217C19E87B05005E4BAA /* Supporting Files */ = {
@@ -807,7 +807,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 				SWIFT_VERSION = 3.0;
@@ -819,7 +819,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 				SWIFT_VERSION = 3.0;
@@ -868,7 +868,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 				SWIFT_VERSION = 3.0;
@@ -917,7 +917,7 @@
 			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				INFOPLIST_FILE = Tests/SourceKittenFramework/Info.plist;
+				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 				SWIFT_VERSION = 3.0;
