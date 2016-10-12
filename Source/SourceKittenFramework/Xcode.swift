@@ -114,7 +114,7 @@ Parses the compiler arguments needed to compile the `language` files.
 */
 internal func parseCompilerArguments(_ xcodebuildOutput: NSString, language: Language, moduleName: String?) -> [String]? {
     let pattern: String
-    if language == .ObjC {
+    if language == .objc {
         pattern = "/usr/bin/clang.*"
     } else if let moduleName = moduleName {
         pattern = "/usr/bin/swiftc.*-module-name \(moduleName) .*"
