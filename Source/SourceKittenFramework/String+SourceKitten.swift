@@ -108,7 +108,7 @@ extension NSString {
 
         - returns: UTF16 based offset of string.
         */
-        func locationFromByteOffset(_ byteOffset: Int) -> Int {
+        func location(fromByteOffset byteOffset: Int) -> Int {
             if lines.isEmpty {
                 return 0
             }
@@ -137,7 +137,7 @@ extension NSString {
 
         - returns: UTF8 based offset of string.
         */
-        func byteOffsetFromLocation(_ location: Int) -> Int {
+        func byteOffset(fromLocation location: Int) -> Int {
             if lines.isEmpty {
                 return 0
             }
@@ -159,7 +159,7 @@ extension NSString {
             return line.byteRange.location + byteDiff
         }
 
-        func lineAndCharacterForCharacterOffset(_ offset: Int) -> (line: Int, character: Int)? {
+        func lineAndCharacter(forCharacterOffset offset: Int) -> (line: Int, character: Int)? {
             let index = lines.index(where: { NSLocationInRange(offset, $0.range) })
             return index.map {
                 let line = lines[$0]
@@ -167,7 +167,7 @@ extension NSString {
             }
         }
 
-        func lineAndCharacterForByteOffset(_ offset: Int) -> (line: Int, character: Int)? {
+        func lineAndCharacter(forByteOffset offset: Int) -> (line: Int, character: Int)? {
             let index = lines.index(where: { NSLocationInRange(offset, $0.byteRange) })
             return index.map {
                 let line = lines[$0]
@@ -205,8 +205,8 @@ extension NSString {
 
     - parameter offset: utf16 based index.
     */
-    public func lineAndCharacterForCharacterOffset(_ offset: Int) -> (line: Int, character: Int)? {
-        return cacheContainer.lineAndCharacterForCharacterOffset(offset)
+    public func lineAndCharacter(forCharacterOffset offset: Int) -> (line: Int, character: Int)? {
+        return cacheContainer.lineAndCharacter(forCharacterOffset: offset)
     }
 
     /**
@@ -214,8 +214,8 @@ extension NSString {
 
     - parameter offset: byte offset.
     */
-    public func lineAndCharacterForByteOffset(_ offset: Int) -> (line: Int, character: Int)? {
-        return cacheContainer.lineAndCharacterForByteOffset(offset)
+    public func lineAndCharacter(forByteOffset offset: Int) -> (line: Int, character: Int)? {
+        return cacheContainer.lineAndCharacter(forByteOffset: offset)
     }
 
     /**
@@ -224,7 +224,7 @@ extension NSString {
 
     - parameter characterSet: Character set to check for membership.
     */
-    public func stringByTrimmingTrailingCharactersInSet(_ characterSet: CharacterSet) -> String {
+    public func trimmingTrailingCharacters(in characterSet: CharacterSet) -> String {
         if length == 0 {
             return ""
         }
@@ -243,7 +243,7 @@ extension NSString {
 
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
-    public func absolutePathRepresentation(_ rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
+    public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
         if isAbsolutePath { return self as String }
         return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
     }
@@ -259,11 +259,11 @@ extension NSString {
     */
     public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
         if self.length == 0 { return nil }
-        let utf16Start = cacheContainer.locationFromByteOffset(start)
+        let utf16Start = cacheContainer.location(fromByteOffset: start)
         if length == 0 {
             return NSRange(location: utf16Start, length: 0)
         }
-        let utf16End = cacheContainer.locationFromByteOffset(start + length)
+        let utf16End = cacheContainer.location(fromByteOffset: start + length)
         return NSRange(location: utf16Start, length: utf16End - utf16Start)
     }
 
@@ -296,7 +296,7 @@ extension NSString {
         // 2. Using cache is overkill for short string.
         let byteOffset: Int
         if utf16View.count > 50 {
-            byteOffset = cacheContainer.byteOffsetFromLocation(start)
+            byteOffset = cacheContainer.byteOffset(fromLocation: start)
         } else {
             byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
         }
@@ -387,7 +387,7 @@ extension NSString {
     /**
     Returns a substring from a start and end SourceLocation.
     */
-    public func substringWithSourceRange(_ start: SourceLocation, end: SourceLocation) -> String? {
+    public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
         return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
     }
 }
@@ -399,7 +399,7 @@ extension String {
 
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
-    public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limit: NSRange?) -> [SourceDeclaration] {
+    public func pragmaMarks(filename: String, excludeRanges: [NSRange], limit: NSRange?) -> [SourceDeclaration] {
         let regex = try! NSRegularExpression(pattern: "(#pragma\\smark|@name)[ -]*([^\\n]+)", options: []) // Safe to force try
         let range: NSRange
         if let limit = limit {
@@ -457,7 +457,7 @@ extension String {
 
     - returns: Array of documented token offsets.
     */
-    public func documentedTokenOffsets(_ syntaxMap: SyntaxMap) -> [Int] {
+    public func documentedTokenOffsets(syntaxMap: SyntaxMap) -> [Int] {
         let documentableOffsets = syntaxMap.tokens.filter(isTokenDocumentable).map {
             $0.offset
         }
@@ -476,7 +476,7 @@ extension String {
 
     - parameter range: Range to restrict the search for a comment body.
     */
-    public func commentBody(_ range: NSRange? = nil) -> String? {
+    public func commentBody(range: NSRange? = nil) -> String? {
         let nsString = self as NSString
         let patterns: [(pattern: String, options: NSRegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
@@ -500,7 +500,7 @@ extension String {
                     var lineEnd = nsString.length
                     let indexRange = NSRange(location: range.location, length: 0)
                     nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: indexRange)
-                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharactersInSet(.whitespacesAndNewlines)
+                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharacters(in: .whitespacesAndNewlines)
                     let leadingWhitespaceToAdd = String(repeating: " ", count: leadingWhitespaceCountToAdd)
 
                     let bodySubstring = nsString.substring(with: range)
@@ -512,22 +512,22 @@ extension String {
             }
             if bodyParts.count > 0 {
                 return bodyParts.joined(separator: "\n")
-                    .stringByTrimmingTrailingCharactersInSet(.whitespacesAndNewlines)
-                    .stringByRemovingCommonLeadingWhitespaceFromLines()
+                    .trimmingTrailingCharacters(in: .whitespacesAndNewlines)
+                    .removingCommonLeadingWhitespaceFromLines()
             }
         }
         return nil
     }
 
     /// Returns a copy of `self` with the leading whitespace common in each line removed.
-    public func stringByRemovingCommonLeadingWhitespaceFromLines() -> String {
+    public func removingCommonLeadingWhitespaceFromLines() -> String {
         var minLeadingCharacters = Int.max
 
         let lineComponents = components(separatedBy: .newlines)
 
         for line in lineComponents {
-            let lineLeadingWhitespace = line.countOfLeadingCharactersInSet(.whitespacesAndNewlines)
-            let lineLeadingCharacters = line.countOfLeadingCharactersInSet(commentLinePrefixCharacterSet)
+            let lineLeadingWhitespace = line.countOfLeadingCharacters(in: .whitespacesAndNewlines)
+            let lineLeadingCharacters = line.countOfLeadingCharacters(in: commentLinePrefixCharacterSet)
             // Is this prefix smaller than our last and not entirely whitespace?
             if lineLeadingCharacters < minLeadingCharacters && lineLeadingWhitespace != line.characters.count {
                 minLeadingCharacters = lineLeadingCharacters
@@ -547,7 +547,7 @@ extension String {
 
     - parameter characterSet: Character set to check for membership.
     */
-    public func countOfLeadingCharactersInSet(_ characterSet: CharacterSet) -> Int {
+    public func countOfLeadingCharacters(in characterSet: CharacterSet) -> Int {
         let characterSet = characterSet as NSCharacterSet
         var count = 0
         for char in utf16 {
@@ -560,7 +560,7 @@ extension String {
     }
 
     /// Returns a copy of the string by trimming whitespace and the opening curly brace (`{`).
-    internal func stringByTrimmingWhitespaceAndOpeningCurlyBrace() -> String? {
+    internal func trimmingWhitespaceAndOpeningCurlyBrace() -> String? {
         var unwantedSet = CharacterSet.whitespacesAndNewlines
         unwantedSet.insert(charactersIn: "{")
         return trimmingCharacters(in: unwantedSet)

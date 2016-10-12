@@ -93,7 +93,7 @@ extension CXCursor {
     func str() -> String? {
         let cursorExtent = extent()
         let contents = try! String(contentsOfFile: cursorExtent.start.file, encoding: .utf8)
-        return contents.substringWithSourceRange(cursorExtent.start, end: cursorExtent.end)
+        return contents.substringWithSourceRange(start: cursorExtent.start, end: cursorExtent.end)
     }
 
     func name() -> String {
@@ -245,7 +245,7 @@ extension CXComment {
             }
             fatalError("not text: \(child.kind())")
         }
-        return [.Para(paragraphString.stringByRemovingCommonLeadingWhitespaceFromLines(), kindString)]
+        return [.Para(paragraphString.removingCommonLeadingWhitespaceFromLines(), kindString)]
     }
 
     func kind() -> CXCommentKind {

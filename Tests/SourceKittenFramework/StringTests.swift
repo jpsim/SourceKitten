@@ -14,17 +14,17 @@ class StringTests: XCTestCase {
 
     func testStringByRemovingCommonLeadingWhitespaceFromLines() {
         var input = "a\n b\n  c"
-        XCTAssertEqual(input.stringByRemovingCommonLeadingWhitespaceFromLines(), input)
+        XCTAssertEqual(input.removingCommonLeadingWhitespaceFromLines(), input)
 
         input = " a\n  b\n   c"
-        XCTAssertEqual(input.stringByRemovingCommonLeadingWhitespaceFromLines(), "a\n b\n  c")
+        XCTAssertEqual(input.removingCommonLeadingWhitespaceFromLines(), "a\n b\n  c")
     }
 
     func testStringByTrimmingTrailingCharactersInSet() {
-        XCTAssertEqual("".stringByTrimmingTrailingCharactersInSet(.whitespacesAndNewlines), "")
-        XCTAssertEqual(" a ".stringByTrimmingTrailingCharactersInSet(.whitespacesAndNewlines), " a")
-        XCTAssertEqual(" ".stringByTrimmingTrailingCharactersInSet(.whitespacesAndNewlines), "")
-        XCTAssertEqual("a".stringByTrimmingTrailingCharactersInSet(.whitespacesAndNewlines), "a")
+        XCTAssertEqual("".trimmingTrailingCharacters(in: .whitespacesAndNewlines), "")
+        XCTAssertEqual(" a ".trimmingTrailingCharacters(in: .whitespacesAndNewlines), " a")
+        XCTAssertEqual(" ".trimmingTrailingCharacters(in: .whitespacesAndNewlines), "")
+        XCTAssertEqual("a".trimmingTrailingCharacters(in: .whitespacesAndNewlines), "a")
     }
 
     func testCommentBody() {
@@ -108,19 +108,19 @@ class StringTests: XCTestCase {
     func testGenerateDocumentedTokenOffsets() {
         let fileContents = "/// Comment\nlet global = 0"
         let syntaxMap = SyntaxMap(file: File(contents: fileContents))
-        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap), [16], "should generate documented token offsets")
+        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap), [16], "should generate documented token offsets")
     }
 
     func testDocumentedTokenOffsetsWithSubscript() {
         let file = File(path: fixturesDirectory + "Subscript.swift")!
         let syntaxMap = SyntaxMap(file: file)
-        XCTAssertEqual(file.contents.documentedTokenOffsets(syntaxMap), [54], "should generate documented token offsets")
+        XCTAssertEqual(file.contents.documentedTokenOffsets(syntaxMap: syntaxMap), [54], "should generate documented token offsets")
     }
 
     func testGenerateDocumentedTokenOffsetsEmpty() {
         let fileContents = "// Comment\nlet global = 0"
         let syntaxMap = SyntaxMap(file: File(contents: fileContents))
-        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
+        XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
     }
 
     func testSubstringWithByteRange() {

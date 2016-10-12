@@ -81,7 +81,7 @@ public final class File {
 
         if trimmingTrailingWhitespace {
             newContents = newContents.map {
-                $0.stringByTrimmingTrailingCharactersInSet(.whitespaces)
+                $0.trimmingTrailingCharacters(in: .whitespaces)
             }
         }
 
@@ -106,7 +106,7 @@ public final class File {
         } else {
             substring = contents.substringLinesWithByteRange(start: start, length: 0)
         }
-        return substring?.stringByTrimmingWhitespaceAndOpeningCurlyBrace()
+        return substring?.trimmingWhitespaceAndOpeningCurlyBrace()
     }
 
     /**
@@ -373,7 +373,7 @@ public final class File {
         return (isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)).flatMap { offset in
             return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
                 return contents.byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound).flatMap { nsRange in
-                    return contents.commentBody(nsRange)
+                    return contents.commentBody(range: nsRange)
                 }
             }
         }
