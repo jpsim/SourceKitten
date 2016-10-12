@@ -44,7 +44,7 @@ public struct SourceDeclaration {
 
     /// Range
     var range: NSRange {
-        return extent.start.rangeToEndLocation(extent.end)
+        return extent.start.range(toEnd: extent.end)
     }
 
     /// Returns the USR for the auto-generated getter for this property.
