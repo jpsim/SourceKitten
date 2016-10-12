@@ -70,8 +70,8 @@ public struct Module {
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
     public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
-        let xcodeBuildOutput = runXcodeBuild(xcodeBuildArguments, inPath: path) ?? ""
-        guard let arguments = parseCompilerArguments(xcodeBuildOutput as NSString, language: .swift, moduleName: name ?? moduleNameFromArguments(xcodeBuildArguments)) else {
+        let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
+        guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .swift, moduleName: name ?? moduleName(fromArguments: xcodeBuildArguments)) else {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
             fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
             let file = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
@@ -79,7 +79,7 @@ public struct Module {
             fputs("Saved `xcodebuild` log file: \(file!.path)\n", stderr)
             return nil
         }
-        guard let moduleName = moduleNameFromArguments(arguments) else {
+        guard let moduleName = moduleName(fromArguments: arguments) else {
             fputs("Could not parse module name from compiler arguments.\n", stderr)
             return nil
         }
