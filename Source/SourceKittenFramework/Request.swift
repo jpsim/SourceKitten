@@ -421,7 +421,7 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, spmMod
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = substructure.filter({
-        SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .FunctionFree
+        SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
     }).flatMap { function -> String? in
         let fullFunctionName = function["key.name"] as! String
         let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)

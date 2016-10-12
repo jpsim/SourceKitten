@@ -78,7 +78,7 @@ public struct SyntaxMap {
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.flatMap { lastToken in
                 let regularCommentTokensBetweenDocCommentAndOffset = tokensBeforeOffset
-                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .Comment })
+                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .comment })
                 if !regularCommentTokensBetweenDocCommentAndOffset.isEmpty {
                     return nil // "doc comment" isn't actually a doc comment
                 }

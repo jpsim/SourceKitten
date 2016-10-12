@@ -85,9 +85,9 @@ class StringTests: XCTestCase {
         let source = "struct A { subscript(key: String) -> Void { return () } }"
         let actual = SyntaxMap(file: File(contents: source)).tokens.filter(source.isTokenDocumentable)
         let expected = [
-            SyntaxToken(type: SyntaxKind.Identifier.rawValue, offset: 7, length: 1), // `A`
-            SyntaxToken(type: SyntaxKind.Keyword.rawValue, offset: 11, length: 9),   // `subscript`
-            SyntaxToken(type: SyntaxKind.Identifier.rawValue, offset: 21, length: 3) // `key`
+            SyntaxToken(type: SyntaxKind.identifier.rawValue, offset: 7, length: 1), // `A`
+            SyntaxToken(type: SyntaxKind.keyword.rawValue, offset: 11, length: 9),   // `subscript`
+            SyntaxToken(type: SyntaxKind.identifier.rawValue, offset: 21, length: 3) // `key`
         ]
         XCTAssertEqual(actual, expected, "should detect documentable tokens")
     }

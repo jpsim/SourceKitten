@@ -39,12 +39,12 @@ class SyntaxTests: XCTestCase {
     func testSubscript() {
         compareSyntax(File(contents: "struct A { subscript(index: Int) -> () { return () } }"),
             [
-                (.Keyword, 0, 6),
-                (.Identifier, 7, 1),
-                (.Keyword, 11, 9),
-                (.Identifier, 21, 5),
-                (.Typeidentifier, 28, 3),
-                (.Keyword, 41, 6)
+                (.keyword, 0, 6),
+                (.identifier, 7, 1),
+                (.keyword, 11, 9),
+                (.identifier, 21, 5),
+                (.typeidentifier, 28, 3),
+                (.keyword, 41, 6)
             ]
         )
     }
@@ -52,9 +52,9 @@ class SyntaxTests: XCTestCase {
     func testSyntaxMapPrintValidJSON() {
         compareSyntax(File(contents: "import Foundation // Hello World!"),
             [
-                (.Keyword, 0, 6),
-                (.Identifier, 7, 10),
-                (.Comment, 18, 15)
+                (.keyword, 0, 6),
+                (.identifier, 7, 10),
+                (.comment, 18, 15)
             ]
         )
     }

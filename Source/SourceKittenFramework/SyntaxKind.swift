@@ -10,50 +10,46 @@
 /// Found in `strings SourceKitService | grep source.lang.swift.syntaxtype.`.
 public enum SyntaxKind: String, SwiftLangSyntax {
     /// `argument`.
-    case Argument = "source.lang.swift.syntaxtype.argument"
+    case argument = "source.lang.swift.syntaxtype.argument"
     /// `attribute.builtin`.
-    case AttributeBuiltin = "source.lang.swift.syntaxtype.attribute.builtin"
+    case attributeBuiltin = "source.lang.swift.syntaxtype.attribute.builtin"
     /// `attribute.id`.
-    case AttributeID = "source.lang.swift.syntaxtype.attribute.id"
+    case attributeID = "source.lang.swift.syntaxtype.attribute.id"
     /// `buildconfig.id`.
-    case BuildconfigID = "source.lang.swift.syntaxtype.buildconfig.id"
+    case buildconfigID = "source.lang.swift.syntaxtype.buildconfig.id"
     /// `buildconfig.keyword`.
-    case BuildconfigKeyword = "source.lang.swift.syntaxtype.buildconfig.keyword"
+    case buildconfigKeyword = "source.lang.swift.syntaxtype.buildconfig.keyword"
     /// `comment`.
-    case Comment = "source.lang.swift.syntaxtype.comment"
+    case comment = "source.lang.swift.syntaxtype.comment"
     /// `comment.mark`.
-    case CommentMark = "source.lang.swift.syntaxtype.comment.mark"
+    case commentMark = "source.lang.swift.syntaxtype.comment.mark"
     /// `comment.url`.
-    case CommentURL = "source.lang.swift.syntaxtype.comment.url"
+    case commentURL = "source.lang.swift.syntaxtype.comment.url"
     /// `doccomment`.
-    case DocComment = "source.lang.swift.syntaxtype.doccomment"
+    case docComment = "source.lang.swift.syntaxtype.doccomment"
     /// `doccomment.field`.
-    case DocCommentField = "source.lang.swift.syntaxtype.doccomment.field"
+    case docCommentField = "source.lang.swift.syntaxtype.doccomment.field"
     /// `identifier`.
-    case Identifier = "source.lang.swift.syntaxtype.identifier"
+    case identifier = "source.lang.swift.syntaxtype.identifier"
     /// `keyword`.
-    case Keyword = "source.lang.swift.syntaxtype.keyword"
+    case keyword = "source.lang.swift.syntaxtype.keyword"
     /// `number`.
-    case Number = "source.lang.swift.syntaxtype.number"
+    case number = "source.lang.swift.syntaxtype.number"
     /// `objectliteral`
-    case ObjectLiteral = "source.lang.swift.syntaxtype.objectliteral"
+    case objectLiteral = "source.lang.swift.syntaxtype.objectliteral"
     /// `parameter`.
-    case Parameter = "source.lang.swift.syntaxtype.parameter"
+    case parameter = "source.lang.swift.syntaxtype.parameter"
     /// `placeholder`.
-    case Placeholder = "source.lang.swift.syntaxtype.placeholder"
+    case placeholder = "source.lang.swift.syntaxtype.placeholder"
     /// `string`.
-    case String = "source.lang.swift.syntaxtype.string"
+    case string = "source.lang.swift.syntaxtype.string"
     /// `string_interpolation_anchor`.
-    case StringInterpolationAnchor = "source.lang.swift.syntaxtype.string_interpolation_anchor"
+    case stringInterpolationAnchor = "source.lang.swift.syntaxtype.string_interpolation_anchor"
     /// `typeidentifier`.
-    case Typeidentifier = "source.lang.swift.syntaxtype.typeidentifier"
+    case typeidentifier = "source.lang.swift.syntaxtype.typeidentifier"
 
     /// Returns the valid documentation comment syntax kinds.
     internal static func docComments() -> [SyntaxKind] {
-        return [CommentURL, DocComment, DocCommentField]
-    }
-
-    public var value: Swift.String {
-        return rawValue
+        return [.commentURL, .docComment, .docCommentField]
     }
 }

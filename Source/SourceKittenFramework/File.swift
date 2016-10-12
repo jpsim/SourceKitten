@@ -140,7 +140,7 @@ public final class File {
     - returns: Mark name if successfully parsed.
     */
     private func parseMarkName(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.CommentMark.rawValue)
+        precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.commentMark.rawValue)
         let offset = Int(SwiftDocKey.getOffset(dictionary)!)
         let length = Int(SwiftDocKey.getLength(dictionary)!)
         let fileContentsData = contents.data(using: .utf8)
@@ -246,10 +246,10 @@ public final class File {
             return nil
         }
         // Only update dictionaries with a 'kind' key
-        if kind == SyntaxKind.CommentMark.rawValue, let markName = parseMarkName(dictionary) {
+        if kind == SyntaxKind.commentMark.rawValue, let markName = parseMarkName(dictionary) {
             // Update comment marks
             return [SwiftDocKey.Name.rawValue: markName]
-        } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .VarParameter {
+        } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .varParameter {
             // Update if kind is a declaration (but not a parameter)
             var updateDict = Request.send(cursorInfoRequest: cursorInfoRequest,
                 atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [:]
@@ -343,7 +343,7 @@ public final class File {
         let hasTypeName             = SwiftDocKey.getTypeName(dictionary) != nil
         let hasAnnotatedDeclaration = SwiftDocKey.getAnnotatedDeclaration(dictionary) != nil
         let hasOffset               = SwiftDocKey.getOffset(dictionary) != nil
-        let isntExtension           = SwiftDocKey.getKind(dictionary) != SwiftDeclarationKind.Extension.rawValue
+        let isntExtension           = SwiftDocKey.getKind(dictionary) != SwiftDeclarationKind.extension.rawValue
         return sameFile && hasTypeName && hasAnnotatedDeclaration && hasOffset && isntExtension
     }
 
@@ -357,7 +357,7 @@ public final class File {
                syntax (`/** ... */` or `/// ...`).
     */
     public func parseDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
-        let isExtension = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init) == .Extension
+        let isExtension = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init) == .extension
         let hasFullXMLDocs = dictionary.keys.contains(SwiftDocKey.FullXMLDocs.rawValue)
         let hasRawDocComment: Bool = {
             if !dictionary.keys.contains("key.attributes") { return false }
@@ -387,8 +387,8 @@ Returns true if the dictionary represents a source declaration or a mark-style c
 */
 private func isDeclarationOrCommentMark(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
     if let kind = SwiftDocKey.getKind(dictionary) {
-        return kind != SwiftDeclarationKind.VarParameter.rawValue &&
-            (kind == SyntaxKind.CommentMark.rawValue || SwiftDeclarationKind(rawValue: kind) != nil)
+        return kind != SwiftDeclarationKind.varParameter.rawValue &&
+            (kind == SyntaxKind.commentMark.rawValue || SwiftDeclarationKind(rawValue: kind) != nil)
     }
     return false
 }

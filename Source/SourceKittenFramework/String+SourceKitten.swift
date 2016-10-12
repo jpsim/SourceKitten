@@ -442,12 +442,12 @@ extension String {
     - parameter token: Token to process.
     */
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
-        if token.type == SyntaxKind.Keyword.rawValue {
+        if token.type == SyntaxKind.keyword.rawValue {
             let keywordFunctions = ["subscript", "init", "deinit"]
             return ((self as NSString).substringWithByteRange(start: token.offset, length: token.length))
                 .map(keywordFunctions.contains) ?? false
         }
-        return token.type == SyntaxKind.Identifier.rawValue
+        return token.type == SyntaxKind.identifier.rawValue
     }
 
     /**
