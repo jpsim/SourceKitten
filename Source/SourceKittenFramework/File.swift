@@ -166,13 +166,13 @@ public final class File {
 
         // Parse declaration and add to dictionary
         if let parsedDeclaration = parseDeclaration(dictionary) {
-            dictionary[SwiftDocKey.ParsedDeclaration.rawValue] = parsedDeclaration
+            dictionary[SwiftDocKey.parsedDeclaration.rawValue] = parsedDeclaration
         }
 
         // Parse scope range and add to dictionary
         if let parsedScopeRange = parseScopeRange(dictionary) {
-            dictionary[SwiftDocKey.ParsedScopeStart.rawValue] = Int64(parsedScopeRange.start)
-            dictionary[SwiftDocKey.ParsedScopeEnd.rawValue] = Int64(parsedScopeRange.end)
+            dictionary[SwiftDocKey.parsedScopeStart.rawValue] = Int64(parsedScopeRange.start)
+            dictionary[SwiftDocKey.parsedScopeEnd.rawValue] = Int64(parsedScopeRange.end)
         }
 
         // Parse `key.doc.full_as_xml` and add to dictionary
@@ -182,12 +182,12 @@ public final class File {
 
         if let commentBody = (syntaxMap.flatMap { parseDocumentationCommentBody(dictionary, syntaxMap: $0) }) {
             // Parse documentation comment and add to dictionary
-            dictionary[SwiftDocKey.DocumentationComment.rawValue] = commentBody
+            dictionary[SwiftDocKey.documentationComment.rawValue] = commentBody
         }
 
         // Update substructure
         if let substructure = newSubstructure(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap) {
-            dictionary[SwiftDocKey.Substructure.rawValue] = substructure
+            dictionary[SwiftDocKey.substructure.rawValue] = substructure
         }
         return dictionary
     }
@@ -248,21 +248,21 @@ public final class File {
         // Only update dictionaries with a 'kind' key
         if kind == SyntaxKind.commentMark.rawValue, let markName = parseMarkName(dictionary) {
             // Update comment marks
-            return [SwiftDocKey.Name.rawValue: markName]
+            return [SwiftDocKey.name.rawValue: markName]
         } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .varParameter {
             // Update if kind is a declaration (but not a parameter)
             var updateDict = Request.send(cursorInfoRequest: cursorInfoRequest,
                 atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [:]
 
             // Skip kinds, since values from editor.open are more accurate than cursorinfo
-            updateDict.removeValue(forKey: SwiftDocKey.Kind.rawValue)
+            updateDict.removeValue(forKey: SwiftDocKey.kind.rawValue)
 
             // Skip offset and length.
             // Their values are same with "key.nameoffset" and "key.namelength" in most case.
             // When kind is extension, their values locate **the type's declaration** in their declared file.
             // That may be different from the file declaring extension.
-            updateDict.removeValue(forKey: SwiftDocKey.Offset.rawValue)
-            updateDict.removeValue(forKey: SwiftDocKey.Length.rawValue)
+            updateDict.removeValue(forKey: SwiftDocKey.offset.rawValue)
+            updateDict.removeValue(forKey: SwiftDocKey.length.rawValue)
             return updateDict
         }
         return nil
@@ -305,7 +305,7 @@ public final class File {
                 insertIndex = substructure.count - index
             }
             substructure.insert(doc, at: insertIndex)
-            parent[SwiftDocKey.Substructure.rawValue] = substructure
+            parent[SwiftDocKey.substructure.rawValue] = substructure
             return parent
         }
         for key in parent.keys {
@@ -358,7 +358,7 @@ public final class File {
     */
     public func parseDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
         let isExtension = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init) == .extension
-        let hasFullXMLDocs = dictionary.keys.contains(SwiftDocKey.FullXMLDocs.rawValue)
+        let hasFullXMLDocs = dictionary.keys.contains(SwiftDocKey.fullXMLDocs.rawValue)
         let hasRawDocComment: Bool = {
             if !dictionary.keys.contains("key.attributes") { return false }
             let attributes = (dictionary["key.attributes"] as! [SourceKitRepresentable])
@@ -407,28 +407,28 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
         .replacingOccurrences(of: "</codeVoice>", with: "`")
     return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
         var docs = [String: SourceKitRepresentable]()
-        docs[SwiftDocKey.DocType.rawValue] = rootXML.element?.name
-        docs[SwiftDocKey.DocFile.rawValue] = rootXML.element?.allAttributes["file"]?.text
-        docs[SwiftDocKey.DocLine.rawValue] = (rootXML.element?.allAttributes["line"]?.text).flatMap {
+        docs[SwiftDocKey.docType.rawValue] = rootXML.element?.name
+        docs[SwiftDocKey.docFile.rawValue] = rootXML.element?.allAttributes["file"]?.text
+        docs[SwiftDocKey.docLine.rawValue] = (rootXML.element?.allAttributes["line"]?.text).flatMap {
             Int64($0)
         }
-        docs[SwiftDocKey.DocColumn.rawValue] = (rootXML.element?.allAttributes["column"]?.text).flatMap {
+        docs[SwiftDocKey.docColumn.rawValue] = (rootXML.element?.allAttributes["column"]?.text).flatMap {
             Int64($0)
         }
-        docs[SwiftDocKey.DocName.rawValue] = rootXML["Name"].element?.text
-        docs[SwiftDocKey.USR.rawValue] = rootXML["USR"].element?.text
-        docs[SwiftDocKey.DocDeclaration.rawValue] = rootXML["Declaration"].element?.text
+        docs[SwiftDocKey.docName.rawValue] = rootXML["Name"].element?.text
+        docs[SwiftDocKey.usr.rawValue] = rootXML["USR"].element?.text
+        docs[SwiftDocKey.docDeclaration.rawValue] = rootXML["Declaration"].element?.text
         let parameters = rootXML["Parameters"].children
         if parameters.count > 0 {
-            docs[SwiftDocKey.DocParameters.rawValue] = parameters.map {
+            docs[SwiftDocKey.docParameters.rawValue] = parameters.map {
                 [
                     "name": $0["Name"].element?.text ?? "",
                     "discussion": $0["Discussion"].childrenAsArray() ?? []
                 ] as [String: SourceKitRepresentable]
             } as [SourceKitRepresentable]
         }
-        docs[SwiftDocKey.DocDiscussion.rawValue] = rootXML["Discussion"].childrenAsArray()
-        docs[SwiftDocKey.DocResultDiscussion.rawValue] = rootXML["ResultDiscussion"].childrenAsArray()
+        docs[SwiftDocKey.docDiscussion.rawValue] = rootXML["Discussion"].childrenAsArray()
+        docs[SwiftDocKey.docResultDiscussion.rawValue] = rootXML["ResultDiscussion"].childrenAsArray()
         return docs
     }
 }

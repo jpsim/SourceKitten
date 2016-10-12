@@ -198,12 +198,12 @@ extension CXCursor {
         }
 
         guard let usr = usr(),
-              let usrOffset = Request.FindUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.Offset.rawValue] as? Int64 else {
+              let usrOffset = Request.FindUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.offset.rawValue] as? Int64 else {
             return nil
         }
 
         let cursorInfo = Request.CursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
-        guard let docsXML = cursorInfo[SwiftDocKey.FullXMLDocs.rawValue] as? String,
+        guard let docsXML = cursorInfo[SwiftDocKey.fullXMLDocs.rawValue] as? String,
               let swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
                 return nil
         }

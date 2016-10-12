@@ -324,7 +324,7 @@ public enum Request {
         if offset == 0 {
             return nil
         }
-        sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.Offset.rawValue), offset)
+        sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue), offset)
         return try? Request.CustomRequest(request: cursorInfoRequest).failableSend()
     }
 

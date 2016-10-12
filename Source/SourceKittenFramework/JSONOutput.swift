@@ -74,29 +74,29 @@ private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: Any] {
         }
     }
 
-    set(.Kind, decl.type.rawValue)
-    set(.FilePath, decl.location.file)
-    set(.DocFile, decl.location.file)
-    set(.DocLine, Int(decl.location.line))
-    set(.DocColumn, Int(decl.location.column))
-    set(.Name, decl.name)
-    set(.USR, decl.usr)
-    set(.ParsedDeclaration, decl.declaration)
-    set(.DocumentationComment, decl.commentBody)
-    set(.ParsedScopeStart, Int(decl.extent.start.line))
-    set(.ParsedScopeEnd, Int(decl.extent.end.line))
-    set(.SwiftDeclaration, decl.swiftDeclaration)
-    set(.AlwaysDeprecated, decl.availability?.alwaysDeprecated)
-    set(.AlwaysUnavailable, decl.availability?.alwaysUnavailable)
-    set(.DeprecationMessage, decl.availability?.deprecationMessage)
-    set(.UnavailableMessage, decl.availability?.unavailableMessage)
+    set(.kind, decl.type.rawValue)
+    set(.filePath, decl.location.file)
+    set(.docFile, decl.location.file)
+    set(.docLine, Int(decl.location.line))
+    set(.docColumn, Int(decl.location.column))
+    set(.name, decl.name)
+    set(.usr, decl.usr)
+    set(.parsedDeclaration, decl.declaration)
+    set(.documentationComment, decl.commentBody)
+    set(.parsedScopeStart, Int(decl.extent.start.line))
+    set(.parsedScopeEnd, Int(decl.extent.end.line))
+    set(.swiftDeclaration, decl.swiftDeclaration)
+    set(.alwaysDeprecated, decl.availability?.alwaysDeprecated)
+    set(.alwaysUnavailable, decl.availability?.alwaysUnavailable)
+    set(.deprecationMessage, decl.availability?.deprecationMessage)
+    set(.unavailableMessage, decl.availability?.unavailableMessage)
 
-    setA(.DocResultDiscussion, decl.documentation?.returnDiscussion.map(toOutputDictionary))
-    setA(.DocParameters, decl.documentation?.parameters.map(toOutputDictionary))
-    setA(.Substructure, decl.children.map(toOutputDictionary))
+    setA(.docResultDiscussion, decl.documentation?.returnDiscussion.map(toOutputDictionary))
+    setA(.docParameters, decl.documentation?.parameters.map(toOutputDictionary))
+    setA(.substructure, decl.children.map(toOutputDictionary))
 
     if decl.commentBody != nil {
-        set(.FullXMLDocs, "")
+        set(.fullXMLDocs, "")
     }
 
     return dict

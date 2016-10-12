@@ -20,7 +20,7 @@ public struct Structure {
     */
     public init(sourceKitResponse: [String: SourceKitRepresentable]) {
         var sourceKitResponse = sourceKitResponse
-        _ = sourceKitResponse.removeValue(forKey: SwiftDocKey.SyntaxMap.rawValue)
+        _ = sourceKitResponse.removeValue(forKey: SwiftDocKey.syntaxMap.rawValue)
         dictionary = sourceKitResponse
     }
 
