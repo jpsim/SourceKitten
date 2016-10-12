@@ -12,7 +12,7 @@ struct DynamicLinkLibrary {
     let path: String
     let handle: UnsafeMutableRawPointer
     
-    func loadSymbol<T>(_ symbol: String) -> T {
+    func load<T>(symbol: String) -> T {
         if let sym = dlsym(handle, symbol) {
             return unsafeBitCast(sym, to: T.self)
         }

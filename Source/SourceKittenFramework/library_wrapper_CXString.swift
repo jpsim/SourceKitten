@@ -2,5 +2,5 @@
 import Clang_C
 #endif
 private let library = toolchainLoader.load("libclang.dylib")
-internal let clang_getCString: @convention(c) (CXString) -> (UnsafePointer<Int8>!) = library.loadSymbol("clang_getCString")
-internal let clang_disposeString: @convention(c) (CXString) -> () = library.loadSymbol("clang_disposeString")
+internal let clang_getCString: @convention(c) (CXString) -> (UnsafePointer<Int8>!) = library.load(symbol: "clang_getCString")
+internal let clang_disposeString: @convention(c) (CXString) -> () = library.load(symbol: "clang_disposeString")
