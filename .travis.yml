@@ -1,11 +1,18 @@
-language: objective-c
-osx_image: xcode8
+language: generic
 matrix:
   include:
     - script: make test
       env: JOB=Xcode
+      os: osx
+      osx_image: xcode8
     - script: swift build && swift test
       env: JOB=SPM
+      os: osx
+      osx_image: xcode8
+    - script: make docker_test
+      env: JOB=Linux
+      sudo: required
+      services: docker
 git:
   submodules: false
 branches:
