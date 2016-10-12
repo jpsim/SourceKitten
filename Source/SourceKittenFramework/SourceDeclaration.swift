@@ -62,7 +62,7 @@ public struct SourceDeclaration {
     }
 
     private func generateAccessorUSR(getter: Bool) -> String {
-        assert(type == .Property)
+        assert(type == .property)
         guard let usr = usr else {
             fatalError("Couldn't extract USR")
         }
@@ -112,7 +112,7 @@ extension Sequence where Iterator.Element == SourceDeclaration {
     /// Removes implicitly generated property getters & setters
     func rejectPropertyMethods() -> [SourceDeclaration] {
         let propertyGetterSetterUSRs = filter {
-            $0.type == .Property
+            $0.type == .property
         }.flatMap {
             [$0.getterUSR, $0.setterUSR]
         }
