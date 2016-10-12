@@ -57,7 +57,7 @@ public final class File {
         guard let path = path else {
             return contents
         }
-        _ = Request.EditorOpen(self).send()
+        _ = Request.EditorOpen(file: self).send()
         var newContents = [String]()
         var offset = 0
         for line in lines {
@@ -204,7 +204,7 @@ public final class File {
         var dictionary = dictionary
         let offsetMap = makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
-            if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ process(dictionary: $0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
+            if let response = Request.send(cursorInfoRequest: cursorInfoRequest, atOffset: Int64(offset)).map({ process(dictionary: $0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
                let kind = SwiftDocKey.getKind(response),
                SwiftDeclarationKind(rawValue: kind) != nil,
                let parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
@@ -251,8 +251,8 @@ public final class File {
             return [SwiftDocKey.Name.rawValue: markName]
         } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .VarParameter {
             // Update if kind is a declaration (but not a parameter)
-            var updateDict = Request.sendCursorInfoRequest(cursorInfoRequest,
-                atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [String: SourceKitRepresentable]()
+            var updateDict = Request.send(cursorInfoRequest: cursorInfoRequest,
+                atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [:]
 
             // Skip kinds, since values from editor.open are more accurate than cursorinfo
             updateDict.removeValue(forKey: SwiftDocKey.Kind.rawValue)

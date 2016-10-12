@@ -71,7 +71,7 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         }
         var dict = [String: SourceKitRepresentable](minimumCapacity: count)
         _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
-            if let key = stringForSourceKitUID(key!), let value = fromSourceKit(value) {
+            if let key = String(sourceKitUID: key!), let value = fromSourceKit(value) {
                 dict[key] = value
             }
             return true
@@ -80,14 +80,13 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
     case SOURCEKITD_VARIANT_TYPE_STRING:
         let length = sourcekitd_variant_string_get_length(sourcekitObject)
         let ptr = sourcekitd_variant_string_get_ptr(sourcekitObject)
-        let string = swiftStringFrom(ptr!, length: length)
-        return string
+        return String(bytes: ptr!, length: length)
     case SOURCEKITD_VARIANT_TYPE_INT64:
         return sourcekitd_variant_int64_get_value(sourcekitObject)
     case SOURCEKITD_VARIANT_TYPE_BOOL:
         return sourcekitd_variant_bool_get_value(sourcekitObject)
     case SOURCEKITD_VARIANT_TYPE_UID:
-        return stringForSourceKitUID(sourcekitd_variant_uid_get_value(sourcekitObject))
+        return String(sourceKitUID: sourcekitd_variant_uid_get_value(sourcekitObject))
     case SOURCEKITD_VARIANT_TYPE_NULL:
         return nil
     default:
@@ -117,83 +116,85 @@ private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
 /// SourceKit UID to String map.
 private var uidStringMap = [sourcekitd_uid_t: String]()
 
-/**
-Cache SourceKit requests for strings from UIDs
+private extension String {
+    /**
+    Cache SourceKit requests for strings from UIDs
 
-- parameter uid: UID received from sourcekitd* responses.
-
-- returns: Cached UID string if available, nil otherwise.
-*/
-internal func stringForSourceKitUID(_ uid: sourcekitd_uid_t) -> String? {
-    if let string = uidStringMap[uid] {
-        return string
-    }
-    let length = sourcekitd_uid_get_length(uid)
-    let bytes = sourcekitd_uid_get_string_ptr(uid)
-    if let uidString = swiftStringFrom(bytes!, length: length) {
-        /*
-        `String` created by `String(UTF8String:)` is based on `NSString`.
-        `NSString` base `String` has performance penalty on getting `hashValue`.
-        Everytime on getting `hashValue`, it calls `decomposedStringWithCanonicalMapping` for
-        "Unicode Normalization Form D" and creates autoreleased `CFString (mutable)` and
-        `CFString (store)`. Those `CFString` are created every time on using `hashValue`, such as
-        using `String` for Dictionary's key or adding to Set.
-        
-        For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
-        That does not cause calling `decomposedStringWithCanonicalMapping`.
-        */
-        let uidString = sourceKittenRawValueStringFrom(uidString) ?? "\(uidString)"
-        uidStringMap[uid] = uidString
-        return uidString
-    }
-    return nil
-}
-
-/**
-Returns SourceKitten defined enum's rawValue String from string
-
-- parameter uidString: String created from sourcekitd_uid_get_string_ptr().
-
-- returns: rawValue String if defined in SourceKitten, nil otherwise.
-*/
-private func sourceKittenRawValueStringFrom(_ uidString: String) -> String? {
-    return SwiftDocKey(rawValue: uidString)?.rawValue ??
-        SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
-        SyntaxKind(rawValue: uidString)?.rawValue
-}
-
-/**
-Returns Swift's native String from NSUTF8StringEncoding bytes and length
-
-`String(bytesNoCopy:length:encoding:)` creates `String` based on `NSString`.
-That is slower than Swift's native String on some scene.
- 
-- parameter bytes: UnsafePointer<Int8>
-- parameter length: length of bytes
-
-- returns: String Swift's native String
-*/
-private func swiftStringFrom(_ bytes: UnsafePointer<Int8>, length: Int) -> String? {
-    let pointer = UnsafeMutablePointer<Int8>(mutating: bytes)
-    // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
-    // We'll try another encodings if fail.
-    for encoding in [String.Encoding.utf8, .nextstep, .ascii] {
-        if let string = String(bytesNoCopy: pointer, length: length, encoding: encoding,
-            freeWhenDone: false) {
-            return "\(string)"
+    - returns: Cached UID string if available, nil otherwise.
+    */
+    init?(sourceKitUID: sourcekitd_uid_t) {
+        if let string = uidStringMap[sourceKitUID] {
+            self = string
+            return
         }
+        let length = sourcekitd_uid_get_length(sourceKitUID)
+        let bytes = sourcekitd_uid_get_string_ptr(sourceKitUID)
+        if let uidString = String(bytes: bytes!, length: length) {
+            /*
+            `String` created by `String(UTF8String:)` is based on `NSString`.
+            `NSString` base `String` has performance penalty on getting `hashValue`.
+            Everytime on getting `hashValue`, it calls `decomposedStringWithCanonicalMapping` for
+            "Unicode Normalization Form D" and creates autoreleased `CFString (mutable)` and
+            `CFString (store)`. Those `CFString` are created every time on using `hashValue`, such as
+            using `String` for Dictionary's key or adding to Set.
+            
+            For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
+            That does not cause calling `decomposedStringWithCanonicalMapping`.
+            */
+            let uidString = String(uidString: uidString)
+            uidStringMap[sourceKitUID] = uidString
+            self = uidString
+            return
+        }
+        return nil
     }
-    return nil
+
+    /**
+     Assigns SourceKitten defined enum's rawValue String from string.
+     rawValue String if defined in SourceKitten, nil otherwise.
+
+     - parameter uidString: String created from sourcekitd_uid_get_string_ptr().
+     */
+    init(uidString: String) {
+        self = SwiftDocKey(rawValue: uidString)?.rawValue ??
+            SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
+            SyntaxKind(rawValue: uidString)?.rawValue ?? "\(uidString)"
+    }
+
+    /**
+     Returns Swift's native String from NSUTF8StringEncoding bytes and length
+
+     `String(bytesNoCopy:length:encoding:)` creates `String` based on `NSString`.
+     That is slower than Swift's native String on some scene.
+
+     - parameter bytes: UnsafePointer<Int8>
+     - parameter length: length of bytes
+
+     - returns: String Swift's native String
+     */
+    init?(bytes: UnsafePointer<Int8>, length: Int) {
+        let pointer = UnsafeMutablePointer<Int8>(mutating: bytes)
+        // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
+        // We'll try another encodings if fail.
+        for encoding in [String.Encoding.utf8, .nextstep, .ascii] {
+            if let string = String(bytesNoCopy: pointer, length: length, encoding: encoding,
+                                   freeWhenDone: false) {
+                self = "\(string)"
+                return
+            }
+        }
+        return nil
+    }
 }
 
 /// Represents a SourceKit request.
 public enum Request {
     /// An `editor.open` request for the given File.
-    case EditorOpen(File)
+    case EditorOpen(file: File)
     /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
     case CursorInfo(file: String, offset: Int64, arguments: [String])
     /// A custom request by passing in the sourcekitd_object_t directly.
-    case CustomRequest(sourcekitd_object_t)
+    case CustomRequest(request: sourcekitd_object_t)
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
     case CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
@@ -304,7 +305,7 @@ public enum Request {
 
     - returns: sourcekitd_object_t representation of the Request, if successful.
     */
-    internal static func cursorInfoRequestForFilePath(_ filePath: String?, arguments: [String]) -> sourcekitd_object_t? {
+    internal static func cursorInfoRequest(filePath: String?, arguments: [String]) -> sourcekitd_object_t? {
         if let path = filePath {
             return Request.CursorInfo(file: path, offset: 0, arguments: arguments).sourcekitObject
         }
@@ -314,17 +315,17 @@ public enum Request {
     /**
     Send a Request.CursorInfo by updating its offset. Returns SourceKit response if successful.
 
-    - parameter request: sourcekitd_object_t representation of Request.CursorInfo
-    - parameter offset:  Offset to update request.
+    - parameter cursorInfoRequest: sourcekitd_object_t representation of Request.CursorInfo
+    - parameter offset:            Offset to update request.
 
     - returns: SourceKit response if successful.
     */
-    internal static func sendCursorInfoRequest(_ request: sourcekitd_object_t, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
+    internal static func send(cursorInfoRequest: sourcekitd_object_t, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
         if offset == 0 {
             return nil
         }
-        sourcekitd_request_dictionary_set_int64(request, sourcekitd_uid_get_from_cstr(SwiftDocKey.Offset.rawValue), offset)
-        return try? Request.CustomRequest(request).failableSend()
+        sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.Offset.rawValue), offset)
+        return try? Request.CustomRequest(request: cursorInfoRequest).failableSend()
     }
 
     /**
@@ -412,7 +413,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
     ]
     var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
     var values = Array(dict.values)
-    return Request.CustomRequest(sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
+    return Request.CustomRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
 internal func libraryWrapperForModule(_ module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {

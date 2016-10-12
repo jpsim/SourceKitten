@@ -29,8 +29,8 @@ public struct SwiftDocs {
         do {
             self.init(
                 file: file,
-                dictionary: try Request.EditorOpen(file).failableSend(),
-                cursorInfoRequest: Request.cursorInfoRequestForFilePath(file.path, arguments: arguments)
+                dictionary: try Request.EditorOpen(file: file).failableSend(),
+                cursorInfoRequest: Request.cursorInfoRequest(filePath: file.path, arguments: arguments)
             )
         } catch let error as Request.Error {
             fputs(error.description, stderr)
