@@ -53,25 +53,25 @@ public enum ObjCDeclarationKind: String {
     /// `UnexposedDecl`
     case unexposedDecl = "sourcekitten.source.lang.objc.decl.unexposed"
 
-    public static func fromClang(_ kind: CXCursorKind) -> ObjCDeclarationKind {
-        switch kind.rawValue {
-        case CXCursor_ObjCCategoryDecl.rawValue: return .category
-        case CXCursor_ObjCInterfaceDecl.rawValue: return .class
-        case CXCursor_EnumDecl.rawValue: return .enum
-        case CXCursor_EnumConstantDecl.rawValue: return .enumcase
-        case CXCursor_ObjCClassMethodDecl.rawValue: return .methodClass
-        case CXCursor_ObjCInstanceMethodDecl.rawValue: return .methodInstance
-        case CXCursor_ObjCPropertyDecl.rawValue: return .property
-        case CXCursor_ObjCProtocolDecl.rawValue: return .protocol
-        case CXCursor_TypedefDecl.rawValue: return .typedef
-        case CXCursor_VarDecl.rawValue: return .constant
-        case CXCursor_FunctionDecl.rawValue: return .function
-        case CXCursor_StructDecl.rawValue: return .struct
-        case CXCursor_FieldDecl.rawValue: return .field
-        case CXCursor_ObjCIvarDecl.rawValue: return .ivar
-        case CXCursor_ModuleImportDecl.rawValue: return .moduleImport
-        case CXCursor_UnexposedDecl.rawValue: return .unexposedDecl
-        default: fatalError("Unsupported CXCursorKind: \(clang_getCursorKindSpelling(kind))")
+    public init(_ cursorKind: CXCursorKind) {
+        switch cursorKind {
+        case CXCursor_ObjCCategoryDecl: self = .category
+        case CXCursor_ObjCInterfaceDecl: self = .class
+        case CXCursor_EnumDecl: self = .enum
+        case CXCursor_EnumConstantDecl: self = .enumcase
+        case CXCursor_ObjCClassMethodDecl: self = .methodClass
+        case CXCursor_ObjCInstanceMethodDecl: self = .methodInstance
+        case CXCursor_ObjCPropertyDecl: self = .property
+        case CXCursor_ObjCProtocolDecl: self = .protocol
+        case CXCursor_TypedefDecl: self = .typedef
+        case CXCursor_VarDecl: self = .constant
+        case CXCursor_FunctionDecl: self = .function
+        case CXCursor_StructDecl: self = .struct
+        case CXCursor_FieldDecl: self = .field
+        case CXCursor_ObjCIvarDecl: self = .ivar
+        case CXCursor_ModuleImportDecl: self = .moduleImport
+        case CXCursor_UnexposedDecl: self = .unexposedDecl
+        default: fatalError("Unsupported CXCursorKind: \(clang_getCursorKindSpelling(cursorKind))")
         }
     }
 }

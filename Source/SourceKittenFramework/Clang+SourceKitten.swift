@@ -87,7 +87,7 @@ extension CXCursor {
     }
 
     func objCKind() -> ObjCDeclarationKind {
-        return ObjCDeclarationKind.fromClang(kind)
+        return ObjCDeclarationKind(kind)
     }
 
     func str() -> String? {
