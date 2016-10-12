@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 JP Simard. All rights reserved.
 //
 
+import Dispatch
 import Foundation
 #if SWIFT_PACKAGE
 import SourceKit
