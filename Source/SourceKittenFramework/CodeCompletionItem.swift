@@ -44,7 +44,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
         return toJSON(dictionaryValue as NSDictionary)
     }
 
-    public static func parseResponse(_ response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {
+    public static func parse(response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {
         return (response["key.results"] as! [SourceKitRepresentable]).map { item in
             let dict = item as! [String: SourceKitRepresentable]
             return CodeCompletionItem(kind: dict["key.kind"] as! String,
