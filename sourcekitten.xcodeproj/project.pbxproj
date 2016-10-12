@@ -41,6 +41,7 @@
 		E813023B1CCD09DB0056E826 /* IndexCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813023A1CCD09DB0056E826 /* IndexCommand.swift */; };
 		E8241CA31A5E01840047687E /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8241CA21A5E01840047687E /* ModuleTests.swift */; };
 		E8241CA51A5E01A10047687E /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8241CA41A5E01A10047687E /* Module.swift */; };
+		E82882541DAEEDD1002E0564 /* LinuxCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82882531DAEEDD1002E0564 /* LinuxCompatibility.swift */; };
 		E834740F1A593B5B00532B9A /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834740E1A593B5B00532B9A /* Structure.swift */; };
 		E83748C31A5BCD7900862B1B /* OffsetMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83748C21A5BCD7900862B1B /* OffsetMap.swift */; };
 		E83A0B351A5D382B0041A60A /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83A0B341A5D382B0041A60A /* VersionCommand.swift */; };
@@ -178,6 +179,7 @@
 		E813023A1CCD09DB0056E826 /* IndexCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexCommand.swift; sourceTree = "<group>"; };
 		E8241CA21A5E01840047687E /* ModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		E8241CA41A5E01A10047687E /* Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		E82882531DAEEDD1002E0564 /* LinuxCompatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxCompatibility.swift; sourceTree = "<group>"; };
 		E834740E1A593B5B00532B9A /* Structure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; usesTabs = 0; };
 		E834D61D1B2D054B002AA1FE /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E83748C21A5BCD7900862B1B /* OffsetMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffsetMap.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */,
 				6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */,
 				6C4CF5721C78B47F008532C5 /* library_wrapper_sourcekitd.swift */,
+				E82882531DAEEDD1002E0564 /* LinuxCompatibility.swift */,
 				E8241CA41A5E01A10047687E /* Module.swift */,
 				E877D9261B5693E70095BB2B /* ObjCDeclarationKind.swift */,
 				E83748C21A5BCD7900862B1B /* OffsetMap.swift */,
@@ -642,6 +645,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E82882541DAEEDD1002E0564 /* LinuxCompatibility.swift in Sources */,
 				E806D2931BE058D600D1BE41 /* Documentation.swift in Sources */,
 				3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */,
 				2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */,
