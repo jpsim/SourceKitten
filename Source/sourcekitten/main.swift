@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-import Darwin
 import Commandant
+import Darwin
 
 // `sourcekitd_set_notification_handler()` sets the handler to be executed on main thread queue.
 // So, we vacate main thread to `dispatchMain()`.
