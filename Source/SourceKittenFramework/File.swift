@@ -139,7 +139,7 @@ public final class File {
 
     - returns: Mark name if successfully parsed.
     */
-    private func markNameFromDictionary(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+    private func parseMarkName(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         precondition(SwiftDocKey.getKind(dictionary)! == SyntaxKind.CommentMark.rawValue)
         let offset = Int(SwiftDocKey.getOffset(dictionary)!)
         let length = Int(SwiftDocKey.getLength(dictionary)!)
@@ -155,7 +155,7 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
+    public func process(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
@@ -180,7 +180,7 @@ public final class File {
             dictionary = merge(dictionary, parsedXMLDocs)
         }
 
-        if let commentBody = (syntaxMap.flatMap { getDocumentationCommentBody(dictionary, syntaxMap: $0) }) {
+        if let commentBody = (syntaxMap.flatMap { parseDocumentationCommentBody(dictionary, syntaxMap: $0) }) {
             // Parse documentation comment and add to dictionary
             dictionary[SwiftDocKey.DocumentationComment.rawValue] = commentBody
         }
@@ -200,15 +200,15 @@ public final class File {
     - parameter documentedTokenOffsets: Offsets that are likely documented.
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
-    internal func furtherProcessDictionary(_ dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
+    internal func furtherProcess(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         let offsetMap = generateOffsetMap(documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
-            if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ processDictionary($0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
+            if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ process(dictionary: $0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
                let kind = SwiftDocKey.getKind(response),
                SwiftDeclarationKind(rawValue: kind) != nil,
                let parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
-               let inserted = insertDoc(response, parent: dictionary, offset: parentOffset) {
+                let inserted = insert(doc: response, parent: dictionary, offset: parentOffset) {
                dictionary = inserted
             }
         }
@@ -231,7 +231,7 @@ public final class File {
             .map({ $0 as! [String: SourceKitRepresentable] })
             .filter(isDeclarationOrCommentMark)
             .map {
-                processDictionary($0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
+                process(dictionary: $0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
         }
     }
 
@@ -246,7 +246,7 @@ public final class File {
             return nil
         }
         // Only update dictionaries with a 'kind' key
-        if kind == SyntaxKind.CommentMark.rawValue, let markName = markNameFromDictionary(dictionary) {
+        if kind == SyntaxKind.CommentMark.rawValue, let markName = parseMarkName(dictionary) {
             // Update comment marks
             return [SwiftDocKey.Name.rawValue: markName]
         } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .VarParameter {
@@ -276,7 +276,7 @@ public final class File {
 
     - returns: True if a doc should be inserted in the parent at the provided offset.
     */
-    private func shouldInsert(_ parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
+    private func shouldInsert(parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
         return SwiftDocKey.getSubstructure(parent) != nil &&
             ((offset == 0) ||
             (shouldTreatAsSameFile(parent) && SwiftDocKey.getNameOffset(parent) == offset))
@@ -293,9 +293,9 @@ public final class File {
 
     - returns: Parent with doc inserted if successful.
     */
-    private func insertDoc(_ doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
+    private func insert(doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
         var parent = parent
-        if shouldInsert(parent, offset: offset) {
+        if shouldInsert(parent: parent, offset: offset) {
             var substructure = SwiftDocKey.getSubstructure(parent)!
             var insertIndex = substructure.count
             for (index, structure) in substructure.reversed().enumerated() {
@@ -312,7 +312,7 @@ public final class File {
             if let subArray = parent[key] as? [SourceKitRepresentable] {
                 var subArray = subArray
                 for i in 0..<subArray.count {
-                    if let subDict = insertDoc(doc, parent: subArray[i] as! [String: SourceKitRepresentable], offset: offset) {
+                    if let subDict = insert(doc: doc, parent: subArray[i] as! [String: SourceKitRepresentable], offset: offset) {
                         subArray[i] = subDict
                         parent[key] = subArray
                         return parent
@@ -356,7 +356,7 @@ public final class File {
     - returns: `dictionary`'s documentation comment body as a string, without any documentation
                syntax (`/** ... */` or `/// ...`).
     */
-    public func getDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
+    public func parseDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
         let isExtension = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init) == .Extension
         let hasFullXMLDocs = dictionary.keys.contains(SwiftDocKey.FullXMLDocs.rawValue)
         let hasRawDocComment: Bool = {
@@ -423,27 +423,26 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
             docs[SwiftDocKey.DocParameters.rawValue] = parameters.map {
                 [
                     "name": $0["Name"].element?.text ?? "",
-                    "discussion": childrenAsArray($0["Discussion"]) ?? []
+                    "discussion": $0["Discussion"].childrenAsArray() ?? []
                 ] as [String: SourceKitRepresentable]
             } as [SourceKitRepresentable]
         }
-        docs[SwiftDocKey.DocDiscussion.rawValue] = childrenAsArray(rootXML["Discussion"])
-        docs[SwiftDocKey.DocResultDiscussion.rawValue] = childrenAsArray(rootXML["ResultDiscussion"])
+        docs[SwiftDocKey.DocDiscussion.rawValue] = rootXML["Discussion"].childrenAsArray()
+        docs[SwiftDocKey.DocResultDiscussion.rawValue] = rootXML["ResultDiscussion"].childrenAsArray()
         return docs
     }
 }
 
-/**
-Returns an `[SourceKitRepresentable]` of `[String: SourceKitRepresentable]` items from `indexer` children, if any.
-
-- parameter indexer: `XMLIndexer` to traverse.
-*/
-private func childrenAsArray(_ indexer: XMLIndexer) -> [SourceKitRepresentable]? {
-    let children = indexer.children
-    if children.count > 0 {
+private extension XMLIndexer {
+    /**
+    Returns an `[SourceKitRepresentable]` of `[String: SourceKitRepresentable]` items from `indexer` children, if any.
+    */
+    func childrenAsArray() -> [SourceKitRepresentable]? {
+        if children.isEmpty {
+            return nil
+        }
         return children.flatMap({ $0.element }).map {
             [$0.name: $0.text ?? ""] as [String: SourceKitRepresentable]
         } as [SourceKitRepresentable]
     }
-    return nil
 }
