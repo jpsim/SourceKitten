@@ -59,7 +59,7 @@ public struct SyntaxMap {
 
     - parameter offset: Last possible byte offset of the range's start.
     */
-    public func commentRangeBeforeOffset(_ offset: Int) -> Range<Int>? {
+    public func commentRange(beforeOffset offset: Int) -> Range<Int>? {
         let tokensBeforeOffset = tokens.reversed().filter { $0.offset < offset }
 
         let docTypes = SyntaxKind.docComments().map({ $0.rawValue })

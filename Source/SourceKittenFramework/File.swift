@@ -371,7 +371,7 @@ public final class File {
         guard hasDocumentationComment else { return nil }
 
         return (isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)).flatMap { offset in
-            return syntaxMap.commentRangeBeforeOffset(Int(offset)).flatMap { commentByteRange in
+            return syntaxMap.commentRange(beforeOffset: Int(offset)).flatMap { commentByteRange in
                 return contents.byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound).flatMap { nsRange in
                     return contents.commentBody(range: nsRange)
                 }
