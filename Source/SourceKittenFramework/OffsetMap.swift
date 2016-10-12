@@ -23,7 +23,7 @@ extension File {
     - returns: OffsetMap containing offset locations at which there are declarations that likely
                have documentation comments, but haven't been documented by SourceKitten yet.
     */
-    public func generateOffsetMap(_ documentedTokenOffsets: [Int], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
+    public func makeOffsetMap(documentedTokenOffsets: [Int], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
         var offsetMap = OffsetMap()
         for offset in documentedTokenOffsets {
             offsetMap[offset] = 0

@@ -202,7 +202,7 @@ public final class File {
     */
     internal func furtherProcess(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
-        let offsetMap = generateOffsetMap(documentedTokenOffsets, dictionary: dictionary)
+        let offsetMap = makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
             if let response = Request.sendCursorInfoRequest(cursorInfoRequest, atOffset: Int64(offset)).map({ process(dictionary: $0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
                let kind = SwiftDocKey.getKind(response),
