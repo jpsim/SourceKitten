@@ -1,7 +1,7 @@
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
-private let library = toolchainLoader.load("libclang.dylib")
+private let library = toolchainLoader.load(path: "libclang.dylib")
 internal let clang_Cursor_getParsedComment: @convention(c) (CXCursor) -> (CXComment) = library.load(symbol: "clang_Cursor_getParsedComment")
 internal let clang_Comment_getKind: @convention(c) (CXComment) -> (CXCommentKind) = library.load(symbol: "clang_Comment_getKind")
 internal let clang_Comment_getNumChildren: @convention(c) (CXComment) -> (UInt32) = library.load(symbol: "clang_Comment_getNumChildren")

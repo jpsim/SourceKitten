@@ -43,8 +43,8 @@ let toolchainLoader = Loader(searchPaths: [
 struct Loader {
     let searchPaths: [String]
 
-    func load(_ path: String) -> DynamicLinkLibrary {
-        let fullPaths = searchPaths.map { $0.stringByAppendingPathComponent(path) }.filter { $0.isFile }
+    func load(path: String) -> DynamicLinkLibrary {
+        let fullPaths = searchPaths.map { $0.appending(pathComponent: path) }.filter { $0.isFile }
 
         // try all fullPaths that contains target file,
         // then try loading with simple path that depends resolving to DYLD
@@ -105,7 +105,7 @@ private let xcrunFindPath: String? = {
     guard xcrunFindSwiftPath.hasSuffix("/usr/bin/swift") else {
         return nil
     }
-    let xcrunFindPath = xcrunFindSwiftPath.deletingLastPathComponents(3)
+    let xcrunFindPath = xcrunFindSwiftPath.deleting(lastPathComponents: 3)
     // Return nil if xcrunFindPath points to "Command Line Tools OS X for Xcode"
     // because it doesn't contain `sourcekitd.framework`.
     if xcrunFindPath == "/Library/Developer/CommandLineTools" {
@@ -122,26 +122,26 @@ private let userApplicationsDir: String? =
 
 private extension String {
     var toolchainDir: String {
-        return stringByAppendingPathComponent("Toolchains/XcodeDefault.xctoolchain")
+        return appending(pathComponent: "Toolchains/XcodeDefault.xctoolchain")
     }
 
     var xcodeDeveloperDir: String {
-        return stringByAppendingPathComponent("Xcode.app/Contents/Developer")
+        return appending(pathComponent: "Xcode.app/Contents/Developer")
     }
     
     var xcodeBetaDeveloperDir: String {
-        return stringByAppendingPathComponent("Xcode-beta.app/Contents/Developer")
+        return appending(pathComponent: "Xcode-beta.app/Contents/Developer")
     }
 
     var usrLibDir: String {
-        return stringByAppendingPathComponent("/usr/lib")
+        return appending(pathComponent: "/usr/lib")
     }
 
-    func stringByAppendingPathComponent(_ str: String) -> String {
-        return URL(fileURLWithPath: self).appendingPathComponent(str).path
+    func appending(pathComponent: String) -> String {
+        return URL(fileURLWithPath: self).appendingPathComponent(pathComponent).path
     }
 
-    func deletingLastPathComponents(_ n: Int) -> String {
+    func deleting(lastPathComponents n: Int) -> String {
         var url = URL(fileURLWithPath: self)
         for _ in 0..<n {
             url = url.deletingLastPathComponent()

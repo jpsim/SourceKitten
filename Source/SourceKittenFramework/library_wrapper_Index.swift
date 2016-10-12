@@ -1,7 +1,7 @@
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
-private let library = toolchainLoader.load("libclang.dylib")
+private let library = toolchainLoader.load(path: "libclang.dylib")
 internal let clang_createIndex: @convention(c) (Int32, Int32) -> (CXIndex!) = library.load(symbol: "clang_createIndex")
 internal let clang_disposeIndex: @convention(c) (CXIndex?) -> () = library.load(symbol: "clang_disposeIndex")
 internal let clang_CXIndex_setGlobalOptions: @convention(c) (CXIndex?, UInt32) -> () = library.load(symbol: "clang_CXIndex_setGlobalOptions")

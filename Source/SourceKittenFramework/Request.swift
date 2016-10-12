@@ -447,6 +447,6 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, spmMod
         return "internal let \(name): @convention(c) (\(parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", "))) -> (\(returnTypes.joined(separator: ", "))) = library.load(symbol: \"\(name)\")".replacingOccurrences(of: "SourceKittenFramework.", with: "")
     }
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
-    let library = "private let library = toolchainLoader.load(\"\(loadPath)\")\n"
+    let library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
     return spmImport + library + freeFunctions.joined(separator: "\n") + "\n"
 }
