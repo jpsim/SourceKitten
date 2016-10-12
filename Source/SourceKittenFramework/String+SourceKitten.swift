@@ -399,11 +399,11 @@ extension String {
 
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
-    public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
+    public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limit: NSRange?) -> [SourceDeclaration] {
         let regex = try! NSRegularExpression(pattern: "(#pragma\\smark|@name)[ -]*([^\\n]+)", options: []) // Safe to force try
         let range: NSRange
-        if let limitRange = limitRange {
-            range = NSRange(location: limitRange.location, length: min(utf16.count - limitRange.location, limitRange.length))
+        if let limit = limit {
+            range = NSRange(location: limit.location, length: min(utf16.count - limit.location, limit.length))
         } else {
             range = NSRange(location: 0, length: utf16.count)
         }

@@ -11,18 +11,18 @@ import Clang_C
 #endif
 import Foundation
 
-public func insertMarks(_ declarations: [SourceDeclaration], limitRange: NSRange? = nil) -> [SourceDeclaration] {
+public func insertMarks(declarations: [SourceDeclaration], limit: NSRange? = nil) -> [SourceDeclaration] {
     guard declarations.count > 0 else { return [] }
     guard let path = declarations.first?.location.file, let file = File(path: path) else {
         fatalError("can't extract marks without a file.")
     }
     let currentMarks = file.contents.pragmaMarks(path, excludeRanges: declarations.map({
         file.contents.byteRangeToNSRange(start: $0.range.location, length: $0.range.length) ?? NSRange()
-    }), limitRange: limitRange)
+    }), limit: limit)
     let newDeclarations: [SourceDeclaration] = declarations.map { declaration in
         var varDeclaration = declaration
         let range = file.contents.byteRangeToNSRange(start: declaration.range.location, length: declaration.range.length)
-        varDeclaration.children = insertMarks(declaration.children, limitRange: range)
+        varDeclaration.children = insertMarks(declarations: declaration.children, limit: range)
         return varDeclaration
     }
     return (newDeclarations + currentMarks).sorted()
@@ -51,17 +51,17 @@ public struct SourceDeclaration {
     ///
     /// - warning: can only be invoked if `type == .Property`.
     var getterUSR: String {
-        return generateAccessorUSR(getter: true)
+        return accessorUSR(getter: true)
     }
 
     /// Returns the USR for the auto-generated setter for this property.
     ///
     /// - warning: can only be invoked if `type == .Property`.
     var setterUSR: String {
-        return generateAccessorUSR(getter: false)
+        return accessorUSR(getter: false)
     }
 
-    private func generateAccessorUSR(getter: Bool) -> String {
+    private func accessorUSR(getter: Bool) -> String {
         assert(type == .property)
         guard let usr = usr else {
             fatalError("Couldn't extract USR")

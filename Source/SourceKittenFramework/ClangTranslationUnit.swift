@@ -65,7 +65,7 @@ public struct ClangTranslationUnit {
             .distinct()
             .sorted()
             .groupBy { $0.location.file }
-            .map { insertMarks($0) }
+            .map { insertMarks(declarations: $0) }
     }
 
     /**
