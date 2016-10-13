@@ -12,6 +12,8 @@ import XCTest
 
 let fixturesDirectory = URL(fileURLWithPath: #file).deletingLastPathComponent().path + "/Fixtures/"
 
+#if !os(Linux)
+
 class ClangTranslationUnitTests: XCTestCase {
 
     func testParsesObjectiveCHeaderFilesAndXcodebuildArguments() {
@@ -47,3 +49,5 @@ class ClangTranslationUnitTests: XCTestCase {
         compare(clangFixture: "Realm/Realm")
     }
 }
+
+#endif

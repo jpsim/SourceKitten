@@ -384,12 +384,14 @@ extension NSString {
         return pathExtension == "swift"
     }
 
+#if !os(Linux)
     /**
     Returns a substring from a start and end SourceLocation.
     */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
         return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
     }
+#endif
 }
 
 extension String {
@@ -397,6 +399,7 @@ extension String {
         return FileManager.default.fileExists(atPath: self)
     }
 
+#if !os(Linux)
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limit: NSRange?) -> [SourceDeclaration] {
@@ -430,6 +433,7 @@ extension String {
                 usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [], swiftDeclaration: nil, availability: nil)
         }
     }
+#endif
 
     /**
     Returns whether or not the `token` can be documented. Either because it is a
