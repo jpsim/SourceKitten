@@ -428,8 +428,6 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxP
         let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
         let unsupportedFunctions = [
             "clang_executeOnThread",
-            "sourcekitd_variant_dictionary_apply",
-            "sourcekitd_variant_array_apply",
         ]
         guard !unsupportedFunctions.contains(name) else {
             return nil
