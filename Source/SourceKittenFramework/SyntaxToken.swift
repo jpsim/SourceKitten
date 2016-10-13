@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-import Foundation
-
 /// Represents a single Swift syntax token.
 public struct SyntaxToken {
     /// Token type. See SyntaxKind.
@@ -56,5 +54,5 @@ public func ==(lhs: SyntaxToken, rhs: SyntaxToken) -> Bool {
 
 extension SyntaxToken: CustomStringConvertible {
     /// A textual JSON representation of `SyntaxToken`.
-    public var description: String { return toJSON(dictionaryValue as NSDictionary) }
+    public var description: String { return toJSON(dictionaryValue.bridge()) }
 }

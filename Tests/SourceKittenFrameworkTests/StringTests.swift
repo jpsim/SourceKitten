@@ -21,10 +21,10 @@ class StringTests: XCTestCase {
     }
 
     func testStringByTrimmingTrailingCharactersInSet() {
-        XCTAssertEqual("".trimmingTrailingCharacters(in: .whitespacesAndNewlines), "")
-        XCTAssertEqual(" a ".trimmingTrailingCharacters(in: .whitespacesAndNewlines), " a")
-        XCTAssertEqual(" ".trimmingTrailingCharacters(in: .whitespacesAndNewlines), "")
-        XCTAssertEqual("a".trimmingTrailingCharacters(in: .whitespacesAndNewlines), "a")
+        XCTAssertEqual("".bridge().trimmingTrailingCharacters(in: .whitespacesAndNewlines), "")
+        XCTAssertEqual(" a ".bridge().trimmingTrailingCharacters(in: .whitespacesAndNewlines), " a")
+        XCTAssertEqual(" ".bridge().trimmingTrailingCharacters(in: .whitespacesAndNewlines), "")
+        XCTAssertEqual("a".bridge().trimmingTrailingCharacters(in: .whitespacesAndNewlines), "a")
     }
 
     func testCommentBody() {
@@ -58,7 +58,7 @@ class StringTests: XCTestCase {
             "badswift",
             "bad.Swift"
         ]
-        XCTAssertEqual((good + bad).filter({ $0.isSwiftFile() }), good, "should parse Swift files in an Array")
+        XCTAssertEqual((good + bad).filter({ $0.bridge().isSwiftFile() }), good, "should parse Swift files in an Array")
     }
 
     func testIsObjectiveCHeaderFile() {
@@ -73,12 +73,12 @@ class StringTests: XCTestCase {
             "badshh",
             "bad.H"
         ]
-        XCTAssertEqual((good + bad).filter({ $0.isObjectiveCHeaderFile() }), good, "should parse Objective-C header files in an Array")
+        XCTAssertEqual((good + bad).filter({ $0.bridge().isObjectiveCHeaderFile() }), good, "should parse Objective-C header files in an Array")
     }
 
     func testAbsolutePath() {
-        XCTAssert(("LICENSE".absolutePathRepresentation() as NSString).isAbsolutePath, "absolutePathRepresentation() of a relative path should be an absolute path")
-        XCTAssertEqual(#file.absolutePathRepresentation(), #file, "absolutePathRepresentation() should return the caller if it's already an absolute path")
+        XCTAssert(("LICENSE".bridge().absolutePathRepresentation().bridge()).isAbsolutePath, "absolutePathRepresentation() of a relative path should be an absolute path")
+        XCTAssertEqual(#file.bridge().absolutePathRepresentation(), #file, "absolutePathRepresentation() should return the caller if it's already an absolute path")
     }
 
     func testIsTokenDocumentable() {
@@ -125,27 +125,27 @@ class StringTests: XCTestCase {
 
     func testSubstringWithByteRange() {
         let string = "👨‍👩‍👧‍👧123"
-        XCTAssertEqual(string.substringWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧")
-        XCTAssertEqual(string.substringWithByteRange(start: 25, length: 1)!, "1")
+        XCTAssertEqual(string.bridge().substringWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧")
+        XCTAssertEqual(string.bridge().substringWithByteRange(start: 25, length: 1)!, "1")
     }
 
     func testSubstringLinesWithByteRange() {
         let string = "👨‍👩‍👧‍👧\n123"
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 0)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 26)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 0, length: 27)!, string)
-        XCTAssertEqual(string.substringLinesWithByteRange(start: 27, length: 0)!, "123")
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: 0, length: 0)!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: 0, length: 26)!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: 0, length: 27)!, string)
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: 27, length: 0)!, "123")
     }
 
     func testLineRangeWithByteRange() {
-        XCTAssert("".lineRangeWithByteRange(start: 0, length: 0) == nil)
+        XCTAssert("".bridge().lineRangeWithByteRange(start: 0, length: 0) == nil)
         let string = "👨‍👩‍👧‍👧\n123"
-        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 0)! == (1, 1))
-        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 25)! == (1, 1))
-        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 26)! == (1, 2))
-        XCTAssert(string.lineRangeWithByteRange(start: 0, length: 27)! == (1, 2))
-        XCTAssert(string.lineRangeWithByteRange(start: 27, length: 0)! == (2, 2))
+        XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 0)! == (1, 1))
+        XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 25)! == (1, 1))
+        XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 26)! == (1, 2))
+        XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 27)! == (1, 2))
+        XCTAssert(string.bridge().lineRangeWithByteRange(start: 27, length: 0)! == (2, 2))
     }
 }
 

@@ -124,7 +124,7 @@ internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Langu
     let regex = try! NSRegularExpression(pattern: pattern, options: []) // Safe to force try
     let range = NSRange(location: 0, length: xcodebuildOutput.length)
 
-    guard let regexMatch = regex.firstMatch(in: xcodebuildOutput as String, options: [], range: range) else {
+    guard let regexMatch = regex.firstMatch(in: xcodebuildOutput.bridge(), options: [], range: range) else {
         return nil
     }
 
@@ -150,8 +150,8 @@ Extracts Objective-C header files and `xcodebuild` arguments from an array of he
 public func parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: [String]) -> (headerFiles: [String], xcodebuildArguments: [String]) {
     var xcodebuildArguments = sourcekittenArguments
     var headerFiles = [String]()
-    while let headerFile = xcodebuildArguments.first, headerFile.isObjectiveCHeaderFile() {
-        headerFiles.append(xcodebuildArguments.remove(at: 0).absolutePathRepresentation())
+    while let headerFile = xcodebuildArguments.first, headerFile.bridge().isObjectiveCHeaderFile() {
+        headerFiles.append(xcodebuildArguments.remove(at: 0).bridge().absolutePathRepresentation())
     }
     return (headerFiles, xcodebuildArguments)
 }

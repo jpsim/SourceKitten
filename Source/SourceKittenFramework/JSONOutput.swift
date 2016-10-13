@@ -54,7 +54,7 @@ public func toNSDictionary(_ dictionary: [String: SourceKitRepresentable]) -> NS
             fatalError("Should never happen because we've checked all SourceKitRepresentable types")
         }
     }
-    return anyDictionary as NSDictionary
+    return anyDictionary.bridge()
 }
 
 #if !os(Linux)

@@ -40,7 +40,7 @@ struct CompleteCommand: CommandProtocol {
         let path: String
         let contents: String
         if !options.file.isEmpty {
-            path = options.file.absolutePathRepresentation()
+            path = options.file.bridge().absolutePathRepresentation()
             guard let file = File(path: path) else {
                 return .failure(.readFailed(path: options.file))
             }

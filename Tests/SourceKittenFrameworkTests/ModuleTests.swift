@@ -10,9 +10,9 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-let projectRoot = (((#file as NSString)
-    .deletingLastPathComponent as NSString)
-    .deletingLastPathComponent as NSString)
+let projectRoot = #file.bridge()
+    .deletingLastPathComponent.bridge()
+    .deletingLastPathComponent.bridge()
     .deletingLastPathComponent
 
 #if !os(Linux)
