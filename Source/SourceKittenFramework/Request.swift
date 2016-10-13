@@ -426,7 +426,12 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, spmMod
     }).flatMap { function -> String? in
         let fullFunctionName = function["key.name"] as! String
         let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
-        guard name != "clang_executeOnThread" else { // unsupported format
+        let unsupportedFunctions = [
+            "clang_executeOnThread",
+            "sourcekitd_variant_dictionary_apply",
+            "sourcekitd_variant_array_apply",
+        ]
+        guard !unsupportedFunctions.contains(name) else {
             return nil
         }
 
