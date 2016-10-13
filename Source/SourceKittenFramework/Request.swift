@@ -451,3 +451,33 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, spmMod
     let library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
     return spmImport + library + freeFunctions.joined(separator: "\n") + "\n"
 }
+
+// MARK: - migration support
+extension Request {
+    @available(*, unavailable, renamed: "editorOpen(file:)")
+    public static func EditorOpen(_: File) -> Request { fatalError() }
+
+    @available(*, unavailable, renamed: "cursorInfo(file:offset:arguments:)")
+    public static func CursorInfo(file: String, offset: Int64, arguments: [String])-> Request { fatalError() }
+
+    @available(*, unavailable, renamed: "customRequest(request:)")
+    public static func CustomRequest(_: sourcekitd_object_t) -> Request { fatalError() }
+
+    @available(*, unavailable, renamed: "codeCompletionRequest(file:contents:offset:arguments:)")
+    public static func CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String]) -> Request { fatalError() }
+
+    @available(*, unavailable, renamed: "interface(file:uuid:)")
+    public static func Interface(file: String, uuid: String) -> Request { fatalError() }
+
+    @available(*, unavailable, renamed: "findUSR(file:usr:)")
+    public static func FindUSR(file: String, usr: String) -> Request { fatalError() }
+
+    @available(*, unavailable, renamed: "index(file:arguments:)")
+    public static func Index(file: String, arguments: [String]) -> Request { fatalError() }
+
+    @available(*, unavailable, renamed: "format(file:line:useTabs:indentWith:)")
+    public static func Format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64) -> Request { fatalError() }
+
+    @available(*, unavailable, renamed: "replaceText(file:offset:length:sourceText:)")
+    public static func ReplaceText(file: String, offset: Int64, length: Int64, sourceText: String) -> Request { fatalError() }
+}

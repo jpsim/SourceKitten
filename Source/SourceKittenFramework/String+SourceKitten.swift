@@ -566,3 +566,58 @@ extension String {
         return trimmingCharacters(in: unwantedSet)
     }
 }
+
+// MARK: - migration support
+extension NSString {
+    @available(*, unavailable, renamed: "lineAndCharacter(forCharacterOffset:)")
+    public func lineAndCharacterForCharacterOffset(_ offset: Int) -> (line: Int, character: Int)? {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "lineAndCharacter(forByteOffset:)")
+    public func lineAndCharacterForByteOffset(_ offset: Int) -> (line: Int, character: Int)? {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "trimmingTrailingCharacters(in:)")
+    public func stringByTrimmingTrailingCharactersInSet(_ characterSet: CharacterSet) -> String {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "absolutePathRepresentation(rootDirectory:)")
+    public func absolutePathRepresentation(_ rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "substringWithSourceRange(start:end:)")
+    public func substringWithSourceRange(_ start: SourceLocation, end: SourceLocation) -> String? {
+        fatalError()
+    }
+}
+
+extension String {
+    @available(*, unavailable, renamed: "pragmaMarks(_:excludeRanges:limit:)")
+    public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "documentedTokenOffsets(syntaxMap:)")
+    public func documentedTokenOffsets(_ syntaxMap: SyntaxMap) -> [Int] {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "commentBody(range:)")
+    public func commentBody(_ range: NSRange? = nil) -> String? {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "removingCommonLeadingWhitespaceFromLines()")
+    public func stringByRemovingCommonLeadingWhitespaceFromLines() -> String {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "countOfLeadingCharacters(in:)")
+    public func countOfLeadingCharactersInSet(_ characterSet: CharacterSet) -> Int {
+        fatalError()
+    }
+}

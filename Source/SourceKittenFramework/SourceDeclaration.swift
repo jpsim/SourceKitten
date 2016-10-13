@@ -140,3 +140,9 @@ extension SourceDeclaration: Comparable {}
 public func <(lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
     return lhs.location < rhs.location
 }
+
+// MARK: - migration support
+@available(*, unavailable, renamed: "insertMarks(declarations:limit:)")
+public func insertMarks(_ declarations: [SourceDeclaration], limitRange: NSRange? = nil) -> [SourceDeclaration] {
+    fatalError()
+}

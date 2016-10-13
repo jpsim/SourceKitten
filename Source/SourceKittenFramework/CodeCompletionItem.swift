@@ -59,3 +59,11 @@ public struct CodeCompletionItem: CustomStringConvertible {
         }
     }
 }
+
+// MARK: - migration support
+extension CodeCompletionItem {
+    @available(*, unavailable, renamed: "parse(response:)")
+    public static func parseResponse(_ response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {
+        fatalError()
+    }
+}
