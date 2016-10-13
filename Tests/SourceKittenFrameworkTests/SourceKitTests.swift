@@ -27,10 +27,14 @@ private func run(executable: String, arguments: [String]) -> String? {
 }
 
 private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
+    #if os(Linux)
+    let sourceKitPath = "\(linuxSourceKitLibPath)/libsourcekitdInProc.so"
+    #else
     let sourceKitPath = run(executable: "/usr/bin/xcrun", arguments: ["-f", "swiftc"])!.bridge()
         .deletingLastPathComponent.bridge()
         .deletingLastPathComponent.bridge()
         .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
+    #endif
     let strings = run(executable: "/usr/bin/strings", arguments: [sourceKitPath])
     return Set(strings!.components(separatedBy: "\n").filter { string in
         return string.range(of: pattern)?.lowerBound == string.startIndex
