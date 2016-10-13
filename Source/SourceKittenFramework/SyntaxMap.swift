@@ -49,7 +49,7 @@ public struct SyntaxMap {
     - parameter file: File to be parsed.
     */
     public init(file: File) {
-        self.init(sourceKitResponse: Request.EditorOpen(file: file).send())
+        self.init(sourceKitResponse: Request.editorOpen(file: file).send())
     }
 
     /**

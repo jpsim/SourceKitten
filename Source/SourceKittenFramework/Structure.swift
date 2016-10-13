@@ -30,7 +30,7 @@ public struct Structure {
     - parameter file: File to parse for structural information.
     */
     public init(file: File) {
-        self.init(sourceKitResponse: Request.EditorOpen(file: file).send())
+        self.init(sourceKitResponse: Request.editorOpen(file: file).send())
     }
 }
 

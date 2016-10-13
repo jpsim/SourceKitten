@@ -190,29 +190,29 @@ private extension String {
 /// Represents a SourceKit request.
 public enum Request {
     /// An `editor.open` request for the given File.
-    case EditorOpen(file: File)
+    case editorOpen(file: File)
     /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
-    case CursorInfo(file: String, offset: Int64, arguments: [String])
+    case cursorInfo(file: String, offset: Int64, arguments: [String])
     /// A custom request by passing in the sourcekitd_object_t directly.
-    case CustomRequest(request: sourcekitd_object_t)
+    case customRequest(request: sourcekitd_object_t)
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
-    case CodeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
+    case codeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
     /// ObjC Swift Interface
-    case Interface(file: String, uuid: String)
+    case interface(file: String, uuid: String)
     /// Find USR
-    case FindUSR(file: String, usr: String)
+    case findUSR(file: String, usr: String)
     /// Index
-    case Index(file: String, arguments: [String])
+    case index(file: String, arguments: [String])
     /// Format
-    case Format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
+    case format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
     /// ReplaceText
-    case ReplaceText(file: String, offset: Int64, length: Int64, sourceText: String)
+    case replaceText(file: String, offset: Int64, length: Int64, sourceText: String)
 
     fileprivate var sourcekitObject: sourcekitd_object_t {
         let dict: [sourcekitd_uid_t: sourcekitd_object_t?]
         switch self {
-        case .EditorOpen(let file):
+        case .editorOpen(let file):
             if let path = file.path {
                 dict = [
                     sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open")),
@@ -226,7 +226,7 @@ public enum Request {
                     sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(file.contents)
                 ]
             }
-        case .CursorInfo(let file, let offset, let arguments):
+        case .cursorInfo(let file, let offset, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.cursorinfo")),
@@ -235,9 +235,9 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
-        case .CustomRequest(let request):
+        case .customRequest(let request):
             return request
-        case .CodeCompletionRequest(let file, let contents, let offset, let arguments):
+        case .codeCompletionRequest(let file, let contents, let offset, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.codecomplete")),
@@ -247,7 +247,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
-        case .Interface(let file, let uuid):
+        case .interface(let file, let uuid):
             let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
@@ -256,20 +256,20 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.filepath"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
-        case .FindUSR(let file, let usr):
+        case .findUSR(let file, let usr):
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.find_usr")),
                 sourcekitd_uid_get_from_cstr("key.usr"): sourcekitd_request_string_create(usr),
                 sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file)
             ]
-        case .Index(let file, let arguments):
+        case .index(let file, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.indexsource")),
                 sourcekitd_uid_get_from_cstr("key.sourcefile"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
-        case .Format(let file, let line, let useTabs, let indentWidth):
+        case .format(let file, let line, let useTabs, let indentWidth):
             let formatOptions = [
                 sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth"): sourcekitd_request_int64_create(indentWidth),
                 sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth"): sourcekitd_request_int64_create(indentWidth),
@@ -283,7 +283,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.line"): sourcekitd_request_int64_create(line),
                 sourcekitd_uid_get_from_cstr("key.editor.format.options"): sourcekitd_request_dictionary_create(&formatOptionsKeys, &formatOptionsValues, formatOptions.count)
             ]
-        case .ReplaceText(let file, let offset, let length, let sourceText):
+        case .replaceText(let file, let offset, let length, let sourceText):
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.replacetext")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
@@ -307,7 +307,7 @@ public enum Request {
     */
     internal static func cursorInfoRequest(filePath: String?, arguments: [String]) -> sourcekitd_object_t? {
         if let path = filePath {
-            return Request.CursorInfo(file: path, offset: 0, arguments: arguments).sourcekitObject
+            return Request.cursorInfo(file: path, offset: 0, arguments: arguments).sourcekitObject
         }
         return nil
     }
@@ -325,7 +325,7 @@ public enum Request {
             return nil
         }
         sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue), offset)
-        return try? Request.CustomRequest(request: cursorInfoRequest).failableSend()
+        return try? Request.customRequest(request: cursorInfoRequest).failableSend()
     }
 
     /**
@@ -413,7 +413,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
     ]
     var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
     var values = Array(dict.values)
-    return Request.CustomRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
+    return Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
 internal func libraryWrapperForModule(_ module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {

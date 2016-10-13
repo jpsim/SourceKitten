@@ -57,7 +57,7 @@ struct CompleteCommand: CommandProtocol {
             args.append(contentsOf: ["-sdk", sdkPath()])
         }
 
-        let request = Request.CodeCompletionRequest(file: path, contents: contents,
+        let request = Request.codeCompletionRequest(file: path, contents: contents,
             offset: Int64(options.offset),
             arguments: args)
         print(CodeCompletionItem.parse(response: request.send()))
