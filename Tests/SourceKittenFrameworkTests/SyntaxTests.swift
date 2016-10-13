@@ -59,3 +59,14 @@ class SyntaxTests: XCTestCase {
         )
     }
 }
+
+extension SyntaxTests {
+    static var allTests: [(String, (SyntaxTests) -> () throws -> Void)] {
+        return [
+            ("testPrintEmptySyntax", testPrintEmptySyntax),
+            ("testGenerateSameSyntaxMapFileAndContents", testGenerateSameSyntaxMapFileAndContents),
+            ("testSubscript", testSubscript),
+            ("testSyntaxMapPrintValidJSON", testSyntaxMapPrintValidJSON),
+        ]
+    }
+}

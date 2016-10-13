@@ -154,3 +154,24 @@ typealias LineRangeType = (start: Int, end: Int)
 func ==(lhs: LineRangeType, rhs: LineRangeType) -> Bool {
     return lhs.start == rhs.start && lhs.end == rhs.end
 }
+
+extension StringTests {
+    static var allTests: [(String, (StringTests) -> () throws -> Void)] {
+        return [
+            ("testStringByRemovingCommonLeadingWhitespaceFromLines", testStringByRemovingCommonLeadingWhitespaceFromLines),
+            ("testStringByTrimmingTrailingCharactersInSet", testStringByTrimmingTrailingCharactersInSet),
+            ("testCommentBody", testCommentBody),
+            ("testIsSwiftFile", testIsSwiftFile),
+            ("testIsObjectiveCHeaderFile", testIsObjectiveCHeaderFile),
+            ("testAbsolutePath", testAbsolutePath),
+            ("testIsTokenDocumentable", testIsTokenDocumentable),
+            ("testParseDeclaration", testParseDeclaration),
+            ("testGenerateDocumentedTokenOffsets", testGenerateDocumentedTokenOffsets),
+            ("testDocumentedTokenOffsetsWithSubscript", testDocumentedTokenOffsetsWithSubscript),
+            ("testGenerateDocumentedTokenOffsetsEmpty", testGenerateDocumentedTokenOffsetsEmpty),
+            ("testSubstringWithByteRange", testSubstringWithByteRange),
+            ("testSubstringLinesWithByteRange", testSubstringLinesWithByteRange),
+            ("testLineRangeWithByteRange", testLineRangeWithByteRange),
+        ]
+    }
+}
