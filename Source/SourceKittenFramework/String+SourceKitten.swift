@@ -192,12 +192,16 @@ extension NSString {
     CacheContainer instance is stored to instance of NSString as associated object.
     */
     private var cacheContainer: CacheContainer {
+        #if os(Linux)
+        return CacheContainer(self)
+        #else
         if let cache = objc_getAssociatedObject(self, &keyCacheContainer) as? CacheContainer {
             return cache
         }
         let cache = CacheContainer(self)
         objc_setAssociatedObject(self, &keyCacheContainer, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return cache
+        #endif
     }
 
     /**
