@@ -417,7 +417,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
     return Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
-internal func libraryWrapperForModule(_ module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {
+internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) -> String {
     let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
@@ -454,8 +454,27 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, spmMod
         return "internal let \(name): @convention(c) (\(parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", "))) -> (\(returnTypes.joined(separator: ", "))) = library.load(symbol: \"\(name)\")".replacingOccurrences(of: "SourceKittenFramework.", with: "")
     }
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
-    let library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
-    return spmImport + library + freeFunctions.joined(separator: "\n") + "\n"
+    let library: String
+    if let linuxPath = linuxPath {
+        library = "#if os(Linux)\n" +
+            "private let path = \"\(linuxPath)\"\n" +
+            "#else\n" +
+            "private let path = \"\(loadPath)\"\n" +
+            "#endif\n" +
+            "private let library = toolchainLoader.load(path: path)\n"
+    } else {
+        library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
+    }
+    let startPlatformCheck: String
+    let endPlatformCheck: String
+    if linuxPath == nil {
+        startPlatformCheck = "#if !os(Linux)\n"
+        endPlatformCheck = "\n#endif\n"
+    } else {
+        startPlatformCheck = ""
+        endPlatformCheck = "\n"
+    }
+    return startPlatformCheck + spmImport + library + freeFunctions.joined(separator: "\n") + endPlatformCheck
 }
 
 // MARK: - migration support
