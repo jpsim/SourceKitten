@@ -57,31 +57,31 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
     switch sourcekitd_variant_get_type(sourcekitObject) {
     case SOURCEKITD_VARIANT_TYPE_ARRAY:
         var array = [SourceKitRepresentable]()
-        _ = sourcekitd_variant_array_apply(sourcekitObject) { index, value in
-            if let value = fromSourceKit(value) {
-                array.insert(value, at: Int(index))
-            }
-            return true
+        _ = withUnsafeMutablePointer(to: &array) { arrayPtr in
+            sourcekitd_variant_array_apply_f(sourcekitObject, { index, value, context in
+                if let value = fromSourceKit(value), let context = context {
+                    let localArray = context.bindMemory(to: [SourceKitRepresentable].self, capacity: 1)
+                    localArray.pointee.insert(value, at: Int(index))
+                }
+                return true
+            }, arrayPtr)
         }
         return array
     case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
-        var count: Int = 0
-        _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { _, _ in
-            count += 1
-            return true
-        }
-        var dict = [String: SourceKitRepresentable](minimumCapacity: count)
-        _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
-            if let key = String(sourceKitUID: key!), let value = fromSourceKit(value) {
-                dict[key] = value
-            }
-            return true
+        var dict = [String: SourceKitRepresentable]()
+        _ = withUnsafeMutablePointer(to: &dict) { dictPtr in
+            sourcekitd_variant_dictionary_apply_f(sourcekitObject, { key, value, context in
+                if let key = String(sourceKitUID: key!), let value = fromSourceKit(value), let context = context {
+                    let localDict = context.bindMemory(to: [String: SourceKitRepresentable].self, capacity: 1)
+                    localDict.pointee[key] = value
+                }
+                return true
+            }, dictPtr)
         }
         return dict
     case SOURCEKITD_VARIANT_TYPE_STRING:
-        let length = sourcekitd_variant_string_get_length(sourcekitObject)
-        let ptr = sourcekitd_variant_string_get_ptr(sourcekitObject)
-        return String(bytes: ptr!, length: length)
+        return String(bytes: sourcekitd_variant_string_get_ptr(sourcekitObject),
+                      length: sourcekitd_variant_string_get_length(sourcekitObject))
     case SOURCEKITD_VARIANT_TYPE_INT64:
         return sourcekitd_variant_int64_get_value(sourcekitObject)
     case SOURCEKITD_VARIANT_TYPE_BOOL:
