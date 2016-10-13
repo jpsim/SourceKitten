@@ -16,6 +16,9 @@ import Foundation
  - returns: JSON string representation of the input object.
  */
 public func toJSON(_ object: Any) -> String {
+    if let array = object as? [Any], array.isEmpty {
+        return "[\n\n]"
+    }
     do {
         let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: .prettyPrinted)
         if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
