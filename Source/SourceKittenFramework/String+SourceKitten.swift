@@ -56,7 +56,7 @@ extension NSString {
             //
             // A reference to `NSString` is held by every cast `String` along with their views and
             // indices.
-            let string = string.mutableCopy() as! String
+            let string = (string.mutableCopy() as! NSMutableString).bridge()
             utf8View = string.utf8
 
             var utf16CountSoFar = 0
@@ -244,8 +244,8 @@ extension NSString {
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
     public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
-        if isAbsolutePath { return self as String }
-        return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
+        if isAbsolutePath { return bridge() }
+        return NSString.path(withComponents: [rootDirectory, bridge()]).bridge().standardizingPath
     }
 
     /**
@@ -277,7 +277,7 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
-        let string = self as String
+        let string = bridge()
 
         let utf16View = string.utf16
         let startUTF16Index = utf16View.index(utf16View.startIndex, offsetBy: start)
@@ -448,7 +448,7 @@ extension String {
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
         if token.type == SyntaxKind.keyword.rawValue {
             let keywordFunctions = ["subscript", "init", "deinit"]
-            return ((self as NSString).substringWithByteRange(start: token.offset, length: token.length))
+            return bridge().substringWithByteRange(start: token.offset, length: token.length)
                 .map(keywordFunctions.contains) ?? false
         }
         return token.type == SyntaxKind.identifier.rawValue
@@ -481,7 +481,7 @@ extension String {
     - parameter range: Range to restrict the search for a comment body.
     */
     public func commentBody(range: NSRange? = nil) -> String? {
-        let nsString = self as NSString
+        let nsString = bridge()
         let patterns: [(pattern: String, options: NSRegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
             ("^\\s*\\/\\/\\/(.+)?",           .anchorsMatchLines)                               // single: ^\s*\/\/\/(.+)?
@@ -515,7 +515,7 @@ extension String {
                 }
             }
             if bodyParts.count > 0 {
-                return bodyParts.joined(separator: "\n")
+                return bodyParts.joined(separator: "\n").bridge()
                     .trimmingTrailingCharacters(in: .whitespacesAndNewlines)
                     .removingCommonLeadingWhitespaceFromLines()
             }
@@ -552,7 +552,7 @@ extension String {
     - parameter characterSet: Character set to check for membership.
     */
     public func countOfLeadingCharacters(in characterSet: CharacterSet) -> Int {
-        let characterSet = characterSet as NSCharacterSet
+        let characterSet = characterSet.bridge()
         var count = 0
         for char in utf16 {
             if !characterSet.characterIsMember(char) {
