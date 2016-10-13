@@ -370,13 +370,12 @@ public final class File {
         let hasDocumentationComment = (hasFullXMLDocs && !isExtension) || hasRawDocComment
         guard hasDocumentationComment else { return nil }
 
-        return (isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)).flatMap { offset in
-            return syntaxMap.commentRange(beforeOffset: Int(offset)).flatMap { commentByteRange in
-                return contents.byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound).flatMap { nsRange in
-                    return contents.commentBody(range: nsRange)
-                }
-            }
+        if let offset = isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary),
+           let commentByteRange = syntaxMap.commentRange(beforeOffset: Int(offset)),
+           let nsRange = contents.byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound) {
+            return contents.commentBody(range: nsRange)
         }
+        return nil
     }
 }
 
