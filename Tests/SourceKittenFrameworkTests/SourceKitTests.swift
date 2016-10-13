@@ -187,3 +187,16 @@ class SourceKitTests: XCTestCase {
         compareJSONString(withFixtureNamed: "BicycleIndex", jsonString: indexJSON.bridge())
     }
 }
+
+extension SourceKitTests {
+    static var allTests: [(String, (SourceKitTests) -> () throws -> Void)] {
+        return [
+            ("testStatementKinds", testStatementKinds),
+            ("testSyntaxKinds", testSyntaxKinds),
+            ("testSwiftDeclarationKind", testSwiftDeclarationKind),
+
+            // Fails on Linux
+            // ("testIndex", testIndex),
+        ]
+    }
+}

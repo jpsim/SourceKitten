@@ -23,3 +23,12 @@ class FileTests: XCTestCase {
         XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift", encoding: .utf8))
     }
 }
+
+extension FileTests {
+    static var allTests: [(String, (FileTests) -> () throws -> Void)] {
+        return [
+            ("testUnreadablePath", testUnreadablePath),
+            ("testFormat", testFormat),
+        ]
+    }
+}
