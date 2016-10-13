@@ -1,11 +1,16 @@
 language: objective-c
+osx_image: xcode8
+matrix:
+  include:
+    - script: make test
+      env: JOB=Xcode
+    - script: swift build && swift test
+      env: JOB=SPM
 git:
   submodules: false
 branches:
   only:
     - master
-script: make test
-osx_image: xcode8
 notifications:
   email: false
   slack: realmio:vPdpsG9NLDo2DNlbqtcMAQuE
