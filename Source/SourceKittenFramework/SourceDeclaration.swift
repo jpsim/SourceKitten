@@ -6,6 +6,8 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
@@ -140,3 +142,5 @@ extension SourceDeclaration: Comparable {}
 public func <(lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
     return lhs.location < rhs.location
 }
+
+#endif

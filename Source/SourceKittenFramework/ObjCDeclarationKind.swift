@@ -6,7 +6,7 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
-#if SWIFT_PACKAGE
+#if !os(Linux) && SWIFT_PACKAGE
 import Clang_C
 #endif
 
@@ -53,6 +53,8 @@ public enum ObjCDeclarationKind: String {
     /// `UnexposedDecl`
     case unexposedDecl = "sourcekitten.source.lang.objc.decl.unexposed"
 
+#if !os(Linux)
+
     public init(_ cursorKind: CXCursorKind) {
         switch cursorKind {
         case CXCursor_ObjCCategoryDecl: self = .category
@@ -74,4 +76,7 @@ public enum ObjCDeclarationKind: String {
         default: fatalError("Unsupported CXCursorKind: \(clang_getCursorKindSpelling(cursorKind))")
         }
     }
+
+#endif
+
 }

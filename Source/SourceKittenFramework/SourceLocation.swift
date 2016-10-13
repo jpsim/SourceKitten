@@ -6,6 +6,8 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
@@ -61,3 +63,5 @@ public func <(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
     // Then offset.
     return lhs.offset < rhs.offset
 }
+
+#endif

@@ -15,6 +15,8 @@ let projectRoot = (((#file as NSString)
     .deletingLastPathComponent as NSString)
     .deletingLastPathComponent
 
+#if !os(Linux)
+
 class ModuleTests: XCTestCase {
 
     func testModuleNilInPathWithNoXcodeProject() {
@@ -41,3 +43,5 @@ class ModuleTests: XCTestCase {
         compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs, rootDirectory: commandantPath)
     }
 }
+
+#endif

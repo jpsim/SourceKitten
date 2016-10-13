@@ -57,6 +57,8 @@ public func toNSDictionary(_ dictionary: [String: SourceKitRepresentable]) -> NS
     return anyDictionary as NSDictionary
 }
 
+#if !os(Linux)
+
 public func declarationsToJSON(_ decl: [String: [SourceDeclaration]]) -> String {
     return toJSON(decl.map({ [$0: toOutputDictionary($1)] }).sorted { $0.keys.first! < $1.keys.first! })
 }
@@ -118,3 +120,5 @@ private func toOutputDictionary(_ text: Text) -> [String: Any] {
         return ["kind": "", "Verbatim": str]
     }
 }
+
+#endif
