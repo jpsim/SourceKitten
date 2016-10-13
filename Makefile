@@ -74,3 +74,9 @@ release: package archive
 
 docker_test:
 	docker run -v `pwd`:/SourceKitten norionomura/sourcekit:30 bash -c "cd /SourceKitten && swift build && swift test"
+
+trigger_sr_2934:
+	swift build
+	rm -rf .build
+	sed -i.bak '/Quick/d' Packages/Commandant-0.11.1/Package.swift
+	make docker_test
