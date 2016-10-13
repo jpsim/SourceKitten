@@ -17,10 +17,13 @@ private func compareSyntax(file: File, expectedTokens: [(SyntaxKind, Int, Int)])
     let syntaxMap = SyntaxMap(file: file)
     XCTAssertEqual(syntaxMap, expectedSyntaxMap, "should generate expected syntax map")
 
-    let syntaxJSON = syntaxMap.description
-    let jsonArray = try! JSONSerialization.jsonObject(with: syntaxJSON.data(using: .utf8)!, options: []) as? NSArray
-    XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
-    XCTAssertEqual(jsonArray!, expectedSyntaxMap.tokens.map { $0.dictionaryValue } as NSArray, "JSON should match expected syntax")
+    let syntaxJSONData = syntaxMap.description.data(using: .utf8)!
+    let jsonArray = try! JSONSerialization.jsonObject(with: syntaxJSONData, options: []) as? [Any]
+    XCTAssertEqual(
+        jsonArray!.bridge(),
+        expectedSyntaxMap.tokens.map({ $0.dictionaryValue.bridge() }).bridge(),
+        "JSON should match expected syntax"
+    )
 }
 
 class SyntaxTests: XCTestCase {
