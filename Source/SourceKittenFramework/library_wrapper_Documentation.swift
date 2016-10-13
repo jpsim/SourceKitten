@@ -1,3 +1,4 @@
+#if !os(Linux)
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
@@ -36,3 +37,4 @@ internal let clang_VerbatimLineComment_getText: @convention(c) (CXComment) -> (C
 internal let clang_HTMLTagComment_getAsString: @convention(c) (CXComment) -> (CXString) = library.load(symbol: "clang_HTMLTagComment_getAsString")
 internal let clang_FullComment_getAsHTML: @convention(c) (CXComment) -> (CXString) = library.load(symbol: "clang_FullComment_getAsHTML")
 internal let clang_FullComment_getAsXML: @convention(c) (CXComment) -> (CXString) = library.load(symbol: "clang_FullComment_getAsXML")
+#endif
