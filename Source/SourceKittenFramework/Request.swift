@@ -481,3 +481,20 @@ extension Request {
     @available(*, unavailable, renamed: "replaceText(file:offset:length:sourceText:)")
     public static func ReplaceText(file: String, offset: Int64, length: Int64, sourceText: String) -> Request { fatalError() }
 }
+
+extension Request.Error {
+    @available(*, unavailable, renamed: "connectionInterrupted(_:)")
+    public static func ConnectionInterrupted(_: String?) -> Request.Error { fatalError() }
+
+    @available(*, unavailable, renamed: "invalid(_:)")
+    public static func Invalid(_: String?) -> Request.Error { fatalError() }
+
+    @available(*, unavailable, renamed: "failed(_:)")
+    public static func Failed(_: String?) -> Request.Error { fatalError() }
+
+    @available(*, unavailable, renamed: "cancelled(_:)")
+    public static func Cancelled(_: String?) -> Request.Error { fatalError() }
+
+    @available(*, unavailable, renamed: "unknown(_:)")
+    public static func Unknown(_: String?) -> Request.Error { fatalError() }
+}
