@@ -342,12 +342,12 @@ public enum Request {
 
     /// A enum representation of SOURCEKITD_ERROR_*
     public enum Error: Swift.Error, CustomStringConvertible {
-        case ConnectionInterrupted(String?)
-        case Invalid(String?)
-        case Failed(String?)
-        case Cancelled(String?)
-        case Unknown(String?)
-        
+        case connectionInterrupted(String?)
+        case invalid(String?)
+        case failed(String?)
+        case cancelled(String?)
+        case unknown(String?)
+
         /// A textual representation of `self`.
         public var description: String {
             return getDescription() ?? "no description"
@@ -355,22 +355,22 @@ public enum Request {
         
         private func getDescription() -> String? {
             switch self {
-            case .ConnectionInterrupted(let string): return string
-            case .Invalid(let string): return string
-            case .Failed(let string): return string
-            case .Cancelled(let string): return string
-            case .Unknown(let string): return string
+            case .connectionInterrupted(let string): return string
+            case .invalid(let string): return string
+            case .failed(let string): return string
+            case .cancelled(let string): return string
+            case .unknown(let string): return string
             }
         }
         
         fileprivate init(response: sourcekitd_response_t) {
             let description = String(validatingUTF8: sourcekitd_response_error_get_description(response)!)
             switch sourcekitd_response_error_get_kind(response) {
-            case SOURCEKITD_ERROR_CONNECTION_INTERRUPTED: self = .ConnectionInterrupted(description)
-            case SOURCEKITD_ERROR_REQUEST_INVALID: self = .Invalid(description)
-            case SOURCEKITD_ERROR_REQUEST_FAILED: self = .Failed(description)
-            case SOURCEKITD_ERROR_REQUEST_CANCELLED: self = .Cancelled(description)
-            default: self = .Unknown(description)
+            case SOURCEKITD_ERROR_CONNECTION_INTERRUPTED: self = .connectionInterrupted(description)
+            case SOURCEKITD_ERROR_REQUEST_INVALID: self = .invalid(description)
+            case SOURCEKITD_ERROR_REQUEST_FAILED: self = .failed(description)
+            case SOURCEKITD_ERROR_REQUEST_CANCELLED: self = .cancelled(description)
+            default: self = .unknown(description)
             }
         }
     }
@@ -387,7 +387,7 @@ public enum Request {
         defer { sourcekitd_response_dispose(response!) }
         if sourcekitd_response_is_error(response!) {
             let error = Request.Error(response: response!)
-            if case .ConnectionInterrupted = error {
+            if case .connectionInterrupted = error {
                 _ = sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now() + 10)
             }
             throw error
