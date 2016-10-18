@@ -601,17 +601,21 @@ extension NSString {
         fatalError()
     }
 
+#if !os(Linux)
     @available(*, unavailable, renamed: "substringWithSourceRange(start:end:)")
     public func substringWithSourceRange(_ start: SourceLocation, end: SourceLocation) -> String? {
         fatalError()
     }
+#endif
 }
 
 extension String {
+#if !os(Linux)
     @available(*, unavailable, renamed: "pragmaMarks(_:excludeRanges:limit:)")
     public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
         fatalError()
     }
+#endif
 
     @available(*, unavailable, renamed: "documentedTokenOffsets(syntaxMap:)")
     public func documentedTokenOffsets(_ syntaxMap: SyntaxMap) -> [Int] {
