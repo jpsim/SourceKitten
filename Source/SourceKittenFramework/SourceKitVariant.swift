@@ -158,9 +158,12 @@ extension SourceKitVariant {
             get {
                 if case let .string(string) = _core {
                     return string
+                } else if case let .uid(string) = _core {
+                    return string
                 } else if case let .variant(sourcekitObject, response) = _core {
                     _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
                     if case let .string(string) = _core { return string }
+                    else if case let .uid(string) = _core { return string }
                 }
                 return nil
             }
