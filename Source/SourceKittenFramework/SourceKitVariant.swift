@@ -275,3 +275,45 @@ extension SourceKitVariant {
     }
 
 }
+
+// MARK: - Equatable with String
+public func ==(lhs: SourceKitVariant?, rhs: String) -> Bool {
+    return lhs.map { $0 == rhs } ?? false
+}
+
+public func ==(lhs: String, rhs: SourceKitVariant?) -> Bool {
+    return rhs == lhs
+}
+
+extension SourceKitVariant {
+    public static func ==(lhs: SourceKitVariant, rhs: String) -> Bool {
+        return lhs.string.map { $0 == rhs } ?? false
+    }
+
+    public static func ==(lhs: String, rhs: SourceKitVariant) -> Bool {
+        return rhs == lhs
+    }
+}
+
+// MARK: - Equatable with RawRepresentable
+public func ==<T: RawRepresentable>(lhs: SourceKitVariant?, rhs: T) -> Bool
+    where T.RawValue == String {
+        return lhs == rhs.rawValue
+}
+
+public func ==<T: RawRepresentable>(lhs: T, rhs: SourceKitVariant?) -> Bool
+    where T.RawValue == String {
+        return rhs == lhs
+}
+
+extension SourceKitVariant {
+    public static func ==<T: RawRepresentable>(lhs: SourceKitVariant, rhs: T) -> Bool
+        where T.RawValue == String {
+            return lhs == rhs.rawValue
+    }
+
+    public static func ==<T: RawRepresentable>(lhs: T, rhs: SourceKitVariant) -> Bool
+        where T.RawValue == String {
+            return rhs == lhs
+    }
+}
