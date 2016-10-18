@@ -49,7 +49,7 @@ public struct SyntaxMap {
     - parameter file: File to be parsed.
     */
     public init(file: File) {
-        self.init(sourceKitResponse: Request.EditorOpen(file).send())
+        self.init(sourceKitResponse: Request.editorOpen(file: file).send())
     }
 
     /**
@@ -59,7 +59,7 @@ public struct SyntaxMap {
 
     - parameter offset: Last possible byte offset of the range's start.
     */
-    public func commentRangeBeforeOffset(_ offset: Int) -> Range<Int>? {
+    public func commentRange(beforeOffset offset: Int) -> Range<Int>? {
         let tokensBeforeOffset = tokens.reversed().filter { $0.offset < offset }
 
         let docTypes = SyntaxKind.docComments().map({ $0.rawValue })
@@ -78,7 +78,7 @@ public struct SyntaxMap {
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.flatMap { lastToken in
                 let regularCommentTokensBetweenDocCommentAndOffset = tokensBeforeOffset
-                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .Comment })
+                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .comment })
                 if !regularCommentTokensBetweenDocCommentAndOffset.isEmpty {
                     return nil // "doc comment" isn't actually a doc comment
                 }

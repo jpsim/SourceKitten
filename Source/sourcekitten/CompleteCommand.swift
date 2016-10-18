@@ -42,7 +42,7 @@ struct CompleteCommand: CommandProtocol {
         if !options.file.isEmpty {
             path = options.file.absolutePathRepresentation()
             guard let file = File(path: path) else {
-                return .failure(.ReadFailed(path: options.file))
+                return .failure(.readFailed(path: options.file))
             }
             contents = file.contents
         } else {
@@ -57,10 +57,10 @@ struct CompleteCommand: CommandProtocol {
             args.append(contentsOf: ["-sdk", sdkPath()])
         }
 
-        let request = Request.CodeCompletionRequest(file: path, contents: contents,
+        let request = Request.codeCompletionRequest(file: path, contents: contents,
             offset: Int64(options.offset),
             arguments: args)
-        print(CodeCompletionItem.parseResponse(request.send()))
+        print(CodeCompletionItem.parse(response: request.send()))
         return .success()
     }
 }

@@ -38,7 +38,7 @@ struct FormatCommand: CommandProtocol {
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
         guard !options.file.isEmpty else {
-            return .failure(.InvalidArgument(description: "file must be set when calling format"))
+            return .failure(.invalidArgument(description: "file must be set when calling format"))
         }
         try! File(path: options.file)?
             .format(trimmingTrailingWhitespace: options.trimWhitespace,

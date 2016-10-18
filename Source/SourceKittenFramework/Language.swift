@@ -9,7 +9,7 @@
 /// Language Enum.
 public enum Language {
     /// Swift.
-    case Swift
+    case swift
     /// Objective-C.
-    case ObjC
+    case objc
 }

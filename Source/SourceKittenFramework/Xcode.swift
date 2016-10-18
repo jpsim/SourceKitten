@@ -16,7 +16,7 @@ Run `xcodebuild clean build` along with any passed in build arguments.
 
 - returns: `xcodebuild`'s STDERR+STDOUT output combined.
 */
-internal func runXcodeBuild(_ arguments: [String], inPath path: String) -> String? {
+internal func runXcodeBuild(arguments: [String], inPath path: String) -> String? {
     fputs("Running xcodebuild\n", stderr)
 
     let task = Process()
@@ -45,7 +45,7 @@ Will the following values, in this priority: module name, target name, scheme na
 
 - returns: Module name if successful.
 */
-internal func moduleNameFromArguments(_ arguments: [String]) -> String? {
+internal func moduleName(fromArguments arguments: [String]) -> String? {
     for flag in ["-module-name", "-target", "-scheme"] {
         if let flagIndex = arguments.index(of: flag), flagIndex + 1 < arguments.count {
             return arguments[flagIndex + 1]
@@ -62,7 +62,7 @@ Partially filters compiler arguments from `xcodebuild` to something that SourceK
 - returns: A tuple of partially filtered compiler arguments in `.0`, and whether or not there are
           more flags to remove in `.1`.
 */
-private func partiallyFilterArguments(_ args: [String]) -> ([String], Bool) {
+private func partiallyFilter(arguments args: [String]) -> ([String], Bool) {
     guard let indexOfFlagToRemove = args.index(of: "-output-file-map") else {
         return (args, false)
     }
@@ -79,12 +79,12 @@ Filters compiler arguments from `xcodebuild` to something that SourceKit/Clang w
 
 - returns: Filtered compiler arguments.
 */
-private func filterArguments(_ args: [String]) -> [String] {
+private func filter(arguments args: [String]) -> [String] {
     var args = args
     args.append(contentsOf: ["-D", "DEBUG"])
     var shouldContinueToFilterArguments = true
     while shouldContinueToFilterArguments {
-        (args, shouldContinueToFilterArguments) = partiallyFilterArguments(args)
+        (args, shouldContinueToFilterArguments) = partiallyFilter(arguments: args)
     }
     return args.filter {
         ![
@@ -112,9 +112,9 @@ Parses the compiler arguments needed to compile the `language` files.
 
 - returns: Compiler arguments, filtered for suitable use by SourceKit if `.Swift` or Clang if `.ObjC`.
 */
-internal func parseCompilerArguments(_ xcodebuildOutput: NSString, language: Language, moduleName: String?) -> [String]? {
+internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Language, moduleName: String?) -> [String]? {
     let pattern: String
-    if language == .ObjC {
+    if language == .objc {
         pattern = "/usr/bin/clang.*"
     } else if let moduleName = moduleName {
         pattern = "/usr/bin/swiftc.*-module-name \(moduleName) .*"
@@ -129,7 +129,7 @@ internal func parseCompilerArguments(_ xcodebuildOutput: NSString, language: Lan
     }
 
     let escapedSpacePlaceholder = "\u{0}"
-    let args = filterArguments(xcodebuildOutput
+    let args = filter(arguments: xcodebuildOutput
         .substring(with: regexMatch.range)
         .replacingOccurrences(of: "\\ ", with: escapedSpacePlaceholder)
         .components(separatedBy: " "))
@@ -147,7 +147,7 @@ Extracts Objective-C header files and `xcodebuild` arguments from an array of he
 
 - returns: Tuple of header files and xcodebuild arguments.
 */
-public func parseHeaderFilesAndXcodebuildArguments(_ sourcekittenArguments: [String]) -> (headerFiles: [String], xcodebuildArguments: [String]) {
+public func parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: [String]) -> (headerFiles: [String], xcodebuildArguments: [String]) {
     var xcodebuildArguments = sourcekittenArguments
     var headerFiles = [String]()
     while let headerFile = xcodebuildArguments.first, headerFile.isObjectiveCHeaderFile() {

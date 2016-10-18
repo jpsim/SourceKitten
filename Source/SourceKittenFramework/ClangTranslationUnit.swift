@@ -65,7 +65,7 @@ public struct ClangTranslationUnit {
             .distinct()
             .sorted()
             .groupBy { $0.location.file }
-            .map { insertMarks($0) }
+            .map { insertMarks(declarations: $0) }
     }
 
     /**
@@ -77,8 +77,8 @@ public struct ClangTranslationUnit {
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
     public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = FileManager.default.currentDirectoryPath) {
-        let xcodeBuildOutput = runXcodeBuild(xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
-        guard let clangArguments = parseCompilerArguments(xcodeBuildOutput as NSString, language: .ObjC, moduleName: nil) else {
+        let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
+        guard let clangArguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .objc, moduleName: nil) else {
             fputs("could not parse compiler arguments\n\(xcodeBuildOutput)\n", stderr)
             return nil
         }

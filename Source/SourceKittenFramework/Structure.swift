@@ -20,7 +20,7 @@ public struct Structure {
     */
     public init(sourceKitResponse: [String: SourceKitRepresentable]) {
         var sourceKitResponse = sourceKitResponse
-        _ = sourceKitResponse.removeValue(forKey: SwiftDocKey.SyntaxMap.rawValue)
+        _ = sourceKitResponse.removeValue(forKey: SwiftDocKey.syntaxMap.rawValue)
         dictionary = sourceKitResponse
     }
 
@@ -30,7 +30,7 @@ public struct Structure {
     - parameter file: File to parse for structural information.
     */
     public init(file: File) {
-        self.init(sourceKitResponse: Request.EditorOpen(file).send())
+        self.init(sourceKitResponse: Request.editorOpen(file: file).send())
     }
 }
 

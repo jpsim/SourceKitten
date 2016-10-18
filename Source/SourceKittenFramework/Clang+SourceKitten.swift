@@ -87,19 +87,19 @@ extension CXCursor {
     }
 
     func objCKind() -> ObjCDeclarationKind {
-        return ObjCDeclarationKind.fromClang(kind)
+        return ObjCDeclarationKind(kind)
     }
 
     func str() -> String? {
         let cursorExtent = extent()
         let contents = try! String(contentsOfFile: cursorExtent.start.file, encoding: .utf8)
-        return contents.substringWithSourceRange(cursorExtent.start, end: cursorExtent.end)
+        return contents.substringWithSourceRange(start: cursorExtent.start, end: cursorExtent.end)
     }
 
     func name() -> String {
         let spelling = clang_getCursorSpelling(self).str()!
         let type = objCKind()
-        if let usrString = usr(), spelling.isEmpty && type == .Enum {
+        if let usrString = usr(), spelling.isEmpty && type == .enum {
             // libClang considers enums declared like `typedef enum {} name;` rather than `NS_ENUM()`
             // to have a cursor spelling of "" (empty string). So we parse the USR to extract the actual name.
             let prefix = "c:@EA@"
@@ -107,7 +107,7 @@ extension CXCursor {
             let index = usrString.index(usrString.startIndex,
                                         offsetBy: prefix.lengthOfBytes(using: .utf8))
             return usrString.substring(from: index)
-        } else if type == .Category, let usrNSString = usr() as NSString? {
+        } else if type == .category, let usrNSString = usr() as NSString? {
             let ext = (usrNSString.range(of: "c:objc(ext)").location == 0)
             let regex = try! NSRegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
             let range = NSRange(location: 0, length: usrNSString.length)
@@ -119,9 +119,9 @@ extension CXCursor {
             } else {
                 fatalError("Couldn't get category name")
             }
-        } else if type == .MethodInstance {
+        } else if type == .methodInstance {
             return "-" + spelling
-        } else if type == .MethodClass {
+        } else if type == .methodClass {
             return "+" + spelling
         }
         return spelling
@@ -185,7 +185,7 @@ extension CXCursor {
         return commentBody
     }
 
-    func swiftDeclaration(_ compilerArguments: [String]) -> String? {
+    func swiftDeclaration(compilerArguments: [String]) -> String? {
         let file = location().file
         let swiftUUID: String
         if let uuid = interfaceUUIDMap[file] {
@@ -194,16 +194,16 @@ extension CXCursor {
             swiftUUID = NSUUID().uuidString
             interfaceUUIDMap[file] = swiftUUID
             // Generate Swift interface, associating it with the UUID
-            _ = Request.Interface(file: file, uuid: swiftUUID).send()
+            _ = Request.interface(file: file, uuid: swiftUUID).send()
         }
 
         guard let usr = usr(),
-              let usrOffset = Request.FindUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.Offset.rawValue] as? Int64 else {
+              let usrOffset = Request.findUSR(file: swiftUUID, usr: usr).send()[SwiftDocKey.offset.rawValue] as? Int64 else {
             return nil
         }
 
-        let cursorInfo = Request.CursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
-        guard let docsXML = cursorInfo[SwiftDocKey.FullXMLDocs.rawValue] as? String,
+        let cursorInfo = Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
+        guard let docsXML = cursorInfo[SwiftDocKey.fullXMLDocs.rawValue] as? String,
               let swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
                 return nil
         }
@@ -245,7 +245,7 @@ extension CXComment {
             }
             fatalError("not text: \(child.kind())")
         }
-        return [.Para(paragraphString.stringByRemovingCommonLeadingWhitespaceFromLines(), kindString)]
+        return [.Para(paragraphString.removingCommonLeadingWhitespaceFromLines(), kindString)]
     }
 
     func kind() -> CXCommentKind {

@@ -29,8 +29,8 @@ public struct SwiftDocs {
         do {
             self.init(
                 file: file,
-                dictionary: try Request.EditorOpen(file).failableSend(),
-                cursorInfoRequest: Request.cursorInfoRequestForFilePath(file.path, arguments: arguments)
+                dictionary: try Request.editorOpen(file: file).failableSend(),
+                cursorInfoRequest: Request.cursorInfoRequest(filePath: file.path, arguments: arguments)
             )
         } catch let error as Request.Error {
             fputs(error.description, stderr)
@@ -50,13 +50,13 @@ public struct SwiftDocs {
     public init(file: File, dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?) {
         self.file = file
         var dictionary = dictionary
-        let syntaxMapData = dictionary.removeValue(forKey: SwiftDocKey.SyntaxMap.rawValue) as! [SourceKitRepresentable]
+        let syntaxMapData = dictionary.removeValue(forKey: SwiftDocKey.syntaxMap.rawValue) as! [SourceKitRepresentable]
         let syntaxMap = SyntaxMap(data: syntaxMapData)
-        dictionary = file.processDictionary(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
+        dictionary = file.process(dictionary: dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
         if let cursorInfoRequest = cursorInfoRequest {
-            let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap)
-            dictionary = file.furtherProcessDictionary(
-                dictionary,
+            let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap: syntaxMap)
+            dictionary = file.furtherProcess(
+                dictionary: dictionary,
                 documentedTokenOffsets: documentedTokenOffsets,
                 cursorInfoRequest: cursorInfoRequest,
                 syntaxMap: syntaxMap

@@ -38,7 +38,7 @@ struct SyntaxCommand: CommandProtocol {
                 print(SyntaxMap(file: file))
                 return .success()
             }
-            return .failure(.ReadFailed(path: options.file))
+            return .failure(.readFailed(path: options.file))
         }
         print(SyntaxMap(file: File(contents: options.text)))
         return .success()

@@ -34,10 +34,10 @@ struct IndexCommand: CommandProtocol {
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
         guard !options.file.isEmpty else {
-            return .failure(.InvalidArgument(description: "file must be set when calling index"))
+            return .failure(.invalidArgument(description: "file must be set when calling index"))
         }
         let absoluteFile = options.file.absolutePathRepresentation()
-        let request = Request.Index(file: absoluteFile, arguments: options.compilerargs.components(separatedBy: " "))
+        let request = Request.index(file: absoluteFile, arguments: options.compilerargs.components(separatedBy: " "))
         print(toJSON(toNSDictionary(request.send())))
         return .success()
     }

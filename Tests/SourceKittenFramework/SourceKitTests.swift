@@ -10,7 +10,7 @@ import Foundation
 @testable import SourceKittenFramework
 import XCTest
 
-private func run(_ executable: String, arguments: [String]) -> String? {
+private func run(executable: String, arguments: [String]) -> String? {
     let task = Process()
     task.launchPath = executable
     task.arguments = arguments
@@ -26,12 +26,12 @@ private func run(_ executable: String, arguments: [String]) -> String? {
     return output
 }
 
-private func sourcekitStringsStartingWith(_ pattern: String) -> Set<String> {
-    let sourceKitServicePath = (((run("/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
+private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
+    let sourceKitServicePath = (((run(executable: "/usr/bin/xcrun", arguments: ["-f", "swiftc"])! as NSString)
         .deletingLastPathComponent as NSString)
         .deletingLastPathComponent as NSString)
         .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
-    let strings = run("/usr/bin/strings", arguments: [sourceKitServicePath])
+    let strings = run(executable: "/usr/bin/strings", arguments: [sourceKitServicePath])
     return Set(strings!.components(separatedBy: "\n").filter { string in
         return string.range(of: pattern)?.lowerBound == string.startIndex
     })
@@ -41,18 +41,18 @@ class SourceKitTests: XCTestCase {
 
     func testStatementKinds() {
         let expected: [StatementKind] = [
-            .Brace,
-            .Case,
-            .For,
-            .ForEach,
-            .Guard,
-            .If,
-            .RepeatWhile,
-            .Switch,
-            .While,
+            .brace,
+            .case,
+            .for,
+            .forEach,
+            .guard,
+            .if,
+            .repeatWhile,
+            .switch,
+            .while,
         ]
 
-        let actual = sourcekitStringsStartingWith("source.lang.swift.stmt.")
+        let actual = sourcekitStrings(startingWith: "source.lang.swift.stmt.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
@@ -66,27 +66,27 @@ class SourceKitTests: XCTestCase {
 
     func testSyntaxKinds() {
         let expected: [SyntaxKind] = [
-            .Argument,
-            .AttributeBuiltin,
-            .AttributeID,
-            .BuildconfigID,
-            .BuildconfigKeyword,
-            .Comment,
-            .CommentMark,
-            .CommentURL,
-            .DocComment,
-            .DocCommentField,
-            .Identifier,
-            .Keyword,
-            .Number,
-            .ObjectLiteral,
-            .Parameter,
-            .Placeholder,
-            .String,
-            .StringInterpolationAnchor,
-            .Typeidentifier
+            .argument,
+            .attributeBuiltin,
+            .attributeID,
+            .buildconfigID,
+            .buildconfigKeyword,
+            .comment,
+            .commentMark,
+            .commentURL,
+            .docComment,
+            .docCommentField,
+            .identifier,
+            .keyword,
+            .number,
+            .objectLiteral,
+            .parameter,
+            .placeholder,
+            .string,
+            .stringInterpolationAnchor,
+            .typeidentifier
         ]
-        let actual = sourcekitStringsStartingWith("source.lang.swift.syntaxtype.")
+        let actual = sourcekitStrings(startingWith: "source.lang.swift.syntaxtype.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
@@ -100,46 +100,46 @@ class SourceKitTests: XCTestCase {
 
     func testSwiftDeclarationKind() {
         let expected: [SwiftDeclarationKind] = [
-            .Associatedtype,
-            .Class,
-            .Enum,
-            .Enumcase,
-            .Enumelement,
-            .Extension,
-            .ExtensionClass,
-            .ExtensionEnum,
-            .ExtensionProtocol,
-            .ExtensionStruct,
-            .FunctionAccessorAddress,
-            .FunctionAccessorDidset,
-            .FunctionAccessorGetter,
-            .FunctionAccessorMutableaddress,
-            .FunctionAccessorSetter,
-            .FunctionAccessorWillset,
-            .FunctionConstructor,
-            .FunctionDestructor,
-            .FunctionFree,
-            .FunctionMethodClass,
-            .FunctionMethodInstance,
-            .FunctionMethodStatic,
-            .FunctionOperatorInfix,
-            .FunctionOperatorPostfix,
-            .FunctionOperatorPrefix,
-            .FunctionSubscript,
-            .GenericTypeParam,
-            .Module,
-            .PrecedenceGroup,
-            .Protocol,
-            .Struct,
-            .Typealias,
-            .VarClass,
-            .VarGlobal,
-            .VarInstance,
-            .VarLocal,
-            .VarParameter,
-            .VarStatic
+            .associatedtype,
+            .class,
+            .enum,
+            .enumcase,
+            .enumelement,
+            .extension,
+            .extensionClass,
+            .extensionEnum,
+            .extensionProtocol,
+            .extensionStruct,
+            .functionAccessorAddress,
+            .functionAccessorDidset,
+            .functionAccessorGetter,
+            .functionAccessorMutableaddress,
+            .functionAccessorSetter,
+            .functionAccessorWillset,
+            .functionConstructor,
+            .functionDestructor,
+            .functionFree,
+            .functionMethodClass,
+            .functionMethodInstance,
+            .functionMethodStatic,
+            .functionOperatorInfix,
+            .functionOperatorPostfix,
+            .functionOperatorPrefix,
+            .functionSubscript,
+            .genericTypeParam,
+            .module,
+            .precedenceGroup,
+            .protocol,
+            .struct,
+            .typealias,
+            .varClass,
+            .varGlobal,
+            .varInstance,
+            .varLocal,
+            .varParameter,
+            .varStatic
         ]
-        let actual = sourcekitStringsStartingWith("source.lang.swift.decl.")
+        let actual = sourcekitStrings(startingWith: "source.lang.swift.decl.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
@@ -174,7 +174,7 @@ class SourceKitTests: XCTestCase {
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
-        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(Request.Index(file: file, arguments: arguments).send())) + "\n")
+        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(Request.index(file: file, arguments: arguments).send())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
             _ = try! NSRegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
@@ -184,6 +184,6 @@ class SourceKitTests: XCTestCase {
         replace("\"key\\.filepath\"[^\\n]*", withTemplate: "\"key\\.filepath\" : \"\",")
         replace("\"key\\.hash\"[^\\n]*", withTemplate: "\"key\\.hash\" : \"\",")
 
-        compareJSONStringWithFixturesName("BicycleIndex", jsonString: indexJSON as String)
+        compareJSONString(withFixtureNamed: "BicycleIndex", jsonString: indexJSON as String)
     }
 }

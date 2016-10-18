@@ -2,7 +2,8 @@
 
 ##### Breaking
 
-* SourceKitten now requires Xcode 8.0 and Swift 3.0 to build.  
+* SourceKitten now requires Xcode 8.0 and Swift 3.0 to build.
+  APIs have been adapted to conform to the Swift 3 API Design Guidelines.  
   [JP Simard](https://github.com/jpsim)
   [Norio Nomura](https://github.com/norio-nomura)
 

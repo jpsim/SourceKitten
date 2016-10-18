@@ -38,14 +38,14 @@ struct StructureCommand: CommandProtocol {
                 print(Structure(file: file))
                 return .success()
             }
-            return .failure(.ReadFailed(path: options.file))
+            return .failure(.readFailed(path: options.file))
         }
         if !options.text.isEmpty {
             print(Structure(file: File(contents: options.text)))
             return .success()
         }
         return .failure(
-            .InvalidArgument(description: "either file or text must be set when calling structure")
+            .invalidArgument(description: "either file or text must be set when calling structure")
         )
     }
 }

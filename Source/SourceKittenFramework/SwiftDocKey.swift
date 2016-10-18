@@ -13,78 +13,78 @@ public enum SwiftDocKey: String {
     // MARK: SourceKit Keys
 
     /// Annotated declaration (String).
-    case AnnotatedDeclaration = "key.annotated_decl"
+    case annotatedDeclaration = "key.annotated_decl"
     /// Body length (Int64).
-    case BodyLength           = "key.bodylength"
+    case bodyLength           = "key.bodylength"
     /// Body offset (Int64).
-    case BodyOffset           = "key.bodyoffset"
+    case bodyOffset           = "key.bodyoffset"
     /// Diagnostic stage (String).
-    case DiagnosticStage      = "key.diagnostic_stage"
+    case diagnosticStage      = "key.diagnostic_stage"
     /// File path (String).
-    case FilePath             = "key.filepath"
+    case filePath             = "key.filepath"
     /// Full XML docs (String).
-    case FullXMLDocs          = "key.doc.full_as_xml"
+    case fullXMLDocs          = "key.doc.full_as_xml"
     /// Kind (String).
-    case Kind                 = "key.kind"
+    case kind                 = "key.kind"
     /// Length (Int64).
-    case Length               = "key.length"
+    case length               = "key.length"
     /// Name (String).
-    case Name                 = "key.name"
+    case name                 = "key.name"
     /// Name length (Int64).
-    case NameLength           = "key.namelength"
+    case nameLength           = "key.namelength"
     /// Name offset (Int64).
-    case NameOffset           = "key.nameoffset"
+    case nameOffset           = "key.nameoffset"
     /// Offset (Int64).
-    case Offset               = "key.offset"
+    case offset               = "key.offset"
     /// Substructure ([SourceKitRepresentable]).
-    case Substructure         = "key.substructure"
+    case substructure         = "key.substructure"
     /// Syntax map (NSData).
-    case SyntaxMap            = "key.syntaxmap"
+    case syntaxMap            = "key.syntaxmap"
     /// Type name (String).
-    case TypeName             = "key.typename"
+    case typeName             = "key.typename"
     /// Inheritedtype ([SourceKitRepresentable])
-    case Inheritedtypes       = "key.inheritedtypes"
+    case inheritedtypes       = "key.inheritedtypes"
 
     // MARK: Custom Keys
 
     /// Column where the token's declaration begins (Int64).
-    case DocColumn            = "key.doc.column"
+    case docColumn            = "key.doc.column"
     /// Documentation comment (String).
-    case DocumentationComment = "key.doc.comment"
+    case documentationComment = "key.doc.comment"
     /// Declaration of documented token (String).
-    case DocDeclaration       = "key.doc.declaration"
+    case docDeclaration       = "key.doc.declaration"
     /// Discussion documentation of documented token ([SourceKitRepresentable]).
-    case DocDiscussion        = "key.doc.discussion"
+    case docDiscussion        = "key.doc.discussion"
     /// File where the documented token is located (String).
-    case DocFile              = "key.doc.file"
+    case docFile              = "key.doc.file"
     /// Line where the token's declaration begins (Int64).
-    case DocLine              = "key.doc.line"
+    case docLine              = "key.doc.line"
     /// Name of documented token (String).
-    case DocName              = "key.doc.name"
+    case docName              = "key.doc.name"
     /// Parameters of documented token ([SourceKitRepresentable]).
-    case DocParameters        = "key.doc.parameters"
+    case docParameters        = "key.doc.parameters"
     /// Parsed declaration (String).
-    case DocResultDiscussion  = "key.doc.result_discussion"
+    case docResultDiscussion  = "key.doc.result_discussion"
     /// Parsed scope start (Int64).
-    case DocType              = "key.doc.type"
+    case docType              = "key.doc.type"
     /// Parsed scope start end (Int64).
-    case USR                  = "key.usr"
+    case usr                  = "key.usr"
     /// Result discussion documentation of documented token ([SourceKitRepresentable]).
-    case ParsedDeclaration    = "key.parsed_declaration"
+    case parsedDeclaration    = "key.parsed_declaration"
     /// Type of documented token (String).
-    case ParsedScopeEnd       = "key.parsed_scope.end"
+    case parsedScopeEnd       = "key.parsed_scope.end"
     /// USR of documented token (String).
-    case ParsedScopeStart     = "key.parsed_scope.start"
+    case parsedScopeStart     = "key.parsed_scope.start"
     /// Swift Declaration (String).
-    case SwiftDeclaration     = "key.swift_declaration"
+    case swiftDeclaration     = "key.swift_declaration"
     /// Always deprecated (Bool).
-    case AlwaysDeprecated     = "key.always_deprecated"
+    case alwaysDeprecated     = "key.always_deprecated"
     /// Always unavailable (Bool).
-    case AlwaysUnavailable    = "key.always_unavailable"
+    case alwaysUnavailable    = "key.always_unavailable"
     /// Always deprecated (String).
-    case DeprecationMessage   = "key.deprecation_message"
+    case deprecationMessage   = "key.deprecation_message"
     /// Always unavailable (String).
-    case UnavailableMessage   = "key.unavailable_message"
+    case unavailableMessage   = "key.unavailable_message"
 
 
     // MARK: Typed SwiftDocKey Getters
@@ -109,7 +109,7 @@ public enum SwiftDocKey: String {
     - returns: Kind string if successful.
     */
     internal static func getKind(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.Kind, dictionary)
+        return get(.kind, dictionary)
     }
 
     /**
@@ -120,7 +120,7 @@ public enum SwiftDocKey: String {
     - returns: Syntax map data if successful.
     */
     internal static func getSyntaxMap(_ dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
-        return get(.SyntaxMap, dictionary)
+        return get(.syntaxMap, dictionary)
     }
 
     /**
@@ -131,7 +131,7 @@ public enum SwiftDocKey: String {
     - returns: Offset int if successful.
     */
     internal static func getOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.Offset, dictionary)
+        return get(.offset, dictionary)
     }
 
     /**
@@ -142,7 +142,7 @@ public enum SwiftDocKey: String {
     - returns: Length int if successful.
     */
     internal static func getLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.Length, dictionary)
+        return get(.length, dictionary)
     }
 
     /**
@@ -153,7 +153,7 @@ public enum SwiftDocKey: String {
     - returns: Type name string if successful.
     */
     internal static func getTypeName(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.TypeName, dictionary)
+        return get(.typeName, dictionary)
     }
 
     /**
@@ -164,7 +164,7 @@ public enum SwiftDocKey: String {
     - returns: Annotated declaration string if successful.
     */
     internal static func getAnnotatedDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.AnnotatedDeclaration, dictionary)
+        return get(.annotatedDeclaration, dictionary)
     }
 
     /**
@@ -175,7 +175,7 @@ public enum SwiftDocKey: String {
     - returns: Substructure array if successful.
     */
     internal static func getSubstructure(_ dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
-        return get(.Substructure, dictionary)
+        return get(.substructure, dictionary)
     }
 
     /**
@@ -186,7 +186,7 @@ public enum SwiftDocKey: String {
     - returns: Name offset int if successful.
     */
     internal static func getNameOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.NameOffset, dictionary)
+        return get(.nameOffset, dictionary)
     }
 
     /**
@@ -197,7 +197,7 @@ public enum SwiftDocKey: String {
     - returns: Length int if successful.
     */
     internal static func getNameLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.NameLength, dictionary)
+        return get(.nameLength, dictionary)
     }
 
     /**
@@ -208,7 +208,7 @@ public enum SwiftDocKey: String {
     - returns: Body offset int if successful.
     */
     internal static func getBodyOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.BodyOffset, dictionary)
+        return get(.bodyOffset, dictionary)
     }
 
     /**
@@ -219,7 +219,7 @@ public enum SwiftDocKey: String {
     - returns: Body length int if successful.
     */
     internal static func getBodyLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.BodyLength, dictionary)
+        return get(.bodyLength, dictionary)
     }
 
     /**
@@ -230,7 +230,7 @@ public enum SwiftDocKey: String {
     - returns: File path string if successful.
     */
     internal static func getFilePath(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.FilePath, dictionary)
+        return get(.filePath, dictionary)
     }
 
     /**
@@ -241,6 +241,6 @@ public enum SwiftDocKey: String {
     - returns: Full xml docs string if successful.
     */
     internal static func getFullXMLDocs(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.FullXMLDocs, dictionary)
+        return get(.fullXMLDocs, dictionary)
     }
 }
