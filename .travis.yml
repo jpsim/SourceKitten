@@ -6,11 +6,6 @@ matrix:
       env: JOB=Xcode
     - script: swift build && swift test
       env: JOB=SPM
-git:
-  submodules: false
-branches:
-  only:
-    - master
 notifications:
   email: false
   slack: realmio:vPdpsG9NLDo2DNlbqtcMAQuE
