@@ -117,7 +117,7 @@ private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
 /// SourceKit UID to String map.
 private var uidStringMap = [sourcekitd_uid_t: String]()
 
-private extension String {
+internal extension String {
     /**
     Cache SourceKit requests for strings from UIDs
 
@@ -394,6 +394,26 @@ public enum Request {
             throw error
         }
         return fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
+    }
+
+    /**
+     Sends the request to SourceKit and return the response as an SourceKitVariant.
+
+     - returns: SourceKit output as a SourceKitVariant.
+     - throws: Request.Error on fail ()
+     */
+    public func failableSend2() throws -> SourceKitVariant {
+        initializeSourceKitFailable
+        let response = sourcekitd_send_request_sync(sourcekitObject)
+        if sourcekitd_response_is_error(response!) {
+            let error = Request.Error(response: response!)
+            if case .connectionInterrupted = error {
+                _ = sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now() + 10)
+            }
+            sourcekitd_response_dispose(response!)
+            throw error
+        }
+        return SourceKitVariant(variant: sourcekitd_response_get_value(response!), response: response!)
     }
 }
 
