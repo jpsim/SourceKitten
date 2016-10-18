@@ -116,6 +116,35 @@ class PerformanceTests: XCTestCase {
             }
         }
     }
+
+    func testFindAvailables() {
+        func findAvaliables(variant: SourceKitVariant) -> [String] {
+            let resultFromSubstructure = variant.substructure?.flatMap(findAvaliables) ?? []
+            if variant.kind == SwiftDeclarationKind.functionMethodInstance,
+                let attributes = variant.attributes?.flatMap({ $0.attribute }),
+                attributes.contains(where: {$0 == "source.decl.attribute.available"}),
+                let name = variant.name {
+                return [name] + resultFromSubstructure
+            }
+            return resultFromSubstructure
+        }
+
+        let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
+        let avaliables = findAvaliables(variant: variant!)
+        let expected = [
+            "lineAndCharacterForCharacterOffset(_:)",
+            "lineAndCharacterForByteOffset(_:)",
+            "stringByTrimmingTrailingCharactersInSet(_:)",
+            "absolutePathRepresentation(_:)",
+            "substringWithSourceRange(_:end:)",
+            "pragmaMarks(_:excludeRanges:limitRange:)",
+            "documentedTokenOffsets(_:)",
+            "commentBody(_:)",
+            "stringByRemovingCommonLeadingWhitespaceFromLines()",
+            "countOfLeadingCharactersInSet(_:)",
+            ]
+        XCTAssertEqual(avaliables, expected)
+    }
 }
 
 
