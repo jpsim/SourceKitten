@@ -19,12 +19,13 @@ struct CompleteCommand: CommandProtocol {
         let file: String
         let text: String
         let offset: Int
+        let spmModule: String
         let compilerargs: [String]
 
-        static func create(file: String) -> (_ text: String) -> (_ offset: Int) -> (_ compilerargs: [String]) -> Options {
-            return { text in { offset in { compilerargs in
-                self.init(file: file, text: text, offset: offset, compilerargs: compilerargs)
-            }}}
+        static func create(file: String) -> (_ text: String) -> (_ offset: Int) -> (_ spmModule: String) -> (_ compilerargs: [String]) -> Options {
+            return { text in { offset in { spmModule in { compilerargs in
+                self.init(file: file, text: text, offset: offset, spmModule: spmModule, compilerargs: compilerargs)
+            }}}}
         }
 
         static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
@@ -32,6 +33,7 @@ struct CompleteCommand: CommandProtocol {
                 <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
                 <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
                 <*> m <| Option(key: "offset", defaultValue: 0, usage: "Offset for which to generate code completion options.")
+                <*> m <| Option(key: "spm-module", defaultValue: "", usage: "Read compiler flags from a Swift Package Manager module")
                 <*> m <| Argument(defaultValue: [String](), usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
         }
     }
@@ -50,12 +52,20 @@ struct CompleteCommand: CommandProtocol {
             contents = options.text
         }
 
-        var args = ["-c", path]
-        args.append(contentsOf: options.compilerargs)
-
-        if args.index(of: "-sdk") == nil {
-            args.append(contentsOf: ["-sdk", sdkPath()])
+        var args: [String]
+        if options.spmModule.isEmpty {
+            args = ["-c", path] + options.compilerargs
+            if args.index(of: "-sdk") == nil {
+                args.append(contentsOf: ["-sdk", sdkPath()])
+            }
+        } else {
+            guard let module = Module(spmName: options.spmModule) else {
+                return .failure(.invalidArgument(description: "Bad module name"))
+            }
+            args = module.compilerArguments
         }
+
+
 
         let request = Request.codeCompletionRequest(file: path, contents: contents,
             offset: Int64(options.offset),
