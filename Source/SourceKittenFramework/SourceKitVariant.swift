@@ -317,3 +317,29 @@ extension SourceKitVariant {
             return rhs == lhs
     }
 }
+
+// MARK: - SwiftDocKey
+extension SourceKitVariant {
+    var annotatedDeclaration: String? { return self[.annotatedDeclaration]?.string }
+    var bodyLength: Int? { return self[.bodyLength]?.int }
+    var bodyOffset: Int? { return self[.bodyOffset]?.int }
+    var diagnosticStage: String? { return self[.diagnosticStage]?.string }
+    var filePath: String? { return self[.filePath]?.string }
+    var fullXMLDocs: String? { return self[.fullXMLDocs]?.string }
+    var kind: SourceKitVariant? { return self[.kind] }
+    var length: Int? { return self[.length]?.int }
+    var name: String? { return self[.name]?.string }
+    var nameLength: Int? { return self[.nameLength]?.int }
+    var nameOffset: Int? { return self[.nameOffset]?.int }
+    var offset: Int? { return self[.offset]?.int }
+    var substructure: [SourceKitVariant]? { return self[.substructure]?.array }
+    var syntaxMap: [SourceKitVariant]? { return self[.syntaxMap]?.array }
+    var typeName: String? { return self[.typeName]?.string }
+    var inheritedtypes: [SourceKitVariant]? { return self[.inheritedtypes]?.array }
+}
+
+// MARK: - Custom
+extension SourceKitVariant {
+    var attributes: [SourceKitVariant]? { return self["key.attributes"]?.array }
+    var attribute: SourceKitVariant? { return self["key.attribute"] }
+}
