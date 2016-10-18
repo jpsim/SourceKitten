@@ -90,9 +90,9 @@ class PerformanceTests: XCTestCase {
 
     func testPerformanceWalking2() {
         self.measure {
-            let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
+            let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
             for _ in 1...100 {
-                walk2(variant: dictionary!)
+                walk2(variant: variant!)
             }
         }
     }
@@ -108,11 +108,11 @@ class PerformanceTests: XCTestCase {
     }
 
     func testPerformanceWalkingAfterOnceWalked2() {
-        let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
-        walk2(variant: dictionary!)
+        let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
+        walk2(variant: variant!)
         self.measure {
             for _ in 1...100 {
-                walk2(variant: dictionary!)
+                walk2(variant: variant!)
             }
         }
     }
