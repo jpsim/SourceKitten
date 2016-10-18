@@ -8,6 +8,7 @@
 
 import Commandant
 import Darwin
+import Dispatch
 
 // `sourcekitd_set_notification_handler()` sets the handler to be executed on main thread queue.
 // So, we vacate main thread to `dispatchMain()`.
