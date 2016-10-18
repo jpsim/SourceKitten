@@ -28,3 +28,33 @@ public enum StatementKind: String, SwiftLangSyntax {
     /// `while`.
     case `while` = "source.lang.swift.stmt.while"
 }
+
+// MARK: - migration support
+extension StatementKind {
+    @available(*, unavailable, renamed: "brace")
+    public static var Brace: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "case")
+    public static var Case: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "for")
+    public static var For: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "forEach")
+    public static var ForEach: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "guard")
+    public static var Guard: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "if")
+    public static var If: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "repeatWhile")
+    public static var RepeatWhile: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "switch")
+    public static var Switch: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "while")
+    public static var While: StatementKind { fatalError() }
+}
