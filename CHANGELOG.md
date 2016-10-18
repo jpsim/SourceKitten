@@ -9,7 +9,10 @@
 
 ##### Enhancements
 
-* None.
+* Add `--spm-module [ModuleName]` flag to `complete` to automatically detect
+  compiler flags for Swift Package Manager modules. `swift build` must be run
+  prior to support detection.
+  [vdka](https://github.com/vdka)
 
 ##### Bug Fixes
 

@@ -52,19 +52,20 @@ struct CompleteCommand: CommandProtocol {
             contents = options.text
         }
 
-        var args = ["-c", path]
-        if !options.spmModule.isEmpty {
+        var args: [String]
+        if options.spmModule.isEmpty {
+            args = ["-c", path] + options.compilerargs
+            if args.index(of: "-sdk") == nil {
+                args.append(contentsOf: ["-sdk", sdkPath()])
+            }
+        } else {
             guard let module = Module(spmName: options.spmModule) else {
                 return .failure(.invalidArgument(description: "Bad module name"))
             }
-            args.append(contentsOf: module.compilerArguments)
+            args = module.compilerArguments
         }
 
-        args.append(contentsOf: options.compilerargs)
 
-        if args.index(of: "-sdk") == nil {
-            args.append(contentsOf: ["-sdk", sdkPath()])
-        }
 
         let request = Request.codeCompletionRequest(file: path, contents: contents,
             offset: Int64(options.offset),
