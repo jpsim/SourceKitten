@@ -99,7 +99,7 @@ private let initializeSourceKit: Void = {
     sourcekitd_initialize()
 }()
 private let initializeSourceKitFailable: Void = {
-    sourcekitd_initialize()
+    initializeSourceKit
     sourcekitd_set_notification_handler() { response in
         if !sourcekitd_response_is_error(response!) {
             fflush(stdout)
