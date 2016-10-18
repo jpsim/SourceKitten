@@ -108,8 +108,8 @@ class StructureTests: XCTestCase {
         XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
 
         let jsonData = structure.description.data(using: .utf8)!
-        let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! NSDictionary
-        XCTAssertEqual(jsonDictionary, expectedStructure, "JSON should match expected structure")
+        let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! [AnyHashable: Any]
+        XCTAssertEqual(jsonDictionary.bridge(), expectedStructure, "JSON should match expected structure")
     }
 }
 
@@ -119,7 +119,7 @@ extension StructureTests {
             ("testPrintEmptyStructure", testPrintEmptyStructure),
             ("testGenerateSameStructureFileAndContents", testGenerateSameStructureFileAndContents),
             ("testEnum", testEnum),
-            // ("testStructurePrintValidJSON", testStructurePrintValidJSON),
+            ("testStructurePrintValidJSON", testStructurePrintValidJSON),
         ]
     }
 }
