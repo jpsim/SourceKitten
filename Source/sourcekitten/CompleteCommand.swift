@@ -65,8 +65,6 @@ struct CompleteCommand: CommandProtocol {
             args = module.compilerArguments
         }
 
-
-
         let request = Request.codeCompletionRequest(file: path, contents: contents,
             offset: Int64(options.offset),
             arguments: args)
