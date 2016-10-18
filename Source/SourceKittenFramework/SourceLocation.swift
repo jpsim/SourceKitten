@@ -61,3 +61,11 @@ public func <(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
     // Then offset.
     return lhs.offset < rhs.offset
 }
+
+// MARK: - migration support
+extension SourceLocation {
+    @available(*, unavailable, renamed: "range(toEnd:)")
+    public func rangeToEndLocation(_ end: SourceLocation) -> NSRange {
+        fatalError()
+    }
+}
