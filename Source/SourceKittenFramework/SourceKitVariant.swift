@@ -56,6 +56,29 @@ public struct SourceKitVariant {
     fileprivate let box: _VariantBox
 }
 
+// MARK: - ExpressibleByStringLiteral
+extension SourceKitVariant: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        box = _VariantBox(variant: .string(value))
+    }
+
+    public init(extendedGraphemeClusterLiteral value: String) {
+        box = _VariantBox(variant: .string(value))
+    }
+
+    public init(unicodeScalarLiteral value: String) {
+        box = _VariantBox(variant: .string(value))
+    }
+}
+
+// MARK: - Equatable
+extension SourceKitVariant: Equatable {
+    public static func ==(lhs: SourceKitVariant, rhs: SourceKitVariant) -> Bool {
+        return lhs.box == rhs.box
+    }
+}
+
+// MARK: - Implementation
 extension SourceKitVariant {
     private enum _VariantCore {
         case variant(sourcekitd_variant_t, _ResponseBox)
@@ -104,31 +127,36 @@ extension SourceKitVariant {
             case SOURCEKITD_VARIANT_TYPE_NULL:
                 self = .none
             default:
-                fatalError("Should never happen because we've checked all SourceKitRepresentable types")
+                fatalError("Should never happen because we've checked all SOURCEKITD_VARIANT_TYPE")
             }
         }
     }
 
+    private init(variant: sourcekitd_variant_t, response: _ResponseBox) {
+        box = _VariantBox(variant: .variant(variant, response))
+    }
+
     fileprivate final class _VariantBox {
-        fileprivate var _core: _VariantCore
-        
-        fileprivate init(variant: _VariantCore) {
-            _core = variant
+        private var _core: _VariantCore
+
+        init(variant: _VariantCore) { _core = variant }
+
+        func resolveType() ->_VariantCore {
+            if case let .variant(sourcekitObject, response) = _core {
+                _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
+            }
+            return _core
         }
 
         var array: [SourceKitVariant]? {
             get {
-                if case let .array(array) = _core {
-                    return array
-                } else if case let .variant(sourcekitObject, response) = _core {
-                    _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
-                    if case let .array(array) = self._core { return array }
-                }
+                if case let .array(array) = _core { return array }
+                if case let .array(array) = resolveType() { return array }
                 return nil
             }
             set {
                 if case .array = _core, let newValue = newValue {
-                    _core = _VariantCore.array(newValue)
+                    _core = .array(newValue)
                 } else {
                     fatalError()
                 }
@@ -137,17 +165,13 @@ extension SourceKitVariant {
 
         var dictionary: [String: SourceKitVariant]? {
             get {
-                if case let .dictionary(dictionary) = _core {
-                    return dictionary
-                } else if case let .variant(sourcekitObject, response) = _core {
-                    _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
-                    if case let .dictionary(dictionary) = _core { return dictionary }
-                }
+                if case let .dictionary(dictionary) = _core { return dictionary }
+                if case let .dictionary(dictionary) = resolveType() { return dictionary }
                 return nil
             }
             set {
                 if case .dictionary = _core, let newValue = newValue {
-                    _core = _VariantCore.dictionary(newValue)
+                    _core = .dictionary(newValue)
                 } else {
                     fatalError()
                 }
@@ -156,20 +180,17 @@ extension SourceKitVariant {
 
         var string: String? {
             get {
-                if case let .string(string) = _core {
-                    return string
-                } else if case let .uid(string) = _core {
-                    return string
-                } else if case let .variant(sourcekitObject, response) = _core {
-                    _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
-                    if case let .string(string) = _core { return string }
-                    else if case let .uid(string) = _core { return string }
+                if case let .string(string) = _core { return string }
+                if case let .uid(string) = _core { return string }
+                switch resolveType() {
+                case let .string(string): return string
+                case let .uid(string): return string
+                default: return nil
                 }
-                return nil
             }
             set {
                 if case .string = _core, let newValue = newValue {
-                    _core = _VariantCore.string(newValue)
+                    _core = .string(newValue)
                 } else {
                     fatalError()
                 }
@@ -178,17 +199,13 @@ extension SourceKitVariant {
 
         var int: Int? {
             get {
-                if case let .int64(int64) = _core {
-                    return Int(int64)
-                } else if case let .variant(sourcekitObject, response) = _core {
-                    _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
-                    if case let .int64(int64) = _core { return Int(int64) }
-                }
+                if case let .int64(int64) = _core { return Int(int64) }
+                if case let .int64(int64) = resolveType() { return Int(int64) }
                 return nil
             }
             set {
                 if case .int64 = _core, let newValue = newValue {
-                    _core = _VariantCore.int64(Int64(newValue))
+                    _core = .int64(Int64(newValue))
                 } else {
                     fatalError()
                 }
@@ -197,17 +214,13 @@ extension SourceKitVariant {
 
         var int64: Int64? {
             get {
-                if case let .int64(int64) = _core {
-                    return int64
-                } else if case let .variant(sourcekitObject, response) = _core {
-                    _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
-                    if case let .int64(int64) = _core { return int64 }
-                }
+                if case let .int64(int64) = _core { return int64 }
+                if case let .int64(int64) = resolveType() { return int64 }
                 return nil
             }
             set {
                 if case .int64 = _core, let newValue = newValue {
-                    _core = _VariantCore.int64(newValue)
+                    _core = .int64(newValue)
                 } else {
                     fatalError()
                 }
@@ -216,12 +229,8 @@ extension SourceKitVariant {
 
         var bool: Bool? {
             get {
-                if case let .bool(bool) = _core {
-                    return bool
-                } else if case let .variant(sourcekitObject, response) = _core {
-                    _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
-                    if case let .bool(bool) = _core { return bool }
-                }
+                if case let .bool(bool) = _core { return bool }
+                if case let .bool(bool) = resolveType() { return bool }
                 return nil
             }
             set {
@@ -262,21 +271,28 @@ extension SourceKitVariant {
 
     fileprivate final class _ResponseBox {
         private let response: sourcekitd_response_t
-        init(_ response: sourcekitd_response_t) {
-            self.response = response
-        }
-        deinit {
-            sourcekitd_response_dispose(response)
-        }
+        init(_ response: sourcekitd_response_t) { self.response = response }
+        deinit { sourcekitd_response_dispose(response) }
     }
-
-    private init(variant: sourcekitd_variant_t, response: _ResponseBox) {
-        box = _VariantBox(variant: .variant(variant, response))
-    }
-
 }
 
-// MARK: - Equatable with String
+// MARK: - Equatable
+extension SourceKitVariant._VariantBox: Equatable {
+    public static func ==(lhs: SourceKitVariant._VariantBox, rhs: SourceKitVariant._VariantBox) -> Bool {
+        switch (lhs.resolveType(), rhs.resolveType()) {
+        case let (.array(lhs), .array(rhs)): return lhs == rhs
+        case let (.dictionary(lhs), .dictionary(rhs)): return lhs == rhs
+        case let (.string(lhs), .string(rhs)): return lhs == rhs
+        case let (.int64(lhs), .int64(rhs)): return lhs == rhs
+        case let (.bool(lhs), .bool(rhs)): return lhs == rhs
+        case let (.uid(lhs), .uid(rhs)): return lhs == rhs
+        case (.none, .none): return true
+        default: return false
+        }
+    }
+}
+
+// MARK: - == to String
 public func ==(lhs: SourceKitVariant?, rhs: String) -> Bool {
     return lhs.map { $0 == rhs } ?? false
 }
@@ -295,7 +311,7 @@ extension SourceKitVariant {
     }
 }
 
-// MARK: - Equatable with RawRepresentable
+// MARK: - == to RawRepresentable
 public func ==<T: RawRepresentable>(lhs: SourceKitVariant?, rhs: T) -> Bool
     where T.RawValue == String {
         return lhs == rhs.rawValue
