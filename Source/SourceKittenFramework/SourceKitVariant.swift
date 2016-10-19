@@ -11,6 +11,7 @@ import Foundation
 import SourceKit
 #endif
 
+// MARK: - Basic properties of SourceKitVariant
 public struct SourceKitVariant {
     public var array: [SourceKitVariant]? {
         get { return box.array }
@@ -54,6 +55,111 @@ public struct SourceKitVariant {
     }
 
     fileprivate let box: _VariantBox
+}
+
+// MARK: - Convenient properties for SwiftDocKey
+extension SourceKitVariant {
+    /// Annotated declaration (String).
+    public var annotatedDeclaration: String?
+        { return self[.annotatedDeclaration]?.string }
+    /// Body length (Int).
+    public var bodyLength: Int?
+        { return self[.bodyLength]?.int }
+    /// Body offset (Int).
+    public var bodyOffset: Int? { return self[.bodyOffset]?.int }
+    /// Diagnostic stage (String).
+    public var diagnosticStage: String? { return self[.diagnosticStage]?.string }
+    /// File path (String).
+    public var filePath: String? { return self[.filePath]?.string }
+    /// Full XML docs (String).
+    public var fullXMLDocs: String? { return self[.fullXMLDocs]?.string }
+    /// Kind (SourceKitVariant.string).
+    public var kind: SourceKitVariant? { return self[.kind] }
+    /// Length (Int).
+    public var length: Int? { return self[.length]?.int }
+    /// Name (String).
+    public var name: String? { return self[.name]?.string }
+    /// Name length (Int).
+    public var nameLength: Int? { return self[.nameLength]?.int }
+    /// Name offset (Int).
+    public var nameOffset: Int? { return self[.nameOffset]?.int }
+    /// Offset (Int).
+    public var offset: Int? { return self[.offset]?.int }
+    /// Substructure ([SourceKitVariant]).
+    public var substructure: [SourceKitVariant]? { return self[.substructure]?.array }
+    /// Syntax map ([SourceKitVariant]).
+    public var syntaxMap: [SourceKitVariant]? { return self[.syntaxMap]?.array }
+    /// Type name (String).
+    public var typeName: String? { return self[.typeName]?.string }
+    /// Inheritedtype ([SourceKitVariant])
+    public var inheritedtypes: [SourceKitVariant]? { return self[.inheritedtypes]?.array }
+}
+
+// MARK: - Accessors for SwiftDocKey
+extension SourceKitVariant {
+    public static func annotatedDeclaration(_ variant: SourceKitVariant) -> String? {
+        return variant[.annotatedDeclaration]?.string
+    }
+
+    public static func bodyLength(_ variant: SourceKitVariant) -> Int? {
+        return variant[.bodyLength]?.int
+    }
+
+    public static func bodyOffset(_ variant: SourceKitVariant) -> Int? {
+        return variant[.bodyOffset]?.int
+    }
+
+    public static func diagnosticStage(_ variant: SourceKitVariant) -> String? {
+        return variant[.diagnosticStage]?.string
+    }
+
+    public static func filePath(_ variant: SourceKitVariant) -> String? {
+        return variant[.filePath]?.string
+    }
+
+    public static func fullXMLDocs(_ variant: SourceKitVariant) -> String? {
+        return variant[.fullXMLDocs]?.string
+    }
+
+    public static func kind(_ variant: SourceKitVariant) -> SourceKitVariant? {
+        return variant[.kind]
+    }
+
+    public static func length(_ variant: SourceKitVariant) -> Int? {
+        return variant[.length]?.int
+    }
+
+    public static func name(_ variant: SourceKitVariant) -> String? {
+        return variant[.name]?.string
+    }
+
+    public static func nameLength(_ variant: SourceKitVariant) -> Int? {
+        return variant[.nameLength]?.int
+    }
+
+    public static func nameOffset(_ variant: SourceKitVariant) -> Int? {
+        return variant[.nameOffset]?.int
+    }
+
+    public static func offset(_ variant: SourceKitVariant) -> Int? {
+        return variant[.offset]?.int
+    }
+
+    public static func substructure(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
+        return variant[.substructure]?.array
+    }
+
+    public static func syntaxMap(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
+        return variant[.syntaxMap]?.array
+    }
+
+    public static func typeName(_ variant: SourceKitVariant) -> String? {
+        return variant[.typeName]?.string
+    }
+
+    public static func inheritedtypes(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
+        return variant[.inheritedtypes]?.array
+    }
 }
 
 // MARK: - ExpressibleByStringLiteral
@@ -332,26 +438,6 @@ extension SourceKitVariant {
         where T.RawValue == String {
             return rhs == lhs
     }
-}
-
-// MARK: - SwiftDocKey
-extension SourceKitVariant {
-    var annotatedDeclaration: String? { return self[.annotatedDeclaration]?.string }
-    var bodyLength: Int? { return self[.bodyLength]?.int }
-    var bodyOffset: Int? { return self[.bodyOffset]?.int }
-    var diagnosticStage: String? { return self[.diagnosticStage]?.string }
-    var filePath: String? { return self[.filePath]?.string }
-    var fullXMLDocs: String? { return self[.fullXMLDocs]?.string }
-    var kind: SourceKitVariant? { return self[.kind] }
-    var length: Int? { return self[.length]?.int }
-    var name: String? { return self[.name]?.string }
-    var nameLength: Int? { return self[.nameLength]?.int }
-    var nameOffset: Int? { return self[.nameOffset]?.int }
-    var offset: Int? { return self[.offset]?.int }
-    var substructure: [SourceKitVariant]? { return self[.substructure]?.array }
-    var syntaxMap: [SourceKitVariant]? { return self[.syntaxMap]?.array }
-    var typeName: String? { return self[.typeName]?.string }
-    var inheritedtypes: [SourceKitVariant]? { return self[.inheritedtypes]?.array }
 }
 
 // MARK: - Custom
