@@ -93,14 +93,14 @@ extension SourceKitVariant {
             case SOURCEKITD_VARIANT_TYPE_STRING:
                 let length = sourcekitd_variant_string_get_length(sourcekitObject)
                 let ptr = sourcekitd_variant_string_get_ptr(sourcekitObject)
-                self = String(bytes: ptr!, length: length).map(_VariantCore.uid) ?? .none
+                self = String(bytes: ptr!, length: length).map(_VariantCore.string) ?? .none
             case SOURCEKITD_VARIANT_TYPE_INT64:
                 self = .int64(sourcekitd_variant_int64_get_value(sourcekitObject))
             case SOURCEKITD_VARIANT_TYPE_BOOL:
                 self = .bool(sourcekitd_variant_bool_get_value(sourcekitObject))
             case SOURCEKITD_VARIANT_TYPE_UID:
                 self = String(sourceKitUID: sourcekitd_variant_uid_get_value(sourcekitObject))
-                    .map(_VariantCore.uid) ?? .none
+                    .map(_VariantCore.string) ?? .none
             case SOURCEKITD_VARIANT_TYPE_NULL:
                 self = .none
             default:
