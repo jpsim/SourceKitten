@@ -20,7 +20,7 @@ let largestSwiftFile = File(path: largestSwiftFileInRepoURL.path)!
 
 let thisFile = URL(fileURLWithPath: #file).path
 
-class PerformanceTests: XCTestCase {
+class VariantPerformanceTests: XCTestCase {
 
     func testEditorOpenJSONWithDictionary() {
         let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend()
@@ -72,6 +72,18 @@ class PerformanceTests: XCTestCase {
         "stringByTrimmingTrailingCharactersInSet(_:)",
         "substringWithSourceRange(_:end:)",
         ]
+
+    func testRequestEditorOpenWithDictionary() {
+        self.measure {
+            _ = try? Request.editorOpen(file: largestSwiftFile).failableSend()
+        }
+    }
+
+    func testRequestEditorOpenWithVariant() {
+        self.measure {
+            _ = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
+        }
+    }
 
     func testFindAvailablesWithDictionary() {
         func findAvailables(dictionary: [String: SourceKitRepresentable]) -> [String] {
