@@ -22,104 +22,82 @@ let thisFile = URL(fileURLWithPath: #file).path
 
 class PerformanceTests: XCTestCase {
 
-    func testEditorOpenJSON1() {
-            let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend()
-            if let jsonString = dictionary.map(toNSDictionary).map(toJSON) {
-                try? jsonString.write(to: srcURL.appendingPathComponent("testEditorOpenJSON1.json"),
-                                      atomically: true,
-                                      encoding: .utf8)
-            }
-    }
-
-    func testEditorOpenJSON2() {
-            let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
-            if let jsonString = variant?.any.map(toJSON) {
-                try? jsonString.write(to: srcURL.appendingPathComponent("testEditorOpenJSON2.json"),
-                                      atomically: true,
-                                      encoding: .utf8)
-            }
-    }
-
-    func testIndexJSON1() {
-            let arguments = ["-sdk", sdkPath(), "-j4", thisFile ]
-            let dictionary = try? Request.index(file: thisFile, arguments: arguments).failableSend()
-            if let jsonString = dictionary.map(toNSDictionary).map(toJSON) {
-                try? jsonString.write(to: srcURL.appendingPathComponent("testIndexJSON1.json"),
-                                      atomically: true,
-                                      encoding: .utf8)
-            }
-    }
-
-    func testIndexJSON2() {
-            let arguments = ["-sdk", sdkPath(), "-j4", thisFile ]
-            let variant = try? Request.index(file: thisFile, arguments: arguments).failableSend2()
-            if let jsonString = variant?.any.map(toJSON) {
-                try? jsonString.write(to: srcURL.appendingPathComponent("testIndexJSON2.json"),
-                                      atomically: true,
-                                      encoding: .utf8)
-            }
-    }
-
-
-    func testPerformanceJSON1() {
-        self.measure {
-            let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend()
-            for _ in 1...10 {
-                _ = dictionary.map(toNSDictionary).map(toJSON)
-            }
-        }
-    }
-
-    func testPerformanceJSON2() {
-        self.measure {
-            let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
-            for _ in 1...10 {
-                _ = variant?.any.map(toJSON)
-            }
-        }
-    }
-
-    func testPerformanceWalking1() {
-        self.measure {
-            let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend()
-            for _ in 1...100 {
-                walk1(dictionay: dictionary!)
-            }
-        }
-    }
-
-    func testPerformanceWalking2() {
-        self.measure {
-            let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
-            for _ in 1...100 {
-                walk2(variant: variant!)
-            }
-        }
-    }
-
-    func testPerformanceWalkingAfterOnceWalked1() {
+    func testEditorOpenJSONWithDictionary() {
         let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend()
-        walk1(dictionay: dictionary!)
-        self.measure {
-            for _ in 1...100 {
-                walk1(dictionay: dictionary!)
-            }
+        if let jsonString = dictionary.map(toNSDictionary).map(toJSON) {
+            try? jsonString.write(to: srcURL.appendingPathComponent("testEditorOpenJSON1.json"),
+                                  atomically: true,
+                                  encoding: .utf8)
         }
     }
 
-    func testPerformanceWalkingAfterOnceWalked2() {
+    func testEditorOpenJSONWithVariant() {
         let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
-        walk2(variant: variant!)
-        self.measure {
-            for _ in 1...100 {
-                walk2(variant: variant!)
-            }
+        if let jsonString = variant?.any.map(toJSON) {
+            try? jsonString.write(to: srcURL.appendingPathComponent("testEditorOpenJSON2.json"),
+                                  atomically: true,
+                                  encoding: .utf8)
         }
     }
 
-    func testFindAvailables() {
-        func findAvaliables(variant: SourceKitVariant) -> [String] {
-            let resultFromSubstructure = variant.substructure?.flatMap(findAvaliables) ?? []
+    func testIndexJSONWithDictionary() {
+        let arguments = ["-sdk", sdkPath(), "-j4", thisFile ]
+        let dictionary = try? Request.index(file: thisFile, arguments: arguments).failableSend()
+        if let jsonString = dictionary.map(toNSDictionary).map(toJSON) {
+            try? jsonString.write(to: srcURL.appendingPathComponent("testIndexJSON1.json"),
+                                  atomically: true,
+                                  encoding: .utf8)
+        }
+    }
+
+    func testIndexJSONWithVariant() {
+        let arguments = ["-sdk", sdkPath(), "-j4", thisFile ]
+        let variant = try? Request.index(file: thisFile, arguments: arguments).failableSend2()
+        if let jsonString = variant?.any.map(toJSON) {
+            try? jsonString.write(to: srcURL.appendingPathComponent("testIndexJSON2.json"),
+                                  atomically: true,
+                                  encoding: .utf8)
+        }
+    }
+
+    let expectedAvailables = [
+        "absolutePathRepresentation(_:)",
+        "commentBody(_:)",
+        "countOfLeadingCharactersInSet(_:)",
+        "documentedTokenOffsets(_:)",
+        "lineAndCharacterForByteOffset(_:)",
+        "lineAndCharacterForCharacterOffset(_:)",
+        "pragmaMarks(_:excludeRanges:limitRange:)",
+        "stringByRemovingCommonLeadingWhitespaceFromLines()",
+        "stringByTrimmingTrailingCharactersInSet(_:)",
+        "substringWithSourceRange(_:end:)",
+        ]
+
+    func testFindAvailablesWithDictionary() {
+        func findAvailables(dictionary: [String: SourceKitRepresentable]) -> [String] {
+            let resultFromSubstructure = (dictionary[SwiftDocKey.substructure.rawValue] as? [[String:SourceKitRepresentable]])?.flatMap(findAvailables) ?? []
+            if let kind = dictionary[SwiftDocKey.kind.rawValue] as? String,
+                kind == SwiftDeclarationKind.functionMethodInstance.rawValue,
+                let attributes = (dictionary["key.attributes"] as? [[String:SourceKitRepresentable]])?
+                    .flatMap({$0["key.attribute"] as? String}),
+                attributes.contains("source.decl.attribute.available"),
+                let name = dictionary[SwiftDocKey.name.rawValue] as? String {
+                return [name] + resultFromSubstructure
+            }
+            return resultFromSubstructure
+        }
+
+        let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend()
+        var availables: [String]! = nil
+        self.measure {
+            availables = findAvailables(dictionary: dictionary!)
+        }
+        XCTAssertEqual(availables.sorted(), self.expectedAvailables)
+    }
+
+    func testFindAvailablesWithVariant() {
+        func findAvailables(variant: SourceKitVariant) -> [String] {
+            let resultFromSubstructure = variant.substructure?.flatMap(findAvailables) ?? []
             if variant.kind == SwiftDeclarationKind.functionMethodInstance,
                 let attributes = variant.attributes?.flatMap({ $0.attribute }),
                 attributes.contains(where: {$0 == "source.decl.attribute.available"}),
@@ -130,52 +108,11 @@ class PerformanceTests: XCTestCase {
         }
 
         let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
-        let avaliables = findAvaliables(variant: variant!)
-        let expected = [
-            "lineAndCharacterForCharacterOffset(_:)",
-            "lineAndCharacterForByteOffset(_:)",
-            "stringByTrimmingTrailingCharactersInSet(_:)",
-            "absolutePathRepresentation(_:)",
-            "substringWithSourceRange(_:end:)",
-            "pragmaMarks(_:excludeRanges:limitRange:)",
-            "documentedTokenOffsets(_:)",
-            "commentBody(_:)",
-            "stringByRemovingCommonLeadingWhitespaceFromLines()",
-            "countOfLeadingCharactersInSet(_:)",
-            ]
-        XCTAssertEqual(avaliables, expected)
-    }
-}
-
-
-func walk1(dictionay: [String: SourceKitRepresentable]) {
-    if let _ = dictionay[SwiftDocKey.name.rawValue] as? String {
-    }
-    if let _ = dictionay[SwiftDocKey.kind.rawValue] as? String {
-    }
-    if let _ = (dictionay[SwiftDocKey.offset.rawValue] as? Int64).map({Int($0)}) {
-    }
-    if let _ = (dictionay[SwiftDocKey.length.rawValue] as? Int64).map({Int($0)}) {
-    }
-    guard let substructures = dictionay[SwiftDocKey.substructure.rawValue] as? [SourceKitRepresentable] else { return }
-    for substructure in substructures {
-        if let substructure = substructure as? [String: SourceKitRepresentable] {
-            walk1(dictionay: substructure)
+        var availables: [String]!
+        self.measure {
+            availables = findAvailables(variant: variant!)
         }
+        XCTAssertEqual(availables.sorted(), self.expectedAvailables)
     }
 }
 
-func walk2(variant: SourceKitVariant) {
-    if let _ = variant[.name]?.string {
-    }
-    if let _ = variant[.kind]?.string {
-    }
-    if let _ = variant[.offset]?.int {
-    }
-    if let _ = variant[.length]?.int {
-    }
-    guard let substructures = variant[.substructure]?.array else { return }
-    for substructure in substructures {
-        walk2(variant: substructure)
-    }
-}
