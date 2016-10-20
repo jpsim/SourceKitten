@@ -60,7 +60,7 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         _ = withUnsafeMutablePointer(to: &array) { arrayPtr in
             sourcekitd_variant_array_apply_f(sourcekitObject, { index, value, context in
                 if let value = fromSourceKit(value), let context = context {
-                    let localArray = context.bindMemory(to: [SourceKitRepresentable].self, capacity: 1)
+                    let localArray = context.assumingMemoryBound(to: [SourceKitRepresentable].self)
                     localArray.pointee.insert(value, at: Int(index))
                 }
                 return true
@@ -72,7 +72,7 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         _ = withUnsafeMutablePointer(to: &dict) { dictPtr in
             sourcekitd_variant_dictionary_apply_f(sourcekitObject, { key, value, context in
                 if let key = String(sourceKitUID: key!), let value = fromSourceKit(value), let context = context {
-                    let localDict = context.bindMemory(to: [String: SourceKitRepresentable].self, capacity: 1)
+                    let localDict = context.assumingMemoryBound(to: [String: SourceKitRepresentable].self)
                     localDict.pointee[key] = value
                 }
                 return true
