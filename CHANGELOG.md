@@ -15,6 +15,18 @@
   [vdka](https://github.com/vdka)
   [#270](https://github.com/jpsim/SourceKitten/issues/270)
 
+* Now builds and passes most tests on Linux using the Swift Package Manager with
+  Swift 3.0. This requires `libsourcekitdInProc.so` to be built and located in
+  `/usr/lib`, or in another location specified by the `LINUX_SOURCEKIT_LIB_PATH`
+  environment variable. A preconfigured Docker image is available on Docker Hub
+  by the ID of `norionomura/sourcekit:30`.  
+  [JP Simard](https://github.com/jpsim)
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#179](https://github.com/jpsim/SourceKitten/issues/179)
+
+* Now supports Swift Package Manager on macOS and Linux.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * `NSString.lines()` generated surplus line when string ended with newline
