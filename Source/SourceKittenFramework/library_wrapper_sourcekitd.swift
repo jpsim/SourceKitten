@@ -1,7 +1,12 @@
 #if SWIFT_PACKAGE
 import SourceKit
 #endif
-private let library = toolchainLoader.load(path: "sourcekitd.framework/Versions/A/sourcekitd")
+#if os(Linux)
+private let path = "libsourcekitdInProc.so"
+#else
+private let path = "sourcekitd.framework/Versions/A/sourcekitd"
+#endif
+private let library = toolchainLoader.load(path: path)
 internal let sourcekitd_initialize: @convention(c) () -> () = library.load(symbol: "sourcekitd_initialize")
 internal let sourcekitd_shutdown: @convention(c) () -> () = library.load(symbol: "sourcekitd_shutdown")
 internal let sourcekitd_set_interrupted_connection_handler: @convention(c) (sourcekitd_interrupted_connection_handler_t) -> () = library.load(symbol: "sourcekitd_set_interrupted_connection_handler")
@@ -40,7 +45,6 @@ internal let sourcekitd_variant_dictionary_get_string: @convention(c) (sourcekit
 internal let sourcekitd_variant_dictionary_get_int64: @convention(c) (sourcekitd_variant_t, sourcekitd_uid_t) -> (Int64) = library.load(symbol: "sourcekitd_variant_dictionary_get_int64")
 internal let sourcekitd_variant_dictionary_get_bool: @convention(c) (sourcekitd_variant_t, sourcekitd_uid_t) -> (Bool) = library.load(symbol: "sourcekitd_variant_dictionary_get_bool")
 internal let sourcekitd_variant_dictionary_get_uid: @convention(c) (sourcekitd_variant_t, sourcekitd_uid_t) -> (sourcekitd_uid_t!) = library.load(symbol: "sourcekitd_variant_dictionary_get_uid")
-internal let sourcekitd_variant_dictionary_apply: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_dictionary_applier_t) -> (Bool) = library.load(symbol: "sourcekitd_variant_dictionary_apply")
 internal let sourcekitd_variant_dictionary_apply_f: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_dictionary_applier_f_t, UnsafeMutableRawPointer?) -> (Bool) = library.load(symbol: "sourcekitd_variant_dictionary_apply_f")
 internal let sourcekitd_variant_array_get_count: @convention(c) (sourcekitd_variant_t) -> (Int) = library.load(symbol: "sourcekitd_variant_array_get_count")
 internal let sourcekitd_variant_array_get_value: @convention(c) (sourcekitd_variant_t, Int) -> (sourcekitd_variant_t) = library.load(symbol: "sourcekitd_variant_array_get_value")
@@ -48,7 +52,6 @@ internal let sourcekitd_variant_array_get_string: @convention(c) (sourcekitd_var
 internal let sourcekitd_variant_array_get_int64: @convention(c) (sourcekitd_variant_t, Int) -> (Int64) = library.load(symbol: "sourcekitd_variant_array_get_int64")
 internal let sourcekitd_variant_array_get_bool: @convention(c) (sourcekitd_variant_t, Int) -> (Bool) = library.load(symbol: "sourcekitd_variant_array_get_bool")
 internal let sourcekitd_variant_array_get_uid: @convention(c) (sourcekitd_variant_t, Int) -> (sourcekitd_uid_t!) = library.load(symbol: "sourcekitd_variant_array_get_uid")
-internal let sourcekitd_variant_array_apply: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_array_applier_t) -> (Bool) = library.load(symbol: "sourcekitd_variant_array_apply")
 internal let sourcekitd_variant_array_apply_f: @convention(c) (sourcekitd_variant_t, sourcekitd_variant_array_applier_f_t, UnsafeMutableRawPointer?) -> (Bool) = library.load(symbol: "sourcekitd_variant_array_apply_f")
 internal let sourcekitd_variant_int64_get_value: @convention(c) (sourcekitd_variant_t) -> (Int64) = library.load(symbol: "sourcekitd_variant_int64_get_value")
 internal let sourcekitd_variant_bool_get_value: @convention(c) (sourcekitd_variant_t) -> (Bool) = library.load(symbol: "sourcekitd_variant_bool_get_value")

@@ -16,6 +16,9 @@ import Foundation
  - returns: JSON string representation of the input object.
  */
 public func toJSON(_ object: Any) -> String {
+    if let array = object as? [Any], array.isEmpty {
+        return "[\n\n]"
+    }
     do {
         let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: .prettyPrinted)
         if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
@@ -54,8 +57,10 @@ public func toNSDictionary(_ dictionary: [String: SourceKitRepresentable]) -> NS
             fatalError("Should never happen because we've checked all SourceKitRepresentable types")
         }
     }
-    return anyDictionary as NSDictionary
+    return anyDictionary.bridge()
 }
+
+#if !os(Linux)
 
 public func declarationsToJSON(_ decl: [String: [SourceDeclaration]]) -> String {
     return toJSON(decl.map({ [$0: toOutputDictionary($1)] }).sorted { $0.keys.first! < $1.keys.first! })
@@ -118,3 +123,5 @@ private func toOutputDictionary(_ text: Text) -> [String: Any] {
         return ["kind": "", "Verbatim": str]
     }
 }
+
+#endif

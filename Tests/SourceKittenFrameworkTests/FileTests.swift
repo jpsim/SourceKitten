@@ -12,7 +12,7 @@ import XCTest
 class FileTests: XCTestCase {
 
     func testUnreadablePath() {
-        XCTAssert(File(path: "/dev/null") == nil)
+        XCTAssert(File(path: "/dev/wtf") == nil)
     }
 
     func testFormat() {
@@ -21,5 +21,14 @@ class FileTests: XCTestCase {
                                          useTabs: false,
                                          indentWidth: 4)
         XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift", encoding: .utf8))
+    }
+}
+
+extension FileTests {
+    static var allTests: [(String, (FileTests) -> () throws -> Void)] {
+        return [
+            ("testUnreadablePath", testUnreadablePath),
+            ("testFormat", testFormat),
+        ]
     }
 }

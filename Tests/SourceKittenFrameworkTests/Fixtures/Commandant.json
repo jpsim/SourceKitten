@@ -1083,9 +1083,9 @@
         "key.doc.declaration" : "public protocol ArgumentProtocol",
         "key.substructure" : [
           {
-            "key.bodylength" : 12,
+            "key.namelength" : 28,
             "key.nameoffset" : 974,
-            "key.offset" : 962,
+            "key.bodylength" : 12,
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 64,
             "key.substructure" : [
@@ -1099,7 +1099,7 @@
               }
             ],
             "key.kind" : "source.lang.swift.decl.function.method.static",
-            "key.namelength" : 28
+            "key.offset" : 962
           }
         ],
         "key.length" : 150,
@@ -2595,10 +2595,78 @@
         "key.namelength" : 0,
         "key.offset" : 5013,
         "key.length" : 25
+      },
+      {
+        "key.filepath" : "Sources\/Commandant\/Errors.swift",
+        "key.doc.file" : "Sources\/Commandant\/Errors.swift",
+        "key.annotated_decl" : "<Declaration>public enum CommandantError&lt;ClientError&gt; : <Type usr=\"s:Ps5Error\">Error<\/Type><\/Declaration>",
+        "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>CommandantError<\/decl.name>&lt;<decl.generic_type_param usr=\"s:tO10Commandant15CommandantError11ClientErrorMx\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; : <ref.protocol usr=\"s:Ps5Error\">Error<\/ref.protocol><\/decl.enum>",
+        "key.doc.discussion" : [
+          {
+            "Para" : "`ClientError` should be the type of error (if any) that can occur when running commands."
+          }
+        ],
+        "key.substructure" : [
+          {
+            "key.namelength" : 31,
+            "key.nameoffset" : 5278,
+            "key.bodylength" : 49,
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.length" : 114,
+            "key.substructure" : [
+
+            ],
+            "key.name" : "UsageError(description:)",
+            "key.bodyoffset" : 5330,
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.available"
+              }
+            ],
+            "key.kind" : "source.lang.swift.decl.function.method.static",
+            "key.offset" : 5266
+          },
+          {
+            "key.namelength" : 34,
+            "key.nameoffset" : 5459,
+            "key.bodylength" : 32,
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.length" : 100,
+            "key.substructure" : [
+
+            ],
+            "key.name" : "CommandError(_:)",
+            "key.bodyoffset" : 5514,
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.available"
+              }
+            ],
+            "key.kind" : "source.lang.swift.decl.function.method.static",
+            "key.offset" : 5447
+          }
+        ],
+        "key.length" : 384,
+        "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
+        "key.doc.type" : "Other",
+        "key.typeusr" : "_Tt",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.offset" : 5165,
+        "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Errors.swift\" line=\"16\" column=\"13\"><Name>CommandantError<\/Name><USR>s:O10Commandant15CommandantError<\/USR><Declaration>public enum CommandantError&lt;ClientError&gt; : Error<\/Declaration><Abstract><Para>Possible errors that can originate from Commandant.<\/Para><\/Abstract><Discussion><Para><codeVoice>ClientError<\/codeVoice> should be the type of error (if any) that can occur when running commands.<\/Para><\/Discussion><\/Other>",
+        "key.nameoffset" : 5175,
+        "key.doc.line" : 16,
+        "key.typename" : "CommandantError.Type",
+        "key.doc.name" : "CommandantError",
+        "key.doc.column" : 13,
+        "key.name" : "CommandantError",
+        "key.usr" : "s:O10Commandant15CommandantError",
+        "key.bodyoffset" : 5192,
+        "key.namelength" : 15,
+        "key.bodylength" : 356
       }
     ],
     "key.offset" : 0,
-    "key.length" : 5164
+    "key.length" : 5550
   }
 }, {
   "Sources\/Commandant\/Switch.swift" : {
@@ -3666,50 +3734,111 @@
       {
         "key.filepath" : "Sources\/Commandant\/Command.swift",
         "key.doc.file" : "Sources\/Commandant\/Command.swift",
+        "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
+        "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>CommandMode<\/decl.name><\/decl.enum>",
+        "key.doc.declaration" : "public enum CommandMode",
+        "key.substructure" : [
+          {
+            "key.namelength" : 35,
+            "key.nameoffset" : 7188,
+            "key.bodylength" : 30,
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.length" : 95,
+            "key.substructure" : [
+
+            ],
+            "key.name" : "Arguments(_:)",
+            "key.bodyoffset" : 7240,
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.available"
+              }
+            ],
+            "key.kind" : "source.lang.swift.decl.function.method.static",
+            "key.offset" : 7176
+          },
+          {
+            "key.bodylength" : 18,
+            "key.nameoffset" : 7337,
+            "key.offset" : 7326,
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.length" : 29,
+            "key.typename" : "CommandMode",
+            "key.name" : "Usage",
+            "key.bodyoffset" : 7357,
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.available"
+              }
+            ],
+            "key.kind" : "source.lang.swift.decl.var.static",
+            "key.namelength" : 5
+          }
+        ],
+        "key.length" : 288,
+        "key.doc.type" : "Other",
+        "key.typeusr" : "_Tt",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.offset" : 7090,
+        "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Command.swift\" line=\"69\" column=\"13\"><Name>CommandMode<\/Name><USR>s:O10Commandant11CommandMode<\/USR><Declaration>public enum CommandMode<\/Declaration><Abstract><Para>Describes the “mode” in which a command should run.<\/Para><\/Abstract><\/Other>",
+        "key.nameoffset" : 7100,
+        "key.doc.line" : 69,
+        "key.typename" : "CommandMode.Type",
+        "key.doc.name" : "CommandMode",
+        "key.doc.column" : 13,
+        "key.name" : "CommandMode",
+        "key.usr" : "s:O10Commandant11CommandMode",
+        "key.bodyoffset" : 7113,
+        "key.namelength" : 11,
+        "key.bodylength" : 264
+      },
+      {
+        "key.filepath" : "Sources\/Commandant\/Command.swift",
+        "key.doc.file" : "Sources\/Commandant\/Command.swift",
         "key.annotated_decl" : "<Declaration>public final class CommandRegistry&lt;ClientError : <Type usr=\"s:Ps5Error\">Error<\/Type>&gt;<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>final<\/syntaxtype.keyword> <syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>CommandRegistry<\/decl.name>&lt;<decl.generic_type_param usr=\"s:tC10Commandant15CommandRegistry11ClientErrorMx\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name> : <decl.generic_type_param.constraint><ref.protocol usr=\"s:Ps5Error\">Error<\/ref.protocol><\/decl.generic_type_param.constraint><\/decl.generic_type_param>&gt;<\/decl.class>",
         "key.doc.declaration" : "public final class CommandRegistry<ClientError : Error>",
         "key.substructure" : [
           {
+            "key.namelength" : 47,
+            "key.nameoffset" : 7485,
             "key.bodylength" : 52,
-            "key.nameoffset" : 7195,
-            "key.offset" : 7190,
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.length" : 152,
             "key.substructure" : [
 
             ],
             "key.name" : "runCommand(_:arguments:)",
-            "key.bodyoffset" : 7289,
+            "key.bodyoffset" : 7579,
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.available"
               }
             ],
             "key.kind" : "source.lang.swift.decl.function.method.instance",
-            "key.namelength" : 47
+            "key.offset" : 7480
           }
         ],
         "key.length" : 254,
         "key.doc.type" : "Class",
         "key.typeusr" : "_Tt",
         "key.kind" : "source.lang.swift.decl.extension",
-        "key.offset" : 7090,
+        "key.offset" : 7380,
         "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/Command.swift\" line=\"79\" column=\"20\"><Name>CommandRegistry<\/Name><USR>s:C10Commandant15CommandRegistry<\/USR><Declaration>public final class CommandRegistry&lt;ClientError : Error&gt;<\/Declaration><Abstract><Para>Maintains the list of commands available to run.<\/Para><\/Abstract><\/Class>",
-        "key.nameoffset" : 7100,
+        "key.nameoffset" : 7390,
         "key.doc.line" : 79,
         "key.typename" : "CommandRegistry.Type",
         "key.doc.name" : "CommandRegistry",
         "key.doc.column" : 20,
         "key.name" : "CommandRegistry",
         "key.usr" : "s:C10Commandant15CommandRegistry",
-        "key.bodyoffset" : 7117,
+        "key.bodyoffset" : 7407,
         "key.namelength" : 15,
         "key.bodylength" : 226
       }
     ],
     "key.offset" : 0,
-    "key.length" : 7345
+    "key.length" : 7635
   }
 }, {
   "Sources\/Commandant\/ArgumentParser.swift" : {

@@ -12,6 +12,8 @@ import XCTest
 
 let fixturesDirectory = URL(fileURLWithPath: #file).deletingLastPathComponent().path + "/Fixtures/"
 
+#if !os(Linux)
+
 class ClangTranslationUnitTests: XCTestCase {
 
     func testParsesObjectiveCHeaderFilesAndXcodebuildArguments() {
@@ -25,7 +27,7 @@ class ClangTranslationUnitTests: XCTestCase {
             "arg2"
         ]
         let (parsedHeaderFiles, parsedXcodebuildArguments) = parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: headerFiles + xcodebuildArguments)
-        XCTAssertEqual(parsedHeaderFiles, headerFiles.map({$0.absolutePathRepresentation()}), "Objective-C header files should be parsed")
+        XCTAssertEqual(parsedHeaderFiles, headerFiles.map({ $0.bridge().absolutePathRepresentation() }), "Objective-C header files should be parsed")
         XCTAssertEqual(parsedXcodebuildArguments, xcodebuildArguments, "xcodebuild arguments should be parsed")
     }
 
@@ -47,3 +49,5 @@ class ClangTranslationUnitTests: XCTestCase {
         compare(clangFixture: "Realm/Realm")
     }
 }
+
+#endif

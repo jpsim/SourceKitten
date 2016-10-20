@@ -6,6 +6,8 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
@@ -264,3 +266,5 @@ extension CXComment {
         return clang_Comment_getChild(self, idx)
     }
 }
+
+#endif

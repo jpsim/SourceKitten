@@ -7,7 +7,11 @@
 //
 
 import Commandant
+#if os(Linux)
+import Glibc
+#else
 import Darwin
+#endif
 import Dispatch
 
 // `sourcekitd_set_notification_handler()` sets the handler to be executed on main thread queue.

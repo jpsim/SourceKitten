@@ -56,7 +56,7 @@ extension NSString {
             //
             // A reference to `NSString` is held by every cast `String` along with their views and
             // indices.
-            let string = string.mutableCopy() as! String
+            let string = (string.mutableCopy() as! NSMutableString).bridge()
             utf8View = string.utf8
 
             var utf16CountSoFar = 0
@@ -192,12 +192,16 @@ extension NSString {
     CacheContainer instance is stored to instance of NSString as associated object.
     */
     private var cacheContainer: CacheContainer {
+        #if os(Linux)
+        return CacheContainer(self)
+        #else
         if let cache = objc_getAssociatedObject(self, &keyCacheContainer) as? CacheContainer {
             return cache
         }
         let cache = CacheContainer(self)
         objc_setAssociatedObject(self, &keyCacheContainer, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return cache
+        #endif
     }
 
     /**
@@ -244,8 +248,12 @@ extension NSString {
     - parameter rootDirectory: Absolute parent path if not already an absolute path.
     */
     public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
-        if isAbsolutePath { return self as String }
-        return (NSString.path(withComponents: [rootDirectory, self as String]) as NSString).standardizingPath
+        if isAbsolutePath { return bridge() }
+        #if os(Linux)
+        return NSURL(fileURLWithPath: NSURL.fileURL(withPathComponents: [rootDirectory, bridge()])!.path).standardizingPath!.path
+        #else
+        return NSString.path(withComponents: [rootDirectory, bridge()]).bridge().standardizingPath
+        #endif
     }
 
     /**
@@ -277,7 +285,7 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
-        let string = self as String
+        let string = bridge()
 
         let utf16View = string.utf16
         let startUTF16Index = utf16View.index(utf16View.startIndex, offsetBy: start)
@@ -384,12 +392,14 @@ extension NSString {
         return pathExtension == "swift"
     }
 
+#if !os(Linux)
     /**
     Returns a substring from a start and end SourceLocation.
     */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
         return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
     }
+#endif
 }
 
 extension String {
@@ -397,6 +407,7 @@ extension String {
         return FileManager.default.fileExists(atPath: self)
     }
 
+#if !os(Linux)
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limit: NSRange?) -> [SourceDeclaration] {
@@ -430,6 +441,7 @@ extension String {
                 usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [], swiftDeclaration: nil, availability: nil)
         }
     }
+#endif
 
     /**
     Returns whether or not the `token` can be documented. Either because it is a
@@ -444,7 +456,7 @@ extension String {
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
         if token.type == SyntaxKind.keyword.rawValue {
             let keywordFunctions = ["subscript", "init", "deinit"]
-            return ((self as NSString).substringWithByteRange(start: token.offset, length: token.length))
+            return bridge().substringWithByteRange(start: token.offset, length: token.length)
                 .map(keywordFunctions.contains) ?? false
         }
         return token.type == SyntaxKind.identifier.rawValue
@@ -477,7 +489,7 @@ extension String {
     - parameter range: Range to restrict the search for a comment body.
     */
     public func commentBody(range: NSRange? = nil) -> String? {
-        let nsString = self as NSString
+        let nsString = bridge()
         let patterns: [(pattern: String, options: NSRegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
             ("^\\s*\\/\\/\\/(.+)?",           .anchorsMatchLines)                               // single: ^\s*\/\/\/(.+)?
@@ -511,7 +523,7 @@ extension String {
                 }
             }
             if bodyParts.count > 0 {
-                return bodyParts.joined(separator: "\n")
+                return bodyParts.joined(separator: "\n").bridge()
                     .trimmingTrailingCharacters(in: .whitespacesAndNewlines)
                     .removingCommonLeadingWhitespaceFromLines()
             }
@@ -548,7 +560,7 @@ extension String {
     - parameter characterSet: Character set to check for membership.
     */
     public func countOfLeadingCharacters(in characterSet: CharacterSet) -> Int {
-        let characterSet = characterSet as NSCharacterSet
+        let characterSet = characterSet.bridge()
         var count = 0
         for char in utf16 {
             if !characterSet.characterIsMember(char) {
@@ -589,17 +601,21 @@ extension NSString {
         fatalError()
     }
 
+#if !os(Linux)
     @available(*, unavailable, renamed: "substringWithSourceRange(start:end:)")
     public func substringWithSourceRange(_ start: SourceLocation, end: SourceLocation) -> String? {
         fatalError()
     }
+#endif
 }
 
 extension String {
+#if !os(Linux)
     @available(*, unavailable, renamed: "pragmaMarks(_:excludeRanges:limit:)")
     public func pragmaMarks(_ filename: String, excludeRanges: [NSRange], limitRange: NSRange?) -> [SourceDeclaration] {
         fatalError()
     }
+#endif
 
     @available(*, unavailable, renamed: "documentedTokenOffsets(syntaxMap:)")
     public func documentedTokenOffsets(_ syntaxMap: SyntaxMap) -> [Int] {

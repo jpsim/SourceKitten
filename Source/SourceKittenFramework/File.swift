@@ -27,10 +27,10 @@ public final class File {
     - parameter path: File path.
     */
     public init?(path: String) {
-        self.path = path.absolutePathRepresentation()
+        self.path = path.bridge().absolutePathRepresentation()
         do {
             contents = try String(contentsOfFile: path, encoding: .utf8)
-            lines = contents.lines()
+            lines = contents.bridge().lines()
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
             return nil
@@ -45,7 +45,7 @@ public final class File {
     public init(contents: String) {
         path = nil
         self.contents = contents
-        lines = contents.lines()
+        lines = contents.bridge().lines()
     }
 
     /**
@@ -81,7 +81,7 @@ public final class File {
 
         if trimmingTrailingWhitespace {
             newContents = newContents.map {
-                $0.trimmingTrailingCharacters(in: .whitespaces)
+                $0.bridge().trimmingTrailingCharacters(in: .whitespaces)
             }
         }
 
@@ -102,9 +102,9 @@ public final class File {
         }
         let substring: String?
         if let end = SwiftDocKey.getBodyOffset(dictionary) {
-            substring = contents.substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
+            substring = contents.bridge().substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
         } else {
-            substring = contents.substringLinesWithByteRange(start: start, length: 0)
+            substring = contents.bridge().substringLinesWithByteRange(start: start, length: 0)
         }
         return substring?.trimmingWhitespaceAndOpeningCurlyBrace()
     }
@@ -128,7 +128,7 @@ public final class File {
                 }
             } ?? start
             let length = end - start
-            return contents.lineRangeWithByteRange(start: start, length: length)
+            return contents.bridge().lineRangeWithByteRange(start: start, length: length)
         }
     }
 
@@ -370,13 +370,12 @@ public final class File {
         let hasDocumentationComment = (hasFullXMLDocs && !isExtension) || hasRawDocComment
         guard hasDocumentationComment else { return nil }
 
-        return (isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary)).flatMap { offset in
-            return syntaxMap.commentRange(beforeOffset: Int(offset)).flatMap { commentByteRange in
-                return contents.byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound).flatMap { nsRange in
-                    return contents.commentBody(range: nsRange)
-                }
-            }
+        if let offset = isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary),
+           let commentByteRange = syntaxMap.commentRange(beforeOffset: Int(offset)),
+           let nsRange = contents.bridge().byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound) {
+            return contents.commentBody(range: nsRange)
         }
+        return nil
     }
 }
 

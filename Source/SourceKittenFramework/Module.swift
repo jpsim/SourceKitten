@@ -23,7 +23,7 @@ public struct Module {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
         return sourceFiles.flatMap {
-            let filename = ($0 as NSString).lastPathComponent
+            let filename = $0.bridge().lastPathComponent
             if let file = File(path: $0) {
                 fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
                 fileIndex += 1
@@ -71,12 +71,12 @@ public struct Module {
     */
     public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
         let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
-        guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .swift, moduleName: name ?? moduleName(fromArguments: xcodeBuildArguments)) else {
+        guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput.bridge(), language: .swift, moduleName: name ?? moduleName(fromArguments: xcodeBuildArguments)) else {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
             fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
-            let file = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
-            try! xcodeBuildOutput.data(using: .utf8)?.write(to: file!, options: .atomicWrite)
-            fputs("Saved `xcodebuild` log file: \(file!.path)\n", stderr)
+            let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
+            try! xcodeBuildOutput.data(using: .utf8)?.write(to: file)
+            fputs("Saved `xcodebuild` log file: \(file.path)\n", stderr)
             return nil
         }
         guard let moduleName = moduleName(fromArguments: arguments) else {
@@ -96,7 +96,7 @@ public struct Module {
         self.name = name
         self.compilerArguments = compilerArguments
         sourceFiles = compilerArguments.filter({
-            $0.isSwiftFile() && $0.isFile
+            $0.bridge().isSwiftFile() && $0.isFile
         }).map {
             return URL(fileURLWithPath: $0).resolvingSymlinksInPath().path
         }

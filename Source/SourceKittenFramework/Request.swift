@@ -57,31 +57,31 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
     switch sourcekitd_variant_get_type(sourcekitObject) {
     case SOURCEKITD_VARIANT_TYPE_ARRAY:
         var array = [SourceKitRepresentable]()
-        _ = sourcekitd_variant_array_apply(sourcekitObject) { index, value in
-            if let value = fromSourceKit(value) {
-                array.insert(value, at: Int(index))
-            }
-            return true
+        _ = withUnsafeMutablePointer(to: &array) { arrayPtr in
+            sourcekitd_variant_array_apply_f(sourcekitObject, { index, value, context in
+                if let value = fromSourceKit(value), let context = context {
+                    let localArray = context.bindMemory(to: [SourceKitRepresentable].self, capacity: 1)
+                    localArray.pointee.insert(value, at: Int(index))
+                }
+                return true
+            }, arrayPtr)
         }
         return array
     case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
-        var count: Int = 0
-        _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { _, _ in
-            count += 1
-            return true
-        }
-        var dict = [String: SourceKitRepresentable](minimumCapacity: count)
-        _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
-            if let key = String(sourceKitUID: key!), let value = fromSourceKit(value) {
-                dict[key] = value
-            }
-            return true
+        var dict = [String: SourceKitRepresentable]()
+        _ = withUnsafeMutablePointer(to: &dict) { dictPtr in
+            sourcekitd_variant_dictionary_apply_f(sourcekitObject, { key, value, context in
+                if let key = String(sourceKitUID: key!), let value = fromSourceKit(value), let context = context {
+                    let localDict = context.bindMemory(to: [String: SourceKitRepresentable].self, capacity: 1)
+                    localDict.pointee[key] = value
+                }
+                return true
+            }, dictPtr)
         }
         return dict
     case SOURCEKITD_VARIANT_TYPE_STRING:
-        let length = sourcekitd_variant_string_get_length(sourcekitObject)
-        let ptr = sourcekitd_variant_string_get_ptr(sourcekitObject)
-        return String(bytes: ptr!, length: length)
+        return String(bytes: sourcekitd_variant_string_get_ptr(sourcekitObject),
+                      length: sourcekitd_variant_string_get_length(sourcekitObject))
     case SOURCEKITD_VARIANT_TYPE_INT64:
         return sourcekitd_variant_int64_get_value(sourcekitObject)
     case SOURCEKITD_VARIANT_TYPE_BOOL:
@@ -417,7 +417,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
     return Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
-internal func libraryWrapperForModule(_ module: String, loadPath: String, spmModule: String, compilerArguments: [String]) -> String {
+internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) -> String {
     let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
@@ -426,7 +426,12 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, spmMod
     }).flatMap { function -> String? in
         let fullFunctionName = function["key.name"] as! String
         let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
-        guard name != "clang_executeOnThread" else { // unsupported format
+        let unsupportedFunctions = [
+            "clang_executeOnThread",
+            "sourcekitd_variant_dictionary_apply",
+            "sourcekitd_variant_array_apply",
+        ]
+        guard !unsupportedFunctions.contains(name) else {
             return nil
         }
 
@@ -449,8 +454,27 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, spmMod
         return "internal let \(name): @convention(c) (\(parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", "))) -> (\(returnTypes.joined(separator: ", "))) = library.load(symbol: \"\(name)\")".replacingOccurrences(of: "SourceKittenFramework.", with: "")
     }
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
-    let library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
-    return spmImport + library + freeFunctions.joined(separator: "\n") + "\n"
+    let library: String
+    if let linuxPath = linuxPath {
+        library = "#if os(Linux)\n" +
+            "private let path = \"\(linuxPath)\"\n" +
+            "#else\n" +
+            "private let path = \"\(loadPath)\"\n" +
+            "#endif\n" +
+            "private let library = toolchainLoader.load(path: path)\n"
+    } else {
+        library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
+    }
+    let startPlatformCheck: String
+    let endPlatformCheck: String
+    if linuxPath == nil {
+        startPlatformCheck = "#if !os(Linux)\n"
+        endPlatformCheck = "\n#endif\n"
+    } else {
+        startPlatformCheck = ""
+        endPlatformCheck = "\n"
+    }
+    return startPlatformCheck + spmImport + library + freeFunctions.joined(separator: "\n") + endPlatformCheck
 }
 
 // MARK: - migration support

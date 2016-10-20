@@ -10,10 +10,12 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-let projectRoot = (((#file as NSString)
-    .deletingLastPathComponent as NSString)
-    .deletingLastPathComponent as NSString)
+let projectRoot = #file.bridge()
+    .deletingLastPathComponent.bridge()
+    .deletingLastPathComponent.bridge()
     .deletingLastPathComponent
+
+#if !os(Linux)
 
 class ModuleTests: XCTestCase {
 
@@ -41,3 +43,5 @@ class ModuleTests: XCTestCase {
         compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs, rootDirectory: commandantPath)
     }
 }
+
+#endif

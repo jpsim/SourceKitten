@@ -36,7 +36,7 @@ struct IndexCommand: CommandProtocol {
         guard !options.file.isEmpty else {
             return .failure(.invalidArgument(description: "file must be set when calling index"))
         }
-        let absoluteFile = options.file.absolutePathRepresentation()
+        let absoluteFile = options.file.bridge().absolutePathRepresentation()
         let request = Request.index(file: absoluteFile, arguments: options.compilerargs.components(separatedBy: " "))
         print(toJSON(toNSDictionary(request.send())))
         return .success()

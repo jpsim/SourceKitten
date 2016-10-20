@@ -21,6 +21,9 @@ struct DynamicLinkLibrary {
     }
 }
 
+#if os(Linux)
+let toolchainLoader = Loader(searchPaths: [linuxSourceKitLibPath])
+#else
 let toolchainLoader = Loader(searchPaths: [
     xcodeDefaultToolchainOverride,
     toolchainDir,
@@ -39,6 +42,7 @@ let toolchainLoader = Loader(searchPaths: [
     }
     return nil
 })
+#endif
 
 struct Loader {
     let searchPaths: [String]
@@ -61,6 +65,10 @@ struct Loader {
 private func env(_ name: String) -> String? {
     return ProcessInfo.processInfo.environment[name]
 }
+
+/// Returns "LINUX_SOURCEKIT_LIB_PATH" environment variable,
+/// or "/usr/lib" if unspecified.
+internal let linuxSourceKitLibPath = env("LINUX_SOURCEKIT_LIB_PATH") ?? "/usr/lib"
 
 /// Returns "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable
 ///

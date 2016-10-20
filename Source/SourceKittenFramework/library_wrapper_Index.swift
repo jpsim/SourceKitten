@@ -1,3 +1,4 @@
+#if !os(Linux)
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
@@ -257,3 +258,4 @@ internal let clang_indexTranslationUnit: @convention(c) (CXIndexAction?, CXClien
 internal let clang_indexLoc_getFileLocation: @convention(c) (CXIdxLoc, UnsafeMutablePointer<CXIdxClientFile?>?, UnsafeMutablePointer<CXFile?>?, UnsafeMutablePointer<UInt32>?, UnsafeMutablePointer<UInt32>?, UnsafeMutablePointer<UInt32>?) -> () = library.load(symbol: "clang_indexLoc_getFileLocation")
 internal let clang_indexLoc_getCXSourceLocation: @convention(c) (CXIdxLoc) -> (CXSourceLocation) = library.load(symbol: "clang_indexLoc_getCXSourceLocation")
 internal let clang_Type_visitFields: @convention(c) (CXType, CXFieldVisitor?, CXClientData?) -> (UInt32) = library.load(symbol: "clang_Type_visitFields")
+#endif
