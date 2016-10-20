@@ -30,7 +30,12 @@ func compareJSONString(withFixtureNamed name: String, jsonString: CustomStringCo
     func jsonValue(_ jsonString: String) -> NSObject {
         let data = jsonString.data(using: .utf8)!
         let result = try! JSONSerialization.jsonObject(with: data, options: [])
-        return (result as? NSDictionary) ?? (result as! NSArray)
+        if let dict = (result as? [String: Any])?.bridge() {
+            return dict
+        } else if let array = (result as? [Any])?.bridge() {
+            return array
+        }
+        fatalError()
     }
 
     if jsonValue(actualContent) != jsonValue(expectedFile.contents) {
