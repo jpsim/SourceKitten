@@ -200,19 +200,19 @@ extension SourceKitVariant {
             switch sourcekitd_variant_get_type(sourcekitObject) {
             case SOURCEKITD_VARIANT_TYPE_ARRAY:
                 var array = [SourceKitVariant]()
-                _ = sourcekitd_variant_array_apply(sourcekitObject) { index, value in
+                _ = __sourcekitd_variant_array_apply(sourcekitObject) { index, value in
                     array.insert(SourceKitVariant(variant: value, response: response), at:Int(index))
                     return true
                 }
                 self = .array(array)
             case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
                 var count: Int = 0
-                _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { _, _ in
+                _ = __sourcekitd_variant_dictionary_apply(sourcekitObject) { _, _ in
                     count += 1
                     return true
                 }
                 var dictionary = [String:SourceKitVariant](minimumCapacity: count)
-                _ = sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
+                _ = __sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
                     if let key = String(sourceKitUID: key!) {
                         dictionary[key] = SourceKitVariant(variant: value, response: response)
                     }
@@ -444,4 +444,41 @@ extension SourceKitVariant {
 extension SourceKitVariant {
     var attributes: [SourceKitVariant]? { return self["key.attributes"]?.array }
     var attribute: SourceKitVariant? { return self["key.attribute"] }
+}
+
+// MARK: - sourcekitd_variant_*_apply
+// It is hard to pass multiple Swift objects in context parameter on calling
+// sourcekitd's `*_apply_f` functions.
+// So, I added `*_apply` compatible functions that passing Swift closure as
+// context and calling them in C function.
+func __sourcekitd_variant_array_apply(
+    _ array: sourcekitd_variant_t,
+    _ applier: @escaping (Int, sourcekitd_variant_t) -> Bool) -> Bool {
+    typealias array_applier = (Int, sourcekitd_variant_t) -> Bool
+    var applier = applier
+    return withUnsafeMutablePointer(to: &applier) { context in
+        sourcekitd_variant_array_apply_f(array, { index, value, context in
+            if let context = context {
+                let applier = context.assumingMemoryBound(to: array_applier.self).pointee
+                return applier(index, value)
+            }
+            return true
+            }, context)
+    }
+}
+
+func __sourcekitd_variant_dictionary_apply(
+    _ dict: sourcekitd_variant_t,
+    _ applier: @escaping (sourcekitd_uid_t?, sourcekitd_variant_t) -> Bool) -> Bool {
+    typealias dictionary_applier = (sourcekitd_uid_t?, sourcekitd_variant_t) -> Bool
+    var applier = applier
+    return withUnsafeMutablePointer(to: &applier) { context in
+        sourcekitd_variant_dictionary_apply_f(dict, { key, value, context in
+            if let context = context {
+                let applier = context.assumingMemoryBound(to: dictionary_applier.self).pointee
+                return applier(key, value)
+            }
+            return true
+            }, context)
+    }
 }
