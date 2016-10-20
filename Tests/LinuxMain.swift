@@ -4,7 +4,7 @@ import XCTest
 
 XCTMain([
     // testCase(ClangTranslationUnitTests.allTests),
-    // testCase(CodeCompletionTests.allTests),
+    testCase(CodeCompletionTests.allTests),
     testCase(FileTests.allTests),
     // testCase(ModuleTests.allTests),
     testCase(OffsetMapTests.allTests),
