@@ -20,8 +20,6 @@ let largestSwiftFileInRepoURL = srcURL
 
 let largestSwiftFile = File(path: largestSwiftFileInRepoURL.path)!
 
-let thisFile = URL(fileURLWithPath: #file).path
-
 class VariantPerformanceTests: XCTestCase {
 
     func testEditorOpenJSONWithDictionary() {
@@ -43,8 +41,8 @@ class VariantPerformanceTests: XCTestCase {
     }
 
     func testIndexJSONWithDictionary() {
-        let arguments = ["-sdk", sdkPath(), "-j4", thisFile ]
-        let dictionary = try? Request.index(file: thisFile, arguments: arguments).failableSend()
+        let arguments = ["-sdk", sdkPath(), "-j4", #file ]
+        let dictionary = try? Request.index(file: #file, arguments: arguments).failableSend()
         if let jsonString = dictionary.map(toNSDictionary).map(toJSON) {
             try? jsonString.write(to: srcURL.appendingPathComponent("testIndexJSON1.json"),
                                   atomically: true,
@@ -53,8 +51,8 @@ class VariantPerformanceTests: XCTestCase {
     }
 
     func testIndexJSONWithVariant() {
-        let arguments = ["-sdk", sdkPath(), "-j4", thisFile ]
-        let variant = try? Request.index(file: thisFile, arguments: arguments).failableSend2()
+        let arguments = ["-sdk", sdkPath(), "-j4", #file ]
+        let variant = try? Request.index(file: #file, arguments: arguments).failableSend2()
         if let jsonString = variant?.any.map(toJSON) {
             try? jsonString.write(to: srcURL.appendingPathComponent("testIndexJSON2.json"),
                                   atomically: true,
