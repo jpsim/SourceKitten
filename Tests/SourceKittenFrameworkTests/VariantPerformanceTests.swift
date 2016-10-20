@@ -2,12 +2,14 @@
 //  VariantPerformanceTests.swift
 //  SourceKitten
 //
-//  Created by 野村 憲男 on 10/17/16.
+//  Created by Norio Nomura on 10/17/16.
 //  Copyright © 2016 SourceKitten. All rights reserved.
 //
 
+import Foundation
+import SourceKittenFramework
 import XCTest
-@testable import SourceKittenFramework
+
 let srcURL = URL(fileURLWithPath: #file)
     .deletingLastPathComponent()
     .deletingLastPathComponent()
@@ -128,3 +130,17 @@ class VariantPerformanceTests: XCTestCase {
     }
 }
 
+extension VariantPerformanceTests {
+    static var allTests: [(String, (VariantPerformanceTests) -> () throws -> Void)] {
+        return [
+            ("testEditorOpenJSONWithDictionary", testEditorOpenJSONWithDictionary),
+            ("testEditorOpenJSONWithVariant", testEditorOpenJSONWithVariant),
+            ("testIndexJSONWithDictionary", testIndexJSONWithDictionary),
+            ("testIndexJSONWithVariant", testIndexJSONWithVariant),
+            ("testRequestEditorOpenWithDictionary", testRequestEditorOpenWithDictionary),
+            ("testRequestEditorOpenWithVariant", testRequestEditorOpenWithVariant),
+            ("testFindAvailablesWithDictionary", testFindAvailablesWithDictionary),
+            ("testFindAvailablesWithVariant", testFindAvailablesWithVariant),
+        ]
+    }
+}

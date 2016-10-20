@@ -442,8 +442,8 @@ extension SourceKitVariant {
 
 // MARK: - Custom
 extension SourceKitVariant {
-    var attributes: [SourceKitVariant]? { return self["key.attributes"]?.array }
-    var attribute: SourceKitVariant? { return self["key.attribute"] }
+    public var attributes: [SourceKitVariant]? { return self["key.attributes"]?.array }
+    public var attribute: SourceKitVariant? { return self["key.attribute"] }
 }
 
 // MARK: - sourcekitd_variant_*_apply
