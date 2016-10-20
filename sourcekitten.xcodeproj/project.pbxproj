@@ -164,6 +164,7 @@
 		D0D1217D19E87B05005E4BAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0DB09A319EA354200234B16 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0E7B63219E9C64500EDBA4D /* sourcekitten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sourcekitten.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E801EA111DB8604100AD28E6 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = SOURCE_ROOT; };
 		E805A0471B55CBAF00EA654A /* SourceKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceKitTests.swift; sourceTree = "<group>"; };
 		E805A0491B560FCA00EA654A /* FileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
 		E80604B21A5D452C0016D959 /* StructureCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureCommand.swift; sourceTree = "<group>"; };
@@ -431,6 +432,7 @@
 			children = (
 				D0D1212219E878CC005E4BAA /* Configuration */,
 				D0D1217C19E87B05005E4BAA /* Supporting Files */,
+				E801EA111DB8604100AD28E6 /* LinuxMain.swift */,
 				E8AB1A2F1A64A21400452012 /* ClangTranslationUnitTests.swift */,
 				E845EFEB1B9941AA00CFA57B /* CodeCompletionTests.swift */,
 				E805A0491B560FCA00EA654A /* FileTests.swift */,
