@@ -11,6 +11,10 @@ import SourceKittenFramework
 import XCTest
 
 func compareJSONString(withFixtureNamed name: String, jsonString: CustomStringConvertible, rootDirectory: String = fixturesDirectory) {
+    #if os(Linux)
+    let jsonString = String(describing: jsonString).replacingOccurrences(of: rootDirectory, with: "")
+    let actualContent = jsonString
+    #else
     // Strip out fixtures directory since it's dependent on the test machine's setup
     let escapedFixturesDirectory = rootDirectory.replacingOccurrences(of: "/", with: "\\/")
     let jsonString = String(describing: jsonString).replacingOccurrences(of: escapedFixturesDirectory, with: "")
@@ -18,6 +22,7 @@ func compareJSONString(withFixtureNamed name: String, jsonString: CustomStringCo
     // Strip out any other absolute paths after that, since it's also dependent on the test machine's setup
     let absolutePathRegex = try! NSRegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
     let actualContent = absolutePathRegex.stringByReplacingMatches(in: jsonString, options: [], range: NSRange(location: 0, length: jsonString.utf16.count), withTemplate: "\"key\\.filepath\" : \"\",")
+    #endif
 
     let expectedFile = File(path: fixturesDirectory + name + ".json")!
 
@@ -47,6 +52,9 @@ func compareJSONString(withFixtureNamed name: String, jsonString: CustomStringCo
 private func compareDocs(withFixtureNamed name: String) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
     let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
+#if os(Linux)
+    let name = "Linux" + name
+#endif
     compareJSONString(withFixtureNamed: name, jsonString: docs)
 }
 
@@ -78,5 +86,16 @@ class SwiftDocsTests: XCTestCase {
             "key.doc.result_discussion": [["Para": "result_discussion"]]
         ]
         XCTAssertEqual(toNSDictionary(parsed), expected)
+    }
+}
+
+extension SwiftDocsTests {
+    static var allTests: [(String, (SwiftDocsTests) -> () throws -> Void)] {
+        return [
+            ("testSubscript", testSubscript),
+            ("testBicycle", testBicycle),
+            // Fails on Linux
+            // ("testParseFullXMLDocs", testParseFullXMLDocs),
+        ]
     }
 }
