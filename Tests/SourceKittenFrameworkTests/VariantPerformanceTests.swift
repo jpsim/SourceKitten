@@ -112,9 +112,9 @@ class VariantPerformanceTests: XCTestCase {
     func testFindAvailablesWithVariant() {
         func findAvailables(variant: SourceKitVariant) -> [String] {
             let resultFromSubstructure = variant.subStructure?.flatMap(findAvailables) ?? []
-            if variant.kind == SwiftDeclarationKind.functionMethodInstance,
+            if variant.kind == .sourceLangSwiftDeclMethodInstance,
                 let attributes = variant.attributes?.flatMap({ $0.attribute }),
-                attributes.contains("source.decl.attribute.available"),
+                attributes.contains(.sourceDeclAttributeAvailable),
                 let name = variant.name {
                 return [name] + resultFromSubstructure
             }

@@ -38,6 +38,11 @@ public struct SourceKitVariant {
         set { box.bool = newValue }
     }
 
+    public var uid: UID? {
+        get { return box.uid }
+        set { box.uid = newValue }
+    }
+
     public var any: Any? { return box.any }
 
     public subscript(string: String) -> SourceKitVariant? {
@@ -74,7 +79,7 @@ extension SourceKitVariant {
     /// Full XML docs (String).
     public var docFullAsXML: String? { return self[.keyDocFullAsXML]?.string }
     /// Kind (SourceKitVariant.string).
-    public var kind: SourceKitVariant? { return self[.keyKind] }
+    public var kind: UID? { return self[.keyKind]?.uid }
     /// Length (Int).
     public var length: Int? { return self[.keyLength]?.int }
     /// Name (String).
@@ -193,7 +198,7 @@ extension SourceKitVariant {
         case string(String)
         case int64(Int64)
         case bool(Bool)
-        case uid(String)
+        case uid(UID)
         case none
 
         fileprivate init(sourcekitObject: sourcekitd_variant_t, response: _ResponseBox) {
@@ -228,8 +233,7 @@ extension SourceKitVariant {
             case SOURCEKITD_VARIANT_TYPE_BOOL:
                 self = .bool(sourcekitd_variant_bool_get_value(sourcekitObject))
             case SOURCEKITD_VARIANT_TYPE_UID:
-                self = String(sourceKitUID: sourcekitd_variant_uid_get_value(sourcekitObject))
-                    .map(_VariantCore.string) ?? .none
+                self = .uid(UID(sourcekitd_variant_uid_get_value(sourcekitObject)))
             case SOURCEKITD_VARIANT_TYPE_NULL:
                 self = .none
             default:
@@ -287,16 +291,18 @@ extension SourceKitVariant {
         var string: String? {
             get {
                 if case let .string(string) = _core { return string }
-                if case let .uid(string) = _core { return string }
+                if case let .uid(uid) = _core { return uid.string }
                 switch resolveType() {
                 case let .string(string): return string
-                case let .uid(string): return string
+                case let .uid(uid): return uid.string
                 default: return nil
                 }
             }
             set {
                 if case .string = _core, let newValue = newValue {
                     _core = .string(newValue)
+                } else if case .uid = _core, let newValue = newValue {
+                    _core = .uid(UID(newValue))
                 } else {
                     fatalError()
                 }
@@ -341,7 +347,22 @@ extension SourceKitVariant {
             }
             set {
                 if case .bool = _core, let newValue = newValue {
-                    _core = _VariantCore.bool(newValue)
+                    _core = .bool(newValue)
+                } else {
+                    fatalError()
+                }
+            }
+        }
+
+        var uid: UID? {
+            get {
+                if case let .uid(uid) = _core { return uid }
+                if case let .uid(uid) = resolveType() { return uid }
+                return nil
+            }
+            set {
+                if case .uid = _core, let newValue = newValue {
+                    _core = .uid(newValue)
                 } else {
                     fatalError()
                 }
@@ -367,8 +388,8 @@ extension SourceKitVariant {
                 return Int(int64)
             case let .bool(bool):
                 return bool
-            case let .uid(uidString):
-                return uidString
+            case let .uid(uid):
+                return uid.string
             case .none:
                 return nil
             }
@@ -398,52 +419,10 @@ extension SourceKitVariant._VariantBox: Equatable {
     }
 }
 
-// MARK: - == to String
-public func ==(lhs: SourceKitVariant?, rhs: String) -> Bool {
-    return lhs.map { $0 == rhs } ?? false
-}
-
-public func ==(lhs: String, rhs: SourceKitVariant?) -> Bool {
-    return rhs == lhs
-}
-
-extension SourceKitVariant {
-    public static func ==(lhs: SourceKitVariant, rhs: String) -> Bool {
-        return lhs.string.map { $0 == rhs } ?? false
-    }
-
-    public static func ==(lhs: String, rhs: SourceKitVariant) -> Bool {
-        return rhs == lhs
-    }
-}
-
-// MARK: - == to RawRepresentable
-public func ==<T: RawRepresentable>(lhs: SourceKitVariant?, rhs: T) -> Bool
-    where T.RawValue == String {
-        return lhs == rhs.rawValue
-}
-
-public func ==<T: RawRepresentable>(lhs: T, rhs: SourceKitVariant?) -> Bool
-    where T.RawValue == String {
-        return rhs == lhs
-}
-
-extension SourceKitVariant {
-    public static func ==<T: RawRepresentable>(lhs: SourceKitVariant, rhs: T) -> Bool
-        where T.RawValue == String {
-            return lhs == rhs.rawValue
-    }
-
-    public static func ==<T: RawRepresentable>(lhs: T, rhs: SourceKitVariant) -> Bool
-        where T.RawValue == String {
-            return rhs == lhs
-    }
-}
-
 // MARK: - Custom
 extension SourceKitVariant {
-    public var attributes: [SourceKitVariant]? { return self["key.attributes"]?.array }
-    public var attribute: SourceKitVariant? { return self["key.attribute"] }
+    public var attributes: [SourceKitVariant]? { return self[.keyAttributes]?.array }
+    public var attribute: UID? { return self[.keyAttribute]?.uid }
 }
 
 // MARK: - sourcekitd_variant_*_apply
