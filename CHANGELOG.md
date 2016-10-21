@@ -27,6 +27,9 @@
 * Now supports Swift Package Manager on macOS and Linux.  
   [JP Simard](https://github.com/jpsim)
 
+* Now supports docinfo requests for sourcetext and module keys.  
+  [Erik Abair](https://github.com/abaire)
+
 ##### Bug Fixes
 
 * `NSString.lines()` generated surplus line when string ended with newline

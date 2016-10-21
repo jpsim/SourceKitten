@@ -138,7 +138,7 @@ private extension String {
             "Unicode Normalization Form D" and creates autoreleased `CFString (mutable)` and
             `CFString (store)`. Those `CFString` are created every time on using `hashValue`, such as
             using `String` for Dictionary's key or adding to Set.
-            
+
             For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
             That does not cause calling `decomposedStringWithCanonicalMapping`.
             */
@@ -209,6 +209,10 @@ public enum Request {
     case format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
     /// ReplaceText
     case replaceText(file: String, offset: Int64, length: Int64, sourceText: String)
+    /// A documentation request for the given source text.
+    case docInfo(text: String, arguments:[String])
+    /// A documentation request for the given module.
+    case moduleInfo(module: String, arguments: [String])
 
     fileprivate var sourcekitObject: sourcekitd_object_t {
         let dict: [sourcekitd_uid_t: sourcekitd_object_t?]
@@ -292,6 +296,22 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.length"): sourcekitd_request_int64_create(length),
                 sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(sourceText),
             ]
+        case .docInfo(let text, let arguments):
+            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.docinfo")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(text),
+            ]
+        case .moduleInfo(let module, let arguments):
+            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.docinfo")),
+                sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
+                sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
+                sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create(module),
+            ]
         }
         var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
         var values = Array(dict.values)
@@ -353,7 +373,7 @@ public enum Request {
         public var description: String {
             return getDescription() ?? "no description"
         }
-        
+
         private func getDescription() -> String? {
             switch self {
             case .connectionInterrupted(let string): return string
@@ -363,7 +383,7 @@ public enum Request {
             case .unknown(let string): return string
             }
         }
-        
+
         fileprivate init(response: sourcekitd_response_t) {
             let description = String(validatingUTF8: sourcekitd_response_error_get_description(response)!)
             switch sourcekitd_response_error_get_kind(response) {
@@ -378,7 +398,7 @@ public enum Request {
 
     /**
     Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
-     
+
     - returns: SourceKit output as a dictionary.
     - throws: Request.Error on fail ()
     */
