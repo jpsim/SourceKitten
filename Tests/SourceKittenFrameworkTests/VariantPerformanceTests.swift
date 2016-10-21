@@ -22,6 +22,7 @@ let largestSwiftFile = File(path: largestSwiftFileInRepoURL.path)!
 
 class VariantPerformanceTests: XCTestCase {
 
+    // MARK: - JSON
     func testEditorOpenJSONWithDictionary() {
         let dictionary = try? Request.editorOpen(file: largestSwiftFile).failableSend()
         if let jsonString = dictionary.map(toNSDictionary).map(toJSON) {
@@ -60,6 +61,7 @@ class VariantPerformanceTests: XCTestCase {
         }
     }
 
+    // MARK: - Performance
     let expectedAvailables = [
         "absolutePathRepresentation(_:)",
         "commentBody(_:)",
@@ -109,7 +111,7 @@ class VariantPerformanceTests: XCTestCase {
 
     func testFindAvailablesWithVariant() {
         func findAvailables(variant: SourceKitVariant) -> [String] {
-            let resultFromSubstructure = variant.substructure?.flatMap(findAvailables) ?? []
+            let resultFromSubstructure = variant.subStructure?.flatMap(findAvailables) ?? []
             if variant.kind == SwiftDeclarationKind.functionMethodInstance,
                 let attributes = variant.attributes?.flatMap({ $0.attribute }),
                 attributes.contains("source.decl.attribute.available"),

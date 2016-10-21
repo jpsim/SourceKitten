@@ -18,7 +18,7 @@ public struct SourceKitVariant {
         set { box.array = newValue }
     }
 
-    public var dictionary: [String: SourceKitVariant]? {
+    public var dictionary: [UID:SourceKitVariant]? {
         get { return box.dictionary }
         set { box.dictionary = newValue }
     }
@@ -41,13 +41,13 @@ public struct SourceKitVariant {
     public var any: Any? { return box.any }
 
     public subscript(string: String) -> SourceKitVariant? {
-        get { return box.dictionary?[string] }
-        set { box.dictionary?[string] = newValue }
+        get { return box.dictionary?[UID(string)] }
+        set { box.dictionary?[UID(string)] = newValue }
     }
 
-    public subscript(key: SwiftDocKey) -> SourceKitVariant? {
-        get { return box.dictionary?[key.rawValue] }
-        set { box.dictionary?[key.rawValue] = newValue }
+    public subscript(key: UID) -> SourceKitVariant? {
+        get { return box.dictionary?[key] }
+        set { box.dictionary?[key] = newValue }
     }
 
     internal init(variant: sourcekitd_variant_t, response: sourcekitd_response_t) {
@@ -57,108 +57,108 @@ public struct SourceKitVariant {
     fileprivate let box: _VariantBox
 }
 
-// MARK: - Convenient properties for SwiftDocKey
+// MARK: - Convenient properties of SourceKitVariant for well known UID.key*
 extension SourceKitVariant {
     /// Annotated declaration (String).
     public var annotatedDeclaration: String?
-        { return self[.annotatedDeclaration]?.string }
+        { return self[.keyAnnotatedDecl]?.string }
     /// Body length (Int).
     public var bodyLength: Int?
-        { return self[.bodyLength]?.int }
+        { return self[.keyBodyLength]?.int }
     /// Body offset (Int).
-    public var bodyOffset: Int? { return self[.bodyOffset]?.int }
+    public var bodyOffset: Int? { return self[.keyBodyOffset]?.int }
     /// Diagnostic stage (String).
-    public var diagnosticStage: String? { return self[.diagnosticStage]?.string }
+    public var diagnosticStage: String? { return self[.keyDiagnosticStage]?.string }
     /// File path (String).
-    public var filePath: String? { return self[.filePath]?.string }
+    public var filePath: String? { return self[.keyFilePath]?.string }
     /// Full XML docs (String).
-    public var fullXMLDocs: String? { return self[.fullXMLDocs]?.string }
+    public var docFullAsXML: String? { return self[.keyDocFullAsXML]?.string }
     /// Kind (SourceKitVariant.string).
-    public var kind: SourceKitVariant? { return self[.kind] }
+    public var kind: SourceKitVariant? { return self[.keyKind] }
     /// Length (Int).
-    public var length: Int? { return self[.length]?.int }
+    public var length: Int? { return self[.keyLength]?.int }
     /// Name (String).
-    public var name: String? { return self[.name]?.string }
+    public var name: String? { return self[.keyName]?.string }
     /// Name length (Int).
-    public var nameLength: Int? { return self[.nameLength]?.int }
+    public var nameLength: Int? { return self[.keyNameLength]?.int }
     /// Name offset (Int).
-    public var nameOffset: Int? { return self[.nameOffset]?.int }
+    public var nameOffset: Int? { return self[.keyNameOffset]?.int }
     /// Offset (Int).
-    public var offset: Int? { return self[.offset]?.int }
+    public var offset: Int? { return self[.keyOffset]?.int }
     /// Substructure ([SourceKitVariant]).
-    public var substructure: [SourceKitVariant]? { return self[.substructure]?.array }
+    public var subStructure: [SourceKitVariant]? { return self[.keySubStructure]?.array }
     /// Syntax map ([SourceKitVariant]).
-    public var syntaxMap: [SourceKitVariant]? { return self[.syntaxMap]?.array }
+    public var syntaxMap: [SourceKitVariant]? { return self[.keySyntaxMap]?.array }
     /// Type name (String).
-    public var typeName: String? { return self[.typeName]?.string }
+    public var typeName: String? { return self[.keyTypeName]?.string }
     /// Inheritedtype ([SourceKitVariant])
-    public var inheritedtypes: [SourceKitVariant]? { return self[.inheritedtypes]?.array }
+    public var inheritedTypes: [SourceKitVariant]? { return self[.keyInheritedTypes]?.array }
 }
 
-// MARK: - Accessors for SwiftDocKey
+// MARK: - Accessors of SourceKitVariant for well known UID.key*
 extension SourceKitVariant {
     public static func annotatedDeclaration(_ variant: SourceKitVariant) -> String? {
-        return variant[.annotatedDeclaration]?.string
+        return variant[.keyAnnotatedDecl]?.string
     }
 
     public static func bodyLength(_ variant: SourceKitVariant) -> Int? {
-        return variant[.bodyLength]?.int
+        return variant[.keyBodyLength]?.int
     }
 
     public static func bodyOffset(_ variant: SourceKitVariant) -> Int? {
-        return variant[.bodyOffset]?.int
+        return variant[.keyBodyOffset]?.int
     }
 
     public static func diagnosticStage(_ variant: SourceKitVariant) -> String? {
-        return variant[.diagnosticStage]?.string
+        return variant[.keyDiagnosticStage]?.string
     }
 
     public static func filePath(_ variant: SourceKitVariant) -> String? {
-        return variant[.filePath]?.string
+        return variant[.keyFilePath]?.string
     }
 
-    public static func fullXMLDocs(_ variant: SourceKitVariant) -> String? {
-        return variant[.fullXMLDocs]?.string
+    public static func docFullAsXML(_ variant: SourceKitVariant) -> String? {
+        return variant[.keyDocFullAsXML]?.string
     }
 
     public static func kind(_ variant: SourceKitVariant) -> SourceKitVariant? {
-        return variant[.kind]
+        return variant[.keyKind]
     }
 
     public static func length(_ variant: SourceKitVariant) -> Int? {
-        return variant[.length]?.int
+        return variant[.keyLength]?.int
     }
 
     public static func name(_ variant: SourceKitVariant) -> String? {
-        return variant[.name]?.string
+        return variant[.keyName]?.string
     }
 
     public static func nameLength(_ variant: SourceKitVariant) -> Int? {
-        return variant[.nameLength]?.int
+        return variant[.keyNameLength]?.int
     }
 
     public static func nameOffset(_ variant: SourceKitVariant) -> Int? {
-        return variant[.nameOffset]?.int
+        return variant[.keyNameOffset]?.int
     }
 
     public static func offset(_ variant: SourceKitVariant) -> Int? {
-        return variant[.offset]?.int
+        return variant[.keyOffset]?.int
     }
 
-    public static func substructure(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
-        return variant[.substructure]?.array
+    public static func subStructure(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
+        return variant[.keySubStructure]?.array
     }
 
     public static func syntaxMap(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
-        return variant[.syntaxMap]?.array
+        return variant[.keySyntaxMap]?.array
     }
 
     public static func typeName(_ variant: SourceKitVariant) -> String? {
-        return variant[.typeName]?.string
+        return variant[.keyTypeName]?.string
     }
 
     public static func inheritedtypes(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
-        return variant[.inheritedtypes]?.array
+        return variant[.keyInheritedTypes]?.array
     }
 }
 
@@ -189,7 +189,7 @@ extension SourceKitVariant {
     private enum _VariantCore {
         case variant(sourcekitd_variant_t, _ResponseBox)
         case array([SourceKitVariant])
-        case dictionary([String:SourceKitVariant])
+        case dictionary([UID:SourceKitVariant])
         case string(String)
         case int64(Int64)
         case bool(Bool)
@@ -211,10 +211,10 @@ extension SourceKitVariant {
                     count += 1
                     return true
                 }
-                var dictionary = [String:SourceKitVariant](minimumCapacity: count)
-                _ = __sourcekitd_variant_dictionary_apply(sourcekitObject) { key, value in
-                    if let key = String(sourceKitUID: key!) {
-                        dictionary[key] = SourceKitVariant(variant: value, response: response)
+                var dictionary = [UID:SourceKitVariant](minimumCapacity: count)
+                _ = __sourcekitd_variant_dictionary_apply(sourcekitObject) { uid, value in
+                    if let uid = uid {
+                        dictionary[UID(uid)] = SourceKitVariant(variant: value, response: response)
                     }
                     return true
                 }
@@ -269,7 +269,7 @@ extension SourceKitVariant {
             }
         }
 
-        var dictionary: [String: SourceKitVariant]? {
+        var dictionary: [UID:SourceKitVariant]? {
             get {
                 if case let .dictionary(dictionary) = _core { return dictionary }
                 if case let .dictionary(dictionary) = resolveType() { return dictionary }
@@ -358,7 +358,7 @@ extension SourceKitVariant {
             case let .dictionary(dictionary):
                 var anyDictionary = [String:Any](minimumCapacity: dictionary.count)
                 for (key,value) in dictionary {
-                    anyDictionary[key] = value.any
+                    anyDictionary[key.string] = value.any
                 }
                 return anyDictionary
             case let .string(string):
