@@ -3,7 +3,7 @@
 //  SourceKitten
 //
 //  Created by Norio Nomura on 10/17/16.
-//  Copyright © 2016 SourceKitten. All rights reserved.
+//  Copyright (c) 2016 SourceKitten. All rights reserved.
 //
 
 import Foundation
@@ -128,6 +128,26 @@ class VariantPerformanceTests: XCTestCase {
         }
         XCTAssertEqual(availables.sorted(), self.expectedAvailables)
     }
+
+    func testFindAvailablesWithVariantUIDNamespace() {
+        func findAvailables(variant: SourceKitVariant) -> [String] {
+            let resultFromSubstructure = variant.subStructure?.flatMap(findAvailables) ?? []
+            if variant.kind == source.lang.swift.decl.function.method.instance,
+                let attributes = variant.attributes?.flatMap({ $0.attribute }),
+                attributes.contains(where: { $0 == source.decl.attribute.available }),
+                let name = variant.name {
+                return [name] + resultFromSubstructure
+            }
+            return resultFromSubstructure
+        }
+
+        let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
+        var availables: [String]!
+        self.measure {
+            availables = findAvailables(variant: variant!)
+        }
+        XCTAssertEqual(availables.sorted(), self.expectedAvailables)
+    }
 }
 
 extension VariantPerformanceTests {
@@ -141,6 +161,7 @@ extension VariantPerformanceTests {
             ("testRequestEditorOpenWithVariant", testRequestEditorOpenWithVariant),
             ("testFindAvailablesWithDictionary", testFindAvailablesWithDictionary),
             ("testFindAvailablesWithVariant", testFindAvailablesWithVariant),
+            ("testFindAvailablesWithVariantUIDNamespace", testFindAvailablesWithVariantUIDNamespace),
         ]
     }
 }

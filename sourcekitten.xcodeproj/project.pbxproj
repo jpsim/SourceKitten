@@ -13,6 +13,9 @@
 		3DEF4C591DBF9C2D00B3B54A /* DocInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF4C581DBF9C2D00B3B54A /* DocInfoTests.swift */; };
 		3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */; };
 		3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56EACF1BAB251C006433D0 /* JSONOutput.swift */; };
+		6C0328051DBB5F7C001CD693 /* UIDNamespaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0328041DBB5F7C001CD693 /* UIDNamespaceTests.swift */; };
+		6C03280C1DBBA966001CD693 /* UIDNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C03280B1DBBA966001CD693 /* UIDNamespace.swift */; };
+		6C0328111DBBB6A8001CD693 /* UIDNamespace+generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0328061DBB8D11001CD693 /* UIDNamespace+generated.swift */; };
 		6C1863F41DB45A9A00988F7B /* VariantPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1863F31DB45A9900988F7B /* VariantPerformanceTests.swift */; };
 		6C2DDBE71DB9BC6100A21181 /* UID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2DDBE61DB9BC6100A21181 /* UID.swift */; };
 		6C4CF5761C78B47F008532C5 /* library_wrapper_sourcekitd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF5721C78B47F008532C5 /* library_wrapper_sourcekitd.swift */; };
@@ -137,6 +140,9 @@
 		3F56EACF1BAB251C006433D0 /* JSONOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONOutput.swift; sourceTree = "<group>"; };
 		5499CA961A2394B700783309 /* Components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Components.plist; sourceTree = "<group>"; };
 		5499CA971A2394B700783309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C0328041DBB5F7C001CD693 /* UIDNamespaceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDNamespaceTests.swift; sourceTree = "<group>"; };
+		6C0328061DBB8D11001CD693 /* UIDNamespace+generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDNamespace+generated.swift"; sourceTree = "<group>"; };
+		6C03280B1DBBA966001CD693 /* UIDNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDNamespace.swift; sourceTree = "<group>"; };
 		6C1863F31DB45A9900988F7B /* VariantPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariantPerformanceTests.swift; sourceTree = "<group>"; };
 		6C2DDBE61DB9BC6100A21181 /* UID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UID.swift; sourceTree = "<group>"; };
 		6C4CF5721C78B47F008532C5 /* library_wrapper_sourcekitd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_sourcekitd.swift; sourceTree = "<group>"; };
@@ -419,6 +425,8 @@
 				E80F236A1A5CB04100FD2352 /* SyntaxToken.swift */,
 				E806D28E1BE058B100D1BE41 /* Text.swift */,
 				6C2DDBE61DB9BC6100A21181 /* UID.swift */,
+				6C03280B1DBBA966001CD693 /* UIDNamespace.swift */,
+				6C0328061DBB8D11001CD693 /* UIDNamespace+generated.swift */,
 				E8A9B88F1B56CB5500CD17D4 /* Xcode.swift */,
 				B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */,
 			);
@@ -454,6 +462,7 @@
 				E8C9EA031A5C986A00A6D4D1 /* StructureTests.swift */,
 				E80F23661A5CADD900FD2352 /* SwiftDocsTests.swift */,
 				D0DB09A319EA354200234B16 /* SyntaxTests.swift */,
+				6C0328041DBB5F7C001CD693 /* UIDNamespaceTests.swift */,
 				6C1863F31DB45A9900988F7B /* VariantPerformanceTests.swift */,
 			);
 			name = SourceKittenFrameworkTests;
@@ -668,12 +677,14 @@
 				E8D4743B1A648F290011A49C /* ClangTranslationUnit.swift in Sources */,
 				E8EE34BF1B9A502F00947605 /* CodeCompletionItem.swift in Sources */,
 				E852418F1A5F4FB3007099FB /* Dictionary+Merge.swift in Sources */,
+				6C03280C1DBBA966001CD693 /* UIDNamespace.swift in Sources */,
 				E847636A1A5A0651000EAE22 /* File.swift in Sources */,
 				6C4CF5771C78B47F008532C5 /* library_wrapper.swift in Sources */,
 				3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */,
 				E8A18A3B1A58971D000362B7 /* Language.swift in Sources */,
 				E806D28F1BE058B100D1BE41 /* Text.swift in Sources */,
 				E8241CA51A5E01A10047687E /* Module.swift in Sources */,
+				6C0328111DBBB6A8001CD693 /* UIDNamespace+generated.swift in Sources */,
 				E877D9271B5693E70095BB2B /* ObjCDeclarationKind.swift in Sources */,
 				6C4CF6521C798082008532C5 /* library_wrapper_CXString.swift in Sources */,
 				E83748C31A5BCD7900862B1B /* OffsetMap.swift in Sources */,
@@ -705,6 +716,7 @@
 				E845EFEC1B9941AA00CFA57B /* CodeCompletionTests.swift in Sources */,
 				E805A04A1B560FCA00EA654A /* FileTests.swift in Sources */,
 				6C1863F41DB45A9A00988F7B /* VariantPerformanceTests.swift in Sources */,
+				6C0328051DBB5F7C001CD693 /* UIDNamespaceTests.swift in Sources */,
 				E8241CA31A5E01840047687E /* ModuleTests.swift in Sources */,
 				3DEF4C591DBF9C2D00B3B54A /* DocInfoTests.swift in Sources */,
 				E8C9EA0A1A5C9A2900A6D4D1 /* OffsetMapTests.swift in Sources */,
