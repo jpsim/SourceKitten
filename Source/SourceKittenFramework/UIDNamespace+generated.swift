@@ -1,6 +1,10 @@
 public struct key: UIDNamespace {
     public let uid: UID
     public init(uid: UID) { self.uid = uid }
+    public static func ==(lhs: UID, rhs: key) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: key, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: key) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: key, rhs: UID?) -> Bool { return rhs == lhs }
     public static let accessibility = leaf("key.accessibility")
     public static let annotated_decl = leaf("key.annotated_decl")
     public static let annotations = leaf("key.annotations")
@@ -12,6 +16,10 @@ public struct key: UIDNamespace {
     public struct codecomplete: UIDNamespace {
         public let uid: UID
         public init(uid: UID) { self.uid = uid }
+        public static func ==(lhs: UID, rhs: codecomplete) -> Bool { return lhs == rhs.uid }
+        public static func ==(lhs: codecomplete, rhs: UID) -> Bool { return rhs == lhs }
+        public static func ==(lhs: UID?, rhs: codecomplete) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+        public static func ==(lhs: codecomplete, rhs: UID?) -> Bool { return rhs == lhs }
         public static let addinitstotoplevel = leaf("key.codecomplete.addinitstotoplevel")
         public static let addinneroperators = leaf("key.codecomplete.addinneroperators")
         public static let addinnerresults = leaf("key.codecomplete.addinnerresults")
@@ -21,6 +29,10 @@ public struct key: UIDNamespace {
         public struct group: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: group) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: group, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: group) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: group, rhs: UID?) -> Bool { return rhs == lhs }
             public static let overloads = leaf("key.codecomplete.group.overloads")
             public static let stems = leaf("key.codecomplete.group.stems")
         }
@@ -35,6 +47,10 @@ public struct key: UIDNamespace {
         public struct sort: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: sort) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: sort, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: sort) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: sort, rhs: UID?) -> Bool { return rhs == lhs }
             public static let byname = leaf("key.codecomplete.sort.byname")
             public static let contextweight = leaf("key.codecomplete.sort.contextweight")
             public static let fuzzyweight = leaf("key.codecomplete.sort.fuzzyweight")
@@ -56,6 +72,10 @@ public struct key: UIDNamespace {
     public struct doc: UIDNamespace {
         public let uid: UID
         public init(uid: UID) { self.uid = uid }
+        public static func ==(lhs: UID, rhs: doc) -> Bool { return lhs == rhs.uid }
+        public static func ==(lhs: doc, rhs: UID) -> Bool { return rhs == lhs }
+        public static func ==(lhs: UID?, rhs: doc) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+        public static func ==(lhs: doc, rhs: UID?) -> Bool { return rhs == lhs }
         public static let brief = leaf("key.doc.brief")
         public static let full_as_xml = leaf("key.doc.full_as_xml")
     }
@@ -64,6 +84,10 @@ public struct key: UIDNamespace {
         public struct format: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: format) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: format, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: format) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: format, rhs: UID?) -> Bool { return rhs == lhs }
             public static let indentwidth = leaf("key.editor.format.indentwidth")
             public static let options = leaf("key.editor.format.options")
             public static let tabwidth = leaf("key.editor.format.tabwidth")
@@ -152,6 +176,10 @@ public struct source {
         public struct platform: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: platform) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: platform, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: platform) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: platform, rhs: UID?) -> Bool { return rhs == lhs }
             public static let ios = leaf("source.availability.platform.ios")
             public static let ios_app_extension = leaf("source.availability.platform.ios_app_extension")
             public static let osx = leaf("source.availability.platform.osx")
@@ -165,9 +193,17 @@ public struct source {
     public struct codecompletion: UIDNamespace {
         public let uid: UID
         public init(uid: UID) { self.uid = uid }
+        public static func ==(lhs: UID, rhs: codecompletion) -> Bool { return lhs == rhs.uid }
+        public static func ==(lhs: codecompletion, rhs: UID) -> Bool { return rhs == lhs }
+        public static func ==(lhs: UID?, rhs: codecompletion) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+        public static func ==(lhs: codecompletion, rhs: UID?) -> Bool { return rhs == lhs }
         public struct context: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: context) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: context, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: context) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: context, rhs: UID?) -> Bool { return rhs == lhs }
             public static let exprspecific = leaf("source.codecompletion.context.exprspecific")
             public static let local = leaf("source.codecompletion.context.local")
             public static let none = leaf("source.codecompletion.context.none")
@@ -188,6 +224,10 @@ public struct source {
         public struct attribute: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: attribute) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: attribute, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: attribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: attribute, rhs: UID?) -> Bool { return rhs == lhs }
             public static let LLDBDebuggerFunction = leaf("source.decl.attribute.LLDBDebuggerFunction")
             public static let NSApplicationMain = leaf("source.decl.attribute.NSApplicationMain")
             public static let NSCopying = leaf("source.decl.attribute.NSCopying")
@@ -230,6 +270,10 @@ public struct source {
             public struct objc: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: objc) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: objc, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: objc) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: objc, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let name = leaf("source.decl.attribute.objc.name")
             }
             public static let objc_non_lazy_realization = leaf("source.decl.attribute.objc_non_lazy_realization")
@@ -252,6 +296,10 @@ public struct source {
         public struct severity: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: severity) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: severity, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: severity) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: severity, rhs: UID?) -> Bool { return rhs == lhs }
             public static let error = leaf("source.diagnostic.severity.error")
             public static let note = leaf("source.diagnostic.severity.note")
             public static let warning = leaf("source.diagnostic.severity.warning")
@@ -260,6 +308,10 @@ public struct source {
             public struct swift: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: swift) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: swift, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: swift) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: swift, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let parse = leaf("source.diagnostic.stage.swift.parse")
                 public static let sema = leaf("source.diagnostic.stage.swift.sema")
             }
@@ -269,9 +321,17 @@ public struct source {
         public struct swift: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: swift) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: swift, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: swift) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: swift, rhs: UID?) -> Bool { return rhs == lhs }
             public struct accessibility: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: accessibility) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: accessibility, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: accessibility) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: accessibility, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let `fileprivate` = leaf("source.lang.swift.accessibility.fileprivate")
                 public static let `internal` = leaf("source.lang.swift.accessibility.internal")
                 public static let open = leaf("source.lang.swift.accessibility.open")
@@ -281,16 +341,28 @@ public struct source {
             public struct attribute: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: attribute) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: attribute, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: attribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: attribute, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let availability = leaf("source.lang.swift.attribute.availability")
             }
             public struct codecomplete: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: codecomplete) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: codecomplete, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: codecomplete) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: codecomplete, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let group = leaf("source.lang.swift.codecomplete.group")
             }
             public struct decl: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: decl) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: decl, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: decl) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: decl, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let `associatedtype` = leaf("source.lang.swift.decl.associatedtype")
                 public static let `class` = leaf("source.lang.swift.decl.class")
                 public static let `enum` = leaf("source.lang.swift.decl.enum")
@@ -299,6 +371,10 @@ public struct source {
                 public struct `extension`: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: `extension`) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: `extension`, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: `extension`) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: `extension`, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let `class` = leaf("source.lang.swift.decl.extension.class")
                     public static let `enum` = leaf("source.lang.swift.decl.extension.enum")
                     public static let `protocol` = leaf("source.lang.swift.decl.extension.protocol")
@@ -307,9 +383,17 @@ public struct source {
                 public struct function: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: function) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: function, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: function) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: function, rhs: UID?) -> Bool { return rhs == lhs }
                     public struct accessor: UIDNamespace {
                         public let uid: UID
                         public init(uid: UID) { self.uid = uid }
+                        public static func ==(lhs: UID, rhs: accessor) -> Bool { return lhs == rhs.uid }
+                        public static func ==(lhs: accessor, rhs: UID) -> Bool { return rhs == lhs }
+                        public static func ==(lhs: UID?, rhs: accessor) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                        public static func ==(lhs: accessor, rhs: UID?) -> Bool { return rhs == lhs }
                         public static let address = leaf("source.lang.swift.decl.function.accessor.address")
                         public static let didset = leaf("source.lang.swift.decl.function.accessor.didset")
                         public static let getter = leaf("source.lang.swift.decl.function.accessor.getter")
@@ -323,6 +407,10 @@ public struct source {
                     public struct method: UIDNamespace {
                         public let uid: UID
                         public init(uid: UID) { self.uid = uid }
+                        public static func ==(lhs: UID, rhs: method) -> Bool { return lhs == rhs.uid }
+                        public static func ==(lhs: method, rhs: UID) -> Bool { return rhs == lhs }
+                        public static func ==(lhs: UID?, rhs: method) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                        public static func ==(lhs: method, rhs: UID?) -> Bool { return rhs == lhs }
                         public static let `class` = leaf("source.lang.swift.decl.function.method.class")
                         public static let instance = leaf("source.lang.swift.decl.function.method.instance")
                         public static let `static` = leaf("source.lang.swift.decl.function.method.static")
@@ -330,6 +418,10 @@ public struct source {
                     public struct `operator`: UIDNamespace {
                         public let uid: UID
                         public init(uid: UID) { self.uid = uid }
+                        public static func ==(lhs: UID, rhs: `operator`) -> Bool { return lhs == rhs.uid }
+                        public static func ==(lhs: `operator`, rhs: UID) -> Bool { return rhs == lhs }
+                        public static func ==(lhs: UID?, rhs: `operator`) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                        public static func ==(lhs: `operator`, rhs: UID?) -> Bool { return rhs == lhs }
                         public static let infix = leaf("source.lang.swift.decl.function.operator.infix")
                         public static let postfix = leaf("source.lang.swift.decl.function.operator.postfix")
                         public static let prefix = leaf("source.lang.swift.decl.function.operator.prefix")
@@ -345,6 +437,10 @@ public struct source {
                 public struct `var`: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: `var`) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: `var`, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: `var`) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: `var`, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let `class` = leaf("source.lang.swift.decl.var.class")
                     public static let global = leaf("source.lang.swift.decl.var.global")
                     public static let instance = leaf("source.lang.swift.decl.var.instance")
@@ -356,6 +452,10 @@ public struct source {
             public struct expr: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: expr) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: expr, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: expr) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: expr, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let argument = leaf("source.lang.swift.expr.argument")
                 public static let array = leaf("source.lang.swift.expr.array")
                 public static let call = leaf("source.lang.swift.expr.call")
@@ -366,6 +466,10 @@ public struct source {
                 public struct module: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: module) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: module, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: module) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: module, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let clang = leaf("source.lang.swift.import.module.clang")
                     public static let swift = leaf("source.lang.swift.import.module.swift")
                 }
@@ -373,6 +477,10 @@ public struct source {
             public struct keyword: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: keyword) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: keyword, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: keyword) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: keyword, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let `Any` = leaf("source.lang.swift.keyword.Any")
                 public static let `Self` = leaf("source.lang.swift.keyword.Self")
                 public static let `_` = leaf("source.lang.swift.keyword._")
@@ -436,6 +544,10 @@ public struct source {
             public struct literal: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: literal) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: literal, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: literal) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: literal, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let array = leaf("source.lang.swift.literal.array")
                 public static let boolean = leaf("source.lang.swift.literal.boolean")
                 public static let color = leaf("source.lang.swift.literal.color")
@@ -450,6 +562,10 @@ public struct source {
             public struct ref: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: ref) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: ref, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: ref) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: ref, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let `associatedtype` = leaf("source.lang.swift.ref.associatedtype")
                 public static let `class` = leaf("source.lang.swift.ref.class")
                 public static let `enum` = leaf("source.lang.swift.ref.enum")
@@ -457,9 +573,17 @@ public struct source {
                 public struct function: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: function) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: function, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: function) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: function, rhs: UID?) -> Bool { return rhs == lhs }
                     public struct accessor: UIDNamespace {
                         public let uid: UID
                         public init(uid: UID) { self.uid = uid }
+                        public static func ==(lhs: UID, rhs: accessor) -> Bool { return lhs == rhs.uid }
+                        public static func ==(lhs: accessor, rhs: UID) -> Bool { return rhs == lhs }
+                        public static func ==(lhs: UID?, rhs: accessor) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                        public static func ==(lhs: accessor, rhs: UID?) -> Bool { return rhs == lhs }
                         public static let address = leaf("source.lang.swift.ref.function.accessor.address")
                         public static let didset = leaf("source.lang.swift.ref.function.accessor.didset")
                         public static let getter = leaf("source.lang.swift.ref.function.accessor.getter")
@@ -473,6 +597,10 @@ public struct source {
                     public struct method: UIDNamespace {
                         public let uid: UID
                         public init(uid: UID) { self.uid = uid }
+                        public static func ==(lhs: UID, rhs: method) -> Bool { return lhs == rhs.uid }
+                        public static func ==(lhs: method, rhs: UID) -> Bool { return rhs == lhs }
+                        public static func ==(lhs: UID?, rhs: method) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                        public static func ==(lhs: method, rhs: UID?) -> Bool { return rhs == lhs }
                         public static let `class` = leaf("source.lang.swift.ref.function.method.class")
                         public static let instance = leaf("source.lang.swift.ref.function.method.instance")
                         public static let `static` = leaf("source.lang.swift.ref.function.method.static")
@@ -480,6 +608,10 @@ public struct source {
                     public struct `operator`: UIDNamespace {
                         public let uid: UID
                         public init(uid: UID) { self.uid = uid }
+                        public static func ==(lhs: UID, rhs: `operator`) -> Bool { return lhs == rhs.uid }
+                        public static func ==(lhs: `operator`, rhs: UID) -> Bool { return rhs == lhs }
+                        public static func ==(lhs: UID?, rhs: `operator`) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                        public static func ==(lhs: `operator`, rhs: UID?) -> Bool { return rhs == lhs }
                         public static let infix = leaf("source.lang.swift.ref.function.operator.infix")
                         public static let postfix = leaf("source.lang.swift.ref.function.operator.postfix")
                         public static let prefix = leaf("source.lang.swift.ref.function.operator.prefix")
@@ -495,6 +627,10 @@ public struct source {
                 public struct `var`: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: `var`) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: `var`, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: `var`) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: `var`, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let `class` = leaf("source.lang.swift.ref.var.class")
                     public static let global = leaf("source.lang.swift.ref.var.global")
                     public static let instance = leaf("source.lang.swift.ref.var.instance")
@@ -505,6 +641,10 @@ public struct source {
             public struct stmt: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: stmt) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: stmt, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: stmt) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: stmt, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let brace = leaf("source.lang.swift.stmt.brace")
                 public static let `case` = leaf("source.lang.swift.stmt.case")
                 public static let `for` = leaf("source.lang.swift.stmt.for")
@@ -519,6 +659,10 @@ public struct source {
                 public struct elem: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: elem) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: elem, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: elem) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: elem, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let condition_expr = leaf("source.lang.swift.structure.elem.condition_expr")
                     public static let expr = leaf("source.lang.swift.structure.elem.expr")
                     public static let id = leaf("source.lang.swift.structure.elem.id")
@@ -530,28 +674,48 @@ public struct source {
             public struct syntaxtype: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: syntaxtype) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: syntaxtype, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: syntaxtype) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: syntaxtype, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let argument = leaf("source.lang.swift.syntaxtype.argument")
                 public struct attribute: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: attribute) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: attribute, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: attribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: attribute, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let builtin = leaf("source.lang.swift.syntaxtype.attribute.builtin")
                     public static let id = leaf("source.lang.swift.syntaxtype.attribute.id")
                 }
                 public struct buildconfig: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: buildconfig) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: buildconfig, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: buildconfig) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: buildconfig, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let id = leaf("source.lang.swift.syntaxtype.buildconfig.id")
                     public static let keyword = leaf("source.lang.swift.syntaxtype.buildconfig.keyword")
                 }
                 public struct comment: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: comment) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: comment, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: comment) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: comment, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let mark = leaf("source.lang.swift.syntaxtype.comment.mark")
                     public static let url = leaf("source.lang.swift.syntaxtype.comment.url")
                 }
                 public struct doccomment: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: doccomment) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: doccomment, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: doccomment) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: doccomment, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let field = leaf("source.lang.swift.syntaxtype.doccomment.field")
                 }
                 public static let identifier = leaf("source.lang.swift.syntaxtype.identifier")
@@ -570,9 +734,17 @@ public struct source {
     public struct notification: UIDNamespace {
         public let uid: UID
         public init(uid: UID) { self.uid = uid }
+        public static func ==(lhs: UID, rhs: notification) -> Bool { return lhs == rhs.uid }
+        public static func ==(lhs: notification, rhs: UID) -> Bool { return rhs == lhs }
+        public static func ==(lhs: UID?, rhs: notification) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+        public static func ==(lhs: notification, rhs: UID?) -> Bool { return rhs == lhs }
         public struct editor: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: editor) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: editor, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: editor) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: editor, rhs: UID?) -> Bool { return rhs == lhs }
             public static let documentupdate = leaf("source.notification.editor.documentupdate")
         }
         public static let sema_disabled = leaf("source.notification.sema_disabled")
@@ -580,17 +752,33 @@ public struct source {
     public struct request: UIDNamespace {
         public let uid: UID
         public init(uid: UID) { self.uid = uid }
+        public static func ==(lhs: UID, rhs: request) -> Bool { return lhs == rhs.uid }
+        public static func ==(lhs: request, rhs: UID) -> Bool { return rhs == lhs }
+        public static func ==(lhs: UID?, rhs: request) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+        public static func ==(lhs: request, rhs: UID?) -> Bool { return rhs == lhs }
         public struct buildsettings: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: buildsettings) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: buildsettings, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: buildsettings) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: buildsettings, rhs: UID?) -> Bool { return rhs == lhs }
             public static let register = leaf("source.request.buildsettings.register")
         }
         public struct codecomplete: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: codecomplete) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: codecomplete, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: codecomplete) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: codecomplete, rhs: UID?) -> Bool { return rhs == lhs }
             public struct cache: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: cache) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: cache, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: cache) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: cache, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let ondisk = leaf("source.request.codecomplete.cache.ondisk")
             }
             public static let close = leaf("source.request.codecomplete.close")
@@ -606,11 +794,19 @@ public struct source {
         public struct editor: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: editor) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: editor, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: editor) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: editor, rhs: UID?) -> Bool { return rhs == lhs }
             public static let close = leaf("source.request.editor.close")
             public static let expand_placeholder = leaf("source.request.editor.expand_placeholder")
             public struct extract: UIDNamespace {
                 public let uid: UID
                 public init(uid: UID) { self.uid = uid }
+                public static func ==(lhs: UID, rhs: extract) -> Bool { return lhs == rhs.uid }
+                public static func ==(lhs: extract, rhs: UID) -> Bool { return rhs == lhs }
+                public static func ==(lhs: UID?, rhs: extract) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                public static func ==(lhs: extract, rhs: UID?) -> Bool { return rhs == lhs }
                 public static let comment = leaf("source.request.editor.extract.comment")
             }
             public static let find_interface_doc = leaf("source.request.editor.find_interface_doc")
@@ -620,6 +816,10 @@ public struct source {
                 public struct interface: UIDNamespace {
                     public let uid: UID
                     public init(uid: UID) { self.uid = uid }
+                    public static func ==(lhs: UID, rhs: interface) -> Bool { return lhs == rhs.uid }
+                    public static func ==(lhs: interface, rhs: UID) -> Bool { return rhs == lhs }
+                    public static func ==(lhs: UID?, rhs: interface) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+                    public static func ==(lhs: interface, rhs: UID?) -> Bool { return rhs == lhs }
                     public static let header = leaf("source.request.editor.open.interface.header")
                     public static let swiftsource = leaf("source.request.editor.open.interface.swiftsource")
                     public static let swifttype = leaf("source.request.editor.open.interface.swifttype")
@@ -632,6 +832,10 @@ public struct source {
         public struct module: UIDNamespace {
             public let uid: UID
             public init(uid: UID) { self.uid = uid }
+            public static func ==(lhs: UID, rhs: module) -> Bool { return lhs == rhs.uid }
+            public static func ==(lhs: module, rhs: UID) -> Bool { return rhs == lhs }
+            public static func ==(lhs: UID?, rhs: module) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+            public static func ==(lhs: module, rhs: UID?) -> Bool { return rhs == lhs }
             public static let groups = leaf("source.request.module.groups")
         }
         public static let protocol_version = leaf("source.request.protocol_version")

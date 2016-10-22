@@ -120,6 +120,10 @@ func createUIDNamespace(from uidStrings: [String]) -> String {
                     tabs(count) + "public struct \(escapedName): UIDNamespace {",
                     tabs(count + 1) + "public let uid: UID",
                     tabs(count + 1) + "public init(uid: UID) { self.uid = uid }",
+                    tabs(count + 1) + "public static func ==(lhs: UID, rhs: \(escapedName)) -> Bool { return lhs == rhs.uid }",
+                    tabs(count + 1) + "public static func ==(lhs: \(escapedName), rhs: UID) -> Bool { return rhs == lhs }",
+                    tabs(count + 1) + "public static func ==(lhs: UID?, rhs: \(escapedName)) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }",
+                    tabs(count + 1) + "public static func ==(lhs: \(escapedName), rhs: UID?) -> Bool { return rhs == lhs }",
                 ] : [
                     tabs(count) + "public struct \(escapedName) {",
                 ]

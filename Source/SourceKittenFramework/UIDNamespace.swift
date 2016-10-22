@@ -40,23 +40,3 @@ extension UIDNamespace {
         return lhs.uid == rhs.uid
     }
 }
-
-public func ==<T>(lhs: T, rhs: UID) -> Bool
-    where T: UIDNamespace {
-        return lhs.uid == rhs
-}
-
-public func ==<T>(lhs: UID, rhs: T) -> Bool
-    where T: UIDNamespace {
-        return rhs == lhs
-}
-
-public func ==<T>(lhs: T, rhs: UID?) -> Bool
-    where T: UIDNamespace {
-        return rhs == lhs.uid
-}
-
-public func ==<T>(lhs: UID?, rhs: T) -> Bool
-    where T: UIDNamespace {
-        return lhs.map { rhs == $0 } ?? false
-}
