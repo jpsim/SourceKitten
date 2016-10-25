@@ -210,7 +210,7 @@ public enum Request {
     /// ReplaceText
     case replaceText(file: String, offset: Int64, length: Int64, sourceText: String)
     /// A documentation request for the given source text.
-    case docInfo(text: String, arguments:[String])
+    case docInfo(text: String, arguments: [String])
     /// A documentation request for the given module.
     case moduleInfo(module: String, arguments: [String])
 
