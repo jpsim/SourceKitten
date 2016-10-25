@@ -418,13 +418,14 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
         docs[SwiftDocKey.usr.rawValue] = rootXML["USR"].element?.text
         docs[SwiftDocKey.docDeclaration.rawValue] = rootXML["Declaration"].element?.text
         let parameters = rootXML["Parameters"].children
-        if parameters.count > 0 {
-            docs[SwiftDocKey.docParameters.rawValue] = parameters.map {
-                [
-                    "name": $0["Name"].element?.text ?? "",
-                    "discussion": $0["Discussion"].childrenAsArray() ?? []
-                ] as [String: SourceKitRepresentable]
-            } as [SourceKitRepresentable]
+        if !parameters.isEmpty {
+            func docParameters(from indexer: XMLIndexer) -> [String:SourceKitRepresentable] {
+                return [
+                    "name": (indexer["Name"].element?.text ?? ""),
+                    "discussion": (indexer["Discussion"].childrenAsArray() ?? []),
+                ]
+            }
+            docs[SwiftDocKey.docParameters.rawValue] = parameters.map(docParameters(from:)) as [SourceKitRepresentable]
         }
         docs[SwiftDocKey.docDiscussion.rawValue] = rootXML["Discussion"].childrenAsArray()
         docs[SwiftDocKey.docResultDiscussion.rawValue] = rootXML["ResultDiscussion"].childrenAsArray()
@@ -440,9 +441,11 @@ private extension XMLIndexer {
         if children.isEmpty {
             return nil
         }
-        return children.flatMap({ $0.element }).map {
-            [$0.name: $0.text ?? ""] as [String: SourceKitRepresentable]
-        } as [SourceKitRepresentable]
+        let elements = children.flatMap{ $0.element }
+        func dictionary(from element: SWXMLHash.XMLElement) -> [String:SourceKitRepresentable] {
+            return [element.name: element.text ?? ""]
+        }
+        return elements.map(dictionary(from:)) as [SourceKitRepresentable]
     }
 }
 
