@@ -15,8 +15,8 @@ class CodeCompletionTests: XCTestCase {
     func testSimpleCodeCompletion() {
         let file = "\(NSUUID().uuidString).swift"
         let completionItems = CodeCompletionItem.parse(response:
-            Request.codeCompletionRequest(file: file, contents: "0.", offset: 2,
-                arguments: ["-c", file, "-sdk", sdkPath()]).send())
+            try! Request.codeCompletionRequest(file: file, contents: "0.", offset: 2,
+                arguments: ["-c", file, "-sdk", sdkPath()]).failableSend())
         compareJSONString(withFixtureNamed: "SimpleCodeCompletion",
                           jsonString: completionItems)
     }

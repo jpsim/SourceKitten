@@ -171,7 +171,7 @@ class SourceKitTests: XCTestCase {
         for (module, path, linuxPath, spmModule) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule,
+            let generatedWrapper = try! libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule,
                                                            compilerArguments: sourceKittenFrameworkModule.compilerArguments)
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
@@ -184,7 +184,7 @@ class SourceKitTests: XCTestCase {
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
-        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(Request.index(file: file, arguments: arguments).send())) + "\n")
+        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(try! Request.index(file: file, arguments: arguments).failableSend())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
             let regex = try! NSRegularExpression(pattern: pattern, options: [])
@@ -203,8 +203,8 @@ class SourceKitTests: XCTestCase {
     func testYamlRequest() {
         let path = fixturesDirectory + "Subscript.swift"
         let yaml = "key.request: source.request.editor.open\nkey.name: \"\(path)\"\nkey.sourcefile: \"\(path)\""
-        let output = Request.yamlRequest(yaml: yaml).send()
-        let expectedStructure = Structure(file: File(path: path)!)
+        let output = try! Request.yamlRequest(yaml: yaml).failableSend()
+        let expectedStructure = try! Structure(file: File(path: path)!)
         let actualStructure = Structure(sourceKitResponse: output)
         XCTAssertEqual(expectedStructure, actualStructure)
     }

@@ -40,12 +40,16 @@ struct FormatCommand: CommandProtocol {
         guard !options.file.isEmpty else {
             return .failure(.invalidArgument(description: "file must be set when calling format"))
         }
-        try! File(path: options.file)?
-            .format(trimmingTrailingWhitespace: options.trimWhitespace,
-                    useTabs: options.useTabs,
-                    indentWidth: options.indentWidth)
-            .data(using: .utf8)?
-            .write(to: URL(fileURLWithPath: options.file), options: [])
-        return .success(())
+        do {
+            try File(path: options.file)?
+                .format(trimmingTrailingWhitespace: options.trimWhitespace,
+                        useTabs: options.useTabs,
+                        indentWidth: options.indentWidth)
+                .data(using: .utf8)?
+                .write(to: URL(fileURLWithPath: options.file), options: [])
+            return .success(())
+        } catch {
+            return .failure(.failed(error))
+        }
     }
 }

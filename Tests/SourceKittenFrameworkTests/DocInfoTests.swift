@@ -16,8 +16,8 @@ class DocInfoTests: XCTestCase {
     func testDocInfoRequest() {
         let swiftFile = File(path: fixturesDirectory + "DocInfo.swift")!
         let info = toNSDictionary(
-            Request.docInfo(text: swiftFile.contents,
-                            arguments: ["-sdk", sdkPath()]).send()
+            try! Request.docInfo(text: swiftFile.contents,
+                            arguments: ["-sdk", sdkPath()]).failableSend()
         )
         compareJSONString(withFixtureNamed: "DocInfo", jsonString: toJSON(info))
     }
@@ -25,12 +25,12 @@ class DocInfoTests: XCTestCase {
     func testModuleInfoRequest() {
         let swiftFile = fixturesDirectory + "DocInfo.swift"
         let info = toNSDictionary(
-            Request.moduleInfo(module: "",
+            try! Request.moduleInfo(module: "",
                                arguments: [
                                    "-c", swiftFile,
                                    "-module-name", "DocInfo",
                                    "-sdk", sdkPath()
-                                ]).send()
+                                ]).failableSend()
         )
         compareJSONString(withFixtureNamed: "ModuleInfo", jsonString: toJSON(info))
     }
