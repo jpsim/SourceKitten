@@ -157,9 +157,15 @@ private extension String {
      - parameter uidString: String created from sourcekitd_uid_get_string_ptr().
      */
     init(uidString: String) {
-        self = SwiftDocKey(rawValue: uidString)?.rawValue ??
-            SwiftDeclarationKind(rawValue: uidString)?.rawValue ??
-            SyntaxKind(rawValue: uidString)?.rawValue ?? "\(uidString)"
+        if let rawValue = SwiftDocKey(rawValue: uidString)?.rawValue {
+            self = rawValue
+        } else if let rawValue = SwiftDeclarationKind(rawValue: uidString)?.rawValue {
+            self = rawValue
+        } else if let rawValue = SyntaxKind(rawValue: uidString)?.rawValue {
+            self = rawValue
+        } else {
+            self = "\(uidString)"
+        }
     }
 
     /**
