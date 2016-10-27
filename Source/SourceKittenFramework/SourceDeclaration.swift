@@ -71,7 +71,7 @@ public struct SourceDeclaration {
         guard let declaration = declaration else {
             fatalError("Couldn't extract declaration")
         }
-        let pyStartIndex = usr.range(of: "(py)")!.lowerBound
+        let pyStartIndex = usr.range(of: "(py)")?.lowerBound ?? usr.range(of: "(cpy)")!.lowerBound
         let usrPrefix = usr.substring(to: pyStartIndex)
         let fullDeclarationRange = NSRange(location: 0, length: (declaration as NSString).length)
         let regex = try! NSRegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)", options: [])
@@ -80,7 +80,7 @@ public struct SourceDeclaration {
             let accessorName = (declaration as NSString).substring(with: matches[0].rangeAt(1))
             return usrPrefix + "(im)\(accessorName)"
         } else if getter {
-            return usr.replacingOccurrences(of: "(py)", with: "(im)")
+            return usr.replacingOccurrences(of: "(py)", with: "(im)").replacingOccurrences(of: "(cpy)", with: "(im)")
         }
         // Setter
         let capitalFirstLetter = String(usr.characters[usr.characters.index(pyStartIndex, offsetBy: 4)]).capitalized
