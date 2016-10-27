@@ -14,7 +14,7 @@ private func compareSyntax(file: File, expectedTokens: [(SyntaxKind, Int, Int)])
     let expectedSyntaxMap = SyntaxMap(tokens: expectedTokens.map { tokenTuple in
         return SyntaxToken(type: tokenTuple.0.rawValue, offset: tokenTuple.1, length: tokenTuple.2)
     })
-    let syntaxMap = SyntaxMap(file: file)
+    let syntaxMap = try! SyntaxMap(file: file)
     XCTAssertEqual(syntaxMap, expectedSyntaxMap, "should generate expected syntax map")
 
     let syntaxJSONData = syntaxMap.description.data(using: .utf8)!
@@ -29,12 +29,12 @@ private func compareSyntax(file: File, expectedTokens: [(SyntaxKind, Int, Int)])
 class SyntaxTests: XCTestCase {
 
     func testPrintEmptySyntax() {
-        XCTAssertEqual(SyntaxMap(file: File(contents: "")).description, "[\n\n]", "should print empty syntax")
+        XCTAssertEqual(try! SyntaxMap(file: File(contents: "")).description, "[\n\n]", "should print empty syntax")
     }
 
     func testGenerateSameSyntaxMapFileAndContents() {
         let fileContents = try! String(contentsOfFile: #file, encoding: .utf8)
-        XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
+        try! XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
             SyntaxMap(file: File(contents: fileContents)),
             "should generate the same syntax map for a file as raw text")
     }

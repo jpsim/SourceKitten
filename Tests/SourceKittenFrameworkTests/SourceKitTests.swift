@@ -166,7 +166,7 @@ class SourceKitTests: XCTestCase {
         for (module, path, linuxPath, spmModule) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
+            let generatedWrapper = try! libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
             if existingWrapper != generatedWrapper && overwrite {
@@ -178,7 +178,7 @@ class SourceKitTests: XCTestCase {
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
-        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(Request.index(file: file, arguments: arguments).send())) + "\n")
+        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(try! Request.index(file: file, arguments: arguments).failableSend())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
             _ = try! NSRegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)

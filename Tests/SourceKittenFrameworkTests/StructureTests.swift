@@ -18,19 +18,19 @@ class StructureTests: XCTestCase {
             "key.length": 0,
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse"
         ]
-        let structure = Structure(file: File(contents: ""))
+        let structure = try! Structure(file: File(contents: ""))
         XCTAssertEqual(toNSDictionary(structure.dictionary), expected, "should generate expected structure")
     }
 
     func testGenerateSameStructureFileAndContents() {
         let fileContents = try! String(contentsOfFile: #file, encoding: .utf8)
-        XCTAssertEqual(Structure(file: File(path: #file)!),
+        try! XCTAssertEqual(Structure(file: File(path: #file)!),
             Structure(file: File(contents: fileContents)),
             "should generate the same structure for a file as raw text")
     }
 
     func testEnum() {
-        let structure = Structure(file: File(contents: "enum MyEnum { case First }"))
+        let structure = try! Structure(file: File(contents: "enum MyEnum { case First }"))
         let expectedStructure: NSDictionary = [
             "key.substructure": [
                 [
@@ -73,7 +73,7 @@ class StructureTests: XCTestCase {
     }
 
     func testStructurePrintValidJSON() {
-        let structure = Structure(file: File(contents: "struct A { func b() {} }"))
+        let structure = try! Structure(file: File(contents: "struct A { func b() {} }"))
         let expectedStructure: NSDictionary = [
             "key.substructure": [
                 [

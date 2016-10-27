@@ -7,6 +7,12 @@
   [JP Simard](https://github.com/jpsim)
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Some APIs changed to `throws`.  
+  * `File.format(trimmingTrailingWhitespace:useTabs:indentWidth:) throws`
+  * `Structure.init(file:) throws`
+  * `SyntaxMap.init(file:) throws`
+  [Norio Nomura](https://github.com/norio-nomura)
+
 ##### Enhancements
 
 * Add `--spm-module [ModuleName]` flag to `complete` to automatically detect
