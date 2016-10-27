@@ -198,9 +198,7 @@ extension SourceKitTests {
             ("testStatementKinds", testStatementKinds),
             ("testSyntaxKinds", testSyntaxKinds),
             ("testSwiftDeclarationKind", testSwiftDeclarationKind),
-
-            // Fails on Linux
-            // ("testIndex", testIndex),
+            ("testIndex", testIndex),
         ]
     }
 }
