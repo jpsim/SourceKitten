@@ -366,6 +366,7 @@ public enum Request {
 
     - returns: SourceKit output as a dictionary.
     */
+    @available(*, deprecated, renamed: "failableSend()")
     public func send() -> [String: SourceKitRepresentable] {
         initializeSourceKit
         let response = sourcekitd_send_request_sync(sourcekitObject)
