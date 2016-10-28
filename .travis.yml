@@ -5,7 +5,7 @@ matrix:
       env: JOB=Xcode
       os: osx
       osx_image: xcode8
-    - script: swift build && swift test
+    - script: swift test
       env: JOB=SPM
       os: osx
       osx_image: xcode8
