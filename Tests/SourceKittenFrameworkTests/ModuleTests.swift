@@ -15,8 +15,6 @@ let projectRoot = #file.bridge()
     .deletingLastPathComponent.bridge()
     .deletingLastPathComponent
 
-#if !os(Linux)
-
 class ModuleTests: XCTestCase {
 
     func testModuleNilInPathWithNoXcodeProject() {
@@ -44,4 +42,24 @@ class ModuleTests: XCTestCase {
     }
 }
 
+#if SWIFT_PACKAGE
+extension ModuleTests {
+    func testCommandantDocsSPM() {
+        let commandantPath = projectRoot + "/Packages/Commandant-0.11.2/"
+        let commandantModule = Module(spmName: "Commandant")!
+        compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs, rootDirectory: commandantPath)
+    }
+
+    static var allTests: [(String, (ModuleTests) -> () throws -> Void)] {
+        return [
+            // Disabled on Linux because these tests require Xcode
+            // ("testModuleNilInPathWithNoXcodeProject", testModuleNilInPathWithNoXcodeProject),
+            // ("testSourceKittenFrameworkDocsAreValidJSON", testSourceKittenFrameworkDocsAreValidJSON),
+            // ("testCommandantDocs", testCommandantDocs),
+
+            // Test passes but YamlSwift takes over a minute to parse debug.yaml
+            ("testCommandantDocsSPM", testCommandantDocsSPM),
+        ]
+    }
+}
 #endif

@@ -58,7 +58,7 @@ public struct Module {
                 return nil
         }
         name = spmName
-        compilerArguments = sources + otherArguments + ["-I"] + imports
+        compilerArguments = sources + ["-module-name", spmName] + otherArguments + ["-I"] + imports
         sourceFiles = sources
     }
 
