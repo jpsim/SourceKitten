@@ -71,21 +71,49 @@ public struct SourceDeclaration {
         guard let declaration = declaration else {
             fatalError("Couldn't extract declaration")
         }
-        let pyStartIndex = usr.range(of: "(py)")!.lowerBound
+        enum AccessorType {
+            case `class`, instance
+
+            var propertyTypeString: String {
+                switch self {
+                case .class: return "(cpy)"
+                case .instance: return "(py)"
+                }
+            }
+
+            var methodTypeString: String {
+                switch self {
+                case .class: return "(cm)"
+                case .instance: return "(im)"
+                }
+            }
+        }
+        let pyStartIndex: String.Index
+        let accessorType: AccessorType
+        if let accessorTypeStringStartIndex = usr.range(of: AccessorType.class.propertyTypeString)?.lowerBound {
+            pyStartIndex = accessorTypeStringStartIndex
+            accessorType = .class
+        } else if let accessorTypeStringStartIndex = usr.range(of: AccessorType.instance.propertyTypeString)?.lowerBound {
+            pyStartIndex = accessorTypeStringStartIndex
+            accessorType = .instance
+        } else {
+            fatalError("expected an instance or class property by got \(usr)")
+        }
+        let methodTypeString = accessorType.methodTypeString
         let usrPrefix = usr.substring(to: pyStartIndex)
         let fullDeclarationRange = NSRange(location: 0, length: (declaration as NSString).length)
         let regex = try! NSRegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)", options: [])
         let matches = regex.matches(in: declaration, options: [], range: fullDeclarationRange)
         if matches.count > 0 {
             let accessorName = (declaration as NSString).substring(with: matches[0].rangeAt(1))
-            return usrPrefix + "(im)\(accessorName)"
+            return usrPrefix + methodTypeString + accessorName
         } else if getter {
-            return usr.replacingOccurrences(of: "(py)", with: "(im)")
+            return usr.replacingOccurrences(of: "(py)", with: "(im)").replacingOccurrences(of: "(cpy)", with: "(cm)")
         }
         // Setter
-        let capitalFirstLetter = String(usr.characters[usr.characters.index(pyStartIndex, offsetBy: 4)]).capitalized
-        let restOfSetterName = usr.substring(from: usr.characters.index(pyStartIndex, offsetBy: 5))
-        return "\(usrPrefix)(im)set\(capitalFirstLetter)\(restOfSetterName):"
+        let capitalFirstLetter = String(usr.characters[usr.characters.index(pyStartIndex, offsetBy: accessorType.propertyTypeString.characters.count)]).capitalized
+        let restOfSetterName = usr.substring(from: usr.characters.index(pyStartIndex, offsetBy: accessorType.propertyTypeString.characters.count + 1))
+        return "\(usrPrefix)\(methodTypeString)set\(capitalFirstLetter)\(restOfSetterName):"
     }
 }
 
