@@ -13,10 +13,13 @@
 
 #pragma mark - Properties
 
+/// Always returns `YES`.
+@property (class, readwrite, nonatomic) BOOL isMusician;
+
 /**
  The name of the musician. i.e. "John Coltrane"
  */
-@property (nonatomic, readonly) NSString  *name;
+@property (nonatomic, readonly) NSString *name;
 
 /**
  The year the musician was born. i.e. 1926
