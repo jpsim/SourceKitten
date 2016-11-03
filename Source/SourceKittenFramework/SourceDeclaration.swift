@@ -88,32 +88,31 @@ public struct SourceDeclaration {
                 }
             }
         }
-        let pyStartIndex: String.Index
+        let propertyTypeStringStart: String.Index
         let accessorType: AccessorType
         if let accessorTypeStringStartIndex = usr.range(of: AccessorType.class.propertyTypeString)?.lowerBound {
-            pyStartIndex = accessorTypeStringStartIndex
+            propertyTypeStringStart = accessorTypeStringStartIndex
             accessorType = .class
         } else if let accessorTypeStringStartIndex = usr.range(of: AccessorType.instance.propertyTypeString)?.lowerBound {
-            pyStartIndex = accessorTypeStringStartIndex
+            propertyTypeStringStart = accessorTypeStringStartIndex
             accessorType = .instance
         } else {
             fatalError("expected an instance or class property by got \(usr)")
         }
-        let methodTypeString = accessorType.methodTypeString
-        let usrPrefix = usr.substring(to: pyStartIndex)
-        let fullDeclarationRange = NSRange(location: 0, length: (declaration as NSString).length)
-        let regex = try! NSRegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)", options: [])
-        let matches = regex.matches(in: declaration, options: [], range: fullDeclarationRange)
+        let nsDeclaration = declaration as NSString
+        let usrPrefix = usr.substring(to: propertyTypeStringStart)
+        let regex = try! NSRegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)")
+        let matches = regex.matches(in: declaration, options: [], range: NSRange(location: 0, length: nsDeclaration.length))
         if matches.count > 0 {
-            let accessorName = (declaration as NSString).substring(with: matches[0].rangeAt(1))
-            return usrPrefix + methodTypeString + accessorName
+            let accessorName = nsDeclaration.substring(with: matches[0].rangeAt(1))
+            return usrPrefix + accessorType.methodTypeString + accessorName
         } else if getter {
-            return usr.replacingOccurrences(of: "(py)", with: "(im)").replacingOccurrences(of: "(cpy)", with: "(cm)")
+            return usr.replacingOccurrences(of: accessorType.propertyTypeString, with: accessorType.methodTypeString)
         }
         // Setter
-        let capitalFirstLetter = String(usr.characters[usr.characters.index(pyStartIndex, offsetBy: accessorType.propertyTypeString.characters.count)]).capitalized
-        let restOfSetterName = usr.substring(from: usr.characters.index(pyStartIndex, offsetBy: accessorType.propertyTypeString.characters.count + 1))
-        return "\(usrPrefix)\(methodTypeString)set\(capitalFirstLetter)\(restOfSetterName):"
+        let setterOffset = accessorType.propertyTypeString.characters.count
+        let capitalizedSetterName = usr.substring(from: usr.characters.index(propertyTypeStringStart, offsetBy: setterOffset)).capitalizingFirstLetter()
+        return "\(usrPrefix)\(accessorType.methodTypeString)set\(capitalizedSetterName):"
     }
 }
 
