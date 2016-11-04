@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
   s.author       = { 'JP Simard' => 'jp@jpsim.com' }
   s.platform     = :osx, '10.9'
   s.source_files = 'Source/SourceKittenFramework/{*.swift,sourcekitd.h,clang-c/*.h}'
-  s.dependency     'SWXMLHash'
-  s.dependency     'Yaml'
+  s.dependency     'SWXMLHash', '~> 3.0'
+  s.dependency     'Yaml', '~> 3.0'
 end
