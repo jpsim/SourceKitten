@@ -1,10 +1,15 @@
 language: generic
 matrix:
   include:
-    - script: make test
+    - script:
+        - make test
+        - pod lib lint
       env: JOB=Xcode
       os: osx
       osx_image: xcode8
+      before_install:
+        - gem install cocoapods -v '1.1.1'
+        - pod repo update
     - script: swift test
       env: JOB=SPM
       os: osx
