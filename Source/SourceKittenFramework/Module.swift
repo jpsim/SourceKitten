@@ -37,7 +37,8 @@ public struct Module {
     public init?(spmName: String) {
         let yamlPath = ".build/debug.yaml"
         guard let yamlContents = try? String(contentsOfFile: yamlPath, encoding: .utf8),
-              let yamlCommands = Yaml.load(yamlContents).value?.dictionary?["commands"]?.dictionary?.values else {
+              let yaml = try? Yaml.load(yamlContents),
+              let yamlCommands = yaml.dictionary?["commands"]?.dictionary?.values else {
                 return nil
         }
         guard let moduleCommand = yamlCommands.filter({ command in
