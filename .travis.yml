@@ -1,7 +1,9 @@
 language: generic
 matrix:
   include:
-    - script: make test
+    - script:
+        - make test
+        - pod lib lint
       env: JOB=Xcode
       os: osx
       osx_image: xcode8
