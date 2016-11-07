@@ -27,8 +27,5 @@ For SourceKitten contributors, follow these steps to cut a release:
       (`SourceKittenFramework.framework.zip`) you just built to the GitHub
       release binaries.
     * Click "Publish release"
-9. File a PR towards Homebrew bumping the `tag`, `revision` & Xcode version
-   dependency if necessary.
-   See [homebrew#45651](https://github.com/Homebrew/homebrew/pull/45651) as an
-   example.
+9. Update Homebrew: `brew bump-formula-pr --tag=$(git describe --tags) --revision=$(git rev-parse HEAD) sourcekitten`
 10. Push to CocoaPods trunk: `pod trunk push`
