@@ -106,7 +106,7 @@ func createUIDNamespace(from uidStrings: [String]) -> String {
             if name.isEmpty {
                 return Array(sortedChildren.flatMap{
                     $0.render(withIndent: count)
-                }) + [""]
+                })
             }
 
             let escapedName = escape(name)
@@ -149,7 +149,7 @@ func createUIDNamespace(from uidStrings: [String]) -> String {
             parent.checkChild(for: name)
         }
     }
-    return root.render(withIndent: 0).joined(separator: "\n")
+    return (["extension UID {"] + root.render(withIndent: 1) + ["}",""]).joined(separator: "\n")
 }
 
 #endif

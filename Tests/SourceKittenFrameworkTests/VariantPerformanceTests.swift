@@ -132,9 +132,9 @@ class VariantPerformanceTests: XCTestCase {
     func testFindAvailablesWithVariantUIDNamespace() {
         func findAvailables(variant: SourceKitVariant) -> [String] {
             let resultFromSubstructure = variant.subStructure?.flatMap(findAvailables) ?? []
-            if variant.kind == source.lang.swift.decl.function.method.instance,
+            if variant.kind == UID.source.lang.swift.decl.function.method.instance,
                 let attributes = variant.attributes?.flatMap({ $0.attribute }),
-                attributes.contains(where: { $0 == source.decl.attribute.available }),
+                attributes.contains(where: { $0 == UID.source.decl.attribute.available }),
                 let name = variant.name {
                 return [name] + resultFromSubstructure
             }
