@@ -191,7 +191,7 @@ extension SourceKitVariant: Equatable {
 
 // MARK: - Implementation
 extension SourceKitVariant {
-    private enum _VariantCore {
+    fileprivate enum _VariantCore {
         case variant(sourcekitd_variant_t, _ResponseBox)
         case array([SourceKitVariant])
         case dictionary([UID:SourceKitVariant])
@@ -249,9 +249,9 @@ extension SourceKitVariant {
     fileprivate final class _VariantBox {
         private var _core: _VariantCore
 
-        init(variant: _VariantCore) { _core = variant }
+        fileprivate init(variant: _VariantCore) { _core = variant }
 
-        func resolveType() ->_VariantCore {
+        fileprivate func resolveType() ->_VariantCore {
             if case let .variant(sourcekitObject, response) = _core {
                 _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
             }
