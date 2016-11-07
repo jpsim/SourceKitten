@@ -6,6 +6,7 @@ For SourceKitten contributors, follow these steps to cut a release:
     * `Source/sourcekitten/Info.plist`
     * `Source/SourceKittenFramework/Info.plist`
     * `Source/sourcekitten/VersionCommand.swift`
+    * `SourceKitten.podspec`
 2. Come up with a witty feline themed release name. Past names include:
     * Objective-Cat
     * Cat-astrophic
@@ -30,3 +31,4 @@ For SourceKitten contributors, follow these steps to cut a release:
    dependency if necessary.
    See [homebrew#45651](https://github.com/Homebrew/homebrew/pull/45651) as an
    example.
+10. Push to CocoaPods trunk: `pod trunk push`

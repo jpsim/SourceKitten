@@ -36,6 +36,14 @@
 * Now supports docinfo requests for sourcetext and module keys.  
   [Erik Abair](https://github.com/abaire)
 
+* Now supports Objective-C class properties.  
+  [Jérémie Girault](https://github.com/jeremiegirault)
+  [JP Simard](https://github.com/jpsim)
+  [#243](https://github.com/jpsim/SourceKitten/issues/243)
+
+* Add podspec to support using SourceKittenFramework with CocoaPods.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * `NSString.lines()` generated surplus line when string ended with newline

@@ -7,7 +7,7 @@ XCTMain([
     testCase(CodeCompletionTests.allTests),
     testCase(DocInfoTests.allTests),
     testCase(FileTests.allTests),
-    // testCase(ModuleTests.allTests),
+    testCase(ModuleTests.allTests),
     testCase(OffsetMapTests.allTests),
     testCase(SourceKitTests.allTests),
     testCase(StringTests.allTests),

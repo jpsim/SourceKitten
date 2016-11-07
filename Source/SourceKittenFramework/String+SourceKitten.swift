@@ -407,6 +407,10 @@ extension String {
         return FileManager.default.fileExists(atPath: self)
     }
 
+    internal func capitalizingFirstLetter() -> String {
+        return String(characters.prefix(1)).capitalized + String(characters.dropFirst())
+    }
+
 #if !os(Linux)
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
