@@ -10,7 +10,10 @@
 
 ##### Bug Fixes
 
-* None.
+* `CXComment.commandName()` was returning nil on custom code comments 
+  since xcode 8.1 sdk. This caused a force unwrap when generating 
+  documentation. Inline command comment is now used as a 
+  fallback to catch this edge case.
 
 ## 0.15.0
 
