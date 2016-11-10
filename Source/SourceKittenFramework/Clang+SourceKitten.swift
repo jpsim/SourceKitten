@@ -248,7 +248,8 @@ extension CXComment {
                 return paragraphString + (paragraphString != "" ? "\n" : "") + text
             } else if child.kind() == CXComment_InlineCommand {
                 // @autoreleasepool etc. get parsed as commands when not in code blocks
-                return paragraphString + "@" + child.commandName()!
+                let inlineCommand = child.commandName().map { "@" + $0 }
+                return paragraphString + (inlineCommand ?? "")
             }
             fatalError("not text: \(child.kind())")
         }
@@ -260,7 +261,8 @@ extension CXComment {
     }
 
     func commandName() -> String? {
-        return clang_BlockCommandComment_getCommandName(self).str()
+        return clang_BlockCommandComment_getCommandName(self).str() ??
+            clang_InlineCommandComment_getCommandName(self).str()
     }
 
     func count() -> UInt32 {

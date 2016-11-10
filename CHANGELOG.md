@@ -2,6 +2,24 @@
 
 ##### Breaking
 
+* None.
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* `CXComment.commandName()` was returning nil on custom code comments
+  since Xcode 8.1. This caused a force unwrap when generating
+  documentation. Inline command comment is now used as a
+  fallback to catch this edge case.  
+  [Jérémie Girault](https://github.com/jeremiegirault)
+
+## 0.15.0
+
+##### Breaking
+
 * SourceKitten now requires Xcode 8.0 and Swift 3.0 to build.
   APIs have been adapted to conform to the Swift 3 API Design Guidelines.  
   [JP Simard](https://github.com/jpsim)
