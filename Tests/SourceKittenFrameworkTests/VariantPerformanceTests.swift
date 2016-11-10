@@ -134,7 +134,7 @@ class VariantPerformanceTests: XCTestCase {
             let resultFromSubstructure = variant.subStructure?.flatMap(findAvailables) ?? []
             if variant.kind == UID.source.lang.swift.decl.function.method.instance,
                 let attributes = variant.attributes?.flatMap({ $0.attribute }),
-                attributes.contains(where: { $0 == UID.source.decl.attribute.available }),
+                attributes.contains(UID.source.decl.attribute.available.uid),
                 let name = variant.name {
                 return [name] + resultFromSubstructure
             }
