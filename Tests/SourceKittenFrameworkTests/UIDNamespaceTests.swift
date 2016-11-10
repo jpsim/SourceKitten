@@ -70,7 +70,7 @@ func extractUIDStrings(from images: [String]) -> [String]? {
     }
     return output
         .components(separatedBy: .newlines)
-        .filter { $0.hasPrefix("source.") || $0.hasPrefix("key.") }
+        .filter { ($0.hasPrefix("source.") || $0.hasPrefix("key.")) && !$0.contains(" ") }
         .sorted()
 }
 
