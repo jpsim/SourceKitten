@@ -46,7 +46,7 @@ Returns true if `lhs` SyntaxToken is equal to `rhs` SyntaxToken.
 
 - returns: True if `lhs` SyntaxToken is equal to `rhs` SyntaxToken.
 */
-public func ==(lhs: SyntaxToken, rhs: SyntaxToken) -> Bool {
+public func == (lhs: SyntaxToken, rhs: SyntaxToken) -> Bool {
     return (lhs.type == rhs.type) && (lhs.offset == rhs.offset) && (lhs.length == rhs.length)
 }
 

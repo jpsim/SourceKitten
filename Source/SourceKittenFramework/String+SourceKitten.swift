@@ -100,7 +100,7 @@ extension NSString {
             }
             self.lines = lines
         }
-        
+
         /**
         Returns UTF16 offset from UTF8 offset.
 
@@ -171,7 +171,7 @@ extension NSString {
             let index = lines.index(where: { NSLocationInRange(offset, $0.byteRange) })
             return index.map {
                 let line = lines[$0]
-                
+
                 let character: Int
                 let content = line.content
                 let length = offset - line.byteRange.location + 1

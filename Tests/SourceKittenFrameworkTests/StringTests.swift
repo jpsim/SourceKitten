@@ -151,7 +151,7 @@ class StringTests: XCTestCase {
 
 typealias LineRangeType = (start: Int, end: Int)
 
-func ==(lhs: LineRangeType, rhs: LineRangeType) -> Bool {
+func == (lhs: LineRangeType, rhs: LineRangeType) -> Bool {
     return lhs.start == rhs.start && lhs.end == rhs.end
 }
 

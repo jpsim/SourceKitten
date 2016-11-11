@@ -86,7 +86,6 @@ public enum SwiftDocKey: String {
     /// Always unavailable (String).
     case unavailableMessage   = "key.unavailable_message"
 
-
     // MARK: Typed SwiftDocKey Getters
 
     /**

@@ -109,7 +109,7 @@ Returns true if `lhs` SyntaxMap is equal to `rhs` SyntaxMap.
 
 - returns: True if `lhs` SyntaxMap is equal to `rhs` SyntaxMap.
 */
-public func ==(lhs: SyntaxMap, rhs: SyntaxMap) -> Bool {
+public func == (lhs: SyntaxMap, rhs: SyntaxMap) -> Bool {
     if lhs.tokens.count != rhs.tokens.count {
         return false
     }

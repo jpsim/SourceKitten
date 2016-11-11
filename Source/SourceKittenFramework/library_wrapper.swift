@@ -11,7 +11,7 @@ import Foundation
 struct DynamicLinkLibrary {
     let path: String
     let handle: UnsafeMutableRawPointer
-    
+
     func load<T>(symbol: String) -> T {
         if let sym = dlsym(handle, symbol) {
             return unsafeBitCast(sym, to: T.self)
@@ -136,7 +136,7 @@ private extension String {
     var xcodeDeveloperDir: String {
         return appending(pathComponent: "Xcode.app/Contents/Developer")
     }
-    
+
     var xcodeBetaDeveloperDir: String {
         return appending(pathComponent: "Xcode-beta.app/Contents/Developer")
     }
@@ -149,9 +149,9 @@ private extension String {
         return URL(fileURLWithPath: self).appendingPathComponent(pathComponent).path
     }
 
-    func deleting(lastPathComponents n: Int) -> String {
+    func deleting(lastPathComponents numberOfPathComponents: Int) -> String {
         var url = URL(fileURLWithPath: self)
-        for _ in 0..<n {
+        for _ in 0..<numberOfPathComponents {
             url = url.deletingLastPathComponent()
         }
         return url.path

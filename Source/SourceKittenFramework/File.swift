@@ -441,7 +441,7 @@ private extension XMLIndexer {
         if children.isEmpty {
             return nil
         }
-        let elements = children.flatMap{ $0.element }
+        let elements = children.flatMap { $0.element }
         func dictionary(from element: SWXMLHash.XMLElement) -> [String:SourceKitRepresentable] {
             return [element.name: element.text ?? ""]
         }
