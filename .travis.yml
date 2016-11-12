@@ -6,14 +6,14 @@ matrix:
         - pod lib lint
       env: JOB=Xcode
       os: osx
-      osx_image: xcode8
+      osx_image: xcode8.1sneakpeek
       before_install:
         - gem install cocoapods -v '1.1.1'
         - pod repo update
     - script: swift test
       env: JOB=SPM
       os: osx
-      osx_image: xcode8
+      osx_image: xcode8.1sneakpeek
     - script: make docker_test
       env: JOB=Linux
       sudo: required
