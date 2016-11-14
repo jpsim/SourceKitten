@@ -50,9 +50,9 @@ public struct SourceKitVariant {
         set { box.dictionary?[UID(string)] = newValue }
     }
 
-    public subscript(key: UID) -> SourceKitVariant? {
-        get { return box.dictionary?[key] }
-        set { box.dictionary?[key] = newValue }
+    public subscript(uid: UID) -> SourceKitVariant? {
+        get { return box.dictionary?[uid] }
+        set { box.dictionary?[uid] = newValue }
     }
 
     internal init(variant: sourcekitd_variant_t, response: sourcekitd_response_t) {
@@ -64,40 +64,91 @@ public struct SourceKitVariant {
 
 // MARK: - Convenient properties of SourceKitVariant for well known UID.key*
 extension SourceKitVariant {
+    public subscript(key: UID.key) -> SourceKitVariant? {
+        get { return box.dictionary?[key.uid] }
+        set { box.dictionary?[key.uid] = newValue }
+    }
+
+    /// Accessibility (UID.source.lang.swift.accessibility).
+    public var accessibility: UID.source.lang.swift.accessibility? {
+        return self[.accessibility]?.uid.map(UID.source.lang.swift.accessibility.init)
+    }
     /// Annotated declaration (String).
-    public var annotatedDeclaration: String?
-        { return self[.keyAnnotatedDecl]?.string }
+    public var annotatedDeclaration: String? {
+        return self[.annotated_decl]?.string
+    }
+    /// Attributes ([SourceKitVariant]).
+    public var attributes: [SourceKitVariant]? {
+        return self[.attributes]?.array
+    }
+    /// Attribute (UID.source.decl.attribute).
+    public var attribute: UID.source.decl.attribute? {
+        return self[.attribute]?.uid.map(UID.source.decl.attribute.init)
+    }
     /// Body length (Int).
-    public var bodyLength: Int?
-        { return self[.keyBodyLength]?.int }
+    public var bodyLength: Int? {
+        return self[.bodylength]?.int
+    }
     /// Body offset (Int).
-    public var bodyOffset: Int? { return self[.keyBodyOffset]?.int }
+    public var bodyOffset: Int? {
+        return self[.bodyoffset]?.int
+    }
     /// Diagnostic stage (String).
-    public var diagnosticStage: String? { return self[.keyDiagnosticStage]?.string }
+    public var diagnosticStage: String? {
+        return self[.diagnostic_stage]?.string
+    }
     /// File path (String).
-    public var filePath: String? { return self[.keyFilePath]?.string }
+    public var filePath: String? {
+        return self[.filepath]?.string
+    }
     /// Full XML docs (String).
-    public var docFullAsXML: String? { return self[.keyDocFullAsXML]?.string }
-    /// Kind (SourceKitVariant.string).
-    public var kind: UID? { return self[.keyKind]?.uid }
-    /// Length (Int).
-    public var length: Int? { return self[.keyLength]?.int }
-    /// Name (String).
-    public var name: String? { return self[.keyName]?.string }
-    /// Name length (Int).
-    public var nameLength: Int? { return self[.keyNameLength]?.int }
-    /// Name offset (Int).
-    public var nameOffset: Int? { return self[.keyNameOffset]?.int }
-    /// Offset (Int).
-    public var offset: Int? { return self[.keyOffset]?.int }
-    /// Substructure ([SourceKitVariant]).
-    public var subStructure: [SourceKitVariant]? { return self[.keySubStructure]?.array }
-    /// Syntax map ([SourceKitVariant]).
-    public var syntaxMap: [SourceKitVariant]? { return self[.keySyntaxMap]?.array }
-    /// Type name (String).
-    public var typeName: String? { return self[.keyTypeName]?.string }
+    public var docFullAsXML: String? {
+        return self[UID.key.doc.full_as_xml.uid]?.string
+    }
     /// Inheritedtype ([SourceKitVariant])
-    public var inheritedTypes: [SourceKitVariant]? { return self[.keyInheritedTypes]?.array }
+    public var inheritedTypes: [SourceKitVariant]? {
+        return self[.inheritedtypes]?.array
+    }
+    /// Kind (SourceKitVariant.string).
+    public var kind: UID? {
+        return self[.kind]?.uid
+    }
+    /// Length (Int).
+    public var length: Int? {
+        return self[.length]?.int
+    }
+    /// Name (String).
+    public var name: String? {
+        return self[.name]?.string
+    }
+    /// Name length (Int).
+    public var nameLength: Int? {
+        return self[.namelength]?.int
+    }
+    /// Name offset (Int).
+    public var nameOffset: Int? {
+        return self[.nameoffset]?.int
+    }
+    /// Offset (Int).
+    public var offset: Int? {
+        return self[.offset]?.int
+    }
+    /// sourcetext
+    public var sourceText: String? {
+        return self[.sourcetext]?.string
+    }
+    /// Substructure ([SourceKitVariant]).
+    public var subStructure: [SourceKitVariant]? {
+        return self[.substructure]?.array
+    }
+    /// Syntax map ([SourceKitVariant]).
+    public var syntaxMap: [SourceKitVariant]? {
+        return self[.syntaxmap]?.array
+    }
+    /// Type name (String).
+    public var typeName: String? {
+        return self[.typename]?.string
+    }
 }
 
 // MARK: - Accessors of SourceKitVariant for well known UID.key*
@@ -417,12 +468,6 @@ extension SourceKitVariant._VariantBox: Equatable {
         default: return false
         }
     }
-}
-
-// MARK: - Custom
-extension SourceKitVariant {
-    public var attributes: [SourceKitVariant]? { return self[.keyAttributes]?.array }
-    public var attribute: UID? { return self[.keyAttribute]?.uid }
 }
 
 // MARK: - sourcekitd_variant_*_apply
