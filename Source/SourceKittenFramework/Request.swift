@@ -529,7 +529,7 @@ extension Request {
     public static func EditorOpen(_: File) -> Request { fatalError() }
 
     @available(*, unavailable, renamed: "cursorInfo(file:offset:arguments:)")
-    public static func CursorInfo(file: String, offset: Int64, arguments: [String])-> Request { fatalError() }
+    public static func CursorInfo(file: String, offset: Int64, arguments: [String]) -> Request { fatalError() }
 
     @available(*, unavailable, renamed: "customRequest(request:)")
     public static func CustomRequest(_: sourcekitd_object_t) -> Request { fatalError() }

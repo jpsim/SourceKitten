@@ -73,4 +73,4 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:/SourceKitten norionomura/sourcekit:30 bash -c "cd /SourceKitten && swift test"
+	docker run -v `pwd`:/SourceKitten norionomura/sourcekit:301 bash -c "cd /SourceKitten && swift test"

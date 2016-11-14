@@ -54,6 +54,6 @@ Returns true if `lhs` Structure is equal to `rhs` Structure.
 
 - returns: True if `lhs` Structure is equal to `rhs` Structure.
 */
-public func ==(lhs: Structure, rhs: Structure) -> Bool {
+public func == (lhs: Structure, rhs: Structure) -> Bool {
     return lhs.dictionary.isEqualTo(rhs.dictionary)
 }

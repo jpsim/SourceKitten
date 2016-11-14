@@ -40,7 +40,7 @@ extension SourceLocation {
 
 extension SourceLocation: Comparable {}
 
-public func ==(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
+public func == (lhs: SourceLocation, rhs: SourceLocation) -> Bool {
     return lhs.file.compare(rhs.file) == .orderedSame &&
         lhs.line == rhs.line &&
         lhs.column == rhs.column &&
@@ -49,7 +49,7 @@ public func ==(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
 
 /// A [strict total order](http://en.wikipedia.org/wiki/Total_order#Strict_total_order)
 /// over instances of `Self`.
-public func <(lhs: SourceLocation, rhs: SourceLocation) -> Bool {
+public func < (lhs: SourceLocation, rhs: SourceLocation) -> Bool {
     // Sort by file path.
     switch lhs.file.compare(rhs.file) {
     case .orderedDescending:

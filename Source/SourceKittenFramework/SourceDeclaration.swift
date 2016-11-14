@@ -155,7 +155,7 @@ extension SourceDeclaration: Hashable {
     }
 }
 
-public func ==(lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
+public func == (lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
     return lhs.usr == rhs.usr &&
         lhs.location == rhs.location
 }
@@ -166,7 +166,7 @@ extension SourceDeclaration: Comparable {}
 
 /// A [strict total order](http://en.wikipedia.org/wiki/Total_order#Strict_total_order)
 /// over instances of `Self`.
-public func <(lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
+public func < (lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
     return lhs.location < rhs.location
 }
 

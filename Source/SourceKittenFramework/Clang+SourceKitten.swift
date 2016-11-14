@@ -17,15 +17,10 @@ import SWXMLHash
 private var interfaceUUIDMap = [String: String]()
 
 struct ClangIndex {
-    private let cx = clang_createIndex(0, 1)
+    private let index = clang_createIndex(0, 1)
 
     func open(file: String, args: [UnsafePointer<Int8>?]) -> CXTranslationUnit {
-        return clang_createTranslationUnitFromSourceFile(cx,
-            file,
-            Int32(args.count),
-            args,
-            0,
-            nil)!
+        return clang_createTranslationUnitFromSourceFile(index, file, Int32(args.count), args, 0, nil)!
     }
 }
 
@@ -229,7 +224,7 @@ extension CXComment {
     func paragraphToString(kindString: String? = nil) -> [Text] {
         if kind() == CXComment_VerbatimLine {
             return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
-        } else if kind() == CXComment_BlockCommand  {
+        } else if kind() == CXComment_BlockCommand {
             return (0..<count()).reduce([]) { returnValue, childIndex in
                 return returnValue + self[childIndex].paragraphToString()
             }
