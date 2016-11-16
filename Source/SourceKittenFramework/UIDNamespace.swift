@@ -19,6 +19,25 @@ extension UIDNamespace {
         return uid.description
     }
 
+    internal static func _inferUID(from string: String) -> UID {
+        let namespace = _typeName(type(of:self))
+            .components(separatedBy: ".")
+            .dropFirst(2)
+            .dropLast()
+            .joined(separator: ".")
+        let fullyQualifiedName: String
+        if string.hasPrefix(".") {
+            fullyQualifiedName = namespace + string
+        } else {
+            // Check string begins with targeting namespace if DEBUG.
+            #if DEBUG
+            precondition(string.hasPrefix(namespace + "."), "string must begin with \"\(namespace).\".")
+            #endif
+            fullyQualifiedName = string
+        }
+        return UID(fullyQualifiedName)
+    }
+
     // ExpressibleByStringLiteral
     // 
     // FIXME: Use following implementation when https://bugs.swift.org/browse/SR-3173 will be resolved.

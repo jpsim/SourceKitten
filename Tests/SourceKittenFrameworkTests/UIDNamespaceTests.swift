@@ -12,6 +12,35 @@ import XCTest
 
 class UIDNamespaceTests: XCTestCase {
 
+    func testExpressibleByStringLiteral() {
+        let keyRequest: UID.key = "key.request"
+        XCTAssertEqual(keyRequest, UID.key.request)
+        let keyKind: UID.key = ".kind"
+        XCTAssertEqual(UID.key.kind, keyKind)
+
+        do {
+            let longNameByString: UID.source.lang.swift.keyword = "source.lang.swift.keyword.Any"
+            XCTAssertEqual(longNameByString, UID.source.lang.swift.keyword.Any)
+
+            let shortName: UID.source.lang.swift.keyword = .Any
+            XCTAssertEqual(shortName, UID.source.lang.swift.keyword.Any)
+        }
+
+        do {
+            // Use nested members with Fully Qualified Name
+            let longNameByString: UID.source.lang.swift.decl = "source.lang.swift.decl.extension.class"
+            XCTAssertEqual(longNameByString, UID.source.lang.swift.decl.extension.class)
+
+            // We can't use short name by inference if nested
+//            let shortName: UID.source.lang.swift.decl = .extension.class
+//            XCTAssertEqual(shortNameByString, UID.source.lang.swift.decl.extension.class)
+
+            // If string starting `.`, it is infered as member of namespace
+            let shortNameByString: UID.source.lang.swift.decl = ".extension.class"
+            XCTAssertEqual(shortNameByString, UID.source.lang.swift.decl.extension.class)
+        }
+    }
+
     func testUIDNamespaceAreUpToDate() {
         #if os(macOS)
             guard let sourcekitdPath = loadedSourcekitdPath() else {
@@ -223,9 +252,9 @@ fileprivate class Node {
             "public static func ==(lhs: UID?, rhs: UID.\(escapedFullyQualifiedName)) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }",
             "public static func ==(lhs: UID.\(escapedFullyQualifiedName), rhs: UID?) -> Bool { return rhs == lhs }",
             // FIXME: Remove following when https://bugs.swift.org/browse/SR-3173 will be resolved.
-            "public init(stringLiteral value: String) { self.init(uid: UID(value)) }",
-            "public init(unicodeScalarLiteral value: String) { self.init(uid: UID(value)) }",
-            "public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: UID(value)) }",
+            "public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }",
+            "public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }",
+            "public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }",
         ]
     }
 
