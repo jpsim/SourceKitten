@@ -15,10 +15,6 @@ public protocol UIDNamespace: CustomStringConvertible, ExpressibleByStringLitera
 }
 
 extension UIDNamespace {
-    internal static func leaf(_ name: String) -> Self {
-        return Self.init(uid: UID(name))
-    }
-
     // CustomStringConvertible
     public var description: String {
         return uid.description
