@@ -6,7 +6,6 @@
 //  Copyright (c) 2016 SourceKitten. All rights reserved.
 //
 
-#if !os(Linux)
 import Foundation
 import XCTest
 @testable import SourceKittenFramework
@@ -14,29 +13,32 @@ import XCTest
 class UIDNamespaceTests: XCTestCase {
 
     func testUIDNamespaceAreUpToDate() {
-        guard let sourcekitdPath = loadedSourcekitdPath() else {
-            XCTFail("fail to get sourcekitd image path")
-            return
-        }
-        let imagePaths = [sourcekitdPath, getSourceKitServicePath(from: sourcekitdPath)]
-        guard let uidStrings = extractUIDStrings(from: imagePaths) else {
-            XCTFail("fail to get uid strings")
-            return
-        }
-        let generatedUIDNamespace = createUIDNamespace(from: uidStrings)
-        print(generatedUIDNamespace)
-        let uidNamespacePath = "\(projectRoot)/Source/SourceKittenFramework/UIDNamespace+generated.swift"
-        let existingUIDNamespace = try! String(contentsOfFile: uidNamespacePath)
+        #if os(macOS)
+            guard let sourcekitdPath = loadedSourcekitdPath() else {
+                XCTFail("fail to get sourcekitd image path")
+                return
+            }
+            let imagePaths = [sourcekitdPath, getSourceKitServicePath(from: sourcekitdPath)]
+            guard let uidStrings = extractUIDStrings(from: imagePaths) else {
+                XCTFail("fail to get uid strings")
+                return
+            }
+            let generatedUIDNamespace = createUIDNamespace(from: uidStrings)
+            let uidNamespacePath = "\(projectRoot)/Source/SourceKittenFramework/UIDNamespace+generated.swift"
+            let existingUIDNamespace = try! String(contentsOfFile: uidNamespacePath)
 
-        XCTAssertEqual(existingUIDNamespace, generatedUIDNamespace)
+            XCTAssertEqual(existingUIDNamespace, generatedUIDNamespace)
 
-        // set this to true to overwrite existing UIDNamespace+generated.swift with the generated ones
-        let overwrite = false
-        if existingUIDNamespace != generatedUIDNamespace && overwrite {
-            try! generatedUIDNamespace.data(using: .utf8)?.write(to: URL(fileURLWithPath: uidNamespacePath))
-        }
+            // set this to true to overwrite existing UIDNamespace+generated.swift with the generated ones
+            let overwrite = false
+            if existingUIDNamespace != generatedUIDNamespace && overwrite {
+                try! generatedUIDNamespace.data(using: .utf8)?.write(to: URL(fileURLWithPath: uidNamespacePath))
+            }
+        #endif
     }
 }
+
+#if os(macOS)
 
 func loadedSourcekitdPath() -> String? {
     let library = toolchainLoader.load(path: "sourcekitd.framework/Versions/A/sourcekitd")
@@ -124,33 +126,13 @@ fileprivate class Node {
     weak var parent: Node? = nil
     let name: String
     var children: [String:Node] = [:]
-    var isDesiredType = false
+    private var isDesiredType = false
+
+    static var keywords: [String] = []
 
     init(name: String = "", parent: Node? = nil) {
         self.name = name
         self.parent = parent
-    }
-
-    var escapedName: String {
-        return type(of: self).escape(name)
-    }
-
-    var namespaces: [String] {
-        let parents = parent?.namespaces ?? []
-        let current = name.isEmpty ? [] : [name]
-        return parents + current
-    }
-
-    var fullyQualifiedName: String {
-        return namespaces.joined(separator: ".")
-    }
-
-    var escapedFullyQualifiedName: String {
-        return namespaces.map(type(of:self).escape).joined(separator: ".")
-    }
-
-    var sortedChildren: [Node] {
-        return children.keys.sorted().flatMap { children[$0] }
     }
 
     /// Parse uid string
@@ -160,11 +142,64 @@ fileprivate class Node {
         _ = node(for: string)
     }
 
+    /// Set desired type by uid string
+    ///
+    /// - Parameter uidString: String
     func setDesiredType(for uidString: String) {
         node(for: uidString).isDesiredType = true
     }
 
-    func node(for uidString: String) -> Node {
+    /// Render Structs
+    ///
+    /// - Returns: [String]
+    func renderStructs() -> [String] {
+        if name.isEmpty { return sortedChildren.flatMap { $0.renderStructs() } }
+
+        let renderedChildren =  sortedChildren.flatMap { $0.renderStructs().map(indent) }
+
+        if isDesiredType {
+            let renderedProperties = sortedChildren.flatMap {
+                $0.renderProperties().map(indent)
+            }
+            return [
+                "public struct \(escapedName): UIDNamespace {",
+                indent("public let uid: UID"),
+                ] + renderedProperties + renderedChildren + ["}"]
+        } else if !renderedChildren.isEmpty {
+            return ["public struct \(escapedName) {"] + renderedChildren + ["}"]
+        }
+        return []
+    }
+
+    /// Render Extensions
+    ///
+    /// - Returns: [String]
+    func renderExtensions() -> [String] {
+        if name.isEmpty { return sortedChildren.flatMap { $0.renderExtensions() } }
+
+        var result = [String]()
+        if isDesiredType {
+            result.append(contentsOf: ["extension UID.\(escapedFullyQualifiedName) {"])
+            result.append(contentsOf: renderMethods().map(indent))
+            result.append(contentsOf: ["}"])
+        }
+
+        let renderedChildren = sortedChildren.flatMap { $0.renderExtensions() }
+        result.append(contentsOf: renderedChildren)
+
+        return result
+    }
+    
+    // MARK: - Private
+
+    // escaping keywords with "`"
+    private static func escape(_ name: String) -> String {
+        return keywords.contains(name) ? "`\(name)`" : name
+    }
+
+    // MARK: - Model operations
+
+    private func node(for uidString: String) -> Node {
         return uidString.components(separatedBy: ".").reduce(self) { parent, name in
             parent.checkChild(for: name)
         }
@@ -180,67 +215,30 @@ fileprivate class Node {
         return child
     }
 
-    /// Render Structs
-    func renderStructs() -> [String] {
-        if name.isEmpty { return sortedChildren.flatMap { $0.renderStructs() } }
-
-        let beginning = isDesiredType ? [
-            "public struct \(escapedName): UIDNamespace {",
-            indent("public let uid: UID"),
-            indent("public init(uid: UID) { self.uid = uid }"),
-            indent("public static func ==(lhs: UID, rhs: \(escapedName)) -> Bool { return lhs == rhs.uid }"),
-            indent("public static func ==(lhs: \(escapedName), rhs: UID) -> Bool { return rhs == lhs }"),
-            indent("public static func ==(lhs: UID?, rhs: \(escapedName)) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }"),
-            indent("public static func ==(lhs: \(escapedName), rhs: UID?) -> Bool { return rhs == lhs }"),
+    // MARK: - Renderer
+    private func renderMethods() -> [String] {
+        return [
+            "public static func ==(lhs: UID, rhs: UID.\(escapedFullyQualifiedName)) -> Bool { return lhs == rhs.uid }",
+            "public static func ==(lhs: UID.\(escapedFullyQualifiedName), rhs: UID) -> Bool { return rhs == lhs }",
+            "public static func ==(lhs: UID?, rhs: UID.\(escapedFullyQualifiedName)) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }",
+            "public static func ==(lhs: UID.\(escapedFullyQualifiedName), rhs: UID?) -> Bool { return rhs == lhs }",
             // FIXME: Remove following when https://bugs.swift.org/browse/SR-3173 will be resolved.
-            indent("public init(stringLiteral value: String) { self.init(uid: UID(value)) }"),
-            indent("public init(unicodeScalarLiteral value: String) { self.init(uid: UID(value)) }"),
-            indent("public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: UID(value)) }"),
-            ] : ["public struct \(escapedName) {"]
-        let renderedChildren =  sortedChildren.flatMap { $0.renderStructs().map(indent) }
-        let ending = ["}"]
-
-        if isDesiredType || !renderedChildren.isEmpty {
-            return beginning + renderedChildren + ending
-        } else {
-            return []
-        }
+            "public init(stringLiteral value: String) { self.init(uid: UID(value)) }",
+            "public init(unicodeScalarLiteral value: String) { self.init(uid: UID(value)) }",
+            "public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: UID(value)) }",
+        ]
     }
 
-    /// Render Extensions
-    func renderExtensions() -> [String] {
-        if name.isEmpty { return sortedChildren.flatMap { $0.renderExtensions() } }
-
-        var result = [String]()
-        if isDesiredType {
-            let renderedProperties = sortedChildren.flatMap {
-                $0.renderProperties().map(indent)
-            }
-            result.append(contentsOf: ["extension UID.\(escapedFullyQualifiedName) {"])
-            result.append(contentsOf: renderedProperties)
-            result.append(contentsOf: ["}"])
-        }
-
-        let renderedChildren = sortedChildren.flatMap { $0.renderExtensions() }
-        result.append(contentsOf: renderedChildren)
-
-        return result
-    }
-
-    var desiredType: Node {
-        guard let parent = parent else {
-            fatalError("Can't find desired type!")
-        }
-        return parent.isDesiredType ? parent : parent.desiredType
-    }
-
-    func renderProperties() -> [String] {
+    private func renderProperties() -> [String] {
         if name.isEmpty { return sortedChildren.flatMap { $0.renderProperties() } }
 
         if isDesiredType { return [] }
 
         if children.isEmpty {
-            return ["public static let \(escapedName): UID.\(desiredType.escapedFullyQualifiedName) = \"\(fullyQualifiedName)\""]
+            return [
+                "/// \"\(fullyQualifiedName)\"",
+                "public static let \(escapedName): UID.\(desiredType.escapedFullyQualifiedName) = \"\(fullyQualifiedName)\"",
+            ]
         } else {
             let renderedProperties = sortedChildren.flatMap {
                 $0.renderProperties().map(indent)
@@ -249,10 +247,35 @@ fileprivate class Node {
         }
     }
 
-    // escaping keywords with "`"
-    static var keywords: [String] = []
-    static func escape(_ name: String) -> String {
-        return keywords.contains(name) ? "`\(name)`" : name
+    // MARK: - Computed properties
+
+    private var desiredType: Node {
+        guard let parent = parent else {
+            fatalError("Can't find desired type!")
+        }
+        return parent.isDesiredType ? parent : parent.desiredType
+    }
+
+    private var escapedFullyQualifiedName: String {
+        return namespaces.map(type(of:self).escape).joined(separator: ".")
+    }
+
+    private var escapedName: String {
+        return type(of: self).escape(name)
+    }
+
+    private var fullyQualifiedName: String {
+        return namespaces.joined(separator: ".")
+    }
+
+    private var namespaces: [String] {
+        let parents = parent?.namespaces ?? []
+        let current = name.isEmpty ? [] : [name]
+        return parents + current
+    }
+
+    private var sortedChildren: [Node] {
+        return children.keys.sorted().flatMap { children[$0] }
     }
 }
 

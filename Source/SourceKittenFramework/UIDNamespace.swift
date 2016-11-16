@@ -11,7 +11,6 @@ import Foundation
 // MARK: - UIDNamespace
 public protocol UIDNamespace: CustomStringConvertible, ExpressibleByStringLiteral, Equatable {
     var uid: UID { get }
-    init(uid: UID)
 }
 
 extension UIDNamespace {
