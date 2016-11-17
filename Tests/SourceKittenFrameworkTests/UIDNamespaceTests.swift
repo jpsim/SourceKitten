@@ -41,6 +41,10 @@ class UIDNamespaceTests: XCTestCase {
         }
     }
 
+//    func testUnknownUIDCausesPreconditionFailureOnDebugBuild() {
+//        XCTAssertTrue(UID.key.request == ".unknown")
+//    }
+
     func testUIDNamespaceAreUpToDate() {
         #if os(macOS)
             guard let sourcekitdPath = loadedSourcekitdPath() else {
@@ -104,10 +108,10 @@ func extractUIDStrings(from images: [String]) -> [String]? {
     guard let output = String(data: data, encoding: .utf8) else {
         return nil
     }
-    return output
+    let uidStrings = output
         .components(separatedBy: .newlines)
         .filter { ($0.hasPrefix("source.") || $0.hasPrefix("key.")) && !$0.contains(" ") }
-        .sorted()
+    return Set(uidStrings).sorted()
 }
 
 fileprivate let desiredTypes = [
@@ -147,8 +151,15 @@ func createUIDNamespace(from uidStrings: [String]) -> String {
     return (["extension UID {"] +
         root.renderStructs().map(indent) +
         ["}",""] +
-        root.renderExtensions()
-        ).joined(separator: "\n")
+        root.renderExtensions() +
+        renderKnownUIDs(from: uidStrings)
+        ).joined(separator: "\n") + "\n"
+}
+
+func renderKnownUIDs(from UIDs: [String]) -> [String] {
+    return ["#if DEBUG","let knownUIDs = [",] +
+        UIDs.map({"    UID(\"\($0)\"),"}) +
+        ["]","#endif"]
 }
 
 fileprivate class Node {

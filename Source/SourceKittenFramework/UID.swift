@@ -24,6 +24,15 @@ public struct UID {
     }
 }
 
+// MARK: - Check known uid.
+#if DEBUG
+    extension UID {
+        fileprivate var isKnown: Bool {
+            return knownUIDs.contains(self)
+        }
+    }
+#endif
+
 // MARK: - Hashable
 extension UID: Hashable {
     /// The hash value.
@@ -51,14 +60,23 @@ extension UID: Hashable {
 extension UID: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
         self.init(value)
+        #if DEBUG
+            precondition(isKnown, "\"\(description)\" is not predefined UID string!")
+        #endif
     }
 
     public init(extendedGraphemeClusterLiteral value: String) {
         self.init(value)
+        #if DEBUG
+            precondition(isKnown, "\"\(description)\" is not predefined UID string!")
+        #endif
     }
 
     public init(unicodeScalarLiteral value: String) {
         self.init(value)
+        #if DEBUG
+            precondition(isKnown, "\"\(description)\" is not predefined UID string!")
+        #endif
     }
 
     init(_ string: String) {
