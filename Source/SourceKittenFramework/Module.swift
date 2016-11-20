@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Yaml
+import Yams
 
 /// Represents source module to be documented.
 public struct Module {
@@ -36,21 +36,41 @@ public struct Module {
 
     public init?(spmName: String) {
         let yamlPath = ".build/debug.yaml"
-        guard let yamlContents = try? String(contentsOfFile: yamlPath, encoding: .utf8),
-              let yaml = try? Yaml.load(yamlContents),
-              let yamlCommands = yaml.dictionary?["commands"]?.dictionary?.values else {
+        guard let yaml = try? Yams.Node(string: String(contentsOfFile: yamlPath, encoding: .utf8)),
+            case let .mapping(yamlMapping) = yaml
+            else { fatalError("SPM build manifest does not exist at `.build/debug.yaml` or does not match expected format.") }
+
+        guard let yamlCommands = yamlMapping.filter({ $0.0 == "commands" }).first?.1,
+            case let .mapping(yamlCommandsMapping) = yamlCommands
+            else { fatalError("SPM build manifest does not match expected format.") }
+
+        guard let moduleCommands = yamlCommandsMapping.filter({ $0.0 == "<\(spmName).module>" }).first?.1,
+            case let .mapping(moduleCommand) = moduleCommands
+            else {
+                fputs("Could not find SPM module '\(spmName)'. Here are the modules available:\n", stderr)
+                let availableModules: [String] = yamlCommandsMapping.flatMap { command in
+                    if case let .mapping(commandMapping) = command.1,
+                        let optionalCommandName = commandMapping.filter({ $0.0 == "module-name" }).first?.1,
+                       case let .scalar(commandName) = optionalCommandName {
+                        return commandName
+                    }
+                    return nil
+                }
+                fputs("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n", stderr)
                 return nil
         }
-        guard let moduleCommand = yamlCommands.filter({ command in
-            command.dictionary?["module-name"]?.string == spmName
-        }).first?.dictionary else {
-            fputs("Could not find SPM module '\(spmName)'. Here are the modules available:\n", stderr)
-            let availableModules = yamlCommands.flatMap({ $0.dictionary?["module-name"]?.string })
-            fputs("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n", stderr)
+
+        func stringArray(_ key: String) -> [String]? {
+            if let seq = moduleCommand.filter({ $0.0 == key }).first?.1,
+                case let .sequence(array) = seq {
+                return array.flatMap { scalar in
+                    if case let .scalar(string) = scalar {
+                        return string
+                    }
+                    return nil
+                }
+            }
             return nil
-        }
-        func stringArray(_ key: Yaml) -> [String]? {
-            return moduleCommand[key]?.array?.flatMap { $0.string }
         }
         guard let imports = stringArray("import-paths"),
               let otherArguments = stringArray("other-args"),
