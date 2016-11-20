@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.source_files        = 'Source/SourceKittenFramework/{*.swift,sourcekitd.h,clang-c/*.h}'
   s.pod_target_xcconfig = { 'APPLICATION_EXTENSION_API_ONLY' => 'YES' }
   s.dependency            'SWXMLHash', '~> 3.0'
-  s.dependency            'Yaml', '~> 3.0'
+  s.dependency            'Yams', '~> 0.1'
 end

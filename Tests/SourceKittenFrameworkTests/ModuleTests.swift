@@ -56,8 +56,6 @@ extension ModuleTests {
             // ("testModuleNilInPathWithNoXcodeProject", testModuleNilInPathWithNoXcodeProject),
             // ("testSourceKittenFrameworkDocsAreValidJSON", testSourceKittenFrameworkDocsAreValidJSON),
             // ("testCommandantDocs", testCommandantDocs),
-
-            // Test passes but YamlSwift takes over a minute to parse debug.yaml
             ("testCommandantDocsSPM", testCommandantDocsSPM),
         ]
     }
