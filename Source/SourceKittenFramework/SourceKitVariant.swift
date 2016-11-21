@@ -93,9 +93,9 @@ extension SourceKitVariant {
     public var bodyOffset: Int? {
         return self[.bodyoffset]?.int
     }
-    /// Diagnostic stage (String).
-    public var diagnosticStage: String? {
-        return self[.diagnostic_stage]?.string
+    /// Diagnostic stage (UID.source.diagnostic.stage.swift).
+    public var diagnosticStage: UID.source.diagnostic.stage.swift? {
+        return self[.diagnostic_stage]?.uid.map(UID.source.diagnostic.stage.swift.init)
     }
     /// File path (String).
     public var filePath: String? {
@@ -109,7 +109,7 @@ extension SourceKitVariant {
     public var inheritedTypes: [SourceKitVariant]? {
         return self[.inheritedtypes]?.array
     }
-    /// Kind (SourceKitVariant.string).
+    /// Kind (UID).
     public var kind: UID? {
         return self[.kind]?.uid
     }
