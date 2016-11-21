@@ -19,7 +19,7 @@
 				<key>BundleOverwriteAction</key>
 				<string></string>
 				<key>RootRelativeBundlePath</key>
-				<string>/usr/local/Frameworks/SourceKittenFramework.framework/Versions/A/Frameworks/Yaml.framework</string>
+				<string>/usr/local/Frameworks/SourceKittenFramework.framework/Versions/A/Frameworks/Yams.framework</string>
 			</dict>
 			<dict>
 				<key>BundleOverwriteAction</key>
