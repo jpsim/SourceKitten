@@ -41,13 +41,15 @@ extension UIDNamespace {
     // ExpressibleByStringLiteral
     // 
     // FIXME: Use following implementation when https://bugs.swift.org/browse/SR-3173 will be resolved.
-//    public init(stringLiteral value: String) {
-//        self.init(uid: UID(value))
-//    }
-//    public init(unicodeScalarLiteral value: String) {
-//        self.init(uid: UID(value))
-//    }
-//    public init(extendedGraphemeClusterLiteral value: String) {
-//        self.init(uid: UID(value))
-//    }
+    /*
+    public init(stringLiteral value: String) {
+        self.init(uid: UID(value))
+    }
+    public init(unicodeScalarLiteral value: String) {
+        self.init(uid: UID(value))
+    }
+    public init(extendedGraphemeClusterLiteral value: String) {
+        self.init(uid: UID(value))
+    }
+     */
 }

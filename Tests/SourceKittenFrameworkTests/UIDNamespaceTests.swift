@@ -32,8 +32,10 @@ class UIDNamespaceTests: XCTestCase {
             XCTAssertEqual(longNameByString, UID.source.lang.swift.decl.extension.class)
 
             // We can't use short name by inference if nested
-//            let shortName: UID.source.lang.swift.decl = .extension.class
-//            XCTAssertEqual(shortNameByString, UID.source.lang.swift.decl.extension.class)
+            /*
+            let shortName: UID.source.lang.swift.decl = .extension.class
+            XCTAssertEqual(shortNameByString, UID.source.lang.swift.decl.extension.class)
+             */
 
             // If string starting `.`, it is infered as member of namespace
             let shortNameByString: UID.source.lang.swift.decl = ".extension.class"
