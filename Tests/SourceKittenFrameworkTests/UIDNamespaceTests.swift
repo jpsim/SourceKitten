@@ -38,6 +38,12 @@ class UIDNamespaceTests: XCTestCase {
             // If string starting `.`, it is infered as member of namespace
             let shortNameByString: UID.source.lang.swift.decl = ".extension.class"
             XCTAssertEqual(shortNameByString, UID.source.lang.swift.decl.extension.class)
+
+            // Equatable
+            XCTAssertEqual(UID.source.lang.swift.decl.extension.class, ".extension.class")
+
+            // `==` operator
+            XCTAssertTrue(UID.source.lang.swift.decl.extension.class == ".extension.class")
         }
     }
 
@@ -258,6 +264,7 @@ fileprivate class Node {
     // MARK: - Renderer
     private func renderMethods() -> [String] {
         return [
+            "public static func ==(lhs: UID.\(escapedFullyQualifiedName), rhs: UID.\(escapedFullyQualifiedName)) -> Bool { return lhs.uid == rhs.uid }",
             "public static func ==(lhs: UID, rhs: UID.\(escapedFullyQualifiedName)) -> Bool { return lhs == rhs.uid }",
             "public static func ==(lhs: UID.\(escapedFullyQualifiedName), rhs: UID) -> Bool { return rhs == lhs }",
             "public static func ==(lhs: UID?, rhs: UID.\(escapedFullyQualifiedName)) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }",
