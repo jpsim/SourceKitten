@@ -450,7 +450,7 @@ extension Request: CustomStringConvertible {
     public var description: String { return String(validatingUTF8: sourcekitd_request_description_copy(sourcekitObject)!)! }
 }
 
-private func interfaceForModule(_ module: String, compilerArguments: [String]) throws -> [String: SourceKitRepresentable] {
+private func interfaceForModule(_ module: String, compilerArguments: [String]) throws -> SourceKitVariant {
     var compilerargs = compilerArguments.map { sourcekitd_request_string_create($0) }
     let dict = [
         sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")),
@@ -460,17 +460,17 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) t
     ]
     var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
     var values = Array(dict.values)
-    return try Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).failableSend()
+    return try Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).failableSend2()
 }
 
 internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) throws -> String {
-    let sourceKitResponse = try interfaceForModule(module, compilerArguments: compilerArguments)
-    let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
-    let source = sourceKitResponse["key.sourcetext"] as! String
+    let sourceKitVariant = try interfaceForModule(module, compilerArguments: compilerArguments)
+    let substructure = sourceKitVariant.subStructure ?? []
+    let source = sourceKitVariant.sourceText!
     let freeFunctions = substructure.filter({
-        SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
+        $0.kind == UID.SourceLangSwiftDecl.functionFree
     }).flatMap { function -> String? in
-        let fullFunctionName = function["key.name"] as! String
+        let fullFunctionName = function.name!
         let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
         let unsupportedFunctions = [
             "clang_executeOnThread",
@@ -482,13 +482,13 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxP
         }
 
         var parameters = [String]()
-        if let functionSubstructure = SwiftDocKey.getSubstructure(function) {
+        if let functionSubstructure = function.subStructure {
             for parameterStructure in functionSubstructure {
-                parameters.append((parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String)
+                parameters.append(parameterStructure.typeName!)
             }
         }
         var returnTypes = [String]()
-        if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
+        if let offset = function.offset, let length = function.length {
             let start = source.index(source.startIndex, offsetBy: Int(offset))
             let end = source.index(start, offsetBy: Int(length))
             let functionDeclaration = source.substring(with: start..<end)

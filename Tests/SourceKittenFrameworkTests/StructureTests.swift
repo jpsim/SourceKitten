@@ -19,7 +19,7 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse"
         ]
         let structure = try! Structure(file: File(contents: ""))
-        XCTAssertEqual(toNSDictionary(structure.dictionary), expected, "should generate expected structure")
+        XCTAssertEqual(structure.dictionary, expected, "should generate expected structure")
     }
 
     func testGenerateSameStructureFileAndContents() {
@@ -69,7 +69,7 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 26
         ]
-        XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
+        XCTAssertEqual(structure.dictionary, expectedStructure, "should generate expected structure")
     }
 
     func testStructurePrintValidJSON() {
@@ -105,11 +105,11 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 24
         ]
-        XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
+        XCTAssertEqual(structure.dictionary, expectedStructure, "should generate expected structure")
 
         let jsonData = structure.description.data(using: .utf8)!
-        let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! [AnyHashable: Any]
-        XCTAssertEqual(jsonDictionary.bridge(), expectedStructure, "JSON should match expected structure")
+        let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! NSDictionary
+        XCTAssertEqual(jsonDictionary, expectedStructure, "JSON should match expected structure")
     }
 }
 
