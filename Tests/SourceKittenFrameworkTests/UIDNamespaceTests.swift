@@ -6,6 +6,9 @@
 //  Copyright (c) 2016 SourceKitten. All rights reserved.
 //
 
+#if os(Linux)
+import Glibc
+#endif
 import Foundation
 import XCTest
 @testable import SourceKittenFramework
@@ -54,39 +57,60 @@ class UIDNamespaceTests: XCTestCase {
 //    }
 
     func testUIDNamespaceAreUpToDate() {
-        #if os(macOS)
-            guard let sourcekitdPath = loadedSourcekitdPath() else {
-                XCTFail("fail to get sourcekitd image path")
-                return
-            }
+        guard let sourcekitdPath = loadedSourcekitdPath() else {
+            XCTFail("fail to get sourcekitd image path")
+            return
+        }
+        #if os(Linux)
+            let imagePaths = [sourcekitdPath]
+        #else
             let imagePaths = [sourcekitdPath, getSourceKitServicePath(from: sourcekitdPath)]
-            guard let uidStrings = extractUIDStrings(from: imagePaths) else {
-                XCTFail("fail to get uid strings")
-                return
-            }
-            let generatedUIDNamespace = createUIDNamespace(from: uidStrings)
-            let uidNamespacePath = "\(projectRoot)/Source/SourceKittenFramework/UIDNamespace+generated.swift"
-            let existingUIDNamespace = try! String(contentsOfFile: uidNamespacePath)
-
-            XCTAssertEqual(existingUIDNamespace, generatedUIDNamespace)
-
-            // set this to true to overwrite existing UIDNamespace+generated.swift with the generated ones
-            let overwrite = false
-            if existingUIDNamespace != generatedUIDNamespace && overwrite {
-                try! generatedUIDNamespace.data(using: .utf8)?.write(to: URL(fileURLWithPath: uidNamespacePath))
-            }
         #endif
+        guard let uidStrings = extractUIDStrings(from: imagePaths) else {
+            XCTFail("fail to get uid strings")
+            return
+        }
+        let generatedUIDNamespace = createUIDNamespace(from: uidStrings)
+        let uidNamespacePath = "\(projectRoot)/Source/SourceKittenFramework/UIDNamespace+generated.swift"
+        let existingUIDNamespace = try! String(contentsOfFile: uidNamespacePath)
+
+        XCTAssertEqual(existingUIDNamespace, generatedUIDNamespace)
+
+        // set this to true to overwrite existing UIDNamespace+generated.swift with the generated ones
+        let overwrite = false
+        if existingUIDNamespace != generatedUIDNamespace && overwrite {
+            try! generatedUIDNamespace.data(using: .utf8)?.write(to: URL(fileURLWithPath: uidNamespacePath))
+        }
     }
 }
 
-#if os(macOS)
+
+extension UIDNamespaceTests {
+    static var allTests: [(String, (UIDNamespaceTests) -> () throws -> Void)] {
+        return [
+            ("testExpressibleByStringLiteral", testExpressibleByStringLiteral),
+            // FIXME: https://bugs.swift.org/browse/SR-3250
+//            ("testUIDNamespaceAreUpToDate", testUIDNamespaceAreUpToDate),
+        ]
+    }
+}
 
 func loadedSourcekitdPath() -> String? {
-    let library = toolchainLoader.load(path: "sourcekitd.framework/Versions/A/sourcekitd")
-    let symbol = dlsym(library.handle, "sourcekitd_initialize")
-    var info = dl_info()
-    guard 0 != dladdr(symbol, &info) else { return nil }
-    return String(cString: info.dli_fname)
+    #if os(Linux)
+        // FIXME: https://bugs.swift.org/browse/SR-3250
+        fatalError()
+//        let library = toolchainLoader.load(path: "libsourcekitdInProc.so")
+//        let symbol = dlsym(library.handle, "sourcekitd_initialize")
+//        var info = dl_info()
+//        guard 0 != dladdr(symbol, &info) else { return nil }
+//        return String(cString: info.dli_fname)
+    #else
+        let library = toolchainLoader.load(path: "sourcekitd.framework/Versions/A/sourcekitd")
+        let symbol = dlsym(library.handle, "sourcekitd_initialize")
+        var info = dl_info()
+        guard 0 != dladdr(symbol, &info) else { return nil }
+        return String(cString: info.dli_fname)
+    #endif
 }
 
 func getSourceKitServicePath(from sourcekitdPath: String) -> String {
@@ -327,5 +351,3 @@ fileprivate class Node {
         return children.keys.sorted().flatMap { children[$0] }
     }
 }
-
-#endif
