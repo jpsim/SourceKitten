@@ -109,26 +109,6 @@ class VariantPerformanceTests: XCTestCase {
         XCTAssertEqual(availables.sorted(), self.expectedAvailables)
     }
 
-    func testFindAvailablesWithVariant() {
-        func findAvailables(variant: SourceKitVariant) -> [String] {
-            let resultFromSubstructure = variant.subStructure?.flatMap(findAvailables) ?? []
-            if variant.kind == .sourceLangSwiftDeclMethodInstance,
-                let attributes = variant.attributes?.flatMap({ $0.attribute?.uid }),
-                attributes.contains(.sourceDeclAttributeAvailable),
-                let name = variant.name {
-                return [name] + resultFromSubstructure
-            }
-            return resultFromSubstructure
-        }
-
-        let variant = try? Request.editorOpen(file: largestSwiftFile).failableSend2()
-        var availables: [String]!
-        self.measure {
-            availables = findAvailables(variant: variant!)
-        }
-        XCTAssertEqual(availables.sorted(), self.expectedAvailables)
-    }
-
     func testFindAvailablesWithVariantUIDNamespace() {
         func findAvailables(variant: SourceKitVariant) -> [String] {
             let resultFromSubstructure = variant.subStructure?.flatMap(findAvailables) ?? []
@@ -160,7 +140,6 @@ extension VariantPerformanceTests {
             ("testRequestEditorOpenWithDictionary", testRequestEditorOpenWithDictionary),
             ("testRequestEditorOpenWithVariant", testRequestEditorOpenWithVariant),
             ("testFindAvailablesWithDictionary", testFindAvailablesWithDictionary),
-            ("testFindAvailablesWithVariant", testFindAvailablesWithVariant),
             ("testFindAvailablesWithVariantUIDNamespace", testFindAvailablesWithVariantUIDNamespace),
         ]
     }
