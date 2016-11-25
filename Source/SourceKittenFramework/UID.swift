@@ -24,35 +24,10 @@ public struct UID {
     }
 }
 
-// MARK: - Check known uid.
-#if DEBUG
-    extension UID {
-        fileprivate var isKnown: Bool {
-            return knownUIDs.contains(self)
-        }
-    }
-#endif
-
-// MARK: - Hashable
-extension UID: Hashable {
-    /// The hash value.
-    ///
-    /// Hash values are not guaranteed to be equal across different executions of
-    /// your program. Do not save hash values to use during a future execution.
-    public var hashValue: Int {
-        return uid.hashValue
-    }
-
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: UID, rhs: UID) -> Bool {
-        return lhs.uid == rhs.uid
+// MARK: - CustomStringConvertible
+extension UID: CustomStringConvertible {
+    public var description: String {
+        return string
     }
 }
 
@@ -82,18 +57,22 @@ extension UID: ExpressibleByStringLiteral {
     init(_ string: String) {
         uid = sourcekitd_uid_get_from_cstr(string)
     }
-}
 
-// MARK: - CustomStringConvertible
-extension UID: CustomStringConvertible {
-    public var description: String {
-        return string
+    // Check known uid.
+    #if DEBUG
+    var isKnown: Bool {
+        return knownUIDs.contains(self)
     }
+    #endif
 }
 
-// MARK: - CustomLeafReflectable
-extension UID: CustomLeafReflectable {
-    public var customMirror: Mirror {
-        return Mirror(self, children: [])
+// MARK: - Hashable
+extension UID: Hashable {
+    public var hashValue: Int {
+        return uid.hashValue
+    }
+
+    public static func ==(lhs: UID, rhs: UID) -> Bool {
+        return lhs.uid == rhs.uid
     }
 }

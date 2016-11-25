@@ -1,1187 +1,1148 @@
 extension UID {
-    public struct key: UIDNamespace {
+    public struct Key {
         public let uid: UID
-        /// "key.accessibility"
-        public static let accessibility: UID.key = "key.accessibility"
-        /// "key.annotated_decl"
-        public static let annotated_decl: UID.key = "key.annotated_decl"
-        /// "key.annotations"
-        public static let annotations: UID.key = "key.annotations"
-        /// "key.associated_usrs"
-        public static let associated_usrs: UID.key = "key.associated_usrs"
-        /// "key.attribute"
-        public static let attribute: UID.key = "key.attribute"
-        /// "key.attributes"
-        public static let attributes: UID.key = "key.attributes"
-        /// "key.bodylength"
-        public static let bodylength: UID.key = "key.bodylength"
-        /// "key.bodyoffset"
-        public static let bodyoffset: UID.key = "key.bodyoffset"
-        public struct codecomplete {
-            /// "key.codecomplete.addinitstotoplevel"
-            public static let addinitstotoplevel: UID.key = "key.codecomplete.addinitstotoplevel"
-            /// "key.codecomplete.addinneroperators"
-            public static let addinneroperators: UID.key = "key.codecomplete.addinneroperators"
-            /// "key.codecomplete.addinnerresults"
-            public static let addinnerresults: UID.key = "key.codecomplete.addinnerresults"
-            /// "key.codecomplete.filterrules"
-            public static let filterrules: UID.key = "key.codecomplete.filterrules"
-            /// "key.codecomplete.filtertext"
-            public static let filtertext: UID.key = "key.codecomplete.filtertext"
-            /// "key.codecomplete.fuzzymatching"
-            public static let fuzzymatching: UID.key = "key.codecomplete.fuzzymatching"
-            public struct group {
-                /// "key.codecomplete.group.overloads"
-                public static let overloads: UID.key = "key.codecomplete.group.overloads"
-                /// "key.codecomplete.group.stems"
-                public static let stems: UID.key = "key.codecomplete.group.stems"
-            }
-            /// "key.codecomplete.hidebyname"
-            public static let hidebyname: UID.key = "key.codecomplete.hidebyname"
-            /// "key.codecomplete.hidelowpriority"
-            public static let hidelowpriority: UID.key = "key.codecomplete.hidelowpriority"
-            /// "key.codecomplete.hideunderscores"
-            public static let hideunderscores: UID.key = "key.codecomplete.hideunderscores"
-            /// "key.codecomplete.includeexactmatch"
-            public static let includeexactmatch: UID.key = "key.codecomplete.includeexactmatch"
-            /// "key.codecomplete.options"
-            public static let options: UID.key = "key.codecomplete.options"
-            /// "key.codecomplete.requestlimit"
-            public static let requestlimit: UID.key = "key.codecomplete.requestlimit"
-            /// "key.codecomplete.requeststart"
-            public static let requeststart: UID.key = "key.codecomplete.requeststart"
-            /// "key.codecomplete.showtopnonliteralresults"
-            public static let showtopnonliteralresults: UID.key = "key.codecomplete.showtopnonliteralresults"
-            public struct sort {
-                /// "key.codecomplete.sort.byname"
-                public static let byname: UID.key = "key.codecomplete.sort.byname"
-                /// "key.codecomplete.sort.contextweight"
-                public static let contextweight: UID.key = "key.codecomplete.sort.contextweight"
-                /// "key.codecomplete.sort.fuzzyweight"
-                public static let fuzzyweight: UID.key = "key.codecomplete.sort.fuzzyweight"
-                /// "key.codecomplete.sort.popularitybonus"
-                public static let popularitybonus: UID.key = "key.codecomplete.sort.popularitybonus"
-                /// "key.codecomplete.sort.useimportdepth"
-                public static let useimportdepth: UID.key = "key.codecomplete.sort.useimportdepth"
-            }
-        }
-        /// "key.column"
-        public static let column: UID.key = "key.column"
-        /// "key.compilerargs"
-        public static let compilerargs: UID.key = "key.compilerargs"
-        /// "key.conforms"
-        public static let conforms: UID.key = "key.conforms"
-        /// "key.containertypeusr"
-        public static let containertypeusr: UID.key = "key.containertypeusr"
-        /// "key.context"
-        public static let context: UID.key = "key.context"
-        /// "key.default_implementation_of"
-        public static let default_implementation_of: UID.key = "key.default_implementation_of"
-        /// "key.dependencies"
-        public static let dependencies: UID.key = "key.dependencies"
-        /// "key.deprecated"
-        public static let deprecated: UID.key = "key.deprecated"
-        /// "key.description"
-        public static let description: UID.key = "key.description"
-        /// "key.diagnostic_stage"
-        public static let diagnostic_stage: UID.key = "key.diagnostic_stage"
-        /// "key.diagnostics"
-        public static let diagnostics: UID.key = "key.diagnostics"
-        public struct doc {
-            /// "key.doc.brief"
-            public static let brief: UID.key = "key.doc.brief"
-            /// "key.doc.full_as_xml"
-            public static let full_as_xml: UID.key = "key.doc.full_as_xml"
-        }
-        /// "key.duration"
-        public static let duration: UID.key = "key.duration"
-        public struct editor {
-            public struct format {
-                /// "key.editor.format.indentwidth"
-                public static let indentwidth: UID.key = "key.editor.format.indentwidth"
-                /// "key.editor.format.options"
-                public static let options: UID.key = "key.editor.format.options"
-                /// "key.editor.format.tabwidth"
-                public static let tabwidth: UID.key = "key.editor.format.tabwidth"
-                /// "key.editor.format.usetabs"
-                public static let usetabs: UID.key = "key.editor.format.usetabs"
-            }
-        }
-        /// "key.elements"
-        public static let elements: UID.key = "key.elements"
-        /// "key.enablediagnostics"
-        public static let enablediagnostics: UID.key = "key.enablediagnostics"
-        /// "key.enablesubstructure"
-        public static let enablesubstructure: UID.key = "key.enablesubstructure"
-        /// "key.enablesyntaxmap"
-        public static let enablesyntaxmap: UID.key = "key.enablesyntaxmap"
-        /// "key.entities"
-        public static let entities: UID.key = "key.entities"
-        /// "key.extends"
-        public static let extends: UID.key = "key.extends"
-        /// "key.filepath"
-        public static let filepath: UID.key = "key.filepath"
-        /// "key.fixits"
-        public static let fixits: UID.key = "key.fixits"
-        /// "key.fully_annotated_decl"
-        public static let fully_annotated_decl: UID.key = "key.fully_annotated_decl"
-        /// "key.generic_params"
-        public static let generic_params: UID.key = "key.generic_params"
-        /// "key.generic_requirements"
-        public static let generic_requirements: UID.key = "key.generic_requirements"
-        /// "key.groupname"
-        public static let groupname: UID.key = "key.groupname"
-        /// "key.hash"
-        public static let hash: UID.key = "key.hash"
-        /// "key.hide"
-        public static let hide: UID.key = "key.hide"
-        /// "key.inheritedtypes"
-        public static let inheritedtypes: UID.key = "key.inheritedtypes"
-        /// "key.inherits"
-        public static let inherits: UID.key = "key.inherits"
-        /// "key.interested_usr"
-        public static let interested_usr: UID.key = "key.interested_usr"
-        /// "key.introduced"
-        public static let introduced: UID.key = "key.introduced"
-        /// "key.is_deprecated"
-        public static let is_deprecated: UID.key = "key.is_deprecated"
-        /// "key.is_dynamic"
-        public static let is_dynamic: UID.key = "key.is_dynamic"
-        /// "key.is_local"
-        public static let is_local: UID.key = "key.is_local"
-        /// "key.is_optional"
-        public static let is_optional: UID.key = "key.is_optional"
-        /// "key.is_system"
-        public static let is_system: UID.key = "key.is_system"
-        /// "key.is_test_candidate"
-        public static let is_test_candidate: UID.key = "key.is_test_candidate"
-        /// "key.is_unavailable"
-        public static let is_unavailable: UID.key = "key.is_unavailable"
-        /// "key.keyword"
-        public static let keyword: UID.key = "key.keyword"
-        /// "key.kind"
-        public static let kind: UID.key = "key.kind"
-        /// "key.length"
-        public static let length: UID.key = "key.length"
-        /// "key.line"
-        public static let line: UID.key = "key.line"
-        /// "key.message"
-        public static let message: UID.key = "key.message"
-        /// "key.module_interface_name"
-        public static let module_interface_name: UID.key = "key.module_interface_name"
-        /// "key.modulegroups"
-        public static let modulegroups: UID.key = "key.modulegroups"
-        /// "key.moduleimportdepth"
-        public static let moduleimportdepth: UID.key = "key.moduleimportdepth"
-        /// "key.modulename"
-        public static let modulename: UID.key = "key.modulename"
-        /// "key.name"
-        public static let name: UID.key = "key.name"
-        /// "key.namelength"
-        public static let namelength: UID.key = "key.namelength"
-        /// "key.nameoffset"
-        public static let nameoffset: UID.key = "key.nameoffset"
-        /// "key.names"
-        public static let names: UID.key = "key.names"
-        /// "key.nextrequeststart"
-        public static let nextrequeststart: UID.key = "key.nextrequeststart"
-        /// "key.not_recommended"
-        public static let not_recommended: UID.key = "key.not_recommended"
-        /// "key.notification"
-        public static let notification: UID.key = "key.notification"
-        /// "key.num_bytes_to_erase"
-        public static let num_bytes_to_erase: UID.key = "key.num_bytes_to_erase"
-        /// "key.obsoleted"
-        public static let obsoleted: UID.key = "key.obsoleted"
-        /// "key.offset"
-        public static let offset: UID.key = "key.offset"
-        /// "key.original_usr"
-        public static let original_usr: UID.key = "key.original_usr"
-        /// "key.overrides"
-        public static let overrides: UID.key = "key.overrides"
-        /// "key.platform"
-        public static let platform: UID.key = "key.platform"
-        /// "key.popular"
-        public static let popular: UID.key = "key.popular"
-        /// "key.ranges"
-        public static let ranges: UID.key = "key.ranges"
-        /// "key.receiver_usr"
-        public static let receiver_usr: UID.key = "key.receiver_usr"
-        /// "key.related"
-        public static let related: UID.key = "key.related"
-        /// "key.related_decls"
-        public static let related_decls: UID.key = "key.related_decls"
-        /// "key.removecache"
-        public static let removecache: UID.key = "key.removecache"
-        /// "key.request"
-        public static let request: UID.key = "key.request"
-        /// "key.results"
-        public static let results: UID.key = "key.results"
-        /// "key.runtime_name"
-        public static let runtime_name: UID.key = "key.runtime_name"
-        /// "key.selector_name"
-        public static let selector_name: UID.key = "key.selector_name"
-        /// "key.setter_accessibility"
-        public static let setter_accessibility: UID.key = "key.setter_accessibility"
-        /// "key.severity"
-        public static let severity: UID.key = "key.severity"
-        /// "key.simplified"
-        public static let simplified: UID.key = "key.simplified"
-        /// "key.sourcefile"
-        public static let sourcefile: UID.key = "key.sourcefile"
-        /// "key.sourcetext"
-        public static let sourcetext: UID.key = "key.sourcetext"
-        /// "key.substructure"
-        public static let substructure: UID.key = "key.substructure"
-        /// "key.syntactic_only"
-        public static let syntactic_only: UID.key = "key.syntactic_only"
-        /// "key.syntaxmap"
-        public static let syntaxmap: UID.key = "key.syntaxmap"
-        /// "key.synthesizedextensions"
-        public static let synthesizedextensions: UID.key = "key.synthesizedextensions"
-        /// "key.throwlength"
-        public static let throwlength: UID.key = "key.throwlength"
-        /// "key.throwoffset"
-        public static let throwoffset: UID.key = "key.throwoffset"
-        /// "key.typeinterface"
-        public static let typeinterface: UID.key = "key.typeinterface"
-        /// "key.typename"
-        public static let typename: UID.key = "key.typename"
-        /// "key.typeusr"
-        public static let typeusr: UID.key = "key.typeusr"
-        /// "key.uids"
-        public static let uids: UID.key = "key.uids"
-        /// "key.unpopular"
-        public static let unpopular: UID.key = "key.unpopular"
-        /// "key.usr"
-        public static let usr: UID.key = "key.usr"
-        /// "key.version_major"
-        public static let version_major: UID.key = "key.version_major"
-        /// "key.version_minor"
-        public static let version_minor: UID.key = "key.version_minor"
+        /// key.accessibility
+        public static let accessibility: Key = "key.accessibility"
+        /// key.annotated_decl
+        public static let annotated_decl: Key = "key.annotated_decl"
+        /// key.annotations
+        public static let annotations: Key = "key.annotations"
+        /// key.associated_usrs
+        public static let associated_usrs: Key = "key.associated_usrs"
+        /// key.attribute
+        public static let attribute: Key = "key.attribute"
+        /// key.attributes
+        public static let attributes: Key = "key.attributes"
+        /// key.bodylength
+        public static let bodylength: Key = "key.bodylength"
+        /// key.bodyoffset
+        public static let bodyoffset: Key = "key.bodyoffset"
+        /// key.codecomplete.addinitstotoplevel
+        public static let codecompleteAddinitstotoplevel: Key = "key.codecomplete.addinitstotoplevel"
+        /// key.codecomplete.addinneroperators
+        public static let codecompleteAddinneroperators: Key = "key.codecomplete.addinneroperators"
+        /// key.codecomplete.addinnerresults
+        public static let codecompleteAddinnerresults: Key = "key.codecomplete.addinnerresults"
+        /// key.codecomplete.filterrules
+        public static let codecompleteFilterrules: Key = "key.codecomplete.filterrules"
+        /// key.codecomplete.filtertext
+        public static let codecompleteFiltertext: Key = "key.codecomplete.filtertext"
+        /// key.codecomplete.fuzzymatching
+        public static let codecompleteFuzzymatching: Key = "key.codecomplete.fuzzymatching"
+        /// key.codecomplete.group.overloads
+        public static let codecompleteGroupOverloads: Key = "key.codecomplete.group.overloads"
+        /// key.codecomplete.group.stems
+        public static let codecompleteGroupStems: Key = "key.codecomplete.group.stems"
+        /// key.codecomplete.hidebyname
+        public static let codecompleteHidebyname: Key = "key.codecomplete.hidebyname"
+        /// key.codecomplete.hidelowpriority
+        public static let codecompleteHidelowpriority: Key = "key.codecomplete.hidelowpriority"
+        /// key.codecomplete.hideunderscores
+        public static let codecompleteHideunderscores: Key = "key.codecomplete.hideunderscores"
+        /// key.codecomplete.includeexactmatch
+        public static let codecompleteIncludeexactmatch: Key = "key.codecomplete.includeexactmatch"
+        /// key.codecomplete.options
+        public static let codecompleteOptions: Key = "key.codecomplete.options"
+        /// key.codecomplete.requestlimit
+        public static let codecompleteRequestlimit: Key = "key.codecomplete.requestlimit"
+        /// key.codecomplete.requeststart
+        public static let codecompleteRequeststart: Key = "key.codecomplete.requeststart"
+        /// key.codecomplete.showtopnonliteralresults
+        public static let codecompleteShowtopnonliteralresults: Key = "key.codecomplete.showtopnonliteralresults"
+        /// key.codecomplete.sort.byname
+        public static let codecompleteSortByname: Key = "key.codecomplete.sort.byname"
+        /// key.codecomplete.sort.contextweight
+        public static let codecompleteSortContextweight: Key = "key.codecomplete.sort.contextweight"
+        /// key.codecomplete.sort.fuzzyweight
+        public static let codecompleteSortFuzzyweight: Key = "key.codecomplete.sort.fuzzyweight"
+        /// key.codecomplete.sort.popularitybonus
+        public static let codecompleteSortPopularitybonus: Key = "key.codecomplete.sort.popularitybonus"
+        /// key.codecomplete.sort.useimportdepth
+        public static let codecompleteSortUseimportdepth: Key = "key.codecomplete.sort.useimportdepth"
+        /// key.column
+        public static let column: Key = "key.column"
+        /// key.compilerargs
+        public static let compilerargs: Key = "key.compilerargs"
+        /// key.conforms
+        public static let conforms: Key = "key.conforms"
+        /// key.containertypeusr
+        public static let containertypeusr: Key = "key.containertypeusr"
+        /// key.context
+        public static let context: Key = "key.context"
+        /// key.default_implementation_of
+        public static let default_implementation_of: Key = "key.default_implementation_of"
+        /// key.dependencies
+        public static let dependencies: Key = "key.dependencies"
+        /// key.deprecated
+        public static let deprecated: Key = "key.deprecated"
+        /// key.description
+        public static let description: Key = "key.description"
+        /// key.diagnostic_stage
+        public static let diagnostic_stage: Key = "key.diagnostic_stage"
+        /// key.diagnostics
+        public static let diagnostics: Key = "key.diagnostics"
+        /// key.doc.brief
+        public static let docBrief: Key = "key.doc.brief"
+        /// key.doc.full_as_xml
+        public static let docFull_As_Xml: Key = "key.doc.full_as_xml"
+        /// key.duration
+        public static let duration: Key = "key.duration"
+        /// key.editor.format.indentwidth
+        public static let editorFormatIndentwidth: Key = "key.editor.format.indentwidth"
+        /// key.editor.format.options
+        public static let editorFormatOptions: Key = "key.editor.format.options"
+        /// key.editor.format.tabwidth
+        public static let editorFormatTabwidth: Key = "key.editor.format.tabwidth"
+        /// key.editor.format.usetabs
+        public static let editorFormatUsetabs: Key = "key.editor.format.usetabs"
+        /// key.elements
+        public static let elements: Key = "key.elements"
+        /// key.enablediagnostics
+        public static let enablediagnostics: Key = "key.enablediagnostics"
+        /// key.enablesubstructure
+        public static let enablesubstructure: Key = "key.enablesubstructure"
+        /// key.enablesyntaxmap
+        public static let enablesyntaxmap: Key = "key.enablesyntaxmap"
+        /// key.entities
+        public static let entities: Key = "key.entities"
+        /// key.extends
+        public static let extends: Key = "key.extends"
+        /// key.filepath
+        public static let filepath: Key = "key.filepath"
+        /// key.fixits
+        public static let fixits: Key = "key.fixits"
+        /// key.fully_annotated_decl
+        public static let fully_annotated_decl: Key = "key.fully_annotated_decl"
+        /// key.generic_params
+        public static let generic_params: Key = "key.generic_params"
+        /// key.generic_requirements
+        public static let generic_requirements: Key = "key.generic_requirements"
+        /// key.groupname
+        public static let groupname: Key = "key.groupname"
+        /// key.hash
+        public static let hash: Key = "key.hash"
+        /// key.hide
+        public static let hide: Key = "key.hide"
+        /// key.inheritedtypes
+        public static let inheritedtypes: Key = "key.inheritedtypes"
+        /// key.inherits
+        public static let inherits: Key = "key.inherits"
+        /// key.interested_usr
+        public static let interested_usr: Key = "key.interested_usr"
+        /// key.introduced
+        public static let introduced: Key = "key.introduced"
+        /// key.is_deprecated
+        public static let is_deprecated: Key = "key.is_deprecated"
+        /// key.is_dynamic
+        public static let is_dynamic: Key = "key.is_dynamic"
+        /// key.is_local
+        public static let is_local: Key = "key.is_local"
+        /// key.is_optional
+        public static let is_optional: Key = "key.is_optional"
+        /// key.is_system
+        public static let is_system: Key = "key.is_system"
+        /// key.is_test_candidate
+        public static let is_test_candidate: Key = "key.is_test_candidate"
+        /// key.is_unavailable
+        public static let is_unavailable: Key = "key.is_unavailable"
+        /// key.keyword
+        public static let keyword: Key = "key.keyword"
+        /// key.kind
+        public static let kind: Key = "key.kind"
+        /// key.length
+        public static let length: Key = "key.length"
+        /// key.line
+        public static let line: Key = "key.line"
+        /// key.message
+        public static let message: Key = "key.message"
+        /// key.module_interface_name
+        public static let module_interface_name: Key = "key.module_interface_name"
+        /// key.modulegroups
+        public static let modulegroups: Key = "key.modulegroups"
+        /// key.moduleimportdepth
+        public static let moduleimportdepth: Key = "key.moduleimportdepth"
+        /// key.modulename
+        public static let modulename: Key = "key.modulename"
+        /// key.name
+        public static let name: Key = "key.name"
+        /// key.namelength
+        public static let namelength: Key = "key.namelength"
+        /// key.nameoffset
+        public static let nameoffset: Key = "key.nameoffset"
+        /// key.names
+        public static let names: Key = "key.names"
+        /// key.nextrequeststart
+        public static let nextrequeststart: Key = "key.nextrequeststart"
+        /// key.not_recommended
+        public static let not_recommended: Key = "key.not_recommended"
+        /// key.notification
+        public static let notification: Key = "key.notification"
+        /// key.num_bytes_to_erase
+        public static let num_bytes_to_erase: Key = "key.num_bytes_to_erase"
+        /// key.obsoleted
+        public static let obsoleted: Key = "key.obsoleted"
+        /// key.offset
+        public static let offset: Key = "key.offset"
+        /// key.original_usr
+        public static let original_usr: Key = "key.original_usr"
+        /// key.overrides
+        public static let overrides: Key = "key.overrides"
+        /// key.platform
+        public static let platform: Key = "key.platform"
+        /// key.popular
+        public static let popular: Key = "key.popular"
+        /// key.ranges
+        public static let ranges: Key = "key.ranges"
+        /// key.receiver_usr
+        public static let receiver_usr: Key = "key.receiver_usr"
+        /// key.related
+        public static let related: Key = "key.related"
+        /// key.related_decls
+        public static let related_decls: Key = "key.related_decls"
+        /// key.removecache
+        public static let removecache: Key = "key.removecache"
+        /// key.request
+        public static let request: Key = "key.request"
+        /// key.results
+        public static let results: Key = "key.results"
+        /// key.runtime_name
+        public static let runtime_name: Key = "key.runtime_name"
+        /// key.selector_name
+        public static let selector_name: Key = "key.selector_name"
+        /// key.setter_accessibility
+        public static let setter_accessibility: Key = "key.setter_accessibility"
+        /// key.severity
+        public static let severity: Key = "key.severity"
+        /// key.simplified
+        public static let simplified: Key = "key.simplified"
+        /// key.sourcefile
+        public static let sourcefile: Key = "key.sourcefile"
+        /// key.sourcetext
+        public static let sourcetext: Key = "key.sourcetext"
+        /// key.substructure
+        public static let substructure: Key = "key.substructure"
+        /// key.syntactic_only
+        public static let syntactic_only: Key = "key.syntactic_only"
+        /// key.syntaxmap
+        public static let syntaxmap: Key = "key.syntaxmap"
+        /// key.synthesizedextensions
+        public static let synthesizedextensions: Key = "key.synthesizedextensions"
+        /// key.throwlength
+        public static let throwlength: Key = "key.throwlength"
+        /// key.throwoffset
+        public static let throwoffset: Key = "key.throwoffset"
+        /// key.typeinterface
+        public static let typeinterface: Key = "key.typeinterface"
+        /// key.typename
+        public static let typename: Key = "key.typename"
+        /// key.typeusr
+        public static let typeusr: Key = "key.typeusr"
+        /// key.uids
+        public static let uids: Key = "key.uids"
+        /// key.unpopular
+        public static let unpopular: Key = "key.unpopular"
+        /// key.usr
+        public static let usr: Key = "key.usr"
+        /// key.version_major
+        public static let version_major: Key = "key.version_major"
+        /// key.version_minor
+        public static let version_minor: Key = "key.version_minor"
     }
-    public struct source {
-        public struct availability {
-            public struct platform: UIDNamespace {
-                public let uid: UID
-                /// "source.availability.platform.ios"
-                public static let ios: UID.source.availability.platform = "source.availability.platform.ios"
-                /// "source.availability.platform.ios_app_extension"
-                public static let ios_app_extension: UID.source.availability.platform = "source.availability.platform.ios_app_extension"
-                /// "source.availability.platform.osx"
-                public static let osx: UID.source.availability.platform = "source.availability.platform.osx"
-                /// "source.availability.platform.osx_app_extension"
-                public static let osx_app_extension: UID.source.availability.platform = "source.availability.platform.osx_app_extension"
-                /// "source.availability.platform.tvos"
-                public static let tvos: UID.source.availability.platform = "source.availability.platform.tvos"
-                /// "source.availability.platform.tvos_app_extension"
-                public static let tvos_app_extension: UID.source.availability.platform = "source.availability.platform.tvos_app_extension"
-                /// "source.availability.platform.watchos"
-                public static let watchos: UID.source.availability.platform = "source.availability.platform.watchos"
-                /// "source.availability.platform.watchos_app_extension"
-                public static let watchos_app_extension: UID.source.availability.platform = "source.availability.platform.watchos_app_extension"
-            }
-        }
-        public struct codecompletion: UIDNamespace {
-            public let uid: UID
-            public struct context {
-                /// "source.codecompletion.context.exprspecific"
-                public static let exprspecific: UID.source.codecompletion = "source.codecompletion.context.exprspecific"
-                /// "source.codecompletion.context.local"
-                public static let local: UID.source.codecompletion = "source.codecompletion.context.local"
-                /// "source.codecompletion.context.none"
-                public static let none: UID.source.codecompletion = "source.codecompletion.context.none"
-                /// "source.codecompletion.context.otherclass"
-                public static let otherclass: UID.source.codecompletion = "source.codecompletion.context.otherclass"
-                /// "source.codecompletion.context.othermodule"
-                public static let othermodule: UID.source.codecompletion = "source.codecompletion.context.othermodule"
-                /// "source.codecompletion.context.superclass"
-                public static let superclass: UID.source.codecompletion = "source.codecompletion.context.superclass"
-                /// "source.codecompletion.context.thisclass"
-                public static let thisclass: UID.source.codecompletion = "source.codecompletion.context.thisclass"
-                /// "source.codecompletion.context.thismodule"
-                public static let thismodule: UID.source.codecompletion = "source.codecompletion.context.thismodule"
-            }
-            /// "source.codecompletion.custom"
-            public static let custom: UID.source.codecompletion = "source.codecompletion.custom"
-            /// "source.codecompletion.everything"
-            public static let everything: UID.source.codecompletion = "source.codecompletion.everything"
-            /// "source.codecompletion.identifier"
-            public static let identifier: UID.source.codecompletion = "source.codecompletion.identifier"
-            /// "source.codecompletion.keyword"
-            public static let keyword: UID.source.codecompletion = "source.codecompletion.keyword"
-            /// "source.codecompletion.literal"
-            public static let literal: UID.source.codecompletion = "source.codecompletion.literal"
-            /// "source.codecompletion.module"
-            public static let module: UID.source.codecompletion = "source.codecompletion.module"
-        }
-        public struct decl {
-            public struct attribute: UIDNamespace {
-                public let uid: UID
-                /// "source.decl.attribute.LLDBDebuggerFunction"
-                public static let LLDBDebuggerFunction: UID.source.decl.attribute = "source.decl.attribute.LLDBDebuggerFunction"
-                /// "source.decl.attribute.NSApplicationMain"
-                public static let NSApplicationMain: UID.source.decl.attribute = "source.decl.attribute.NSApplicationMain"
-                /// "source.decl.attribute.NSCopying"
-                public static let NSCopying: UID.source.decl.attribute = "source.decl.attribute.NSCopying"
-                /// "source.decl.attribute.NSManaged"
-                public static let NSManaged: UID.source.decl.attribute = "source.decl.attribute.NSManaged"
-                /// "source.decl.attribute.UIApplicationMain"
-                public static let UIApplicationMain: UID.source.decl.attribute = "source.decl.attribute.UIApplicationMain"
-                /// "source.decl.attribute.__objc_bridged"
-                public static let __objc_bridged: UID.source.decl.attribute = "source.decl.attribute.__objc_bridged"
-                /// "source.decl.attribute.__synthesized_protocol"
-                public static let __synthesized_protocol: UID.source.decl.attribute = "source.decl.attribute.__synthesized_protocol"
-                /// "source.decl.attribute._alignment"
-                public static let _alignment: UID.source.decl.attribute = "source.decl.attribute._alignment"
-                /// "source.decl.attribute._cdecl"
-                public static let _cdecl: UID.source.decl.attribute = "source.decl.attribute._cdecl"
-                /// "source.decl.attribute._exported"
-                public static let _exported: UID.source.decl.attribute = "source.decl.attribute._exported"
-                /// "source.decl.attribute._fixed_layout"
-                public static let _fixed_layout: UID.source.decl.attribute = "source.decl.attribute._fixed_layout"
-                /// "source.decl.attribute._semantics"
-                public static let _semantics: UID.source.decl.attribute = "source.decl.attribute._semantics"
-                /// "source.decl.attribute._silgen_name"
-                public static let _silgen_name: UID.source.decl.attribute = "source.decl.attribute._silgen_name"
-                /// "source.decl.attribute._specialize"
-                public static let _specialize: UID.source.decl.attribute = "source.decl.attribute._specialize"
-                /// "source.decl.attribute._swift_native_objc_runtime_base"
-                public static let _swift_native_objc_runtime_base: UID.source.decl.attribute = "source.decl.attribute._swift_native_objc_runtime_base"
-                /// "source.decl.attribute._transparent"
-                public static let _transparent: UID.source.decl.attribute = "source.decl.attribute._transparent"
-                /// "source.decl.attribute._versioned"
-                public static let _versioned: UID.source.decl.attribute = "source.decl.attribute._versioned"
-                /// "source.decl.attribute.autoclosure"
-                public static let autoclosure: UID.source.decl.attribute = "source.decl.attribute.autoclosure"
-                /// "source.decl.attribute.available"
-                public static let available: UID.source.decl.attribute = "source.decl.attribute.available"
-                /// "source.decl.attribute.convenience"
-                public static let convenience: UID.source.decl.attribute = "source.decl.attribute.convenience"
-                /// "source.decl.attribute.discardableResult"
-                public static let discardableResult: UID.source.decl.attribute = "source.decl.attribute.discardableResult"
-                /// "source.decl.attribute.dynamic"
-                public static let dynamic: UID.source.decl.attribute = "source.decl.attribute.dynamic"
-                /// "source.decl.attribute.effects"
-                public static let effects: UID.source.decl.attribute = "source.decl.attribute.effects"
-                /// "source.decl.attribute.escaping"
-                public static let escaping: UID.source.decl.attribute = "source.decl.attribute.escaping"
-                /// "source.decl.attribute.final"
-                public static let final: UID.source.decl.attribute = "source.decl.attribute.final"
-                /// "source.decl.attribute.gkinspectable"
-                public static let gkinspectable: UID.source.decl.attribute = "source.decl.attribute.gkinspectable"
-                /// "source.decl.attribute.ibaction"
-                public static let ibaction: UID.source.decl.attribute = "source.decl.attribute.ibaction"
-                /// "source.decl.attribute.ibdesignable"
-                public static let ibdesignable: UID.source.decl.attribute = "source.decl.attribute.ibdesignable"
-                /// "source.decl.attribute.ibinspectable"
-                public static let ibinspectable: UID.source.decl.attribute = "source.decl.attribute.ibinspectable"
-                /// "source.decl.attribute.iboutlet"
-                public static let iboutlet: UID.source.decl.attribute = "source.decl.attribute.iboutlet"
-                /// "source.decl.attribute.indirect"
-                public static let indirect: UID.source.decl.attribute = "source.decl.attribute.indirect"
-                /// "source.decl.attribute.infix"
-                public static let infix: UID.source.decl.attribute = "source.decl.attribute.infix"
-                /// "source.decl.attribute.inline"
-                public static let inline: UID.source.decl.attribute = "source.decl.attribute.inline"
-                /// "source.decl.attribute.lazy"
-                public static let lazy: UID.source.decl.attribute = "source.decl.attribute.lazy"
-                /// "source.decl.attribute.mutating"
-                public static let mutating: UID.source.decl.attribute = "source.decl.attribute.mutating"
-                /// "source.decl.attribute.noescape"
-                public static let noescape: UID.source.decl.attribute = "source.decl.attribute.noescape"
-                /// "source.decl.attribute.nonmutating"
-                public static let nonmutating: UID.source.decl.attribute = "source.decl.attribute.nonmutating"
-                /// "source.decl.attribute.nonobjc"
-                public static let nonobjc: UID.source.decl.attribute = "source.decl.attribute.nonobjc"
-                /// "source.decl.attribute.noreturn"
-                public static let noreturn: UID.source.decl.attribute = "source.decl.attribute.noreturn"
-                public struct objc {
-                    /// "source.decl.attribute.objc.name"
-                    public static let name: UID.source.decl.attribute = "source.decl.attribute.objc.name"
-                }
-                /// "source.decl.attribute.objc_non_lazy_realization"
-                public static let objc_non_lazy_realization: UID.source.decl.attribute = "source.decl.attribute.objc_non_lazy_realization"
-                /// "source.decl.attribute.optional"
-                public static let optional: UID.source.decl.attribute = "source.decl.attribute.optional"
-                /// "source.decl.attribute.override"
-                public static let override: UID.source.decl.attribute = "source.decl.attribute.override"
-                /// "source.decl.attribute.postfix"
-                public static let postfix: UID.source.decl.attribute = "source.decl.attribute.postfix"
-                /// "source.decl.attribute.prefix"
-                public static let prefix: UID.source.decl.attribute = "source.decl.attribute.prefix"
-                /// "source.decl.attribute.required"
-                public static let required: UID.source.decl.attribute = "source.decl.attribute.required"
-                /// "source.decl.attribute.requires_stored_property_inits"
-                public static let requires_stored_property_inits: UID.source.decl.attribute = "source.decl.attribute.requires_stored_property_inits"
-                /// "source.decl.attribute.rethrows"
-                public static let `rethrows`: UID.source.decl.attribute = "source.decl.attribute.rethrows"
-                /// "source.decl.attribute.sil_stored"
-                public static let sil_stored: UID.source.decl.attribute = "source.decl.attribute.sil_stored"
-                /// "source.decl.attribute.swift3_migration"
-                public static let swift3_migration: UID.source.decl.attribute = "source.decl.attribute.swift3_migration"
-                /// "source.decl.attribute.testable"
-                public static let testable: UID.source.decl.attribute = "source.decl.attribute.testable"
-                /// "source.decl.attribute.unsafe_no_objc_tagged_pointer"
-                public static let unsafe_no_objc_tagged_pointer: UID.source.decl.attribute = "source.decl.attribute.unsafe_no_objc_tagged_pointer"
-                /// "source.decl.attribute.warn_unqualified_access"
-                public static let warn_unqualified_access: UID.source.decl.attribute = "source.decl.attribute.warn_unqualified_access"
-                /// "source.decl.attribute.weak"
-                public static let weak: UID.source.decl.attribute = "source.decl.attribute.weak"
-            }
-        }
-        public struct diagnostic {
-            public struct severity: UIDNamespace {
-                public let uid: UID
-                /// "source.diagnostic.severity.error"
-                public static let error: UID.source.diagnostic.severity = "source.diagnostic.severity.error"
-                /// "source.diagnostic.severity.note"
-                public static let note: UID.source.diagnostic.severity = "source.diagnostic.severity.note"
-                /// "source.diagnostic.severity.warning"
-                public static let warning: UID.source.diagnostic.severity = "source.diagnostic.severity.warning"
-            }
-            public struct stage {
-                public struct swift: UIDNamespace {
-                    public let uid: UID
-                    /// "source.diagnostic.stage.swift.parse"
-                    public static let parse: UID.source.diagnostic.stage.swift = "source.diagnostic.stage.swift.parse"
-                    /// "source.diagnostic.stage.swift.sema"
-                    public static let sema: UID.source.diagnostic.stage.swift = "source.diagnostic.stage.swift.sema"
-                }
-            }
-        }
-        public struct lang {
-            public struct swift: UIDNamespace {
-                public let uid: UID
-                /// "source.lang.swift.pattern"
-                public static let pattern: UID.source.lang.swift = "source.lang.swift.pattern"
-                /// "source.lang.swift.type"
-                public static let type: UID.source.lang.swift = "source.lang.swift.type"
-                public struct accessibility: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.accessibility.fileprivate"
-                    public static let `fileprivate`: UID.source.lang.swift.accessibility = "source.lang.swift.accessibility.fileprivate"
-                    /// "source.lang.swift.accessibility.internal"
-                    public static let `internal`: UID.source.lang.swift.accessibility = "source.lang.swift.accessibility.internal"
-                    /// "source.lang.swift.accessibility.open"
-                    public static let open: UID.source.lang.swift.accessibility = "source.lang.swift.accessibility.open"
-                    /// "source.lang.swift.accessibility.private"
-                    public static let `private`: UID.source.lang.swift.accessibility = "source.lang.swift.accessibility.private"
-                    /// "source.lang.swift.accessibility.public"
-                    public static let `public`: UID.source.lang.swift.accessibility = "source.lang.swift.accessibility.public"
-                }
-                public struct attribute: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.attribute.availability"
-                    public static let availability: UID.source.lang.swift.attribute = "source.lang.swift.attribute.availability"
-                }
-                public struct codecomplete: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.codecomplete.group"
-                    public static let group: UID.source.lang.swift.codecomplete = "source.lang.swift.codecomplete.group"
-                }
-                public struct decl: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.decl.associatedtype"
-                    public static let `associatedtype`: UID.source.lang.swift.decl = "source.lang.swift.decl.associatedtype"
-                    /// "source.lang.swift.decl.class"
-                    public static let `class`: UID.source.lang.swift.decl = "source.lang.swift.decl.class"
-                    /// "source.lang.swift.decl.enum"
-                    public static let `enum`: UID.source.lang.swift.decl = "source.lang.swift.decl.enum"
-                    /// "source.lang.swift.decl.enumcase"
-                    public static let enumcase: UID.source.lang.swift.decl = "source.lang.swift.decl.enumcase"
-                    /// "source.lang.swift.decl.enumelement"
-                    public static let enumelement: UID.source.lang.swift.decl = "source.lang.swift.decl.enumelement"
-                    public struct `extension` {
-                        /// "source.lang.swift.decl.extension.class"
-                        public static let `class`: UID.source.lang.swift.decl = "source.lang.swift.decl.extension.class"
-                        /// "source.lang.swift.decl.extension.enum"
-                        public static let `enum`: UID.source.lang.swift.decl = "source.lang.swift.decl.extension.enum"
-                        /// "source.lang.swift.decl.extension.protocol"
-                        public static let `protocol`: UID.source.lang.swift.decl = "source.lang.swift.decl.extension.protocol"
-                        /// "source.lang.swift.decl.extension.struct"
-                        public static let `struct`: UID.source.lang.swift.decl = "source.lang.swift.decl.extension.struct"
-                    }
-                    public struct function {
-                        public struct accessor {
-                            /// "source.lang.swift.decl.function.accessor.address"
-                            public static let address: UID.source.lang.swift.decl = "source.lang.swift.decl.function.accessor.address"
-                            /// "source.lang.swift.decl.function.accessor.didset"
-                            public static let didset: UID.source.lang.swift.decl = "source.lang.swift.decl.function.accessor.didset"
-                            /// "source.lang.swift.decl.function.accessor.getter"
-                            public static let getter: UID.source.lang.swift.decl = "source.lang.swift.decl.function.accessor.getter"
-                            /// "source.lang.swift.decl.function.accessor.mutableaddress"
-                            public static let mutableaddress: UID.source.lang.swift.decl = "source.lang.swift.decl.function.accessor.mutableaddress"
-                            /// "source.lang.swift.decl.function.accessor.setter"
-                            public static let setter: UID.source.lang.swift.decl = "source.lang.swift.decl.function.accessor.setter"
-                            /// "source.lang.swift.decl.function.accessor.willset"
-                            public static let willset: UID.source.lang.swift.decl = "source.lang.swift.decl.function.accessor.willset"
-                        }
-                        /// "source.lang.swift.decl.function.constructor"
-                        public static let constructor: UID.source.lang.swift.decl = "source.lang.swift.decl.function.constructor"
-                        /// "source.lang.swift.decl.function.destructor"
-                        public static let destructor: UID.source.lang.swift.decl = "source.lang.swift.decl.function.destructor"
-                        /// "source.lang.swift.decl.function.free"
-                        public static let free: UID.source.lang.swift.decl = "source.lang.swift.decl.function.free"
-                        public struct method {
-                            /// "source.lang.swift.decl.function.method.class"
-                            public static let `class`: UID.source.lang.swift.decl = "source.lang.swift.decl.function.method.class"
-                            /// "source.lang.swift.decl.function.method.instance"
-                            public static let instance: UID.source.lang.swift.decl = "source.lang.swift.decl.function.method.instance"
-                            /// "source.lang.swift.decl.function.method.static"
-                            public static let `static`: UID.source.lang.swift.decl = "source.lang.swift.decl.function.method.static"
-                        }
-                        public struct `operator` {
-                            /// "source.lang.swift.decl.function.operator.infix"
-                            public static let infix: UID.source.lang.swift.decl = "source.lang.swift.decl.function.operator.infix"
-                            /// "source.lang.swift.decl.function.operator.postfix"
-                            public static let postfix: UID.source.lang.swift.decl = "source.lang.swift.decl.function.operator.postfix"
-                            /// "source.lang.swift.decl.function.operator.prefix"
-                            public static let prefix: UID.source.lang.swift.decl = "source.lang.swift.decl.function.operator.prefix"
-                        }
-                        /// "source.lang.swift.decl.function.subscript"
-                        public static let `subscript`: UID.source.lang.swift.decl = "source.lang.swift.decl.function.subscript"
-                    }
-                    /// "source.lang.swift.decl.generic_type_param"
-                    public static let generic_type_param: UID.source.lang.swift.decl = "source.lang.swift.decl.generic_type_param"
-                    /// "source.lang.swift.decl.module"
-                    public static let module: UID.source.lang.swift.decl = "source.lang.swift.decl.module"
-                    /// "source.lang.swift.decl.precedencegroup"
-                    public static let `precedencegroup`: UID.source.lang.swift.decl = "source.lang.swift.decl.precedencegroup"
-                    /// "source.lang.swift.decl.protocol"
-                    public static let `protocol`: UID.source.lang.swift.decl = "source.lang.swift.decl.protocol"
-                    /// "source.lang.swift.decl.struct"
-                    public static let `struct`: UID.source.lang.swift.decl = "source.lang.swift.decl.struct"
-                    /// "source.lang.swift.decl.typealias"
-                    public static let `typealias`: UID.source.lang.swift.decl = "source.lang.swift.decl.typealias"
-                    public struct `var` {
-                        /// "source.lang.swift.decl.var.class"
-                        public static let `class`: UID.source.lang.swift.decl = "source.lang.swift.decl.var.class"
-                        /// "source.lang.swift.decl.var.global"
-                        public static let global: UID.source.lang.swift.decl = "source.lang.swift.decl.var.global"
-                        /// "source.lang.swift.decl.var.instance"
-                        public static let instance: UID.source.lang.swift.decl = "source.lang.swift.decl.var.instance"
-                        /// "source.lang.swift.decl.var.local"
-                        public static let local: UID.source.lang.swift.decl = "source.lang.swift.decl.var.local"
-                        /// "source.lang.swift.decl.var.parameter"
-                        public static let parameter: UID.source.lang.swift.decl = "source.lang.swift.decl.var.parameter"
-                        /// "source.lang.swift.decl.var.static"
-                        public static let `static`: UID.source.lang.swift.decl = "source.lang.swift.decl.var.static"
-                    }
-                }
-                public struct expr: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.expr.argument"
-                    public static let argument: UID.source.lang.swift.expr = "source.lang.swift.expr.argument"
-                    /// "source.lang.swift.expr.array"
-                    public static let array: UID.source.lang.swift.expr = "source.lang.swift.expr.array"
-                    /// "source.lang.swift.expr.call"
-                    public static let call: UID.source.lang.swift.expr = "source.lang.swift.expr.call"
-                    /// "source.lang.swift.expr.dictionary"
-                    public static let dictionary: UID.source.lang.swift.expr = "source.lang.swift.expr.dictionary"
-                    /// "source.lang.swift.expr.object_literal"
-                    public static let object_literal: UID.source.lang.swift.expr = "source.lang.swift.expr.object_literal"
-                }
-                public struct `import` {
-                    public struct module: UIDNamespace {
-                        public let uid: UID
-                        /// "source.lang.swift.import.module.clang"
-                        public static let clang: UID.source.lang.swift.`import`.module = "source.lang.swift.import.module.clang"
-                        /// "source.lang.swift.import.module.swift"
-                        public static let swift: UID.source.lang.swift.`import`.module = "source.lang.swift.import.module.swift"
-                    }
-                }
-                public struct keyword: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.keyword.Any"
-                    public static let `Any`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.Any"
-                    /// "source.lang.swift.keyword.Self"
-                    public static let `Self`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.Self"
-                    /// "source.lang.swift.keyword._"
-                    public static let `_`: UID.source.lang.swift.keyword = "source.lang.swift.keyword._"
-                    /// "source.lang.swift.keyword.__COLUMN__"
-                    public static let `__COLUMN__`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.__COLUMN__"
-                    /// "source.lang.swift.keyword.__DSO_HANDLE__"
-                    public static let `__DSO_HANDLE__`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.__DSO_HANDLE__"
-                    /// "source.lang.swift.keyword.__FILE__"
-                    public static let `__FILE__`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.__FILE__"
-                    /// "source.lang.swift.keyword.__FUNCTION__"
-                    public static let `__FUNCTION__`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.__FUNCTION__"
-                    /// "source.lang.swift.keyword.__LINE__"
-                    public static let `__LINE__`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.__LINE__"
-                    /// "source.lang.swift.keyword.as"
-                    public static let `as`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.as"
-                    /// "source.lang.swift.keyword.associatedtype"
-                    public static let `associatedtype`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.associatedtype"
-                    /// "source.lang.swift.keyword.break"
-                    public static let `break`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.break"
-                    /// "source.lang.swift.keyword.case"
-                    public static let `case`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.case"
-                    /// "source.lang.swift.keyword.catch"
-                    public static let `catch`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.catch"
-                    /// "source.lang.swift.keyword.class"
-                    public static let `class`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.class"
-                    /// "source.lang.swift.keyword.continue"
-                    public static let `continue`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.continue"
-                    /// "source.lang.swift.keyword.default"
-                    public static let `default`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.default"
-                    /// "source.lang.swift.keyword.defer"
-                    public static let `defer`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.defer"
-                    /// "source.lang.swift.keyword.deinit"
-                    public static let `deinit`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.deinit"
-                    /// "source.lang.swift.keyword.do"
-                    public static let `do`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.do"
-                    /// "source.lang.swift.keyword.else"
-                    public static let `else`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.else"
-                    /// "source.lang.swift.keyword.enum"
-                    public static let `enum`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.enum"
-                    /// "source.lang.swift.keyword.extension"
-                    public static let `extension`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.extension"
-                    /// "source.lang.swift.keyword.fallthrough"
-                    public static let `fallthrough`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.fallthrough"
-                    /// "source.lang.swift.keyword.false"
-                    public static let `false`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.false"
-                    /// "source.lang.swift.keyword.fileprivate"
-                    public static let `fileprivate`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.fileprivate"
-                    /// "source.lang.swift.keyword.for"
-                    public static let `for`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.for"
-                    /// "source.lang.swift.keyword.func"
-                    public static let `func`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.func"
-                    /// "source.lang.swift.keyword.guard"
-                    public static let `guard`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.guard"
-                    /// "source.lang.swift.keyword.if"
-                    public static let `if`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.if"
-                    /// "source.lang.swift.keyword.import"
-                    public static let `import`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.import"
-                    /// "source.lang.swift.keyword.in"
-                    public static let `in`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.in"
-                    /// "source.lang.swift.keyword.init"
-                    public static let `init`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.init"
-                    /// "source.lang.swift.keyword.inout"
-                    public static let `inout`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.inout"
-                    /// "source.lang.swift.keyword.internal"
-                    public static let `internal`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.internal"
-                    /// "source.lang.swift.keyword.is"
-                    public static let `is`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.is"
-                    /// "source.lang.swift.keyword.let"
-                    public static let `let`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.let"
-                    /// "source.lang.swift.keyword.nil"
-                    public static let `nil`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.nil"
-                    /// "source.lang.swift.keyword.operator"
-                    public static let `operator`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.operator"
-                    /// "source.lang.swift.keyword.precedencegroup"
-                    public static let `precedencegroup`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.precedencegroup"
-                    /// "source.lang.swift.keyword.private"
-                    public static let `private`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.private"
-                    /// "source.lang.swift.keyword.protocol"
-                    public static let `protocol`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.protocol"
-                    /// "source.lang.swift.keyword.public"
-                    public static let `public`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.public"
-                    /// "source.lang.swift.keyword.repeat"
-                    public static let `repeat`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.repeat"
-                    /// "source.lang.swift.keyword.rethrows"
-                    public static let `rethrows`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.rethrows"
-                    /// "source.lang.swift.keyword.return"
-                    public static let `return`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.return"
-                    /// "source.lang.swift.keyword.self"
-                    public static let `self`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.self"
-                    /// "source.lang.swift.keyword.static"
-                    public static let `static`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.static"
-                    /// "source.lang.swift.keyword.struct"
-                    public static let `struct`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.struct"
-                    /// "source.lang.swift.keyword.subscript"
-                    public static let `subscript`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.subscript"
-                    /// "source.lang.swift.keyword.super"
-                    public static let `super`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.super"
-                    /// "source.lang.swift.keyword.switch"
-                    public static let `switch`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.switch"
-                    /// "source.lang.swift.keyword.throw"
-                    public static let `throw`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.throw"
-                    /// "source.lang.swift.keyword.throws"
-                    public static let `throws`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.throws"
-                    /// "source.lang.swift.keyword.true"
-                    public static let `true`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.true"
-                    /// "source.lang.swift.keyword.try"
-                    public static let `try`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.try"
-                    /// "source.lang.swift.keyword.typealias"
-                    public static let `typealias`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.typealias"
-                    /// "source.lang.swift.keyword.var"
-                    public static let `var`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.var"
-                    /// "source.lang.swift.keyword.where"
-                    public static let `where`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.where"
-                    /// "source.lang.swift.keyword.while"
-                    public static let `while`: UID.source.lang.swift.keyword = "source.lang.swift.keyword.while"
-                }
-                public struct literal: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.literal.array"
-                    public static let array: UID.source.lang.swift.literal = "source.lang.swift.literal.array"
-                    /// "source.lang.swift.literal.boolean"
-                    public static let boolean: UID.source.lang.swift.literal = "source.lang.swift.literal.boolean"
-                    /// "source.lang.swift.literal.color"
-                    public static let color: UID.source.lang.swift.literal = "source.lang.swift.literal.color"
-                    /// "source.lang.swift.literal.dictionary"
-                    public static let dictionary: UID.source.lang.swift.literal = "source.lang.swift.literal.dictionary"
-                    /// "source.lang.swift.literal.image"
-                    public static let image: UID.source.lang.swift.literal = "source.lang.swift.literal.image"
-                    /// "source.lang.swift.literal.integer"
-                    public static let integer: UID.source.lang.swift.literal = "source.lang.swift.literal.integer"
-                    /// "source.lang.swift.literal.nil"
-                    public static let `nil`: UID.source.lang.swift.literal = "source.lang.swift.literal.nil"
-                    /// "source.lang.swift.literal.string"
-                    public static let string: UID.source.lang.swift.literal = "source.lang.swift.literal.string"
-                    /// "source.lang.swift.literal.tuple"
-                    public static let tuple: UID.source.lang.swift.literal = "source.lang.swift.literal.tuple"
-                }
-                public struct ref: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.ref.associatedtype"
-                    public static let `associatedtype`: UID.source.lang.swift.ref = "source.lang.swift.ref.associatedtype"
-                    /// "source.lang.swift.ref.class"
-                    public static let `class`: UID.source.lang.swift.ref = "source.lang.swift.ref.class"
-                    /// "source.lang.swift.ref.enum"
-                    public static let `enum`: UID.source.lang.swift.ref = "source.lang.swift.ref.enum"
-                    /// "source.lang.swift.ref.enumelement"
-                    public static let enumelement: UID.source.lang.swift.ref = "source.lang.swift.ref.enumelement"
-                    public struct function {
-                        public struct accessor {
-                            /// "source.lang.swift.ref.function.accessor.address"
-                            public static let address: UID.source.lang.swift.ref = "source.lang.swift.ref.function.accessor.address"
-                            /// "source.lang.swift.ref.function.accessor.didset"
-                            public static let didset: UID.source.lang.swift.ref = "source.lang.swift.ref.function.accessor.didset"
-                            /// "source.lang.swift.ref.function.accessor.getter"
-                            public static let getter: UID.source.lang.swift.ref = "source.lang.swift.ref.function.accessor.getter"
-                            /// "source.lang.swift.ref.function.accessor.mutableaddress"
-                            public static let mutableaddress: UID.source.lang.swift.ref = "source.lang.swift.ref.function.accessor.mutableaddress"
-                            /// "source.lang.swift.ref.function.accessor.setter"
-                            public static let setter: UID.source.lang.swift.ref = "source.lang.swift.ref.function.accessor.setter"
-                            /// "source.lang.swift.ref.function.accessor.willset"
-                            public static let willset: UID.source.lang.swift.ref = "source.lang.swift.ref.function.accessor.willset"
-                        }
-                        /// "source.lang.swift.ref.function.constructor"
-                        public static let constructor: UID.source.lang.swift.ref = "source.lang.swift.ref.function.constructor"
-                        /// "source.lang.swift.ref.function.destructor"
-                        public static let destructor: UID.source.lang.swift.ref = "source.lang.swift.ref.function.destructor"
-                        /// "source.lang.swift.ref.function.free"
-                        public static let free: UID.source.lang.swift.ref = "source.lang.swift.ref.function.free"
-                        public struct method {
-                            /// "source.lang.swift.ref.function.method.class"
-                            public static let `class`: UID.source.lang.swift.ref = "source.lang.swift.ref.function.method.class"
-                            /// "source.lang.swift.ref.function.method.instance"
-                            public static let instance: UID.source.lang.swift.ref = "source.lang.swift.ref.function.method.instance"
-                            /// "source.lang.swift.ref.function.method.static"
-                            public static let `static`: UID.source.lang.swift.ref = "source.lang.swift.ref.function.method.static"
-                        }
-                        public struct `operator` {
-                            /// "source.lang.swift.ref.function.operator.infix"
-                            public static let infix: UID.source.lang.swift.ref = "source.lang.swift.ref.function.operator.infix"
-                            /// "source.lang.swift.ref.function.operator.postfix"
-                            public static let postfix: UID.source.lang.swift.ref = "source.lang.swift.ref.function.operator.postfix"
-                            /// "source.lang.swift.ref.function.operator.prefix"
-                            public static let prefix: UID.source.lang.swift.ref = "source.lang.swift.ref.function.operator.prefix"
-                        }
-                        /// "source.lang.swift.ref.function.subscript"
-                        public static let `subscript`: UID.source.lang.swift.ref = "source.lang.swift.ref.function.subscript"
-                    }
-                    /// "source.lang.swift.ref.generic_type_param"
-                    public static let generic_type_param: UID.source.lang.swift.ref = "source.lang.swift.ref.generic_type_param"
-                    /// "source.lang.swift.ref.module"
-                    public static let module: UID.source.lang.swift.ref = "source.lang.swift.ref.module"
-                    /// "source.lang.swift.ref.precedencegroup"
-                    public static let `precedencegroup`: UID.source.lang.swift.ref = "source.lang.swift.ref.precedencegroup"
-                    /// "source.lang.swift.ref.protocol"
-                    public static let `protocol`: UID.source.lang.swift.ref = "source.lang.swift.ref.protocol"
-                    /// "source.lang.swift.ref.struct"
-                    public static let `struct`: UID.source.lang.swift.ref = "source.lang.swift.ref.struct"
-                    /// "source.lang.swift.ref.typealias"
-                    public static let `typealias`: UID.source.lang.swift.ref = "source.lang.swift.ref.typealias"
-                    public struct `var` {
-                        /// "source.lang.swift.ref.var.class"
-                        public static let `class`: UID.source.lang.swift.ref = "source.lang.swift.ref.var.class"
-                        /// "source.lang.swift.ref.var.global"
-                        public static let global: UID.source.lang.swift.ref = "source.lang.swift.ref.var.global"
-                        /// "source.lang.swift.ref.var.instance"
-                        public static let instance: UID.source.lang.swift.ref = "source.lang.swift.ref.var.instance"
-                        /// "source.lang.swift.ref.var.local"
-                        public static let local: UID.source.lang.swift.ref = "source.lang.swift.ref.var.local"
-                        /// "source.lang.swift.ref.var.static"
-                        public static let `static`: UID.source.lang.swift.ref = "source.lang.swift.ref.var.static"
-                    }
-                }
-                public struct stmt: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.stmt.brace"
-                    public static let brace: UID.source.lang.swift.stmt = "source.lang.swift.stmt.brace"
-                    /// "source.lang.swift.stmt.case"
-                    public static let `case`: UID.source.lang.swift.stmt = "source.lang.swift.stmt.case"
-                    /// "source.lang.swift.stmt.for"
-                    public static let `for`: UID.source.lang.swift.stmt = "source.lang.swift.stmt.for"
-                    /// "source.lang.swift.stmt.foreach"
-                    public static let foreach: UID.source.lang.swift.stmt = "source.lang.swift.stmt.foreach"
-                    /// "source.lang.swift.stmt.guard"
-                    public static let `guard`: UID.source.lang.swift.stmt = "source.lang.swift.stmt.guard"
-                    /// "source.lang.swift.stmt.if"
-                    public static let `if`: UID.source.lang.swift.stmt = "source.lang.swift.stmt.if"
-                    /// "source.lang.swift.stmt.repeatwhile"
-                    public static let repeatwhile: UID.source.lang.swift.stmt = "source.lang.swift.stmt.repeatwhile"
-                    /// "source.lang.swift.stmt.switch"
-                    public static let `switch`: UID.source.lang.swift.stmt = "source.lang.swift.stmt.switch"
-                    /// "source.lang.swift.stmt.while"
-                    public static let `while`: UID.source.lang.swift.stmt = "source.lang.swift.stmt.while"
-                }
-                public struct structure {
-                    public struct elem: UIDNamespace {
-                        public let uid: UID
-                        /// "source.lang.swift.structure.elem.condition_expr"
-                        public static let condition_expr: UID.source.lang.swift.structure.elem = "source.lang.swift.structure.elem.condition_expr"
-                        /// "source.lang.swift.structure.elem.expr"
-                        public static let expr: UID.source.lang.swift.structure.elem = "source.lang.swift.structure.elem.expr"
-                        /// "source.lang.swift.structure.elem.id"
-                        public static let id: UID.source.lang.swift.structure.elem = "source.lang.swift.structure.elem.id"
-                        /// "source.lang.swift.structure.elem.init_expr"
-                        public static let init_expr: UID.source.lang.swift.structure.elem = "source.lang.swift.structure.elem.init_expr"
-                        /// "source.lang.swift.structure.elem.pattern"
-                        public static let pattern: UID.source.lang.swift.structure.elem = "source.lang.swift.structure.elem.pattern"
-                        /// "source.lang.swift.structure.elem.typeref"
-                        public static let typeref: UID.source.lang.swift.structure.elem = "source.lang.swift.structure.elem.typeref"
-                    }
-                }
-                public struct syntaxtype: UIDNamespace {
-                    public let uid: UID
-                    /// "source.lang.swift.syntaxtype.argument"
-                    public static let argument: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.argument"
-                    public struct attribute {
-                        /// "source.lang.swift.syntaxtype.attribute.builtin"
-                        public static let builtin: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.attribute.builtin"
-                        /// "source.lang.swift.syntaxtype.attribute.id"
-                        public static let id: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.attribute.id"
-                    }
-                    public struct buildconfig {
-                        /// "source.lang.swift.syntaxtype.buildconfig.id"
-                        public static let id: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.buildconfig.id"
-                        /// "source.lang.swift.syntaxtype.buildconfig.keyword"
-                        public static let keyword: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.buildconfig.keyword"
-                    }
-                    public struct comment {
-                        /// "source.lang.swift.syntaxtype.comment.mark"
-                        public static let mark: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.comment.mark"
-                        /// "source.lang.swift.syntaxtype.comment.url"
-                        public static let url: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.comment.url"
-                    }
-                    public struct doccomment {
-                        /// "source.lang.swift.syntaxtype.doccomment.field"
-                        public static let field: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.doccomment.field"
-                    }
-                    /// "source.lang.swift.syntaxtype.identifier"
-                    public static let identifier: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.identifier"
-                    /// "source.lang.swift.syntaxtype.keyword"
-                    public static let keyword: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.keyword"
-                    /// "source.lang.swift.syntaxtype.number"
-                    public static let number: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.number"
-                    /// "source.lang.swift.syntaxtype.objectliteral"
-                    public static let objectliteral: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.objectliteral"
-                    /// "source.lang.swift.syntaxtype.parameter"
-                    public static let parameter: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.parameter"
-                    /// "source.lang.swift.syntaxtype.placeholder"
-                    public static let placeholder: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.placeholder"
-                    /// "source.lang.swift.syntaxtype.string"
-                    public static let string: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.string"
-                    /// "source.lang.swift.syntaxtype.string_interpolation_anchor"
-                    public static let string_interpolation_anchor: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.string_interpolation_anchor"
-                    /// "source.lang.swift.syntaxtype.typeidentifier"
-                    public static let typeidentifier: UID.source.lang.swift.syntaxtype = "source.lang.swift.syntaxtype.typeidentifier"
-                }
-            }
-        }
-        public struct notification: UIDNamespace {
-            public let uid: UID
-            public struct editor {
-                /// "source.notification.editor.documentupdate"
-                public static let documentupdate: UID.source.notification = "source.notification.editor.documentupdate"
-            }
-            /// "source.notification.sema_disabled"
-            public static let sema_disabled: UID.source.notification = "source.notification.sema_disabled"
-        }
-        public struct request: UIDNamespace {
-            public let uid: UID
-            public struct buildsettings {
-                /// "source.request.buildsettings.register"
-                public static let register: UID.source.request = "source.request.buildsettings.register"
-            }
-            public struct codecomplete {
-                public struct cache {
-                    /// "source.request.codecomplete.cache.ondisk"
-                    public static let ondisk: UID.source.request = "source.request.codecomplete.cache.ondisk"
-                }
-                /// "source.request.codecomplete.close"
-                public static let close: UID.source.request = "source.request.codecomplete.close"
-                /// "source.request.codecomplete.open"
-                public static let open: UID.source.request = "source.request.codecomplete.open"
-                /// "source.request.codecomplete.setcustom"
-                public static let setcustom: UID.source.request = "source.request.codecomplete.setcustom"
-                /// "source.request.codecomplete.setpopularapi"
-                public static let setpopularapi: UID.source.request = "source.request.codecomplete.setpopularapi"
-                /// "source.request.codecomplete.update"
-                public static let update: UID.source.request = "source.request.codecomplete.update"
-            }
-            /// "source.request.crash_exit"
-            public static let crash_exit: UID.source.request = "source.request.crash_exit"
-            /// "source.request.cursorinfo"
-            public static let cursorinfo: UID.source.request = "source.request.cursorinfo"
-            /// "source.request.demangle"
-            public static let demangle: UID.source.request = "source.request.demangle"
-            /// "source.request.docinfo"
-            public static let docinfo: UID.source.request = "source.request.docinfo"
-            public struct editor {
-                /// "source.request.editor.close"
-                public static let close: UID.source.request = "source.request.editor.close"
-                /// "source.request.editor.expand_placeholder"
-                public static let expand_placeholder: UID.source.request = "source.request.editor.expand_placeholder"
-                public struct extract {
-                    /// "source.request.editor.extract.comment"
-                    public static let comment: UID.source.request = "source.request.editor.extract.comment"
-                }
-                /// "source.request.editor.find_interface_doc"
-                public static let find_interface_doc: UID.source.request = "source.request.editor.find_interface_doc"
-                /// "source.request.editor.find_usr"
-                public static let find_usr: UID.source.request = "source.request.editor.find_usr"
-                /// "source.request.editor.formattext"
-                public static let formattext: UID.source.request = "source.request.editor.formattext"
-                public struct open {
-                    public struct interface {
-                        /// "source.request.editor.open.interface.header"
-                        public static let header: UID.source.request = "source.request.editor.open.interface.header"
-                        /// "source.request.editor.open.interface.swiftsource"
-                        public static let swiftsource: UID.source.request = "source.request.editor.open.interface.swiftsource"
-                        /// "source.request.editor.open.interface.swifttype"
-                        public static let swifttype: UID.source.request = "source.request.editor.open.interface.swifttype"
-                    }
-                }
-                /// "source.request.editor.replacetext"
-                public static let replacetext: UID.source.request = "source.request.editor.replacetext"
-            }
-            /// "source.request.indexsource"
-            public static let indexsource: UID.source.request = "source.request.indexsource"
-            /// "source.request.mangle_simple_class"
-            public static let mangle_simple_class: UID.source.request = "source.request.mangle_simple_class"
-            public struct module {
-                /// "source.request.module.groups"
-                public static let groups: UID.source.request = "source.request.module.groups"
-            }
-            /// "source.request.protocol_version"
-            public static let protocol_version: UID.source.request = "source.request.protocol_version"
-            /// "source.request.relatedidents"
-            public static let relatedidents: UID.source.request = "source.request.relatedidents"
-        }
+    public struct SourceAvailabilityPlatform {
+        public let uid: UID
+        /// source.availability.platform.ios
+        public static let ios: SourceAvailabilityPlatform = "source.availability.platform.ios"
+        /// source.availability.platform.ios_app_extension
+        public static let ios_app_extension: SourceAvailabilityPlatform = "source.availability.platform.ios_app_extension"
+        /// source.availability.platform.osx
+        public static let osx: SourceAvailabilityPlatform = "source.availability.platform.osx"
+        /// source.availability.platform.osx_app_extension
+        public static let osx_app_extension: SourceAvailabilityPlatform = "source.availability.platform.osx_app_extension"
+        /// source.availability.platform.tvos
+        public static let tvos: SourceAvailabilityPlatform = "source.availability.platform.tvos"
+        /// source.availability.platform.tvos_app_extension
+        public static let tvos_app_extension: SourceAvailabilityPlatform = "source.availability.platform.tvos_app_extension"
+        /// source.availability.platform.watchos
+        public static let watchos: SourceAvailabilityPlatform = "source.availability.platform.watchos"
+        /// source.availability.platform.watchos_app_extension
+        public static let watchos_app_extension: SourceAvailabilityPlatform = "source.availability.platform.watchos_app_extension"
+    }
+    public struct SourceCodecompletion {
+        public let uid: UID
+        /// source.codecompletion.context.exprspecific
+        public static let contextExprspecific: SourceCodecompletion = "source.codecompletion.context.exprspecific"
+        /// source.codecompletion.context.local
+        public static let contextLocal: SourceCodecompletion = "source.codecompletion.context.local"
+        /// source.codecompletion.context.none
+        public static let contextNone: SourceCodecompletion = "source.codecompletion.context.none"
+        /// source.codecompletion.context.otherclass
+        public static let contextOtherclass: SourceCodecompletion = "source.codecompletion.context.otherclass"
+        /// source.codecompletion.context.othermodule
+        public static let contextOthermodule: SourceCodecompletion = "source.codecompletion.context.othermodule"
+        /// source.codecompletion.context.superclass
+        public static let contextSuperclass: SourceCodecompletion = "source.codecompletion.context.superclass"
+        /// source.codecompletion.context.thisclass
+        public static let contextThisclass: SourceCodecompletion = "source.codecompletion.context.thisclass"
+        /// source.codecompletion.context.thismodule
+        public static let contextThismodule: SourceCodecompletion = "source.codecompletion.context.thismodule"
+        /// source.codecompletion.custom
+        public static let custom: SourceCodecompletion = "source.codecompletion.custom"
+        /// source.codecompletion.everything
+        public static let everything: SourceCodecompletion = "source.codecompletion.everything"
+        /// source.codecompletion.identifier
+        public static let identifier: SourceCodecompletion = "source.codecompletion.identifier"
+        /// source.codecompletion.keyword
+        public static let keyword: SourceCodecompletion = "source.codecompletion.keyword"
+        /// source.codecompletion.literal
+        public static let literal: SourceCodecompletion = "source.codecompletion.literal"
+        /// source.codecompletion.module
+        public static let module: SourceCodecompletion = "source.codecompletion.module"
+    }
+    public struct SourceDeclAttribute {
+        public let uid: UID
+        /// source.decl.attribute.LLDBDebuggerFunction
+        public static let LLDBDebuggerFunction: SourceDeclAttribute = "source.decl.attribute.LLDBDebuggerFunction"
+        /// source.decl.attribute.NSApplicationMain
+        public static let NSApplicationMain: SourceDeclAttribute = "source.decl.attribute.NSApplicationMain"
+        /// source.decl.attribute.NSCopying
+        public static let NSCopying: SourceDeclAttribute = "source.decl.attribute.NSCopying"
+        /// source.decl.attribute.NSManaged
+        public static let NSManaged: SourceDeclAttribute = "source.decl.attribute.NSManaged"
+        /// source.decl.attribute.UIApplicationMain
+        public static let UIApplicationMain: SourceDeclAttribute = "source.decl.attribute.UIApplicationMain"
+        /// source.decl.attribute.__objc_bridged
+        public static let __objc_bridged: SourceDeclAttribute = "source.decl.attribute.__objc_bridged"
+        /// source.decl.attribute.__synthesized_protocol
+        public static let __synthesized_protocol: SourceDeclAttribute = "source.decl.attribute.__synthesized_protocol"
+        /// source.decl.attribute._alignment
+        public static let _alignment: SourceDeclAttribute = "source.decl.attribute._alignment"
+        /// source.decl.attribute._cdecl
+        public static let _cdecl: SourceDeclAttribute = "source.decl.attribute._cdecl"
+        /// source.decl.attribute._exported
+        public static let _exported: SourceDeclAttribute = "source.decl.attribute._exported"
+        /// source.decl.attribute._fixed_layout
+        public static let _fixed_layout: SourceDeclAttribute = "source.decl.attribute._fixed_layout"
+        /// source.decl.attribute._semantics
+        public static let _semantics: SourceDeclAttribute = "source.decl.attribute._semantics"
+        /// source.decl.attribute._silgen_name
+        public static let _silgen_name: SourceDeclAttribute = "source.decl.attribute._silgen_name"
+        /// source.decl.attribute._specialize
+        public static let _specialize: SourceDeclAttribute = "source.decl.attribute._specialize"
+        /// source.decl.attribute._swift_native_objc_runtime_base
+        public static let _swift_native_objc_runtime_base: SourceDeclAttribute = "source.decl.attribute._swift_native_objc_runtime_base"
+        /// source.decl.attribute._transparent
+        public static let _transparent: SourceDeclAttribute = "source.decl.attribute._transparent"
+        /// source.decl.attribute._versioned
+        public static let _versioned: SourceDeclAttribute = "source.decl.attribute._versioned"
+        /// source.decl.attribute.autoclosure
+        public static let autoclosure: SourceDeclAttribute = "source.decl.attribute.autoclosure"
+        /// source.decl.attribute.available
+        public static let available: SourceDeclAttribute = "source.decl.attribute.available"
+        /// source.decl.attribute.convenience
+        public static let convenience: SourceDeclAttribute = "source.decl.attribute.convenience"
+        /// source.decl.attribute.discardableResult
+        public static let discardableResult: SourceDeclAttribute = "source.decl.attribute.discardableResult"
+        /// source.decl.attribute.dynamic
+        public static let dynamic: SourceDeclAttribute = "source.decl.attribute.dynamic"
+        /// source.decl.attribute.effects
+        public static let effects: SourceDeclAttribute = "source.decl.attribute.effects"
+        /// source.decl.attribute.escaping
+        public static let escaping: SourceDeclAttribute = "source.decl.attribute.escaping"
+        /// source.decl.attribute.final
+        public static let final: SourceDeclAttribute = "source.decl.attribute.final"
+        /// source.decl.attribute.gkinspectable
+        public static let gkinspectable: SourceDeclAttribute = "source.decl.attribute.gkinspectable"
+        /// source.decl.attribute.ibaction
+        public static let ibaction: SourceDeclAttribute = "source.decl.attribute.ibaction"
+        /// source.decl.attribute.ibdesignable
+        public static let ibdesignable: SourceDeclAttribute = "source.decl.attribute.ibdesignable"
+        /// source.decl.attribute.ibinspectable
+        public static let ibinspectable: SourceDeclAttribute = "source.decl.attribute.ibinspectable"
+        /// source.decl.attribute.iboutlet
+        public static let iboutlet: SourceDeclAttribute = "source.decl.attribute.iboutlet"
+        /// source.decl.attribute.indirect
+        public static let indirect: SourceDeclAttribute = "source.decl.attribute.indirect"
+        /// source.decl.attribute.infix
+        public static let infix: SourceDeclAttribute = "source.decl.attribute.infix"
+        /// source.decl.attribute.inline
+        public static let inline: SourceDeclAttribute = "source.decl.attribute.inline"
+        /// source.decl.attribute.lazy
+        public static let lazy: SourceDeclAttribute = "source.decl.attribute.lazy"
+        /// source.decl.attribute.mutating
+        public static let mutating: SourceDeclAttribute = "source.decl.attribute.mutating"
+        /// source.decl.attribute.noescape
+        public static let noescape: SourceDeclAttribute = "source.decl.attribute.noescape"
+        /// source.decl.attribute.nonmutating
+        public static let nonmutating: SourceDeclAttribute = "source.decl.attribute.nonmutating"
+        /// source.decl.attribute.nonobjc
+        public static let nonobjc: SourceDeclAttribute = "source.decl.attribute.nonobjc"
+        /// source.decl.attribute.noreturn
+        public static let noreturn: SourceDeclAttribute = "source.decl.attribute.noreturn"
+        /// source.decl.attribute.objc
+        public static let objc: SourceDeclAttribute = "source.decl.attribute.objc"
+        /// source.decl.attribute.objc.name
+        public static let objcName: SourceDeclAttribute = "source.decl.attribute.objc.name"
+        /// source.decl.attribute.objc_non_lazy_realization
+        public static let objc_non_lazy_realization: SourceDeclAttribute = "source.decl.attribute.objc_non_lazy_realization"
+        /// source.decl.attribute.optional
+        public static let optional: SourceDeclAttribute = "source.decl.attribute.optional"
+        /// source.decl.attribute.override
+        public static let override: SourceDeclAttribute = "source.decl.attribute.override"
+        /// source.decl.attribute.postfix
+        public static let postfix: SourceDeclAttribute = "source.decl.attribute.postfix"
+        /// source.decl.attribute.prefix
+        public static let prefix: SourceDeclAttribute = "source.decl.attribute.prefix"
+        /// source.decl.attribute.required
+        public static let required: SourceDeclAttribute = "source.decl.attribute.required"
+        /// source.decl.attribute.requires_stored_property_inits
+        public static let requires_stored_property_inits: SourceDeclAttribute = "source.decl.attribute.requires_stored_property_inits"
+        /// source.decl.attribute.rethrows
+        public static let `rethrows`: SourceDeclAttribute = "source.decl.attribute.rethrows"
+        /// source.decl.attribute.sil_stored
+        public static let sil_stored: SourceDeclAttribute = "source.decl.attribute.sil_stored"
+        /// source.decl.attribute.swift3_migration
+        public static let swift3_migration: SourceDeclAttribute = "source.decl.attribute.swift3_migration"
+        /// source.decl.attribute.testable
+        public static let testable: SourceDeclAttribute = "source.decl.attribute.testable"
+        /// source.decl.attribute.unsafe_no_objc_tagged_pointer
+        public static let unsafe_no_objc_tagged_pointer: SourceDeclAttribute = "source.decl.attribute.unsafe_no_objc_tagged_pointer"
+        /// source.decl.attribute.warn_unqualified_access
+        public static let warn_unqualified_access: SourceDeclAttribute = "source.decl.attribute.warn_unqualified_access"
+        /// source.decl.attribute.weak
+        public static let weak: SourceDeclAttribute = "source.decl.attribute.weak"
+    }
+    public struct SourceDiagnosticSeverity {
+        public let uid: UID
+        /// source.diagnostic.severity.error
+        public static let error: SourceDiagnosticSeverity = "source.diagnostic.severity.error"
+        /// source.diagnostic.severity.note
+        public static let note: SourceDiagnosticSeverity = "source.diagnostic.severity.note"
+        /// source.diagnostic.severity.warning
+        public static let warning: SourceDiagnosticSeverity = "source.diagnostic.severity.warning"
+    }
+    public struct SourceDiagnosticStageSwift {
+        public let uid: UID
+        /// source.diagnostic.stage.swift.parse
+        public static let parse: SourceDiagnosticStageSwift = "source.diagnostic.stage.swift.parse"
+        /// source.diagnostic.stage.swift.sema
+        public static let sema: SourceDiagnosticStageSwift = "source.diagnostic.stage.swift.sema"
+    }
+    public struct SourceLangSwift {
+        public let uid: UID
+        /// source.lang.swift.expr
+        public static let expr: SourceLangSwift = "source.lang.swift.expr"
+        /// source.lang.swift.keyword
+        public static let keyword: SourceLangSwift = "source.lang.swift.keyword"
+        /// source.lang.swift.pattern
+        public static let pattern: SourceLangSwift = "source.lang.swift.pattern"
+        /// source.lang.swift.stmt
+        public static let stmt: SourceLangSwift = "source.lang.swift.stmt"
+        /// source.lang.swift.type
+        public static let type: SourceLangSwift = "source.lang.swift.type"
+    }
+    public struct SourceLangSwiftAccessibility {
+        public let uid: UID
+        /// source.lang.swift.accessibility.fileprivate
+        public static let `fileprivate`: SourceLangSwiftAccessibility = "source.lang.swift.accessibility.fileprivate"
+        /// source.lang.swift.accessibility.internal
+        public static let `internal`: SourceLangSwiftAccessibility = "source.lang.swift.accessibility.internal"
+        /// source.lang.swift.accessibility.open
+        public static let open: SourceLangSwiftAccessibility = "source.lang.swift.accessibility.open"
+        /// source.lang.swift.accessibility.private
+        public static let `private`: SourceLangSwiftAccessibility = "source.lang.swift.accessibility.private"
+        /// source.lang.swift.accessibility.public
+        public static let `public`: SourceLangSwiftAccessibility = "source.lang.swift.accessibility.public"
+    }
+    public struct SourceLangSwiftAttribute {
+        public let uid: UID
+        /// source.lang.swift.attribute.availability
+        public static let availability: SourceLangSwiftAttribute = "source.lang.swift.attribute.availability"
+    }
+    public struct SourceLangSwiftCodecomplete {
+        public let uid: UID
+        /// source.lang.swift.codecomplete.group
+        public static let group: SourceLangSwiftCodecomplete = "source.lang.swift.codecomplete.group"
+    }
+    public struct SourceLangSwiftDecl {
+        public let uid: UID
+        /// source.lang.swift.decl.associatedtype
+        public static let `associatedtype`: SourceLangSwiftDecl = "source.lang.swift.decl.associatedtype"
+        /// source.lang.swift.decl.class
+        public static let `class`: SourceLangSwiftDecl = "source.lang.swift.decl.class"
+        /// source.lang.swift.decl.enum
+        public static let `enum`: SourceLangSwiftDecl = "source.lang.swift.decl.enum"
+        /// source.lang.swift.decl.enumcase
+        public static let enumcase: SourceLangSwiftDecl = "source.lang.swift.decl.enumcase"
+        /// source.lang.swift.decl.enumelement
+        public static let enumelement: SourceLangSwiftDecl = "source.lang.swift.decl.enumelement"
+        /// source.lang.swift.decl.extension
+        public static let `extension`: SourceLangSwiftDecl = "source.lang.swift.decl.extension"
+        /// source.lang.swift.decl.extension.class
+        public static let extensionClass: SourceLangSwiftDecl = "source.lang.swift.decl.extension.class"
+        /// source.lang.swift.decl.extension.enum
+        public static let extensionEnum: SourceLangSwiftDecl = "source.lang.swift.decl.extension.enum"
+        /// source.lang.swift.decl.extension.protocol
+        public static let extensionProtocol: SourceLangSwiftDecl = "source.lang.swift.decl.extension.protocol"
+        /// source.lang.swift.decl.extension.struct
+        public static let extensionStruct: SourceLangSwiftDecl = "source.lang.swift.decl.extension.struct"
+        /// source.lang.swift.decl.function.accessor.address
+        public static let functionAccessorAddress: SourceLangSwiftDecl = "source.lang.swift.decl.function.accessor.address"
+        /// source.lang.swift.decl.function.accessor.didset
+        public static let functionAccessorDidset: SourceLangSwiftDecl = "source.lang.swift.decl.function.accessor.didset"
+        /// source.lang.swift.decl.function.accessor.getter
+        public static let functionAccessorGetter: SourceLangSwiftDecl = "source.lang.swift.decl.function.accessor.getter"
+        /// source.lang.swift.decl.function.accessor.mutableaddress
+        public static let functionAccessorMutableaddress: SourceLangSwiftDecl = "source.lang.swift.decl.function.accessor.mutableaddress"
+        /// source.lang.swift.decl.function.accessor.setter
+        public static let functionAccessorSetter: SourceLangSwiftDecl = "source.lang.swift.decl.function.accessor.setter"
+        /// source.lang.swift.decl.function.accessor.willset
+        public static let functionAccessorWillset: SourceLangSwiftDecl = "source.lang.swift.decl.function.accessor.willset"
+        /// source.lang.swift.decl.function.constructor
+        public static let functionConstructor: SourceLangSwiftDecl = "source.lang.swift.decl.function.constructor"
+        /// source.lang.swift.decl.function.destructor
+        public static let functionDestructor: SourceLangSwiftDecl = "source.lang.swift.decl.function.destructor"
+        /// source.lang.swift.decl.function.free
+        public static let functionFree: SourceLangSwiftDecl = "source.lang.swift.decl.function.free"
+        /// source.lang.swift.decl.function.method.class
+        public static let functionMethodClass: SourceLangSwiftDecl = "source.lang.swift.decl.function.method.class"
+        /// source.lang.swift.decl.function.method.instance
+        public static let functionMethodInstance: SourceLangSwiftDecl = "source.lang.swift.decl.function.method.instance"
+        /// source.lang.swift.decl.function.method.static
+        public static let functionMethodStatic: SourceLangSwiftDecl = "source.lang.swift.decl.function.method.static"
+        /// source.lang.swift.decl.function.operator.infix
+        public static let functionOperatorInfix: SourceLangSwiftDecl = "source.lang.swift.decl.function.operator.infix"
+        /// source.lang.swift.decl.function.operator.postfix
+        public static let functionOperatorPostfix: SourceLangSwiftDecl = "source.lang.swift.decl.function.operator.postfix"
+        /// source.lang.swift.decl.function.operator.prefix
+        public static let functionOperatorPrefix: SourceLangSwiftDecl = "source.lang.swift.decl.function.operator.prefix"
+        /// source.lang.swift.decl.function.subscript
+        public static let functionSubscript: SourceLangSwiftDecl = "source.lang.swift.decl.function.subscript"
+        /// source.lang.swift.decl.generic_type_param
+        public static let generic_type_param: SourceLangSwiftDecl = "source.lang.swift.decl.generic_type_param"
+        /// source.lang.swift.decl.module
+        public static let module: SourceLangSwiftDecl = "source.lang.swift.decl.module"
+        /// source.lang.swift.decl.precedencegroup
+        public static let `precedencegroup`: SourceLangSwiftDecl = "source.lang.swift.decl.precedencegroup"
+        /// source.lang.swift.decl.protocol
+        public static let `protocol`: SourceLangSwiftDecl = "source.lang.swift.decl.protocol"
+        /// source.lang.swift.decl.struct
+        public static let `struct`: SourceLangSwiftDecl = "source.lang.swift.decl.struct"
+        /// source.lang.swift.decl.typealias
+        public static let `typealias`: SourceLangSwiftDecl = "source.lang.swift.decl.typealias"
+        /// source.lang.swift.decl.var.class
+        public static let varClass: SourceLangSwiftDecl = "source.lang.swift.decl.var.class"
+        /// source.lang.swift.decl.var.global
+        public static let varGlobal: SourceLangSwiftDecl = "source.lang.swift.decl.var.global"
+        /// source.lang.swift.decl.var.instance
+        public static let varInstance: SourceLangSwiftDecl = "source.lang.swift.decl.var.instance"
+        /// source.lang.swift.decl.var.local
+        public static let varLocal: SourceLangSwiftDecl = "source.lang.swift.decl.var.local"
+        /// source.lang.swift.decl.var.parameter
+        public static let varParameter: SourceLangSwiftDecl = "source.lang.swift.decl.var.parameter"
+        /// source.lang.swift.decl.var.static
+        public static let varStatic: SourceLangSwiftDecl = "source.lang.swift.decl.var.static"
+    }
+    public struct SourceLangSwiftExpr {
+        public let uid: UID
+        /// source.lang.swift.expr.argument
+        public static let argument: SourceLangSwiftExpr = "source.lang.swift.expr.argument"
+        /// source.lang.swift.expr.array
+        public static let array: SourceLangSwiftExpr = "source.lang.swift.expr.array"
+        /// source.lang.swift.expr.call
+        public static let call: SourceLangSwiftExpr = "source.lang.swift.expr.call"
+        /// source.lang.swift.expr.dictionary
+        public static let dictionary: SourceLangSwiftExpr = "source.lang.swift.expr.dictionary"
+        /// source.lang.swift.expr.object_literal
+        public static let object_literal: SourceLangSwiftExpr = "source.lang.swift.expr.object_literal"
+    }
+    public struct SourceLangSwiftImportModule {
+        public let uid: UID
+        /// source.lang.swift.import.module.clang
+        public static let clang: SourceLangSwiftImportModule = "source.lang.swift.import.module.clang"
+        /// source.lang.swift.import.module.swift
+        public static let swift: SourceLangSwiftImportModule = "source.lang.swift.import.module.swift"
+    }
+    public struct SourceLangSwiftKeyword {
+        public let uid: UID
+        /// source.lang.swift.keyword.Any
+        public static let `Any`: SourceLangSwiftKeyword = "source.lang.swift.keyword.Any"
+        /// source.lang.swift.keyword.Self
+        public static let `Self`: SourceLangSwiftKeyword = "source.lang.swift.keyword.Self"
+        /// source.lang.swift.keyword._
+        public static let `_`: SourceLangSwiftKeyword = "source.lang.swift.keyword._"
+        /// source.lang.swift.keyword.__COLUMN__
+        public static let `__COLUMN__`: SourceLangSwiftKeyword = "source.lang.swift.keyword.__COLUMN__"
+        /// source.lang.swift.keyword.__DSO_HANDLE__
+        public static let `__DSO_HANDLE__`: SourceLangSwiftKeyword = "source.lang.swift.keyword.__DSO_HANDLE__"
+        /// source.lang.swift.keyword.__FILE__
+        public static let `__FILE__`: SourceLangSwiftKeyword = "source.lang.swift.keyword.__FILE__"
+        /// source.lang.swift.keyword.__FUNCTION__
+        public static let `__FUNCTION__`: SourceLangSwiftKeyword = "source.lang.swift.keyword.__FUNCTION__"
+        /// source.lang.swift.keyword.__LINE__
+        public static let `__LINE__`: SourceLangSwiftKeyword = "source.lang.swift.keyword.__LINE__"
+        /// source.lang.swift.keyword.as
+        public static let `as`: SourceLangSwiftKeyword = "source.lang.swift.keyword.as"
+        /// source.lang.swift.keyword.associatedtype
+        public static let `associatedtype`: SourceLangSwiftKeyword = "source.lang.swift.keyword.associatedtype"
+        /// source.lang.swift.keyword.break
+        public static let `break`: SourceLangSwiftKeyword = "source.lang.swift.keyword.break"
+        /// source.lang.swift.keyword.case
+        public static let `case`: SourceLangSwiftKeyword = "source.lang.swift.keyword.case"
+        /// source.lang.swift.keyword.catch
+        public static let `catch`: SourceLangSwiftKeyword = "source.lang.swift.keyword.catch"
+        /// source.lang.swift.keyword.class
+        public static let `class`: SourceLangSwiftKeyword = "source.lang.swift.keyword.class"
+        /// source.lang.swift.keyword.continue
+        public static let `continue`: SourceLangSwiftKeyword = "source.lang.swift.keyword.continue"
+        /// source.lang.swift.keyword.default
+        public static let `default`: SourceLangSwiftKeyword = "source.lang.swift.keyword.default"
+        /// source.lang.swift.keyword.defer
+        public static let `defer`: SourceLangSwiftKeyword = "source.lang.swift.keyword.defer"
+        /// source.lang.swift.keyword.deinit
+        public static let `deinit`: SourceLangSwiftKeyword = "source.lang.swift.keyword.deinit"
+        /// source.lang.swift.keyword.do
+        public static let `do`: SourceLangSwiftKeyword = "source.lang.swift.keyword.do"
+        /// source.lang.swift.keyword.else
+        public static let `else`: SourceLangSwiftKeyword = "source.lang.swift.keyword.else"
+        /// source.lang.swift.keyword.enum
+        public static let `enum`: SourceLangSwiftKeyword = "source.lang.swift.keyword.enum"
+        /// source.lang.swift.keyword.extension
+        public static let `extension`: SourceLangSwiftKeyword = "source.lang.swift.keyword.extension"
+        /// source.lang.swift.keyword.fallthrough
+        public static let `fallthrough`: SourceLangSwiftKeyword = "source.lang.swift.keyword.fallthrough"
+        /// source.lang.swift.keyword.false
+        public static let `false`: SourceLangSwiftKeyword = "source.lang.swift.keyword.false"
+        /// source.lang.swift.keyword.fileprivate
+        public static let `fileprivate`: SourceLangSwiftKeyword = "source.lang.swift.keyword.fileprivate"
+        /// source.lang.swift.keyword.for
+        public static let `for`: SourceLangSwiftKeyword = "source.lang.swift.keyword.for"
+        /// source.lang.swift.keyword.func
+        public static let `func`: SourceLangSwiftKeyword = "source.lang.swift.keyword.func"
+        /// source.lang.swift.keyword.guard
+        public static let `guard`: SourceLangSwiftKeyword = "source.lang.swift.keyword.guard"
+        /// source.lang.swift.keyword.if
+        public static let `if`: SourceLangSwiftKeyword = "source.lang.swift.keyword.if"
+        /// source.lang.swift.keyword.import
+        public static let `import`: SourceLangSwiftKeyword = "source.lang.swift.keyword.import"
+        /// source.lang.swift.keyword.in
+        public static let `in`: SourceLangSwiftKeyword = "source.lang.swift.keyword.in"
+        /// source.lang.swift.keyword.init
+        public static let `init`: SourceLangSwiftKeyword = "source.lang.swift.keyword.init"
+        /// source.lang.swift.keyword.inout
+        public static let `inout`: SourceLangSwiftKeyword = "source.lang.swift.keyword.inout"
+        /// source.lang.swift.keyword.internal
+        public static let `internal`: SourceLangSwiftKeyword = "source.lang.swift.keyword.internal"
+        /// source.lang.swift.keyword.is
+        public static let `is`: SourceLangSwiftKeyword = "source.lang.swift.keyword.is"
+        /// source.lang.swift.keyword.let
+        public static let `let`: SourceLangSwiftKeyword = "source.lang.swift.keyword.let"
+        /// source.lang.swift.keyword.nil
+        public static let `nil`: SourceLangSwiftKeyword = "source.lang.swift.keyword.nil"
+        /// source.lang.swift.keyword.operator
+        public static let `operator`: SourceLangSwiftKeyword = "source.lang.swift.keyword.operator"
+        /// source.lang.swift.keyword.precedencegroup
+        public static let `precedencegroup`: SourceLangSwiftKeyword = "source.lang.swift.keyword.precedencegroup"
+        /// source.lang.swift.keyword.private
+        public static let `private`: SourceLangSwiftKeyword = "source.lang.swift.keyword.private"
+        /// source.lang.swift.keyword.protocol
+        public static let `protocol`: SourceLangSwiftKeyword = "source.lang.swift.keyword.protocol"
+        /// source.lang.swift.keyword.public
+        public static let `public`: SourceLangSwiftKeyword = "source.lang.swift.keyword.public"
+        /// source.lang.swift.keyword.repeat
+        public static let `repeat`: SourceLangSwiftKeyword = "source.lang.swift.keyword.repeat"
+        /// source.lang.swift.keyword.rethrows
+        public static let `rethrows`: SourceLangSwiftKeyword = "source.lang.swift.keyword.rethrows"
+        /// source.lang.swift.keyword.return
+        public static let `return`: SourceLangSwiftKeyword = "source.lang.swift.keyword.return"
+        /// source.lang.swift.keyword.self
+        public static let `self`: SourceLangSwiftKeyword = "source.lang.swift.keyword.self"
+        /// source.lang.swift.keyword.static
+        public static let `static`: SourceLangSwiftKeyword = "source.lang.swift.keyword.static"
+        /// source.lang.swift.keyword.struct
+        public static let `struct`: SourceLangSwiftKeyword = "source.lang.swift.keyword.struct"
+        /// source.lang.swift.keyword.subscript
+        public static let `subscript`: SourceLangSwiftKeyword = "source.lang.swift.keyword.subscript"
+        /// source.lang.swift.keyword.super
+        public static let `super`: SourceLangSwiftKeyword = "source.lang.swift.keyword.super"
+        /// source.lang.swift.keyword.switch
+        public static let `switch`: SourceLangSwiftKeyword = "source.lang.swift.keyword.switch"
+        /// source.lang.swift.keyword.throw
+        public static let `throw`: SourceLangSwiftKeyword = "source.lang.swift.keyword.throw"
+        /// source.lang.swift.keyword.throws
+        public static let `throws`: SourceLangSwiftKeyword = "source.lang.swift.keyword.throws"
+        /// source.lang.swift.keyword.true
+        public static let `true`: SourceLangSwiftKeyword = "source.lang.swift.keyword.true"
+        /// source.lang.swift.keyword.try
+        public static let `try`: SourceLangSwiftKeyword = "source.lang.swift.keyword.try"
+        /// source.lang.swift.keyword.typealias
+        public static let `typealias`: SourceLangSwiftKeyword = "source.lang.swift.keyword.typealias"
+        /// source.lang.swift.keyword.var
+        public static let `var`: SourceLangSwiftKeyword = "source.lang.swift.keyword.var"
+        /// source.lang.swift.keyword.where
+        public static let `where`: SourceLangSwiftKeyword = "source.lang.swift.keyword.where"
+        /// source.lang.swift.keyword.while
+        public static let `while`: SourceLangSwiftKeyword = "source.lang.swift.keyword.while"
+    }
+    public struct SourceLangSwiftLiteral {
+        public let uid: UID
+        /// source.lang.swift.literal.array
+        public static let array: SourceLangSwiftLiteral = "source.lang.swift.literal.array"
+        /// source.lang.swift.literal.boolean
+        public static let boolean: SourceLangSwiftLiteral = "source.lang.swift.literal.boolean"
+        /// source.lang.swift.literal.color
+        public static let color: SourceLangSwiftLiteral = "source.lang.swift.literal.color"
+        /// source.lang.swift.literal.dictionary
+        public static let dictionary: SourceLangSwiftLiteral = "source.lang.swift.literal.dictionary"
+        /// source.lang.swift.literal.image
+        public static let image: SourceLangSwiftLiteral = "source.lang.swift.literal.image"
+        /// source.lang.swift.literal.integer
+        public static let integer: SourceLangSwiftLiteral = "source.lang.swift.literal.integer"
+        /// source.lang.swift.literal.nil
+        public static let `nil`: SourceLangSwiftLiteral = "source.lang.swift.literal.nil"
+        /// source.lang.swift.literal.string
+        public static let string: SourceLangSwiftLiteral = "source.lang.swift.literal.string"
+        /// source.lang.swift.literal.tuple
+        public static let tuple: SourceLangSwiftLiteral = "source.lang.swift.literal.tuple"
+    }
+    public struct SourceLangSwiftRef {
+        public let uid: UID
+        /// source.lang.swift.ref.associatedtype
+        public static let `associatedtype`: SourceLangSwiftRef = "source.lang.swift.ref.associatedtype"
+        /// source.lang.swift.ref.class
+        public static let `class`: SourceLangSwiftRef = "source.lang.swift.ref.class"
+        /// source.lang.swift.ref.enum
+        public static let `enum`: SourceLangSwiftRef = "source.lang.swift.ref.enum"
+        /// source.lang.swift.ref.enumelement
+        public static let enumelement: SourceLangSwiftRef = "source.lang.swift.ref.enumelement"
+        /// source.lang.swift.ref.function.accessor.address
+        public static let functionAccessorAddress: SourceLangSwiftRef = "source.lang.swift.ref.function.accessor.address"
+        /// source.lang.swift.ref.function.accessor.didset
+        public static let functionAccessorDidset: SourceLangSwiftRef = "source.lang.swift.ref.function.accessor.didset"
+        /// source.lang.swift.ref.function.accessor.getter
+        public static let functionAccessorGetter: SourceLangSwiftRef = "source.lang.swift.ref.function.accessor.getter"
+        /// source.lang.swift.ref.function.accessor.mutableaddress
+        public static let functionAccessorMutableaddress: SourceLangSwiftRef = "source.lang.swift.ref.function.accessor.mutableaddress"
+        /// source.lang.swift.ref.function.accessor.setter
+        public static let functionAccessorSetter: SourceLangSwiftRef = "source.lang.swift.ref.function.accessor.setter"
+        /// source.lang.swift.ref.function.accessor.willset
+        public static let functionAccessorWillset: SourceLangSwiftRef = "source.lang.swift.ref.function.accessor.willset"
+        /// source.lang.swift.ref.function.constructor
+        public static let functionConstructor: SourceLangSwiftRef = "source.lang.swift.ref.function.constructor"
+        /// source.lang.swift.ref.function.destructor
+        public static let functionDestructor: SourceLangSwiftRef = "source.lang.swift.ref.function.destructor"
+        /// source.lang.swift.ref.function.free
+        public static let functionFree: SourceLangSwiftRef = "source.lang.swift.ref.function.free"
+        /// source.lang.swift.ref.function.method.class
+        public static let functionMethodClass: SourceLangSwiftRef = "source.lang.swift.ref.function.method.class"
+        /// source.lang.swift.ref.function.method.instance
+        public static let functionMethodInstance: SourceLangSwiftRef = "source.lang.swift.ref.function.method.instance"
+        /// source.lang.swift.ref.function.method.static
+        public static let functionMethodStatic: SourceLangSwiftRef = "source.lang.swift.ref.function.method.static"
+        /// source.lang.swift.ref.function.operator.infix
+        public static let functionOperatorInfix: SourceLangSwiftRef = "source.lang.swift.ref.function.operator.infix"
+        /// source.lang.swift.ref.function.operator.postfix
+        public static let functionOperatorPostfix: SourceLangSwiftRef = "source.lang.swift.ref.function.operator.postfix"
+        /// source.lang.swift.ref.function.operator.prefix
+        public static let functionOperatorPrefix: SourceLangSwiftRef = "source.lang.swift.ref.function.operator.prefix"
+        /// source.lang.swift.ref.function.subscript
+        public static let functionSubscript: SourceLangSwiftRef = "source.lang.swift.ref.function.subscript"
+        /// source.lang.swift.ref.generic_type_param
+        public static let generic_type_param: SourceLangSwiftRef = "source.lang.swift.ref.generic_type_param"
+        /// source.lang.swift.ref.module
+        public static let module: SourceLangSwiftRef = "source.lang.swift.ref.module"
+        /// source.lang.swift.ref.precedencegroup
+        public static let `precedencegroup`: SourceLangSwiftRef = "source.lang.swift.ref.precedencegroup"
+        /// source.lang.swift.ref.protocol
+        public static let `protocol`: SourceLangSwiftRef = "source.lang.swift.ref.protocol"
+        /// source.lang.swift.ref.struct
+        public static let `struct`: SourceLangSwiftRef = "source.lang.swift.ref.struct"
+        /// source.lang.swift.ref.typealias
+        public static let `typealias`: SourceLangSwiftRef = "source.lang.swift.ref.typealias"
+        /// source.lang.swift.ref.var.class
+        public static let varClass: SourceLangSwiftRef = "source.lang.swift.ref.var.class"
+        /// source.lang.swift.ref.var.global
+        public static let varGlobal: SourceLangSwiftRef = "source.lang.swift.ref.var.global"
+        /// source.lang.swift.ref.var.instance
+        public static let varInstance: SourceLangSwiftRef = "source.lang.swift.ref.var.instance"
+        /// source.lang.swift.ref.var.local
+        public static let varLocal: SourceLangSwiftRef = "source.lang.swift.ref.var.local"
+        /// source.lang.swift.ref.var.static
+        public static let varStatic: SourceLangSwiftRef = "source.lang.swift.ref.var.static"
+    }
+    public struct SourceLangSwiftStmt {
+        public let uid: UID
+        /// source.lang.swift.stmt.brace
+        public static let brace: SourceLangSwiftStmt = "source.lang.swift.stmt.brace"
+        /// source.lang.swift.stmt.case
+        public static let `case`: SourceLangSwiftStmt = "source.lang.swift.stmt.case"
+        /// source.lang.swift.stmt.for
+        public static let `for`: SourceLangSwiftStmt = "source.lang.swift.stmt.for"
+        /// source.lang.swift.stmt.foreach
+        public static let foreach: SourceLangSwiftStmt = "source.lang.swift.stmt.foreach"
+        /// source.lang.swift.stmt.guard
+        public static let `guard`: SourceLangSwiftStmt = "source.lang.swift.stmt.guard"
+        /// source.lang.swift.stmt.if
+        public static let `if`: SourceLangSwiftStmt = "source.lang.swift.stmt.if"
+        /// source.lang.swift.stmt.repeatwhile
+        public static let repeatwhile: SourceLangSwiftStmt = "source.lang.swift.stmt.repeatwhile"
+        /// source.lang.swift.stmt.switch
+        public static let `switch`: SourceLangSwiftStmt = "source.lang.swift.stmt.switch"
+        /// source.lang.swift.stmt.while
+        public static let `while`: SourceLangSwiftStmt = "source.lang.swift.stmt.while"
+    }
+    public struct SourceLangSwiftStructureElem {
+        public let uid: UID
+        /// source.lang.swift.structure.elem.condition_expr
+        public static let condition_expr: SourceLangSwiftStructureElem = "source.lang.swift.structure.elem.condition_expr"
+        /// source.lang.swift.structure.elem.expr
+        public static let expr: SourceLangSwiftStructureElem = "source.lang.swift.structure.elem.expr"
+        /// source.lang.swift.structure.elem.id
+        public static let id: SourceLangSwiftStructureElem = "source.lang.swift.structure.elem.id"
+        /// source.lang.swift.structure.elem.init_expr
+        public static let init_expr: SourceLangSwiftStructureElem = "source.lang.swift.structure.elem.init_expr"
+        /// source.lang.swift.structure.elem.pattern
+        public static let pattern: SourceLangSwiftStructureElem = "source.lang.swift.structure.elem.pattern"
+        /// source.lang.swift.structure.elem.typeref
+        public static let typeref: SourceLangSwiftStructureElem = "source.lang.swift.structure.elem.typeref"
+    }
+    public struct SourceLangSwiftSyntaxtype {
+        public let uid: UID
+        /// source.lang.swift.syntaxtype.argument
+        public static let argument: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.argument"
+        /// source.lang.swift.syntaxtype.attribute.builtin
+        public static let attributeBuiltin: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.attribute.builtin"
+        /// source.lang.swift.syntaxtype.attribute.id
+        public static let attributeId: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.attribute.id"
+        /// source.lang.swift.syntaxtype.buildconfig.id
+        public static let buildconfigId: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.buildconfig.id"
+        /// source.lang.swift.syntaxtype.buildconfig.keyword
+        public static let buildconfigKeyword: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.buildconfig.keyword"
+        /// source.lang.swift.syntaxtype.comment
+        public static let comment: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.comment"
+        /// source.lang.swift.syntaxtype.comment.mark
+        public static let commentMark: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.comment.mark"
+        /// source.lang.swift.syntaxtype.comment.url
+        public static let commentUrl: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.comment.url"
+        /// source.lang.swift.syntaxtype.doccomment
+        public static let doccomment: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.doccomment"
+        /// source.lang.swift.syntaxtype.doccomment.field
+        public static let doccommentField: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.doccomment.field"
+        /// source.lang.swift.syntaxtype.identifier
+        public static let identifier: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.identifier"
+        /// source.lang.swift.syntaxtype.keyword
+        public static let keyword: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.keyword"
+        /// source.lang.swift.syntaxtype.number
+        public static let number: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.number"
+        /// source.lang.swift.syntaxtype.objectliteral
+        public static let objectliteral: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.objectliteral"
+        /// source.lang.swift.syntaxtype.parameter
+        public static let parameter: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.parameter"
+        /// source.lang.swift.syntaxtype.placeholder
+        public static let placeholder: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.placeholder"
+        /// source.lang.swift.syntaxtype.string
+        public static let string: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.string"
+        /// source.lang.swift.syntaxtype.string_interpolation_anchor
+        public static let string_interpolation_anchor: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.string_interpolation_anchor"
+        /// source.lang.swift.syntaxtype.typeidentifier
+        public static let typeidentifier: SourceLangSwiftSyntaxtype = "source.lang.swift.syntaxtype.typeidentifier"
+    }
+    public struct SourceNotification {
+        public let uid: UID
+        /// source.notification.editor.documentupdate
+        public static let editorDocumentupdate: SourceNotification = "source.notification.editor.documentupdate"
+        /// source.notification.sema_disabled
+        public static let sema_disabled: SourceNotification = "source.notification.sema_disabled"
+    }
+    public struct SourceRequest {
+        public let uid: UID
+        /// source.request.buildsettings.register
+        public static let buildsettingsRegister: SourceRequest = "source.request.buildsettings.register"
+        /// source.request.codecomplete
+        public static let codecomplete: SourceRequest = "source.request.codecomplete"
+        /// source.request.codecomplete.cache.ondisk
+        public static let codecompleteCacheOndisk: SourceRequest = "source.request.codecomplete.cache.ondisk"
+        /// source.request.codecomplete.close
+        public static let codecompleteClose: SourceRequest = "source.request.codecomplete.close"
+        /// source.request.codecomplete.open
+        public static let codecompleteOpen: SourceRequest = "source.request.codecomplete.open"
+        /// source.request.codecomplete.setcustom
+        public static let codecompleteSetcustom: SourceRequest = "source.request.codecomplete.setcustom"
+        /// source.request.codecomplete.setpopularapi
+        public static let codecompleteSetpopularapi: SourceRequest = "source.request.codecomplete.setpopularapi"
+        /// source.request.codecomplete.update
+        public static let codecompleteUpdate: SourceRequest = "source.request.codecomplete.update"
+        /// source.request.crash_exit
+        public static let crash_exit: SourceRequest = "source.request.crash_exit"
+        /// source.request.cursorinfo
+        public static let cursorinfo: SourceRequest = "source.request.cursorinfo"
+        /// source.request.demangle
+        public static let demangle: SourceRequest = "source.request.demangle"
+        /// source.request.docinfo
+        public static let docinfo: SourceRequest = "source.request.docinfo"
+        /// source.request.editor.close
+        public static let editorClose: SourceRequest = "source.request.editor.close"
+        /// source.request.editor.expand_placeholder
+        public static let editorExpand_Placeholder: SourceRequest = "source.request.editor.expand_placeholder"
+        /// source.request.editor.extract.comment
+        public static let editorExtractComment: SourceRequest = "source.request.editor.extract.comment"
+        /// source.request.editor.find_interface_doc
+        public static let editorFind_Interface_Doc: SourceRequest = "source.request.editor.find_interface_doc"
+        /// source.request.editor.find_usr
+        public static let editorFind_Usr: SourceRequest = "source.request.editor.find_usr"
+        /// source.request.editor.formattext
+        public static let editorFormattext: SourceRequest = "source.request.editor.formattext"
+        /// source.request.editor.open
+        public static let editorOpen: SourceRequest = "source.request.editor.open"
+        /// source.request.editor.open.interface
+        public static let editorOpenInterface: SourceRequest = "source.request.editor.open.interface"
+        /// source.request.editor.open.interface.header
+        public static let editorOpenInterfaceHeader: SourceRequest = "source.request.editor.open.interface.header"
+        /// source.request.editor.open.interface.swiftsource
+        public static let editorOpenInterfaceSwiftsource: SourceRequest = "source.request.editor.open.interface.swiftsource"
+        /// source.request.editor.open.interface.swifttype
+        public static let editorOpenInterfaceSwifttype: SourceRequest = "source.request.editor.open.interface.swifttype"
+        /// source.request.editor.replacetext
+        public static let editorReplacetext: SourceRequest = "source.request.editor.replacetext"
+        /// source.request.indexsource
+        public static let indexsource: SourceRequest = "source.request.indexsource"
+        /// source.request.mangle_simple_class
+        public static let mangle_simple_class: SourceRequest = "source.request.mangle_simple_class"
+        /// source.request.module.groups
+        public static let moduleGroups: SourceRequest = "source.request.module.groups"
+        /// source.request.protocol_version
+        public static let protocol_version: SourceRequest = "source.request.protocol_version"
+        /// source.request.relatedidents
+        public static let relatedidents: SourceRequest = "source.request.relatedidents"
     }
 }
 
-extension UID.key {
-    public static func ==(lhs: UID.key, rhs: UID.key) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.key) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.key, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.key) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.key, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.Key: UIDNamespace {
+    public static let __uid_prefix = "key"
+    public static func ==(lhs: UID.Key, rhs: UID.Key) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.Key) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.Key, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.Key) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.Key, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.availability.platform {
-    public static func ==(lhs: UID.source.availability.platform, rhs: UID.source.availability.platform) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.availability.platform) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.availability.platform, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.availability.platform) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.availability.platform, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceAvailabilityPlatform: UIDNamespace {
+    public static let __uid_prefix = "source.availability.platform"
+    public static func ==(lhs: UID.SourceAvailabilityPlatform, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceAvailabilityPlatform, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceAvailabilityPlatform, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.codecompletion {
-    public static func ==(lhs: UID.source.codecompletion, rhs: UID.source.codecompletion) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.codecompletion) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.codecompletion, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.codecompletion) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.codecompletion, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceCodecompletion: UIDNamespace {
+    public static let __uid_prefix = "source.codecompletion"
+    public static func ==(lhs: UID.SourceCodecompletion, rhs: UID.SourceCodecompletion) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceCodecompletion) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceCodecompletion, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceCodecompletion) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceCodecompletion, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.decl.attribute {
-    public static func ==(lhs: UID.source.decl.attribute, rhs: UID.source.decl.attribute) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.decl.attribute) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.decl.attribute, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.decl.attribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.decl.attribute, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceDeclAttribute: UIDNamespace {
+    public static let __uid_prefix = "source.decl.attribute"
+    public static func ==(lhs: UID.SourceDeclAttribute, rhs: UID.SourceDeclAttribute) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceDeclAttribute) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceDeclAttribute, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceDeclAttribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceDeclAttribute, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.diagnostic.severity {
-    public static func ==(lhs: UID.source.diagnostic.severity, rhs: UID.source.diagnostic.severity) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.diagnostic.severity) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.diagnostic.severity, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.diagnostic.severity) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.diagnostic.severity, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceDiagnosticSeverity: UIDNamespace {
+    public static let __uid_prefix = "source.diagnostic.severity"
+    public static func ==(lhs: UID.SourceDiagnosticSeverity, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceDiagnosticSeverity, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceDiagnosticSeverity, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.diagnostic.stage.swift {
-    public static func ==(lhs: UID.source.diagnostic.stage.swift, rhs: UID.source.diagnostic.stage.swift) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.diagnostic.stage.swift) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.diagnostic.stage.swift, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.diagnostic.stage.swift) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.diagnostic.stage.swift, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceDiagnosticStageSwift: UIDNamespace {
+    public static let __uid_prefix = "source.diagnostic.stage.swift"
+    public static func ==(lhs: UID.SourceDiagnosticStageSwift, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceDiagnosticStageSwift, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceDiagnosticStageSwift, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift {
-    public static func ==(lhs: UID.source.lang.swift, rhs: UID.source.lang.swift) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwift: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift"
+    public static func ==(lhs: UID.SourceLangSwift, rhs: UID.SourceLangSwift) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwift) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwift, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwift) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwift, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.accessibility {
-    public static func ==(lhs: UID.source.lang.swift.accessibility, rhs: UID.source.lang.swift.accessibility) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.accessibility) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.accessibility, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.accessibility) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.accessibility, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftAccessibility: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.accessibility"
+    public static func ==(lhs: UID.SourceLangSwiftAccessibility, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftAccessibility, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftAccessibility, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.attribute {
-    public static func ==(lhs: UID.source.lang.swift.attribute, rhs: UID.source.lang.swift.attribute) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.attribute) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.attribute, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.attribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.attribute, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftAttribute: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.attribute"
+    public static func ==(lhs: UID.SourceLangSwiftAttribute, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftAttribute, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftAttribute, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.codecomplete {
-    public static func ==(lhs: UID.source.lang.swift.codecomplete, rhs: UID.source.lang.swift.codecomplete) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.codecomplete) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.codecomplete, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.codecomplete) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.codecomplete, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftCodecomplete: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.codecomplete"
+    public static func ==(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.decl {
-    public static func ==(lhs: UID.source.lang.swift.decl, rhs: UID.source.lang.swift.decl) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.decl) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.decl, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.decl) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.decl, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftDecl: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.decl"
+    public static func ==(lhs: UID.SourceLangSwiftDecl, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftDecl, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftDecl, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.expr {
-    public static func ==(lhs: UID.source.lang.swift.expr, rhs: UID.source.lang.swift.expr) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.expr) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.expr, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.expr) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.expr, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftExpr: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.expr"
+    public static func ==(lhs: UID.SourceLangSwiftExpr, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftExpr, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftExpr, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.`import`.module {
-    public static func ==(lhs: UID.source.lang.swift.`import`.module, rhs: UID.source.lang.swift.`import`.module) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.`import`.module) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.`import`.module, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.`import`.module) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.`import`.module, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftImportModule: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.import.module"
+    public static func ==(lhs: UID.SourceLangSwiftImportModule, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftImportModule, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftImportModule, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.keyword {
-    public static func ==(lhs: UID.source.lang.swift.keyword, rhs: UID.source.lang.swift.keyword) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.keyword) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.keyword, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.keyword) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.keyword, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftKeyword: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.keyword"
+    public static func ==(lhs: UID.SourceLangSwiftKeyword, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftKeyword, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftKeyword, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.literal {
-    public static func ==(lhs: UID.source.lang.swift.literal, rhs: UID.source.lang.swift.literal) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.literal) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.literal, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.literal) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.literal, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftLiteral: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.literal"
+    public static func ==(lhs: UID.SourceLangSwiftLiteral, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftLiteral, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftLiteral, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.ref {
-    public static func ==(lhs: UID.source.lang.swift.ref, rhs: UID.source.lang.swift.ref) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.ref) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.ref, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.ref) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.ref, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftRef: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.ref"
+    public static func ==(lhs: UID.SourceLangSwiftRef, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftRef, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftRef, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.stmt {
-    public static func ==(lhs: UID.source.lang.swift.stmt, rhs: UID.source.lang.swift.stmt) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.stmt) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.stmt, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.stmt) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.stmt, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftStmt: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.stmt"
+    public static func ==(lhs: UID.SourceLangSwiftStmt, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftStmt, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftStmt, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.structure.elem {
-    public static func ==(lhs: UID.source.lang.swift.structure.elem, rhs: UID.source.lang.swift.structure.elem) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.structure.elem) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.structure.elem, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.structure.elem) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.structure.elem, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftStructureElem: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.structure.elem"
+    public static func ==(lhs: UID.SourceLangSwiftStructureElem, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftStructureElem, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftStructureElem, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.lang.swift.syntaxtype {
-    public static func ==(lhs: UID.source.lang.swift.syntaxtype, rhs: UID.source.lang.swift.syntaxtype) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.lang.swift.syntaxtype) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.lang.swift.syntaxtype, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.lang.swift.syntaxtype) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.lang.swift.syntaxtype, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceLangSwiftSyntaxtype: UIDNamespace {
+    public static let __uid_prefix = "source.lang.swift.syntaxtype"
+    public static func ==(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.notification {
-    public static func ==(lhs: UID.source.notification, rhs: UID.source.notification) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.notification) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.notification, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.notification) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.notification, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceNotification: UIDNamespace {
+    public static let __uid_prefix = "source.notification"
+    public static func ==(lhs: UID.SourceNotification, rhs: UID.SourceNotification) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceNotification) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceNotification, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceNotification) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceNotification, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-extension UID.source.request {
-    public static func ==(lhs: UID.source.request, rhs: UID.source.request) -> Bool { return lhs.uid == rhs.uid }
-    public static func ==(lhs: UID, rhs: UID.source.request) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.source.request, rhs: UID) -> Bool { return rhs == lhs }
-    public static func ==(lhs: UID?, rhs: UID.source.request) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.source.request, rhs: UID?) -> Bool { return rhs == lhs }
+extension UID.SourceRequest: UIDNamespace {
+    public static let __uid_prefix = "source.request"
+    public static func ==(lhs: UID.SourceRequest, rhs: UID.SourceRequest) -> Bool { return lhs.uid == rhs.uid }
+    public static func ==(lhs: UID, rhs: UID.SourceRequest) -> Bool { return lhs == rhs.uid }
+    public static func ==(lhs: UID.SourceRequest, rhs: UID) -> Bool { return rhs == lhs }
+    public static func ==(lhs: UID?, rhs: UID.SourceRequest) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
+    public static func ==(lhs: UID.SourceRequest, rhs: UID?) -> Bool { return rhs == lhs }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }

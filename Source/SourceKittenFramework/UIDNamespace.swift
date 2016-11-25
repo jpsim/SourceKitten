@@ -9,8 +9,9 @@
 import Foundation
 
 // MARK: - UIDNamespace
-public protocol UIDNamespace: CustomStringConvertible, ExpressibleByStringLiteral, Equatable {
+public protocol UIDNamespace: CustomStringConvertible, Equatable, ExpressibleByStringLiteral {
     var uid: UID { get }
+    static var __uid_prefix: String { get }
 }
 
 extension UIDNamespace {
@@ -19,12 +20,8 @@ extension UIDNamespace {
         return uid.description
     }
 
-    internal static func _inferUID(from string: String) -> UID {
-        let namespace = _typeName(type(of:self))
-            .components(separatedBy: ".")
-            .dropFirst(2)
-            .dropLast()
-            .joined(separator: ".")
+    static func _inferUID(from string: String) -> UID {
+        let namespace = __uid_prefix
         let fullyQualifiedName: String
         if string.hasPrefix(".") {
             fullyQualifiedName = namespace + string
@@ -35,7 +32,11 @@ extension UIDNamespace {
             #endif
             fullyQualifiedName = string
         }
-        return UID(fullyQualifiedName)
+        let result = UID(fullyQualifiedName)
+        #if DEBUG
+        precondition(result.isKnown, "\"\(fullyQualifiedName)\" is not predefined UID string!")
+        #endif
+        return result
     }
 
     // ExpressibleByStringLiteral

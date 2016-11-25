@@ -64,14 +64,14 @@ public struct SourceKitVariant {
 
 // MARK: - Convenient properties of SourceKitVariant for well known UID.key*
 extension SourceKitVariant {
-    public subscript(key: UID.key) -> SourceKitVariant? {
+    public subscript(key: UID.Key) -> SourceKitVariant? {
         get { return box.dictionary?[key.uid] }
         set { box.dictionary?[key.uid] = newValue }
     }
 
     /// Accessibility (UID.source.lang.swift.accessibility).
-    public var accessibility: UID.source.lang.swift.accessibility? {
-        return self[.accessibility]?.uid.map(UID.source.lang.swift.accessibility.init)
+    public var accessibility: UID.SourceLangSwiftAccessibility? {
+        return self[.accessibility]?.uid.map(UID.SourceLangSwiftAccessibility.init)
     }
     /// Annotated declaration (String).
     public var annotatedDeclaration: String? {
@@ -82,8 +82,8 @@ extension SourceKitVariant {
         return self[.attributes]?.array
     }
     /// Attribute (UID.source.decl.attribute).
-    public var attribute: UID.source.decl.attribute? {
-        return self[.attribute]?.uid.map(UID.source.decl.attribute.init)
+    public var attribute: UID.SourceDeclAttribute? {
+        return self[.attribute]?.uid.map(UID.SourceDeclAttribute.init)
     }
     /// Body length (Int).
     public var bodyLength: Int? {
@@ -94,8 +94,8 @@ extension SourceKitVariant {
         return self[.bodyoffset]?.int
     }
     /// Diagnostic stage (UID.source.diagnostic.stage.swift).
-    public var diagnosticStage: UID.source.diagnostic.stage.swift? {
-        return self[.diagnostic_stage]?.uid.map(UID.source.diagnostic.stage.swift.init)
+    public var diagnosticStage: UID.SourceDiagnosticStageSwift? {
+        return self[.diagnostic_stage]?.uid.map(UID.SourceDiagnosticStageSwift.init)
     }
     /// File path (String).
     public var filePath: String? {
@@ -103,7 +103,7 @@ extension SourceKitVariant {
     }
     /// Full XML docs (String).
     public var docFullAsXML: String? {
-        return self[UID.key.doc.full_as_xml.uid]?.string
+        return self[.docFull_As_Xml]?.string
     }
     /// Inheritedtype ([SourceKitVariant])
     public var inheritedTypes: [SourceKitVariant]? {
