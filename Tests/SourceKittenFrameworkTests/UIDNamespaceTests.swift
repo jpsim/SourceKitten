@@ -91,7 +91,7 @@ class UIDNamespaceTests: XCTestCase {
         XCTAssertEqual(existingUIDNamespace, generatedUIDNamespace)
 
         // set this to true to overwrite existing UIDNamespace+generated.swift with the generated ones
-        let overwrite = false
+        let overwrite = true
         if existingUIDNamespace != generatedUIDNamespace && overwrite {
             try! generatedUIDNamespace.data(using: .utf8)?.write(to: URL(fileURLWithPath: uidNamespacePath))
         }
@@ -202,11 +202,22 @@ fileprivate func createExtensionOfUID(from uidStrings: [String]) -> String {
 
     let sortedNamespaces = namespaces.sorted(by: { $0.name < $1.name })
     let enums = ["extension UID {"] +
-        sortedNamespaces.flatMap({$0.renderEnum()}).map(indent) +
+        sortedNamespaces.flatMap({ $0.renderEnum() }).map(indent) +
         ["}",""]
-    let extensions = sortedNamespaces.flatMap({$0.renderExtension()})
-    let knownUIDs = renderKnownUIDs(from: uidStrings)
-    return (enums + extensions + knownUIDs).joined(separator: "\n") + "\n"
+    let extensions = sortedNamespaces.flatMap { $0.renderExtension() }
+    let isMemberPropertiesExtension = ["extension UID {"] +
+        sortedNamespaces.map({ $0.renderIsMemberProperty() }).map(indent) +
+        ["}"]
+    let knownUIDOfConstants = sortedNamespaces.flatMap { $0.renderKnownUIDOf() }
+    let knownUIDs = ["let knownUIDs: Set<UID> = ["] +
+        sortedNamespaces.map({ "knownUIDsOf\($0.typeName)," }).map(indent) +
+        ["].reduce([]) { $0.union($1) }"]
+
+    return (enums +
+        extensions +
+        isMemberPropertiesExtension +
+        knownUIDOfConstants +
+        knownUIDs).joined(separator: "\n") + "\n"
 }
 
 fileprivate class Namespace {
@@ -238,6 +249,20 @@ fileprivate class Namespace {
             indent("public static let __uid_prefix = \"\(name)\"")] +
             renderMethods().map(indent) +
             ["}"]
+    }
+
+    func renderIsMemberProperty() -> String {
+        return "public var isMemberOf\(typeName): Bool { return knownUIDsOf\(typeName).contains(self) }"
+    }
+
+    func renderKnownUIDOf() -> [String] {
+        return ["fileprivate let knownUIDsOf\(typeName): Set<UID> = ["] +
+            children.map { "UID(\"\($0)\")," }.map(indent) +
+            ["]"]
+    }
+
+    var typeName: String {
+        return name.upperCamelCase
     }
 
     // Private
@@ -275,20 +300,10 @@ fileprivate class Namespace {
         ]
     }
 
-    private var typeName: String {
-        return name.upperCamelCase
-    }
-
     // escaping keywords with "`"
     private static func escape(_ name: String) -> String {
         return keywords.contains(name) ? "`\(name)`" : name
     }
-}
-
-fileprivate func renderKnownUIDs(from UIDs: [String]) -> [String] {
-    return ["#if DEBUG","let knownUIDs = [",] +
-        UIDs.map({"    UID(\"\($0)\"),"}) +
-        ["]","#endif"]
 }
 
 extension String {

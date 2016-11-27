@@ -1252,8 +1252,30 @@ extension UID.SourceRequest: UIDNamespace {
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
 }
-#if DEBUG
-let knownUIDs = [
+extension UID {
+    public var isMemberOfKey: Bool { return knownUIDsOfKey.contains(self) }
+    public var isMemberOfSourceAvailabilityPlatform: Bool { return knownUIDsOfSourceAvailabilityPlatform.contains(self) }
+    public var isMemberOfSourceCodecompletion: Bool { return knownUIDsOfSourceCodecompletion.contains(self) }
+    public var isMemberOfSourceDeclAttribute: Bool { return knownUIDsOfSourceDeclAttribute.contains(self) }
+    public var isMemberOfSourceDiagnosticSeverity: Bool { return knownUIDsOfSourceDiagnosticSeverity.contains(self) }
+    public var isMemberOfSourceDiagnosticStageSwift: Bool { return knownUIDsOfSourceDiagnosticStageSwift.contains(self) }
+    public var isMemberOfSourceLangSwift: Bool { return knownUIDsOfSourceLangSwift.contains(self) }
+    public var isMemberOfSourceLangSwiftAccessibility: Bool { return knownUIDsOfSourceLangSwiftAccessibility.contains(self) }
+    public var isMemberOfSourceLangSwiftAttribute: Bool { return knownUIDsOfSourceLangSwiftAttribute.contains(self) }
+    public var isMemberOfSourceLangSwiftCodecomplete: Bool { return knownUIDsOfSourceLangSwiftCodecomplete.contains(self) }
+    public var isMemberOfSourceLangSwiftDecl: Bool { return knownUIDsOfSourceLangSwiftDecl.contains(self) }
+    public var isMemberOfSourceLangSwiftExpr: Bool { return knownUIDsOfSourceLangSwiftExpr.contains(self) }
+    public var isMemberOfSourceLangSwiftImportModule: Bool { return knownUIDsOfSourceLangSwiftImportModule.contains(self) }
+    public var isMemberOfSourceLangSwiftKeyword: Bool { return knownUIDsOfSourceLangSwiftKeyword.contains(self) }
+    public var isMemberOfSourceLangSwiftLiteral: Bool { return knownUIDsOfSourceLangSwiftLiteral.contains(self) }
+    public var isMemberOfSourceLangSwiftRef: Bool { return knownUIDsOfSourceLangSwiftRef.contains(self) }
+    public var isMemberOfSourceLangSwiftStmt: Bool { return knownUIDsOfSourceLangSwiftStmt.contains(self) }
+    public var isMemberOfSourceLangSwiftStructureElem: Bool { return knownUIDsOfSourceLangSwiftStructureElem.contains(self) }
+    public var isMemberOfSourceLangSwiftSyntaxtype: Bool { return knownUIDsOfSourceLangSwiftSyntaxtype.contains(self) }
+    public var isMemberOfSourceNotification: Bool { return knownUIDsOfSourceNotification.contains(self) }
+    public var isMemberOfSourceRequest: Bool { return knownUIDsOfSourceRequest.contains(self) }
+}
+fileprivate let knownUIDsOfKey: Set<UID> = [
     UID("key.accessibility"),
     UID("key.annotated_decl"),
     UID("key.annotations"),
@@ -1377,6 +1399,8 @@ let knownUIDs = [
     UID("key.usr"),
     UID("key.version_major"),
     UID("key.version_minor"),
+]
+fileprivate let knownUIDsOfSourceAvailabilityPlatform: Set<UID> = [
     UID("source.availability.platform.ios"),
     UID("source.availability.platform.ios_app_extension"),
     UID("source.availability.platform.osx"),
@@ -1385,6 +1409,8 @@ let knownUIDs = [
     UID("source.availability.platform.tvos_app_extension"),
     UID("source.availability.platform.watchos"),
     UID("source.availability.platform.watchos_app_extension"),
+]
+fileprivate let knownUIDsOfSourceCodecompletion: Set<UID> = [
     UID("source.codecompletion.context.exprspecific"),
     UID("source.codecompletion.context.local"),
     UID("source.codecompletion.context.none"),
@@ -1399,6 +1425,8 @@ let knownUIDs = [
     UID("source.codecompletion.keyword"),
     UID("source.codecompletion.literal"),
     UID("source.codecompletion.module"),
+]
+fileprivate let knownUIDsOfSourceDeclAttribute: Set<UID> = [
     UID("source.decl.attribute.LLDBDebuggerFunction"),
     UID("source.decl.attribute.NSApplicationMain"),
     UID("source.decl.attribute.NSCopying"),
@@ -1454,18 +1482,37 @@ let knownUIDs = [
     UID("source.decl.attribute.unsafe_no_objc_tagged_pointer"),
     UID("source.decl.attribute.warn_unqualified_access"),
     UID("source.decl.attribute.weak"),
+]
+fileprivate let knownUIDsOfSourceDiagnosticSeverity: Set<UID> = [
     UID("source.diagnostic.severity.error"),
     UID("source.diagnostic.severity.note"),
     UID("source.diagnostic.severity.warning"),
+]
+fileprivate let knownUIDsOfSourceDiagnosticStageSwift: Set<UID> = [
     UID("source.diagnostic.stage.swift.parse"),
     UID("source.diagnostic.stage.swift.sema"),
+]
+fileprivate let knownUIDsOfSourceLangSwift: Set<UID> = [
+    UID("source.lang.swift.expr"),
+    UID("source.lang.swift.keyword"),
+    UID("source.lang.swift.pattern"),
+    UID("source.lang.swift.stmt"),
+    UID("source.lang.swift.type"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftAccessibility: Set<UID> = [
     UID("source.lang.swift.accessibility.fileprivate"),
     UID("source.lang.swift.accessibility.internal"),
     UID("source.lang.swift.accessibility.open"),
     UID("source.lang.swift.accessibility.private"),
     UID("source.lang.swift.accessibility.public"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftAttribute: Set<UID> = [
     UID("source.lang.swift.attribute.availability"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftCodecomplete: Set<UID> = [
     UID("source.lang.swift.codecomplete.group"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftDecl: Set<UID> = [
     UID("source.lang.swift.decl.associatedtype"),
     UID("source.lang.swift.decl.class"),
     UID("source.lang.swift.decl.enum"),
@@ -1504,15 +1551,19 @@ let knownUIDs = [
     UID("source.lang.swift.decl.var.local"),
     UID("source.lang.swift.decl.var.parameter"),
     UID("source.lang.swift.decl.var.static"),
-    UID("source.lang.swift.expr"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftExpr: Set<UID> = [
     UID("source.lang.swift.expr.argument"),
     UID("source.lang.swift.expr.array"),
     UID("source.lang.swift.expr.call"),
     UID("source.lang.swift.expr.dictionary"),
     UID("source.lang.swift.expr.object_literal"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftImportModule: Set<UID> = [
     UID("source.lang.swift.import.module.clang"),
     UID("source.lang.swift.import.module.swift"),
-    UID("source.lang.swift.keyword"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftKeyword: Set<UID> = [
     UID("source.lang.swift.keyword.Any"),
     UID("source.lang.swift.keyword.Self"),
     UID("source.lang.swift.keyword._"),
@@ -1572,6 +1623,8 @@ let knownUIDs = [
     UID("source.lang.swift.keyword.var"),
     UID("source.lang.swift.keyword.where"),
     UID("source.lang.swift.keyword.while"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftLiteral: Set<UID> = [
     UID("source.lang.swift.literal.array"),
     UID("source.lang.swift.literal.boolean"),
     UID("source.lang.swift.literal.color"),
@@ -1581,7 +1634,8 @@ let knownUIDs = [
     UID("source.lang.swift.literal.nil"),
     UID("source.lang.swift.literal.string"),
     UID("source.lang.swift.literal.tuple"),
-    UID("source.lang.swift.pattern"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftRef: Set<UID> = [
     UID("source.lang.swift.ref.associatedtype"),
     UID("source.lang.swift.ref.class"),
     UID("source.lang.swift.ref.enum"),
@@ -1613,7 +1667,8 @@ let knownUIDs = [
     UID("source.lang.swift.ref.var.instance"),
     UID("source.lang.swift.ref.var.local"),
     UID("source.lang.swift.ref.var.static"),
-    UID("source.lang.swift.stmt"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftStmt: Set<UID> = [
     UID("source.lang.swift.stmt.brace"),
     UID("source.lang.swift.stmt.case"),
     UID("source.lang.swift.stmt.for"),
@@ -1623,12 +1678,16 @@ let knownUIDs = [
     UID("source.lang.swift.stmt.repeatwhile"),
     UID("source.lang.swift.stmt.switch"),
     UID("source.lang.swift.stmt.while"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftStructureElem: Set<UID> = [
     UID("source.lang.swift.structure.elem.condition_expr"),
     UID("source.lang.swift.structure.elem.expr"),
     UID("source.lang.swift.structure.elem.id"),
     UID("source.lang.swift.structure.elem.init_expr"),
     UID("source.lang.swift.structure.elem.pattern"),
     UID("source.lang.swift.structure.elem.typeref"),
+]
+fileprivate let knownUIDsOfSourceLangSwiftSyntaxtype: Set<UID> = [
     UID("source.lang.swift.syntaxtype.argument"),
     UID("source.lang.swift.syntaxtype.attribute.builtin"),
     UID("source.lang.swift.syntaxtype.attribute.id"),
@@ -1648,9 +1707,12 @@ let knownUIDs = [
     UID("source.lang.swift.syntaxtype.string"),
     UID("source.lang.swift.syntaxtype.string_interpolation_anchor"),
     UID("source.lang.swift.syntaxtype.typeidentifier"),
-    UID("source.lang.swift.type"),
+]
+fileprivate let knownUIDsOfSourceNotification: Set<UID> = [
     UID("source.notification.editor.documentupdate"),
     UID("source.notification.sema_disabled"),
+]
+fileprivate let knownUIDsOfSourceRequest: Set<UID> = [
     UID("source.request.buildsettings.register"),
     UID("source.request.codecomplete"),
     UID("source.request.codecomplete.cache.ondisk"),
@@ -1681,4 +1743,26 @@ let knownUIDs = [
     UID("source.request.protocol_version"),
     UID("source.request.relatedidents"),
 ]
-#endif
+let knownUIDs: Set<UID> = [
+    knownUIDsOfKey,
+    knownUIDsOfSourceAvailabilityPlatform,
+    knownUIDsOfSourceCodecompletion,
+    knownUIDsOfSourceDeclAttribute,
+    knownUIDsOfSourceDiagnosticSeverity,
+    knownUIDsOfSourceDiagnosticStageSwift,
+    knownUIDsOfSourceLangSwift,
+    knownUIDsOfSourceLangSwiftAccessibility,
+    knownUIDsOfSourceLangSwiftAttribute,
+    knownUIDsOfSourceLangSwiftCodecomplete,
+    knownUIDsOfSourceLangSwiftDecl,
+    knownUIDsOfSourceLangSwiftExpr,
+    knownUIDsOfSourceLangSwiftImportModule,
+    knownUIDsOfSourceLangSwiftKeyword,
+    knownUIDsOfSourceLangSwiftLiteral,
+    knownUIDsOfSourceLangSwiftRef,
+    knownUIDsOfSourceLangSwiftStmt,
+    knownUIDsOfSourceLangSwiftStructureElem,
+    knownUIDsOfSourceLangSwiftSyntaxtype,
+    knownUIDsOfSourceNotification,
+    knownUIDsOfSourceRequest,
+].reduce([]) { $0.union($1) }
