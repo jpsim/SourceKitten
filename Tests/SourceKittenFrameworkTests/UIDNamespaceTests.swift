@@ -16,31 +16,54 @@ import XCTest
 class UIDNamespaceTests: XCTestCase {
 
     func testExpressibleByStringLiteral() {
+        // Use Fully Qualified Name
         let keyRequest: UID.Key = "key.request"
         XCTAssertEqual(keyRequest, .request)
+
+        // Use short name with infering prefix
         let keyKind: UID.Key = ".kind"
         XCTAssertEqual(UID.Key.kind, keyKind)
+    }
 
+    func testCompareToSelf() {
         // Equatable
-        do {
-            // Use Fully Qualified Name
-            XCTAssertEqual(UID.SourceLangSwiftDecl.extensionClass, "source.lang.swift.decl.extension.class")
-
-            // Use short name with infering prefix
-            XCTAssertEqual(UID.SourceLangSwiftDecl.extensionClass, ".extension.class")
-        }
+        XCTAssertEqual(UID.SourceLangSwiftDecl.extensionClass, ".extension.class")
+        XCTAssertNotEqual(UID.SourceLangSwiftDecl.extensionClass, ".extension.enum")
 
         // `==` operator
-        do {
-            // Compare with StringLiteral(Fully Qualified Name)
-            XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass == "source.lang.swift.decl.extension.class")
+        XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass == ".extension.class")
+        XCTAssertFalse(UID.SourceLangSwiftDecl.extensionClass == ".extension.enum")
 
-            // Compare with StringLiteral(infering prefix)
-            XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass == ".extension.class")
+        // `!=` operator
+        XCTAssertFalse(UID.SourceLangSwiftDecl.extensionClass != ".extension.class")
+        XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass != ".extension.enum")
+    }
 
-            // Compare with UID
-            XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass == UID("source.lang.swift.decl.extension.class"))
-        }
+    func testUseOperatorsForComparingToUID() {
+        let uidExtensionClass = UID("source.lang.swift.decl.extension.class")
+        let uidExtensionEnum = UID("source.lang.swift.decl.extension.enum")
+
+        // `==` operator
+        XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass == uidExtensionClass)
+        XCTAssertFalse(UID.SourceLangSwiftDecl.extensionClass == uidExtensionEnum)
+        XCTAssertTrue(uidExtensionClass == UID.SourceLangSwiftDecl.extensionClass)
+        XCTAssertFalse(uidExtensionEnum == UID.SourceLangSwiftDecl.extensionClass)
+
+        XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass == Optional(uidExtensionClass))
+        XCTAssertFalse(UID.SourceLangSwiftDecl.extensionClass == Optional(uidExtensionEnum))
+        XCTAssertTrue(Optional(uidExtensionClass) == UID.SourceLangSwiftDecl.extensionClass)
+        XCTAssertFalse(Optional(uidExtensionEnum) == UID.SourceLangSwiftDecl.extensionClass)
+
+        // `!=` operator
+        XCTAssertFalse(UID.SourceLangSwiftDecl.extensionClass != uidExtensionClass)
+        XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass != uidExtensionEnum)
+        XCTAssertFalse(uidExtensionClass != UID.SourceLangSwiftDecl.extensionClass)
+        XCTAssertTrue(uidExtensionEnum != UID.SourceLangSwiftDecl.extensionClass)
+
+        XCTAssertFalse(UID.SourceLangSwiftDecl.extensionClass != Optional(uidExtensionClass))
+        XCTAssertTrue(UID.SourceLangSwiftDecl.extensionClass != Optional(uidExtensionEnum))
+        XCTAssertFalse(Optional(uidExtensionClass) != UID.SourceLangSwiftDecl.extensionClass)
+        XCTAssertTrue(Optional(uidExtensionEnum) != UID.SourceLangSwiftDecl.extensionClass)
     }
 
 //    func testUnknownUIDCausesPreconditionFailureOnDebugBuild() {
@@ -236,10 +259,15 @@ fileprivate class Namespace {
     private func renderMethods() -> [String] {
         return [
             "public static func ==(lhs: UID.\(typeName), rhs: UID.\(typeName)) -> Bool { return lhs.uid == rhs.uid }",
+            "public static func !=(lhs: UID.\(typeName), rhs: UID.\(typeName)) -> Bool { return lhs.uid != rhs.uid }",
             "public static func ==(lhs: UID, rhs: UID.\(typeName)) -> Bool { return lhs == rhs.uid }",
-            "public static func ==(lhs: UID.\(typeName), rhs: UID) -> Bool { return rhs == lhs }",
+            "public static func !=(lhs: UID, rhs: UID.\(typeName)) -> Bool { return lhs != rhs.uid }",
+            "public static func ==(lhs: UID.\(typeName), rhs: UID) -> Bool { return lhs.uid == rhs }",
+            "public static func !=(lhs: UID.\(typeName), rhs: UID) -> Bool { return lhs.uid != rhs }",
             "public static func ==(lhs: UID?, rhs: UID.\(typeName)) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }",
-            "public static func ==(lhs: UID.\(typeName), rhs: UID?) -> Bool { return rhs == lhs }",
+            "public static func !=(lhs: UID?, rhs: UID.\(typeName)) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }",
+            "public static func ==(lhs: UID.\(typeName), rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }",
+            "public static func !=(lhs: UID.\(typeName), rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }",
             // FIXME: Remove following when https://bugs.swift.org/browse/SR-3173 will be resolved.
             "public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }",
             "public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }",

@@ -919,10 +919,15 @@ extension UID {
 extension UID.Key: UIDNamespace {
     public static let __uid_prefix = "key"
     public static func ==(lhs: UID.Key, rhs: UID.Key) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.Key, rhs: UID.Key) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.Key) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.Key, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.Key) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.Key, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.Key, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.Key) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.Key, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.Key) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.Key, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.Key, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -930,10 +935,15 @@ extension UID.Key: UIDNamespace {
 extension UID.SourceAvailabilityPlatform: UIDNamespace {
     public static let __uid_prefix = "source.availability.platform"
     public static func ==(lhs: UID.SourceAvailabilityPlatform, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceAvailabilityPlatform, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceAvailabilityPlatform, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceAvailabilityPlatform, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceAvailabilityPlatform, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceAvailabilityPlatform, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceAvailabilityPlatform) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceAvailabilityPlatform, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceAvailabilityPlatform, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -941,10 +951,15 @@ extension UID.SourceAvailabilityPlatform: UIDNamespace {
 extension UID.SourceCodecompletion: UIDNamespace {
     public static let __uid_prefix = "source.codecompletion"
     public static func ==(lhs: UID.SourceCodecompletion, rhs: UID.SourceCodecompletion) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceCodecompletion, rhs: UID.SourceCodecompletion) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceCodecompletion) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceCodecompletion, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceCodecompletion) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceCodecompletion, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceCodecompletion, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceCodecompletion) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceCodecompletion, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceCodecompletion) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceCodecompletion, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceCodecompletion, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -952,10 +967,15 @@ extension UID.SourceCodecompletion: UIDNamespace {
 extension UID.SourceDeclAttribute: UIDNamespace {
     public static let __uid_prefix = "source.decl.attribute"
     public static func ==(lhs: UID.SourceDeclAttribute, rhs: UID.SourceDeclAttribute) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceDeclAttribute, rhs: UID.SourceDeclAttribute) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceDeclAttribute) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceDeclAttribute, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceDeclAttribute) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceDeclAttribute, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceDeclAttribute, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceDeclAttribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceDeclAttribute, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceDeclAttribute) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceDeclAttribute, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceDeclAttribute, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -963,10 +983,15 @@ extension UID.SourceDeclAttribute: UIDNamespace {
 extension UID.SourceDiagnosticSeverity: UIDNamespace {
     public static let __uid_prefix = "source.diagnostic.severity"
     public static func ==(lhs: UID.SourceDiagnosticSeverity, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceDiagnosticSeverity, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceDiagnosticSeverity, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceDiagnosticSeverity, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceDiagnosticSeverity, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceDiagnosticSeverity, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceDiagnosticSeverity) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceDiagnosticSeverity, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceDiagnosticSeverity, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -974,10 +999,15 @@ extension UID.SourceDiagnosticSeverity: UIDNamespace {
 extension UID.SourceDiagnosticStageSwift: UIDNamespace {
     public static let __uid_prefix = "source.diagnostic.stage.swift"
     public static func ==(lhs: UID.SourceDiagnosticStageSwift, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceDiagnosticStageSwift, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceDiagnosticStageSwift, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceDiagnosticStageSwift, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceDiagnosticStageSwift, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceDiagnosticStageSwift, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceDiagnosticStageSwift) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceDiagnosticStageSwift, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceDiagnosticStageSwift, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -985,10 +1015,15 @@ extension UID.SourceDiagnosticStageSwift: UIDNamespace {
 extension UID.SourceLangSwift: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift"
     public static func ==(lhs: UID.SourceLangSwift, rhs: UID.SourceLangSwift) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwift, rhs: UID.SourceLangSwift) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwift) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwift, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwift) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwift, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwift, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwift) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwift, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwift) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwift, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwift, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -996,10 +1031,15 @@ extension UID.SourceLangSwift: UIDNamespace {
 extension UID.SourceLangSwiftAccessibility: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.accessibility"
     public static func ==(lhs: UID.SourceLangSwiftAccessibility, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftAccessibility, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftAccessibility, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftAccessibility, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftAccessibility, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftAccessibility, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftAccessibility) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftAccessibility, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftAccessibility, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1007,10 +1047,15 @@ extension UID.SourceLangSwiftAccessibility: UIDNamespace {
 extension UID.SourceLangSwiftAttribute: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.attribute"
     public static func ==(lhs: UID.SourceLangSwiftAttribute, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftAttribute, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftAttribute, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftAttribute, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftAttribute, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftAttribute, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftAttribute) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftAttribute, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftAttribute, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1018,10 +1063,15 @@ extension UID.SourceLangSwiftAttribute: UIDNamespace {
 extension UID.SourceLangSwiftCodecomplete: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.codecomplete"
     public static func ==(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftCodecomplete) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftCodecomplete, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1029,10 +1079,15 @@ extension UID.SourceLangSwiftCodecomplete: UIDNamespace {
 extension UID.SourceLangSwiftDecl: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.decl"
     public static func ==(lhs: UID.SourceLangSwiftDecl, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftDecl, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftDecl, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftDecl, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftDecl, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftDecl, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftDecl) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftDecl, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftDecl, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1040,10 +1095,15 @@ extension UID.SourceLangSwiftDecl: UIDNamespace {
 extension UID.SourceLangSwiftExpr: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.expr"
     public static func ==(lhs: UID.SourceLangSwiftExpr, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftExpr, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftExpr, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftExpr, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftExpr, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftExpr, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftExpr) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftExpr, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftExpr, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1051,10 +1111,15 @@ extension UID.SourceLangSwiftExpr: UIDNamespace {
 extension UID.SourceLangSwiftImportModule: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.import.module"
     public static func ==(lhs: UID.SourceLangSwiftImportModule, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftImportModule, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftImportModule, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftImportModule, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftImportModule, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftImportModule, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftImportModule) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftImportModule, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftImportModule, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1062,10 +1127,15 @@ extension UID.SourceLangSwiftImportModule: UIDNamespace {
 extension UID.SourceLangSwiftKeyword: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.keyword"
     public static func ==(lhs: UID.SourceLangSwiftKeyword, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftKeyword, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftKeyword, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftKeyword, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftKeyword, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftKeyword, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftKeyword) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftKeyword, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftKeyword, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1073,10 +1143,15 @@ extension UID.SourceLangSwiftKeyword: UIDNamespace {
 extension UID.SourceLangSwiftLiteral: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.literal"
     public static func ==(lhs: UID.SourceLangSwiftLiteral, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftLiteral, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftLiteral, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftLiteral, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftLiteral, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftLiteral, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftLiteral) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftLiteral, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftLiteral, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1084,10 +1159,15 @@ extension UID.SourceLangSwiftLiteral: UIDNamespace {
 extension UID.SourceLangSwiftRef: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.ref"
     public static func ==(lhs: UID.SourceLangSwiftRef, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftRef, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftRef, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftRef, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftRef, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftRef, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftRef) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftRef, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftRef, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1095,10 +1175,15 @@ extension UID.SourceLangSwiftRef: UIDNamespace {
 extension UID.SourceLangSwiftStmt: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.stmt"
     public static func ==(lhs: UID.SourceLangSwiftStmt, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftStmt, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftStmt, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftStmt, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftStmt, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftStmt, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftStmt) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftStmt, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftStmt, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1106,10 +1191,15 @@ extension UID.SourceLangSwiftStmt: UIDNamespace {
 extension UID.SourceLangSwiftStructureElem: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.structure.elem"
     public static func ==(lhs: UID.SourceLangSwiftStructureElem, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftStructureElem, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftStructureElem, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftStructureElem, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftStructureElem, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftStructureElem, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftStructureElem) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftStructureElem, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftStructureElem, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1117,10 +1207,15 @@ extension UID.SourceLangSwiftStructureElem: UIDNamespace {
 extension UID.SourceLangSwiftSyntaxtype: UIDNamespace {
     public static let __uid_prefix = "source.lang.swift.syntaxtype"
     public static func ==(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceLangSwiftSyntaxtype) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceLangSwiftSyntaxtype, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1128,10 +1223,15 @@ extension UID.SourceLangSwiftSyntaxtype: UIDNamespace {
 extension UID.SourceNotification: UIDNamespace {
     public static let __uid_prefix = "source.notification"
     public static func ==(lhs: UID.SourceNotification, rhs: UID.SourceNotification) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceNotification, rhs: UID.SourceNotification) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceNotification) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceNotification, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceNotification) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceNotification, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceNotification, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceNotification) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceNotification, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceNotification) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceNotification, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceNotification, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
@@ -1139,10 +1239,15 @@ extension UID.SourceNotification: UIDNamespace {
 extension UID.SourceRequest: UIDNamespace {
     public static let __uid_prefix = "source.request"
     public static func ==(lhs: UID.SourceRequest, rhs: UID.SourceRequest) -> Bool { return lhs.uid == rhs.uid }
+    public static func !=(lhs: UID.SourceRequest, rhs: UID.SourceRequest) -> Bool { return lhs.uid != rhs.uid }
     public static func ==(lhs: UID, rhs: UID.SourceRequest) -> Bool { return lhs == rhs.uid }
-    public static func ==(lhs: UID.SourceRequest, rhs: UID) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID, rhs: UID.SourceRequest) -> Bool { return lhs != rhs.uid }
+    public static func ==(lhs: UID.SourceRequest, rhs: UID) -> Bool { return lhs.uid == rhs }
+    public static func !=(lhs: UID.SourceRequest, rhs: UID) -> Bool { return lhs.uid != rhs }
     public static func ==(lhs: UID?, rhs: UID.SourceRequest) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }
-    public static func ==(lhs: UID.SourceRequest, rhs: UID?) -> Bool { return rhs == lhs }
+    public static func !=(lhs: UID?, rhs: UID.SourceRequest) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }
+    public static func ==(lhs: UID.SourceRequest, rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }
+    public static func !=(lhs: UID.SourceRequest, rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }
     public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
     public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }
