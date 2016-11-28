@@ -109,6 +109,15 @@ class SourceKitVariantTests: XCTestCase {
 
         // Copy on write
         XCTAssertNotEqual(mutable, variant)
+
+        // remove value
+        var removable = variant
+        removable.removeValue(forKey: "key.request")
+        XCTAssertNotEqual(removable, ["key.request": "foo"])
+        XCTAssertEqual(removable, [:])
+
+        // Copy on write
+        XCTAssertNotEqual(removable, variant)
     }
 
     func testSupportInteger() {

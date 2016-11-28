@@ -105,9 +105,10 @@ extension SourceKitVariant {
 
     @discardableResult
     mutating public func removeValue(forKey key: UID.Key) -> SourceKitVariant? {
-        var dic = box.dictionary
-        let result = dic?.removeValue(forKey: key.uid)
-        box.dictionary = dic
+        prepareMutation()
+        var dictionary = box.dictionary
+        let result = dictionary?.removeValue(forKey: key.uid)
+        box.dictionary = dictionary
         return result
     }
 
