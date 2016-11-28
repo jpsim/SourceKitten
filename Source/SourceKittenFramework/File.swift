@@ -62,15 +62,15 @@ public final class File {
         guard let path = path else {
             return contents
         }
-        _ = try Request.editorOpen(file: self).failableSend()
+        _ = try Request.editorOpen(file: self).failableSend2()
         var newContents = [String]()
         var offset = 0
         for line in lines {
             let formatResponse = try Request.format(file: path,
                                                 line: Int64(line.index),
                                                 useTabs: useTabs,
-                                                indentWidth: Int64(indentWidth)).failableSend()
-            let newText = formatResponse["key.sourcetext"] as! String
+                                                indentWidth: Int64(indentWidth)).failableSend2()
+            let newText = formatResponse.sourceText!
             newContents.append(newText)
 
             guard newText != line.content else { continue }
@@ -78,7 +78,7 @@ public final class File {
             _ = try Request.replaceText(file: path,
                                     offset: Int64(line.byteRange.location + offset),
                                     length: Int64(line.byteRange.length - 1),
-                                    sourceText: newText).failableSend()
+                                    sourceText: newText).failableSend2()
             let oldLength = line.byteRange.length
             let newLength = newText.lengthOfBytes(using: .utf8)
             offset += 1 + newLength - oldLength
@@ -397,7 +397,7 @@ Parse XML from `key.doc.full_as_xml` from `cursor.info` request.
 
 - parameter xmlDocs: Contents of `key.doc.full_as_xml` from SourceKit.
 
-- returns: XML parsed as an `[String: SourceKitRepresentable]`.
+- returns: XML parsed as an `SourceKitVariant`.
 */
 public func parseFullXMLDocs(_ xmlDocs: String) -> SourceKitVariant? {
     let cleanXMLDocs = xmlDocs.replacingOccurrences(of: "<rawHTML>", with: "")
@@ -431,7 +431,7 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> SourceKitVariant? {
 
 private extension XMLIndexer {
     /**
-    Returns an `[SourceKitRepresentable]` of `[String: SourceKitRepresentable]` items from `indexer` children, if any.
+    Returns an `[SourceKitVariant]` of `[UID:SourceKitVariant]` items from `indexer` children, if any.
     */
     func childrenAsArray() -> [SourceKitVariant]? {
         if children.isEmpty {

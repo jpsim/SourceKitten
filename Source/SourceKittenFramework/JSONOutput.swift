@@ -15,7 +15,8 @@ import Foundation
 
  - returns: JSON string representation of the input object.
  */
-public func toJSON(_ object: Any) -> String {
+public func toJSON(_ object: Any?) -> String {
+    guard let object = object else { return "" }
     if let array = object as? [Any], array.isEmpty {
         return "[\n\n]"
     }

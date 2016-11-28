@@ -41,22 +41,21 @@ public struct CodeCompletionItem: CustomStringConvertible {
     }
 
     public var description: String {
-        return toJSON(dictionaryValue.bridge())
+        return toJSON(dictionaryValue)
     }
 
-    public static func parse(response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {
-        return (response["key.results"] as! [SourceKitRepresentable]).map { item in
-            let dict = item as! [String: SourceKitRepresentable]
-            return CodeCompletionItem(kind: dict["key.kind"] as! String,
-                context: dict["key.context"] as! String,
-                name: dict["key.name"] as? String,
-                descriptionKey: dict["key.description"] as? String,
-                sourcetext: dict["key.sourcetext"] as? String,
-                typeName: dict["key.typename"] as? String,
-                moduleName: dict["key.modulename"] as? String,
-                docBrief: dict["key.doc.brief"] as? String,
-                associatedUSRs: dict["key.associated_usrs"] as? String)
-        }
+    public static func parse(response: SourceKitVariant) -> [CodeCompletionItem] {
+        return response.results?.map { dict in
+            return CodeCompletionItem(kind: dict.kind?.description ?? "",
+                context: dict.context!,
+                name: dict.name,
+                descriptionKey: dict.description,
+                sourcetext: dict.sourceText,
+                typeName: dict.typeName,
+                moduleName: dict.moduleName,
+                docBrief: dict.docBrief,
+                associatedUSRs: dict.associated_usrs)
+        } ?? []
     }
 }
 

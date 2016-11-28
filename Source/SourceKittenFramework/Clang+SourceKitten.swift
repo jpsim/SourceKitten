@@ -191,19 +191,19 @@ extension CXCursor {
             swiftUUID = NSUUID().uuidString
             interfaceUUIDMap[file] = swiftUUID
             // Generate Swift interface, associating it with the UUID
-            guard let _ = try? Request.interface(file: file, uuid: swiftUUID).failableSend() else {
+            guard let _ = try? Request.interface(file: file, uuid: swiftUUID).failableSend2() else {
                 return nil
             }
         }
 
         guard let usr = usr(),
-            let findUSR = try? Request.findUSR(file: swiftUUID, usr: usr).failableSend(),
-            let usrOffset = findUSR[SwiftDocKey.offset.rawValue] as? Int64 else {
+            let findUSR = try? Request.findUSR(file: swiftUUID, usr: usr).failableSend2(),
+            let usrOffset = findUSR.offset else {
             return nil
         }
 
-        guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).failableSend(),
-            let docsXML = cursorInfo[SwiftDocKey.fullXMLDocs.rawValue] as? String,
+        guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: Int64(usrOffset), arguments: compilerArguments).failableSend2(),
+            let docsXML = cursorInfo.docFullAsXML,
             let swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
                 return nil
         }

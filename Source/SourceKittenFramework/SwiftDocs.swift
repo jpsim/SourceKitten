@@ -77,6 +77,6 @@ public struct SwiftDocs {
 extension SwiftDocs: CustomStringConvertible {
     /// A textual JSON representation of `SwiftDocs`.
     public var description: String {
-        return toJSON(toNSDictionary([file.path ?? "<No File>": docsDictionary]))
+        return toJSON([file.path ?? "<No File>": docsDictionary])
     }
 }

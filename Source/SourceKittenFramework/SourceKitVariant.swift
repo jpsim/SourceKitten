@@ -89,6 +89,10 @@ extension SourceKitVariant {
     public var annotatedDeclaration: String? {
         return self[.annotated_decl]?.string
     }
+    /// associated_usrs (String).
+    public var associated_usrs: String? {
+        return self[.associated_usrs]?.string
+    }
     /// Attributes ([SourceKitVariant]).
     public var attributes: [SourceKitVariant]? {
         return self[.attributes]?.array
@@ -105,9 +109,21 @@ extension SourceKitVariant {
     public var bodyOffset: Int? {
         return self[.bodyoffset]?.int
     }
+    /// context (String).
+    public var context: String? {
+        return self[.context]?.string
+    }
+    /// description (String).
+    public var description: String? {
+        return self[.description]?.string
+    }
     /// Diagnostic stage (UID.SourceDiagnosticStageSwift).
     public var diagnosticStage: UID.SourceDiagnosticStageSwift? {
         return self[.diagnostic_stage]?.uid.map(UID.SourceDiagnosticStageSwift.init)
+    }
+    /// docBrief (String).
+    public var docBrief: String? {
+        return self[.docBrief]?.string
     }
     /// File path (String).
     public var filePath: String? {
@@ -129,6 +145,10 @@ extension SourceKitVariant {
     public var length: Int? {
         return self[.length]?.int
     }
+    /// ModuleName (String).
+    public var moduleName: String? {
+        return self[.modulename]?.string
+    }
     /// Name (String).
     public var name: String? {
         return self[.name]?.string
@@ -144,6 +164,11 @@ extension SourceKitVariant {
     /// Offset (Int).
     public var offset: Int? {
         return self[.offset]?.int
+    }
+    /// results ([SourceKitVariant]).
+    public var results: [SourceKitVariant]? {
+        get { return self[.results]?.array }
+        set { self[.results] = SourceKitVariant(newValue) }
     }
     /// sourcetext
     public var sourceText: String? {

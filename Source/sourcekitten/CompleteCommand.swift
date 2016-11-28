@@ -69,7 +69,7 @@ struct CompleteCommand: CommandProtocol {
             offset: Int64(options.offset),
             arguments: args)
         do {
-            print(CodeCompletionItem.parse(response: try request.failableSend()))
+            print(CodeCompletionItem.parse(response: try request.failableSend2()))
             return .success()
         } catch {
             return .failure(.failed(error))
