@@ -13,56 +13,83 @@ import SourceKit
 
 /// Represent sourcekitd_variant_t as Value Type
 public struct SourceKitVariant {
-    fileprivate let box: _VariantBox
+    fileprivate var box: _VariantBox
 }
 
 // MARK: - Basic properties of SourceKitVariant
 extension SourceKitVariant {
     public var array: [SourceKitVariant]? {
         get { return box.array }
-        set { box.array = newValue }
+        set {
+            prepareMutation()
+            box.array = newValue
+        }
     }
 
     public var dictionary: [UID:SourceKitVariant]? {
         get { return box.dictionary }
-        set { box.dictionary = newValue }
+        set {
+            prepareMutation()
+            box.dictionary = newValue
+        }
     }
 
     public var string: String? {
         get { return box.string }
-        set { box.string = newValue }
+        set {
+            prepareMutation()
+            box.string = newValue
+        }
     }
 
     public var int: Int? {
         get { return box.int }
-        set { box.int = newValue }
+        set {
+            prepareMutation()
+            box.int = newValue
+        }
     }
 
     public var bool: Bool? {
         get { return box.bool }
-        set { box.bool = newValue }
+        set {
+            prepareMutation()
+            box.bool = newValue
+        }
     }
 
     public var uid: UID? {
         get { return box.uid }
-        set { box.uid = newValue }
+        set {
+            prepareMutation()
+            box.uid = newValue
+        }
     }
 
     public var any: Any? { return box.any }
 
     public subscript(string: String) -> SourceKitVariant? {
         get { return box.dictionary?[UID(string)] }
-        set { box.dictionary?[UID(string)] = newValue }
+        set {
+            prepareMutation()
+            box.dictionary?[UID(string)] = newValue
+        }
     }
 
     public subscript(uid: UID) -> SourceKitVariant? {
         get { return box.dictionary?[uid] }
-        set { box.dictionary?[uid] = newValue }
+        set {
+            prepareMutation()
+            box.dictionary?[uid] = newValue
+        }
     }
 
     public subscript(index: Int) -> SourceKitVariant? {
         get { return box.array?[index] }
-        set { box.array?[index] = newValue! }
+        set {
+            prepareMutation()
+            box.array?[index] = newValue!
+        }
     }
 }
 
@@ -70,7 +97,10 @@ extension SourceKitVariant {
 extension SourceKitVariant {
     public subscript(key: UID.Key) -> SourceKitVariant? {
         get { return box.dictionary?[key.uid] }
-        set { box.dictionary?[key.uid] = newValue }
+        set {
+            prepareMutation()
+            box.dictionary?[key.uid] = newValue
+        }
     }
 
     @discardableResult
@@ -617,12 +647,25 @@ extension SourceKitVariant {
                 return nil
             }
         }
+
+        fileprivate func copy() -> _VariantBox {
+            return .init(variant: _core)
+        }
     }
 
     fileprivate final class _ResponseBox {
         private let response: sourcekitd_response_t
         init(_ response: sourcekitd_response_t) { self.response = response }
         deinit { sourcekitd_response_dispose(response) }
+    }
+}
+
+// MARK: - Copy on write
+extension SourceKitVariant {
+    fileprivate mutating func prepareMutation() {
+        if !isKnownUniquelyReferenced(&box) {
+            box = box.copy()
+        }
     }
 }
 

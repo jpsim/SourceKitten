@@ -44,6 +44,9 @@ class SourceKitVariantTests: XCTestCase {
         mutable[1] = false
         mutable[2] = 2
         XCTAssertEqual(mutable, ["baz", false, 2])
+
+        // Copy on write
+        XCTAssertNotEqual(mutable, variant)
     }
     
     func testSupportBool() {
@@ -70,6 +73,9 @@ class SourceKitVariantTests: XCTestCase {
         mutable.bool = false
         XCTAssertNotEqual(mutable.bool, true)
         XCTAssertEqual(mutable.bool, false)
+
+        // Copy on write
+        XCTAssertNotEqual(mutable, variant)
     }
     
     func testSupportDictionary() {
@@ -100,6 +106,9 @@ class SourceKitVariantTests: XCTestCase {
         mutable.dictionary = ["key.request": "bar"]
         XCTAssertNotEqual(mutable, ["key.request": "foo"])
         XCTAssertEqual(mutable, ["key.request": "bar"])
+
+        // Copy on write
+        XCTAssertNotEqual(mutable, variant)
     }
 
     func testSupportInteger() {
@@ -126,6 +135,9 @@ class SourceKitVariantTests: XCTestCase {
         mutable.int = 2
         XCTAssertNotEqual(mutable.int, 1)
         XCTAssertEqual(mutable.int, 2)
+
+        // Copy on write
+        XCTAssertNotEqual(mutable, variant)
     }
     
     func testSupportString() {
@@ -151,7 +163,10 @@ class SourceKitVariantTests: XCTestCase {
         var mutable = variant
         mutable.string = "bar"
         XCTAssertNotEqual(mutable.string, "foo")
-        XCTAssertEqual(variant.string, "bar")
+        XCTAssertEqual(mutable.string, "bar")
+
+        // Copy on write
+        XCTAssertNotEqual(mutable, variant)
     }
 
     func testUID() {
@@ -173,7 +188,10 @@ class SourceKitVariantTests: XCTestCase {
         var mutable = variant
         mutable.uid = UID("key.name")
         XCTAssertNotEqual(mutable.uid, UID("key.request"))
-        XCTAssertEqual(variant.uid, UID("key.name"))
+        XCTAssertEqual(mutable.uid, UID("key.name"))
+
+        // Copy on write
+        XCTAssertNotEqual(mutable, variant)
     }
 }
 
