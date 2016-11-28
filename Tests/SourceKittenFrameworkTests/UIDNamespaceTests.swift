@@ -103,6 +103,9 @@ extension UIDNamespaceTests {
     static var allTests: [(String, (UIDNamespaceTests) -> () throws -> Void)] {
         return [
             ("testExpressibleByStringLiteral", testExpressibleByStringLiteral),
+            ("testCompareToSelf", testCompareToSelf),
+            ("testUseOperatorsForComparingToUID", testUseOperatorsForComparingToUID),
+//            ("testUnknownUIDCausesPreconditionFailureOnDebugBuild", testUnknownUIDCausesPreconditionFailureOnDebugBuild),
             // FIXME: https://bugs.swift.org/browse/SR-3250
 //            ("testUIDNamespaceAreUpToDate", testUIDNamespaceAreUpToDate),
         ]

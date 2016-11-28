@@ -14,7 +14,7 @@ public struct Structure {
     public var dictionary: NSDictionary {
         var dictionary = variant.any as! [String:Any]
         dictionary.removeValue(forKey: UID.Key.syntaxmap.description)
-        return dictionary as NSDictionary
+        return dictionary.bridge()
     }
     ///
     public let variant: SourceKitVariant
