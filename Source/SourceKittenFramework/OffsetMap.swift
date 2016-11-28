@@ -23,7 +23,7 @@ extension File {
     - returns: OffsetMap containing offset locations at which there are declarations that likely
                have documentation comments, but haven't been documented by SourceKitten yet.
     */
-    public func makeOffsetMap(documentedTokenOffsets: [Int], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
+    public func makeOffsetMap(documentedTokenOffsets: [Int], dictionary: SourceKitVariant) -> OffsetMap {
         var offsetMap = OffsetMap()
         for offset in documentedTokenOffsets {
             offsetMap[offset] = 0
@@ -46,15 +46,15 @@ extension File {
 
     - returns: OffsetMap of potentially documented declaration offsets to its nearest parent offset.
     */
-    private func mapOffsets(_ dictionary: [String: SourceKitRepresentable], offsetMap: OffsetMap) -> OffsetMap {
+    private func mapOffsets(_ dictionary: SourceKitVariant, offsetMap: OffsetMap) -> OffsetMap {
         var offsetMap = offsetMap
         // Only map if we're in the correct file
-        if let rangeStart = SwiftDocKey.getNameOffset(dictionary),
-           let rangeLength = SwiftDocKey.getNameLength(dictionary),
+        if let rangeStart = dictionary.nameOffset,
+           let rangeLength = dictionary.nameLength,
            shouldTreatAsSameFile(dictionary) {
-            let bodyLength = SwiftDocKey.getBodyLength(dictionary) ?? 0
-            let rangeMax = Int(rangeStart + rangeLength + bodyLength)
-            let rangeStart = Int(rangeStart)
+            let bodyLength = dictionary.bodyLength ?? 0
+            let rangeMax = rangeStart + rangeLength + bodyLength
+            let rangeStart = rangeStart
             let offsetsInRange = offsetMap.keys.filter {
                 $0 >= rangeStart && $0 <= rangeMax
             }
@@ -63,9 +63,9 @@ extension File {
             }
         }
         // Recurse!
-        if let substructure = SwiftDocKey.getSubstructure(dictionary) {
+        if let substructure = dictionary.subStructure {
             for subDict in substructure {
-                offsetMap = mapOffsets(subDict as! [String: SourceKitRepresentable], offsetMap: offsetMap)
+                offsetMap = mapOffsets(subDict, offsetMap: offsetMap)
             }
         }
         return offsetMap

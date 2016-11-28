@@ -347,12 +347,12 @@ public enum Request {
 
     - returns: SourceKit response if successful.
     */
-    internal static func send(cursorInfoRequest: sourcekitd_object_t, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
+    internal static func send(cursorInfoRequest: sourcekitd_object_t, atOffset offset: Int) -> SourceKitVariant? {
         if offset == 0 {
             return nil
         }
-        sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue), offset)
-        return try? Request.customRequest(request: cursorInfoRequest).failableSend()
+        sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue), Int64(offset))
+        return try? Request.customRequest(request: cursorInfoRequest).failableSend2()
     }
 
     /**

@@ -458,12 +458,12 @@ extension String {
     - parameter token: Token to process.
     */
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
-        if token.type == SyntaxKind.keyword.rawValue {
+        if token.type == .keyword {
             let keywordFunctions = ["subscript", "init", "deinit"]
             return bridge().substringWithByteRange(start: token.offset, length: token.length)
                 .map(keywordFunctions.contains) ?? false
         }
-        return token.type == SyntaxKind.identifier.rawValue
+        return token.type == .identifier
     }
 
     /**

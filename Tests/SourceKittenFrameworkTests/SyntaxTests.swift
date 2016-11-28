@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import SourceKittenFramework
+@testable import SourceKittenFramework
 import XCTest
 
-private func compareSyntax(file: File, expectedTokens: [(SyntaxKind, Int, Int)]) {
+private func compareSyntax(file: File, expectedTokens: [(UID.SourceLangSwiftSyntaxtype, Int, Int)]) {
     let expectedSyntaxMap = SyntaxMap(tokens: expectedTokens.map { tokenTuple in
-        return SyntaxToken(type: tokenTuple.0.rawValue, offset: tokenTuple.1, length: tokenTuple.2)
+        return SyntaxToken(type: tokenTuple.0, offset: tokenTuple.1, length: tokenTuple.2)
     })
     let syntaxMap = try! SyntaxMap(file: file)
     XCTAssertEqual(syntaxMap, expectedSyntaxMap, "should generate expected syntax map")

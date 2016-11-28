@@ -85,18 +85,18 @@ class StringTests: XCTestCase {
         let source = "struct A { subscript(key: String) -> Void { return () } }"
         let actual = try! SyntaxMap(file: File(contents: source)).tokens.filter(source.isTokenDocumentable)
         let expected = [
-            SyntaxToken(type: SyntaxKind.identifier.rawValue, offset: 7, length: 1), // `A`
-            SyntaxToken(type: SyntaxKind.keyword.rawValue, offset: 11, length: 9),   // `subscript`
-            SyntaxToken(type: SyntaxKind.identifier.rawValue, offset: 21, length: 3) // `key`
+            SyntaxToken(type: .identifier, offset: 7, length: 1), // `A`
+            SyntaxToken(type: .keyword, offset: 11, length: 9),   // `subscript`
+            SyntaxToken(type: .identifier, offset: 21, length: 3) // `key`
         ]
         XCTAssertEqual(actual, expected, "should detect documentable tokens")
     }
 
     func testParseDeclaration() {
-        let dict: [String: SourceKitRepresentable] = [
+        let dict: SourceKitVariant = [
             "key.kind": "source.lang.swift.decl.class",
-            "key.offset": Int64(24),
-            "key.bodyoffset": Int64(32),
+            "key.offset": 24,
+            "key.bodyoffset": 32,
             "key.annotated_decl": "",
             "key.typename": "ClassA.Type"
         ]
