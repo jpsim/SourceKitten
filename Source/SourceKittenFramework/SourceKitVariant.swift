@@ -11,8 +11,13 @@ import Foundation
 import SourceKit
 #endif
 
-// MARK: - Basic properties of SourceKitVariant
+/// Represent sourcekitd_variant_t as Value Type
 public struct SourceKitVariant {
+    fileprivate let box: _VariantBox
+}
+
+// MARK: - Basic properties of SourceKitVariant
+extension SourceKitVariant {
     public var array: [SourceKitVariant]? {
         get { return box.array }
         set { box.array = newValue }
@@ -50,134 +55,296 @@ public struct SourceKitVariant {
         set { box.dictionary?[UID(string)] = newValue }
     }
 
-    public subscript(key: UID) -> SourceKitVariant? {
-        get { return box.dictionary?[key] }
-        set { box.dictionary?[key] = newValue }
+    public subscript(uid: UID) -> SourceKitVariant? {
+        get { return box.dictionary?[uid] }
+        set { box.dictionary?[uid] = newValue }
     }
 
-    internal init(variant: sourcekitd_variant_t, response: sourcekitd_response_t) {
-        box = _VariantBox(variant: .variant(variant, _ResponseBox(response)))
+    public subscript(index: Int) -> SourceKitVariant? {
+        get { return box.array?[index] }
+        set { box.array?[index] = newValue! }
     }
-
-    fileprivate let box: _VariantBox
 }
 
-// MARK: - Convenient properties of SourceKitVariant for well known UID.key*
+// MARK: - Convenient properties for well known UIDs
 extension SourceKitVariant {
+    public subscript(key: UID.Key) -> SourceKitVariant? {
+        get { return box.dictionary?[key.uid] }
+        set { box.dictionary?[key.uid] = newValue }
+    }
+
+    @discardableResult
+    mutating public func removeValue(forKey key: UID.Key) -> SourceKitVariant? {
+        var dic = box.dictionary
+        let result = dic?.removeValue(forKey: key.uid)
+        box.dictionary = dic
+        return result
+    }
+
+    /// Accessibility (UID.SourceLangSwiftAccessibility).
+    public var accessibility: UID.SourceLangSwiftAccessibility? {
+        return self[.accessibility]?.uid.map(UID.SourceLangSwiftAccessibility.init)
+    }
     /// Annotated declaration (String).
-    public var annotatedDeclaration: String?
-        { return self[.keyAnnotatedDecl]?.string }
+    public var annotatedDeclaration: String? {
+        return self[.annotated_decl]?.string
+    }
+    /// Attributes ([SourceKitVariant]).
+    public var attributes: [SourceKitVariant]? {
+        return self[.attributes]?.array
+    }
+    /// Attribute (UID.SourceDeclAttribute).
+    public var attribute: UID.SourceDeclAttribute? {
+        return self[.attribute]?.uid.map(UID.SourceDeclAttribute.init)
+    }
     /// Body length (Int).
-    public var bodyLength: Int?
-        { return self[.keyBodyLength]?.int }
+    public var bodyLength: Int? {
+        return self[.bodylength]?.int
+    }
     /// Body offset (Int).
-    public var bodyOffset: Int? { return self[.keyBodyOffset]?.int }
-    /// Diagnostic stage (String).
-    public var diagnosticStage: String? { return self[.keyDiagnosticStage]?.string }
+    public var bodyOffset: Int? {
+        return self[.bodyoffset]?.int
+    }
+    /// Diagnostic stage (UID.SourceDiagnosticStageSwift).
+    public var diagnosticStage: UID.SourceDiagnosticStageSwift? {
+        return self[.diagnostic_stage]?.uid.map(UID.SourceDiagnosticStageSwift.init)
+    }
     /// File path (String).
-    public var filePath: String? { return self[.keyFilePath]?.string }
+    public var filePath: String? {
+        return self[.filepath]?.string
+    }
     /// Full XML docs (String).
-    public var docFullAsXML: String? { return self[.keyDocFullAsXML]?.string }
-    /// Kind (SourceKitVariant.string).
-    public var kind: UID? { return self[.keyKind]?.uid }
-    /// Length (Int).
-    public var length: Int? { return self[.keyLength]?.int }
-    /// Name (String).
-    public var name: String? { return self[.keyName]?.string }
-    /// Name length (Int).
-    public var nameLength: Int? { return self[.keyNameLength]?.int }
-    /// Name offset (Int).
-    public var nameOffset: Int? { return self[.keyNameOffset]?.int }
-    /// Offset (Int).
-    public var offset: Int? { return self[.keyOffset]?.int }
-    /// Substructure ([SourceKitVariant]).
-    public var subStructure: [SourceKitVariant]? { return self[.keySubStructure]?.array }
-    /// Syntax map ([SourceKitVariant]).
-    public var syntaxMap: [SourceKitVariant]? { return self[.keySyntaxMap]?.array }
-    /// Type name (String).
-    public var typeName: String? { return self[.keyTypeName]?.string }
+    public var docFullAsXML: String? {
+        return self[.docFull_As_Xml]?.string
+    }
     /// Inheritedtype ([SourceKitVariant])
-    public var inheritedTypes: [SourceKitVariant]? { return self[.keyInheritedTypes]?.array }
+    public var inheritedTypes: [SourceKitVariant]? {
+        return self[.inheritedtypes]?.array
+    }
+    /// Kind (UID).
+    public var kind: UID? {
+        return self[.kind]?.uid
+    }
+    /// Length (Int).
+    public var length: Int? {
+        return self[.length]?.int
+    }
+    /// Name (String).
+    public var name: String? {
+        return self[.name]?.string
+    }
+    /// Name length (Int).
+    public var nameLength: Int? {
+        return self[.namelength]?.int
+    }
+    /// Name offset (Int).
+    public var nameOffset: Int? {
+        return self[.nameoffset]?.int
+    }
+    /// Offset (Int).
+    public var offset: Int? {
+        return self[.offset]?.int
+    }
+    /// sourcetext
+    public var sourceText: String? {
+        return self[.sourcetext]?.string
+    }
+    /// Substructure ([SourceKitVariant]).
+    public var subStructure: [SourceKitVariant]? {
+        get { return self[.substructure]?.array }
+        set { self[.substructure] = SourceKitVariant(newValue) }
+    }
+    /// Syntax map ([SourceKitVariant]).
+    public var syntaxMap: [SourceKitVariant]? {
+        return self[.syntaxmap]?.array
+    }
+    /// Type name (String).
+    public var typeName: String? {
+        return self[.typename]?.string
+    }
 }
 
-// MARK: - Accessors of SourceKitVariant for well known UID.key*
+// MARK: - Convenient properties for Custom Keys
 extension SourceKitVariant {
-    public static func annotatedDeclaration(_ variant: SourceKitVariant) -> String? {
-        return variant[.keyAnnotatedDecl]?.string
+    private struct Custom {
+        static let docColumn: UID = "key.doc.column"
+        static let documentationComment: UID = "key.doc.comment"
+        static let docDeclaration: UID = "key.doc.declaration"
+        static let docDiscussion: UID = "key.doc.discussion"
+        static let docFile: UID = "key.doc.file"
+        static let docLine: UID = "key.doc.line"
+        static let docName: UID = "key.doc.name"
+        static let docParameters: UID = "key.doc.parameters"
+        static let docResultDiscussion: UID = "key.doc.result_discussion"
+        static let docType: UID = "key.doc.type"
+        // static let usr: UID.Key = "key.usr"
+        static let parsedDeclaration: UID = "key.parsed_declaration"
+        static let parsedScopeEnd: UID = "key.parsed_scope.end"
+        static let parsedScopeStart: UID = "key.parsed_scope.start"
+        static let swiftDeclaration: UID = "key.swift_declaration"
+        static let alwaysDeprecated: UID = "key.always_deprecated"
+        static let alwaysUnavailable: UID = "key.always_unavailable"
+        static let deprecationMessage: UID = "key.deprecation_message"
+        static let unavailableMessage: UID = "key.unavailable_message"
     }
 
-    public static func bodyLength(_ variant: SourceKitVariant) -> Int? {
-        return variant[.keyBodyLength]?.int
+    /// Column where the token's declaration begins (Int).
+    public var docColumn: Int? {
+        get { return self[Custom.docColumn]?.int }
+        set { self[Custom.docColumn] = SourceKitVariant(newValue) }
     }
 
-    public static func bodyOffset(_ variant: SourceKitVariant) -> Int? {
-        return variant[.keyBodyOffset]?.int
+    /// Documentation comment (String).
+    public var documentationComment: String? {
+        get { return self[Custom.documentationComment]?.string }
+        set { self[Custom.documentationComment] = SourceKitVariant(newValue) }
     }
 
-    public static func diagnosticStage(_ variant: SourceKitVariant) -> String? {
-        return variant[.keyDiagnosticStage]?.string
+    /// Declaration of documented token (String).
+    public var docDeclaration: String? {
+        get { return self[Custom.docDeclaration]?.string }
+        set { self[Custom.docDeclaration] = SourceKitVariant(newValue) }
     }
 
-    public static func filePath(_ variant: SourceKitVariant) -> String? {
-        return variant[.keyFilePath]?.string
+    /// Discussion documentation of documented token ([SourceKitVariant]).
+    public var docDiscussion: [SourceKitVariant]? {
+        get { return self[Custom.docDiscussion]?.array }
+        set { self[Custom.docDiscussion] = SourceKitVariant(newValue) }
     }
 
-    public static func docFullAsXML(_ variant: SourceKitVariant) -> String? {
-        return variant[.keyDocFullAsXML]?.string
+    /// File where the documented token is located (String).
+    public var docFile: String? {
+        get { return self[Custom.docFile]?.string }
+        set { self[Custom.docFile] = SourceKitVariant(newValue) }
     }
 
-    public static func kind(_ variant: SourceKitVariant) -> SourceKitVariant? {
-        return variant[.keyKind]
+    /// Line where the token's declaration begins (Int).
+    public var docLine: Int? {
+        get { return self[Custom.docLine]?.int }
+        set { self[Custom.docLine] = SourceKitVariant(newValue) }
     }
 
-    public static func length(_ variant: SourceKitVariant) -> Int? {
-        return variant[.keyLength]?.int
+    /// Name of documented token (String).
+    public var docName: String? {
+        get { return self[Custom.docName]?.string }
+        set { self[Custom.docName] = SourceKitVariant(newValue) }
     }
 
-    public static func name(_ variant: SourceKitVariant) -> String? {
-        return variant[.keyName]?.string
+    /// Parameters of documented token ([SourceKitVariant]).
+    public var docParameters: [SourceKitVariant]? {
+        get { return self[Custom.docParameters]?.array }
+        set { self[Custom.docParameters] = SourceKitVariant(newValue) }
     }
 
-    public static func nameLength(_ variant: SourceKitVariant) -> Int? {
-        return variant[.keyNameLength]?.int
+    /// Doc result discussion ([SourceKitVariant]).
+    public var docResultDiscussion: [SourceKitVariant]? {
+        get { return self[Custom.docResultDiscussion]?.array }
+        set { self[Custom.docResultDiscussion] = SourceKitVariant(newValue) }
     }
 
-    public static func nameOffset(_ variant: SourceKitVariant) -> Int? {
-        return variant[.keyNameOffset]?.int
+    /// Type of documented token (String).
+    public var docType: String? {
+        get { return self[Custom.docType]?.string }
+        set { self[Custom.docType] = SourceKitVariant(newValue) }
     }
 
-    public static func offset(_ variant: SourceKitVariant) -> Int? {
-        return variant[.keyOffset]?.int
+    /// USR (String).
+    public var usr: String? {
+        get { return self[.usr]?.string }
+        set { self[.usr] = SourceKitVariant(newValue) }
     }
 
-    public static func subStructure(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
-        return variant[.keySubStructure]?.array
+    /// Parsed Declaration (String)
+    public var parsedDeclaration: String? {
+        get { return self[Custom.parsedDeclaration]?.string }
+        set { self[Custom.parsedDeclaration] = SourceKitVariant(newValue) }
     }
 
-    public static func syntaxMap(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
-        return variant[.keySyntaxMap]?.array
+    /// Parsed scope end (Int).
+    public var parsedScopeEnd: Int? {
+        get { return self[Custom.parsedScopeEnd]?.int }
+        set { self[Custom.parsedScopeEnd] = SourceKitVariant(newValue) }
     }
 
-    public static func typeName(_ variant: SourceKitVariant) -> String? {
-        return variant[.keyTypeName]?.string
+    /// Parsed scope start (Int).
+    public var parsedScopeStart: Int? {
+        get { return self[Custom.parsedScopeStart]?.int }
+        set { self[Custom.parsedScopeStart] = SourceKitVariant(newValue) }
     }
 
-    public static func inheritedtypes(_ variant: SourceKitVariant) -> [SourceKitVariant]? {
-        return variant[.keyInheritedTypes]?.array
+    /// Swift Declaration (String).
+    public var swiftDeclaration: String? {
+        get { return self[Custom.swiftDeclaration]?.string }
+        set { self[Custom.swiftDeclaration] = SourceKitVariant(newValue) }
+    }
+
+    /// Always deprecated (Bool).
+    public var alwaysDeprecated: Bool? {
+        get { return self[Custom.alwaysDeprecated]?.bool }
+        set { self[Custom.alwaysDeprecated] = SourceKitVariant(newValue) }
+    }
+
+    /// Always unavailable (Bool).
+    public var alwaysUnavailable: Bool? {
+        get { return self[Custom.alwaysUnavailable]?.bool }
+        set { self[Custom.alwaysUnavailable] = SourceKitVariant(newValue) }
+    }
+
+    /// Deprecation message (String).
+    public var deprecationMessage: String? {
+        get { return self[Custom.deprecationMessage]?.string }
+        set { self[Custom.deprecationMessage] = SourceKitVariant(newValue) }
+    }
+
+    /// Unavailable message (String).
+    public var unavailableMessage: String? {
+        get { return self[Custom.unavailableMessage]?.string }
+        set { self[Custom.unavailableMessage] = SourceKitVariant(newValue) }
+    }
+
+}
+
+// MARK: - ExpressibleByArrayLiteral
+extension SourceKitVariant: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: SourceKitVariant...) {
+        box = _VariantBox(variant: .array(elements))
+    }
+}
+
+// MARK: - ExpressibleByBooleanLiteral
+extension SourceKitVariant: ExpressibleByBooleanLiteral {
+    public init(booleanLiteral value: BooleanLiteralType) {
+        box = _VariantBox(variant: .bool(value))
+    }
+}
+
+// MARK: - ExpressibleByDictionaryLiteral
+extension SourceKitVariant: ExpressibleByDictionaryLiteral {
+    public init(dictionaryLiteral elements: (UID, SourceKitVariant)...) {
+        var dictionary = [UID:SourceKitVariant](minimumCapacity: elements.count)
+        elements.forEach { dictionary[$0.0] = $0.1 }
+        box = _VariantBox(variant: .dictionary(dictionary))
+    }
+}
+
+// MARK: - ExpressibleByIntegerLiteral
+extension SourceKitVariant: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: IntegerLiteralType) {
+        box = _VariantBox(variant: .int64(Int64(value)))
     }
 }
 
 // MARK: - ExpressibleByStringLiteral
 extension SourceKitVariant: ExpressibleByStringLiteral {
-    public init(stringLiteral value: String) {
+    public init(stringLiteral value: StringLiteralType) {
         box = _VariantBox(variant: .string(value))
     }
 
-    public init(extendedGraphemeClusterLiteral value: String) {
+    public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterType) {
         box = _VariantBox(variant: .string(value))
     }
 
-    public init(unicodeScalarLiteral value: String) {
+    public init(unicodeScalarLiteral value: UnicodeScalarType) {
         box = _VariantBox(variant: .string(value))
     }
 }
@@ -186,6 +353,37 @@ extension SourceKitVariant: ExpressibleByStringLiteral {
 extension SourceKitVariant: Equatable {
     public static func ==(lhs: SourceKitVariant, rhs: SourceKitVariant) -> Bool {
         return lhs.box == rhs.box
+    }
+}
+
+// MARK: - Initializers
+extension SourceKitVariant {
+    internal init(_ array: [SourceKitVariant]?) {
+        box = _VariantBox(variant: array.map(_VariantCore.array) ?? .none)
+    }
+
+    internal init(_ dictionary: [UID:SourceKitVariant]? = [:]) {
+        box = _VariantBox(variant: dictionary.map(_VariantCore.dictionary) ?? .none)
+    }
+
+    internal init(_ string: String?) {
+        box = _VariantBox(variant: string.map(_VariantCore.string) ?? .none)
+    }
+
+    internal init(_ int: Int?) {
+        box = _VariantBox(variant: int.map({ _VariantCore.int64(Int64($0)) }) ?? .none)
+    }
+
+    internal init(_ bool: Bool?) {
+        box = _VariantBox(variant: bool.map(_VariantCore.bool) ?? .none)
+    }
+
+    internal init(_ uid: UID) {
+        box = _VariantBox(variant: .uid(uid))
+    }
+
+    internal init(variant: sourcekitd_variant_t, response: sourcekitd_response_t) {
+        box = _VariantBox(variant: .variant(variant, _ResponseBox(response)))
     }
 }
 
@@ -419,12 +617,6 @@ extension SourceKitVariant._VariantBox: Equatable {
     }
 }
 
-// MARK: - Custom
-extension SourceKitVariant {
-    public var attributes: [SourceKitVariant]? { return self[.keyAttributes]?.array }
-    public var attribute: UID? { return self[.keyAttribute]?.uid }
-}
-
 // MARK: - sourcekitd_variant_*_apply
 // It is hard to pass multiple Swift objects in context parameter on calling
 // sourcekitd's `*_apply_f` functions.
@@ -459,5 +651,24 @@ func __sourcekitd_variant_dictionary_apply(
             }
             return true
             }, context)
+    }
+}
+
+extension SourceKitVariant {
+    /// Merged SourceKitVariant
+    /// If both of variants has same key, value will be overwritten by one of given variant.
+    ///
+    /// - Parameters:
+    ///   - variant: SourceKitVariant
+    /// - Returns: Merged SourceKitVariant
+    func merging(with variant: SourceKitVariant?) -> SourceKitVariant {
+        if var dictionary = dictionary,
+            let dict2 = variant?.dictionary {
+            for (key, value) in dict2 {
+                dictionary[key] = value
+            }
+            return SourceKitVariant(dictionary)
+        }
+        return self
     }
 }

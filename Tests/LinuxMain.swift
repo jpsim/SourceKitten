@@ -10,6 +10,7 @@ XCTMain([
     testCase(ModuleTests.allTests),
     testCase(OffsetMapTests.allTests),
     testCase(SourceKitTests.allTests),
+    testCase(SourceKitVariantTests.allTests),
     testCase(StringTests.allTests),
     testCase(StructureTests.allTests),
     testCase(SwiftDocsTests.allTests),
