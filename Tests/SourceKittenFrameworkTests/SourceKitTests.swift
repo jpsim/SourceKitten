@@ -182,7 +182,7 @@ class SourceKitTests: XCTestCase {
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
-        let indexJSON = NSMutableString(string: toJSON(try! Request.index(file: file, arguments: arguments).failableSend2().any) + "\n")
+        let indexJSON = NSMutableString(string: toJSON(try! Request.index(file: file, arguments: arguments).failableSend().any) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
             _ = try! NSRegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)

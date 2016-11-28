@@ -352,7 +352,7 @@ public enum Request {
             return nil
         }
         sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue), Int64(offset))
-        return try? Request.customRequest(request: cursorInfoRequest).failableSend2()
+        return try? Request.customRequest(request: cursorInfoRequest).failableSend()
     }
 
     /**
@@ -403,32 +403,12 @@ public enum Request {
     }
 
     /**
-    Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
-
-    - returns: SourceKit output as a dictionary.
-    - throws: Request.Error on fail ()
-    */
-    public func failableSend() throws -> [String: SourceKitRepresentable] {
-        initializeSourceKitFailable
-        let response = sourcekitd_send_request_sync(sourcekitObject)
-        defer { sourcekitd_response_dispose(response!) }
-        if sourcekitd_response_is_error(response!) {
-            let error = Request.Error(response: response!)
-            if case .connectionInterrupted = error {
-                _ = sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now() + 10)
-            }
-            throw error
-        }
-        return fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
-    }
-
-    /**
      Sends the request to SourceKit and return the response as an SourceKitVariant.
 
      - returns: SourceKit output as a SourceKitVariant.
      - throws: Request.Error on fail ()
      */
-    public func failableSend2() throws -> SourceKitVariant {
+    public func failableSend() throws -> SourceKitVariant {
         initializeSourceKitFailable
         let response = sourcekitd_send_request_sync(sourcekitObject)
         if sourcekitd_response_is_error(response!) {
@@ -460,7 +440,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) t
     ]
     var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
     var values = Array(dict.values)
-    return try Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).failableSend2()
+    return try Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).failableSend()
 }
 
 internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) throws -> String {

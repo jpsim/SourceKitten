@@ -40,7 +40,7 @@ public struct Structure {
     - throws: Request.Error
     */
     public init(file: File) throws {
-        self.init(sourceKitVariant: try Request.editorOpen(file: file).failableSend2())
+        self.init(sourceKitVariant: try Request.editorOpen(file: file).failableSend())
     }
 }
 

@@ -16,7 +16,7 @@ class DocInfoTests: XCTestCase {
     func testDocInfoRequest() {
         let swiftFile = File(path: fixturesDirectory + "DocInfo.swift")!
         let info = try! Request.docInfo(text: swiftFile.contents,
-                                        arguments: ["-sdk", sdkPath()]).failableSend2()
+                                        arguments: ["-sdk", sdkPath()]).failableSend()
         compareJSONString(withFixtureNamed: "DocInfo", jsonString: toJSON(info.any))
     }
 
@@ -26,7 +26,7 @@ class DocInfoTests: XCTestCase {
                                            arguments: [
                                             "-c", swiftFile,
                                             "-module-name", "DocInfo",
-                                            "-sdk", sdkPath()]).failableSend2()
+                                            "-sdk", sdkPath()]).failableSend()
         compareJSONString(withFixtureNamed: "ModuleInfo", jsonString: toJSON(info.any))
     }
 }
