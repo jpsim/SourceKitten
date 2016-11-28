@@ -91,7 +91,7 @@ class UIDNamespaceTests: XCTestCase {
         XCTAssertEqual(existingUIDNamespace, generatedUIDNamespace)
 
         // set this to true to overwrite existing UIDNamespace+generated.swift with the generated ones
-        let overwrite = true
+        let overwrite = false
         if existingUIDNamespace != generatedUIDNamespace && overwrite {
             try! generatedUIDNamespace.data(using: .utf8)?.write(to: URL(fileURLWithPath: uidNamespacePath))
         }
