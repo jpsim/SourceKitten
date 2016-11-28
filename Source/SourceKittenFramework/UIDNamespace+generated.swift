@@ -1765,4 +1765,5 @@ let knownUIDs: Set<UID> = [
     knownUIDsOfSourceLangSwiftSyntaxtype,
     knownUIDsOfSourceNotification,
     knownUIDsOfSourceRequest,
+    knownUIDsOfCustomKey,
 ].reduce([]) { $0.union($1) }

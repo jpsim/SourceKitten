@@ -76,3 +76,26 @@ extension UID: Hashable {
         return lhs.uid == rhs.uid
     }
 }
+
+let knownUIDsOfCustomKey: Set<UID> = [
+    UID("key.doc.column"),
+    UID("key.doc.comment"),
+    UID("key.doc.declaration"),
+    UID("key.doc.discussion"),
+    UID("key.doc.file"),
+    UID("key.doc.line"),
+    UID("key.doc.name"),
+    UID("key.doc.parameters"),
+    UID("key.doc.result_discussion"),
+    UID("key.doc.type"),
+    UID("key.parsed_declaration"),
+    UID("key.parsed_scope.end"),
+    UID("key.parsed_scope.start"),
+    UID("key.swift_declaration"),
+    UID("key.always_deprecated"),
+    UID("key.always_unavailable"),
+    UID("key.deprecation_message"),
+    UID("key.unavailable_message"),
+    UID("name"),
+    UID("discussion"),
+]
