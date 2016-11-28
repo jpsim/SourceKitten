@@ -25,7 +25,7 @@ public struct Structure {
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
     @available(*, unavailable, message: "use Structure.init(sourceKitVariant:)")
-    public init(sourceKitResponse: [String: SourceKitRepresentable]) {
+    public init(sourceKitResponse: [String: Any]) {
         fatalError()
     }
 

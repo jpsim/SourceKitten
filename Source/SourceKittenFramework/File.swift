@@ -448,12 +448,12 @@ private extension XMLIndexer {
 // MARK: - migration support
 extension File {
     @available(*, unavailable, renamed: "process(dictionary:cursorInfoRequest:syntaxMap:)")
-    public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
+    public func processDictionary(_ dictionary: [String: Any], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: Any] {
         fatalError()
     }
 
     @available(*, unavailable, renamed: "parseDocumentationCommentBody(_:syntaxMap:)")
-    public func getDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
+    public func getDocumentationCommentBody(_ dictionary: [String: Any], syntaxMap: SyntaxMap) -> String? {
         fatalError()
     }
 }

@@ -75,7 +75,7 @@ extension File {
 // MARK: - migration support
 extension File {
     @available(*, unavailable, renamed: "makeOffsetMap(documentedTokenOffsets:dictionary:)")
-    public func generateOffsetMap(_ documentedTokenOffsets: [Int], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
+    public func generateOffsetMap(_ documentedTokenOffsets: [Int], dictionary: [String: Any]) -> OffsetMap {
         fatalError()
     }
 }

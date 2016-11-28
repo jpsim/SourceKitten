@@ -12,88 +12,8 @@ import Foundation
 import SourceKit
 #endif
 
-public protocol SourceKitRepresentable {
-    func isEqualTo(_ rhs: SourceKitRepresentable) -> Bool
-}
-extension Array: SourceKitRepresentable {}
-extension Dictionary: SourceKitRepresentable {}
-extension String: SourceKitRepresentable {}
-extension Int64: SourceKitRepresentable {}
-extension Bool: SourceKitRepresentable {}
-
-extension SourceKitRepresentable {
-    public func isEqualTo(_ rhs: SourceKitRepresentable) -> Bool {
-        switch self {
-        case let lhs as [SourceKitRepresentable]:
-            for (idx, value) in lhs.enumerated() {
-                if let rhs = rhs as? [SourceKitRepresentable], rhs[idx].isEqualTo(value) {
-                    continue
-                }
-                return false
-            }
-            return true
-        case let lhs as [String: SourceKitRepresentable]:
-            for (key, value) in lhs {
-                if let rhs = rhs as? [String: SourceKitRepresentable],
-                   let rhsValue = rhs[key], rhsValue.isEqualTo(value) {
-                    continue
-                }
-                return false
-            }
-            return true
-        case let lhs as String:
-            return lhs == rhs as? String
-        case let lhs as Int64:
-            return lhs == rhs as? Int64
-        case let lhs as Bool:
-            return lhs == rhs as? Bool
-        default:
-            fatalError("Should never happen because we've checked all SourceKitRepresentable types")
-        }
-    }
-}
-
-private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKitRepresentable? {
-    switch sourcekitd_variant_get_type(sourcekitObject) {
-    case SOURCEKITD_VARIANT_TYPE_ARRAY:
-        var array = [SourceKitRepresentable]()
-        _ = withUnsafeMutablePointer(to: &array) { arrayPtr in
-            sourcekitd_variant_array_apply_f(sourcekitObject, { index, value, context in
-                if let value = fromSourceKit(value), let context = context {
-                    let localArray = context.assumingMemoryBound(to: [SourceKitRepresentable].self)
-                    localArray.pointee.insert(value, at: Int(index))
-                }
-                return true
-            }, arrayPtr)
-        }
-        return array
-    case SOURCEKITD_VARIANT_TYPE_DICTIONARY:
-        var dict = [String: SourceKitRepresentable]()
-        _ = withUnsafeMutablePointer(to: &dict) { dictPtr in
-            sourcekitd_variant_dictionary_apply_f(sourcekitObject, { key, value, context in
-                if let key = String(sourceKitUID: key!), let value = fromSourceKit(value), let context = context {
-                    let localDict = context.assumingMemoryBound(to: [String: SourceKitRepresentable].self)
-                    localDict.pointee[key] = value
-                }
-                return true
-            }, dictPtr)
-        }
-        return dict
-    case SOURCEKITD_VARIANT_TYPE_STRING:
-        return String(bytes: sourcekitd_variant_string_get_ptr(sourcekitObject),
-                      length: sourcekitd_variant_string_get_length(sourcekitObject))
-    case SOURCEKITD_VARIANT_TYPE_INT64:
-        return sourcekitd_variant_int64_get_value(sourcekitObject)
-    case SOURCEKITD_VARIANT_TYPE_BOOL:
-        return sourcekitd_variant_bool_get_value(sourcekitObject)
-    case SOURCEKITD_VARIANT_TYPE_UID:
-        return String(sourceKitUID: sourcekitd_variant_uid_get_value(sourcekitObject))
-    case SOURCEKITD_VARIANT_TYPE_NULL:
-        return nil
-    default:
-        fatalError("Should never happen because we've checked all SourceKitRepresentable types")
-    }
-}
+@available(*, unavailable, message: "Use SourceKitVariant instead of SourceKitRepresentable")
+typealias SourceKitRepresentable = Any
 
 /// Lazily and singly computed Void constants to initialize SourceKit once per session.
 private let initializeSourceKit: Void = {
@@ -360,11 +280,9 @@ public enum Request {
 
     - returns: SourceKit output as a dictionary.
     */
-    public func send() -> [String: SourceKitRepresentable] {
-        initializeSourceKit
-        let response = sourcekitd_send_request_sync(sourcekitObject)
-        defer { sourcekitd_response_dispose(response!) }
-        return fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
+    @available(*, unavailable, message: "Use `failableSend()` instead of `send()`")
+    public func send() -> [String: Any] {
+        fatalError()
     }
 
     /// A enum representation of SOURCEKITD_ERROR_*

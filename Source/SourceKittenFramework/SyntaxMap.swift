@@ -28,7 +28,7 @@ public struct SyntaxMap {
     - parameter data: NSData from a SourceKit `editor.open` response
     */
     @available(*, unavailable, message: "Use SyntaxMap.init(sourceKitVariant:)")
-    public init(data: [SourceKitRepresentable]) {
+    public init(data: [Any]) {
         fatalError()
     }
 
@@ -38,7 +38,7 @@ public struct SyntaxMap {
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
     @available(*, unavailable, message: "use SyntaxMap.init(sourceKitVariant:)")
-    public init(sourceKitResponse: [String: SourceKitRepresentable]) {
+    public init(sourceKitResponse: [String: Any]) {
         fatalError()
     }
 
