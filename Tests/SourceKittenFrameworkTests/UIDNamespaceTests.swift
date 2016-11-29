@@ -212,10 +212,10 @@ fileprivate func createExtensionOfUID(from uidStrings: [String]) -> String {
         sortedNamespaces.map({ $0.renderIsMemberProperty() }).map(indent) +
         ["}"]
     let knownUIDOfConstants = sortedNamespaces.flatMap { $0.renderKnownUIDOf() }
-    let knownUIDs = ["let knownUIDs: Set<UID> = ["] +
+    let knownUIDs = ["let knownUIDsSets: [Set<UID>] = ["] +
         sortedNamespaces.map({ "knownUIDsOf\($0.typeName)," }).map(indent) +
         [indent("knownUIDsOfCustomKey,")] +
-        ["].reduce([]) { $0.union($1) }"]
+        ["]"]
 
     return (enums +
         extensions +

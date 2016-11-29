@@ -1743,7 +1743,7 @@ fileprivate let knownUIDsOfSourceRequest: Set<UID> = [
     UID.SourceRequest.protocol_version.uid,
     UID.SourceRequest.relatedidents.uid,
 ]
-let knownUIDs: Set<UID> = [
+let knownUIDsSets: [Set<UID>] = [
     knownUIDsOfKey,
     knownUIDsOfSourceAvailabilityPlatform,
     knownUIDsOfSourceCodecompletion,
@@ -1766,4 +1766,4 @@ let knownUIDs: Set<UID> = [
     knownUIDsOfSourceNotification,
     knownUIDsOfSourceRequest,
     knownUIDsOfCustomKey,
-].reduce([]) { $0.union($1) }
+]

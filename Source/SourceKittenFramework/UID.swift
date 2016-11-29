@@ -14,12 +14,19 @@ import Foundation
 
 /// Swift representation of sourcekitd_uid_t
 public struct UID {
-    let uid: sourcekitd_uid_t
-    init(_ uid: sourcekitd_uid_t) { self.uid = uid }
+    fileprivate let _uid: sourcekitd_uid_t
+    init(_ uid: sourcekitd_uid_t, _ string: String? = nil) {
+        _uid = uid
+        _string = string
+    }
 
+    fileprivate let _string: String?
     var string: String {
-        let bytes = sourcekitd_uid_get_string_ptr(uid)
-        let length = sourcekitd_uid_get_length(uid)
+        if let _string = _string ?? knownSourceKitUIDStringMap[_uid] {
+            return _string
+        }
+        let bytes = sourcekitd_uid_get_string_ptr(_uid)
+        let length = sourcekitd_uid_get_length(_uid)
         return String(bytes: bytes!, length: length)!
     }
 }
@@ -34,45 +41,77 @@ extension UID: CustomStringConvertible {
 // MARK: - ExpressibleByStringLiteral
 extension UID: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
-        self.init(value)
-        #if DEBUG
-            precondition(isKnown, "\"\(description)\" is not predefined UID string!")
-        #endif
+        if let knownUID = knownUIDStringUIDMap[value] {
+            self.init(knownUID, value)
+        } else {
+            self.init(value)
+            #if DEBUG
+                preconditionFailure("\"\(value)\" is not predefined UID string!")
+            #endif
+        }
     }
 
     public init(extendedGraphemeClusterLiteral value: String) {
-        self.init(value)
-        #if DEBUG
-            precondition(isKnown, "\"\(description)\" is not predefined UID string!")
-        #endif
+        if let knownUID = knownUIDStringUIDMap[value] {
+            self.init(knownUID, value)
+        } else {
+            self.init(value)
+            #if DEBUG
+                preconditionFailure("\"\(value)\" is not predefined UID string!")
+            #endif
+        }
     }
 
     public init(unicodeScalarLiteral value: String) {
-        self.init(value)
-        #if DEBUG
-            precondition(isKnown, "\"\(description)\" is not predefined UID string!")
-        #endif
+        if let knownUID = knownUIDStringUIDMap[value] {
+            self.init(knownUID, value)
+        } else {
+            self.init(value)
+            #if DEBUG
+                preconditionFailure("\"\(value)\" is not predefined UID string!")
+            #endif
+        }
     }
 
     init(_ string: String) {
-        uid = sourcekitd_uid_get_from_cstr(string)
+        _uid = sourcekitd_uid_get_from_cstr(string)
+        _string = string
     }
 
     // Check known uid.
-    #if DEBUG
     var isKnown: Bool {
-        return knownUIDs.contains(self)
+        return knownSourceKitUIDStringMap.index(forKey: _uid) != nil
     }
-    #endif
 }
 
 // MARK: - Hashable
 extension UID: Hashable {
     public var hashValue: Int {
-        return uid.hashValue
+        return _uid.hashValue
     }
 
     public static func ==(lhs: UID, rhs: UID) -> Bool {
-        return lhs.uid == rhs.uid
+        return lhs._uid == rhs._uid
     }
 }
+
+// MARK: - Known UID caches
+fileprivate let countOfKnownUIDs = knownUIDsSets.reduce(0, { $0 + $1.count })
+
+/// SourceKit UID to String map.
+fileprivate let knownSourceKitUIDStringMap: [sourcekitd_uid_t:String] = knownUIDsSets
+    .reduce(Dictionary(minimumCapacity: countOfKnownUIDs), {
+        dictionary, set in
+        var dictionary = dictionary
+        set.forEach { dictionary[$0._uid] = $0._string }
+        return dictionary
+    })
+
+/// String to SourceKit UID map.
+fileprivate let knownUIDStringUIDMap: [String:sourcekitd_uid_t] = knownUIDsSets
+    .reduce(Dictionary(minimumCapacity: countOfKnownUIDs), {
+        dictionary, set in
+        var dictionary = dictionary
+        set.forEach { dictionary[$0._string!] = $0._uid }
+        return dictionary
+    })

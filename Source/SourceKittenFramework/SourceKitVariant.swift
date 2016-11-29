@@ -223,25 +223,25 @@ extension SourceKitVariant {
 // MARK: - Convenient properties for Custom Keys
 extension SourceKitVariant {
     fileprivate struct Custom {
-        static let docColumn: UID = "key.doc.column"
-        static let documentationComment: UID = "key.doc.comment"
-        static let docDeclaration: UID = "key.doc.declaration"
-        static let docDiscussion: UID = "key.doc.discussion"
-        static let docFile: UID = "key.doc.file"
-        static let docLine: UID = "key.doc.line"
-        static let docName: UID = "key.doc.name"
-        static let docParameters: UID = "key.doc.parameters"
-        static let docResultDiscussion: UID = "key.doc.result_discussion"
-        static let docType: UID = "key.doc.type"
-        // static let usr: UID = "key.usr"
-        static let parsedDeclaration: UID = "key.parsed_declaration"
-        static let parsedScopeEnd: UID = "key.parsed_scope.end"
-        static let parsedScopeStart: UID = "key.parsed_scope.start"
-        static let swiftDeclaration: UID = "key.swift_declaration"
-        static let alwaysDeprecated: UID = "key.always_deprecated"
-        static let alwaysUnavailable: UID = "key.always_unavailable"
-        static let deprecationMessage: UID = "key.deprecation_message"
-        static let unavailableMessage: UID = "key.unavailable_message"
+        static let docColumn = UID("key.doc.column")
+        static let documentationComment = UID("key.doc.comment")
+        static let docDeclaration = UID("key.doc.declaration")
+        static let docDiscussion = UID("key.doc.discussion")
+        static let docFile = UID("key.doc.file")
+        static let docLine = UID("key.doc.line")
+        static let docName = UID("key.doc.name")
+        static let docParameters = UID("key.doc.parameters")
+        static let docResultDiscussion = UID("key.doc.result_discussion")
+        static let docType = UID("key.doc.type")
+        // static let usr = UID("key.usr")
+        static let parsedDeclaration = UID("key.parsed_declaration")
+        static let parsedScopeEnd = UID("key.parsed_scope.end")
+        static let parsedScopeStart = UID("key.parsed_scope.start")
+        static let swiftDeclaration = UID("key.swift_declaration")
+        static let alwaysDeprecated = UID("key.always_deprecated")
+        static let alwaysUnavailable = UID("key.always_unavailable")
+        static let deprecationMessage = UID("key.deprecation_message")
+        static let unavailableMessage = UID("key.unavailable_message")
     }
 
     /// Column where the token's declaration begins (Int).
