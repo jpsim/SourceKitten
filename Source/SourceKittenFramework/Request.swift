@@ -34,60 +34,7 @@ private let initializeSourceKitFailable: Void = {
 /// dispatch_semaphore_t used when waiting for sourcekitd to be restored.
 private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
 
-/// SourceKit UID to String map.
-private var uidStringMap = [sourcekitd_uid_t: String]()
-
 internal extension String {
-    /**
-    Cache SourceKit requests for strings from UIDs
-
-    - returns: Cached UID string if available, nil otherwise.
-    */
-    init?(sourceKitUID: sourcekitd_uid_t) {
-        if let string = uidStringMap[sourceKitUID] {
-            self = string
-            return
-        }
-        let length = sourcekitd_uid_get_length(sourceKitUID)
-        let bytes = sourcekitd_uid_get_string_ptr(sourceKitUID)
-        if let uidString = String(bytes: bytes!, length: length) {
-            /*
-            `String` created by `String(UTF8String:)` is based on `NSString`.
-            `NSString` base `String` has performance penalty on getting `hashValue`.
-            Everytime on getting `hashValue`, it calls `decomposedStringWithCanonicalMapping` for
-            "Unicode Normalization Form D" and creates autoreleased `CFString (mutable)` and
-            `CFString (store)`. Those `CFString` are created every time on using `hashValue`, such as
-            using `String` for Dictionary's key or adding to Set.
-
-            For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
-            That does not cause calling `decomposedStringWithCanonicalMapping`.
-            */
-            let uidString = String(uidString: uidString)
-            uidStringMap[sourceKitUID] = uidString
-            self = uidString
-            return
-        }
-        return nil
-    }
-
-    /**
-     Assigns SourceKitten defined enum's rawValue String from string.
-     rawValue String if defined in SourceKitten, nil otherwise.
-
-     - parameter uidString: String created from sourcekitd_uid_get_string_ptr().
-     */
-    init(uidString: String) {
-        if let rawValue = SwiftDocKey(rawValue: uidString)?.rawValue {
-            self = rawValue
-        } else if let rawValue = SwiftDeclarationKind(rawValue: uidString)?.rawValue {
-            self = rawValue
-        } else if let rawValue = SyntaxKind(rawValue: uidString)?.rawValue {
-            self = rawValue
-        } else {
-            self = "\(uidString)"
-        }
-    }
-
     /**
      Returns Swift's native String from NSUTF8StringEncoding bytes and length
 
