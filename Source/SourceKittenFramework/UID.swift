@@ -14,19 +14,19 @@ import Foundation
 
 /// Swift representation of sourcekitd_uid_t
 public struct UID {
-    fileprivate let _uid: sourcekitd_uid_t
+    let uid: sourcekitd_uid_t
     init(_ uid: sourcekitd_uid_t, _ string: String? = nil) {
-        _uid = uid
+        self.uid = uid
         _string = string
     }
 
     fileprivate let _string: String?
     var string: String {
-        if let _string = _string ?? knownSourceKitUIDStringMap[_uid] {
+        if let _string = _string ?? knownSourceKitUIDStringMap[uid] {
             return _string
         }
-        let bytes = sourcekitd_uid_get_string_ptr(_uid)
-        let length = sourcekitd_uid_get_length(_uid)
+        let bytes = sourcekitd_uid_get_string_ptr(uid)
+        let length = sourcekitd_uid_get_length(uid)
         return String(bytes: bytes!, length: length)!
     }
 }
@@ -74,24 +74,31 @@ extension UID: ExpressibleByStringLiteral {
     }
 
     init(_ string: String) {
-        _uid = sourcekitd_uid_get_from_cstr(string)
+        uid = sourcekitd_uid_get_from_cstr(string)
         _string = string
     }
 
     // Check known uid.
     var isKnown: Bool {
-        return knownSourceKitUIDStringMap.index(forKey: _uid) != nil
+        return knownSourceKitUIDStringMap.index(forKey: uid) != nil
     }
 }
 
 // MARK: - Hashable
 extension UID: Hashable {
     public var hashValue: Int {
-        return _uid.hashValue
+        return uid.hashValue
     }
 
     public static func ==(lhs: UID, rhs: UID) -> Bool {
-        return lhs._uid == rhs._uid
+        return lhs.uid == rhs.uid
+    }
+}
+
+// MARK: - SourceKitObjectConvertible
+extension UID: SourceKitObjectConvertible {
+    public var object: sourcekitd_object_t? {
+        return sourcekitd_request_uid_create(uid)
     }
 }
 
@@ -103,7 +110,7 @@ fileprivate let knownSourceKitUIDStringMap: [sourcekitd_uid_t:String] = knownUID
     .reduce(Dictionary(minimumCapacity: countOfKnownUIDs), {
         dictionary, set in
         var dictionary = dictionary
-        set.forEach { dictionary[$0._uid] = $0._string }
+        set.forEach { dictionary[$0.uid] = $0._string }
         return dictionary
     })
 
@@ -112,6 +119,6 @@ fileprivate let knownUIDStringUIDMap: [String:sourcekitd_uid_t] = knownUIDsSets
     .reduce(Dictionary(minimumCapacity: countOfKnownUIDs), {
         dictionary, set in
         var dictionary = dictionary
-        set.forEach { dictionary[$0._string!] = $0._uid }
+        set.forEach { dictionary[$0._string!] = $0.uid }
         return dictionary
     })

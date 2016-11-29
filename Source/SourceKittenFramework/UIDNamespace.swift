@@ -7,19 +7,17 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+    import SourceKit
+#endif
 
 // MARK: - UIDNamespace
-public protocol UIDNamespace: CustomStringConvertible, Equatable, ExpressibleByStringLiteral {
+public protocol UIDNamespace: CustomStringConvertible, Equatable, ExpressibleByStringLiteral, SourceKitObjectConvertible {
     var uid: UID { get }
     static var __uid_prefix: String { get }
 }
 
 extension UIDNamespace {
-    // CustomStringConvertible
-    public var description: String {
-        return uid.description
-    }
-
     static func _inferUID(from string: String) -> UID {
         let namespace = __uid_prefix
         let fullyQualifiedName: String
@@ -28,18 +26,23 @@ extension UIDNamespace {
         } else {
             // Check string begins with targeting namespace if DEBUG.
             #if DEBUG
-            precondition(string.hasPrefix(namespace + "."), "string must begin with \"\(namespace).\".")
+                precondition(string.hasPrefix(namespace + "."), "string must begin with \"\(namespace).\".")
             #endif
             fullyQualifiedName = string
         }
         let result = UID(fullyQualifiedName)
         #if DEBUG
-        precondition(result.isKnown, "\"\(fullyQualifiedName)\" is not predefined UID string!")
+            precondition(result.isKnown, "\"\(fullyQualifiedName)\" is not predefined UID string!")
         #endif
         return result
     }
+    
+    // MARK: CustomStringConvertible
+    public var description: String {
+        return uid.description
+    }
 
-    // ExpressibleByStringLiteral
+    // MARK: ExpressibleByStringLiteral
     // 
     // FIXME: Use following implementation when https://bugs.swift.org/browse/SR-3173 will be resolved.
     /*
@@ -53,4 +56,9 @@ extension UIDNamespace {
         self.init(uid: UID(value))
     }
      */
+
+    // MARK: SourceKitObjectConvertible
+    public var object: sourcekitd_object_t? {
+        return sourcekitd_request_uid_create(uid.uid)
+    }
 }
