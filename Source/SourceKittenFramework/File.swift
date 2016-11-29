@@ -67,17 +67,17 @@ public final class File {
         var offset = 0
         for line in lines {
             let formatResponse = try Request.format(file: path,
-                                                line: Int64(line.index),
+                                                line: line.index,
                                                 useTabs: useTabs,
-                                                indentWidth: Int64(indentWidth)).failableSend()
+                                                indentWidth: indentWidth).failableSend()
             let newText = formatResponse.sourceText!
             newContents.append(newText)
 
             guard newText != line.content else { continue }
 
             _ = try Request.replaceText(file: path,
-                                    offset: Int64(line.byteRange.location + offset),
-                                    length: Int64(line.byteRange.length - 1),
+                                    offset: line.byteRange.location + offset,
+                                    length: line.byteRange.length - 1,
                                     sourceText: newText).failableSend()
             let oldLength = line.byteRange.length
             let newLength = newText.lengthOfBytes(using: .utf8)
@@ -161,7 +161,7 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func process(dictionary: SourceKitVariant, cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> SourceKitVariant {
+    public func process(dictionary: SourceKitVariant, cursorInfoRequest: SourceKitObject? = nil, syntaxMap: SyntaxMap? = nil) -> SourceKitVariant {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = dictionary.merging(with:
@@ -205,7 +205,7 @@ public final class File {
     - parameter documentedTokenOffsets: Offsets that are likely documented.
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
-    internal func furtherProcess(dictionary: SourceKitVariant, documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> SourceKitVariant {
+    internal func furtherProcess(dictionary: SourceKitVariant, documentedTokenOffsets: [Int], cursorInfoRequest: SourceKitObject, syntaxMap: SyntaxMap) -> SourceKitVariant {
         var dictionary = dictionary
         let offsetMap = makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
@@ -231,7 +231,7 @@ public final class File {
                `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
                and declarations.
     */
-    private func newSubstructure(_ dictionary: SourceKitVariant, cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> [SourceKitVariant]? {
+    private func newSubstructure(_ dictionary: SourceKitVariant, cursorInfoRequest: SourceKitObject?, syntaxMap: SyntaxMap?) -> [SourceKitVariant]? {
         return dictionary.subStructure?
             .filter(isDeclarationOrCommentMark)
             .map {
@@ -245,7 +245,7 @@ public final class File {
     - parameter dictionary:        Dictionary to update.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    private func dictWithCommentMarkNamesCursorInfo(_ sourceKitVariant: SourceKitVariant, cursorInfoRequest: sourcekitd_object_t) -> SourceKitVariant? {
+    private func dictWithCommentMarkNamesCursorInfo(_ sourceKitVariant: SourceKitVariant, cursorInfoRequest: SourceKitObject) -> SourceKitVariant? {
         guard let kind = sourceKitVariant.kind else {
             return nil
         }
@@ -448,7 +448,7 @@ private extension XMLIndexer {
 // MARK: - migration support
 extension File {
     @available(*, unavailable, renamed: "process(dictionary:cursorInfoRequest:syntaxMap:)")
-    public func processDictionary(_ dictionary: [String: Any], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: Any] {
+    public func processDictionary(_ dictionary: [String: Any], cursorInfoRequest: SourceKitObject? = nil, syntaxMap: SyntaxMap? = nil) -> [String: Any] {
         fatalError()
     }
 

@@ -202,7 +202,7 @@ extension CXCursor {
             return nil
         }
 
-        guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: Int64(usrOffset), arguments: compilerArguments).failableSend(),
+        guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).failableSend(),
             let docsXML = cursorInfo.docFullAsXML,
             let swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
                 return nil

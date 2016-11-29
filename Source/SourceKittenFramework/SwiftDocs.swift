@@ -48,11 +48,11 @@ public struct SwiftDocs {
     - parameter cursorInfoRequest: SourceKit dictionary to use to send cursorinfo request.
     */
     @available(*, unavailable, message: "Use SwiftDocs.init(file:sourceKitVariant:cursorInfoRequest:)")
-    public init(file: File, dictionary: [String: Any], cursorInfoRequest: sourcekitd_object_t?) {
+    public init(file: File, dictionary: [String: Any], cursorInfoRequest: SourceKitObject?) {
         fatalError()
     }
 
-    init(file: File, sourceKitVariant: SourceKitVariant, cursorInfoRequest: sourcekitd_object_t?) {
+    init(file: File, sourceKitVariant: SourceKitVariant, cursorInfoRequest: SourceKitObject?) {
         self.file = file
         var sourceKitVariant = sourceKitVariant
         let syntaxMap = SyntaxMap(sourceKitVariant: sourceKitVariant)
