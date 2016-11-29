@@ -222,7 +222,7 @@ extension SourceKitVariant {
 
 // MARK: - Convenient properties for Custom Keys
 extension SourceKitVariant {
-    private struct Custom {
+    fileprivate struct Custom {
         static let docColumn: UID = "key.doc.column"
         static let documentationComment: UID = "key.doc.comment"
         static let docDeclaration: UID = "key.doc.declaration"
@@ -233,7 +233,7 @@ extension SourceKitVariant {
         static let docParameters: UID = "key.doc.parameters"
         static let docResultDiscussion: UID = "key.doc.result_discussion"
         static let docType: UID = "key.doc.type"
-        // static let usr: UID.Key = "key.usr"
+        // static let usr: UID = "key.usr"
         static let parsedDeclaration: UID = "key.parsed_declaration"
         static let parsedScopeEnd: UID = "key.parsed_scope.end"
         static let parsedScopeStart: UID = "key.parsed_scope.start"
@@ -359,6 +359,28 @@ extension SourceKitVariant {
     }
 
 }
+
+let knownUIDsOfCustomKey: Set<UID> = [
+    SourceKitVariant.Custom.docColumn,
+    SourceKitVariant.Custom.documentationComment,
+    SourceKitVariant.Custom.docDeclaration,
+    SourceKitVariant.Custom.docDiscussion,
+    SourceKitVariant.Custom.docFile,
+    SourceKitVariant.Custom.docLine,
+    SourceKitVariant.Custom.docName,
+    SourceKitVariant.Custom.docParameters,
+    SourceKitVariant.Custom.docResultDiscussion,
+    SourceKitVariant.Custom.docType,
+    // SourceKitVariant.Custom.usr,
+    SourceKitVariant.Custom.parsedDeclaration,
+    SourceKitVariant.Custom.parsedScopeEnd,
+    SourceKitVariant.Custom.parsedScopeStart,
+    SourceKitVariant.Custom.swiftDeclaration,
+    SourceKitVariant.Custom.alwaysDeprecated,
+    SourceKitVariant.Custom.alwaysUnavailable,
+    SourceKitVariant.Custom.deprecationMessage,
+    SourceKitVariant.Custom.unavailableMessage,
+]
 
 // MARK: - ExpressibleByArrayLiteral
 extension SourceKitVariant: ExpressibleByArrayLiteral {

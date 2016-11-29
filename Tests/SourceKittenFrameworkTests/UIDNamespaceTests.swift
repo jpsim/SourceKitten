@@ -261,7 +261,7 @@ fileprivate class Namespace {
 
     func renderKnownUIDOf() -> [String] {
         return ["fileprivate let knownUIDsOf\(typeName): Set<UID> = ["] +
-            children.map { "UID(\"\($0)\")," }.map(indent) +
+            children.map { "UID.\(typeName).\(propertyName(from: $0)).uid," }.map(indent) +
             ["]"]
     }
 
@@ -273,12 +273,16 @@ fileprivate class Namespace {
 
     private var children: [String] = []
 
+    private func propertyName(from child: String) -> String {
+        return type(of: self).escape(removePrefix(from: child).lowerCamelCase)
+    }
+
     private func removePrefix(from uidString: String) -> String {
         return uidString.replacingOccurrences(of: name + ".", with: "")
     }
 
     private func render(child: String) -> [String] {
-        let property = type(of: self).escape(removePrefix(from: child).lowerCamelCase)
+        let property = propertyName(from: child)
         return [
             "/// \(child)",
             "public static let \(property): \(name.upperCamelCase) = \"\(child)\"",
