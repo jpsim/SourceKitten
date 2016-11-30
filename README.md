@@ -51,6 +51,22 @@ Available commands:
    version     Display the current version of SourceKitten
 ```
 
+## How is SourceKit resolved?
+
+SourceKitten searches for SourceKit in the following order:
+
+* `$XCODE_DEFAULT_TOOLCHAIN_OVERRIDE`
+* `$TOOLCHAIN_DIR`
+* `xcrun -find swift`
+* `/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain`
+* `/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain`
+* `~/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain`
+* `~/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain`
+
+On Linux, SourceKit is expected to be located in
+`/usr/lib/libsourcekitdInProc.so` or specified by the `LINUX_SOURCEKIT_LIB_PATH`
+environment variable.
+
 ## Complete
 
 Running `sourcekitten complete --file file.swift --offset 123` or
