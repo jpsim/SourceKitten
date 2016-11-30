@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix Objective-C enum cases not being documented.  
+  [JP Simard](https://github.com/jpsim)
+  [#304](https://github.com/jpsim/SourceKitten/issues/304)
 
 ## 0.15.1
 
