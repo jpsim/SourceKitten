@@ -147,6 +147,20 @@ extension Sequence where Iterator.Element == SourceDeclaration {
         }
         return filter { !propertyGetterSetterUSRs.contains($0.usr!) }
     }
+
+    /// Reject one of an enum duplicate pair that's empty if the other isn't.
+    func rejectEmptyDuplicateEnums() -> [SourceDeclaration] {
+        let enums = filter { $0.type == .enum }
+        let enumUSRs = enums.map { $0.usr! }
+        let dupedEmptyUSRs = enumUSRs.filter { usr in
+            let enumsForUSR = enums.filter { $0.usr == usr }
+            let childCounts = Set(enumsForUSR.map({ $0.children.count }))
+            return childCounts.count > 1 && childCounts.contains(0)
+        }
+        return filter {
+            $0.type != .enum || !dupedEmptyUSRs.contains($0.usr!) || !$0.children.isEmpty
+        }
+    }
 }
 
 extension SourceDeclaration: Hashable {

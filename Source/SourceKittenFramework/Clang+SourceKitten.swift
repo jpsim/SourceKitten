@@ -94,17 +94,8 @@ extension CXCursor {
     }
 
     func name() -> String {
-        let spelling = clang_getCursorSpelling(self).str()!
         let type = objCKind()
-        if let usrString = usr(), spelling.isEmpty && type == .enum {
-            // libClang considers enums declared like `typedef enum {} name;` rather than `NS_ENUM()`
-            // to have a cursor spelling of "" (empty string). So we parse the USR to extract the actual name.
-            let prefix = "c:@EA@"
-            assert(usrString.hasPrefix(prefix))
-            let index = usrString.index(usrString.startIndex,
-                                        offsetBy: prefix.lengthOfBytes(using: .utf8))
-            return usrString.substring(from: index)
-        } else if type == .category, let usrNSString = usr() as NSString? {
+        if type == .category, let usrNSString = usr() as NSString? {
             let ext = (usrNSString.range(of: "c:objc(ext)").location == 0)
             let regex = try! NSRegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
             let range = NSRange(location: 0, length: usrNSString.length)
@@ -116,7 +107,9 @@ extension CXCursor {
             } else {
                 fatalError("Couldn't get category name")
             }
-        } else if type == .methodInstance {
+        }
+        let spelling = clang_getCursorSpelling(self).str()!
+        if type == .methodInstance {
             return "-" + spelling
         } else if type == .methodClass {
             return "+" + spelling
