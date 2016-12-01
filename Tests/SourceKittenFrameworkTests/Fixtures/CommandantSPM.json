@@ -790,6 +790,9 @@
           },
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:F6Resultoi2eeuRxS_14ResultProtocolwx5Errors9Equatablewx5ValueS2_rFTxx_Sb\">==&lt;T : ResultProtocol where T.Value : Equatable, T.Error : Equatable&gt;(_: T, _: T) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:ZFO6Result7NoErroroi2eeFTS0_S0__Sb\">==(_: NoError, _: NoError) -&gt; Bool<\/RelatedName>"
           }
         ],
         "key.bodyoffset" : 633,
