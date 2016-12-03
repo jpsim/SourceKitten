@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name                = 'SourceKitten'
   s.module_name         = 'SourceKittenFramework'
-  s.version             = '0.15.1'
+  s.version             = '0.15.2'
   s.summary             = 'An adorable little framework for interacting with SourceKit.'
   s.homepage            = 'https://github.com/jpsim/SourceKitten'
   s.source              = { :git => s.homepage + '.git', :tag => s.version }

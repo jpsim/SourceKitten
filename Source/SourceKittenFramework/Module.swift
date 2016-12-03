@@ -78,7 +78,14 @@ public struct Module {
                 return nil
         }
         name = spmName
-        compilerArguments = sources + ["-module-name", spmName] + otherArguments + ["-I"] + imports
+        compilerArguments = {
+            var arguments = sources
+            arguments.append(contentsOf: ["-module-name", spmName])
+            arguments.append(contentsOf: otherArguments)
+            arguments.append(contentsOf: ["-I"])
+            arguments.append(contentsOf: imports)
+            return arguments
+        }()
         sourceFiles = sources
     }
 
