@@ -204,24 +204,27 @@ fileprivate func createExtensionOfUID(from uidStrings: [String]) -> String {
     }
 
     let sortedNamespaces = namespaces.sorted(by: { $0.name < $1.name })
-    let enums = ["extension UID {"] +
-        sortedNamespaces.flatMap({ $0.renderEnum() }).map(indent) +
-        ["}",""]
-    let extensions = sortedNamespaces.flatMap { $0.renderExtension() }
-    let isMemberPropertiesExtension = ["extension UID {"] +
-        sortedNamespaces.map({ $0.renderIsMemberProperty() }).map(indent) +
-        ["}"]
-    let knownUIDOfConstants = sortedNamespaces.flatMap { $0.renderKnownUIDOf() }
-    let knownUIDs = ["let knownUIDsSets: [Set<UID>] = ["] +
-        sortedNamespaces.map({ "knownUIDsOf\($0.typeName)," }).map(indent) +
-        [indent("knownUIDsOfCustomKey,")] +
-        ["]"]
 
-    return (enums +
-        extensions +
-        isMemberPropertiesExtension +
-        knownUIDOfConstants +
-        knownUIDs).joined(separator: "\n") + "\n"
+    var lines = [String]()
+    // enums
+    lines.append("extension UID {")
+    lines.append(contentsOf: sortedNamespaces.flatMap({ $0.renderEnum() }).map(indent))
+    lines.append(contentsOf: ["}",""])
+    // extensions
+    lines.append(contentsOf: sortedNamespaces.flatMap { $0.renderExtension() })
+    // isMemberPropertiesExtension
+    lines.append("extension UID {")
+    lines.append(contentsOf: sortedNamespaces.map({ $0.renderIsMemberProperty() }).map(indent))
+    lines.append("}")
+    // knownUIDOfContents
+    lines.append(contentsOf: sortedNamespaces.flatMap { $0.renderKnownUIDOf() })
+    // knownUIDs
+    lines.append("let knownUIDsSets: [Set<UID>] = [")
+    lines.append(contentsOf: sortedNamespaces.map({ "knownUIDsOf\($0.typeName)," }).map(indent))
+    lines.append(indent("knownUIDsOfCustomKey,"))
+    lines.append("]")
+
+    return lines.joined(separator: "\n") + "\n"
 }
 
 fileprivate class Namespace {
@@ -242,17 +245,21 @@ fileprivate class Namespace {
     }
 
     func renderEnum() -> [String] {
-        return ["public struct \(name.upperCamelCase) {",
-            indent("public let uid: UID")] +
-            children.flatMap(render).map(indent) +
-            ["}"]
+        var result = [String]()
+        result.append("public struct \(name.upperCamelCase) {")
+        result.append(indent("public let uid: UID"))
+        result.append(contentsOf: children.flatMap(render).map(indent))
+        result.append("}")
+        return result
     }
 
     func renderExtension() -> [String] {
-        return ["extension UID.\(typeName): UIDNamespace {",
-            indent("public static let __uid_prefix = \"\(name)\"")] +
-            renderMethods().map(indent) +
-            ["}"]
+        var result = [String]()
+        result.append("extension UID.\(typeName): UIDNamespace {")
+        result.append(indent("public static let __uid_prefix = \"\(name)\""))
+        result.append(contentsOf: renderMethods().map(indent))
+        result.append("}")
+        return result
     }
 
     func renderIsMemberProperty() -> String {
@@ -260,9 +267,11 @@ fileprivate class Namespace {
     }
 
     func renderKnownUIDOf() -> [String] {
-        return ["fileprivate let knownUIDsOf\(typeName): Set<UID> = ["] +
-            children.map { "UID.\(typeName).\(propertyName(from: $0)).uid," }.map(indent) +
-            ["]"]
+        var result = [String]()
+        result.append("fileprivate let knownUIDsOf\(typeName): Set<UID> = [")
+        result.append(contentsOf: children.map { "UID.\(typeName).\(propertyName(from: $0)).uid," }.map(indent))
+        result.append("]")
+        return result
     }
 
     var typeName: String {
