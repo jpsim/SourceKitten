@@ -63,7 +63,9 @@ public func toNSDictionary(_ dictionary: [String: SourceKitRepresentable]) -> NS
 #if !os(Linux)
 
 public func declarationsToJSON(_ decl: [String: [SourceDeclaration]]) -> String {
-    return toJSON(decl.map({ [$0: toOutputDictionary($1)] }).sorted { $0.keys.first! < $1.keys.first! })
+    let keyValueToDictionary: ((String, [SourceDeclaration])) -> [String:Any] = { [$0: toOutputDictionary($1)] }
+    let dictionaries: [[String: Any]] = decl.map(keyValueToDictionary).sorted { $0.keys.first! < $1.keys.first! }
+    return toJSON(dictionaries)
 }
 
 private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: Any] {
