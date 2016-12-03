@@ -77,11 +77,6 @@ extension UID: ExpressibleByStringLiteral {
         uid = sourcekitd_uid_get_from_cstr(string)
         _string = string
     }
-
-    // Check known uid.
-    var isKnown: Bool {
-        return knownSourceKitUIDStringMap.index(forKey: uid) != nil
-    }
 }
 
 // MARK: - Hashable

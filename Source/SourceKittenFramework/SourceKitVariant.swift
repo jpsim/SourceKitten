@@ -380,6 +380,9 @@ let knownUIDsOfCustomKey: Set<UID> = [
     SourceKitVariant.Custom.alwaysUnavailable,
     SourceKitVariant.Custom.deprecationMessage,
     SourceKitVariant.Custom.unavailableMessage,
+    // used in result of `parseFullXMLDocs(_:`)
+    UID("name"),
+    UID("discussion"),
 ]
 
 // MARK: - ExpressibleByArrayLiteral

@@ -31,9 +31,6 @@ extension UIDNamespace {
             fullyQualifiedName = string
         }
         let result = UID(fullyQualifiedName)
-        #if DEBUG
-            precondition(result.isKnown, "\"\(fullyQualifiedName)\" is not predefined UID string!")
-        #endif
         return result
     }
     
