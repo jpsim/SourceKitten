@@ -1,4 +1,4 @@
-## Master
+## 0.15.3
 
 ##### Breaking
 
@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Reduce compilation time.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
 
