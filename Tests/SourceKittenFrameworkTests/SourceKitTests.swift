@@ -194,6 +194,15 @@ class SourceKitTests: XCTestCase {
 
         compareJSONString(withFixtureNamed: "BicycleIndex", jsonString: indexJSON.bridge())
     }
+
+    func testYamlRequest() {
+        let path = fixturesDirectory + "Subscript.swift"
+        let yaml = "key.request: source.request.editor.open\nkey.name: \"\(path)\"\nkey.sourcefile: \"\(path)\""
+        let output = Request.yamlRequest(yaml: yaml).send()
+        let expectedStructure = Structure(file: File(path: path)!)
+        let actualStructure = Structure(sourceKitResponse: output)
+        XCTAssertEqual(expectedStructure, actualStructure)
+    }
 }
 
 extension SourceKitTests {
@@ -203,6 +212,7 @@ extension SourceKitTests {
             ("testSyntaxKinds", testSyntaxKinds),
             ("testSwiftDeclarationKind", testSwiftDeclarationKind),
             ("testIndex", testIndex),
+            ("testYamlRequest", testYamlRequest),
         ]
     }
 }
