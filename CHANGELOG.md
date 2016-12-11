@@ -6,7 +6,7 @@
 
 ##### Enhancements
 
-* Add `Request.yaml` to create a sourcekit request from yaml.
+* Add `Request.yaml` to create a sourcekit request from yaml.  
   [Keith Smiley](https://github.com/keith)
   [#313](https://github.com/jpsim/SourceKitten/pull/313)
 
