@@ -6,12 +6,10 @@
 
 ##### Enhancements
 
-* Add `Request.yaml` to create a sourcekit request from yaml.  
+* Add `Request.yaml` API to create a sourcekit request from yaml
+  and expose as a `request --yaml [file|text]` CLI command.  
   [Keith Smiley](https://github.com/keith)
-  [#313](https://github.com/jpsim/SourceKitten/pull/313)
-* Add `request` command to execute a sourcekit request from yaml.  
-  [Keith Smiley](https://github.com/keith)
-  [#315](https://github.com/jpsim/SourceKitten/pull/315)
+  [#312](https://github.com/jpsim/SourceKitten/issues/312)
 
 ##### Bug Fixes
 
