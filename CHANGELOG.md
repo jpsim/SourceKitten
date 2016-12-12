@@ -9,6 +9,9 @@
 * Add `Request.yaml` to create a sourcekit request from yaml.  
   [Keith Smiley](https://github.com/keith)
   [#313](https://github.com/jpsim/SourceKitten/pull/313)
+* Add `request` command to execute a sourcekit request from yaml.  
+  [Keith Smiley](https://github.com/keith)
+  [#315](https://github.com/jpsim/SourceKitten/pull/315)
 
 ##### Bug Fixes
 
