@@ -101,7 +101,7 @@ private let initializeSourceKit: Void = {
 }()
 private let initializeSourceKitFailable: Void = {
     initializeSourceKit
-    sourcekitd_set_notification_handler() { response in
+    sourcekitd_set_notification_handler { response in
         if !sourcekitd_response_is_error(response!) {
             fflush(stdout)
             fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
