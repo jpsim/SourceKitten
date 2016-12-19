@@ -7,6 +7,7 @@
 //
 
 import Commandant
+import Foundation
 import Result
 
 private let version = Bundle(identifier: "com.sourcekitten.SourceKittenFramework")!
