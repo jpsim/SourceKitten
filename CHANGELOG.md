@@ -1,11 +1,11 @@
-## Master
+## 0.16.0
 
 ##### Breaking
 
 * The `SourceKitten` CocoaPods podspec used to actually refer to
   SourceKittenFramework, so it has been renamed. Existing pushes to CocoaPods
   trunk will be preserved, but from now on if you use SourceKittenFramework via
-  CocoaPods, please specify to use the `SourceKittenFramework` pod.
+  CocoaPods, please specify to use the `SourceKittenFramework` pod.  
   [JP Simard](https://github.com/jpsim)
 
 ##### Enhancements
