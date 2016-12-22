@@ -22,9 +22,9 @@ struct RequestCommand: CommandProtocol {
             return self.init(yaml: yaml)
         }
 
-        static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+        static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
-                <*> m <| Option(key: "yaml", defaultValue: "", usage: "a path to a yaml file, or yaml text to execute")
+                <*> mode <| Option(key: "yaml", defaultValue: "", usage: "a path to a yaml file, or yaml text to execute")
         }
     }
 

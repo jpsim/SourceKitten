@@ -11,6 +11,5 @@ disabled_rules:
   - force_cast
   - force_try
   - todo
-  - variable_name
 
 line_length: 160
