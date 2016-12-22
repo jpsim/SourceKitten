@@ -197,10 +197,9 @@ fileprivate func createExtensionOfUID(from uidStrings: [String]) -> String {
 
     let namespaces = desiredTypes.sorted(by: >).map(Namespace.init)
     uidStrings.forEach { uidString in
-        XCTAssertTrue(
-            namespaces.contains { $0.append(child: uidString) },
-            "Unkown uid detected: \(uidString)"
-        )
+        if !namespaces.contains { $0.append(child: uidString) } {
+            print("Unkown uid detected: \(uidString)")
+        }
     }
 
     let sortedNamespaces = namespaces.sorted(by: { $0.name < $1.name })
