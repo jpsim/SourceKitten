@@ -40,7 +40,7 @@ extension OffsetMapTests {
             ("testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented",
              testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented),
             ("testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset",
-             testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset),
+             testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset)
         ]
     }
 }

@@ -28,7 +28,7 @@ extension FileTests {
     static var allTests: [(String, (FileTests) -> () throws -> Void)] {
         return [
             ("testUnreadablePath", testUnreadablePath),
-            ("testFormat", testFormat),
+            ("testFormat", testFormat)
         ]
     }
 }

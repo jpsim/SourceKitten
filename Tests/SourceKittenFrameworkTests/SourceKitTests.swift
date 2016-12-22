@@ -57,7 +57,7 @@ class SourceKitTests: XCTestCase {
             .if,
             .repeatWhile,
             .switch,
-            .while,
+            .while
         ]
 
         let actual = sourcekitStrings(startingWith: "source.lang.swift.stmt.")
@@ -217,7 +217,7 @@ extension SourceKitTests {
             ("testSyntaxKinds", testSyntaxKinds),
             ("testSwiftDeclarationKind", testSwiftDeclarationKind),
             ("testIndex", testIndex),
-            ("testYamlRequest", testYamlRequest),
+            ("testYamlRequest", testYamlRequest)
         ]
     }
 }

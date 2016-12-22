@@ -12,7 +12,6 @@ disabled_rules:
   - force_cast
   - force_try
   - todo
-  - trailing_comma
   - variable_name
 
 line_length: 160

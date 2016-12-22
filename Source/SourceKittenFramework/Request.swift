@@ -289,7 +289,7 @@ public enum Request {
             let formatOptions = [
                 sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth"): sourcekitd_request_int64_create(indentWidth),
                 sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth"): sourcekitd_request_int64_create(indentWidth),
-                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(useTabs ? 1 : 0),
+                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(useTabs ? 1 : 0)
             ]
             var formatOptionsKeys = Array(formatOptions.keys.map({ $0 as sourcekitd_uid_t? }))
             var formatOptionsValues = Array(formatOptions.values)
@@ -306,7 +306,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.length"): sourcekitd_request_int64_create(length),
-                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(sourceText),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(sourceText)
             ]
         case .docInfo(let text, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
@@ -314,7 +314,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.docinfo")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
-                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(text),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(text)
             ]
         case .moduleInfo(let module, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
@@ -322,7 +322,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.docinfo")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
-                sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create(module),
+                sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create(module)
             ]
         }
         var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
@@ -459,7 +459,7 @@ extension String {
             let unsupportedFunctions = [
                 "clang_executeOnThread",
                 "sourcekitd_variant_dictionary_apply",
-                "sourcekitd_variant_array_apply",
+                "sourcekitd_variant_array_apply"
                 ]
             guard !unsupportedFunctions.contains(name) else {
                 return nil

@@ -96,7 +96,7 @@ extension SwiftDocsTests {
     static var allTests: [(String, (SwiftDocsTests) -> () throws -> Void)] {
         return [
             ("testSubscript", testSubscript),
-            ("testBicycle", testBicycle),
+            ("testBicycle", testBicycle)
             // Fails on Linux
             // ("testParseFullXMLDocs", testParseFullXMLDocs),
         ]

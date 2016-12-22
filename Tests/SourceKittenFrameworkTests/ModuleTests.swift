@@ -59,7 +59,7 @@ extension ModuleTests {
             // ("testModuleNilInPathWithNoXcodeProject", testModuleNilInPathWithNoXcodeProject),
             // ("testSourceKittenFrameworkDocsAreValidJSON", testSourceKittenFrameworkDocsAreValidJSON),
             // ("testCommandantDocs", testCommandantDocs),
-            ("testCommandantDocsSPM", testCommandantDocsSPM),
+            ("testCommandantDocsSPM", testCommandantDocsSPM)
         ]
     }
 }

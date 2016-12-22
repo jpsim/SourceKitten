@@ -166,7 +166,7 @@ extension CXCursor {
             "@return ": "- returns: ",
             "@warning ": "- warning: ",
             "@see ": "- see: ",
-            "@note ": "- note: ",
+            "@note ": "- note: "
         ]
         var commentBody = rawComment?.commentBody()
         for (original, replacement) in replacements {

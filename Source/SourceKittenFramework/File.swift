@@ -430,7 +430,7 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
             func docParameters(from indexer: XMLIndexer) -> [String:SourceKitRepresentable] {
                 return [
                     "name": (indexer["Name"].element?.text ?? ""),
-                    "discussion": (indexer["Discussion"].childrenAsArray() ?? []),
+                    "discussion": (indexer["Discussion"].childrenAsArray() ?? [])
                 ]
             }
             docs[SwiftDocKey.docParameters.rawValue] = parameters.map(docParameters(from:)) as [SourceKitRepresentable]

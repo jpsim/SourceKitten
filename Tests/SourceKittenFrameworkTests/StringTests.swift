@@ -173,7 +173,7 @@ extension StringTests {
             ("testGenerateDocumentedTokenOffsetsEmpty", testGenerateDocumentedTokenOffsetsEmpty),
             ("testSubstringWithByteRange", testSubstringWithByteRange),
             ("testSubstringLinesWithByteRange", testSubstringLinesWithByteRange),
-            ("testLineRangeWithByteRange", testLineRangeWithByteRange),
+            ("testLineRangeWithByteRange", testLineRangeWithByteRange)
         ]
     }
 }
