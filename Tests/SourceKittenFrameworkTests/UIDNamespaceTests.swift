@@ -238,7 +238,9 @@ fileprivate class Namespace {
 
     func append(child uidString: String) -> Bool {
         if uidString.hasPrefix(name + ".") {
-            children.append(uidString)
+            if !uidString.hasSuffix(".") {
+                children.append(uidString)
+            }
             return true
         }
         return false
