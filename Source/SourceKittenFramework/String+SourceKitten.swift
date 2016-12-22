@@ -531,7 +531,7 @@ extension String {
                     return leadingWhitespaceToAdd + bodySubstring
                 }
             }
-            if bodyParts.count > 0 {
+            if !bodyParts.isEmpty {
                 return bodyParts.joined(separator: "\n").bridge()
                     .trimmingTrailingCharacters(in: .whitespacesAndNewlines)
                     .removingCommonLeadingWhitespaceFromLines()

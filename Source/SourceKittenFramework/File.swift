@@ -240,7 +240,7 @@ public final class File {
             .filter(isDeclarationOrCommentMark)
             .map {
                 process(dictionary: $0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
-        }
+            }
     }
 
     /**
@@ -348,11 +348,13 @@ public final class File {
     - parameter dictionary: Dictionary to parse.
     */
     private func shouldParseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
+        // swiftlint:disable operator_usage_whitespace
         let sameFile                = shouldTreatAsSameFile(dictionary)
         let hasTypeName             = SwiftDocKey.getTypeName(dictionary) != nil
         let hasAnnotatedDeclaration = SwiftDocKey.getAnnotatedDeclaration(dictionary) != nil
         let hasOffset               = SwiftDocKey.getOffset(dictionary) != nil
         let isntExtension           = SwiftDocKey.getKind(dictionary) != SwiftDeclarationKind.extension.rawValue
+        // swiftlint:enable operator_usage_whitespace
         return sameFile && hasTypeName && hasAnnotatedDeclaration && hasOffset && isntExtension
     }
 
