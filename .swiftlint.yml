@@ -1,6 +1,12 @@
 included:
   - Source
   - Tests
+excluded:
+  - Tests/SourceKittenFrameworkTests/Fixtures
+  - Source/SourceKittenFramework/library_wrapper_CXString.swift
+  - Source/SourceKittenFramework/library_wrapper_Documentation.swift
+  - Source/SourceKittenFramework/library_wrapper_Index.swift
+  - Source/SourceKittenFramework/library_wrapper_sourcekitd.swift
 disabled_rules:
   - comma
   - cyclomatic_complexity
@@ -8,13 +14,9 @@ disabled_rules:
   - force_cast
   - force_try
   - function_body_length
-  - leading_whitespace
   - line_length
   - nesting
   - syntactic_sugar
   - todo
   - trailing_comma
-  - trailing_newline
   - variable_name
-  - vertical_whitespace
-  - void_return
