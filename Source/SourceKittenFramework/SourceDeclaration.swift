@@ -71,7 +71,7 @@ public struct SourceDeclaration {
         guard let declaration = declaration else {
             fatalError("Couldn't extract declaration")
         }
-        enum AccessorType {
+        enum AccessorType { // swiftlint:disable:this nesting
             case `class`, instance
 
             var propertyTypeString: String {
