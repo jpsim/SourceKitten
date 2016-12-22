@@ -497,6 +497,7 @@ extension String {
         let patterns: [(pattern: String, options: NSRegularExpression.Options)] = [
             ("^\\s*\\/\\*\\*\\s*(.*?)\\*\\/", [.anchorsMatchLines, .dotMatchesLineSeparators]), // multi: ^\s*\/\*\*\s*(.*?)\*\/
             ("^\\s*\\/\\/\\/(.+)?",           .anchorsMatchLines)                               // single: ^\s*\/\/\/(.+)?
+            // swiftlint:disable:previous comma
         ]
         let range = range ?? NSRange(location: 0, length: nsString.length)
         for pattern in patterns {
