@@ -447,42 +447,52 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
     return Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
+extension String {
+    fileprivate func extractFreeFunctions(inSubstructure substructure: [[String: SourceKitRepresentable]]) -> [String] {
+        return substructure.filter({
+            SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
+        }).flatMap { function -> String? in
+            let fullFunctionName = function["key.name"] as! String
+            let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
+            let unsupportedFunctions = [
+                "clang_executeOnThread",
+                "sourcekitd_variant_dictionary_apply",
+                "sourcekitd_variant_array_apply",
+                ]
+            guard !unsupportedFunctions.contains(name) else {
+                return nil
+            }
+
+            var parameters = [String]()
+            if let functionSubstructure = SwiftDocKey.getSubstructure(function) {
+                for parameterStructure in functionSubstructure {
+                    parameters.append((parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String)
+                }
+            }
+            var returnTypes = [String]()
+            if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
+                let start = index(startIndex, offsetBy: Int(offset))
+                let end = index(start, offsetBy: Int(length))
+                let functionDeclaration = substring(with: start..<end)
+                if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
+                    returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
+                }
+            }
+
+            let joinedParameters = parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", ")
+            let joinedReturnTypes = returnTypes.joined(separator: ", ")
+            let lhs = "internal let \(name): @convention(c) (\(joinedParameters)) -> (\(joinedReturnTypes))"
+            let rhs = "library.load(symbol: \"\(name)\")"
+            return "\(lhs) = \(rhs)".replacingOccurrences(of: "SourceKittenFramework.", with: "")
+        }
+    }
+}
+
 internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) -> String {
     let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
-    let freeFunctions = substructure.filter({
-        SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
-    }).flatMap { function -> String? in
-        let fullFunctionName = function["key.name"] as! String
-        let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
-        let unsupportedFunctions = [
-            "clang_executeOnThread",
-            "sourcekitd_variant_dictionary_apply",
-            "sourcekitd_variant_array_apply",
-        ]
-        guard !unsupportedFunctions.contains(name) else {
-            return nil
-        }
-
-        var parameters = [String]()
-        if let functionSubstructure = SwiftDocKey.getSubstructure(function) {
-            for parameterStructure in functionSubstructure {
-                parameters.append((parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String)
-            }
-        }
-        var returnTypes = [String]()
-        if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
-            let start = source.index(source.startIndex, offsetBy: Int(offset))
-            let end = source.index(start, offsetBy: Int(length))
-            let functionDeclaration = source.substring(with: start..<end)
-            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
-                returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
-            }
-        }
-
-        return "internal let \(name): @convention(c) (\(parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", "))) -> (\(returnTypes.joined(separator: ", "))) = library.load(symbol: \"\(name)\")".replacingOccurrences(of: "SourceKittenFramework.", with: "")
-    }
+    let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
     let library: String
     if let linuxPath = linuxPath {

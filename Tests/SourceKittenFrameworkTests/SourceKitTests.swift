@@ -106,6 +106,7 @@ class SourceKitTests: XCTestCase {
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func testSwiftDeclarationKind() {
         let expected: [SwiftDeclarationKind] = [
             .associatedtype,
