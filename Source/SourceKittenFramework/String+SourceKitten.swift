@@ -517,7 +517,8 @@ extension String {
                     var lineEnd = nsString.length
                     let indexRange = NSRange(location: range.location, length: 0)
                     nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: indexRange)
-                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart)).countOfLeadingCharacters(in: .whitespacesAndNewlines)
+                    let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart))
+                                                              .countOfLeadingCharacters(in: .whitespacesAndNewlines)
                     let leadingWhitespaceToAdd = String(repeating: " ", count: leadingWhitespaceCountToAdd)
 
                     let bodySubstring = nsString.substring(with: range)

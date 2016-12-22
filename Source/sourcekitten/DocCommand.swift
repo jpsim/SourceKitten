@@ -35,7 +35,8 @@ struct DocCommand: CommandProtocol {
                 <*> m <| Option(key: "single-file", defaultValue: false, usage: "only document one file")
                 <*> m <| Option(key: "module-name", defaultValue: "",    usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
                 <*> m <| Option(key: "objc",        defaultValue: false, usage: "document Objective-C headers")
-                <*> m <| Argument(defaultValue: [], usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
+                <*> m <| Argument(defaultValue: [],
+                                  usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
             // swiftlint:enable comma
         }
     }

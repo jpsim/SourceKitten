@@ -77,8 +77,10 @@ class StringTests: XCTestCase {
     }
 
     func testAbsolutePath() {
-        XCTAssert(("LICENSE".bridge().absolutePathRepresentation().bridge()).isAbsolutePath, "absolutePathRepresentation() of a relative path should be an absolute path")
-        XCTAssertEqual(#file.bridge().absolutePathRepresentation(), #file, "absolutePathRepresentation() should return the caller if it's already an absolute path")
+        XCTAssert(("LICENSE".bridge().absolutePathRepresentation().bridge()).isAbsolutePath,
+                  "absolutePathRepresentation() of a relative path should be an absolute path")
+        XCTAssertEqual(#file.bridge().absolutePathRepresentation(), #file,
+                       "absolutePathRepresentation() should return the caller if it's already an absolute path")
     }
 
     func testIsTokenDocumentable() {

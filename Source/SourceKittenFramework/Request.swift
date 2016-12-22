@@ -266,7 +266,8 @@ public enum Request {
             let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),
+                sourcekitd_uid_get_from_cstr("key.request"):
+                    sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(uuid),
                 sourcekitd_uid_get_from_cstr("key.filepath"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
@@ -296,7 +297,8 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.formattext")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.line"): sourcekitd_request_int64_create(line),
-                sourcekitd_uid_get_from_cstr("key.editor.format.options"): sourcekitd_request_dictionary_create(&formatOptionsKeys, &formatOptionsValues, formatOptions.count)
+                sourcekitd_uid_get_from_cstr("key.editor.format.options"):
+                    sourcekitd_request_dictionary_create(&formatOptionsKeys, &formatOptionsValues, formatOptions.count)
             ]
         case .replaceText(let file, let offset, let length, let sourceText):
             dict = [

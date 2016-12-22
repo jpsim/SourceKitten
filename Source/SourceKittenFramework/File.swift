@@ -155,7 +155,8 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func process(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
+    public func process(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil,
+                        syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
@@ -200,15 +201,18 @@ public final class File {
     - parameter documentedTokenOffsets: Offsets that are likely documented.
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
-    internal func furtherProcess(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int], cursorInfoRequest: sourcekitd_object_t, syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
+    internal func furtherProcess(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int],
+                                 cursorInfoRequest: sourcekitd_object_t,
+                                 syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         let offsetMap = makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
-            if let response = Request.send(cursorInfoRequest: cursorInfoRequest, atOffset: Int64(offset)).map({ process(dictionary: $0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
+            if let rawResponse = Request.send(cursorInfoRequest: cursorInfoRequest, atOffset: Int64(offset)),
+               case let response = process(dictionary: rawResponse, cursorInfoRequest: nil, syntaxMap: syntaxMap),
                let kind = SwiftDocKey.getKind(response),
                SwiftDeclarationKind(rawValue: kind) != nil,
                let parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
-                let inserted = insert(doc: response, parent: dictionary, offset: parentOffset) {
+               let inserted = insert(doc: response, parent: dictionary, offset: parentOffset) {
                dictionary = inserted
             }
         }
@@ -226,7 +230,8 @@ public final class File {
                `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
                and declarations.
     */
-    private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?, syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
+    private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?,
+                                 syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
         return SwiftDocKey.getSubstructure(dictionary)?
             .map({ $0 as! [String: SourceKitRepresentable] })
             .filter(isDeclarationOrCommentMark)
@@ -241,7 +246,8 @@ public final class File {
     - parameter dictionary:        Dictionary to update.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    private func dictWithCommentMarkNamesCursorInfo(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
+    private func dictWithCommentMarkNamesCursorInfo(_ dictionary: [String: SourceKitRepresentable],
+                                                    cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
         guard let kind = SwiftDocKey.getKind(dictionary) else {
             return nil
         }
@@ -372,7 +378,9 @@ public final class File {
 
         if let offset = isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary),
            let commentByteRange = syntaxMap.commentRange(beforeOffset: Int(offset)),
-           let nsRange = contents.bridge().byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound) {
+           case let start = commentByteRange.lowerBound,
+           case let end = commentByteRange.upperBound,
+           let nsRange = contents.bridge().byteRangeToNSRange(start: start, length: end - start) {
             return contents.commentBody(range: nsRange)
         }
         return nil
@@ -452,7 +460,8 @@ private extension XMLIndexer {
 // MARK: - migration support
 extension File {
     @available(*, unavailable, renamed: "process(dictionary:cursorInfoRequest:syntaxMap:)")
-    public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil, syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
+    public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil,
+                                  syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
         fatalError()
     }
 

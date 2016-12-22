@@ -15,6 +15,8 @@ let projectRoot = #file.bridge()
     .deletingLastPathComponent.bridge()
     .deletingLastPathComponent
 
+let sourcekittenXcodebuildArguments = ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"]
+
 class ModuleTests: XCTestCase {
 
     func testModuleNilInPathWithNoXcodeProject() {
@@ -24,7 +26,7 @@ class ModuleTests: XCTestCase {
     }
 
     func testSourceKittenFrameworkDocsAreValidJSON() {
-        let sourceKittenModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
+        let sourceKittenModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
         let docsJSON = sourceKittenModule.docs.description
         XCTAssert(docsJSON.range(of: "error type") == nil)
         do {
@@ -37,7 +39,8 @@ class ModuleTests: XCTestCase {
 
     func testCommandantDocs() {
         let commandantPath = projectRoot + "/Carthage/Checkouts/Commandant/"
-        let commandantModule = Module(xcodeBuildArguments: ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"], name: nil, inPath: commandantPath)!
+        let arguments = ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"]
+        let commandantModule = Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath)!
         compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs, rootDirectory: commandantPath)
     }
 }
