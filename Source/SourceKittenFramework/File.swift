@@ -12,6 +12,9 @@ import SWXMLHash
 import SourceKit
 #endif
 
+// swiftlint:disable file_length
+// This file could easily be split up
+
 /// Represents a source file.
 public final class File {
     /// File path. Nil if initialized directly with `File(contents:)`.

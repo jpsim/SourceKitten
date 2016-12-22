@@ -8,6 +8,9 @@
 
 import Foundation
 
+// swiftlint:disable file_length
+// This file could easily be split up
+
 /// Representation of line in String
 public struct Line {
     /// origin = 0
