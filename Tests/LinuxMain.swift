@@ -1,6 +1,5 @@
-import XCTest
-
 @testable import SourceKittenFrameworkTests
+import XCTest
 
 XCTMain([
     // testCase(ClangTranslationUnitTests.allTests),
@@ -13,5 +12,5 @@ XCTMain([
     testCase(StringTests.allTests),
     testCase(StructureTests.allTests),
     testCase(SwiftDocsTests.allTests),
-    testCase(SyntaxTests.allTests),
+    testCase(SyntaxTests.allTests)
 ])

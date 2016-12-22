@@ -100,7 +100,7 @@ extension CXCursor {
             let regex = try! NSRegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
             let range = NSRange(location: 0, length: usrNSString.length)
             let matches = regex.matches(in: usrNSString as String, options: [], range: range)
-            if matches.count > 0 {
+            if !matches.isEmpty {
                 let categoryOn = usrNSString.substring(with: matches[0].rangeAt(1))
                 let categoryName = ext ? "" : usrNSString.substring(with: matches[0].rangeAt(2))
                 return "\(categoryOn)(\(categoryName))"
@@ -166,7 +166,7 @@ extension CXCursor {
             "@return ": "- returns: ",
             "@warning ": "- warning: ",
             "@see ": "- see: ",
-            "@note ": "- note: ",
+            "@note ": "- note: "
         ]
         var commentBody = rawComment?.commentBody()
         for (original, replacement) in replacements {

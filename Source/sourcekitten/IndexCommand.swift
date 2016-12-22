@@ -25,10 +25,11 @@ struct IndexCommand: CommandProtocol {
             }
         }
 
-        static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+        static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
-                <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to index")
-                <*> m <| Option(key: "compilerargs", defaultValue: "", usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
+                <*> mode <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to index")
+                <*> mode <| Option(key: "compilerargs", defaultValue: "",
+                                   usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
         }
     }
 

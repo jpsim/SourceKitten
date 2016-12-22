@@ -37,8 +37,10 @@ class OffsetMapTests: XCTestCase {
 extension OffsetMapTests {
     static var allTests: [(String, (OffsetMapTests) -> () throws -> Void)] {
         return [
-            ("testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented", testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented),
-            ("testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset", testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset),
+            ("testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented",
+             testOffsetMapContainsDeclarationOffsetWithDocCommentButNotAlreadyDocumented),
+            ("testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset",
+             testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset)
         ]
     }
 }

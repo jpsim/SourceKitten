@@ -12,6 +12,9 @@ import Foundation
 import SourceKit
 #endif
 
+// swiftlint:disable file_length
+// This file could easily be split up
+
 public protocol SourceKitRepresentable {
     func isEqualTo(_ rhs: SourceKitRepresentable) -> Bool
 }
@@ -266,7 +269,8 @@ public enum Request {
             let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
             dict = [
-                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),
+                sourcekitd_uid_get_from_cstr("key.request"):
+                    sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(uuid),
                 sourcekitd_uid_get_from_cstr("key.filepath"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
@@ -288,7 +292,7 @@ public enum Request {
             let formatOptions = [
                 sourcekitd_uid_get_from_cstr("key.editor.format.indentwidth"): sourcekitd_request_int64_create(indentWidth),
                 sourcekitd_uid_get_from_cstr("key.editor.format.tabwidth"): sourcekitd_request_int64_create(indentWidth),
-                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(useTabs ? 1 : 0),
+                sourcekitd_uid_get_from_cstr("key.editor.format.usetabs"): sourcekitd_request_int64_create(useTabs ? 1 : 0)
             ]
             var formatOptionsKeys = Array(formatOptions.keys.map({ $0 as sourcekitd_uid_t? }))
             var formatOptionsValues = Array(formatOptions.values)
@@ -296,7 +300,8 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.formattext")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.line"): sourcekitd_request_int64_create(line),
-                sourcekitd_uid_get_from_cstr("key.editor.format.options"): sourcekitd_request_dictionary_create(&formatOptionsKeys, &formatOptionsValues, formatOptions.count)
+                sourcekitd_uid_get_from_cstr("key.editor.format.options"):
+                    sourcekitd_request_dictionary_create(&formatOptionsKeys, &formatOptionsValues, formatOptions.count)
             ]
         case .replaceText(let file, let offset, let length, let sourceText):
             dict = [
@@ -304,7 +309,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(file),
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.length"): sourcekitd_request_int64_create(length),
-                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(sourceText),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(sourceText)
             ]
         case .docInfo(let text, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
@@ -312,7 +317,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.docinfo")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
-                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(text),
+                sourcekitd_uid_get_from_cstr("key.sourcetext"): sourcekitd_request_string_create(text)
             ]
         case .moduleInfo(let module, let arguments):
             var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
@@ -320,7 +325,7 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.docinfo")),
                 sourcekitd_uid_get_from_cstr("key.name"): sourcekitd_request_string_create(NSUUID().uuidString),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
-                sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create(module),
+                sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create(module)
             ]
         }
         var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
@@ -447,42 +452,52 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
     return Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)).send()
 }
 
+extension String {
+    fileprivate func extractFreeFunctions(inSubstructure substructure: [[String: SourceKitRepresentable]]) -> [String] {
+        return substructure.filter({
+            SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
+        }).flatMap { function -> String? in
+            let fullFunctionName = function["key.name"] as! String
+            let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
+            let unsupportedFunctions = [
+                "clang_executeOnThread",
+                "sourcekitd_variant_dictionary_apply",
+                "sourcekitd_variant_array_apply"
+                ]
+            guard !unsupportedFunctions.contains(name) else {
+                return nil
+            }
+
+            var parameters = [String]()
+            if let functionSubstructure = SwiftDocKey.getSubstructure(function) {
+                for parameterStructure in functionSubstructure {
+                    parameters.append((parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String)
+                }
+            }
+            var returnTypes = [String]()
+            if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
+                let start = index(startIndex, offsetBy: Int(offset))
+                let end = index(start, offsetBy: Int(length))
+                let functionDeclaration = substring(with: start..<end)
+                if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
+                    returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
+                }
+            }
+
+            let joinedParameters = parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", ")
+            let joinedReturnTypes = returnTypes.joined(separator: ", ")
+            let lhs = "internal let \(name): @convention(c) (\(joinedParameters)) -> (\(joinedReturnTypes))"
+            let rhs = "library.load(symbol: \"\(name)\")"
+            return "\(lhs) = \(rhs)".replacingOccurrences(of: "SourceKittenFramework.", with: "")
+        }
+    }
+}
+
 internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) -> String {
     let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
-    let freeFunctions = substructure.filter({
-        SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
-    }).flatMap { function -> String? in
-        let fullFunctionName = function["key.name"] as! String
-        let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
-        let unsupportedFunctions = [
-            "clang_executeOnThread",
-            "sourcekitd_variant_dictionary_apply",
-            "sourcekitd_variant_array_apply",
-        ]
-        guard !unsupportedFunctions.contains(name) else {
-            return nil
-        }
-
-        var parameters = [String]()
-        if let functionSubstructure = SwiftDocKey.getSubstructure(function) {
-            for parameterStructure in functionSubstructure {
-                parameters.append((parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String)
-            }
-        }
-        var returnTypes = [String]()
-        if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
-            let start = source.index(source.startIndex, offsetBy: Int(offset))
-            let end = source.index(start, offsetBy: Int(length))
-            let functionDeclaration = source.substring(with: start..<end)
-            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
-                returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
-            }
-        }
-
-        return "internal let \(name): @convention(c) (\(parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", "))) -> (\(returnTypes.joined(separator: ", "))) = library.load(symbol: \"\(name)\")".replacingOccurrences(of: "SourceKittenFramework.", with: "")
-    }
+    let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
     let library: String
     if let linuxPath = linuxPath {

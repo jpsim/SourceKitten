@@ -28,13 +28,18 @@ struct DocCommand: CommandProtocol {
             }}}}
         }
 
-        static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+        static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
-                <*> m <| Option(key: "spm-module",  defaultValue: "",    usage: "document a Swift Package Manager module")
-                <*> m <| Option(key: "single-file", defaultValue: false, usage: "only document one file")
-                <*> m <| Option(key: "module-name", defaultValue: "",    usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
-                <*> m <| Option(key: "objc",        defaultValue: false, usage: "document Objective-C headers")
-                <*> m <| Argument(defaultValue: [], usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
+                <*> mode <| Option(key: "spm-module", defaultValue: "",
+                                   usage: "document a Swift Package Manager module")
+                <*> mode <| Option(key: "single-file", defaultValue: false,
+                                   usage: "only document one file")
+                <*> mode <| Option(key: "module-name", defaultValue: "",
+                                   usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
+                <*> mode <| Option(key: "objc", defaultValue: false,
+                                   usage: "document Objective-C headers")
+                <*> mode <| Argument(defaultValue: [],
+                                     usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
         }
     }
 

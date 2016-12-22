@@ -57,7 +57,7 @@ class SourceKitTests: XCTestCase {
             .if,
             .repeatWhile,
             .switch,
-            .while,
+            .while
         ]
 
         let actual = sourcekitStrings(startingWith: "source.lang.swift.stmt.")
@@ -106,6 +106,7 @@ class SourceKitTests: XCTestCase {
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func testSwiftDeclarationKind() {
         let expected: [SwiftDeclarationKind] = [
             .associatedtype,
@@ -160,7 +161,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testLibraryWrappersAreUpToDate() {
-        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"], name: nil, inPath: projectRoot)!
+        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
         let modules: [(module: String, path: String, linuxPath: String?, spmModule: String)] = [
             ("CXString", "libclang.dylib", nil, "Clang_C"),
             ("Documentation", "libclang.dylib", nil, "Clang_C"),
@@ -170,7 +171,8 @@ class SourceKitTests: XCTestCase {
         for (module, path, linuxPath, spmModule) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule, compilerArguments: sourceKittenFrameworkModule.compilerArguments)
+            let generatedWrapper = libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule,
+                                                           compilerArguments: sourceKittenFrameworkModule.compilerArguments)
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
             if existingWrapper != generatedWrapper && overwrite {
@@ -185,7 +187,10 @@ class SourceKitTests: XCTestCase {
         let indexJSON = NSMutableString(string: toJSON(toNSDictionary(Request.index(file: file, arguments: arguments).send())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
-            _ = try! NSRegularExpression(pattern: pattern, options: []).replaceMatches(in: indexJSON, options: [], range: NSRange(location: 0, length: indexJSON.length), withTemplate: template)
+            let regex = try! NSRegularExpression(pattern: pattern, options: [])
+            _ = regex.replaceMatches(in: indexJSON, options: [],
+                                     range: NSRange(location: 0, length: indexJSON.length),
+                                     withTemplate: template)
         }
 
         // Replace the parts of the output that are dependent on the environment of the test running machine
@@ -212,7 +217,7 @@ extension SourceKitTests {
             ("testSyntaxKinds", testSyntaxKinds),
             ("testSwiftDeclarationKind", testSwiftDeclarationKind),
             ("testIndex", testIndex),
-            ("testYamlRequest", testYamlRequest),
+            ("testYamlRequest", testYamlRequest)
         ]
     }
 }
