@@ -483,7 +483,7 @@ extension String {
         let matches = regex.matches(in: self, options: [], range: range)
 
         return matches.flatMap { match in
-            documentableOffsets.filter({ $0 >= match.range.location }).first
+            documentableOffsets.first { $0 >= match.range.location }
         }
     }
 
