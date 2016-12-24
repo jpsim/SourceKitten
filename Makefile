@@ -16,8 +16,11 @@ BINARIES_FOLDER=$(PREFIX)/bin
 
 OUTPUT_PACKAGE=SourceKitten.pkg
 
-VERSION_STRING=$(shell agvtool what-marketing-version -terse1)
 COMPONENTS_PLIST=Source/sourcekitten/Components.plist
+SOURCEKITTEN_PLIST=Source/sourcekitten/Info.plist
+SOURCEKITTENFRAMEWORK_PLIST=Source/SourceKittenFramework/Info.plist
+
+VERSION_STRING=$(shell /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$(SOURCEKITTEN_PLIST)")
 
 .PHONY: all bootstrap clean install package test uninstall
 
@@ -73,8 +76,23 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:/SourceKitten norionomura/sourcekit:301 bash -c "cd /SourceKitten && swift test"
+	docker run -v `pwd`:/SourceKitten norionomura/sourcekit:302 bash -c "cd /SourceKitten && swift test"
 
 # http://irace.me/swift-profiling/
 display_compilation_time:
 	$(BUILD_TOOL) $(XCODEFLAGS) OTHER_SWIFT_FLAGS="-Xfrontend -debug-time-function-bodies" clean build-for-testing | grep -E ^[1-9]{1}[0-9]*.[0-9]ms | sort -n
+
+publish:
+	brew update && brew bump-formula-pr --tag=$(git describe --tags) --revision=$(git rev-parse HEAD) sourcekitten
+	pod trunk push
+
+get_version:
+	@echo $(VERSION_STRING)
+
+set_version:
+	$(eval NEW_VERSION := $(filter-out $@,$(MAKECMDGOALS)))
+	@/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $(NEW_VERSION)" "$(SOURCEKITTENFRAMEWORK_PLIST)"
+	@/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $(NEW_VERSION)" "$(SOURCEKITTEN_PLIST)"
+
+%:
+	@:

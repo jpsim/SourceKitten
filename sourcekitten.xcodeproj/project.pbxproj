@@ -31,6 +31,7 @@
 		6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2FA87E26BC9C5F774FD694C /* SwiftLangSyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */; };
+		C236E84B1DFF5120003807D2 /* YamlRequestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */; };
 		D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0D1217219E87B05005E4BAA /* SourceKittenFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D0D1217119E87B05005E4BAA /* SourceKittenFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0D1217819E87B05005E4BAA /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; };
@@ -157,6 +158,7 @@
 		6C9E7D4F1DB4FB32000F4DE8 /* SourceKitVariant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceKitVariant.swift; sourceTree = "<group>"; };
 		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLangSyntax.swift; sourceTree = "<group>"; };
+		C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YamlRequestCommand.swift; sourceTree = "<group>"; };
 		D0D1211B19E87861005E4BAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0D1212419E878CC005E4BAA /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		D0D1212619E878CC005E4BAA /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				D0D1211B19E87861005E4BAA /* main.swift */,
 				E80604B21A5D452C0016D959 /* StructureCommand.swift */,
 				E83A0B361A5D399A0041A60A /* SyntaxCommand.swift */,
+				C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */,
 				E83A0B341A5D382B0041A60A /* VersionCommand.swift */,
 			);
 			name = sourcekitten;
@@ -748,6 +751,7 @@
 				E813023B1CCD09DB0056E826 /* IndexCommand.swift in Sources */,
 				E8DD06E61AE44540006D9C86 /* StructureCommand.swift in Sources */,
 				E8DD06E71AE447AB006D9C86 /* SyntaxCommand.swift in Sources */,
+				C236E84B1DFF5120003807D2 /* YamlRequestCommand.swift in Sources */,
 				E83A0B351A5D382B0041A60A /* VersionCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -780,7 +784,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xfrontend -warn-long-function-bodies=200";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -794,7 +798,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xfrontend -warn-long-function-bodies=200";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -879,7 +883,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xfrontend -warn-long-function-bodies=200";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Profile;
 		};
@@ -928,7 +932,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xfrontend -warn-long-function-bodies=200";
-				SWIFT_VERSION = 3.0.1;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Test;
 		};

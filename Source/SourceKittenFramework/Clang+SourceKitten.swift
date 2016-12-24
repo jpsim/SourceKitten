@@ -150,7 +150,7 @@ extension CXCursor {
 
     func flatMap<T>(_ block: @escaping (CXCursor) -> T?) -> [T] {
         var ret = [T]()
-        visit() { cursor, _ in
+        visit { cursor, _ in
             if let val = block(cursor) {
                 ret.append(val)
             }

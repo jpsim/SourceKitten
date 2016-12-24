@@ -1,3 +1,24 @@
+## 0.16.0
+
+##### Breaking
+
+* The `SourceKitten` CocoaPods podspec used to actually refer to
+  SourceKittenFramework, so it has been renamed. Existing pushes to CocoaPods
+  trunk will be preserved, but from now on if you use SourceKittenFramework via
+  CocoaPods, please specify to use the `SourceKittenFramework` pod.  
+  [JP Simard](https://github.com/jpsim)
+
+##### Enhancements
+
+* Add `Request.yaml` API to create a sourcekit request from yaml
+  and expose as a `request --yaml [file|text]` CLI command.  
+  [Keith Smiley](https://github.com/keith)
+  [#312](https://github.com/jpsim/SourceKitten/issues/312)
+
+##### Bug Fixes
+
+* None.
+
 ## 0.15.3
 
 ##### Breaking
