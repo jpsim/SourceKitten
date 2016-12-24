@@ -98,13 +98,12 @@ class UIDNamespaceTests: XCTestCase {
     }
 }
 
-
 extension UIDNamespaceTests {
     static var allTests: [(String, (UIDNamespaceTests) -> () throws -> Void)] {
         return [
             ("testExpressibleByStringLiteral", testExpressibleByStringLiteral),
             ("testCompareToSelf", testCompareToSelf),
-            ("testUseOperatorsForComparingToUID", testUseOperatorsForComparingToUID),
+            ("testUseOperatorsForComparingToUID", testUseOperatorsForComparingToUID)
 //            ("testUnknownUIDCausesPreconditionFailureOnDebugBuild", testUnknownUIDCausesPreconditionFailureOnDebugBuild),
             // FIXME: https://bugs.swift.org/browse/SR-3250
 //            ("testUIDNamespaceAreUpToDate", testUIDNamespaceAreUpToDate),
@@ -186,7 +185,7 @@ fileprivate let desiredTypes = [
     "source.lang.swift.structure.elem",
     "source.lang.swift.syntaxtype",
     "source.notification",
-    "source.request",
+    "source.request"
 ]
 
 fileprivate func createExtensionOfUID(from uidStrings: [String]) -> String {
@@ -208,7 +207,7 @@ fileprivate func createExtensionOfUID(from uidStrings: [String]) -> String {
     // enums
     lines.append("extension UID {")
     lines.append(contentsOf: sortedNamespaces.flatMap({ $0.renderEnum() }).map(indent))
-    lines.append(contentsOf: ["}",""])
+    lines.append(contentsOf: ["}", ""])
     // extensions
     lines.append(contentsOf: sortedNamespaces.flatMap { $0.renderExtension() })
     // isMemberPropertiesExtension
@@ -295,26 +294,26 @@ fileprivate class Namespace {
         let property = propertyName(from: child)
         return [
             "/// \(child)",
-            "public static let \(property): \(name.upperCamelCase) = \"\(child)\"",
+            "public static let \(property): \(name.upperCamelCase) = \"\(child)\""
         ]
     }
 
     private func renderMethods() -> [String] {
         return [
-            "public static func ==(lhs: UID.\(typeName), rhs: UID.\(typeName)) -> Bool { return lhs.uid == rhs.uid }",
-            "public static func !=(lhs: UID.\(typeName), rhs: UID.\(typeName)) -> Bool { return lhs.uid != rhs.uid }",
-            "public static func ==(lhs: UID, rhs: UID.\(typeName)) -> Bool { return lhs == rhs.uid }",
-            "public static func !=(lhs: UID, rhs: UID.\(typeName)) -> Bool { return lhs != rhs.uid }",
-            "public static func ==(lhs: UID.\(typeName), rhs: UID) -> Bool { return lhs.uid == rhs }",
-            "public static func !=(lhs: UID.\(typeName), rhs: UID) -> Bool { return lhs.uid != rhs }",
-            "public static func ==(lhs: UID?, rhs: UID.\(typeName)) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }",
-            "public static func !=(lhs: UID?, rhs: UID.\(typeName)) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }",
-            "public static func ==(lhs: UID.\(typeName), rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }",
-            "public static func !=(lhs: UID.\(typeName), rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }",
+            "public static func == (lhs: UID.\(typeName), rhs: UID.\(typeName)) -> Bool { return lhs.uid == rhs.uid }",
+            "public static func != (lhs: UID.\(typeName), rhs: UID.\(typeName)) -> Bool { return lhs.uid != rhs.uid }",
+            "public static func == (lhs: UID, rhs: UID.\(typeName)) -> Bool { return lhs == rhs.uid }",
+            "public static func != (lhs: UID, rhs: UID.\(typeName)) -> Bool { return lhs != rhs.uid }",
+            "public static func == (lhs: UID.\(typeName), rhs: UID) -> Bool { return lhs.uid == rhs }",
+            "public static func != (lhs: UID.\(typeName), rhs: UID) -> Bool { return lhs.uid != rhs }",
+            "public static func == (lhs: UID?, rhs: UID.\(typeName)) -> Bool { return lhs.map { $0 == rhs.uid } ?? false }",
+            "public static func != (lhs: UID?, rhs: UID.\(typeName)) -> Bool { return lhs.map { $0 != rhs.uid } ?? true }",
+            "public static func == (lhs: UID.\(typeName), rhs: UID?) -> Bool { return rhs.map { lhs.uid == $0 } ?? false }",
+            "public static func != (lhs: UID.\(typeName), rhs: UID?) -> Bool { return rhs.map { lhs.uid != $0 } ?? true }",
             // FIXME: Remove following when https://bugs.swift.org/browse/SR-3173 will be resolved.
             "public init(stringLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }",
             "public init(unicodeScalarLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }",
-            "public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }",
+            "public init(extendedGraphemeClusterLiteral value: String) { self.init(uid: type(of: self)._inferUID(from: value)) }"
         ]
     }
 

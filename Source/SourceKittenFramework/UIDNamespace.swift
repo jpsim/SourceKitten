@@ -14,7 +14,7 @@ import Foundation
 // MARK: - UIDNamespace
 public protocol UIDNamespace: CustomStringConvertible, Equatable, ExpressibleByStringLiteral, SourceKitObjectConvertible {
     var uid: UID { get }
-    static var __uid_prefix: String { get }
+    static var __uid_prefix: String { get } // swiftlint:disable:this variable_name
 }
 
 extension UIDNamespace {
@@ -33,7 +33,7 @@ extension UIDNamespace {
         let result = UID(fullyQualifiedName)
         return result
     }
-    
+
     // MARK: CustomStringConvertible
     public var description: String {
         return uid.description

@@ -54,7 +54,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
                 typeName: dict.typeName,
                 moduleName: dict.moduleName,
                 docBrief: dict.docBrief,
-                associatedUSRs: dict.associated_usrs)
+                associatedUSRs: dict.associatedUsrs)
         } ?? []
     }
 }

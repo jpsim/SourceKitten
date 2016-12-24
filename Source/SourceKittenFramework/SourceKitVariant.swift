@@ -11,6 +11,8 @@ import Foundation
 import SourceKit
 #endif
 
+// swiftlint:disable file_length
+
 /// Represent sourcekitd_variant_t as Value Type
 public struct SourceKitVariant {
     fileprivate var box: _VariantBox
@@ -120,8 +122,8 @@ extension SourceKitVariant {
     public var annotatedDeclaration: String? {
         return self[.annotated_decl]?.string
     }
-    /// associated_usrs (String).
-    public var associated_usrs: String? {
+    /// associatedUsrs (String).
+    public var associatedUsrs: String? {
         return self[.associated_usrs]?.string
     }
     /// Attributes ([SourceKitVariant]).
@@ -382,7 +384,7 @@ let knownUIDsOfCustomKey: Set<UID> = [
     SourceKitVariant.Custom.unavailableMessage,
     // used in result of `parseFullXMLDocs(_:`)
     UID("name"),
-    UID("discussion"),
+    UID("discussion")
 ]
 
 // MARK: - ExpressibleByArrayLiteral
@@ -402,7 +404,7 @@ extension SourceKitVariant: ExpressibleByBooleanLiteral {
 // MARK: - ExpressibleByDictionaryLiteral
 extension SourceKitVariant: ExpressibleByDictionaryLiteral {
     public init(dictionaryLiteral elements: (UID, SourceKitVariant)...) {
-        var dictionary = [UID:SourceKitVariant](minimumCapacity: elements.count)
+        var dictionary = [UID: SourceKitVariant](minimumCapacity: elements.count)
         elements.forEach { dictionary[$0.0] = $0.1 }
         box = _VariantBox(variant: .dictionary(dictionary))
     }
@@ -432,7 +434,7 @@ extension SourceKitVariant: ExpressibleByStringLiteral {
 
 // MARK: - Equatable
 extension SourceKitVariant: Equatable {
-    public static func ==(lhs: SourceKitVariant, rhs: SourceKitVariant) -> Bool {
+    public static func == (lhs: SourceKitVariant, rhs: SourceKitVariant) -> Bool {
         return lhs.box == rhs.box
     }
 }
@@ -495,7 +497,7 @@ extension SourceKitVariant {
                     count += 1
                     return true
                 }
-                var dictionary = [UID:SourceKitVariant](minimumCapacity: count)
+                var dictionary = [UID: SourceKitVariant](minimumCapacity: count)
                 _ = __sourcekitd_variant_dictionary_apply(sourcekitObject) { uid, value in
                     if let uid = uid {
                         dictionary[UID(uid)] = SourceKitVariant(variant: value, response: response)
@@ -530,7 +532,7 @@ extension SourceKitVariant {
 
         fileprivate init(variant: _VariantCore) { _core = variant }
 
-        fileprivate func resolveType() ->_VariantCore {
+        fileprivate func resolveType() -> _VariantCore {
             if case let .variant(sourcekitObject, response) = _core {
                 _core = _VariantCore(sourcekitObject: sourcekitObject, response: response)
             }
@@ -656,8 +658,8 @@ extension SourceKitVariant {
             case let .array(array):
                 return array.flatMap { $0.any }
             case let .dictionary(dictionary):
-                var anyDictionary = [String:Any](minimumCapacity: dictionary.count)
-                for (key,value) in dictionary {
+                var anyDictionary = [String: Any](minimumCapacity: dictionary.count)
+                for (key, value) in dictionary {
                     anyDictionary[key.string] = value.any
                 }
                 return anyDictionary
@@ -697,7 +699,7 @@ extension SourceKitVariant {
 
 // MARK: - Equatable
 extension SourceKitVariant._VariantBox: Equatable {
-    public static func ==(lhs: SourceKitVariant._VariantBox, rhs: SourceKitVariant._VariantBox) -> Bool {
+    public static func == (lhs: SourceKitVariant._VariantBox, rhs: SourceKitVariant._VariantBox) -> Bool {
         switch (lhs.resolveType(), rhs.resolveType()) {
         case let (.array(lhs), .array(rhs)): return lhs == rhs
         case let (.dictionary(lhs), .dictionary(rhs)): return lhs == rhs
@@ -719,12 +721,12 @@ extension SourceKitVariant._VariantBox: Equatable {
 func __sourcekitd_variant_array_apply(
     _ array: sourcekitd_variant_t,
     _ applier: @escaping (Int, sourcekitd_variant_t) -> Bool) -> Bool {
-    typealias array_applier = (Int, sourcekitd_variant_t) -> Bool
+    typealias ArrayApplier = (Int, sourcekitd_variant_t) -> Bool
     var applier = applier
     return withUnsafeMutablePointer(to: &applier) { context in
         sourcekitd_variant_array_apply_f(array, { index, value, context in
             if let context = context {
-                let applier = context.assumingMemoryBound(to: array_applier.self).pointee
+                let applier = context.assumingMemoryBound(to: ArrayApplier.self).pointee
                 return applier(index, value)
             }
             return true
@@ -735,12 +737,12 @@ func __sourcekitd_variant_array_apply(
 func __sourcekitd_variant_dictionary_apply(
     _ dict: sourcekitd_variant_t,
     _ applier: @escaping (sourcekitd_uid_t?, sourcekitd_variant_t) -> Bool) -> Bool {
-    typealias dictionary_applier = (sourcekitd_uid_t?, sourcekitd_variant_t) -> Bool
+    typealias DictionaryApplier = (sourcekitd_uid_t?, sourcekitd_variant_t) -> Bool
     var applier = applier
     return withUnsafeMutablePointer(to: &applier) { context in
         sourcekitd_variant_dictionary_apply_f(dict, { key, value, context in
             if let context = context {
-                let applier = context.assumingMemoryBound(to: dictionary_applier.self).pointee
+                let applier = context.assumingMemoryBound(to: DictionaryApplier.self).pointee
                 return applier(key, value)
             }
             return true

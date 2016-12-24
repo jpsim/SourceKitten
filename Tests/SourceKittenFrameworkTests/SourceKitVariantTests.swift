@@ -48,7 +48,7 @@ class SourceKitVariantTests: XCTestCase {
         // Copy on write
         XCTAssertNotEqual(mutable, variant)
     }
-    
+
     func testSupportBool() {
         // Initializer
         let variant = SourceKitVariant(true)
@@ -77,7 +77,7 @@ class SourceKitVariantTests: XCTestCase {
         // Copy on write
         XCTAssertNotEqual(mutable, variant)
     }
-    
+
     func testSupportDictionary() {
         // Initializer
         let variant = SourceKitVariant(["key.request": "foo"])
@@ -148,7 +148,7 @@ class SourceKitVariantTests: XCTestCase {
         // Copy on write
         XCTAssertNotEqual(mutable, variant)
     }
-    
+
     func testSupportString() {
         // Initializer
         let variant = SourceKitVariant("foo")
@@ -212,7 +212,7 @@ extension SourceKitVariantTests {
             ("testSupportDictionary", testSupportDictionary),
             ("testSupportInteger", testSupportInteger),
             ("testSupportString", testSupportString),
-            ("testUID", testUID),
+            ("testUID", testUID)
         ]
     }
 }

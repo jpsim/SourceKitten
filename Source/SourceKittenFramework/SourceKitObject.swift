@@ -111,5 +111,3 @@ extension SourceKitObject: ExpressibleByStringLiteral {
         object = value.object
     }
 }
-
-

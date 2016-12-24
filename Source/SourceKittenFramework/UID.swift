@@ -11,7 +11,6 @@ import Foundation
     import SourceKit
 #endif
 
-
 /// Swift representation of sourcekitd_uid_t
 public struct UID {
     let uid: sourcekitd_uid_t
@@ -85,7 +84,7 @@ extension UID: Hashable {
         return uid.hashValue
     }
 
-    public static func ==(lhs: UID, rhs: UID) -> Bool {
+    public static func == (lhs: UID, rhs: UID) -> Bool {
         return lhs.uid == rhs.uid
     }
 }
@@ -102,8 +101,7 @@ fileprivate let countOfKnownUIDs = knownUIDsSets.reduce(0, { $0 + $1.count })
 
 /// SourceKit UID to String map.
 fileprivate let knownSourceKitUIDStringMap: [sourcekitd_uid_t:String] = knownUIDsSets
-    .reduce(Dictionary(minimumCapacity: countOfKnownUIDs), {
-        dictionary, set in
+    .reduce(Dictionary(minimumCapacity: countOfKnownUIDs), { dictionary, set in
         var dictionary = dictionary
         set.forEach { dictionary[$0.uid] = $0._string }
         return dictionary
@@ -111,8 +109,7 @@ fileprivate let knownSourceKitUIDStringMap: [sourcekitd_uid_t:String] = knownUID
 
 /// String to SourceKit UID map.
 fileprivate let knownUIDStringUIDMap: [String:sourcekitd_uid_t] = knownUIDsSets
-    .reduce(Dictionary(minimumCapacity: countOfKnownUIDs), {
-        dictionary, set in
+    .reduce(Dictionary(minimumCapacity: countOfKnownUIDs), { dictionary, set in
         var dictionary = dictionary
         set.forEach { dictionary[$0._string!] = $0.uid }
         return dictionary
