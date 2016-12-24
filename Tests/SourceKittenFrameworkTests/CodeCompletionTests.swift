@@ -25,7 +25,7 @@ class CodeCompletionTests: XCTestCase {
 extension CodeCompletionTests {
     static var allTests: [(String, (CodeCompletionTests) -> () throws -> Void)] {
         return [
-            ("testSimpleCodeCompletion", testSimpleCodeCompletion),
+            ("testSimpleCodeCompletion", testSimpleCodeCompletion)
         ]
     }
 }

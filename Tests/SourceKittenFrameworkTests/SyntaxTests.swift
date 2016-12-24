@@ -69,7 +69,7 @@ extension SyntaxTests {
             ("testPrintEmptySyntax", testPrintEmptySyntax),
             ("testGenerateSameSyntaxMapFileAndContents", testGenerateSameSyntaxMapFileAndContents),
             ("testSubscript", testSubscript),
-            ("testSyntaxMapPrintValidJSON", testSyntaxMapPrintValidJSON),
+            ("testSyntaxMapPrintValidJSON", testSyntaxMapPrintValidJSON)
         ]
     }
 }

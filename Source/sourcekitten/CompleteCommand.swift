@@ -28,13 +28,13 @@ struct CompleteCommand: CommandProtocol {
             }}}}
         }
 
-        static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+        static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
-                <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
-                <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
-                <*> m <| Option(key: "offset", defaultValue: 0, usage: "Offset for which to generate code completion options.")
-                <*> m <| Option(key: "spm-module", defaultValue: "", usage: "Read compiler flags from a Swift Package Manager module")
-                <*> m <| Argument(defaultValue: [String](), usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
+                <*> mode <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
+                <*> mode <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
+                <*> mode <| Option(key: "offset", defaultValue: 0, usage: "Offset for which to generate code completion options.")
+                <*> mode <| Option(key: "spm-module", defaultValue: "", usage: "Read compiler flags from a Swift Package Manager module")
+                <*> mode <| Argument(defaultValue: [String](), usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
         }
     }
 

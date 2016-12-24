@@ -57,7 +57,7 @@ private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: Any] {
         }
     }
     func setA(_ key: SwiftDocKey, _ value: [Any]?) {
-        if let value = value, value.count > 0 {
+        if let value = value, !value.isEmpty {
             dict[key.rawValue] = value
         }
     }

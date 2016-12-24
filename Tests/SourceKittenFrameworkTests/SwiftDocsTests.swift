@@ -21,7 +21,9 @@ func compareJSONString(withFixtureNamed name: String, jsonString: CustomStringCo
 
     // Strip out any other absolute paths after that, since it's also dependent on the test machine's setup
     let absolutePathRegex = try! NSRegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
-    let actualContent = absolutePathRegex.stringByReplacingMatches(in: jsonString, options: [], range: NSRange(location: 0, length: jsonString.utf16.count), withTemplate: "\"key\\.filepath\" : \"\",")
+    let actualContent = absolutePathRegex.stringByReplacingMatches(in: jsonString, options: [],
+                                                                   range: NSRange(location: 0, length: jsonString.bridge().length),
+                                                                   withTemplate: "\"key\\.filepath\" : \"\",")
     #endif
 
     let expectedFile = File(path: fixturesDirectory + name + ".json")!
@@ -69,6 +71,7 @@ class SwiftDocsTests: XCTestCase {
     }
 
     func testParseFullXMLDocs() {
+        // swiftlint:disable:next line_length
         let xmlDocsString = "<Type file=\"file\" line=\"1\" column=\"2\"><Name>name</Name><USR>usr</USR><Declaration>declaration</Declaration><Abstract><Para>discussion</Para></Abstract><Parameters><Parameter><Name>param1</Name><Direction isExplicit=\"0\">in</Direction><Discussion><Para>param1_discussion</Para></Discussion></Parameter></Parameters><ResultDiscussion><Para>result_discussion</Para></ResultDiscussion></Type>"
         let parsed = parseFullXMLDocs(xmlDocsString)?.any as! [String:Any]
         let expected: NSDictionary = [
@@ -93,7 +96,7 @@ extension SwiftDocsTests {
     static var allTests: [(String, (SwiftDocsTests) -> () throws -> Void)] {
         return [
             ("testSubscript", testSubscript),
-            ("testBicycle", testBicycle),
+            ("testBicycle", testBicycle)
             // Fails on Linux
             // ("testParseFullXMLDocs", testParseFullXMLDocs),
         ]

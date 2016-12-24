@@ -12,6 +12,9 @@ import SWXMLHash
 import SourceKit
 #endif
 
+// swiftlint:disable file_length
+// This file could easily be split up
+
 /// Represents a source file.
 public final class File {
     /// File path. Nil if initialized directly with `File(contents:)`.
@@ -161,7 +164,8 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func process(dictionary: SourceKitVariant, cursorInfoRequest: SourceKitObject? = nil, syntaxMap: SyntaxMap? = nil) -> SourceKitVariant {
+    public func process(dictionary: SourceKitVariant, cursorInfoRequest: SourceKitObject? = nil,
+                        syntaxMap: SyntaxMap? = nil) -> SourceKitVariant {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = dictionary.merging(with:
@@ -205,11 +209,13 @@ public final class File {
     - parameter documentedTokenOffsets: Offsets that are likely documented.
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
-    internal func furtherProcess(dictionary: SourceKitVariant, documentedTokenOffsets: [Int], cursorInfoRequest: SourceKitObject, syntaxMap: SyntaxMap) -> SourceKitVariant {
+    internal func furtherProcess(dictionary: SourceKitVariant, documentedTokenOffsets: [Int],
+                                 cursorInfoRequest: SourceKitObject, syntaxMap: SyntaxMap) -> SourceKitVariant {
         var dictionary = dictionary
         let offsetMap = makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
-            if let response = Request.send(cursorInfoRequest: cursorInfoRequest, atOffset: offset).map({ process(dictionary: $0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
+            if let response = Request.send(cursorInfoRequest: cursorInfoRequest, atOffset: offset)
+                .map({ process(dictionary: $0, cursorInfoRequest: nil, syntaxMap: syntaxMap) }),
                 let kind = response.kind,
                 kind.isMemberOfSourceLangSwiftDecl,
                 let parentOffset = offsetMap[offset],
@@ -231,12 +237,13 @@ public final class File {
                `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
                and declarations.
     */
-    private func newSubstructure(_ dictionary: SourceKitVariant, cursorInfoRequest: SourceKitObject?, syntaxMap: SyntaxMap?) -> [SourceKitVariant]? {
+    private func newSubstructure(_ dictionary: SourceKitVariant, cursorInfoRequest: SourceKitObject?,
+                                 syntaxMap: SyntaxMap?) -> [SourceKitVariant]? {
         return dictionary.subStructure?
             .filter(isDeclarationOrCommentMark)
             .map {
                 process(dictionary: $0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
-        }
+            }
     }
 
     /**
@@ -245,7 +252,8 @@ public final class File {
     - parameter dictionary:        Dictionary to update.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    private func dictWithCommentMarkNamesCursorInfo(_ sourceKitVariant: SourceKitVariant, cursorInfoRequest: SourceKitObject) -> SourceKitVariant? {
+    private func dictWithCommentMarkNamesCursorInfo(_ sourceKitVariant: SourceKitVariant,
+                                                    cursorInfoRequest: SourceKitObject) -> SourceKitVariant? {
         guard let kind = sourceKitVariant.kind else {
             return nil
         }
@@ -342,11 +350,13 @@ public final class File {
     - parameter dictionary: Dictionary to parse.
     */
     private func shouldParseDeclaration(_ sourceKitVariant: SourceKitVariant) -> Bool {
+        // swiftlint:disable operator_usage_whitespace
         let sameFile                = shouldTreatAsSameFile(sourceKitVariant)
         let hasTypeName             = sourceKitVariant.typeName != nil
         let hasAnnotatedDeclaration = sourceKitVariant.annotatedDeclaration != nil
         let hasOffset               = sourceKitVariant.offset != nil
         let isntExtension           = sourceKitVariant.kind != UID.SourceLangSwiftDecl.extension
+        // swiftlint:enable operator_usage_whitespace
         return sameFile && hasTypeName && hasAnnotatedDeclaration && hasOffset && isntExtension
     }
 
@@ -372,7 +382,9 @@ public final class File {
 
         if let offset = isExtension ? variant.nameOffset : variant.offset,
            let commentByteRange = syntaxMap.commentRange(beforeOffset: offset),
-           let nsRange = contents.bridge().byteRangeToNSRange(start: commentByteRange.lowerBound, length: commentByteRange.upperBound - commentByteRange.lowerBound) {
+           case let start = commentByteRange.lowerBound,
+           case let end = commentByteRange.upperBound,
+           let nsRange = contents.bridge().byteRangeToNSRange(start: start, length: end - start) {
             return contents.commentBody(range: nsRange)
         }
         return nil
@@ -418,7 +430,7 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> SourceKitVariant? {
             func docParameters(from indexer: XMLIndexer) -> SourceKitVariant {
                 return [
                     "name": SourceKitVariant(indexer["Name"].element?.text ?? ""),
-                    "discussion": SourceKitVariant(indexer["Discussion"].childrenAsArray() ?? []),
+                    "discussion": SourceKitVariant(indexer["Discussion"].childrenAsArray() ?? [])
                 ]
             }
             docs.docParameters = parameters.map(docParameters(from:))
@@ -448,7 +460,8 @@ private extension XMLIndexer {
 // MARK: - migration support
 extension File {
     @available(*, unavailable, renamed: "process(dictionary:cursorInfoRequest:syntaxMap:)")
-    public func processDictionary(_ dictionary: [String: Any], cursorInfoRequest: SourceKitObject? = nil, syntaxMap: SyntaxMap? = nil) -> [String: Any] {
+    public func processDictionary(_ dictionary: [String: Any], cursorInfoRequest: SourceKitObject? = nil,
+                                  syntaxMap: SyntaxMap? = nil) -> [String: Any] {
         fatalError()
     }
 

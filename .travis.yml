@@ -9,7 +9,9 @@ matrix:
       osx_image: xcode8.2
       before_install:
         - pod repo update
-    - script: swift test
+    - script:
+        - swift test
+        - swiftlint
       env: JOB=SPM
       os: osx
       osx_image: xcode8.2

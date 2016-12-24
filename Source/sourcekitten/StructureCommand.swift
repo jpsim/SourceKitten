@@ -25,10 +25,10 @@ struct StructureCommand: CommandProtocol {
             }
         }
 
-        static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+        static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
-                <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
-                <*> m <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
+                <*> mode <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to parse")
+                <*> mode <| Option(key: "text", defaultValue: "", usage: "Swift code text to parse")
         }
     }
 

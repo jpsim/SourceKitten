@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 JP Simard. All rights reserved.
 //
 
+// swiftlint:disable file_length
+// This file could easily be split up
+
 import Dispatch
 import Foundation
 #if SWIFT_PACKAGE
@@ -154,7 +157,7 @@ public enum Request {
                 "key.editor.format.options": [
                     "key.editor.format.indentwidth": indentWidth,
                     "key.editor.format.tabwidth": indentWidth,
-                    "key.editor.format.usetabs": (useTabs ? 1 : 0),
+                    "key.editor.format.usetabs": (useTabs ? 1 : 0)
                 ]
             ]
         case .replaceText(let file, let offset, let length, let sourceText):
@@ -163,21 +166,21 @@ public enum Request {
                 "key.name": file,
                 "key.offset": offset,
                 "key.length": length,
-                "key.sourcetext": sourceText,
+                "key.sourcetext": sourceText
             ]
         case .docInfo(let text, let arguments):
             return [
                 "key.request": UID.SourceRequest.docinfo,
                 "key.name": NSUUID().uuidString,
                 "key.compilerargs": arguments,
-                "key.sourcetext": text,
+                "key.sourcetext": text
             ]
         case .moduleInfo(let module, let arguments):
             return [
                 "key.request": UID.SourceRequest.docinfo,
                 "key.name": NSUUID().uuidString,
                 "key.compilerargs": arguments,
-                "key.modulename": module,
+                "key.modulename": module
             ]
         }
     }
@@ -296,42 +299,52 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) t
     return try Request.customRequest(request: sourceKitObject).failableSend()
 }
 
+extension String {
+    fileprivate func extractFreeFunctions(inSubstructure substructure: [SourceKitVariant]) -> [String] {
+        return substructure.filter({
+            $0.kind == UID.SourceLangSwiftDecl.functionFree
+        }).flatMap { function -> String? in
+            let fullFunctionName = function.name!
+            let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
+            let unsupportedFunctions = [
+                "clang_executeOnThread",
+                "sourcekitd_variant_dictionary_apply",
+                "sourcekitd_variant_array_apply"
+                ]
+            guard !unsupportedFunctions.contains(name) else {
+                return nil
+            }
+
+            var parameters = [String]()
+            if let functionSubstructure = function.subStructure {
+                for parameterStructure in functionSubstructure {
+                    parameters.append(parameterStructure.typeName!)
+                }
+            }
+            var returnTypes = [String]()
+            if let offset = function.offset, let length = function.length {
+                let start = index(startIndex, offsetBy: Int(offset))
+                let end = index(start, offsetBy: Int(length))
+                let functionDeclaration = substring(with: start..<end)
+                if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
+                    returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
+                }
+            }
+
+            let joinedParameters = parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", ")
+            let joinedReturnTypes = returnTypes.joined(separator: ", ")
+            let lhs = "internal let \(name): @convention(c) (\(joinedParameters)) -> (\(joinedReturnTypes))"
+            let rhs = "library.load(symbol: \"\(name)\")"
+            return "\(lhs) = \(rhs)".replacingOccurrences(of: "SourceKittenFramework.", with: "")
+        }
+    }
+}
+
 internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) throws -> String {
     let sourceKitVariant = try interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = sourceKitVariant.subStructure ?? []
     let source = sourceKitVariant.sourceText!
-    let freeFunctions = substructure.filter({
-        $0.kind == UID.SourceLangSwiftDecl.functionFree
-    }).flatMap { function -> String? in
-        let fullFunctionName = function.name!
-        let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
-        let unsupportedFunctions = [
-            "clang_executeOnThread",
-            "sourcekitd_variant_dictionary_apply",
-            "sourcekitd_variant_array_apply",
-        ]
-        guard !unsupportedFunctions.contains(name) else {
-            return nil
-        }
-
-        var parameters = [String]()
-        if let functionSubstructure = function.subStructure {
-            for parameterStructure in functionSubstructure {
-                parameters.append(parameterStructure.typeName!)
-            }
-        }
-        var returnTypes = [String]()
-        if let offset = function.offset, let length = function.length {
-            let start = source.index(source.startIndex, offsetBy: Int(offset))
-            let end = source.index(start, offsetBy: Int(length))
-            let functionDeclaration = source.substring(with: start..<end)
-            if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
-                returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
-            }
-        }
-
-        return "internal let \(name): @convention(c) (\(parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", "))) -> (\(returnTypes.joined(separator: ", "))) = library.load(symbol: \"\(name)\")".replacingOccurrences(of: "SourceKittenFramework.", with: "")
-    }
+    let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
     let library: String
     if let linuxPath = linuxPath {

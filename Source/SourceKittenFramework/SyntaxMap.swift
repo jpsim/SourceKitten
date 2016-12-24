@@ -67,7 +67,7 @@ public struct SyntaxMap {
         let tokensBeforeOffset = tokens.reversed().filter { $0.offset < offset }
 
         let docTypes: [UID.SourceLangSwiftSyntaxtype] = [
-            .commentUrl, .doccomment, .doccommentField,
+            .commentUrl, .doccomment, .doccommentField
         ]
         let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
         let isNotDoc = { !isDoc($0) }

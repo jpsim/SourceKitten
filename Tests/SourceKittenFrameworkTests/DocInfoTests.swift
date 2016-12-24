@@ -35,7 +35,7 @@ extension DocInfoTests {
     static var allTests: [(String, (DocInfoTests) -> () throws -> Void)] {
         return [
             ("testDocInfoRequest", testDocInfoRequest),
-            ("testModuleInfoRequest", testModuleInfoRequest),
+            ("testModuleInfoRequest", testModuleInfoRequest)
         ]
     }
 }

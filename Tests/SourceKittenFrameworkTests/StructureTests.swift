@@ -119,7 +119,7 @@ extension StructureTests {
             ("testPrintEmptyStructure", testPrintEmptyStructure),
             ("testGenerateSameStructureFileAndContents", testGenerateSameStructureFileAndContents),
             ("testEnum", testEnum),
-            ("testStructurePrintValidJSON", testStructurePrintValidJSON),
+            ("testStructurePrintValidJSON", testStructurePrintValidJSON)
         ]
     }
 }

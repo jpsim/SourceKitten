@@ -27,12 +27,12 @@ struct FormatCommand: CommandProtocol {
             }}}
         }
 
-        static func evaluate(_ m: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
+        static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
-                <*> m <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to format")
-                <*> m <| Option(key: "trim-whitespace", defaultValue: true, usage: "trim trailing whitespace")
-                <*> m <| Option(key: "use-tabs", defaultValue: false, usage: "use tabs to indent")
-                <*> m <| Option(key: "indent-width", defaultValue: 4, usage: "number of spaces to indent")
+                <*> mode <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to format")
+                <*> mode <| Option(key: "trim-whitespace", defaultValue: true, usage: "trim trailing whitespace")
+                <*> mode <| Option(key: "use-tabs", defaultValue: false, usage: "use tabs to indent")
+                <*> mode <| Option(key: "indent-width", defaultValue: 4, usage: "number of spaces to indent")
         }
     }
 
