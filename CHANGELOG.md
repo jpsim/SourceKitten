@@ -2,7 +2,8 @@
 
 ##### Breaking
 
-* None.
+* Change `Text` enum case names to match Swift 3 API guidelines.
+  [@istx25](https://github.com/istx25), [#324](https://github.com/jpsim/SourceKitten/pull/324).
 
 ##### Enhancements
 
