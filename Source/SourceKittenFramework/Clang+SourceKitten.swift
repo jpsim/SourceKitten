@@ -213,7 +213,7 @@ extension CXComment {
 
     func paragraphToString(kindString: String? = nil) -> [Text] {
         if kind() == CXComment_VerbatimLine {
-            return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
+            return [.verbatim(clang_VerbatimLineComment_getText(self).str()!)]
         } else if kind() == CXComment_BlockCommand {
             return (0..<count()).reduce([]) { returnValue, childIndex in
                 return returnValue + self[childIndex].paragraphToString()
@@ -236,7 +236,7 @@ extension CXComment {
             }
             fatalError("not text: \(child.kind())")
         }
-        return [.Para(paragraphString.removingCommonLeadingWhitespaceFromLines(), kindString)]
+        return [.para(paragraphString.removingCommonLeadingWhitespaceFromLines(), kindString)]
     }
 
     func kind() -> CXCommentKind {
