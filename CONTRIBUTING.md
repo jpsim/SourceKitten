@@ -9,7 +9,7 @@ We follow the same syntax as [CocoaPods' `CHANGELOG.md`](https://github.com/Coco
 
 1. One Markdown unnumbered list item describing the change.
 2. 2 trailing spaces on the last line describing the change.
-3. A list of Markdown hyperlinks to the contributors of the change. One entry
+3. A list of Markdown hyperlinks to the change's contributors. One entry
    per line. Usually just one.
 4. A list of Markdown hyperlinks to the issues the change addresses. One entry
    per line. Usually just one.
