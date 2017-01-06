@@ -11,7 +11,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Make sending `Request`s safer in concurrent environments.  
+  [@krzysztofzablocki](https://github.com/krzysztofzablocki)
 
 ## 0.16.0
 
