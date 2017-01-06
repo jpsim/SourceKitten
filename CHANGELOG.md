@@ -11,7 +11,7 @@
 
 ##### Bug Fixes
 
-* None.
+* Added locks around global shared state variables to avoid multi-threading problems.[@krzysztofzablocki](https://github.com/krzysztofzablocki)
 
 ## 0.16.0
 

@@ -118,7 +118,22 @@ private let initializeSourceKitFailable: Void = {
 private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
 
 /// SourceKit UID to String map.
-private var uidStringMap = [sourcekitd_uid_t: String]()
+private var _uidStringMap = [sourcekitd_uid_t: String]()
+private var _uidStringMapLock = NSLock()
+
+/// Thread safe read from sourceKitUID map
+private func uidString(`for` sourceKitUID: sourcekitd_uid_t) -> String? {
+    _uidStringMapLock.lock()
+    defer { _uidStringMapLock.unlock() }
+    return _uidStringMap[sourceKitUID]
+}
+
+/// Thread safe write from sourceKitUID map
+private func setUIDString(uidString: String, `for` identifier: sourcekitd_uid_t) {
+    _uidStringMapLock.lock()
+    defer { _uidStringMapLock.unlock() }
+    _uidStringMap[identifier] = uidString
+}
 
 private extension String {
     /**
@@ -127,10 +142,11 @@ private extension String {
     - returns: Cached UID string if available, nil otherwise.
     */
     init?(sourceKitUID: sourcekitd_uid_t) {
-        if let string = uidStringMap[sourceKitUID] {
+        if let string = uidString(for: sourceKitUID) {
             self = string
             return
         }
+
         let length = sourcekitd_uid_get_length(sourceKitUID)
         let bytes = sourcekitd_uid_get_string_ptr(sourceKitUID)
         if let uidString = String(bytes: bytes!, length: length) {
@@ -146,7 +162,8 @@ private extension String {
             That does not cause calling `decomposedStringWithCanonicalMapping`.
             */
             let uidString = String(uidString: uidString)
-            uidStringMap[sourceKitUID] = uidString
+            setUIDString(uidString: uidString, for: sourceKitUID)
+
             self = uidString
             return
         }
