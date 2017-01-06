@@ -11,7 +11,8 @@
 
 ##### Bug Fixes
 
-* Added locks around global shared state variables to avoid multi-threading problems.[@krzysztofzablocki](https://github.com/krzysztofzablocki)
+* Make sending `Request`s safer in concurrent environments.  
+  [@krzysztofzablocki](https://github.com/krzysztofzablocki)
 
 ## 0.16.0
 
