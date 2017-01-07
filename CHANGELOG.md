@@ -7,7 +7,8 @@
 
 ##### Enhancements
 
-* None.
+* Add option to disable `Request` global UID cache.
+  [@krzysztofzablocki](https://github.com/krzysztofzablocki)
 
 ##### Bug Fixes
 

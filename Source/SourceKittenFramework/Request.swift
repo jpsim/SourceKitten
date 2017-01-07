@@ -120,9 +120,11 @@ private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
 /// SourceKit UID to String map.
 private var _uidStringMap = [sourcekitd_uid_t: String]()
 private var _uidStringMapLock = NSLock()
+private var _uidCacheEnabled = true
 
 /// Thread safe read from sourceKitUID map
 private func uidString(`for` sourceKitUID: sourcekitd_uid_t) -> String? {
+    guard _uidCacheEnabled else { return nil }
     _uidStringMapLock.lock()
     defer { _uidStringMapLock.unlock() }
     return _uidStringMap[sourceKitUID]
@@ -130,6 +132,7 @@ private func uidString(`for` sourceKitUID: sourcekitd_uid_t) -> String? {
 
 /// Thread safe write from sourceKitUID map
 private func setUIDString(uidString: String, `for` identifier: sourcekitd_uid_t) {
+    guard _uidCacheEnabled else { return }
     _uidStringMapLock.lock()
     defer { _uidStringMapLock.unlock() }
     _uidStringMap[identifier] = uidString
@@ -391,6 +394,17 @@ public enum Request {
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response!) }
         return fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
+    }
+
+    /**
+     Disables UID Cache.
+
+     - parameter disabled: Whether UID Cache should be disabled.
+
+     - note: This can be useful when you want to parallelize parsing of multiple files, which would otherwise lead to a lot of threading locks.
+     */
+    public static func disableUIDCache(disabled: Bool = true) {
+        _uidCacheEnabled = !disabled
     }
 
     /// A enum representation of SOURCEKITD_ERROR_*
