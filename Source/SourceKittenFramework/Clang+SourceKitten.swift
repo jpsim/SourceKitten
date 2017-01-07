@@ -15,19 +15,19 @@ import Foundation
 import SWXMLHash
 
 private var _interfaceUUIDMap = [String: String]()
-private var _interfaceUUIDMapLock = NSLock()
+private var _interfaceUUIDMapMutex = pthread_mutex_t()
 
 /// Thread safe read from sourceKitUID map
 private func uuidString(`for` sourceKitUID: String) -> String? {
-    _interfaceUUIDMapLock.lock()
-    defer { _interfaceUUIDMapLock.unlock() }
+    pthread_mutex_lock(&_interfaceUUIDMapMutex)
+    defer { pthread_mutex_unlock(&_interfaceUUIDMapMutex) }
     return _interfaceUUIDMap[sourceKitUID]
 }
 
 /// Thread safe write from sourceKitUID map
 private func setUUIDString(uidString: String, `for` file: String) {
-    _interfaceUUIDMapLock.lock()
-    defer { _interfaceUUIDMapLock.unlock() }
+    pthread_mutex_lock(&_interfaceUUIDMapMutex)
+    defer { pthread_mutex_unlock(&_interfaceUUIDMapMutex) }
     _interfaceUUIDMap[file] = uidString
 }
 

@@ -119,19 +119,19 @@ private var sourceKitWaitingRestoredSemaphore = DispatchSemaphore(value: 0)
 
 /// SourceKit UID to String map.
 private var _uidStringMap = [sourcekitd_uid_t: String]()
-private var _uidStringMapLock = NSLock()
+private var _uidStringMapMutex = pthread_mutex_t()
 
 /// Thread safe read from sourceKitUID map
 private func uidString(`for` sourceKitUID: sourcekitd_uid_t) -> String? {
-    _uidStringMapLock.lock()
-    defer { _uidStringMapLock.unlock() }
+    pthread_mutex_lock(&_uidStringMapMutex)
+    defer { pthread_mutex_unlock(&_uidStringMapMutex) }
     return _uidStringMap[sourceKitUID]
 }
 
 /// Thread safe write from sourceKitUID map
 private func setUIDString(uidString: String, `for` identifier: sourcekitd_uid_t) {
-    _uidStringMapLock.lock()
-    defer { _uidStringMapLock.unlock() }
+    pthread_mutex_lock(&_uidStringMapMutex)
+    defer { pthread_mutex_unlock(&_uidStringMapMutex) }
     _uidStringMap[identifier] = uidString
 }
 
