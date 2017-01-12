@@ -54,6 +54,9 @@ struct Loader {
         // then try loading with simple path that depends resolving to DYLD
         for fullPath in fullPaths + [path] {
             if let handle = dlopen(fullPath, RTLD_LAZY) {
+                if env("SOURCEKITTEN_LOG_DLOPEN") {
+                    print("loaded dynamic library at path '\(fullPath)'")
+                }
                 return DynamicLinkLibrary(path: path, handle: handle)
             }
         }
