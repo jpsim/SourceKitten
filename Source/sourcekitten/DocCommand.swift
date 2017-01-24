@@ -57,11 +57,18 @@ struct DocCommand: CommandProtocol {
     }
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
-        if let docs = Module(spmName: moduleName)?.docs {
-            print(docs)
-            return .success(())
+        if let module = Module(spmName: moduleName) {
+            for file in module.sourceFiles {
+                let unusedImports = File(path: file)!.unusedImports(compilerArguments: module.compilerArguments)
+                if !unusedImports.isEmpty {
+                    print("Unused imports in \(file.bridge().lastPathComponent):")
+                    for module in unusedImports {
+                        print("- \(module)")
+                    }
+                }
+            }
         }
-        return .failure(.docFailed)
+        return .success(())
     }
 
     func runSwiftModule(moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
@@ -98,5 +105,59 @@ struct DocCommand: CommandProtocol {
         print(translationUnit)
         return .success(())
         #endif
+    }
+}
+
+private let syntaxTypesToSkip = [
+    "source.lang.swift.syntaxtype.attribute.builtin",
+    "source.lang.swift.syntaxtype.keyword",
+    "source.lang.swift.syntaxtype.number",
+    "source.lang.swift.syntaxtype.doccomment",
+    "source.lang.swift.syntaxtype.string",
+    "source.lang.swift.syntaxtype.string_interpolation_anchor",
+    "source.lang.swift.syntaxtype.attribute.id",
+    "source.lang.swift.syntaxtype.buildconfig.keyword",
+    "source.lang.swift.syntaxtype.buildconfig.id",
+    "source.lang.swift.syntaxtype.comment.url",
+    "source.lang.swift.syntaxtype.comment",
+    "source.lang.swift.syntaxtype.doccomment.field"
+]
+
+extension File {
+    fileprivate func unusedImports(compilerArguments: [String]) -> [String] {
+        let syntaxMap = SyntaxMap(sourceKitResponse: Request.editorOpen(file: self).send())
+        var imports = [String]()
+        var usrs = [String]()
+        var nextIsModuleImport = false
+        for token in syntaxMap.tokens {
+            if token.type == "source.lang.swift.syntaxtype.keyword",
+                let substring = contents.bridge()
+                    .substringWithByteRange(start: token.offset, length: token.length),
+                substring == "import" {
+                nextIsModuleImport = true
+                continue
+            }
+            if syntaxTypesToSkip.contains(token.type) {
+                continue
+            }
+            let cursorInfo = Request.cursorInfo(file: path!, offset: Int64(token.offset),
+                                                arguments: compilerArguments).send()
+            if nextIsModuleImport {
+                if let importedModule = cursorInfo["key.modulename"] as? String,
+                    cursorInfo["key.kind"] as? String == "source.lang.swift.ref.module" {
+                    imports.append(importedModule)
+                    nextIsModuleImport = false
+                }
+            } else {
+                nextIsModuleImport = false
+            }
+            if let usr = cursorInfo["key.usr"] as? String {
+                usrs.append(usr)
+            }
+        }
+        return imports.filter { module in
+            return !["Foundation", "Swift", "Dispatch"].contains(module) &&
+                usrs.filter({ $0.contains(module) }).isEmpty
+        }
     }
 }
