@@ -58,6 +58,7 @@ struct DocCommand: CommandProtocol {
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
         if let module = Module(spmName: moduleName) {
+            // Find unused imports
             for file in module.sourceFiles {
                 let unusedImports = File(path: file)!.unusedImports(compilerArguments: module.compilerArguments)
                 if !unusedImports.isEmpty {
@@ -65,6 +66,49 @@ struct DocCommand: CommandProtocol {
                     for module in unusedImports {
                         print("- \(module)")
                     }
+                }
+            }
+
+            // Find `private` or `fileprivate` declarations that aren't used within that file
+            for file in module.sourceFiles {
+                let file = File(path: file)!
+                let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
+                let privateDeclarationUSRs = File.privateDeclarationUSRs(allCursorInfo: allCursorInfo)
+                let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
+                let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
+                if !unusedPrivateDeclarations.isEmpty {
+                    print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
+                    print(unusedPrivateDeclarations)
+                }
+            }
+
+            // Find `internal` declarations that should be `private` or `fileprivate`
+            var internalDeclarationsPerFile = [String: [String]]()
+            var refsPerFile = [String: [String]]()
+            var idx = 0
+            for file in module.sourceFiles {
+                idx += 1
+                print("\(file.bridge().lastPathComponent) (\(idx)/\(module.sourceFiles.count))")
+                let allCursorInfo = File(path: file)!.allCursorInfo(compilerArguments: module.compilerArguments)
+                internalDeclarationsPerFile[file] = File.internalDeclarationUSRs(allCursorInfo: allCursorInfo)
+                refsPerFile[file] = File.allRefUSRs(allCursorInfo: allCursorInfo)
+            }
+            if let testsModule = Module(spmName: moduleName + "Tests") {
+                idx = 0
+                for file in testsModule.sourceFiles {
+                    idx += 1
+                    print("\(file.bridge().lastPathComponent) (\(idx)/\(testsModule.sourceFiles.count))")
+                    let allCursorInfo = File(path: file)!.allCursorInfo(compilerArguments: testsModule.compilerArguments)
+                    refsPerFile[file] = File.allRefUSRs(allCursorInfo: allCursorInfo)
+                }
+            }
+            for (file, internalDeclarations) in internalDeclarationsPerFile {
+                var copy = refsPerFile
+                copy.removeValue(forKey: file)
+                let nonFileRefs = Array(copy.values).flatMap({ $0 })
+                for decl in internalDeclarations where !nonFileRefs.contains(decl) {
+                    print("\(file.bridge().lastPathComponent) decl should be fileprivate:")
+                    print(decl)
                 }
             }
         }
@@ -124,6 +168,94 @@ private let syntaxTypesToSkip = [
 ]
 
 extension File {
+    fileprivate func allCursorInfo(compilerArguments: [String]) -> [[String: SourceKitRepresentable]] {
+        let editorOpen = Request.editorOpen(file: self).send()
+        let syntaxMap = SyntaxMap(sourceKitResponse: editorOpen)
+        return syntaxMap.tokens.flatMap { token in
+            guard !syntaxTypesToSkip.contains(token.type) else {
+                return nil
+            }
+            var cursorInfo = Request.cursorInfo(file: path!, offset: Int64(token.offset),
+                                                arguments: compilerArguments).send()
+            if let acl = File.aclAtOffset(Int64(token.offset), editorOpen: editorOpen) {
+                cursorInfo["key.accessibility"] = acl
+            }
+            return cursorInfo
+        }
+    }
+
+    fileprivate static func privateDeclarationUSRs(allCursorInfo: [[String: SourceKitRepresentable]]) -> [String] {
+        var usrs = [String]()
+        let privateACLs = ["source.lang.swift.accessibility.private", "source.lang.swift.accessibility.fileprivate"]
+        for cursorInfo in allCursorInfo {
+            if let usr = cursorInfo["key.usr"] as? String,
+                let kind = cursorInfo["key.kind"] as? String,
+                kind.contains("source.lang.swift.decl"),
+                let accessibility = cursorInfo["key.accessibility"] as? String,
+                privateACLs.contains(accessibility) {
+                usrs.append(usr)
+            }
+        }
+        return usrs
+    }
+
+    fileprivate static func internalDeclarationUSRs(allCursorInfo: [[String: SourceKitRepresentable]]) -> [String] {
+        var usrs = [String]()
+        for cursorInfo in allCursorInfo {
+            if let usr = cursorInfo["key.usr"] as? String,
+                let kind = cursorInfo["key.kind"] as? String,
+                kind.contains("source.lang.swift.decl"),
+                let accessibility = cursorInfo["key.accessibility"] as? String,
+                accessibility == "source.lang.swift.accessibility.internal" {
+                usrs.append(usr)
+            }
+        }
+        return usrs
+    }
+
+    fileprivate static func aclAtOffset(_ offset: Int64, editorOpen: [String: SourceKitRepresentable]) -> String? {
+        if let nameOffset = editorOpen["key.nameoffset"] as? Int64,
+            nameOffset == offset,
+            let acl = editorOpen["key.accessibility"] as? String {
+            return acl
+        }
+        if let sub = editorOpen[SwiftDocKey.substructure.rawValue] as? [SourceKitRepresentable] {
+            let sub2 = sub.map({ $0 as! [String: SourceKitRepresentable] })
+            for subsub in sub2 {
+                if let acl = File.aclAtOffset(offset, editorOpen: subsub) {
+                    return acl
+                }
+            }
+        }
+        return nil
+    }
+
+    fileprivate static func allRefUSRs(allCursorInfo: [[String: SourceKitRepresentable]]) -> [String] {
+        var usrs = [String]()
+        for cursorInfo in allCursorInfo {
+            if let usr = cursorInfo["key.usr"] as? String,
+                let kind = cursorInfo["key.kind"] as? String,
+                kind.contains("source.lang.swift.ref") {
+                usrs.append(usr)
+            }
+        }
+        return usrs
+    }
+
+    fileprivate func allUSRs(compilerArguments: [String]) -> [String] {
+        let syntaxMap = SyntaxMap(sourceKitResponse: Request.editorOpen(file: self).send())
+        var usrs = [String]()
+        for token in syntaxMap.tokens where !syntaxTypesToSkip.contains(token.type) {
+            let cursorInfo = Request.cursorInfo(file: path!, offset: Int64(token.offset),
+                                                arguments: compilerArguments).send()
+            if let usr = cursorInfo["key.usr"] as? String {
+                print(toJSON(cursorInfo))
+                usrs.append(usr)
+            }
+        }
+        return usrs
+    }
+
     fileprivate func unusedImports(compilerArguments: [String]) -> [String] {
         let syntaxMap = SyntaxMap(sourceKitResponse: Request.editorOpen(file: self).send())
         var imports = [String]()
