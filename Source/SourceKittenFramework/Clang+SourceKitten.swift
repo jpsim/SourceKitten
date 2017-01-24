@@ -159,7 +159,7 @@ extension CXCursor {
                                  unavailableMessage: unavailableString.description)
     }
 
-    func visit(_ block: @escaping (CXCursor, CXCursor) -> CXChildVisitResult) {
+    private func visit(_ block: @escaping (CXCursor, CXCursor) -> CXChildVisitResult) {
         _ = clang_visitChildrenWithBlock(self, block)
     }
 
