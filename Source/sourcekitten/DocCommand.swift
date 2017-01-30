@@ -13,7 +13,7 @@ import SourceKittenFramework
 
 struct DocCommand: CommandProtocol {
     let verb = "doc"
-    let function = "Print Swift docs as JSON or Objective-C docs as XML"
+    let function = "Print Swift or Objective-C docs as JSON"
 
     struct Options: OptionsProtocol {
         let spmModule: String
