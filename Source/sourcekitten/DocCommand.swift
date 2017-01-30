@@ -13,19 +13,21 @@ import SourceKittenFramework
 
 struct DocCommand: CommandProtocol {
     let verb = "doc"
-    let function = "Print Swift or Objective-C docs as JSON"
+    let function = "Print Swift or Objective-C docs as JSON or HTML"
 
     struct Options: OptionsProtocol {
         let spmModule: String
         let singleFile: Bool
         let moduleName: String
         let objc: Bool
+        let html: Bool
         let arguments: [String]
 
-        static func create(spmModule: String) -> (_ singleFile: Bool) -> (_ moduleName: String) -> (_ objc: Bool) -> (_ arguments: [String]) -> Options {
-            return { singleFile in { moduleName in { objc in { arguments in
-                self.init(spmModule: spmModule, singleFile: singleFile, moduleName: moduleName, objc: objc, arguments: arguments)
-            }}}}
+        // swiftlint:disable:next line_length
+        static func create(spmModule: String) -> (_ singleFile: Bool) -> (_ moduleName: String) -> (_ objc: Bool) -> (_ html: Bool) -> (_ arguments: [String]) -> Options {
+            return { singleFile in { moduleName in { objc in { html in { arguments in
+                self.init(spmModule: spmModule, singleFile: singleFile, moduleName: moduleName, objc: objc, html: html, arguments: arguments)
+            }}}}}
         }
 
         static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
@@ -38,6 +40,8 @@ struct DocCommand: CommandProtocol {
                                    usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
                 <*> mode <| Option(key: "objc", defaultValue: false,
                                    usage: "document Objective-C headers")
+                <*> mode <| Option(key: "html", defaultValue: false,
+                                   usage: "generate static HTML documentation site rather than output JSON")
                 <*> mode <| Argument(defaultValue: [],
                                      usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
         }
