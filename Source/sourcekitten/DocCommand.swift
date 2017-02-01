@@ -106,7 +106,13 @@ struct DocCommand: CommandProtocol {
                     try fileManager.removeItem(atPath: file)
                 }
             }
-            let context = Context(dictionary: ["name": "RealmSwift", "kind": "", "modulename": "RealmSwift"])
+            let customHead = try! String(contentsOfFile: "/Users/jp/Projects/realm-cocoa/docs/custom_head.html")
+            let context = Context(dictionary: [
+                "name": "RealmSwift",
+                "kind": "",
+                "modulename": "RealmSwift",
+                "custom_head": customHead
+            ])
             let template = try Template(URL: URL(fileURLWithPath: themeDir + "/templates/base.html"))
             let rendered = try template.render(context)
             try rendered.data(using: .utf8)!.write(to: URL(fileURLWithPath: outputDir + "/index.html"))
