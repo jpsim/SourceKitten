@@ -15,6 +15,7 @@ let package = Package(
     .Package(url: "https://github.com/norio-nomura/SourceKit.git", majorVersion: 1),
     .Package(url: "https://github.com/sorbetto/swift-sass.git", Version(1, 0, 0)),
     .Package(url: "https://github.com/kylef/Stencil.git", Version(0, 7, 2)),
+    .Package(url: "https://github.com/IBM-Swift/Kitura-Markdown.git", majorVersion: 0),
   ],
   exclude: [
     "Source/SourceKittenFramework/clang-c",
