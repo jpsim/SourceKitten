@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
-import CSass
 import Commandant
+import CSass
 import Foundation
 import Result
 import SourceKittenFramework
+import Stencil
 
 extension FileManager {
     func isFile(path: String) -> Bool {
@@ -105,6 +106,10 @@ struct DocCommand: CommandProtocol {
                     try fileManager.removeItem(atPath: file)
                 }
             }
+            let context = Context(dictionary: ["name": "RealmSwift", "kind": "", "modulename": "RealmSwift"])
+            let template = try Template(URL: URL(fileURLWithPath: themeDir + "/templates/base.html"))
+            let rendered = try template.render(context)
+            try rendered.data(using: .utf8)!.write(to: URL(fileURLWithPath: outputDir + "/index.html"))
         } catch {
             fatalError("\(error)")
         }
