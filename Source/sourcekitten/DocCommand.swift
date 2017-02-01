@@ -110,8 +110,9 @@ struct DocCommand: CommandProtocol {
             let context = Context(dictionary: [
                 "name": "RealmSwift",
                 "kind": "",
-                "modulename": "RealmSwift",
-                "custom_head": customHead
+                "module_name": "RealmSwift",
+                "custom_head": customHead,
+                "path_to_root": ""
             ])
             let template = try Template(URL: URL(fileURLWithPath: themeDir + "/templates/base.html"))
             let rendered = try template.render(context)
