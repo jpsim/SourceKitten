@@ -12,6 +12,39 @@ import Foundation
 import Result
 import SourceKittenFramework
 
+extension FileManager {
+    func isFile(path: String) -> Bool {
+        var isDirectoryObjC: ObjCBool = false
+        if fileExists(atPath: path, isDirectory: &isDirectoryObjC) {
+            #if os(Linux)
+                return !isDirectoryObjC
+            #else
+                return !isDirectoryObjC.boolValue
+            #endif
+        }
+        return false
+    }
+
+    func allFiles(inPath path: String) -> [String] {
+        let rootPath = currentDirectoryPath
+        let absolutePath = path.bridge()
+            .absolutePathRepresentation(rootDirectory: rootPath).bridge()
+            .standardizingPath
+
+        // if path is a file, it won't be returned in `enumerator(atPath:)`
+        if isFile(path: absolutePath) {
+            return [absolutePath]
+        }
+
+        return enumerator(atPath: absolutePath)?.flatMap { element in
+            if let element = element as? String {
+                return absolutePath.bridge().appendingPathComponent(element)
+            }
+            return nil
+        } ?? []
+    }
+}
+
 private func sass2css(path: String) -> String {
     let context = sass_make_file_context(path)
     defer { sass_delete_file_context(context) }
@@ -59,16 +92,23 @@ struct DocCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        let args = options.arguments
-        if !options.spmModule.isEmpty {
-            return runSPMModule(moduleName: options.spmModule)
-        } else if options.objc {
-            return runObjC(options: options, args: args)
-        } else if options.singleFile {
-            return runSwiftSingleFile(args: args)
+        let themeDir = "/Users/jp/Projects/jazzy/lib/jazzy/themes/apple"
+        let assetsDir = themeDir + "/assets"
+        let outputDir = "docs"
+        do {
+            let fileManager = FileManager.default
+            try fileManager.removeItem(atPath: outputDir)
+            try fileManager.copyItem(atPath: assetsDir, toPath: outputDir)
+            for file in fileManager.allFiles(inPath: outputDir) {
+                if file.contains(".css.scss"), let cssData = sass2css(path: file).data(using: .utf8) {
+                    try cssData.write(to: URL(fileURLWithPath: file).deletingPathExtension())
+                    try fileManager.removeItem(atPath: file)
+                }
+            }
+        } catch {
+            fatalError("\(error)")
         }
-        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
-        return runSwiftModule(moduleName: moduleName, args: args)
+        return .success()
     }
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
