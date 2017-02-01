@@ -13,6 +13,7 @@ let package = Package(
     .Package(url: "https://github.com/jpsim/Yams.git", Version(0, 1, 5)),
     .Package(url: "https://github.com/norio-nomura/Clang_C.git", majorVersion: 1),
     .Package(url: "https://github.com/norio-nomura/SourceKit.git", majorVersion: 1),
+    .Package(url: "https://github.com/sorbetto/swift-sass.git", Version(1, 0, 0)),
   ],
   exclude: [
     "Source/SourceKittenFramework/clang-c",

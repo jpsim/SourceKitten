@@ -6,10 +6,21 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+import CSass
 import Commandant
 import Foundation
 import Result
 import SourceKittenFramework
+
+private func sass2css(path: String) -> String {
+    let context = sass_make_file_context(path)
+    defer { sass_delete_file_context(context) }
+    sass_compile_file_context(context)
+    if let errorCString = sass_context_get_error_message(context) {
+        fatalError(String(cString: errorCString))
+    }
+    return String(cString: sass_context_get_output_string(context)!)
+}
 
 struct DocCommand: CommandProtocol {
     let verb = "doc"
