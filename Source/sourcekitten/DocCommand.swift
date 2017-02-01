@@ -92,12 +92,12 @@ struct DocCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        let themeDir = "/Users/jp/Projects/jazzy/lib/jazzy/themes/apple"
+        let themeDir = "/Users/jp/Projects/SourceKitten/themes/apple"
         let assetsDir = themeDir + "/assets"
         let outputDir = "docs"
         do {
             let fileManager = FileManager.default
-            try fileManager.removeItem(atPath: outputDir)
+            _ = try? fileManager.removeItem(atPath: outputDir)
             try fileManager.copyItem(atPath: assetsDir, toPath: outputDir)
             for file in fileManager.allFiles(inPath: outputDir) {
                 if file.contains(".css.scss"), let cssData = sass2css(path: file).data(using: .utf8) {
