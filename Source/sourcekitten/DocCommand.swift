@@ -9,6 +9,7 @@
 import Commandant
 import CSass
 import Foundation
+import PathKit
 import Result
 import SourceKittenFramework
 import Stencil
@@ -95,6 +96,7 @@ struct DocCommand: CommandProtocol {
     func run(_ options: Options) -> Result<(), SourceKittenError> {
         let themeDir = "/Users/jp/Projects/SourceKitten/themes/apple"
         let assetsDir = themeDir + "/assets"
+        let templatesDir = themeDir + "/templates"
         let outputDir = "docs"
         do {
             let fileManager = FileManager.default
@@ -112,9 +114,12 @@ struct DocCommand: CommandProtocol {
                 "kind": "",
                 "module_name": "RealmSwift",
                 "custom_head": customHead,
-                "path_to_root": ""
+                "path_to_root": "",
+                "copyright": "<p>&copy; YYYY <a class=\"link\" href=\"https://realm.io\" target=\"_blank\" rel=\"external\">Realm</a>. All rights reserved. (Last updated: YYYY-MM-DD)</p>",
+                "jazzy_version": "X.X.X",
+                "loader": FileSystemLoader(paths: [Path(templatesDir)])
             ])
-            let template = try Template(URL: URL(fileURLWithPath: themeDir + "/templates/base.html"))
+            let template = try Template(URL: URL(fileURLWithPath: templatesDir + "/base.html"))
             let rendered = try template.render(context)
             try rendered.data(using: .utf8)!.write(to: URL(fileURLWithPath: outputDir + "/index.html"))
         } catch {
