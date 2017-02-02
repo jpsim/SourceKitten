@@ -49,22 +49,6 @@ extension FileManager {
 }
 
 private func md2html(path: String) -> String {
-    // usage_example(cmark_node *root) {
-    //     cmark_event_type ev_type;
-    //     cmark_iter *iter = cmark_iter_new(root);
-    //
-    //     while ((ev_type = cmark_iter_next(iter)) != CMARK_EVENT_DONE) {
-    //         cmark_node *cur = cmark_iter_get_node(iter);
-    //         // Do something with `cur` and `ev_type`
-    //     }
-    //
-    //     cmark_iter_free(iter);
-    // }
-
-    // doc = cmark_parse_document(text, len, options);
-    //
-    // result = cmark_render_html(doc, options);
-    // cmark_node_free(doc);
     let data = try! Data(contentsOf: URL(fileURLWithPath: path))
     return data.withUnsafeBytes { (bytes: UnsafePointer<Int8>) -> String in
         guard let htmlBytes = cmark_markdown_to_html(bytes, data.count, 0) else {
