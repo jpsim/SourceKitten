@@ -1,0 +1,37 @@
+diff --git a/Sources/Ccmark/html.c b/Sources/Ccmark/html.c
+index 9ffa08a..6943be9 100644
+--- a/Sources/Ccmark/html.c
++++ b/Sources/Ccmark/html.c
+@@ -2,6 +2,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <assert.h>
++#include <ctype.h>
+ #include "cmark_ctype.h"
+ #include "config.h"
+ #include "cmark.h"
+@@ -133,7 +134,24 @@ static int S_render_node(cmark_node *node, cmark_event_type ev_type,
+     if (entering) {
+       cr(html);
+       start_heading[2] = (char)('0' + node->as.heading.level);
++      cmark_strbuf_puts(html, "<a href='#");
++      cmark_node *heading_text_node = cmark_node_first_child(node);
++      char heading_anchor[heading_text_node->as.literal.len + 1];
++      for (int i = 0; i < heading_text_node->as.literal.len; i++) {
++        char current = heading_text_node->as.literal.data[i];
++        if (isascii(current) && current != ' ') {
++          heading_anchor[i] = tolower(current);
++        } else {
++          heading_anchor[i] = '-';
++        }
++      }
++      heading_anchor[heading_text_node->as.literal.len] = '\0';
++      cmark_strbuf_puts(html, heading_anchor);
++      cmark_strbuf_puts(html, "' class='anchor' aria-hidden=true><span class=\"header-anchor\"></span></a>");
+       cmark_strbuf_puts(html, start_heading);
++      cmark_strbuf_puts(html, " id='");
++      cmark_strbuf_puts(html, heading_anchor);
++      cmark_strbuf_puts(html, "'");
+       S_render_sourcepos(node, html, options);
+       cmark_strbuf_putc(html, '>');
+     } else {
