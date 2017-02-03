@@ -15,6 +15,9 @@ import Foundation
 import SourceKit
 #endif
 
+// swiftlint:disable file_length
+// This file could easily be split up
+
 @available(*, unavailable, message: "Use SourceKitVariant instead of SourceKitRepresentable")
 typealias SourceKitRepresentable = Any
 

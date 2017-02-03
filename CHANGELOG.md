@@ -12,6 +12,22 @@
 
 * None.
 
+## 0.17.0
+
+##### Breaking
+
+* Change `Text` enum case names to match Swift 3 API guidelines.  
+  [@istx25](https://github.com/istx25)
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* Make sending `Request`s safer in concurrent environments.  
+  [@krzysztofzablocki](https://github.com/krzysztofzablocki)
+
 ## 0.16.0
 
 ##### Breaking

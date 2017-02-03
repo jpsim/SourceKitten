@@ -14,7 +14,22 @@ import Clang_C
 import Foundation
 import SWXMLHash
 
-private var interfaceUUIDMap = [String: String]()
+private var _interfaceUUIDMap = [String: String]()
+private var _interfaceUUIDMapLock = NSLock()
+
+/// Thread safe read from sourceKitUID map
+private func uuidString(`for` sourceKitUID: String) -> String? {
+    _interfaceUUIDMapLock.lock()
+    defer { _interfaceUUIDMapLock.unlock() }
+    return _interfaceUUIDMap[sourceKitUID]
+}
+
+/// Thread safe write from sourceKitUID map
+private func setUUIDString(uidString: String, `for` file: String) {
+    _interfaceUUIDMapLock.lock()
+    defer { _interfaceUUIDMapLock.unlock() }
+    _interfaceUUIDMap[file] = uidString
+}
 
 struct ClangIndex {
     private let index = clang_createIndex(0, 1)
@@ -178,11 +193,12 @@ extension CXCursor {
     func swiftDeclaration(compilerArguments: [String]) -> String? {
         let file = location().file
         let swiftUUID: String
-        if let uuid = interfaceUUIDMap[file] {
+
+        if let uuid = uuidString(for: file) {
             swiftUUID = uuid
         } else {
             swiftUUID = NSUUID().uuidString
-            interfaceUUIDMap[file] = swiftUUID
+            setUUIDString(uidString: swiftUUID, for: file)
             // Generate Swift interface, associating it with the UUID
             guard let _ = try? Request.interface(file: file, uuid: swiftUUID).failableSend() else {
                 return nil
@@ -216,7 +232,7 @@ extension CXComment {
 
     func paragraphToString(kindString: String? = nil) -> [Text] {
         if kind() == CXComment_VerbatimLine {
-            return [.Verbatim(clang_VerbatimLineComment_getText(self).str()!)]
+            return [.verbatim(clang_VerbatimLineComment_getText(self).str()!)]
         } else if kind() == CXComment_BlockCommand {
             return (0..<count()).reduce([]) { returnValue, childIndex in
                 return returnValue + self[childIndex].paragraphToString()
@@ -239,7 +255,7 @@ extension CXComment {
             }
             fatalError("not text: \(child.kind())")
         }
-        return [.Para(paragraphString.removingCommonLeadingWhitespaceFromLines(), kindString)]
+        return [.para(paragraphString.removingCommonLeadingWhitespaceFromLines(), kindString)]
     }
 
     func kind() -> CXCommentKind {
