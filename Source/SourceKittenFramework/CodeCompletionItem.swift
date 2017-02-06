@@ -17,6 +17,12 @@ fileprivate extension Dictionary {
 }
 
 public struct CodeCompletionItem: CustomStringConvertible {
+    #if os(Linux)
+    public typealias NumBytesInt = Int
+    #else
+    public typealias NumBytesInt = Int64
+    #endif
+    
     public let kind: String
     public let context: String
     public let name: String?
@@ -26,7 +32,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
     public let moduleName: String?
     public let docBrief: String?
     public let associatedUSRs: String?
-    public let numBytesToErase: Int64?
+    public let numBytesToErase: NumBytesInt?
 
     /// Dictionary representation of CodeCompletionItem. Useful for NSJSONSerialization.
     public var dictionaryValue: [String: Any] {
@@ -58,7 +64,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
                 moduleName: dict["key.modulename"] as? String,
                 docBrief: dict["key.doc.brief"] as? String,
                 associatedUSRs: dict["key.associated_usrs"] as? String,
-                numBytesToErase: dict["key.num_bytes_to_erase"] as? Int64)
+                numBytesToErase: dict["key.num_bytes_to_erase"] as? NumBytesInt)
         }
     }
 }
