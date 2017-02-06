@@ -26,10 +26,11 @@ public struct CodeCompletionItem: CustomStringConvertible {
     public let moduleName: String?
     public let docBrief: String?
     public let associatedUSRs: String?
+    public let numBytesToErase: Int64?
 
     /// Dictionary representation of CodeCompletionItem. Useful for NSJSONSerialization.
     public var dictionaryValue: [String: Any] {
-        var dict = ["kind": kind, "context": context]
+        var dict: [String: Any] = ["kind": kind, "context": context]
         dict.addIfNotNil("name", name)
         dict.addIfNotNil("descriptionKey", descriptionKey)
         dict.addIfNotNil("sourcetext", sourcetext)
@@ -37,6 +38,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
         dict.addIfNotNil("moduleName", moduleName)
         dict.addIfNotNil("docBrief", docBrief)
         dict.addIfNotNil("associatedUSRs", associatedUSRs)
+        dict.addIfNotNil("numBytesToErase", numBytesToErase)
         return dict
     }
 
@@ -55,7 +57,8 @@ public struct CodeCompletionItem: CustomStringConvertible {
                 typeName: dict["key.typename"] as? String,
                 moduleName: dict["key.modulename"] as? String,
                 docBrief: dict["key.doc.brief"] as? String,
-                associatedUSRs: dict["key.associated_usrs"] as? String)
+                associatedUSRs: dict["key.associated_usrs"] as? String,
+                numBytesToErase: dict["key.num_bytes_to_erase"] as? Int64)
         }
     }
 }
