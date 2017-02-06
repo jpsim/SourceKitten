@@ -6,7 +6,10 @@
 
 ##### Enhancements
 
-* None.
+* Added a new field `numBytesToErase` in `CodeCompletionItem` to indicate how
+  many bytes should be deleted prior to the cursor in order to finish the
+  completion.  
+  [@KelvinJin](https://github.com/KelvinJin)
 
 ##### Bug Fixes
 
