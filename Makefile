@@ -10,6 +10,7 @@ XCODEFLAGS=-workspace 'SourceKitten.xcworkspace' \
 BUILT_BUNDLE=$(TEMPORARY_FOLDER)/Applications/sourcekitten.app
 SOURCEKITTEN_FRAMEWORK_BUNDLE=$(BUILT_BUNDLE)/Contents/Frameworks/SourceKittenFramework.framework
 SOURCEKITTEN_EXECUTABLE=$(BUILT_BUNDLE)/Contents/MacOS/sourcekitten
+SWIFT_STANDARD_LIBRARIES=$(BUILT_BUNDLE)/Contents/Frameworks/libswift*
 
 FRAMEWORKS_FOLDER=$(PREFIX)/Frameworks
 BINARIES_FOLDER=$(PREFIX)/bin
@@ -53,6 +54,7 @@ installables: clean bootstrap
 	mkdir -p "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)"
 	mv -f "$(SOURCEKITTEN_FRAMEWORK_BUNDLE)" "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework"
 	mv -f "$(SOURCEKITTEN_EXECUTABLE)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)/sourcekitten"
+	mv -f $(SWIFT_STANDARD_LIBRARIES) "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework/Versions/A/Frameworks"
 	rm -rf "$(BUILT_BUNDLE)"
 
 prefix_install: installables
