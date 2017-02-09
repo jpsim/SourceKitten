@@ -25,5 +25,6 @@ disabled_rules:
   - force_cast
   - force_try
   - todo
+  - switch_case_on_newline
 
 line_length: 160
