@@ -22,7 +22,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
     #else
     public typealias NumBytesInt = Int64
     #endif
-    
+
     public let kind: String
     public let context: String
     public let name: String?
