@@ -127,8 +127,11 @@ extension NSString {
                 return NSMaxRange(line.range)
             }
             let utf8View = line.content.utf8
-            let endUTF16index = utf8View.index(utf8View.startIndex, offsetBy: diff, limitedBy: utf8View.endIndex)!
-                .samePosition(in: line.content.utf16)!
+            guard let i = utf8View.index(utf8View.startIndex, offsetBy: diff, limitedBy: utf8View.endIndex),
+                let endUTF16index = i.samePosition(in: line.content.utf16)
+                else {
+                return 0
+            }
             let utf16Diff = line.content.utf16.distance(from: line.content.utf16.startIndex, to: endUTF16index)
             return line.range.location + utf16Diff
         }
