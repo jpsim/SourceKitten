@@ -25,6 +25,7 @@ class StringTests: XCTestCase {
         XCTAssertEqual(" a ".bridge().trimmingTrailingCharacters(in: .whitespacesAndNewlines), " a")
         XCTAssertEqual(" ".bridge().trimmingTrailingCharacters(in: .whitespacesAndNewlines), "")
         XCTAssertEqual("a".bridge().trimmingTrailingCharacters(in: .whitespacesAndNewlines), "a")
+        XCTAssertEqual("Foobar💣".bridge().trimmingTrailingCharacters(in: .whitespacesAndNewlines), "Foobar💣")
     }
 
     func testCommentBody() {
