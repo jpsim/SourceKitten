@@ -10,12 +10,15 @@ matrix:
       before_install:
         - pod repo update
     - script:
+        - swift package edit Yams --revision master
         - swift test
         - swiftlint
       env: JOB=SPM
       os: osx
       osx_image: xcode8.3
-    - script: make docker_test
+    - script:
+        - docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:31 swift package edit Yams --revision master
+        - make docker_test
       env: JOB=Linux
       sudo: required
       services: docker
