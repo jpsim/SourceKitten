@@ -235,13 +235,12 @@ extension NSString {
         guard length > 0 else {
             return ""
         }
-        var string = self.bridge()
-        let endIndex = string.unicodeScalars.endIndex
-        for offset in 1...string.unicodeScalars.count {
-            let index = string.unicodeScalars.index(endIndex, offsetBy: -offset)
-            if !characterSet.contains(string.unicodeScalars[index]), let stringIndex = index.samePosition(in: string) {
-                return string.substring(to: string.index(stringIndex, offsetBy: 1))
+        var unicodeScalars = self.bridge().unicodeScalars
+        while let scalar = unicodeScalars.last {
+            if !characterSet.contains(scalar) {
+                return String(unicodeScalars)
             }
+            unicodeScalars.removeLast()
         }
         return ""
     }
