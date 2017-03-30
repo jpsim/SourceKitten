@@ -13,7 +13,10 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix a crash that occurred when a documentation comment ended with an extended
+  grapheme cluster.  
+  [Lukas Stührk](https://github.com/Lukas-Stuehrk)
+  [#350](https://github.com/jpsim/SourceKitten/issues/350)
 
 ## 0.17.0
 
