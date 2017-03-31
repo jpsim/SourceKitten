@@ -10,7 +10,11 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-func compareJSONString(withFixtureNamed name: String, jsonString: CustomStringConvertible, rootDirectory: String = fixturesDirectory) {
+func compareJSONString(withFixtureNamed name: String,
+                       jsonString: CustomStringConvertible,
+                       rootDirectory: String = fixturesDirectory,
+                       file: StaticString = #file,
+                       line: UInt = #line) {
     #if os(Linux)
     let jsonString = String(describing: jsonString).replacingOccurrences(of: rootDirectory, with: "")
     let actualContent = jsonString
@@ -46,18 +50,18 @@ func compareJSONString(withFixtureNamed name: String, jsonString: CustomStringCo
     }
 
     if jsonValue(actualContent) != jsonValue(expectedFile.contents) {
-        XCTFail("output should match expected fixture")
+        XCTFail("output should match expected fixture", file: file, line: line)
         print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
     }
 }
 
-private func compareDocs(withFixtureNamed name: String) {
+private func compareDocs(withFixtureNamed name: String, file: StaticString = #file, line: UInt = #line) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
     let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
 #if os(Linux)
     let name = "Linux" + name
 #endif
-    compareJSONString(withFixtureNamed: name, jsonString: docs)
+    compareJSONString(withFixtureNamed: name, jsonString: docs, file: file, line: line)
 }
 
 class SwiftDocsTests: XCTestCase {
