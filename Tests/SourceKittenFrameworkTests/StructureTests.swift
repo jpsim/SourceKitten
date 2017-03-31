@@ -13,11 +13,20 @@ import XCTest
 class StructureTests: XCTestCase {
 
     func testPrintEmptyStructure() {
-        let expected: NSDictionary = [
-            "key.offset": 0,
-            "key.length": 0,
-            "key.diagnostic_stage": "source.diagnostic.stage.swift.parse"
-        ]
+        #if swift(>=3.1)
+            let expected: NSDictionary = [
+                "key.offset": 0,
+                "key.length": 0,
+                "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
+                "key.substructure": []
+            ]
+        #else
+            let expected: NSDictionary = [
+                "key.offset": 0,
+                "key.length": 0,
+                "key.diagnostic_stage": "source.diagnostic.stage.swift.parse"
+            ]
+        #endif
         let structure = Structure(file: File(contents: ""))
         XCTAssertEqual(toNSDictionary(structure.dictionary), expected, "should generate expected structure")
     }
