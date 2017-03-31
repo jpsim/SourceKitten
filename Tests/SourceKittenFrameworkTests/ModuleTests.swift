@@ -48,7 +48,7 @@ class ModuleTests: XCTestCase {
 #if SWIFT_PACKAGE
 extension ModuleTests {
     func testCommandantDocsSPM() {
-        let commandantPath = projectRoot + "/Packages/Commandant-0.11.3/"
+        let commandantPath = projectRoot + "/Packages/Commandant-0.12.0/"
         let commandantModule = Module(spmName: "Commandant")!
         compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs, rootDirectory: commandantPath)
     }
