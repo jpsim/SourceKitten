@@ -79,7 +79,10 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:/SourceKitten norionomura/sourcekit:302 bash -c "cd /SourceKitten && swift test"
+	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:31 swift test
+
+docker_test_302:
+	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:302 swift test
 
 # http://irace.me/swift-profiling/
 display_compilation_time:

@@ -3,19 +3,19 @@
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.substructure" : [
       {
-        "key.bodylength" : 0,
-        "key.nameoffset" : 151,
         "key.offset" : 141,
+        "key.nameoffset" : 151,
+        "key.namelength" : 8,
         "key.length" : 21,
         "key.name" : "NSString",
         "key.bodyoffset" : 161,
+        "key.bodylength" : 0,
         "key.attributes" : [
           {
             "key.attribute" : "source.decl.attribute.available"
           }
         ],
-        "key.kind" : "source.lang.swift.decl.extension",
-        "key.namelength" : 8
+        "key.kind" : "source.lang.swift.decl.extension"
       },
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -59,10 +59,9 @@
             ],
             "key.substructure" : [
               {
-                "key.offset" : 501,
+                "key.namelength" : 0,
                 "key.nameoffset" : 0,
                 "key.kind" : "source.lang.swift.decl.enumcase",
-                "key.length" : 35,
                 "key.substructure" : [
                   {
                     "key.filepath" : "Bicycle.swift",
@@ -76,6 +75,11 @@
                     "key.offset" : 506,
                     "key.nameoffset" : 506,
                     "key.typename" : "(Bicycle.Style.Type) -> Bicycle.Style",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Road",
                     "key.usr" : "s:FOC7Bicycle7Bicycle5Style4RoadFMS1_S1_",
                     "key.parsed_declaration" : "case Road, Touring, Cruiser, Hybrid",
@@ -94,6 +98,11 @@
                     "key.offset" : 512,
                     "key.nameoffset" : 512,
                     "key.typename" : "(Bicycle.Style.Type) -> Bicycle.Style",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Touring",
                     "key.usr" : "s:FOC7Bicycle7Bicycle5Style7TouringFMS1_S1_",
                     "key.parsed_declaration" : "case Road, Touring, Cruiser, Hybrid",
@@ -112,6 +121,11 @@
                     "key.offset" : 521,
                     "key.nameoffset" : 521,
                     "key.typename" : "(Bicycle.Style.Type) -> Bicycle.Style",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Cruiser",
                     "key.usr" : "s:FOC7Bicycle7Bicycle5Style7CruiserFMS1_S1_",
                     "key.parsed_declaration" : "case Road, Touring, Cruiser, Hybrid",
@@ -130,6 +144,11 @@
                     "key.offset" : 530,
                     "key.nameoffset" : 530,
                     "key.typename" : "(Bicycle.Style.Type) -> Bicycle.Style",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Hybrid",
                     "key.usr" : "s:FOC7Bicycle7Bicycle5Style6HybridFMS1_S1_",
                     "key.parsed_declaration" : "case Road, Touring, Cruiser, Hybrid",
@@ -137,7 +156,8 @@
                     "key.parsed_scope.end" : 18
                   }
                 ],
-                "key.namelength" : 0
+                "key.offset" : 501,
+                "key.length" : 35
               }
             ],
             "key.doc.declaration" : "public enum Style",
@@ -145,12 +165,17 @@
             "key.offset" : 480,
             "key.doc.line" : 17,
             "key.doc.name" : "Style",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "Style",
             "key.usr" : "s:OC7Bicycle7Bicycle5Style",
             "key.parsed_declaration" : "public enum Style",
-            "key.namelength" : 5,
+            "key.bodylength" : 49,
             "key.parsed_scope.end" : 19,
-            "key.bodylength" : 49
+            "key.namelength" : 5
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -175,10 +200,9 @@
             ],
             "key.substructure" : [
               {
-                "key.offset" : 742,
+                "key.namelength" : 0,
                 "key.nameoffset" : 0,
                 "key.kind" : "source.lang.swift.decl.enumcase",
-                "key.length" : 10,
                 "key.substructure" : [
                   {
                     "key.filepath" : "Bicycle.swift",
@@ -192,6 +216,11 @@
                     "key.offset" : 747,
                     "key.nameoffset" : 747,
                     "key.typename" : "(Bicycle.Gearing.Type) -> Bicycle.Gearing",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Fixed",
                     "key.usr" : "s:FOC7Bicycle7Bicycle7Gearing5FixedFMS1_S1_",
                     "key.parsed_declaration" : "case Fixed",
@@ -199,13 +228,13 @@
                     "key.parsed_scope.end" : 28
                   }
                 ],
-                "key.namelength" : 0
+                "key.offset" : 742,
+                "key.length" : 10
               },
               {
-                "key.offset" : 761,
+                "key.namelength" : 0,
                 "key.nameoffset" : 0,
                 "key.kind" : "source.lang.swift.decl.enumcase",
-                "key.length" : 27,
                 "key.substructure" : [
                   {
                     "key.filepath" : "Bicycle.swift",
@@ -219,6 +248,11 @@
                     "key.offset" : 766,
                     "key.nameoffset" : 766,
                     "key.typename" : "(Bicycle.Gearing.Type) -> (Int) -> Bicycle.Gearing",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Freewheel",
                     "key.usr" : "s:FOC7Bicycle7Bicycle7Gearing9FreewheelFMS1_FT6speedsSi_S1_",
                     "key.parsed_declaration" : "case Freewheel(speeds: Int)",
@@ -226,7 +260,8 @@
                     "key.parsed_scope.end" : 29
                   }
                 ],
-                "key.namelength" : 0
+                "key.offset" : 761,
+                "key.length" : 27
               }
             ],
             "key.doc.declaration" : "public enum Gearing",
@@ -234,12 +269,17 @@
             "key.offset" : 719,
             "key.doc.line" : 27,
             "key.doc.name" : "Gearing",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "Gearing",
             "key.usr" : "s:OC7Bicycle7Bicycle7Gearing",
             "key.parsed_declaration" : "public enum Gearing",
-            "key.namelength" : 7,
+            "key.bodylength" : 60,
             "key.parsed_scope.end" : 30,
-            "key.bodylength" : 60
+            "key.namelength" : 7
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
@@ -264,10 +304,9 @@
             ],
             "key.substructure" : [
               {
-                "key.offset" : 1018,
+                "key.namelength" : 0,
                 "key.nameoffset" : 0,
                 "key.kind" : "source.lang.swift.decl.enumcase",
-                "key.length" : 33,
                 "key.substructure" : [
                   {
                     "key.filepath" : "Bicycle.swift",
@@ -281,6 +320,11 @@
                     "key.offset" : 1023,
                     "key.nameoffset" : 1023,
                     "key.typename" : "(Bicycle.Handlebar.Type) -> Bicycle.Handlebar",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Riser",
                     "key.usr" : "s:FOC7Bicycle7Bicycle9Handlebar5RiserFMS1_S1_",
                     "key.parsed_declaration" : "case Riser, Café, Drop, Bullhorn",
@@ -299,6 +343,11 @@
                     "key.offset" : 1030,
                     "key.nameoffset" : 1030,
                     "key.typename" : "(Bicycle.Handlebar.Type) -> Bicycle.Handlebar",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Café",
                     "key.usr" : "s:FOC7Bicycle7Bicycle9HandlebarX7Caf_dmaFMS1_S1_",
                     "key.parsed_declaration" : "case Riser, Café, Drop, Bullhorn",
@@ -317,6 +366,11 @@
                     "key.offset" : 1037,
                     "key.nameoffset" : 1037,
                     "key.typename" : "(Bicycle.Handlebar.Type) -> Bicycle.Handlebar",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Drop",
                     "key.usr" : "s:FOC7Bicycle7Bicycle9Handlebar4DropFMS1_S1_",
                     "key.parsed_declaration" : "case Riser, Café, Drop, Bullhorn",
@@ -335,6 +389,11 @@
                     "key.offset" : 1043,
                     "key.nameoffset" : 1043,
                     "key.typename" : "(Bicycle.Handlebar.Type) -> Bicycle.Handlebar",
+                    "key.actionable" : [
+                      {
+                        "key.actionname" : "Rename"
+                      }
+                    ],
                     "key.name" : "Bullhorn",
                     "key.usr" : "s:FOC7Bicycle7Bicycle9Handlebar8BullhornFMS1_S1_",
                     "key.parsed_declaration" : "case Riser, Café, Drop, Bullhorn",
@@ -342,7 +401,8 @@
                     "key.parsed_scope.end" : 41
                   }
                 ],
-                "key.namelength" : 0
+                "key.offset" : 1018,
+                "key.length" : 33
               }
             ],
             "key.doc.declaration" : "enum Handlebar",
@@ -350,112 +410,137 @@
             "key.offset" : 993,
             "key.doc.line" : 40,
             "key.doc.name" : "Handlebar",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "Handlebar",
             "key.usr" : "s:OC7Bicycle7Bicycle9Handlebar",
             "key.parsed_declaration" : "enum Handlebar",
-            "key.namelength" : 9,
+            "key.bodylength" : 47,
             "key.parsed_scope.end" : 42,
-            "key.bodylength" : 47
+            "key.namelength" : 9
           },
           {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.length" : 16,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 45,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"45\" column=\"9\"><Name>style<\/Name><USR>s:vC7Bicycle7Bicycle5styleOS0_5Style<\/USR><Declaration>let style: Style<\/Declaration><Abstract><Para>The style of the bicycle.<\/Para><\/Abstract><\/Other>",
+            "key.nameoffset" : 1101,
+            "key.typename" : "Bicycle.Style",
+            "key.doc.column" : 9,
+            "key.doc.comment" : "The style of the bicycle.",
             "key.filepath" : "Bicycle.swift",
             "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>let style: <Type usr=\"s:OC7Bicycle7Bicycle5Style\">Style<\/Type><\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>style<\/decl.name>: <decl.var.type><ref.enum usr=\"s:OC7Bicycle7Bicycle5Style\">Style<\/ref.enum><\/decl.var.type><\/decl.var.instance>",
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.length" : 16,
             "key.doc.declaration" : "let style: Style",
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 45,
             "key.typeusr" : "_TtOC7Bicycle7Bicycle5Style",
-            "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1097,
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"45\" column=\"9\"><Name>style<\/Name><USR>s:vC7Bicycle7Bicycle5styleOS0_5Style<\/USR><Declaration>let style: Style<\/Declaration><Abstract><Para>The style of the bicycle.<\/Para><\/Abstract><\/Other>",
-            "key.nameoffset" : 1101,
             "key.doc.line" : 45,
-            "key.typename" : "Bicycle.Style",
             "key.doc.name" : "style",
-            "key.doc.column" : 9,
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "style",
-            "key.doc.comment" : "The style of the bicycle.",
             "key.usr" : "s:vC7Bicycle7Bicycle5styleOS0_5Style",
             "key.parsed_declaration" : "let style: Style",
             "key.namelength" : 5,
             "key.parsed_scope.end" : 45
           },
           {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.length" : 20,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 48,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"48\" column=\"9\"><Name>gearing<\/Name><USR>s:vC7Bicycle7Bicycle7gearingOS0_7Gearing<\/USR><Declaration>let gearing: Gearing<\/Declaration><Abstract><Para>The gearing of the bicycle.<\/Para><\/Abstract><\/Other>",
+            "key.nameoffset" : 1159,
+            "key.typename" : "Bicycle.Gearing",
+            "key.doc.column" : 9,
+            "key.doc.comment" : "The gearing of the bicycle.",
             "key.filepath" : "Bicycle.swift",
             "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>let gearing: <Type usr=\"s:OC7Bicycle7Bicycle7Gearing\">Gearing<\/Type><\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>gearing<\/decl.name>: <decl.var.type><ref.enum usr=\"s:OC7Bicycle7Bicycle7Gearing\">Gearing<\/ref.enum><\/decl.var.type><\/decl.var.instance>",
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.length" : 20,
             "key.doc.declaration" : "let gearing: Gearing",
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 48,
             "key.typeusr" : "_TtOC7Bicycle7Bicycle7Gearing",
-            "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1155,
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"48\" column=\"9\"><Name>gearing<\/Name><USR>s:vC7Bicycle7Bicycle7gearingOS0_7Gearing<\/USR><Declaration>let gearing: Gearing<\/Declaration><Abstract><Para>The gearing of the bicycle.<\/Para><\/Abstract><\/Other>",
-            "key.nameoffset" : 1159,
             "key.doc.line" : 48,
-            "key.typename" : "Bicycle.Gearing",
             "key.doc.name" : "gearing",
-            "key.doc.column" : 9,
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "gearing",
-            "key.doc.comment" : "The gearing of the bicycle.",
             "key.usr" : "s:vC7Bicycle7Bicycle7gearingOS0_7Gearing",
             "key.parsed_declaration" : "let gearing: Gearing",
             "key.namelength" : 7,
             "key.parsed_scope.end" : 48
           },
           {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.length" : 24,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 51,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"51\" column=\"9\"><Name>handlebar<\/Name><USR>s:vC7Bicycle7Bicycle9handlebarOS0_9Handlebar<\/USR><Declaration>let handlebar: Handlebar<\/Declaration><Abstract><Para>The handlebar of the bicycle.<\/Para><\/Abstract><\/Other>",
+            "key.nameoffset" : 1223,
+            "key.typename" : "Bicycle.Handlebar",
+            "key.doc.column" : 9,
+            "key.doc.comment" : "The handlebar of the bicycle.",
             "key.filepath" : "Bicycle.swift",
             "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>let handlebar: <Type usr=\"s:OC7Bicycle7Bicycle9Handlebar\">Handlebar<\/Type><\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>handlebar<\/decl.name>: <decl.var.type><ref.enum usr=\"s:OC7Bicycle7Bicycle9Handlebar\">Handlebar<\/ref.enum><\/decl.var.type><\/decl.var.instance>",
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.length" : 24,
             "key.doc.declaration" : "let handlebar: Handlebar",
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 51,
             "key.typeusr" : "_TtOC7Bicycle7Bicycle9Handlebar",
-            "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1219,
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"51\" column=\"9\"><Name>handlebar<\/Name><USR>s:vC7Bicycle7Bicycle9handlebarOS0_9Handlebar<\/USR><Declaration>let handlebar: Handlebar<\/Declaration><Abstract><Para>The handlebar of the bicycle.<\/Para><\/Abstract><\/Other>",
-            "key.nameoffset" : 1223,
             "key.doc.line" : 51,
-            "key.typename" : "Bicycle.Handlebar",
             "key.doc.name" : "handlebar",
-            "key.doc.column" : 9,
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "handlebar",
-            "key.doc.comment" : "The handlebar of the bicycle.",
             "key.usr" : "s:vC7Bicycle7Bicycle9handlebarOS0_9Handlebar",
             "key.parsed_declaration" : "let handlebar: Handlebar",
             "key.namelength" : 9,
             "key.parsed_scope.end" : 51
           },
           {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.length" : 18,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 54,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"54\" column=\"9\"><Name>frameSize<\/Name><USR>s:vC7Bicycle7Bicycle9frameSizeSi<\/USR><Declaration>let frameSize: Int<\/Declaration><Abstract><Para>The size of the frame, in centimeters.<\/Para><\/Abstract><\/Other>",
+            "key.nameoffset" : 1300,
+            "key.typename" : "Int",
+            "key.doc.column" : 9,
+            "key.doc.comment" : "The size of the frame, in centimeters.",
             "key.filepath" : "Bicycle.swift",
             "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>let frameSize: <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>frameSize<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type><\/decl.var.instance>",
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.length" : 18,
             "key.doc.declaration" : "let frameSize: Int",
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 54,
             "key.typeusr" : "_TtSi",
-            "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1296,
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"54\" column=\"9\"><Name>frameSize<\/Name><USR>s:vC7Bicycle7Bicycle9frameSizeSi<\/USR><Declaration>let frameSize: Int<\/Declaration><Abstract><Para>The size of the frame, in centimeters.<\/Para><\/Abstract><\/Other>",
-            "key.nameoffset" : 1300,
             "key.doc.line" : 54,
-            "key.typename" : "Int",
             "key.doc.name" : "frameSize",
-            "key.doc.column" : 9,
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "frameSize",
-            "key.doc.comment" : "The size of the frame, in centimeters.",
             "key.usr" : "s:vC7Bicycle7Bicycle9frameSizeSi",
             "key.parsed_declaration" : "let frameSize: Int",
             "key.namelength" : 9,
@@ -482,6 +567,11 @@
             "key.offset" : 1387,
             "key.doc.line" : 57,
             "key.doc.name" : "numberOfTrips",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "numberOfTrips",
             "key.usr" : "s:vC7Bicycle7Bicycle13numberOfTripsSi",
             "key.parsed_declaration" : "private(set) var numberOfTrips: Int",
@@ -509,6 +599,11 @@
             "key.offset" : 1492,
             "key.doc.line" : 60,
             "key.doc.name" : "distanceTravelled",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "distanceTravelled",
             "key.usr" : "s:vC7Bicycle7Bicycle17distanceTravelledSd",
             "key.parsed_declaration" : "private(set) var distanceTravelled: Double",
@@ -516,7 +611,7 @@
             "key.parsed_scope.end" : 60
           },
           {
-            "key.bodylength" : 192,
+            "key.namelength" : 86,
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 281,
             "key.doc.type" : "Function",
@@ -574,6 +669,11 @@
             "key.offset" : 1922,
             "key.doc.line" : 72,
             "key.doc.name" : "init(style:gearing:handlebar:frameSize:)",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "init(style:gearing:handlebar:frameSize:)",
             "key.usr" : "s:FC7Bicycle7BicyclecFT5styleOS0_5Style7gearingOS0_7Gearing9handlebarOS0_9Handlebar9frameSizeSi_S0_",
             "key.parsed_declaration" : "init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)",
@@ -582,7 +682,7 @@
                 "Para" : "A beautiful, brand-new, custom built just for you."
               }
             ],
-            "key.namelength" : 86,
+            "key.bodylength" : 192,
             "key.parsed_scope.end" : 80
           },
           {
@@ -619,24 +719,34 @@
             "key.offset" : 2318,
             "key.doc.line" : 87,
             "key.doc.name" : "travel(distance:)",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
             "key.name" : "travel(distance:)",
             "key.usr" : "s:FC7Bicycle7Bicycle6travelFT8distanceSd_T_",
             "key.parsed_declaration" : "func travel(distance meters: Double)",
-            "key.namelength" : 31,
+            "key.bodylength" : 112,
             "key.parsed_scope.end" : 92,
-            "key.bodylength" : 112
+            "key.namelength" : 31
           }
         ],
         "key.typeusr" : "_Tt",
         "key.offset" : 233,
         "key.doc.line" : 8,
         "key.doc.name" : "Bicycle",
+        "key.actionable" : [
+          {
+            "key.actionname" : "Rename"
+          }
+        ],
         "key.name" : "Bicycle",
         "key.usr" : "s:C7Bicycle7Bicycle",
         "key.parsed_declaration" : "public class Bicycle",
-        "key.namelength" : 7,
+        "key.bodylength" : 2222,
         "key.parsed_scope.end" : 93,
-        "key.bodylength" : 2222
+        "key.namelength" : 7
       }
     ],
     "key.offset" : 0,

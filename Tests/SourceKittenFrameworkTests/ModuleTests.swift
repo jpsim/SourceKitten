@@ -48,9 +48,31 @@ class ModuleTests: XCTestCase {
 #if SWIFT_PACKAGE
 extension ModuleTests {
     func testCommandantDocsSPM() {
-        let commandantPath = projectRoot + "/Packages/Commandant-0.11.3/"
+    #if swift(>=3.1) && os(Linux)
+        // FIXME
+        print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
+    #else
+        func findCommandant(in directory: String) -> String? {
+            guard let contents = try? FileManager.default.contentsOfDirectory(atPath: directory),
+                let subDirectory = contents.first(where: { $0.hasPrefix("Commandant") }) else {
+                    return nil
+            }
+            return directory + subDirectory + "/"
+        }
+
+        let checkoutDirectory: String
+        #if swift(>=3.1)
+            checkoutDirectory = "/.build/checkouts/"
+        #else
+            checkoutDirectory = "/Packages/"
+        #endif
+        guard let commandantPath = findCommandant(in: projectRoot + checkoutDirectory) else {
+            XCTFail("Can't find Commandant")
+            return
+        }
         let commandantModule = Module(spmName: "Commandant")!
         compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs, rootDirectory: commandantPath)
+    #endif
     }
 
     static var allTests: [(String, (ModuleTests) -> () throws -> Void)] {

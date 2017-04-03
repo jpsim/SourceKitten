@@ -11,6 +11,11 @@
   completion.  
   [@KelvinJin](https://github.com/KelvinJin)
 
+* Support Swift 3.1 on macOS. `sourcekitInProc` appears to be broken on Linux
+  as of Swift 3.1.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#348](https://github.com/jpsim/SourceKitten/issues/348)
+
 ##### Bug Fixes
 
 * Fix a crash that occurred when a documentation comment ended with an extended
