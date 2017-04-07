@@ -171,23 +171,8 @@ extension NSString {
         }
 
         func lineAndCharacter(forByteOffset offset: Int) -> (line: Int, character: Int)? {
-            let index = lines.index(where: { NSLocationInRange(offset, $0.byteRange) })
-            return index.map {
-                let line = lines[$0]
-
-                let character: Int
-                let content = line.content
-                let length = offset - line.byteRange.location + 1
-                if length == line.byteRange.length {
-                    character = content.utf16.count
-                } else {
-                    let utf8View = content.utf8
-                    let endIndex = utf8View.index(utf8View.startIndex, offsetBy: length, limitedBy: utf8View.endIndex)!
-                        .samePosition(in: content.utf16)!
-                    character = content.utf16.distance(from: content.utf16.startIndex, to: endIndex)
-                }
-                return (line: line.index, character: character)
-            }
+            let characterOffset = location(fromByteOffset: offset)
+            return lineAndCharacter(forCharacterOffset: characterOffset)
         }
     }
 
