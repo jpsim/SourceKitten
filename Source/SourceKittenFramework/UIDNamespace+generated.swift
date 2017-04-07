@@ -3,6 +3,10 @@ extension UID {
         public let uid: UID
         /// key.accessibility
         public static let accessibility: Key = "key.accessibility"
+        /// key.actionable
+        public static let actionable: Key = "key.actionable"
+        /// key.actionname
+        public static let actionname: Key = "key.actionname"
         /// key.annotated_decl
         public static let annotated_decl: Key = "key.annotated_decl"
         /// key.annotations
@@ -191,6 +195,8 @@ extension UID {
         public static let platform: Key = "key.platform"
         /// key.popular
         public static let popular: Key = "key.popular"
+        /// key.rangecontent
+        public static let rangecontent: Key = "key.rangecontent"
         /// key.ranges
         public static let ranges: Key = "key.ranges"
         /// key.receiver_usr
@@ -322,6 +328,8 @@ extension UID {
         public static let _exported: SourceDeclAttribute = "source.decl.attribute._exported"
         /// source.decl.attribute._fixed_layout
         public static let _fixed_layout: SourceDeclAttribute = "source.decl.attribute._fixed_layout"
+        /// source.decl.attribute._inlineable
+        public static let _inlineable: SourceDeclAttribute = "source.decl.attribute._inlineable"
         /// source.decl.attribute._semantics
         public static let _semantics: SourceDeclAttribute = "source.decl.attribute._semantics"
         /// source.decl.attribute._silgen_name
@@ -346,8 +354,6 @@ extension UID {
         public static let dynamic: SourceDeclAttribute = "source.decl.attribute.dynamic"
         /// source.decl.attribute.effects
         public static let effects: SourceDeclAttribute = "source.decl.attribute.effects"
-        /// source.decl.attribute.escaping
-        public static let escaping: SourceDeclAttribute = "source.decl.attribute.escaping"
         /// source.decl.attribute.final
         public static let final: SourceDeclAttribute = "source.decl.attribute.final"
         /// source.decl.attribute.gkinspectable
@@ -400,8 +406,6 @@ extension UID {
         public static let `rethrows`: SourceDeclAttribute = "source.decl.attribute.rethrows"
         /// source.decl.attribute.sil_stored
         public static let sil_stored: SourceDeclAttribute = "source.decl.attribute.sil_stored"
-        /// source.decl.attribute.swift3_migration
-        public static let swift3_migration: SourceDeclAttribute = "source.decl.attribute.swift3_migration"
         /// source.decl.attribute.testable
         public static let testable: SourceDeclAttribute = "source.decl.attribute.testable"
         /// source.decl.attribute.unsafe_no_objc_tagged_pointer
@@ -435,6 +439,16 @@ extension UID {
         public static let keyword: SourceLangSwift = "source.lang.swift.keyword"
         /// source.lang.swift.pattern
         public static let pattern: SourceLangSwift = "source.lang.swift.pattern"
+        /// source.lang.swift.range.invalid
+        public static let rangeInvalid: SourceLangSwift = "source.lang.swift.range.invalid"
+        /// source.lang.swift.range.multistatement
+        public static let rangeMultistatement: SourceLangSwift = "source.lang.swift.range.multistatement"
+        /// source.lang.swift.range.singledeclaration
+        public static let rangeSingledeclaration: SourceLangSwift = "source.lang.swift.range.singledeclaration"
+        /// source.lang.swift.range.singleexpression
+        public static let rangeSingleexpression: SourceLangSwift = "source.lang.swift.range.singleexpression"
+        /// source.lang.swift.range.singlestatement
+        public static let rangeSinglestatement: SourceLangSwift = "source.lang.swift.range.singlestatement"
         /// source.lang.swift.stmt
         public static let stmt: SourceLangSwift = "source.lang.swift.stmt"
         /// source.lang.swift.type
@@ -911,6 +925,8 @@ extension UID {
         public static let moduleGroups: SourceRequest = "source.request.module.groups"
         /// source.request.protocol_version
         public static let protocol_version: SourceRequest = "source.request.protocol_version"
+        /// source.request.rangeinfo
+        public static let rangeinfo: SourceRequest = "source.request.rangeinfo"
         /// source.request.relatedidents
         public static let relatedidents: SourceRequest = "source.request.relatedidents"
     }
@@ -1277,6 +1293,8 @@ extension UID {
 }
 fileprivate let knownUIDsOfKey: Set<UID> = [
     UID.Key.accessibility.uid,
+    UID.Key.actionable.uid,
+    UID.Key.actionname.uid,
     UID.Key.annotated_decl.uid,
     UID.Key.annotations.uid,
     UID.Key.associated_usrs.uid,
@@ -1371,6 +1389,7 @@ fileprivate let knownUIDsOfKey: Set<UID> = [
     UID.Key.overrides.uid,
     UID.Key.platform.uid,
     UID.Key.popular.uid,
+    UID.Key.rangecontent.uid,
     UID.Key.ranges.uid,
     UID.Key.receiver_usr.uid,
     UID.Key.related.uid,
@@ -1438,6 +1457,7 @@ fileprivate let knownUIDsOfSourceDeclAttribute: Set<UID> = [
     UID.SourceDeclAttribute._cdecl.uid,
     UID.SourceDeclAttribute._exported.uid,
     UID.SourceDeclAttribute._fixed_layout.uid,
+    UID.SourceDeclAttribute._inlineable.uid,
     UID.SourceDeclAttribute._semantics.uid,
     UID.SourceDeclAttribute._silgen_name.uid,
     UID.SourceDeclAttribute._specialize.uid,
@@ -1450,7 +1470,6 @@ fileprivate let knownUIDsOfSourceDeclAttribute: Set<UID> = [
     UID.SourceDeclAttribute.discardableResult.uid,
     UID.SourceDeclAttribute.dynamic.uid,
     UID.SourceDeclAttribute.effects.uid,
-    UID.SourceDeclAttribute.escaping.uid,
     UID.SourceDeclAttribute.final.uid,
     UID.SourceDeclAttribute.gkinspectable.uid,
     UID.SourceDeclAttribute.ibaction.uid,
@@ -1477,7 +1496,6 @@ fileprivate let knownUIDsOfSourceDeclAttribute: Set<UID> = [
     UID.SourceDeclAttribute.requires_stored_property_inits.uid,
     UID.SourceDeclAttribute.`rethrows`.uid,
     UID.SourceDeclAttribute.sil_stored.uid,
-    UID.SourceDeclAttribute.swift3_migration.uid,
     UID.SourceDeclAttribute.testable.uid,
     UID.SourceDeclAttribute.unsafe_no_objc_tagged_pointer.uid,
     UID.SourceDeclAttribute.warn_unqualified_access.uid,
@@ -1496,6 +1514,11 @@ fileprivate let knownUIDsOfSourceLangSwift: Set<UID> = [
     UID.SourceLangSwift.expr.uid,
     UID.SourceLangSwift.keyword.uid,
     UID.SourceLangSwift.pattern.uid,
+    UID.SourceLangSwift.rangeInvalid.uid,
+    UID.SourceLangSwift.rangeMultistatement.uid,
+    UID.SourceLangSwift.rangeSingledeclaration.uid,
+    UID.SourceLangSwift.rangeSingleexpression.uid,
+    UID.SourceLangSwift.rangeSinglestatement.uid,
     UID.SourceLangSwift.stmt.uid,
     UID.SourceLangSwift.type.uid,
 ]
@@ -1741,6 +1764,7 @@ fileprivate let knownUIDsOfSourceRequest: Set<UID> = [
     UID.SourceRequest.mangle_simple_class.uid,
     UID.SourceRequest.moduleGroups.uid,
     UID.SourceRequest.protocol_version.uid,
+    UID.SourceRequest.rangeinfo.uid,
     UID.SourceRequest.relatedidents.uid,
 ]
 let knownUIDsSets: [Set<UID>] = [
