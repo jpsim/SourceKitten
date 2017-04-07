@@ -67,21 +67,11 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
 class SwiftDocsTests: XCTestCase {
 
     func testSubscript() {
-    #if swift(>=3.1) && os(Linux)
-        // FIXME
-        print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
-    #else
         compareDocs(withFixtureNamed: "Subscript")
-    #endif
     }
 
     func testBicycle() {
-    #if swift(>=3.1) && os(Linux)
-        // FIXME
-        print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
-    #else
         compareDocs(withFixtureNamed: "Bicycle")
-    #endif
     }
 
     func testParseFullXMLDocs() {
