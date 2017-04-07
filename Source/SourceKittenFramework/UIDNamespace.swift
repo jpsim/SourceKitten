@@ -18,7 +18,7 @@ public protocol UIDNamespace: CustomStringConvertible, Equatable, ExpressibleByS
 }
 
 extension UIDNamespace {
-    static func _inferUID(from string: String) -> UID {
+    static func _inferUID(from string: String) -> UID { // swiftlint:disable:this identifier_name
         let namespace = __uid_prefix
         let fullyQualifiedName: String
         if string.hasPrefix(".") {

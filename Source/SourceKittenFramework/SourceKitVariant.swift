@@ -718,7 +718,7 @@ extension SourceKitVariant._VariantBox: Equatable {
 // sourcekitd's `*_apply_f` functions.
 // So, I added `*_apply` compatible functions that passing Swift closure as
 // context and calling them in C function.
-func __sourcekitd_variant_array_apply(
+func __sourcekitd_variant_array_apply( // swiftlint:disable:this identifier_name
     _ array: sourcekitd_variant_t,
     _ applier: @escaping (Int, sourcekitd_variant_t) -> Bool) -> Bool {
     typealias ArrayApplier = (Int, sourcekitd_variant_t) -> Bool
@@ -734,7 +734,7 @@ func __sourcekitd_variant_array_apply(
     }
 }
 
-func __sourcekitd_variant_dictionary_apply(
+func __sourcekitd_variant_dictionary_apply( // swiftlint:disable:this identifier_name
     _ dict: sourcekitd_variant_t,
     _ applier: @escaping (sourcekitd_uid_t?, sourcekitd_variant_t) -> Bool) -> Bool {
     typealias DictionaryApplier = (sourcekitd_uid_t?, sourcekitd_variant_t) -> Bool
