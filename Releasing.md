@@ -15,7 +15,7 @@ For SourceKitten contributors, follow these steps to cut a release:
 6. Make sure you have the latest stable Xcode version installed and
    `xcode-select`ed.
 7. Create the pkg installer & framework zip: `make release`
-8. Create a GitHub release: https://github.com/realm/SourceKitten/releases/new
+8. Create a GitHub release: https://github.com/jpsim/SourceKitten/releases/new
     * Specify the tag you just pushed from the dropdown.
     * Set the release title to the new version number & release name.
     * Add the changelog section to the release description text box.

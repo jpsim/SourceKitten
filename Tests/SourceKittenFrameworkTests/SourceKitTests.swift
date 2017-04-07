@@ -201,6 +201,10 @@ class SourceKitTests: XCTestCase {
     }
 
     func testYamlRequest() {
+    #if swift(>=3.1) && os(Linux)
+        // FIXME
+        print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
+    #else
         let path = fixturesDirectory + "Subscript.swift"
         let yaml = "key.request: source.request.editor.open\nkey.name: \"\(path)\"\nkey.sourcefile: \"\(path)\""
         do {
@@ -211,6 +215,7 @@ class SourceKitTests: XCTestCase {
         } catch {
             XCTFail("\(error)")
         }
+    #endif
     }
 }
 

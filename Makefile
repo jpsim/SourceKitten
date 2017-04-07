@@ -7,9 +7,11 @@ XCODEFLAGS=-workspace 'SourceKitten.xcworkspace' \
 	DSTROOT=$(TEMPORARY_FOLDER) \
 	OTHER_LDFLAGS=-Wl,-headerpad_max_install_names
 
-BUILT_BUNDLE=$(TEMPORARY_FOLDER)/Applications/sourcekitten.app
+APPLICATIONS_FOLDER=$(TEMPORARY_FOLDER)/Applications
+BUILT_BUNDLE=$(APPLICATIONS_FOLDER)/sourcekitten.app
 SOURCEKITTEN_FRAMEWORK_BUNDLE=$(BUILT_BUNDLE)/Contents/Frameworks/SourceKittenFramework.framework
 SOURCEKITTEN_EXECUTABLE=$(BUILT_BUNDLE)/Contents/MacOS/sourcekitten
+SWIFT_STANDARD_LIBRARIES=$(BUILT_BUNDLE)/Contents/Frameworks/libswift*
 
 FRAMEWORKS_FOLDER=$(PREFIX)/Frameworks
 BINARIES_FOLDER=$(PREFIX)/bin
@@ -53,7 +55,8 @@ installables: clean bootstrap
 	mkdir -p "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)"
 	mv -f "$(SOURCEKITTEN_FRAMEWORK_BUNDLE)" "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework"
 	mv -f "$(SOURCEKITTEN_EXECUTABLE)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)/sourcekitten"
-	rm -rf "$(BUILT_BUNDLE)"
+	mv -f $(SWIFT_STANDARD_LIBRARIES) "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework/Versions/A/Frameworks"
+	rm -rf "$(APPLICATIONS_FOLDER)"
 
 prefix_install: installables
 	mkdir -p "$(FRAMEWORKS_FOLDER)" "$(BINARIES_FOLDER)"
@@ -76,7 +79,10 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:/SourceKitten norionomura/sourcekit:302 bash -c "cd /SourceKitten && swift test"
+	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:31 swift test
+
+docker_test_302:
+	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:302 swift test
 
 # http://irace.me/swift-profiling/
 display_compilation_time:

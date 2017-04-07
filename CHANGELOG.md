@@ -12,6 +12,31 @@
 
 * None.
 
+## 0.17.1
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* Added a new field `numBytesToErase` in `CodeCompletionItem` to indicate how
+  many bytes should be deleted prior to the cursor in order to finish the
+  completion.  
+  [@KelvinJin](https://github.com/KelvinJin)
+
+* Support Swift 3.1 on macOS. `sourcekitInProc` appears to be broken on Linux
+  as of Swift 3.1.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#348](https://github.com/jpsim/SourceKitten/issues/348)
+
+##### Bug Fixes
+
+* Fix a crash that occurred when a documentation comment ended with an extended
+  grapheme cluster.  
+  [Lukas Stührk](https://github.com/Lukas-Stuehrk)
+  [#350](https://github.com/jpsim/SourceKitten/issues/350)
+
 ## 0.17.0
 
 ##### Breaking
