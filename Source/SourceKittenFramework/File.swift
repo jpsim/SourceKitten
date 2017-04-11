@@ -403,7 +403,7 @@ public final class File {
     public struct ProcessableElements: OptionSet {
         public let rawValue: Int
 
-        public init(rawValue: RawValue) {
+        public init(rawValue: Int) {
             self.rawValue = rawValue
         }
 
