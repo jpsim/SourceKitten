@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Added option to include expression structures when running `doc` command.
+  [Paul Taykalo](https://github.com/PaulTaykalo)
+
 
 ##### Bug Fixes
 
