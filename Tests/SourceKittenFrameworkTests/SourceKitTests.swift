@@ -160,6 +160,27 @@ class SourceKitTests: XCTestCase {
         }
     }
 
+    // swiftlint:disable:next function_body_length
+    func testSwiftExpessionKind() {
+        let expected: [SwiftExpressionKind] = [
+            .argument,
+            .array,
+            .call,
+            .dictionary,
+            .objectLiteral
+        ]
+        let actual = sourcekitStrings(startingWith: "source.lang.swift.expr.")
+        let expectedStrings = Set(expected.map { $0.rawValue })
+        XCTAssertEqual(
+            actual,
+            expectedStrings
+        )
+        if actual != expectedStrings {
+            print("the following strings were added: \(actual.subtracting(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtracting(actual))")
+        }
+    }
+
     func testLibraryWrappersAreUpToDate() {
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
         let modules: [(module: String, path: String, linuxPath: String?, spmModule: String)] = [
