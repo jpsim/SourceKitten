@@ -1,4 +1,4 @@
-## Master
+## 0.17.2
 
 ##### Breaking
 
@@ -6,7 +6,10 @@
 
 ##### Enhancements
 
-* None.
+* Update `Cartfile.resolved` & corresponding git submodule to point to Yams
+  0.3.1. Also loosen the Yams version dependency in `Package.swift` to only
+  specify `~> 0.3` and not `= 0.3.0`.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
 
