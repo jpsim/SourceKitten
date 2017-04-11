@@ -90,21 +90,21 @@ class StringTests: XCTestCase {
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
         let source = "struct A { subscript(key: String) -> Void { return () } }"
-        let actual = SyntaxMap(file: File(contents: source)).tokens.filter(source.isTokenDocumentable)
+        let actual = try! SyntaxMap(file: File(contents: source)).tokens.filter(source.isTokenDocumentable)
         let expected = [
-            SyntaxToken(type: SyntaxKind.identifier.rawValue, offset: 7, length: 1), // `A`
-            SyntaxToken(type: SyntaxKind.keyword.rawValue, offset: 11, length: 9),   // `subscript`
-            SyntaxToken(type: SyntaxKind.identifier.rawValue, offset: 21, length: 3) // `key`
+            SyntaxToken(type: .identifier, offset: 7, length: 1), // `A`
+            SyntaxToken(type: .keyword, offset: 11, length: 9),   // `subscript`
+            SyntaxToken(type: .identifier, offset: 21, length: 3) // `key`
         ]
         XCTAssertEqual(actual, expected, "should detect documentable tokens")
     #endif
     }
 
     func testParseDeclaration() {
-        let dict: [String: SourceKitRepresentable] = [
+        let dict: SourceKitVariant = [
             "key.kind": "source.lang.swift.decl.class",
-            "key.offset": Int64(24),
-            "key.bodyoffset": Int64(32),
+            "key.offset": 24,
+            "key.bodyoffset": 32,
             "key.annotated_decl": "",
             "key.typename": "ClassA.Type"
         ]
@@ -119,7 +119,7 @@ class StringTests: XCTestCase {
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
         let fileContents = "/// Comment\nlet global = 0"
-        let syntaxMap = SyntaxMap(file: File(contents: fileContents))
+        let syntaxMap = try! SyntaxMap(file: File(contents: fileContents))
         XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap), [16], "should generate documented token offsets")
     #endif
     }
@@ -130,7 +130,7 @@ class StringTests: XCTestCase {
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
         let file = File(path: fixturesDirectory + "Subscript.swift")!
-        let syntaxMap = SyntaxMap(file: file)
+        let syntaxMap = try! SyntaxMap(file: file)
         XCTAssertEqual(file.contents.documentedTokenOffsets(syntaxMap: syntaxMap), [54], "should generate documented token offsets")
     #endif
     }
@@ -141,7 +141,7 @@ class StringTests: XCTestCase {
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
         let fileContents = "// Comment\nlet global = 0"
-        let syntaxMap = SyntaxMap(file: File(contents: fileContents))
+        let syntaxMap = try! SyntaxMap(file: File(contents: fileContents))
         XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
     #endif
     }

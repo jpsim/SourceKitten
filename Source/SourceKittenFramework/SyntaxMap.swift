@@ -27,11 +27,9 @@ public struct SyntaxMap {
 
     - parameter data: NSData from a SourceKit `editor.open` response
     */
-    public init(data: [SourceKitRepresentable]) {
-        tokens = data.map { item in
-            let dict = item as! [String: SourceKitRepresentable]
-            return SyntaxToken(type: dict["key.kind"] as! String, offset: Int(dict["key.offset"] as! Int64), length: Int(dict["key.length"] as! Int64))
-        }
+    @available(*, unavailable, message: "Use SyntaxMap.init(sourceKitVariant:)")
+    public init(data: [Any]) {
+        fatalError()
     }
 
     /**
@@ -39,17 +37,23 @@ public struct SyntaxMap {
 
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
-    public init(sourceKitResponse: [String: SourceKitRepresentable]) {
-        self.init(data: SwiftDocKey.getSyntaxMap(sourceKitResponse)!)
+    @available(*, unavailable, message: "use SyntaxMap.init(sourceKitVariant:)")
+    public init(sourceKitResponse: [String: Any]) {
+        fatalError()
     }
 
     /**
     Create a SyntaxMap from a File to be parsed.
 
     - parameter file: File to be parsed.
+    - throws: Request.Error
     */
-    public init(file: File) {
-        self.init(sourceKitResponse: Request.editorOpen(file: file).send())
+    public init(file: File) throws {
+        self.init(sourceKitVariant: try Request.editorOpen(file: file).failableSend())
+    }
+
+    init(sourceKitVariant: SourceKitVariant) {
+        self.init(tokens: sourceKitVariant.syntaxMap?.flatMap(SyntaxToken.init) ?? [])
     }
 
     /**
@@ -62,7 +66,9 @@ public struct SyntaxMap {
     public func commentRange(beforeOffset offset: Int) -> Range<Int>? {
         let tokensBeforeOffset = tokens.reversed().filter { $0.offset < offset }
 
-        let docTypes = SyntaxKind.docComments().map({ $0.rawValue })
+        let docTypes: [UID.SourceLangSwiftSyntaxtype] = [
+            .commentUrl, .doccomment, .doccommentField
+        ]
         let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
         let isNotDoc = { !isDoc($0) }
 
@@ -78,7 +84,7 @@ public struct SyntaxMap {
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.flatMap { lastToken in
                 let regularCommentTokensBetweenDocCommentAndOffset = tokensBeforeOffset
-                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .comment })
+                    .filter({ $0.offset > lastToken.offset && $0.type == .comment })
                 if !regularCommentTokensBetweenDocCommentAndOffset.isEmpty {
                     return nil // "doc comment" isn't actually a doc comment
                 }

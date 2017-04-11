@@ -17,12 +17,6 @@ fileprivate extension Dictionary {
 }
 
 public struct CodeCompletionItem: CustomStringConvertible {
-    #if os(Linux)
-    public typealias NumBytesInt = Int
-    #else
-    public typealias NumBytesInt = Int64
-    #endif
-
     public let kind: String
     public let context: String
     public let name: String?
@@ -32,7 +26,7 @@ public struct CodeCompletionItem: CustomStringConvertible {
     public let moduleName: String?
     public let docBrief: String?
     public let associatedUSRs: String?
-    public let numBytesToErase: NumBytesInt?
+    public let numBytesToErase: Int?
 
     /// Dictionary representation of CodeCompletionItem. Useful for NSJSONSerialization.
     public var dictionaryValue: [String: Any] {
@@ -49,30 +43,29 @@ public struct CodeCompletionItem: CustomStringConvertible {
     }
 
     public var description: String {
-        return toJSON(dictionaryValue.bridge())
+        return toJSON(dictionaryValue)
     }
 
-    public static func parse(response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {
-        return (response["key.results"] as! [SourceKitRepresentable]).map { item in
-            let dict = item as! [String: SourceKitRepresentable]
-            return CodeCompletionItem(kind: dict["key.kind"] as! String,
-                context: dict["key.context"] as! String,
-                name: dict["key.name"] as? String,
-                descriptionKey: dict["key.description"] as? String,
-                sourcetext: dict["key.sourcetext"] as? String,
-                typeName: dict["key.typename"] as? String,
-                moduleName: dict["key.modulename"] as? String,
-                docBrief: dict["key.doc.brief"] as? String,
-                associatedUSRs: dict["key.associated_usrs"] as? String,
-                numBytesToErase: dict["key.num_bytes_to_erase"] as? NumBytesInt)
-        }
+    public static func parse(response: SourceKitVariant) -> [CodeCompletionItem] {
+        return response.results?.map { dict in
+            return CodeCompletionItem(kind: dict.kind?.description ?? "",
+                context: dict.context!,
+                name: dict.name,
+                descriptionKey: dict.description,
+                sourcetext: dict.sourceText,
+                typeName: dict.typeName,
+                moduleName: dict.moduleName,
+                docBrief: dict.docBrief,
+                associatedUSRs: dict.associatedUsrs,
+                numBytesToErase: dict["key.num_bytes_to_erase"]?.int)
+        } ?? []
     }
 }
 
 // MARK: - migration support
 extension CodeCompletionItem {
     @available(*, unavailable, renamed: "parse(response:)")
-    public static func parseResponse(_ response: [String: SourceKitRepresentable]) -> [CodeCompletionItem] {
+    public static func parseResponse(_ response: [String: Any]) -> [CodeCompletionItem] {
         fatalError()
     }
 }

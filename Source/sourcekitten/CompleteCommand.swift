@@ -66,9 +66,13 @@ struct CompleteCommand: CommandProtocol {
         }
 
         let request = Request.codeCompletionRequest(file: path, contents: contents,
-            offset: Int64(options.offset),
+            offset: options.offset,
             arguments: args)
-        print(CodeCompletionItem.parse(response: request.send()))
-        return .success()
+        do {
+            print(CodeCompletionItem.parse(response: try request.failableSend()))
+            return .success()
+        } catch {
+            return .failure(.failed(error))
+        }
     }
 }

@@ -33,14 +33,18 @@ struct SyntaxCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        if !options.file.isEmpty {
-            if let file = File(path: options.file) {
-                print(SyntaxMap(file: file))
-                return .success()
+        do {
+            if !options.file.isEmpty {
+                if let file = File(path: options.file) {
+                    print(try SyntaxMap(file: file))
+                    return .success()
+                }
+                return .failure(.readFailed(path: options.file))
             }
-            return .failure(.readFailed(path: options.file))
+            print(try SyntaxMap(file: File(contents: options.text)))
+            return .success()
+        } catch {
+            return .failure(.failed(error))
         }
-        print(SyntaxMap(file: File(contents: options.text)))
-        return .success()
     }
 }

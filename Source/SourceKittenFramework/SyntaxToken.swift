@@ -9,7 +9,7 @@
 /// Represents a single Swift syntax token.
 public struct SyntaxToken {
     /// Token type. See SyntaxKind.
-    public let type: String
+    public let type: UID.SourceLangSwiftSyntaxtype
     /// Token offset.
     public let offset: Int
     /// Token length.
@@ -17,20 +17,29 @@ public struct SyntaxToken {
 
     /// Dictionary representation of SyntaxToken. Useful for NSJSONSerialization.
     public var dictionaryValue: [String: Any] {
-        return ["type": type, "offset": offset, "length": length]
+        return ["type": type.description, "offset": offset, "length": length]
     }
 
     /**
     Create a SyntaxToken by directly passing in its property values.
 
-    - parameter type:   Token type. See SyntaxKind.
+    - parameter type:   Token type. See UID.SourceLangSwiftSyntaxtype.
     - parameter offset: Token offset.
     - parameter length: Token length.
     */
-    public init(type: String, offset: Int, length: Int) {
-        self.type = SyntaxKind(rawValue: type)?.rawValue ?? type
+    public init(type: UID.SourceLangSwiftSyntaxtype, offset: Int, length: Int) {
+        self.type = type
         self.offset = offset
         self.length = length
+    }
+
+    init?(sourceKitVariant: SourceKitVariant) {
+        guard let type = sourceKitVariant.kind.map(UID.SourceLangSwiftSyntaxtype.init),
+            let offset = sourceKitVariant.offset,
+            let length = sourceKitVariant.length else {
+                return nil
+        }
+        self.init(type: type, offset: offset, length: length)
     }
 }
 

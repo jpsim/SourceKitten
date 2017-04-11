@@ -11,26 +11,36 @@ import Foundation
 /// Represents the structural information in a Swift source file.
 public struct Structure {
     /// Structural information as an [String: SourceKitRepresentable].
-    public let dictionary: [String: SourceKitRepresentable]
+    public var dictionary: NSDictionary {
+        var dictionary = variant.any as! [String:Any]
+        dictionary.removeValue(forKey: UID.Key.syntaxmap.description)
+        return dictionary.bridge()
+    }
+    ///
+    public let variant: SourceKitVariant
 
     /**
     Create a Structure from a SourceKit `editor.open` response.
      
     - parameter sourceKitResponse: SourceKit `editor.open` response.
     */
-    public init(sourceKitResponse: [String: SourceKitRepresentable]) {
-        var sourceKitResponse = sourceKitResponse
-        _ = sourceKitResponse.removeValue(forKey: SwiftDocKey.syntaxMap.rawValue)
-        dictionary = sourceKitResponse
+    @available(*, unavailable, message: "use Structure.init(sourceKitVariant:)")
+    public init(sourceKitResponse: [String: Any]) {
+        fatalError()
+    }
+
+    init(sourceKitVariant: SourceKitVariant) {
+        variant = sourceKitVariant
     }
 
     /**
     Initialize a Structure by passing in a File.
 
     - parameter file: File to parse for structural information.
+    - throws: Request.Error
     */
-    public init(file: File) {
-        self.init(sourceKitResponse: Request.editorOpen(file: file).send())
+    public init(file: File) throws {
+        self.init(sourceKitVariant: try Request.editorOpen(file: file).failableSend())
     }
 }
 
@@ -38,7 +48,7 @@ public struct Structure {
 
 extension Structure: CustomStringConvertible {
     /// A textual JSON representation of `Structure`.
-    public var description: String { return toJSON(toNSDictionary(dictionary)) }
+    public var description: String { return toJSON(dictionary) }
 }
 
 // MARK: Equatable
@@ -54,5 +64,5 @@ Returns true if `lhs` Structure is equal to `rhs` Structure.
 - returns: True if `lhs` Structure is equal to `rhs` Structure.
 */
 public func == (lhs: Structure, rhs: Structure) -> Bool {
-    return lhs.dictionary.isEqualTo(rhs.dictionary)
+    return lhs.variant == rhs.variant
 }

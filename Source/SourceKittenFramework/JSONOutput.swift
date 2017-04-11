@@ -15,7 +15,8 @@ import Foundation
 
  - returns: JSON string representation of the input object.
  */
-public func toJSON(_ object: Any) -> String {
+public func toJSON(_ object: Any?) -> String {
+    guard let object = object else { return "" }
     if let array = object as? [Any], array.isEmpty {
         return "[\n\n]"
     }
@@ -35,29 +36,9 @@ public func toJSON(_ object: Any) -> String {
 
  - returns: JSON-serializable value.
  */
-public func toNSDictionary(_ dictionary: [String: SourceKitRepresentable]) -> NSDictionary {
-    var anyDictionary = [String: Any]()
-    for (key, object) in dictionary {
-        switch object {
-        case let object as [SourceKitRepresentable]:
-            anyDictionary[key] = object.map { toNSDictionary($0 as! [String: SourceKitRepresentable]) }
-        case let object as [[String: SourceKitRepresentable]]:
-            anyDictionary[key] = object.map { toNSDictionary($0) }
-        case let object as [String: SourceKitRepresentable]:
-            anyDictionary[key] = toNSDictionary(object)
-        case let object as String:
-            anyDictionary[key] = object
-        case let object as Int64:
-            anyDictionary[key] = NSNumber(value: object)
-        case let object as Bool:
-            anyDictionary[key] = NSNumber(value: object)
-        case let object as Any:
-            anyDictionary[key] = object
-        default:
-            fatalError("Should never happen because we've checked all SourceKitRepresentable types")
-        }
-    }
-    return anyDictionary.bridge()
+@available(*, unavailable, message: "`toNSDictionary()` has been deprecated with `SourceKitRepresentable`.")
+public func toNSDictionary(_ dictionary: [String: Any]) -> NSDictionary {
+    fatalError()
 }
 
 #if !os(Linux)

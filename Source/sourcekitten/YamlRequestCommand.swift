@@ -41,7 +41,11 @@ struct RequestCommand: CommandProtocol {
         }
 
         let request = Request.yamlRequest(yaml: yaml)
-        print(toJSON(toNSDictionary(request.send())))
-        return .success()
+        do {
+            print(toJSON(try request.failableSend().any))
+            return .success()
+        } catch {
+            return .failure(.failed(error))
+        }
     }
 }

@@ -21,7 +21,7 @@ class FileTests: XCTestCase {
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
         let file = File(path: fixturesDirectory + "BicycleUnformatted.swift")
-        let formattedFile = file?.format(trimmingTrailingWhitespace: true,
+        let formattedFile = try! file?.format(trimmingTrailingWhitespace: true,
                                          useTabs: false,
                                          indentWidth: 4)
         XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift", encoding: .utf8))

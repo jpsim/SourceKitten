@@ -31,8 +31,8 @@ class StructureTests: XCTestCase {
                 "key.diagnostic_stage": "source.diagnostic.stage.swift.parse"
             ]
         #endif
-        let structure = Structure(file: File(contents: ""))
-        XCTAssertEqual(toNSDictionary(structure.dictionary), expected, "should generate expected structure")
+        let structure = try! Structure(file: File(contents: ""))
+        XCTAssertEqual(structure.dictionary, expected, "should generate expected structure")
     #endif
     }
 
@@ -42,7 +42,7 @@ class StructureTests: XCTestCase {
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
         let fileContents = try! String(contentsOfFile: #file, encoding: .utf8)
-        XCTAssertEqual(Structure(file: File(path: #file)!),
+        try! XCTAssertEqual(Structure(file: File(path: #file)!),
             Structure(file: File(contents: fileContents)),
             "should generate the same structure for a file as raw text")
     #endif
@@ -53,7 +53,7 @@ class StructureTests: XCTestCase {
         // FIXME
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
-        let structure = Structure(file: File(contents: "enum MyEnum { case First }"))
+        let structure = try! Structure(file: File(contents: "enum MyEnum { case First }"))
         let expectedStructure: NSDictionary = [
             "key.substructure": [
                 [
@@ -92,7 +92,7 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 26
         ]
-        XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
+        XCTAssertEqual(structure.dictionary, expectedStructure, "should generate expected structure")
     #endif
     }
 
@@ -101,7 +101,7 @@ class StructureTests: XCTestCase {
         // FIXME
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
-        let structure = Structure(file: File(contents: "struct A { func b() {} }"))
+        let structure = try! Structure(file: File(contents: "struct A { func b() {} }"))
         let expectedStructure: NSDictionary = [
             "key.substructure": [
                 [
@@ -133,10 +133,10 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 24
         ]
-        XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
+        XCTAssertEqual(structure.dictionary, expectedStructure, "should generate expected structure")
 
         let jsonData = structure.description.data(using: .utf8)!
-        let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! [AnyHashable: Any]
+        let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! [String:Any]
         XCTAssertEqual(jsonDictionary.bridge(), expectedStructure, "JSON should match expected structure")
     #endif
     }

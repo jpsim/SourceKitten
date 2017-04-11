@@ -15,24 +15,19 @@ class DocInfoTests: XCTestCase {
     /// Validates that various doc string formats are parsed correctly.
     func testDocInfoRequest() {
         let swiftFile = File(path: fixturesDirectory + "DocInfo.swift")!
-        let info = toNSDictionary(
-            Request.docInfo(text: swiftFile.contents,
-                            arguments: ["-sdk", sdkPath()]).send()
-        )
-        compareJSONString(withFixtureNamed: "DocInfo", jsonString: toJSON(info))
+        let info = try! Request.docInfo(text: swiftFile.contents,
+                                        arguments: ["-sdk", sdkPath()]).failableSend()
+        compareJSONString(withFixtureNamed: "DocInfo", jsonString: toJSON(info.any))
     }
 
     func testModuleInfoRequest() {
         let swiftFile = fixturesDirectory + "DocInfo.swift"
-        let info = toNSDictionary(
-            Request.moduleInfo(module: "",
-                               arguments: [
-                                   "-c", swiftFile,
-                                   "-module-name", "DocInfo",
-                                   "-sdk", sdkPath()
-                                ]).send()
-        )
-        compareJSONString(withFixtureNamed: "ModuleInfo", jsonString: toJSON(info))
+        let info = try! Request.moduleInfo(module: "",
+                                           arguments: [
+                                            "-c", swiftFile,
+                                            "-module-name", "DocInfo",
+                                            "-sdk", sdkPath()]).failableSend()
+        compareJSONString(withFixtureNamed: "ModuleInfo", jsonString: toJSON(info.any))
     }
 }
 

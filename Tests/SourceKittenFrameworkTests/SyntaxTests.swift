@@ -7,16 +7,16 @@
 //
 
 import Foundation
-import SourceKittenFramework
+@testable import SourceKittenFramework
 import XCTest
 
-private typealias TokenWrapper = (kind: SyntaxKind, offset: Int, length: Int)
+private typealias TokenWrapper = (type: UID.SourceLangSwiftSyntaxtype, offset: Int, length: Int)
 
 private func compareSyntax(file: File, expectedTokens: [TokenWrapper]) {
     let expectedSyntaxMap = SyntaxMap(tokens: expectedTokens.map { tokenWrapper in
-        return SyntaxToken(type: tokenWrapper.kind.rawValue, offset: tokenWrapper.offset, length: tokenWrapper.length)
+        return SyntaxToken(type: tokenWrapper.type, offset: tokenWrapper.offset, length: tokenWrapper.length)
     })
-    let syntaxMap = SyntaxMap(file: file)
+    let syntaxMap = try! SyntaxMap(file: file)
     XCTAssertEqual(syntaxMap, expectedSyntaxMap, "should generate expected syntax map")
 
     let syntaxJSONData = syntaxMap.description.data(using: .utf8)!
@@ -35,7 +35,7 @@ class SyntaxTests: XCTestCase {
         // FIXME
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
-        XCTAssertEqual(SyntaxMap(file: File(contents: "")).description, "[\n\n]", "should print empty syntax")
+        XCTAssertEqual(try! SyntaxMap(file: File(contents: "")).description, "[\n\n]", "should print empty syntax")
     #endif
     }
 
@@ -45,7 +45,7 @@ class SyntaxTests: XCTestCase {
         print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
     #else
         let fileContents = try! String(contentsOfFile: #file, encoding: .utf8)
-        XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
+        try! XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
             SyntaxMap(file: File(contents: fileContents)),
             "should generate the same syntax map for a file as raw text")
     #endif
