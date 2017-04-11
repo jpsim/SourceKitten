@@ -443,7 +443,6 @@ private func hasProcessable(_ dictionary: [String: SourceKitRepresentable], elem
     return false
 }
 
-
 /**
 Parse XML from `key.doc.full_as_xml` from `cursor.info` request.
 

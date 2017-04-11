@@ -20,12 +20,26 @@ struct DocCommand: CommandProtocol {
         let singleFile: Bool
         let moduleName: String
         let objc: Bool
+        let includeExpressions: Bool
         let arguments: [String]
 
-        static func create(spmModule: String) -> (_ singleFile: Bool) -> (_ moduleName: String) -> (_ objc: Bool) -> (_ arguments: [String]) -> Options {
-            return { singleFile in { moduleName in { objc in { arguments in
-                self.init(spmModule: spmModule, singleFile: singleFile, moduleName: moduleName, objc: objc, arguments: arguments)
-            }}}}
+        static func create(spmModule: String)
+            -> (_ singleFile: Bool)
+            -> (_ moduleName: String)
+            -> (_ objc: Bool)
+            -> (_ includeExpressions: Bool)
+            -> (_ arguments: [String])
+            -> Options {
+            return { singleFile in { moduleName in { objc in {includeExpressions in { arguments in
+                self.init(
+                    spmModule: spmModule,
+                    singleFile: singleFile,
+                    moduleName: moduleName,
+                    objc: objc,
+                    includeExpressions: includeExpressions,
+                    arguments: arguments
+                )
+          }}}}}
         }
 
         static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
@@ -38,6 +52,8 @@ struct DocCommand: CommandProtocol {
                                    usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
                 <*> mode <| Option(key: "objc", defaultValue: false,
                                    usage: "document Objective-C headers")
+                <*> mode <| Option(key: "include-expressions", defaultValue: false,
+                                   usage: "whether expressions should be included in the output as well as declarations")
                 <*> mode <| Argument(defaultValue: [],
                                      usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
         }
@@ -46,26 +62,26 @@ struct DocCommand: CommandProtocol {
     func run(_ options: Options) -> Result<(), SourceKittenError> {
         let args = options.arguments
         if !options.spmModule.isEmpty {
-            return runSPMModule(moduleName: options.spmModule)
+            return runSPMModule(moduleName: options.spmModule, options: options)
         } else if options.objc {
             return runObjC(options: options, args: args)
         } else if options.singleFile {
-            return runSwiftSingleFile(args: args)
+            return runSwiftSingleFile(args: args, options: options)
         }
         let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
-        return runSwiftModule(moduleName: moduleName, args: args)
+        return runSwiftModule(moduleName: moduleName, args: args, options: options)
     }
 
-    func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
-        if let docs = Module(spmName: moduleName)?.docs {
+    func runSPMModule(moduleName: String, options: Options) -> Result<(), SourceKittenError> {
+        if let docs = Module(spmName: moduleName, includesExpressions: options.includeExpressions)?.docs {
             print(docs)
             return .success()
         }
         return .failure(.docFailed)
     }
 
-    func runSwiftModule(moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
-        let module = Module(xcodeBuildArguments: args, name: moduleName)
+    func runSwiftModule(moduleName: String?, args: [String], options: Options) -> Result<(), SourceKittenError> {
+        let module = Module(xcodeBuildArguments: args, name: moduleName, includesExpressions: options.includeExpressions)
 
         if let docs = module?.docs {
             print(docs)
@@ -74,13 +90,13 @@ struct DocCommand: CommandProtocol {
         return .failure(.docFailed)
     }
 
-    func runSwiftSingleFile(args: [String]) -> Result<(), SourceKittenError> {
+    func runSwiftSingleFile(args: [String], options: Options) -> Result<(), SourceKittenError> {
         if args.isEmpty {
             return .failure(.invalidArgument(description: "at least 5 arguments are required when using `--single-file`"))
         }
         let sourcekitdArguments = Array(args.dropFirst(1))
         if let file = File(path: args[0]),
-           let docs = SwiftDocs(file: file, arguments: sourcekitdArguments) {
+           let docs = SwiftDocs(file: file, arguments: sourcekitdArguments, processExpressions: options.includeExpressions) {
             print(docs)
             return .success()
         }

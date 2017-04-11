@@ -57,7 +57,7 @@ func compareJSONString(withFixtureNamed name: String,
 
 private func compareDocs(withFixtureNamed name: String, processExpressions: Bool = false, file: StaticString = #file, line: UInt = #line) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
-    let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
+    let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath], processExpressions: processExpressions)!
 #if os(Linux)
     let name = "Linux" + name
 #endif

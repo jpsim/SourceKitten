@@ -17,6 +17,8 @@ public struct Module {
     public let compilerArguments: [String]
     /// Source files to be documented in this Module.
     public let sourceFiles: [String]
+    /// Whether documents will have expression substructures included in them
+    public let includesExpressions: Bool
 
     /// Documentation for this Module. Typically expensive computed property.
     public var docs: [SwiftDocs] {
@@ -27,14 +29,14 @@ public struct Module {
             if let file = File(path: $0) {
                 fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
                 fileIndex += 1
-                return SwiftDocs(file: file, arguments: compilerArguments)
+                return SwiftDocs(file: file, arguments: compilerArguments, processExpressions: includesExpressions)
             }
             fputs("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
             return nil
         }
     }
 
-    public init?(spmName: String) {
+    public init?(spmName: String, includesExpressions: Bool = false) {
         let yamlPath = ".build/debug.yaml"
         guard let yaml = try? Yams.load(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)) as? [String: Any],
             let yamlCommands = (yaml?["commands"] as? [String: [String: Any]])?.values else {
@@ -61,6 +63,7 @@ public struct Module {
             return arguments
         }()
         sourceFiles = sources
+        self.includesExpressions = includesExpressions
     }
 
     /**
@@ -70,8 +73,10 @@ public struct Module {
     - parameter xcodeBuildArguments: The arguments necessary pass in to `xcodebuild` to build this Module.
     - parameter name:                Module name. Will be parsed from `xcodebuild` output if nil.
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
+    - parameter includesExpressions: Whether gnerated docs should include expressions substructures.
     */
-    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath,
+                 includesExpressions: Bool = false) {
         let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
         guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput.bridge(), language: .swift,
                                                      moduleName: name ?? moduleName(fromArguments: xcodeBuildArguments)) else {
@@ -86,18 +91,20 @@ public struct Module {
             fputs("Could not parse module name from compiler arguments.\n", stderr)
             return nil
         }
-        self.init(name: moduleName, compilerArguments: arguments)
+        self.init(name: moduleName, compilerArguments: arguments, includesExpressions: includesExpressions)
     }
 
     /**
     Initializer to create a Module by name and compiler arguments.
 
-    - parameter name:              Module name.
-    - parameter compilerArguments: Compiler arguments required by SourceKit to process the source files in this Module.
+    - parameter name:                Module name.
+    - parameter compilerArguments:   Compiler arguments required by SourceKit to process the source files in this Module.
+    - parameter includesExpressions: Whether gnerated docs should include expressions substructures.
     */
-    public init(name: String, compilerArguments: [String]) {
+    public init(name: String, compilerArguments: [String], includesExpressions: Bool = false) {
         self.name = name
         self.compilerArguments = compilerArguments
+        self.includesExpressions = includesExpressions
         sourceFiles = compilerArguments.filter({
             $0.bridge().isSwiftFile() && $0.isFile
         }).map {
