@@ -24,13 +24,16 @@ public struct SwiftDocs {
 
     - parameter file:      Swift file to document.
     - parameter arguments: compiler arguments to pass to SourceKit.
+    - parameter processExpressions: Whether expressions should be processed or not. false by default
+
     */
-    public init?(file: File, arguments: [String]) {
+    public init?(file: File, arguments: [String], processExpressions: Bool = false) {
         do {
             self.init(
                 file: file,
                 dictionary: try Request.editorOpen(file: file).failableSend(),
-                cursorInfoRequest: Request.cursorInfoRequest(filePath: file.path, arguments: arguments)
+                cursorInfoRequest: Request.cursorInfoRequest(filePath: file.path, arguments: arguments),
+                processExpressions: processExpressions
             )
         } catch let error as Request.Error {
             fputs(error.description, stderr)
@@ -43,23 +46,33 @@ public struct SwiftDocs {
     /**
     Create docs for the specified Swift file, editor.open SourceKit response and cursor info request.
 
-    - parameter file:              Swift file to document.
-    - parameter dictionary:        editor.open response from SourceKit.
-    - parameter cursorInfoRequest: SourceKit dictionary to use to send cursorinfo request.
+    - parameter file:               Swift file to document.
+    - parameter dictionary:         editor.open response from SourceKit.
+    - parameter cursorInfoRequest:  SourceKit dictionary to use to send cursorinfo request.
+    - parameter processExpressions: Whether expressions should be processed or not. false by default
+
     */
-    public init(file: File, dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?) {
+    public init(file: File, dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?,
+                processExpressions: Bool = false) {
         self.file = file
         var dictionary = dictionary
         let syntaxMapData = dictionary.removeValue(forKey: SwiftDocKey.syntaxMap.rawValue) as! [SourceKitRepresentable]
         let syntaxMap = SyntaxMap(data: syntaxMapData)
-        dictionary = file.process(dictionary: dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
+        let elementTypesToProcess: File.ProcessableElements = processExpressions ? .all : .declarationsAndComments
+        dictionary = file.process(
+            dictionary: dictionary,
+            cursorInfoRequest: cursorInfoRequest,
+            syntaxMap: syntaxMap,
+            elementTypes: elementTypesToProcess
+        )
         if let cursorInfoRequest = cursorInfoRequest {
             let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap: syntaxMap)
             dictionary = file.furtherProcess(
                 dictionary: dictionary,
                 documentedTokenOffsets: documentedTokenOffsets,
                 cursorInfoRequest: cursorInfoRequest,
-                syntaxMap: syntaxMap
+                syntaxMap: syntaxMap,
+                elementTypes: elementTypesToProcess
             )
         }
         docsDictionary = dictionary

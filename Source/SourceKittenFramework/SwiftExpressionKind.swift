@@ -12,13 +12,13 @@ public enum SwiftExpressionKind: String, SwiftLangSyntax {
     /// Function argument
     case argument = "source.lang.swift.expr.argument"
 
-    /// Array experssion
+    /// Array expression
     case array = "source.lang.swift.expr.array"
 
     /// General call
     case call = "source.lang.swift.expr.call"
 
-    /// Dictionary experssion
+    /// Dictionary expression
     case dictionary = "source.lang.swift.expr.dictionary"
 
     /// Object literal (objective c?)
