@@ -1,0 +1,30 @@
+included:
+  - Source
+  - Tests
+excluded:
+  - Tests/SourceKittenFrameworkTests/Fixtures
+  - Source/SourceKittenFramework/library_wrapper_CXString.swift
+  - Source/SourceKittenFramework/library_wrapper_Documentation.swift
+  - Source/SourceKittenFramework/library_wrapper_Index.swift
+  - Source/SourceKittenFramework/library_wrapper_sourcekitd.swift
+opt_in_rules:
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - empty_count
+  - explicit_init
+  - first_where
+  - number_separator
+  - operator_usage_whitespace
+  - overridden_super_call
+  - private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - sorted_imports
+disabled_rules:
+  - force_cast
+  - force_try
+  - todo
+  - switch_case_on_newline
+
+line_length: 160

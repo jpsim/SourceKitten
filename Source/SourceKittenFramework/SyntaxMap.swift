@@ -49,7 +49,7 @@ public struct SyntaxMap {
     - parameter file: File to be parsed.
     */
     public init(file: File) {
-        self.init(sourceKitResponse: Request.EditorOpen(file).send())
+        self.init(sourceKitResponse: Request.editorOpen(file: file).send())
     }
 
     /**
@@ -59,30 +59,30 @@ public struct SyntaxMap {
 
     - parameter offset: Last possible byte offset of the range's start.
     */
-    public func commentRangeBeforeOffset(offset: Int) -> Range<Int>? {
-        let tokensBeforeOffset = tokens.reverse().filter { $0.offset < offset }
+    public func commentRange(beforeOffset offset: Int) -> Range<Int>? {
+        let tokensBeforeOffset = tokens.reversed().filter { $0.offset < offset }
 
         let docTypes = SyntaxKind.docComments().map({ $0.rawValue })
         let isDoc = { (token: SyntaxToken) in docTypes.contains(token.type) }
         let isNotDoc = { !isDoc($0) }
 
-        guard let commentBegin = tokensBeforeOffset.indexOf(isDoc) else { return nil }
-        let tokensBeginningComment = tokensBeforeOffset.suffixFrom(commentBegin)
+        guard let commentBegin = tokensBeforeOffset.index(where: isDoc) else { return nil }
+        let tokensBeginningComment = tokensBeforeOffset.suffix(from: commentBegin)
 
         // For avoiding declaring `var` with type annotation before `if let`, use `map()`
-        let commentEnd = tokensBeginningComment.indexOf(isNotDoc)
+        let commentEnd = tokensBeginningComment.index(where: isNotDoc)
         let commentTokensImmediatelyPrecedingOffset = (
-            commentEnd.map(tokensBeginningComment.prefixUpTo) ?? tokensBeginningComment
-        ).reverse()
+            commentEnd.map(tokensBeginningComment.prefix(upTo:)) ?? tokensBeginningComment
+        ).reversed()
 
         return commentTokensImmediatelyPrecedingOffset.first.flatMap { firstToken in
             return commentTokensImmediatelyPrecedingOffset.last.flatMap { lastToken in
                 let regularCommentTokensBetweenDocCommentAndOffset = tokensBeforeOffset
-                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .Comment })
+                    .filter({ $0.offset > lastToken.offset && SyntaxKind(rawValue: $0.type) == .comment })
                 if !regularCommentTokensBetweenDocCommentAndOffset.isEmpty {
                     return nil // "doc comment" isn't actually a doc comment
                 }
-                return firstToken.offset...lastToken.offset + lastToken.length
+                return Range(firstToken.offset...lastToken.offset + lastToken.length)
             }
         }
     }
@@ -109,12 +109,20 @@ Returns true if `lhs` SyntaxMap is equal to `rhs` SyntaxMap.
 
 - returns: True if `lhs` SyntaxMap is equal to `rhs` SyntaxMap.
 */
-public func ==(lhs: SyntaxMap, rhs: SyntaxMap) -> Bool {
+public func == (lhs: SyntaxMap, rhs: SyntaxMap) -> Bool {
     if lhs.tokens.count != rhs.tokens.count {
         return false
     }
-    for (index, value) in lhs.tokens.enumerate() where rhs.tokens[index] != value {
+    for (index, value) in lhs.tokens.enumerated() where rhs.tokens[index] != value {
         return false
     }
     return true
+}
+
+// MARK: - migration support
+extension SyntaxMap {
+    @available(*, unavailable, renamed: "commentRange(beforeOffset:)")
+    public func commentRangeBeforeOffset(_ offset: Int) -> Range<Int>? {
+        fatalError()
+    }
 }

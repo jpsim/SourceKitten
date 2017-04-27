@@ -8,7 +8,16 @@ SourceKitten links and communicates with `sourcekitd.framework` to parse the Swi
 
 ## Installation
 
-Building SourceKitten requires Xcode 7.3.
+Building SourceKitten on macOS requires Xcode 8.x or a Swift 3.x toolchain with
+the Swift Package Manager.
+
+Building SourceKitten on Linux requires:
+
+* A Swift 3.0.x compiler and Swift Package Manager to be installed.
+  Swift 3.1 is not yet supported.
+  See [#354](https://github.com/jpsim/SourceKitten/issues/354) for details.
+* `libsourcekitdInProc.so` to be built and located in `/usr/lib`, or in another
+  location specified by the `LINUX_SOURCEKIT_LIB_PATH` environment variable.
 
 SourceKitten typically supports previous versions of SourceKit.
 
@@ -16,9 +25,13 @@ SourceKitten typically supports previous versions of SourceKit.
 
 Run `brew install sourcekitten`.
 
-### Source
+### Swift Package Manager
 
-Run `git clone` for this repo followed by `make install` in the root directory.
+Run `swift build` in the root directory of this project.
+
+### Xcode (via Make)
+
+Run `make install` in the root directory of this project.
 
 ### Package
 
@@ -39,6 +52,22 @@ Available commands:
    syntax      Print Swift syntax information as JSON
    version     Display the current version of SourceKitten
 ```
+
+## How is SourceKit resolved?
+
+SourceKitten searches for SourceKit in the following order:
+
+* `$XCODE_DEFAULT_TOOLCHAIN_OVERRIDE`
+* `$TOOLCHAIN_DIR`
+* `xcrun -find swift`
+* `/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain`
+* `/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain`
+* `~/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain`
+* `~/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain`
+
+On Linux, SourceKit is expected to be located in
+`/usr/lib/libsourcekitdInProc.so` or specified by the `LINUX_SOURCEKIT_LIB_PATH`
+environment variable.
 
 ## Complete
 
@@ -71,10 +100,9 @@ options for the offset in the file/text provided:
 ]
 ```
 
-To use the iOS SDK is to specified the `compilerargs` option. The value
-specified by `compilerargs` the `--` to must be prefixed:
+To use the iOS SDK, pass `-sdk` and `-target` arguments preceded by `--`:
 ```
-sourcekitten complete --text "import UIKit ; UIColor." --offset 22 --compilerargs -- '-target arm64-apple-ios9.0 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk'
+sourcekitten complete --text "import UIKit ; UIColor." --offset 22 -- -target arm64-apple-ios9.0 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk
 ```
 
 ## Doc
@@ -152,6 +180,18 @@ Running `sourcekitten syntax --file file.swift` or `sourcekitten syntax --text "
     "type" : "source.lang.swift.syntaxtype.comment"
   }
 ]
+```
+
+## Request
+
+Running `sourcekitten request --yaml [FILE|TEXT]` will execute a sourcekit request with the given yaml. For example:
+
+```yaml
+key.request: source.request.cursorinfo
+key.sourcefile: "/tmp/foo.swift"
+key.offset: 8
+key.compilerargs:
+  - "/tmp/foo.swift"
 ```
 
 ## SourceKittenFramework

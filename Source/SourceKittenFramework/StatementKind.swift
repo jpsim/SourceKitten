@@ -6,25 +6,57 @@
 //  Copyright © 2016 SourceKitten. All rights reserved.
 //
 
+// swiftlint:disable variable_name
+
 /// Swift declaration kinds.
 /// Found in `strings SourceKitService | grep source.lang.swift.stmt.`.
-public enum StatementKind: String {
+public enum StatementKind: String, SwiftLangSyntax {
     /// `brace`.
-    case Brace = "source.lang.swift.stmt.brace"
+    case brace = "source.lang.swift.stmt.brace"
     /// `case`.
-    case Case = "source.lang.swift.stmt.case"
+    case `case` = "source.lang.swift.stmt.case"
     /// `for`.
-    case For = "source.lang.swift.stmt.for"
+    case `for` = "source.lang.swift.stmt.for"
     /// `foreach`.
-    case ForEach = "source.lang.swift.stmt.foreach"
+    case forEach = "source.lang.swift.stmt.foreach"
     /// `guard`.
-    case Guard = "source.lang.swift.stmt.guard"
+    case `guard` = "source.lang.swift.stmt.guard"
     /// `if`.
-    case If = "source.lang.swift.stmt.if"
+    case `if` = "source.lang.swift.stmt.if"
     /// `repeatewhile`.
-    case RepeatWhile = "source.lang.swift.stmt.repeatwhile"
+    case repeatWhile = "source.lang.swift.stmt.repeatwhile"
     /// `switch`.
-    case Switch = "source.lang.swift.stmt.switch"
+    case `switch` = "source.lang.swift.stmt.switch"
     /// `while`.
-    case While = "source.lang.swift.stmt.while"
+    case `while` = "source.lang.swift.stmt.while"
+}
+
+// MARK: - migration support
+extension StatementKind {
+    @available(*, unavailable, renamed: "brace")
+    public static var Brace: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "case")
+    public static var Case: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "for")
+    public static var For: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "forEach")
+    public static var ForEach: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "guard")
+    public static var Guard: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "if")
+    public static var If: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "repeatWhile")
+    public static var RepeatWhile: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "switch")
+    public static var Switch: StatementKind { fatalError() }
+
+    @available(*, unavailable, renamed: "while")
+    public static var While: StatementKind { fatalError() }
 }

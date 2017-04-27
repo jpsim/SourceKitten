@@ -1,0 +1,108 @@
+[{
+  "descriptionKey" : "advanced(by: Int)",
+  "kind" : "source.lang.swift.decl.function.method.instance",
+  "name" : "advanced(by:)",
+  "sourcetext" : "advanced(by: <#T##Int#>)",
+  "numBytesToErase" : 0,
+  "typeName" : "Int",
+  "associatedUSRs" : "s:FEsPs13SignedInteger8advancedFT2bySi_x",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.superclass"
+}, {
+  "descriptionKey" : "bigEndian",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "name" : "bigEndian",
+  "sourcetext" : "bigEndian",
+  "numBytesToErase" : 0,
+  "typeName" : "Int",
+  "docBrief" : "Returns the big-endian representation of the integer, changing the byte order if necessary.",
+  "associatedUSRs" : "s:vSi9bigEndianSi",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass"
+}, {
+  "descriptionKey" : "byteSwapped",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "name" : "byteSwapped",
+  "sourcetext" : "byteSwapped",
+  "numBytesToErase" : 0,
+  "typeName" : "Int",
+  "docBrief" : "Returns the current integer with the byte order swapped.",
+  "associatedUSRs" : "s:vSi11byteSwappedSi",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass"
+}, {
+  "descriptionKey" : "customMirror",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "name" : "customMirror",
+  "sourcetext" : "customMirror",
+  "numBytesToErase" : 0,
+  "typeName" : "Mirror",
+  "docBrief" : "A mirror that reflects the Int instance.",
+  "associatedUSRs" : "s:vSi12customMirrorVs6Mirror s:vPs17CustomReflectable12customMirrorVs6Mirror",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass"
+}, {
+  "descriptionKey" : "customPlaygroundQuickLook",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "name" : "customPlaygroundQuickLook",
+  "sourcetext" : "customPlaygroundQuickLook",
+  "numBytesToErase" : 0,
+  "typeName" : "PlaygroundQuickLook",
+  "associatedUSRs" : "s:vSi25customPlaygroundQuickLookOs19PlaygroundQuickLook s:vPs29CustomPlaygroundQuickLookable25customPlaygroundQuickLookOs19PlaygroundQuickLook",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass"
+}, {
+  "descriptionKey" : "description",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "name" : "description",
+  "sourcetext" : "description",
+  "numBytesToErase" : 0,
+  "typeName" : "String",
+  "docBrief" : "A textual representation of self.",
+  "associatedUSRs" : "s:vSi11descriptionSS s:vPs23CustomStringConvertible11descriptionSS",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass"
+}, {
+  "descriptionKey" : "distance(to: Int)",
+  "kind" : "source.lang.swift.decl.function.method.instance",
+  "name" : "distance(to:)",
+  "sourcetext" : "distance(to: <#T##Int#>)",
+  "numBytesToErase" : 0,
+  "typeName" : "Int",
+  "associatedUSRs" : "s:FEsPs13SignedInteger8distanceFT2tox_Si",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.superclass"
+}, {
+  "descriptionKey" : "hashValue",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "name" : "hashValue",
+  "sourcetext" : "hashValue",
+  "numBytesToErase" : 0,
+  "typeName" : "Int",
+  "docBrief" : "The hash value.",
+  "associatedUSRs" : "s:vSi9hashValueSi s:vPs8Hashable9hashValueSi",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass"
+}, {
+  "descriptionKey" : "littleEndian",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "name" : "littleEndian",
+  "sourcetext" : "littleEndian",
+  "numBytesToErase" : 0,
+  "typeName" : "Int",
+  "docBrief" : "Returns the little-endian representation of the integer, changing the byte order if necessary.",
+  "associatedUSRs" : "s:vSi12littleEndianSi",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass"
+}, {
+  "descriptionKey" : "toIntMax()",
+  "kind" : "source.lang.swift.decl.function.method.instance",
+  "name" : "toIntMax()",
+  "sourcetext" : "toIntMax()",
+  "numBytesToErase" : 0,
+  "typeName" : "IntMax",
+  "docBrief" : "Represent this number using Swift’s widest native signed integer type.",
+  "associatedUSRs" : "s:FSi8toIntMaxFT_Vs5Int64 s:FPs14_SignedInteger8toIntMaxFT_Vs5Int64 s:FPs17IntegerArithmetic8toIntMaxFT_Vs5Int64 s:FPs13SignedInteger8toIntMaxFT_Vs5Int64",
+  "moduleName" : "Swift",
+  "context" : "source.codecompletion.context.thisclass"
+}]

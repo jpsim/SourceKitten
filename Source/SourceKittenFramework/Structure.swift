@@ -20,7 +20,7 @@ public struct Structure {
     */
     public init(sourceKitResponse: [String: SourceKitRepresentable]) {
         var sourceKitResponse = sourceKitResponse
-        _ = sourceKitResponse.removeValueForKey(SwiftDocKey.SyntaxMap.rawValue)
+        _ = sourceKitResponse.removeValue(forKey: SwiftDocKey.syntaxMap.rawValue)
         dictionary = sourceKitResponse
     }
 
@@ -30,7 +30,7 @@ public struct Structure {
     - parameter file: File to parse for structural information.
     */
     public init(file: File) {
-        self.init(sourceKitResponse: Request.EditorOpen(file).send())
+        self.init(sourceKitResponse: Request.editorOpen(file: file).send())
     }
 }
 
@@ -38,7 +38,7 @@ public struct Structure {
 
 extension Structure: CustomStringConvertible {
     /// A textual JSON representation of `Structure`.
-    public var description: String { return toJSON(toAnyObject(dictionary)) }
+    public var description: String { return toJSON(toNSDictionary(dictionary)) }
 }
 
 // MARK: Equatable
@@ -53,6 +53,6 @@ Returns true if `lhs` Structure is equal to `rhs` Structure.
 
 - returns: True if `lhs` Structure is equal to `rhs` Structure.
 */
-public func ==(lhs: Structure, rhs: Structure) -> Bool {
+public func == (lhs: Structure, rhs: Structure) -> Bool {
     return lhs.dictionary.isEqualTo(rhs.dictionary)
 }

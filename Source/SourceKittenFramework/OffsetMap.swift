@@ -23,7 +23,7 @@ extension File {
     - returns: OffsetMap containing offset locations at which there are declarations that likely
                have documentation comments, but haven't been documented by SourceKitten yet.
     */
-    public func generateOffsetMap(documentedTokenOffsets: [Int], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
+    public func makeOffsetMap(documentedTokenOffsets: [Int], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
         var offsetMap = OffsetMap()
         for offset in documentedTokenOffsets {
             offsetMap[offset] = 0
@@ -31,7 +31,7 @@ extension File {
         offsetMap = mapOffsets(dictionary, offsetMap: offsetMap)
         let alreadyDocumentedOffsets = offsetMap.filter({ $0.0 == $0.1 }).map { $0.0 }
         for alreadyDocumentedOffset in alreadyDocumentedOffsets {
-            offsetMap.removeValueForKey(alreadyDocumentedOffset)
+            offsetMap.removeValue(forKey: alreadyDocumentedOffset)
         }
         return offsetMap
     }
@@ -46,12 +46,12 @@ extension File {
 
     - returns: OffsetMap of potentially documented declaration offsets to its nearest parent offset.
     */
-    private func mapOffsets(dictionary: [String: SourceKitRepresentable], offsetMap: OffsetMap) -> OffsetMap {
+    private func mapOffsets(_ dictionary: [String: SourceKitRepresentable], offsetMap: OffsetMap) -> OffsetMap {
         var offsetMap = offsetMap
         // Only map if we're in the correct file
         if let rangeStart = SwiftDocKey.getNameOffset(dictionary),
-            rangeLength = SwiftDocKey.getNameLength(dictionary) where
-            shouldTreatAsSameFile(dictionary) {
+           let rangeLength = SwiftDocKey.getNameLength(dictionary),
+           shouldTreatAsSameFile(dictionary) {
             let bodyLength = SwiftDocKey.getBodyLength(dictionary) ?? 0
             let rangeMax = Int(rangeStart + rangeLength + bodyLength)
             let rangeStart = Int(rangeStart)
@@ -69,5 +69,13 @@ extension File {
             }
         }
         return offsetMap
+    }
+}
+
+// MARK: - migration support
+extension File {
+    @available(*, unavailable, renamed: "makeOffsetMap(documentedTokenOffsets:dictionary:)")
+    public func generateOffsetMap(_ documentedTokenOffsets: [Int], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
+        fatalError()
     }
 }

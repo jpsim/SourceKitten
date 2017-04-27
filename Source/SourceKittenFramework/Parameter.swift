@@ -6,16 +6,20 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
 
 public struct Parameter {
-    let name: String
-    let discussion: [Text]
+    public let name: String
+    public let discussion: [Text]
 
     init(comment: CXComment) {
         name = comment.paramName() ?? "<none>"
         discussion = comment.paragraph().paragraphToString()
     }
 }
+
+#endif

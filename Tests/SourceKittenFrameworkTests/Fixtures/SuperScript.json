@@ -1,0 +1,59 @@
+[
+  {
+    "SuperScript.h" : {
+      "key.substructure" : [
+        {
+          "key.filepath" : "SuperScript.h",
+          "key.doc.file" : "SuperScript.h",
+          "key.deprecation_message" : "",
+          "key.always_unavailable" : false,
+          "key.substructure" : [
+            {
+              "key.filepath" : "SuperScript.h",
+              "key.doc.file" : "SuperScript.h",
+              "key.doc.line" : 8,
+              "key.doc.column" : 1,
+              "key.name" : "ᵃ\tᵇ\tᶜ\tᵈ\tᵉ\tᶠ\tᵍ\tʰ\tⁱ\tʲ\tᵏ\tˡ\tᵐ\tⁿ\tᵒ\tᵖ\t\tʳ\tˢ\tᵗ\tᵘ\tᵛ\tʷ\tˣ\tʸ\tᶻ",
+              "key.parsed_scope.start" : 8,
+              "key.kind" : "sourcekitten.source.lang.objc.mark",
+              "key.parsed_scope.end" : 8
+            },
+            {
+              "key.filepath" : "SuperScript.h",
+              "key.doc.file" : "SuperScript.h",
+              "key.deprecation_message" : "",
+              "key.always_unavailable" : false,
+              "key.unavailable_message" : "",
+              "key.parsed_scope.start" : 13,
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.swift_declaration" : "@IBAction func superSize(_ sender: Any!)",
+              "key.doc.full_as_xml" : "",
+              "key.always_deprecated" : false,
+              "key.doc.line" : 13,
+              "key.doc.column" : 13,
+              "key.name" : "-superSize:",
+              "key.doc.comment" : "ᵝ \tᵞ \tᵟ \tᵋ \t\t\tᶿ \tᶥ \t\t\t\t\t\t\t\t\t\t\tᶹ \tᵠ \tᵡ",
+              "key.usr" : "c:objc(cs)SuperScript(im)superSize:",
+              "key.parsed_declaration" : "- (void)superSize:(id)sender;",
+              "key.parsed_scope.end" : 13
+            }
+          ],
+          "key.unavailable_message" : "",
+          "key.parsed_scope.start" : 6,
+          "key.kind" : "sourcekitten.source.lang.objc.decl.class",
+          "key.swift_declaration" : "class SuperScript : NSObject",
+          "key.doc.full_as_xml" : "",
+          "key.always_deprecated" : false,
+          "key.doc.line" : 6,
+          "key.doc.column" : 12,
+          "key.name" : "SuperScript",
+          "key.doc.comment" : "ᴬ \tᴮ \t\tᴰ \tᴱ \t\tᴳ \tᴴ \tᴵ \tᴶ \tᴷ \tᴸ \tᴹ \tᴺ \tᴼ \tᴾ \t\tᴿ \t\tᵀ \tᵁ \tⱽ \tᵂ",
+          "key.usr" : "c:objc(cs)SuperScript",
+          "key.parsed_declaration" : "@interface SuperScript : NSObject",
+          "key.parsed_scope.end" : 15
+        }
+      ],
+      "key.diagnostic_stage" : ""
+    }
+  }
+]

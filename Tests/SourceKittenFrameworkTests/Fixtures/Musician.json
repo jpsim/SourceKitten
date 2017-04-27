@@ -1,0 +1,152 @@
+[
+  {
+    "Musician.h" : {
+      "key.substructure" : [
+        {
+          "key.filepath" : "Musician.h",
+          "key.doc.file" : "Musician.h",
+          "key.deprecation_message" : "",
+          "key.always_unavailable" : false,
+          "key.substructure" : [
+            {
+              "key.filepath" : "Musician.h",
+              "key.doc.file" : "Musician.h",
+              "key.doc.line" : 14,
+              "key.doc.column" : 1,
+              "key.name" : "Properties",
+              "key.parsed_scope.start" : 14,
+              "key.kind" : "sourcekitten.source.lang.objc.mark",
+              "key.parsed_scope.end" : 14
+            },
+            {
+              "key.filepath" : "Musician.h",
+              "key.doc.file" : "Musician.h",
+              "key.deprecation_message" : "",
+              "key.always_unavailable" : false,
+              "key.unavailable_message" : "",
+              "key.parsed_scope.start" : 17,
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.swift_declaration" : "class var isMusician: Bool { get set }",
+              "key.doc.full_as_xml" : "",
+              "key.always_deprecated" : false,
+              "key.doc.line" : 17,
+              "key.doc.column" : 46,
+              "key.name" : "isMusician",
+              "key.doc.comment" : "Always returns `YES`.",
+              "key.usr" : "c:objc(cs)JAZMusician(cpy)isMusician",
+              "key.parsed_declaration" : "@property (assign, readwrite, nonatomic, class) BOOL isMusician;",
+              "key.parsed_scope.end" : 17
+            },
+            {
+              "key.filepath" : "Musician.h",
+              "key.doc.file" : "Musician.h",
+              "key.deprecation_message" : "",
+              "key.always_unavailable" : false,
+              "key.unavailable_message" : "",
+              "key.parsed_scope.start" : 22,
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.swift_declaration" : "var name: String! { get }",
+              "key.doc.full_as_xml" : "",
+              "key.always_deprecated" : false,
+              "key.doc.line" : 22,
+              "key.doc.column" : 43,
+              "key.name" : "name",
+              "key.doc.comment" : "The name of the musician. i.e. \"John Coltrane\"",
+              "key.usr" : "c:objc(cs)JAZMusician(py)name",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSString *name;",
+              "key.parsed_scope.end" : 22
+            },
+            {
+              "key.filepath" : "Musician.h",
+              "key.doc.file" : "Musician.h",
+              "key.deprecation_message" : "",
+              "key.always_unavailable" : false,
+              "key.unavailable_message" : "",
+              "key.parsed_scope.start" : 27,
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.swift_declaration" : "var birthyear: UInt { get }",
+              "key.doc.full_as_xml" : "",
+              "key.always_deprecated" : false,
+              "key.doc.line" : 27,
+              "key.doc.column" : 44,
+              "key.name" : "birthyear",
+              "key.doc.comment" : "The year the musician was born. i.e. 1926",
+              "key.usr" : "c:objc(cs)JAZMusician(py)birthyear",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSUInteger birthyear;",
+              "key.parsed_scope.end" : 27
+            },
+            {
+              "key.filepath" : "Musician.h",
+              "key.doc.file" : "Musician.h",
+              "key.doc.line" : 29,
+              "key.doc.column" : 1,
+              "key.name" : "Initializers-hyphenated",
+              "key.parsed_scope.start" : 29,
+              "key.kind" : "sourcekitten.source.lang.objc.mark",
+              "key.parsed_scope.end" : 29
+            },
+            {
+              "key.filepath" : "Musician.h",
+              "key.doc.file" : "Musician.h",
+              "key.deprecation_message" : "",
+              "key.always_unavailable" : false,
+              "key.doc.parameters" : [
+                {
+                  "name" : "name",
+                  "discussion" : [
+                    {
+                      "kind" : "",
+                      "Para" : "The name of the musician.\n "
+                    }
+                  ]
+                },
+                {
+                  "name" : "birthyear",
+                  "discussion" : [
+                    {
+                      "kind" : "",
+                      "Para" : "The year the musician was born."
+                    }
+                  ]
+                }
+              ],
+              "key.unavailable_message" : "",
+              "key.parsed_scope.start" : 43,
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.swift_declaration" : "init!(name: String!, birthyear: UInt)",
+              "key.doc.full_as_xml" : "",
+              "key.always_deprecated" : false,
+              "key.doc.line" : 43,
+              "key.doc.column" : 17,
+              "key.name" : "-initWithName:birthyear:",
+              "key.doc.comment" : "Initialize a JAZMusician.\nDon't forget to have a name and a birthyear.\n\n- warning: Jazz can be addicting.\nPlease be careful out there.\n\n- parameter: name      The name of the musician.\n- parameter: birthyear The year the musician was born.\n\n- returns:          An initialized JAZMusician instance.",
+              "key.usr" : "c:objc(cs)JAZMusician(im)initWithName:birthyear:",
+              "key.parsed_declaration" : "- (instancetype)initWithName:(NSString *)name birthyear:(NSUInteger)birthyear;",
+              "key.doc.result_discussion" : [
+                {
+                  "kind" : "",
+                  "Para" : "An initialized JAZMusician instance."
+                }
+              ],
+              "key.parsed_scope.end" : 43
+            }
+          ],
+          "key.unavailable_message" : "",
+          "key.parsed_scope.start" : 12,
+          "key.kind" : "sourcekitten.source.lang.objc.decl.class",
+          "key.swift_declaration" : "class JAZMusician : NSObject",
+          "key.doc.full_as_xml" : "",
+          "key.always_deprecated" : false,
+          "key.doc.line" : 12,
+          "key.doc.column" : 12,
+          "key.name" : "JAZMusician",
+          "key.doc.comment" : "JAZMusician models, you guessed it... Jazz Musicians!\nFrom Ellington to Marsalis, this class has you covered.",
+          "key.usr" : "c:objc(cs)JAZMusician",
+          "key.parsed_declaration" : "@interface JAZMusician : NSObject",
+          "key.parsed_scope.end" : 45
+        }
+      ],
+      "key.diagnostic_stage" : ""
+    }
+  }
+]

@@ -1,11 +1,11 @@
 #!/bin/sh
 
-jazzy -m SourceKitten \
--a "JP Simard" \
--u https://github.com/jpsim/SourceKitten \
--g https://github.com/jpsim/SourceKitten \
---github-file-prefix https://github.com/jpsim/SourceKitten/blob/0.6.2 \
---module-version 0.6.2 \
--r http://www.jpsim.com/SourceKitten/ \
--x -workspace,SourceKitten.xcworkspace,-scheme,SourceKittenFramework \
--c
+jazzy -m SourceKittenFramework \
+  -a "JP Simard" \
+  -u https://github.com/jpsim/SourceKitten \
+  -g https://github.com/jpsim/SourceKitten \
+  --github-file-prefix https://github.com/jpsim/SourceKitten/blob/$(make get_version) \
+  --module-version $(make get_version) \
+  -r http://www.jpsim.com/SourceKitten/ \
+  -x -workspace,SourceKitten.xcworkspace,-scheme,SourceKittenFramework \
+  -c

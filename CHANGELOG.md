@@ -2,6 +2,215 @@
 
 ##### Breaking
 
+* None.
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* None.
+
+## 0.17.2
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* Update `Cartfile.resolved` & corresponding git submodule to point to Yams
+  0.3.1. Also loosen the Yams version dependency in `Package.swift` to only
+  specify `~> 0.3` and not `= 0.3.0`.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
+##### Bug Fixes
+
+* None.
+
+## 0.17.1
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* Added a new field `numBytesToErase` in `CodeCompletionItem` to indicate how
+  many bytes should be deleted prior to the cursor in order to finish the
+  completion.  
+  [@KelvinJin](https://github.com/KelvinJin)
+
+* Support Swift 3.1 on macOS. `sourcekitInProc` appears to be broken on Linux
+  as of Swift 3.1.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#348](https://github.com/jpsim/SourceKitten/issues/348)
+
+##### Bug Fixes
+
+* Fix a crash that occurred when a documentation comment ended with an extended
+  grapheme cluster.  
+  [Lukas Stührk](https://github.com/Lukas-Stuehrk)
+  [#350](https://github.com/jpsim/SourceKitten/issues/350)
+
+## 0.17.0
+
+##### Breaking
+
+* Change `Text` enum case names to match Swift 3 API guidelines.  
+  [@istx25](https://github.com/istx25)
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* Make sending `Request`s safer in concurrent environments.  
+  [@krzysztofzablocki](https://github.com/krzysztofzablocki)
+
+## 0.16.0
+
+##### Breaking
+
+* The `SourceKitten` CocoaPods podspec used to actually refer to
+  SourceKittenFramework, so it has been renamed. Existing pushes to CocoaPods
+  trunk will be preserved, but from now on if you use SourceKittenFramework via
+  CocoaPods, please specify to use the `SourceKittenFramework` pod.  
+  [JP Simard](https://github.com/jpsim)
+
+##### Enhancements
+
+* Add `Request.yaml` API to create a sourcekit request from yaml
+  and expose as a `request --yaml [file|text]` CLI command.  
+  [Keith Smiley](https://github.com/keith)
+  [#312](https://github.com/jpsim/SourceKitten/issues/312)
+
+##### Bug Fixes
+
+* None.
+
+## 0.15.3
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* Reduce compilation time.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
+##### Bug Fixes
+
+* None.
+
+## 0.15.2
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* Fix Objective-C enum cases not being documented.  
+  [JP Simard](https://github.com/jpsim)
+  [#304](https://github.com/jpsim/SourceKitten/issues/304)
+
+## 0.15.1
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* Improve performance of Yaml parsing.  
+  [JP Simard](https://github.com/jpsim)
+  [#289](https://github.com/jpsim/SourceKitten/issues/289)
+
+##### Bug Fixes
+
+* `CXComment.commandName()` was returning nil on custom code comments
+  since Xcode 8.1. This caused a force unwrap when generating
+  documentation. Inline command comment is now used as a
+  fallback to catch this edge case.  
+  [Jérémie Girault](https://github.com/jeremiegirault)
+
+## 0.15.0
+
+##### Breaking
+
+* SourceKitten now requires Xcode 8.0 and Swift 3.0 to build.
+  APIs have been adapted to conform to the Swift 3 API Design Guidelines.  
+  [JP Simard](https://github.com/jpsim)
+  [Norio Nomura](https://github.com/norio-nomura)
+
+##### Enhancements
+
+* Add `--spm-module [ModuleName]` flag to `complete` to automatically detect
+  compiler flags for Swift Package Manager modules. `swift build` must be run
+  prior to support detection.  
+  [vdka](https://github.com/vdka)
+  [#270](https://github.com/jpsim/SourceKitten/issues/270)
+
+* Now builds and passes most tests on Linux using the Swift Package Manager with
+  Swift 3.0. This requires `libsourcekitdInProc.so` to be built and located in
+  `/usr/lib`, or in another location specified by the `LINUX_SOURCEKIT_LIB_PATH`
+  environment variable. A preconfigured Docker image is available on Docker Hub
+  by the ID of `norionomura/sourcekit:30`.  
+  [JP Simard](https://github.com/jpsim)
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#179](https://github.com/jpsim/SourceKitten/issues/179)
+
+* Now supports Swift Package Manager on macOS and Linux.  
+  [JP Simard](https://github.com/jpsim)
+
+* Now supports docinfo requests for sourcetext and module keys.  
+  [Erik Abair](https://github.com/abaire)
+
+* Now supports Objective-C class properties.  
+  [Jérémie Girault](https://github.com/jeremiegirault)
+  [JP Simard](https://github.com/jpsim)
+  [#243](https://github.com/jpsim/SourceKitten/issues/243)
+
+* Add podspec to support using SourceKittenFramework with CocoaPods.  
+  [JP Simard](https://github.com/jpsim)
+
+##### Bug Fixes
+
+* `NSString.lines()` generated surplus line when string ended with newline
+  character.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#259](https://github.com/jpsim/SourceKitten/issues/259)
+
+## 0.14.1
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* Fixed Homebrew distribution.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
+## 0.14.0
+
+This is the last release to support Swift 2.2 and Swift 2.3.
+The next release will require Swift 3.0.
+
+##### Breaking
+
 * Embedding frameworks needed by `sourcekitten` was moved from
   SourceKittenFramework Xcode target to the sourcekitten target.
   The `SourceKittenFramework.framework` product built by the
@@ -12,9 +221,29 @@
 * Require passing compiler arguments to `index` command.  
   [Brian Gesiak](https://github.com/modocache)
 
+* Remove `--compilerargs` CLI flag. Arguments are now passed after `--`.  
+  [Keith Smiley](https://github.com/keith)
+
 ##### Enhancements
 
-* None.
+* Refactor to unite swift lang syntax types with SwiftLangSyntax protocol.
+
+* Make SwiftDocKey public.  
+  [Evgeny Suvorov](https://github.com/esuvorov)
+
+* Swift 2.3 support.  
+  [Syo Ikeda](https://github.com/ikesyo)
+
+* The following availability and deprecation values are now exposed for Objective-C APIs.
+
+  * key.always_deprecated
+  * key.always_unavailable
+  * key.deprecation_message
+  * key.unavailable_message  
+  [Jeff Verkoeyen](https://github.com/jverkoey)
+
+* Add `SwiftDeclarationKind.PrecedenceGroup`.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Bug Fixes
 

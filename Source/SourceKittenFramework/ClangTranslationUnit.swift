@@ -6,40 +6,40 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
 import Foundation
 
-extension SequenceType where Generator.Element: Hashable {
-    func distinct() -> [Generator.Element] {
+extension Sequence where Iterator.Element: Hashable {
+    fileprivate func distinct() -> [Iterator.Element] {
         return Array(Set(self))
     }
 }
 
-extension SequenceType {
-    func groupBy<T: Hashable>(keyFn: (Generator.Element) -> T) -> [T: [Generator.Element]] {
-        var ret = Dictionary<T, [Generator.Element]>()
-        for val in self {
-            let key = keyFn(val)
-            var d = ret[key] ?? []
-            d.append(val)
-            ret[key] = d
+extension Sequence {
+    fileprivate func grouped<U: Hashable>(by transform: (Iterator.Element) -> U) -> [U: [Iterator.Element]] {
+        return reduce([:]) { dictionary, element in
+            var dictionary = dictionary
+            let key = transform(element)
+            dictionary[key] = (dictionary[key] ?? []) + [element]
+            return dictionary
         }
-        return ret
     }
 }
 
 extension Dictionary {
-    init(_ pairs: [Element]) {
+    fileprivate init(_ pairs: [Element]) {
         self.init()
         for (k, v) in pairs {
             self[k] = v
         }
     }
 
-    func map<OutValue>(@noescape transform: Value throws -> OutValue) rethrows -> [Key: OutValue] {
-        return Dictionary<Key, OutValue>(try map { (k, v) in (k, try transform(v)) })
+    fileprivate func map<OutValue>(transform: (Value) throws -> (OutValue)) rethrows -> [Key: OutValue] {
+        return [Key: OutValue](try map { (k, v) in (k, try transform(v)) }) // swiftlint:disable:this variable_name
     }
 }
 
@@ -57,15 +57,16 @@ public struct ClangTranslationUnit {
     - parameter compilerArguments: Clang compiler arguments.
     */
     public init(headerFiles: [String], compilerArguments: [String]) {
-        let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).UTF8String }
+        let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).utf8String }
         let clangIndex = ClangIndex()
         clangTranslationUnits = headerFiles.map { clangIndex.open(file: $0, args: cStringCompilerArguments) }
         declarations = clangTranslationUnits
             .flatMap { $0.cursor().flatMap({ SourceDeclaration(cursor: $0, compilerArguments: compilerArguments) }) }
+            .rejectEmptyDuplicateEnums()
             .distinct()
-            .sort()
-            .groupBy { $0.location.file }
-            .map { insertMarks($0) }
+            .sorted()
+            .grouped { $0.location.file }
+            .map { insertMarks(declarations: $0) }
     }
 
     /**
@@ -76,11 +77,10 @@ public struct ClangTranslationUnit {
     - parameter xcodeBuildArguments: The arguments necessary pass in to `xcodebuild` to link these header files.
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
-    public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = NSFileManager.defaultManager().currentDirectoryPath) {
-        let xcodeBuildOutput = runXcodeBuild(xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
-        guard let clangArguments = parseCompilerArguments(xcodeBuildOutput, language: .ObjC, moduleName: nil) else {
-            fputs("could not parse compiler arguments\n", stderr)
-            fputs("\(xcodeBuildOutput)\n", stderr)
+    public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = FileManager.default.currentDirectoryPath) {
+        let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
+        guard let clangArguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .objc, moduleName: nil) else {
+            fputs("could not parse compiler arguments\n\(xcodeBuildOutput)\n", stderr)
             return nil
         }
         self.init(headerFiles: headerFiles, compilerArguments: clangArguments)
@@ -95,3 +95,5 @@ extension ClangTranslationUnit: CustomStringConvertible {
         return declarationsToJSON(declarations) + "\n"
     }
 }
+
+#endif

@@ -9,73 +9,82 @@
 import Foundation
 
 /// SourceKit response dictionary keys.
-internal enum SwiftDocKey: String {
+public enum SwiftDocKey: String {
     // MARK: SourceKit Keys
 
     /// Annotated declaration (String).
-    case AnnotatedDeclaration = "key.annotated_decl"
+    case annotatedDeclaration = "key.annotated_decl"
     /// Body length (Int64).
-    case BodyLength           = "key.bodylength"
+    case bodyLength           = "key.bodylength"
     /// Body offset (Int64).
-    case BodyOffset           = "key.bodyoffset"
+    case bodyOffset           = "key.bodyoffset"
     /// Diagnostic stage (String).
-    case DiagnosticStage      = "key.diagnostic_stage"
+    case diagnosticStage      = "key.diagnostic_stage"
     /// File path (String).
-    case FilePath             = "key.filepath"
+    case filePath             = "key.filepath"
     /// Full XML docs (String).
-    case FullXMLDocs          = "key.doc.full_as_xml"
+    case fullXMLDocs          = "key.doc.full_as_xml"
     /// Kind (String).
-    case Kind                 = "key.kind"
+    case kind                 = "key.kind"
     /// Length (Int64).
-    case Length               = "key.length"
+    case length               = "key.length"
     /// Name (String).
-    case Name                 = "key.name"
+    case name                 = "key.name"
     /// Name length (Int64).
-    case NameLength           = "key.namelength"
+    case nameLength           = "key.namelength"
     /// Name offset (Int64).
-    case NameOffset           = "key.nameoffset"
+    case nameOffset           = "key.nameoffset"
     /// Offset (Int64).
-    case Offset               = "key.offset"
+    case offset               = "key.offset"
     /// Substructure ([SourceKitRepresentable]).
-    case Substructure         = "key.substructure"
+    case substructure         = "key.substructure"
     /// Syntax map (NSData).
-    case SyntaxMap            = "key.syntaxmap"
+    case syntaxMap            = "key.syntaxmap"
     /// Type name (String).
-    case TypeName             = "key.typename"
+    case typeName             = "key.typename"
+    /// Inheritedtype ([SourceKitRepresentable])
+    case inheritedtypes       = "key.inheritedtypes"
 
     // MARK: Custom Keys
 
     /// Column where the token's declaration begins (Int64).
-    case DocColumn            = "key.doc.column"
+    case docColumn            = "key.doc.column"
     /// Documentation comment (String).
-    case DocumentationComment = "key.doc.comment"
+    case documentationComment = "key.doc.comment"
     /// Declaration of documented token (String).
-    case DocDeclaration       = "key.doc.declaration"
+    case docDeclaration       = "key.doc.declaration"
     /// Discussion documentation of documented token ([SourceKitRepresentable]).
-    case DocDiscussion        = "key.doc.discussion"
+    case docDiscussion        = "key.doc.discussion"
     /// File where the documented token is located (String).
-    case DocFile              = "key.doc.file"
+    case docFile              = "key.doc.file"
     /// Line where the token's declaration begins (Int64).
-    case DocLine              = "key.doc.line"
+    case docLine              = "key.doc.line"
     /// Name of documented token (String).
-    case DocName              = "key.doc.name"
+    case docName              = "key.doc.name"
     /// Parameters of documented token ([SourceKitRepresentable]).
-    case DocParameters        = "key.doc.parameters"
+    case docParameters        = "key.doc.parameters"
     /// Parsed declaration (String).
-    case DocResultDiscussion  = "key.doc.result_discussion"
+    case docResultDiscussion  = "key.doc.result_discussion"
     /// Parsed scope start (Int64).
-    case DocType              = "key.doc.type"
+    case docType              = "key.doc.type"
     /// Parsed scope start end (Int64).
-    case USR                  = "key.usr"
+    case usr                  = "key.usr"
     /// Result discussion documentation of documented token ([SourceKitRepresentable]).
-    case ParsedDeclaration    = "key.parsed_declaration"
+    case parsedDeclaration    = "key.parsed_declaration"
     /// Type of documented token (String).
-    case ParsedScopeEnd       = "key.parsed_scope.end"
+    case parsedScopeEnd       = "key.parsed_scope.end"
     /// USR of documented token (String).
-    case ParsedScopeStart     = "key.parsed_scope.start"
+    case parsedScopeStart     = "key.parsed_scope.start"
     /// Swift Declaration (String).
-    case SwiftDeclaration     = "key.swift_declaration"
-
+    case swiftDeclaration     = "key.swift_declaration"
+    /// Always deprecated (Bool).
+    case alwaysDeprecated     = "key.always_deprecated"
+    /// Always unavailable (Bool).
+    case alwaysUnavailable    = "key.always_unavailable"
+    /// Always deprecated (String).
+    case deprecationMessage   = "key.deprecation_message"
+    /// Always unavailable (String).
+    case unavailableMessage   = "key.unavailable_message"
 
     // MARK: Typed SwiftDocKey Getters
 
@@ -87,7 +96,7 @@ internal enum SwiftDocKey: String {
 
     - returns: Typed value of a dictionary key.
     */
-    private static func get<T>(key: SwiftDocKey, _ dictionary: [String: SourceKitRepresentable]) -> T? {
+    private static func get<T>(_ key: SwiftDocKey, _ dictionary: [String: SourceKitRepresentable]) -> T? {
         return dictionary[key.rawValue] as! T?
     }
 
@@ -98,8 +107,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Kind string if successful.
     */
-    internal static func getKind(dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.Kind, dictionary)
+    internal static func getKind(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+        return get(.kind, dictionary)
     }
 
     /**
@@ -109,8 +118,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Syntax map data if successful.
     */
-    internal static func getSyntaxMap(dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
-        return get(.SyntaxMap, dictionary)
+    internal static func getSyntaxMap(_ dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
+        return get(.syntaxMap, dictionary)
     }
 
     /**
@@ -120,8 +129,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Offset int if successful.
     */
-    internal static func getOffset(dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.Offset, dictionary)
+    internal static func getOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
+        return get(.offset, dictionary)
     }
 
     /**
@@ -131,8 +140,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Length int if successful.
     */
-    internal static func getLength(dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.Length, dictionary)
+    internal static func getLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
+        return get(.length, dictionary)
     }
 
     /**
@@ -142,8 +151,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Type name string if successful.
     */
-    internal static func getTypeName(dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.TypeName, dictionary)
+    internal static func getTypeName(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+        return get(.typeName, dictionary)
     }
 
     /**
@@ -153,8 +162,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Annotated declaration string if successful.
     */
-    internal static func getAnnotatedDeclaration(dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.AnnotatedDeclaration, dictionary)
+    internal static func getAnnotatedDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+        return get(.annotatedDeclaration, dictionary)
     }
 
     /**
@@ -164,8 +173,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Substructure array if successful.
     */
-    internal static func getSubstructure(dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
-        return get(.Substructure, dictionary)
+    internal static func getSubstructure(_ dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
+        return get(.substructure, dictionary)
     }
 
     /**
@@ -175,8 +184,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Name offset int if successful.
     */
-    internal static func getNameOffset(dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.NameOffset, dictionary)
+    internal static func getNameOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
+        return get(.nameOffset, dictionary)
     }
 
     /**
@@ -186,8 +195,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Length int if successful.
     */
-    internal static func getNameLength(dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.NameLength, dictionary)
+    internal static func getNameLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
+        return get(.nameLength, dictionary)
     }
 
     /**
@@ -197,8 +206,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Body offset int if successful.
     */
-    internal static func getBodyOffset(dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.BodyOffset, dictionary)
+    internal static func getBodyOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
+        return get(.bodyOffset, dictionary)
     }
 
     /**
@@ -208,8 +217,8 @@ internal enum SwiftDocKey: String {
 
     - returns: Body length int if successful.
     */
-    internal static func getBodyLength(dictionary: [String: SourceKitRepresentable]) -> Int64? {
-        return get(.BodyLength, dictionary)
+    internal static func getBodyLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
+        return get(.bodyLength, dictionary)
     }
 
     /**
@@ -219,8 +228,8 @@ internal enum SwiftDocKey: String {
 
     - returns: File path string if successful.
     */
-    internal static func getFilePath(dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.FilePath, dictionary)
+    internal static func getFilePath(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+        return get(.filePath, dictionary)
     }
 
     /**
@@ -230,7 +239,115 @@ internal enum SwiftDocKey: String {
 
     - returns: Full xml docs string if successful.
     */
-    internal static func getFullXMLDocs(dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.FullXMLDocs, dictionary)
+    internal static func getFullXMLDocs(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+        return get(.fullXMLDocs, dictionary)
     }
+}
+
+// MARK: - migration support
+extension SwiftDocKey {
+    @available(*, unavailable, renamed: "annotatedDeclaration")
+    public static var AnnotatedDeclaration: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "bodyLength")
+    public static var BodyLength: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "bodyOffset")
+    public static var BodyOffset: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "diagnosticStage")
+    public static var DiagnosticStage: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "filePath")
+    public static var FilePath: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "fullXMLDocs")
+    public static var FullXMLDocs: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "kind")
+    public static var Kind: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "length")
+    public static var Length: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "name")
+    public static var Name: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "nameLength")
+    public static var NameLength: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "nameOffset")
+    public static var NameOffset: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "offset")
+    public static var Offset: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "substructure")
+    public static var Substructure: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "syntaxMap")
+    public static var SyntaxMap: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "typeName")
+    public static var TypeName: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "inheritedtypes")
+    public static var Inheritedtypes: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docColumn")
+    public static var DocColumn: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "documentationComment")
+    public static var DocumentationComment: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docDeclaration")
+    public static var DocDeclaration: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docDiscussion")
+    public static var DocDiscussion: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docFile")
+    public static var DocFile: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docLine")
+    public static var DocLine: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docName")
+    public static var DocName: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docParameters")
+    public static var DocParameters: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docResultDiscussion")
+    public static var DocResultDiscussion: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "docType")
+    public static var DocType: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "usr")
+    public static var USR: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "parsedDeclaration")
+    public static var ParsedDeclaration: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "parsedScopeEnd")
+    public static var ParsedScopeEnd: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "parsedScopeStart")
+    public static var ParsedScopeStart: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "swiftDeclaration")
+    public static var SwiftDeclaration: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "alwaysDeprecated")
+    public static var AlwaysDeprecated: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "alwaysUnavailable")
+    public static var AlwaysUnavailable: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "deprecationMessage")
+    public static var DeprecationMessage: SwiftDocKey { fatalError() }
+
+    @available(*, unavailable, renamed: "unavailableMessage")
+    public static var UnavailableMessage: SwiftDocKey { fatalError() }
 }

@@ -6,13 +6,15 @@
 //  Copyright © 2015 SourceKitten. All rights reserved.
 //
 
+#if !os(Linux)
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
 
 public struct Documentation {
-    let parameters: [Parameter]
-    let returnDiscussion: [Text]
+    public let parameters: [Parameter]
+    public let returnDiscussion: [Text]
 
     init(comment: CXComment) {
         let comments = (0..<comment.count()).map { comment[$0] }
@@ -26,3 +28,5 @@ public struct Documentation {
         }
     }
 }
+
+#endif

@@ -10,18 +10,20 @@ import Foundation
 
 struct DynamicLinkLibrary {
     let path: String
-    let handle: UnsafeMutablePointer<Void>
-    
-    func loadSymbol<T>(symbol: String) -> T {
-        let sym = Darwin.dlsym(handle, symbol)
-        if sym == nil {
-            let errorString = String(UTF8String: dlerror())
-            fatalError("Finding symbol \(symbol) failed: \(errorString)")
+    let handle: UnsafeMutableRawPointer
+
+    func load<T>(symbol: String) -> T {
+        if let sym = dlsym(handle, symbol) {
+            return unsafeBitCast(sym, to: T.self)
         }
-        return unsafeBitCast(sym, T.self)
+        let errorString = String(validatingUTF8: dlerror())
+        fatalError("Finding symbol \(symbol) failed: \(errorString ?? "unknown error")")
     }
 }
 
+#if os(Linux)
+let toolchainLoader = Loader(searchPaths: [linuxSourceKitLibPath])
+#else
 let toolchainLoader = Loader(searchPaths: [
     xcodeDefaultToolchainOverride,
     toolchainDir,
@@ -33,25 +35,25 @@ let toolchainLoader = Loader(searchPaths: [
     applicationsDir?.xcodeDeveloperDir.toolchainDir,
     applicationsDir?.xcodeBetaDeveloperDir.toolchainDir,
     userApplicationsDir?.xcodeDeveloperDir.toolchainDir,
-    userApplicationsDir?.xcodeBetaDeveloperDir.toolchainDir,
-    ].flatMap { path in
-        if let fullPath = path?.usrLibDir where fullPath.isFile {
-            return fullPath
-        }
-        return nil
-    })
+    userApplicationsDir?.xcodeBetaDeveloperDir.toolchainDir
+].flatMap { path in
+    if let fullPath = path?.usrLibDir, fullPath.isFile {
+        return fullPath
+    }
+    return nil
+})
+#endif
 
 struct Loader {
     let searchPaths: [String]
 
     func load(path: String) -> DynamicLinkLibrary {
-        let fullPaths = searchPaths.map { $0.stringByAppendingPathComponent(path) }.filter { $0.isFile }
+        let fullPaths = searchPaths.map { $0.appending(pathComponent: path) }.filter { $0.isFile }
 
         // try all fullPaths that contains target file,
         // then try loading with simple path that depends resolving to DYLD
         for fullPath in fullPaths + [path] {
-            let handle = dlopen(fullPath, RTLD_LAZY)
-            if handle != nil {
+            if let handle = dlopen(fullPath, RTLD_LAZY) {
                 return DynamicLinkLibrary(path: path, handle: handle)
             }
         }
@@ -60,19 +62,25 @@ struct Loader {
     }
 }
 
+private func env(_ name: String) -> String? {
+    return ProcessInfo.processInfo.environment[name]
+}
+
+/// Returns "LINUX_SOURCEKIT_LIB_PATH" environment variable,
+/// or "/usr/lib" if unspecified.
+internal let linuxSourceKitLibPath = env("LINUX_SOURCEKIT_LIB_PATH") ?? "/usr/lib"
+
 /// Returns "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable
 ///
 /// `launch-with-toolchain` sets the toolchain path to the
 /// "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable.
-private let xcodeDefaultToolchainOverride: String? =
-    NSProcessInfo.processInfo().environment["XCODE_DEFAULT_TOOLCHAIN_OVERRIDE"]
+private let xcodeDefaultToolchainOverride = env("XCODE_DEFAULT_TOOLCHAIN_OVERRIDE")
 
 /// Returns "TOOLCHAIN_DIR" environment variable
 ///
 /// `Xcode`/`xcodebuild` sets the toolchain path to the
 /// "TOOLCHAIN_DIR" environment variable.
-private let toolchainDir: String? =
-    NSProcessInfo.processInfo().environment["TOOLCHAIN_DIR"]
+private let toolchainDir = env("TOOLCHAIN_DIR")
 
 /// Returns toolchain directory that parsed from result of `xcrun -find swift`
 ///
@@ -80,31 +88,32 @@ private let toolchainDir: String? =
 private let xcrunFindPath: String? = {
     let pathOfXcrun = "/usr/bin/xcrun"
 
-    if !NSFileManager.defaultManager().isExecutableFileAtPath(pathOfXcrun) {
+    if !FileManager.default.isExecutableFile(atPath: pathOfXcrun) {
         return nil
     }
 
-    let task = NSTask()
+    let task = Process()
     task.launchPath = pathOfXcrun
     task.arguments = ["-find", "swift"]
 
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
     task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
 
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    guard let output = String(data: data, encoding: NSUTF8StringEncoding) else {
+    guard let output = String(data: data, encoding: .utf8) else {
         return nil
     }
 
     var start = output.startIndex
+    var end = output.startIndex
     var contentsEnd = output.startIndex
-    output.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, forRange: start..<start)
-    let xcrunFindSwiftPath = output.substringWithRange(start..<contentsEnd)
+    output.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: start..<start)
+    let xcrunFindSwiftPath = output.substring(with: start..<contentsEnd)
     guard xcrunFindSwiftPath.hasSuffix("/usr/bin/swift") else {
         return nil
     }
-    let xcrunFindPath = xcrunFindSwiftPath.deletingLastPathComponents(3)
+    let xcrunFindPath = xcrunFindSwiftPath.deleting(lastPathComponents: 3)
     // Return nil if xcrunFindPath points to "Command Line Tools OS X for Xcode"
     // because it doesn't contain `sourcekitd.framework`.
     if xcrunFindPath == "/Library/Developer/CommandLineTools" {
@@ -114,34 +123,37 @@ private let xcrunFindPath: String? = {
 }()
 
 private let applicationsDir: String? =
-    NSSearchPathForDirectoriesInDomains(.ApplicationDirectory, .SystemDomainMask, true).first
+    NSSearchPathForDirectoriesInDomains(.applicationDirectory, .systemDomainMask, true).first
 
 private let userApplicationsDir: String? =
-    NSSearchPathForDirectoriesInDomains(.ApplicationDirectory, .UserDomainMask, true).first
+    NSSearchPathForDirectoriesInDomains(.applicationDirectory, .userDomainMask, true).first
 
 private extension String {
-    private var toolchainDir: String {
-        return stringByAppendingPathComponent("Toolchains/XcodeDefault.xctoolchain")
+    var toolchainDir: String {
+        return appending(pathComponent: "Toolchains/XcodeDefault.xctoolchain")
     }
 
-    private var xcodeDeveloperDir: String {
-        return stringByAppendingPathComponent("Xcode.app/Contents/Developer")
-    }
-    
-    private var xcodeBetaDeveloperDir: String {
-        return stringByAppendingPathComponent("Xcode-beta.app/Contents/Developer")
+    var xcodeDeveloperDir: String {
+        return appending(pathComponent: "Xcode.app/Contents/Developer")
     }
 
-    private var usrLibDir: String {
-        return stringByAppendingPathComponent("/usr/lib")
+    var xcodeBetaDeveloperDir: String {
+        return appending(pathComponent: "Xcode-beta.app/Contents/Developer")
     }
 
-    private func stringByAppendingPathComponent(str: String) -> String {
-        return (self as NSString).stringByAppendingPathComponent(str)
+    var usrLibDir: String {
+        return appending(pathComponent: "/usr/lib")
     }
 
-    private func deletingLastPathComponents(n: Int) -> String {
-        let pathComponents = NSString(string: self).pathComponents.dropLast(n)
-        return NSString.pathWithComponents(Array(pathComponents))
+    func appending(pathComponent: String) -> String {
+        return URL(fileURLWithPath: self).appendingPathComponent(pathComponent).path
+    }
+
+    func deleting(lastPathComponents numberOfPathComponents: Int) -> String {
+        var url = URL(fileURLWithPath: self)
+        for _ in 0..<numberOfPathComponents {
+            url = url.deletingLastPathComponent()
+        }
+        return url.path
     }
 }

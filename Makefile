@@ -2,24 +2,27 @@ TEMPORARY_FOLDER?=/tmp/SourceKitten.dst
 PREFIX?=/usr/local
 BUILD_TOOL?=xcodebuild
 
-XCODEFLAGS=-workspace 'SourceKitten.xcworkspace' -scheme 'sourcekitten' DSTROOT=$(TEMPORARY_FOLDER)
+XCODEFLAGS=-workspace 'SourceKitten.xcworkspace' \
+	-scheme 'sourcekitten' \
+	DSTROOT=$(TEMPORARY_FOLDER) \
+	OTHER_LDFLAGS=-Wl,-headerpad_max_install_names
 
-BUILT_BUNDLE=$(TEMPORARY_FOLDER)/Applications/sourcekitten.app
+APPLICATIONS_FOLDER=$(TEMPORARY_FOLDER)/Applications
+BUILT_BUNDLE=$(APPLICATIONS_FOLDER)/sourcekitten.app
 SOURCEKITTEN_FRAMEWORK_BUNDLE=$(BUILT_BUNDLE)/Contents/Frameworks/SourceKittenFramework.framework
 SOURCEKITTEN_EXECUTABLE=$(BUILT_BUNDLE)/Contents/MacOS/sourcekitten
+SWIFT_STANDARD_LIBRARIES=$(BUILT_BUNDLE)/Contents/Frameworks/libswift*
 
 FRAMEWORKS_FOLDER=$(PREFIX)/Frameworks
 BINARIES_FOLDER=$(PREFIX)/bin
 
 OUTPUT_PACKAGE=SourceKitten.pkg
 
-VERSION_STRING=$(shell agvtool what-marketing-version -terse1)
 COMPONENTS_PLIST=Source/sourcekitten/Components.plist
+SOURCEKITTEN_PLIST=Source/sourcekitten/Info.plist
+SOURCEKITTENFRAMEWORK_PLIST=Source/SourceKittenFramework/Info.plist
 
-SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-03-01-a
-SWIFT_COMMAND=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/swift
-SWIFT_BUILD_COMMAND=$(SWIFT_COMMAND) build
-SWIFT_TEST_COMMAND=$(SWIFT_COMMAND) test
+VERSION_STRING=$(shell /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$(SOURCEKITTEN_PLIST)")
 
 .PHONY: all bootstrap clean install package test uninstall
 
@@ -52,7 +55,8 @@ installables: clean bootstrap
 	mkdir -p "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)"
 	mv -f "$(SOURCEKITTEN_FRAMEWORK_BUNDLE)" "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework"
 	mv -f "$(SOURCEKITTEN_EXECUTABLE)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)/sourcekitten"
-	rm -rf "$(BUILT_BUNDLE)"
+	mv -f $(SWIFT_STANDARD_LIBRARIES) "$(TEMPORARY_FOLDER)$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework/Versions/A/Frameworks"
+	rm -rf "$(APPLICATIONS_FOLDER)"
 
 prefix_install: installables
 	mkdir -p "$(FRAMEWORKS_FOLDER)" "$(BINARIES_FOLDER)"
@@ -70,23 +74,31 @@ package: installables
 
 archive:
 	carthage build --no-skip-current --platform mac
-	carthage archive SourceKittenFramework Yaml SWXMLHash
+	carthage archive SourceKittenFramework Yams SWXMLHash
 
 release: package archive
 
-swift_snapshot_install:
-	curl https://swift.org/builds/development/xcode/$(SWIFT_SNAPSHOT)/$(SWIFT_SNAPSHOT)-osx.pkg -o swift.pkg
-	sudo installer -pkg swift.pkg -target /
+docker_test:
+	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:31 swift test
 
-spm:
-	$(SWIFT_BUILD_COMMAND) -v
+docker_test_302:
+	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:302 swift test
 
-spm_test: PATH:=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/:$(PATH)
-spm_test: spm
-	$(SWIFT_TEST_COMMAND)
+# http://irace.me/swift-profiling/
+display_compilation_time:
+	$(BUILD_TOOL) $(XCODEFLAGS) OTHER_SWIFT_FLAGS="-Xfrontend -debug-time-function-bodies" clean build-for-testing | grep -E ^[1-9]{1}[0-9]*.[0-9]ms | sort -n
 
-spm_clean:
-	$(SWIFT_BUILD_COMMAND) --clean
+publish:
+	brew update && brew bump-formula-pr --tag=$(shell git describe --tags) --revision=$(shell git rev-parse HEAD) sourcekitten
+	pod trunk push
 
-spm_clean_dist:
-	$(SWIFT_BUILD_COMMAND) --clean=dist
+get_version:
+	@echo $(VERSION_STRING)
+
+set_version:
+	$(eval NEW_VERSION := $(filter-out $@,$(MAKECMDGOALS)))
+	@/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $(NEW_VERSION)" "$(SOURCEKITTENFRAMEWORK_PLIST)"
+	@/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $(NEW_VERSION)" "$(SOURCEKITTEN_PLIST)"
+
+%:
+	@:

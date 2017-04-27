@@ -9,7 +9,20 @@
 /// Language Enum.
 public enum Language {
     /// Swift.
-    case Swift
+    case swift
     /// Objective-C.
-    case ObjC
+    case objc
+}
+
+// MARK: - migration support
+extension Language {
+    @available(*, unavailable, renamed: "swift")
+    public static var Swift: Language {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "objc")
+    public static var ObjC: Language {
+        fatalError()
+    }
 }

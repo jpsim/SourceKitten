@@ -10,7 +10,9 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-let fixturesDirectory = (#file as NSString).stringByDeletingLastPathComponent + "/Fixtures/"
+let fixturesDirectory = URL(fileURLWithPath: #file).deletingLastPathComponent().path + "/Fixtures/"
+
+#if !os(Linux)
 
 class ClangTranslationUnitTests: XCTestCase {
 
@@ -24,26 +26,28 @@ class ClangTranslationUnitTests: XCTestCase {
             "arg1",
             "arg2"
         ]
-        let (parsedHeaderFiles, parsedXcodebuildArguments) = parseHeaderFilesAndXcodebuildArguments(headerFiles + xcodebuildArguments)
-        XCTAssertEqual(parsedHeaderFiles, headerFiles.map({$0.absolutePathRepresentation()}), "Objective-C header files should be parsed")
+        let (parsedHeaderFiles, parsedXcodebuildArguments) = parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: headerFiles + xcodebuildArguments)
+        XCTAssertEqual(parsedHeaderFiles, headerFiles.map({ $0.bridge().absolutePathRepresentation() }), "Objective-C header files should be parsed")
         XCTAssertEqual(parsedXcodebuildArguments, xcodebuildArguments, "xcodebuild arguments should be parsed")
     }
 
-    private func compareClangFixture(fixture: String) {
+    private func compare(clangFixture fixture: String) {
         let tu = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
                                       compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
-        compareJSONStringWithFixturesName((fixture as NSString).lastPathComponent, jsonString: tu)
+        compareJSONString(withFixtureNamed: (fixture as NSString).lastPathComponent, jsonString: tu)
     }
 
     func testBasicObjectiveCDocs() {
-        compareClangFixture("Musician")
+        compare(clangFixture: "Musician")
     }
-    
+
     func testUnicodeInObjectiveCDocs() {
-        compareClangFixture("SuperScript")
+        compare(clangFixture: "SuperScript")
     }
 
     func testRealmObjectiveCDocs() {
-        compareClangFixture("Realm/Realm")
+        compare(clangFixture: "Realm/Realm")
     }
 }
+
+#endif
