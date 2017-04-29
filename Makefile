@@ -79,7 +79,7 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:31 swift test
+	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:311 swift test
 
 docker_test_302:
 	docker run -v `pwd`:`pwd` -w `pwd` norionomura/sourcekit:302 swift test
