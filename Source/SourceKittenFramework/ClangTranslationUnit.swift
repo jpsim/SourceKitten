@@ -20,7 +20,7 @@ extension Sequence where Iterator.Element: Hashable {
 }
 
 extension Sequence {
-    fileprivate func grouped<U: Hashable>(by transform: (Iterator.Element) -> U) -> [U: [Iterator.Element]] {
+    fileprivate func grouped<U>(by transform: (Iterator.Element) -> U) -> [U: [Iterator.Element]] {
         return reduce([:]) { dictionary, element in
             var dictionary = dictionary
             let key = transform(element)
