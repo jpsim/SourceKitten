@@ -1892,6 +1892,34 @@
         "key.doc.declaration" : "public protocol CommandProtocol",
         "key.substructure" : [
           {
+            "key.filepath" : "Sources\/Commandant\/Command.swift",
+            "key.doc.file" : "Sources\/Commandant\/Command.swift",
+            "key.annotated_decl" : "<Declaration>associatedtype Options : <Type usr=\"s:P10Commandant15OptionsProtocol\">OptionsProtocol<\/Type><\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.associatedtype><syntaxtype.keyword>associatedtype<\/syntaxtype.keyword> <decl.name>Options<\/decl.name> : <ref.protocol usr=\"s:P10Commandant15OptionsProtocol\">OptionsProtocol<\/ref.protocol><\/decl.associatedtype>",
+            "key.doc.declaration" : "associatedtype Options : OptionsProtocol",
+            "key.length" : 7,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 16,
+            "key.typeusr" : "_Tt",
+            "key.kind" : "source.lang.swift.decl.associatedtype",
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Command.swift\" line=\"16\" column=\"17\"><Name>Options<\/Name><USR>s:P10Commandant15CommandProtocol7Options<\/USR><Declaration>associatedtype Options : OptionsProtocol<\/Declaration><Abstract><Para>The command’s options type.<\/Para><\/Abstract><\/Other>",
+            "key.offset" : 346,
+            "key.doc.line" : 16,
+            "key.typename" : "Self.Options.Type",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
+            "key.doc.name" : "Options",
+            "key.doc.column" : 17,
+            "key.name" : "Options",
+            "key.doc.comment" : "The command's options type.",
+            "key.usr" : "s:P10Commandant15CommandProtocol7Options",
+            "key.parsed_declaration" : "associatedtype Options: OptionsProtocol",
+            "key.parsed_scope.end" : 16
+          },
+          {
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.length" : 24,
             "key.doc.type" : "Other",
@@ -1923,34 +1951,6 @@
             "key.bodylength" : 5,
             "key.parsed_scope.end" : 22,
             "key.namelength" : 4
-          },
-          {
-            "key.filepath" : "Sources\/Commandant\/Command.swift",
-            "key.doc.file" : "Sources\/Commandant\/Command.swift",
-            "key.annotated_decl" : "<Declaration>associatedtype Options : <Type usr=\"s:P10Commandant15OptionsProtocol\">OptionsProtocol<\/Type><\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.associatedtype><syntaxtype.keyword>associatedtype<\/syntaxtype.keyword> <decl.name>Options<\/decl.name> : <ref.protocol usr=\"s:P10Commandant15OptionsProtocol\">OptionsProtocol<\/ref.protocol><\/decl.associatedtype>",
-            "key.doc.declaration" : "associatedtype Options : OptionsProtocol",
-            "key.length" : 7,
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 16,
-            "key.typeusr" : "_Tt",
-            "key.kind" : "source.lang.swift.decl.associatedtype",
-            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Command.swift\" line=\"16\" column=\"17\"><Name>Options<\/Name><USR>s:P10Commandant15CommandProtocol7Options<\/USR><Declaration>associatedtype Options : OptionsProtocol<\/Declaration><Abstract><Para>The command’s options type.<\/Para><\/Abstract><\/Other>",
-            "key.offset" : 346,
-            "key.doc.line" : 16,
-            "key.typename" : "Self.Options.Type",
-            "key.actionable" : [
-              {
-                "key.actionname" : "Rename"
-              }
-            ],
-            "key.doc.name" : "Options",
-            "key.doc.column" : 17,
-            "key.name" : "Options",
-            "key.doc.comment" : "The command's options type.",
-            "key.usr" : "s:P10Commandant15CommandProtocol7Options",
-            "key.parsed_declaration" : "associatedtype Options: OptionsProtocol",
-            "key.parsed_scope.end" : 16
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2357,34 +2357,6 @@
             "key.setter_accessibility" : "source.lang.swift.accessibility.private"
           },
           {
-            "key.filepath" : "Sources\/Commandant\/Command.swift",
-            "key.doc.file" : "Sources\/Commandant\/Command.swift",
-            "key.annotated_decl" : "<Declaration>public subscript(verb: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:V10Commandant14CommandWrapper\">CommandWrapper<\/Type>&lt;<Type usr=\"s:tC10Commandant15CommandRegistry11ClientErrorMx\">ClientError<\/Type>&gt;? { get }<\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.function.subscript><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>subscript<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.name>verb<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.struct usr=\"s:V10Commandant14CommandWrapper\">CommandWrapper<\/ref.struct>&lt;<ref.generic_type_param usr=\"s:tC10Commandant15CommandRegistry11ClientErrorMx\">ClientError<\/ref.generic_type_param>&gt;?<\/decl.function.returntype> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.function.subscript>",
-            "key.doc.declaration" : "public subscript(verb: String) -> CommandWrapper<ClientError>? { get }",
-            "key.length" : 9,
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 107,
-            "key.typeusr" : "_TtFSSGSqGV10Commandant14CommandWrapperx__",
-            "key.kind" : "source.lang.swift.decl.function.subscript",
-            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Command.swift\" line=\"107\" column=\"9\"><Name>subscript(_:)<\/Name><USR>s:iC10Commandant15CommandRegistry9subscriptFSSGSqGVS_14CommandWrapperx__<\/USR><Declaration>public subscript(verb: String) -&gt; CommandWrapper&lt;ClientError&gt;? { get }<\/Declaration><Abstract><Para>Returns the command matching the given verb, or nil if no such command is registered.<\/Para><\/Abstract><\/Other>",
-            "key.offset" : 3302,
-            "key.doc.line" : 107,
-            "key.typename" : "(String) -> CommandWrapper<ClientError>?",
-            "key.actionable" : [
-              {
-                "key.actionname" : "Rename"
-              }
-            ],
-            "key.doc.name" : "subscript(_:)",
-            "key.doc.column" : 9,
-            "key.name" : "subscript(_:)",
-            "key.doc.comment" : "Returns the command matching the given verb, or nil if no such command\nis registered.",
-            "key.usr" : "s:iC10Commandant15CommandRegistry9subscriptFSSGSqGVS_14CommandWrapperx__",
-            "key.parsed_declaration" : "public subscript(verb: String) -> CommandWrapper<ClientError>?",
-            "key.parsed_scope.end" : 107
-          },
-          {
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.length" : 115,
             "key.doc.type" : "Other",
@@ -2523,6 +2495,34 @@
             "key.bodylength" : 54,
             "key.parsed_scope.end" : 103,
             "key.namelength" : 46
+          },
+          {
+            "key.filepath" : "Sources\/Commandant\/Command.swift",
+            "key.doc.file" : "Sources\/Commandant\/Command.swift",
+            "key.annotated_decl" : "<Declaration>public subscript(verb: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:V10Commandant14CommandWrapper\">CommandWrapper<\/Type>&lt;<Type usr=\"s:tC10Commandant15CommandRegistry11ClientErrorMx\">ClientError<\/Type>&gt;? { get }<\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.function.subscript><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>subscript<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.name>verb<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.struct usr=\"s:V10Commandant14CommandWrapper\">CommandWrapper<\/ref.struct>&lt;<ref.generic_type_param usr=\"s:tC10Commandant15CommandRegistry11ClientErrorMx\">ClientError<\/ref.generic_type_param>&gt;?<\/decl.function.returntype> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.function.subscript>",
+            "key.doc.declaration" : "public subscript(verb: String) -> CommandWrapper<ClientError>? { get }",
+            "key.length" : 9,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 107,
+            "key.typeusr" : "_TtFSSGSqGV10Commandant14CommandWrapperx__",
+            "key.kind" : "source.lang.swift.decl.function.subscript",
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Command.swift\" line=\"107\" column=\"9\"><Name>subscript(_:)<\/Name><USR>s:iC10Commandant15CommandRegistry9subscriptFSSGSqGVS_14CommandWrapperx__<\/USR><Declaration>public subscript(verb: String) -&gt; CommandWrapper&lt;ClientError&gt;? { get }<\/Declaration><Abstract><Para>Returns the command matching the given verb, or nil if no such command is registered.<\/Para><\/Abstract><\/Other>",
+            "key.offset" : 3302,
+            "key.doc.line" : 107,
+            "key.typename" : "(String) -> CommandWrapper<ClientError>?",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
+            "key.doc.name" : "subscript(_:)",
+            "key.doc.column" : 9,
+            "key.name" : "subscript(_:)",
+            "key.doc.comment" : "Returns the command matching the given verb, or nil if no such command\nis registered.",
+            "key.usr" : "s:iC10Commandant15CommandRegistry9subscriptFSSGSqGVS_14CommandWrapperx__",
+            "key.parsed_declaration" : "public subscript(verb: String) -> CommandWrapper<ClientError>?",
+            "key.parsed_scope.end" : 107
           }
         ],
         "key.typeusr" : "_Tt",

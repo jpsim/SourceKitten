@@ -244,6 +244,24 @@ public enum SwiftDocKey: String {
     }
 }
 
+// MARK: - higher-level helpers
+extension SwiftDocKey {
+    /**
+     Get the best offset from the dictionary.
+
+     - parameter dictionary: Dictionary to get value from.
+
+     - returns: Best 'offset' for the declaration.  Name offset normally preferable,
+       but some eg. enumcase have invalid 0 here.
+     */
+    internal static func getBestOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
+        if let nameOffset = getNameOffset(dictionary), nameOffset > 0 {
+            return nameOffset
+        }
+        return getOffset(dictionary)
+    }
+}
+
 // MARK: - migration support
 extension SwiftDocKey {
     @available(*, unavailable, renamed: "annotatedDeclaration")

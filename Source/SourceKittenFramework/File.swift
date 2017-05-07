@@ -288,7 +288,7 @@ public final class File {
     private func shouldInsert(parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
         return SwiftDocKey.getSubstructure(parent) != nil &&
             ((offset == 0) ||
-            (shouldTreatAsSameFile(parent) && SwiftDocKey.getNameOffset(parent) == offset))
+            SwiftDocKey.getNameOffset(parent) == offset)
     }
 
     /**
@@ -305,15 +305,15 @@ public final class File {
     private func insert(doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
         var parent = parent
         if shouldInsert(parent: parent, offset: offset) {
-            var substructure = SwiftDocKey.getSubstructure(parent)!
-            var insertIndex = substructure.count
-            for (index, structure) in substructure.reversed().enumerated() {
-                if SwiftDocKey.getOffset(structure as! [String: SourceKitRepresentable])! < offset {
-                    break
-                }
-                insertIndex = substructure.count - index
-            }
+            var substructure = SwiftDocKey.getSubstructure(parent) as! [[String: SourceKitRepresentable]]
+            let docOffset = SwiftDocKey.getBestOffset(doc)!
+
+            let insertIndex = substructure.index(where: { structure in
+                SwiftDocKey.getBestOffset(structure)! > docOffset
+            }) ?? substructure.endIndex
+
             substructure.insert(doc, at: insertIndex)
+
             parent[SwiftDocKey.substructure.rawValue] = substructure
             return parent
         }
