@@ -89,14 +89,22 @@ struct DocCommand: CommandProtocol {
 
     func runObjC(options: Options, args: [String]) -> Result<(), SourceKittenError> {
         #if os(Linux)
-        fatalError("unsupported")
+            fatalError("unsupported")
         #else
-        if args.isEmpty {
-            return .failure(.invalidArgument(description: "at least 5 arguments are required when using `--objc`"))
-        }
-        let translationUnit = ClangTranslationUnit(headerFiles: [args[0]], compilerArguments: Array(args.dropFirst(1)))
-        print(translationUnit)
-        return .success()
+            if args.isEmpty {
+                return .failure(.invalidArgument(description: "at least 5 arguments are required when using `--objc`"))
+            }
+
+            if let headerSplitIndex = args.index(of: "multi-header") {
+                let headers = args[0..<headerSplitIndex]
+                let compilerArgs = args.dropFirst(headerSplitIndex + 1);
+                let translationUnit = ClangTranslationUnit(headerFiles: Array(headers), compilerArguments: Array(compilerArgs))
+                print(translationUnit)
+            } else {
+                let translationUnit = ClangTranslationUnit(headerFiles: [args[0]], compilerArguments: Array(args.dropFirst(1)))
+                print(translationUnit)
+            }
+            return .success()
         #endif
     }
 }
