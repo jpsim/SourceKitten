@@ -184,11 +184,6 @@ public final class File {
             dictionary = merge(dictionary, parsedXMLDocs)
         }
 
-        if let commentBody = (syntaxMap.flatMap { parseDocumentationCommentBody(dictionary, syntaxMap: $0) }) {
-            // Parse documentation comment and add to dictionary
-            dictionary[SwiftDocKey.documentationComment.rawValue] = commentBody
-        }
-
         // Update substructure
         if let substructure = newSubstructure(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap) {
             dictionary[SwiftDocKey.substructure.rawValue] = substructure
@@ -359,36 +354,43 @@ public final class File {
     }
 
     /**
-    Parses `dictionary`'s documentation comment body.
-
-    - parameter dictionary: Dictionary to parse.
-    - parameter syntaxMap:  SyntaxMap for current file.
-
-    - returns: `dictionary`'s documentation comment body as a string, without any documentation
-               syntax (`/** ... */` or `/// ...`).
+    Add doc comment attributes to an otherwise complete set of declarations for a file.
+    - parameter dictionary: dictionary of file declarations
+    - parameter syntaxMap: syntaxmap for the file
+    - returns: dictionary of declarations with comments
     */
-    public func parseDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
-        let isExtension = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init) == .extension
-        let hasFullXMLDocs = dictionary.keys.contains(SwiftDocKey.fullXMLDocs.rawValue)
-        let hasRawDocComment: Bool = {
-            if !dictionary.keys.contains("key.attributes") { return false }
-            let attributes = (dictionary["key.attributes"] as! [SourceKitRepresentable])
-                .flatMap({ ($0 as! [String: SourceKitRepresentable]).values })
-                .map({ $0 as! String })
-            return attributes.contains("source.decl.attribute.__raw_doc_comment")
-        }()
+    public func addDocComments(dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
+        return addDocComments(dictionary: dictionary, finder: syntaxMap.createDocCommentFinder())
+    }
 
-        let hasDocumentationComment = (hasFullXMLDocs && !isExtension) || hasRawDocComment
-        guard hasDocumentationComment else { return nil }
+    /**
+     Add doc comment attributes to a declaration and its children
+     - parameter dictionary: declaration to update
+     - parameter finder: current state of doc comment location
+     - returns: updated version of declaration dictionary
+     */
+    func addDocComments(dictionary: [String: SourceKitRepresentable], finder: SyntaxMap.DocCommentFinder) -> [String: SourceKitRepresentable] {
+        var dictionary = dictionary
 
-        if let offset = isExtension ? SwiftDocKey.getNameOffset(dictionary) : SwiftDocKey.getOffset(dictionary),
-           let commentByteRange = syntaxMap.commentRange(beforeOffset: Int(offset)),
-           case let start = commentByteRange.lowerBound,
-           case let end = commentByteRange.upperBound,
-           let nsRange = contents.bridge().byteRangeToNSRange(start: start, length: end - start) {
-            return contents.commentBody(range: nsRange)
+        // special-case skip 'enumcase': has same offset as child 'enumelement'
+        if let kind = SwiftDocKey.getKind(dictionary),
+           kind != SwiftDeclarationKind.enumcase.rawValue,
+           let offset = SwiftDocKey.getBestOffset(dictionary),
+           let commentRange = finder.getRangeForDeclaration(atOffset: Int(offset)),
+           case let start = commentRange.lowerBound,
+           case let end = commentRange.upperBound,
+           let nsRange = contents.bridge().byteRangeToNSRange(start: start, length: end - start),
+           let commentBody = contents.commentBody(range: nsRange) {
+           dictionary[SwiftDocKey.documentationComment.rawValue] = commentBody
         }
-        return nil
+
+        if let substructure = SwiftDocKey.getSubstructure(dictionary) {
+            dictionary[SwiftDocKey.substructure.rawValue] = substructure.map {
+                self.addDocComments(dictionary: $0 as! [String: SourceKitRepresentable], finder: finder)
+            }
+        }
+
+        return dictionary
     }
 }
 

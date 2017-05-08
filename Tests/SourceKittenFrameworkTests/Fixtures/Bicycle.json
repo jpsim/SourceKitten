@@ -7,6 +7,7 @@
         "key.nameoffset" : 151,
         "key.namelength" : 8,
         "key.length" : 21,
+        "key.doc.comment" : "Deprecated extension.",
         "key.name" : "NSString",
         "key.bodyoffset" : 161,
         "key.bodylength" : 0,
