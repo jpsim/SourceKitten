@@ -57,8 +57,8 @@ public struct SyntaxMap {
 
 extension SyntaxToken {
     /// Is this a doc comment?
-    public var isDocComment: Bool {
-        return SyntaxKind.docComments().map { $0.rawValue }.contains(type)
+    internal var isDocComment: Bool {
+        return SyntaxKind.docComments().contains { $0.rawValue == type }
     }
 }
 
@@ -77,7 +77,7 @@ extension Array {
 extension SyntaxMap {
     /// The ranges of documentation comments described by the map, in the order
     /// that they occur in the file.
-    public var docCommentRanges: [Range<Int>] {
+    internal var docCommentRanges: [Range<Int>] {
         let docCommentBlocks = tokens.split { !$0.isDocComment }
         return docCommentBlocks.flatMap { ranges in
             ranges.first.flatMap { first in
@@ -94,20 +94,20 @@ extension SyntaxMap {
     The `getRangeForDeclaration(atOffset:)` method should be called with the file's
     declaration offsets in order to retrieve the most appropriate doc comment for each.
     */
-    public final class DocCommentFinder {
+    internal final class DocCommentFinder {
         /// Remaining doc comments that have not been assigned or skipped
         private var ranges: [Range<Int>]
         /// The most recent file offset requested
         private var previousOffset: Int
 
         /// Create a new doc comment finder from a `SyntaxMap`.
-        public init(syntaxMap: SyntaxMap) {
+        internal init(syntaxMap: SyntaxMap) {
             self.ranges = syntaxMap.docCommentRanges
             self.previousOffset = -1
         }
 
         /// Get the byte range of the declaration's doc comment, or nil if none.
-        public func getRangeForDeclaration(atOffset offset: Int) -> Range<Int>? {
+        internal func getRangeForDeclaration(atOffset offset: Int) -> Range<Int>? {
             guard offset > previousOffset else { return nil }
 
             let commentsBeforeDecl = ranges.prefix { $0.upperBound < offset }
@@ -118,7 +118,7 @@ extension SyntaxMap {
     }
 
     /// Create a new doc comment finder for this map
-    public func createDocCommentFinder() -> DocCommentFinder {
+    internal func createDocCommentFinder() -> DocCommentFinder {
         return DocCommentFinder(syntaxMap: self)
     }
 }

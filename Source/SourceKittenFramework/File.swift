@@ -282,8 +282,7 @@ public final class File {
     */
     private func shouldInsert(parent: [String: SourceKitRepresentable], offset: Int64) -> Bool {
         return SwiftDocKey.getSubstructure(parent) != nil &&
-            ((offset == 0) ||
-            SwiftDocKey.getNameOffset(parent) == offset)
+            ((offset == 0) || SwiftDocKey.getNameOffset(parent) == offset)
     }
 
     /**
@@ -313,14 +312,15 @@ public final class File {
             return parent
         }
         for key in parent.keys {
-            if let subArray = parent[key] as? [SourceKitRepresentable] {
-                var subArray = subArray
-                for i in 0..<subArray.count {
-                    if let subDict = insert(doc: doc, parent: subArray[i] as! [String: SourceKitRepresentable], offset: offset) {
-                        subArray[i] = subDict
-                        parent[key] = subArray
-                        return parent
-                    }
+            guard var subArray = parent[key] as? [SourceKitRepresentable] else {
+                continue
+            }
+            for i in 0..<subArray.count {
+                let subDict = insert(doc: doc, parent: subArray[i] as! [String: SourceKitRepresentable], offset: offset)
+                if let subDict = subDict {
+                    subArray[i] = subDict
+                    parent[key] = subArray
+                    return parent
                 }
             }
         }
@@ -359,7 +359,7 @@ public final class File {
     - parameter syntaxMap: syntaxmap for the file
     - returns: dictionary of declarations with comments
     */
-    public func addDocComments(dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
+    internal func addDocComments(dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
         return addDocComments(dictionary: dictionary, finder: syntaxMap.createDocCommentFinder())
     }
 
@@ -369,12 +369,12 @@ public final class File {
      - parameter finder: current state of doc comment location
      - returns: updated version of declaration dictionary
      */
-    func addDocComments(dictionary: [String: SourceKitRepresentable], finder: SyntaxMap.DocCommentFinder) -> [String: SourceKitRepresentable] {
+    internal func addDocComments(dictionary: [String: SourceKitRepresentable], finder: SyntaxMap.DocCommentFinder) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
 
         // special-case skip 'enumcase': has same offset as child 'enumelement'
-        if let kind = SwiftDocKey.getKind(dictionary),
-           kind != SwiftDeclarationKind.enumcase.rawValue,
+        if let kind = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init),
+           kind != .enumcase,
            let offset = SwiftDocKey.getBestOffset(dictionary),
            let commentRange = finder.getRangeForDeclaration(atOffset: Int(offset)),
            case let start = commentRange.lowerBound,
@@ -386,7 +386,7 @@ public final class File {
 
         if let substructure = SwiftDocKey.getSubstructure(dictionary) {
             dictionary[SwiftDocKey.substructure.rawValue] = substructure.map {
-                self.addDocComments(dictionary: $0 as! [String: SourceKitRepresentable], finder: finder)
+                addDocComments(dictionary: $0 as! [String: SourceKitRepresentable], finder: finder)
             }
         }
 
