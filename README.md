@@ -13,9 +13,7 @@ the Swift Package Manager.
 
 Building SourceKitten on Linux requires:
 
-* A Swift 3.0.x compiler and Swift Package Manager to be installed.
-  Swift 3.1 is not yet supported.
-  See [#354](https://github.com/jpsim/SourceKitten/issues/354) for details.
+* A Swift 3.x compiler and Swift Package Manager to be installed.
 * `libsourcekitdInProc.so` to be built and located in `/usr/lib`, or in another
   location specified by the `LINUX_SOURCEKIT_LIB_PATH` environment variable.
 
