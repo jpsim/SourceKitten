@@ -36,13 +36,13 @@ struct StructureCommand: CommandProtocol {
         if !options.file.isEmpty {
             if let file = File(path: options.file) {
                 print(Structure(file: file))
-                return .success()
+                return .success(())
             }
             return .failure(.readFailed(path: options.file))
         }
         if !options.text.isEmpty {
             print(Structure(file: File(contents: options.text)))
-            return .success()
+            return .success(())
         }
         return .failure(
             .invalidArgument(description: "either file or text must be set when calling structure")

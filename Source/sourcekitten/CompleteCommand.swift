@@ -69,6 +69,6 @@ struct CompleteCommand: CommandProtocol {
             offset: Int64(options.offset),
             arguments: args)
         print(CodeCompletionItem.parse(response: request.send()))
-        return .success()
+        return .success(())
     }
 }

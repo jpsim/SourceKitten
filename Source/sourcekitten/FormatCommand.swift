@@ -46,6 +46,6 @@ struct FormatCommand: CommandProtocol {
                     indentWidth: options.indentWidth)
             .data(using: .utf8)?
             .write(to: URL(fileURLWithPath: options.file), options: [])
-        return .success()
+        return .success(())
     }
 }
