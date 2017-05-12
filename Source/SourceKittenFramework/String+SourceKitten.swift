@@ -557,7 +557,8 @@ extension String {
 
         return lineComponents.map { line in
             if line.characters.count >= minLeadingCharacters {
-                return line[line.index(line.startIndex, offsetBy: minLeadingCharacters)..<line.endIndex]
+                let range = line.index(line.startIndex, offsetBy: minLeadingCharacters)..<line.endIndex
+                return line.substring(with: range)
             }
             return line
         }.joined(separator: "\n")
