@@ -75,12 +75,7 @@ class SwiftDocsTests: XCTestCase {
     }
 
     func testExtension() {
-    #if swift(>=3.1) && os(Linux)
-        // FIXME
-        print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
-    #else
         compareDocs(withFixtureNamed: "Extension")
-    #endif
     }
 
     func testParseFullXMLDocs() {
