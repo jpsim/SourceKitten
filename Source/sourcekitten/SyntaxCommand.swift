@@ -36,11 +36,11 @@ struct SyntaxCommand: CommandProtocol {
         if !options.file.isEmpty {
             if let file = File(path: options.file) {
                 print(SyntaxMap(file: file))
-                return .success()
+                return .success(())
             }
             return .failure(.readFailed(path: options.file))
         }
         print(SyntaxMap(file: File(contents: options.text)))
-        return .success()
+        return .success(())
     }
 }

@@ -59,7 +59,7 @@ struct DocCommand: CommandProtocol {
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
         if let docs = Module(spmName: moduleName)?.docs {
             print(docs)
-            return .success()
+            return .success(())
         }
         return .failure(.docFailed)
     }
@@ -69,7 +69,7 @@ struct DocCommand: CommandProtocol {
 
         if let docs = module?.docs {
             print(docs)
-            return .success()
+            return .success(())
         }
         return .failure(.docFailed)
     }
@@ -82,7 +82,7 @@ struct DocCommand: CommandProtocol {
         if let file = File(path: args[0]),
            let docs = SwiftDocs(file: file, arguments: sourcekitdArguments) {
             print(docs)
-            return .success()
+            return .success(())
         }
         return .failure(.readFailed(path: args[0]))
     }
@@ -96,7 +96,7 @@ struct DocCommand: CommandProtocol {
         }
         let translationUnit = ClangTranslationUnit(headerFiles: [args[0]], compilerArguments: Array(args.dropFirst(1)))
         print(translationUnit)
-        return .success()
+        return .success(())
         #endif
     }
 }

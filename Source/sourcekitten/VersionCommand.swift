@@ -19,6 +19,6 @@ struct VersionCommand: CommandProtocol {
 
     func run(_ options: NoOptions<SourceKittenError>) -> Result<(), SourceKittenError> {
         print(version)
-        return .success()
+        return .success(())
     }
 }

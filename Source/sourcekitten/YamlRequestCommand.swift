@@ -42,6 +42,6 @@ struct RequestCommand: CommandProtocol {
 
         let request = Request.yamlRequest(yaml: yaml)
         print(toJSON(toNSDictionary(request.send())))
-        return .success()
+        return .success(())
     }
 }
