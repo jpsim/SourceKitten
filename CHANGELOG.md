@@ -14,6 +14,13 @@
   [John Fairhurst](https://github.com/johnfairh)
   [#368](https://github.com/jpsim/SourceKitten/issues/368)
 
+* Fix crashes when parsing XML with Swift 3.1.1 on Linux.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#379](https://github.com/jpsim/SourceKitten/issues/379)
+
+* Fix compilation with latest Swift 4 snapshots.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
 ## 0.17.2
 
 ##### Breaking
