@@ -9,7 +9,7 @@ let package = Package(
   ],
   dependencies: [
     .Package(url: "https://github.com/Carthage/Commandant.git", versions: Version(0, 12, 0)..<Version(0, 12, .max)),
-    .Package(url: "https://github.com/norio-nomura/SWXMLHash.git", Version(3, 0, 4)),
+    .Package(url: "https://github.com/drmohundro/SWXMLHash.git", Version(3, 0, 5)),
     .Package(url: "https://github.com/jpsim/Yams.git", majorVersion: 0, minor: 3),
     .Package(url: "https://github.com/norio-nomura/Clang_C.git", majorVersion: 1),
     .Package(url: "https://github.com/norio-nomura/SourceKit.git", majorVersion: 1),
