@@ -20,11 +20,19 @@ extension CharacterSet {
         return _bridgeToObjectiveC()
     }
 }
+#if swift(>=4.0)
+extension NSTextCheckingResult {
+    public func rangeAt(_ index: Int) -> NSRange {
+        return range(at: index)
+    }
+}
+#else
 extension TextCheckingResult {
     public func rangeAt(_ index: Int) -> NSRange {
         return range(at: index)
     }
 }
+#endif
 #if swift(>=3.1)
 #else
 extension NSString {
