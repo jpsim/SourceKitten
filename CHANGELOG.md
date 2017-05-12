@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* More accurate doc comment association in Swift.  
+  [John Fairhurst](https://github.com/johnfairh)
+  [#368](https://github.com/jpsim/SourceKitten/issues/368)
 
 ## 0.17.2
 

@@ -74,6 +74,15 @@ class SwiftDocsTests: XCTestCase {
         compareDocs(withFixtureNamed: "Bicycle")
     }
 
+    func testExtension() {
+    #if swift(>=3.1) && os(Linux)
+        // FIXME
+        print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
+    #else
+        compareDocs(withFixtureNamed: "Extension")
+    #endif
+    }
+
     func testParseFullXMLDocs() {
         // swiftlint:disable:next line_length
         let xmlDocsString = "<Type file=\"file\" line=\"1\" column=\"2\"><Name>name</Name><USR>usr</USR><Declaration>declaration</Declaration><Abstract><Para>discussion</Para></Abstract><Parameters><Parameter><Name>param1</Name><Direction isExplicit=\"0\">in</Direction><Discussion><Para>param1_discussion</Para></Discussion></Parameter></Parameters><ResultDiscussion><Para>result_discussion</Para></ResultDiscussion></Type>"
@@ -100,7 +109,8 @@ extension SwiftDocsTests {
     static var allTests: [(String, (SwiftDocsTests) -> () throws -> Void)] {
         return [
             ("testSubscript", testSubscript),
-            ("testBicycle", testBicycle)
+            ("testBicycle", testBicycle),
+            ("testExtension", testExtension)
             // Fails on Linux
             // ("testParseFullXMLDocs", testParseFullXMLDocs),
         ]
