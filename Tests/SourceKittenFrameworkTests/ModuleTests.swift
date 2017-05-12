@@ -48,10 +48,6 @@ class ModuleTests: XCTestCase {
 #if SWIFT_PACKAGE
 extension ModuleTests {
     func testCommandantDocsSPM() {
-    #if swift(>=3.1) && os(Linux)
-        // FIXME
-        print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
-    #else
         func findCommandant(in directory: String) -> String? {
             guard let contents = try? FileManager.default.contentsOfDirectory(atPath: directory),
                 let subDirectory = contents.first(where: { $0.hasPrefix("Commandant") }) else {
@@ -72,7 +68,6 @@ extension ModuleTests {
         }
         let commandantModule = Module(spmName: "Commandant")!
         compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs, rootDirectory: commandantPath)
-    #endif
     }
 
     static var allTests: [(String, (ModuleTests) -> () throws -> Void)] {
