@@ -14,6 +14,7 @@ let package = Package(
     .Package(url: "https://github.com/norio-nomura/Clang_C.git", majorVersion: 1),
     .Package(url: "https://github.com/norio-nomura/SourceKit.git", majorVersion: 1),
   ],
+  swiftLanguageVersions: [3, 4],
   exclude: [
     "Source/SourceKittenFramework/clang-c",
     "Source/SourceKittenFramework/sourcekitd.h",
