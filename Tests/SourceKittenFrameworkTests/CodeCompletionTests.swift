@@ -17,8 +17,13 @@ class CodeCompletionTests: XCTestCase {
         let completionItems = CodeCompletionItem.parse(response:
             Request.codeCompletionRequest(file: file, contents: "0.", offset: 2,
                 arguments: ["-c", file, "-sdk", sdkPath()]).send())
-        compareJSONString(withFixtureNamed: "SimpleCodeCompletion",
+    #if swift(>=4.0)
+        compareJSONString(withFixtureNamed: "SimpleCodeCompletion.swift4",
             jsonString: completionItems)
+    #else
+        compareJSONString(withFixtureNamed: "SimpleCodeCompletion",
+                          jsonString: completionItems)
+    #endif
     }
 }
 
