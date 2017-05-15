@@ -150,6 +150,11 @@ class StringTests: XCTestCase {
         XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 27)! == (1, 2))
         XCTAssert(string.bridge().lineRangeWithByteRange(start: 27, length: 0)! == (2, 2))
     }
+
+    func testLineAndCharacterForByteOffset() {
+        let string = "public typealias 🔳 = QRCode"
+        XCTAssert(string.bridge().lineAndCharacter(forByteOffset: 17)! == (1, 18))
+    }
 }
 
 typealias LineRangeType = (start: Int, end: Int)
@@ -174,7 +179,8 @@ extension StringTests {
             ("testGenerateDocumentedTokenOffsetsEmpty", testGenerateDocumentedTokenOffsetsEmpty),
             ("testSubstringWithByteRange", testSubstringWithByteRange),
             ("testSubstringLinesWithByteRange", testSubstringLinesWithByteRange),
-            ("testLineRangeWithByteRange", testLineRangeWithByteRange)
+            ("testLineRangeWithByteRange", testLineRangeWithByteRange),
+            ("testLineAndCharacterForByteOffset", testLineAndCharacterForByteOffset)
         ]
     }
 }
