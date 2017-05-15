@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix running `sourcekitten version` when building with Swift Package Manager.  
+  [JP Simard](https://github.com/jpsim)
 
 ## 0.17.3
 
