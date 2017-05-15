@@ -6,7 +6,7 @@
 //  Copyright © 2016 SourceKitten. All rights reserved.
 //
 
-// swiftlint:disable variable_name
+// swiftlint:disable identifier_name
 
 /// Swift declaration kinds.
 /// Found in `strings SourceKitService | grep source.lang.swift.stmt.`.
