@@ -7,18 +7,15 @@
 //
 
 import Commandant
-import Foundation
 import Result
-
-private let version = Bundle(identifier: "com.sourcekitten.SourceKittenFramework")!
-    .object(forInfoDictionaryKey: "CFBundleShortVersionString")!
+import SourceKittenFramework
 
 struct VersionCommand: CommandProtocol {
     let verb = "version"
     let function = "Display the current version of SourceKitten"
 
     func run(_ options: NoOptions<SourceKittenError>) -> Result<(), SourceKittenError> {
-        print(version)
+        print(Version.current.value)
         return .success(())
     }
 }
