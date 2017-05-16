@@ -218,7 +218,7 @@ extension CXCursor {
            let swiftDeclaration = SWXMLHash.parse(annotatedDeclarationXML).element?.recursiveText {
                 return swiftDeclaration
         }
-        
+
         return nil
     }
 }
