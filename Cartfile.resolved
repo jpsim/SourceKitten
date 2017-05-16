@@ -1,5 +1,5 @@
 github "Carthage/Commandant" "0.12.0"
 github "antitypical/Result" "3.2.1"
-github "drmohundro/SWXMLHash" "3.0.5"
+github "drmohundro/SWXMLHash" "3.1.0"
 github "jpsim/Yams" "0.3.2"
 github "jspahrsummers/xcconfigs" "2055f18efbe18e77408f7f43947f7ad92b2d4ff0"

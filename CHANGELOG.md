@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Generate Swift declaration for more Objective-C methods.  
+  [Zheng Li](https://github.com/ainopara)
+  [#376](https://github.com/jpsim/SourceKitten/issues/376)
 
 ##### Bug Fixes
 

@@ -209,11 +209,17 @@ extension CXCursor {
         }
 
         let cursorInfo = Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
-        guard let docsXML = cursorInfo[SwiftDocKey.fullXMLDocs.rawValue] as? String,
-              let swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text else {
-                return nil
+        if let docsXML = cursorInfo[SwiftDocKey.fullXMLDocs.rawValue] as? String,
+           let swiftDeclaration = SWXMLHash.parse(docsXML).children.first?["Declaration"].element?.text {
+                return swiftDeclaration
         }
-        return swiftDeclaration
+
+        if let annotatedDeclarationXML = cursorInfo[SwiftDocKey.annotatedDeclaration.rawValue] as? String,
+           let swiftDeclaration = SWXMLHash.parse(annotatedDeclarationXML).element?.recursiveText {
+                return swiftDeclaration
+        }
+
+        return nil
     }
 }
 
