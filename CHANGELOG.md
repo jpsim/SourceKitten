@@ -5,6 +5,15 @@
 * SourceKitten now requires Xcode 9 and Swift 3.2+ to build.  
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Deprecated `Request.send()`.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
+* Some APIs changed to `throws`.  
+  * `File.format(trimmingTrailingWhitespace:useTabs:indentWidth:) throws`
+  * `Structure.init(file:) throws`
+  * `SyntaxMap.init(file:) throws`
+  [Norio Nomura](https://github.com/norio-nomura)
+
 ##### Enhancements
 
 * None.
