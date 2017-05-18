@@ -7,6 +7,10 @@ class Base {
     /// Doc for Base.f
     func f(index: Index) {
     }
+
+    /// Doc for Base.Nested
+    class Nested {
+    }
 }
 
 extension Base {
@@ -17,4 +21,17 @@ extension Base {
     /// Doc for Base.extendedF
     func extendedF(index: ExtendedIndex) {
     }
+}
+
+// Tests for extensions of nested types
+
+extension Base.Nested {
+}
+
+class 🐽 {
+    struct 🐧 {
+    }
+}
+
+extension 🐽.🐧 {
 }
