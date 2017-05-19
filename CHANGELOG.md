@@ -15,6 +15,14 @@
 * Fix running `sourcekitten version` when building with Swift Package Manager.  
   [JP Simard](https://github.com/jpsim)
 
+* Fix crash in `lineAndCharacter(forByteOffset:)` with strings including
+  multi-byte unicode characters.  
+  [Marcelo Fabri](https://github.com/marcelofabri)
+  [realm/SwiftLint#1006](https://github.com/realm/SwiftLint/issues/1006)
+
+* Fix compilation with latest Swift 4 snapshots.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
 ## 0.17.3
 
 ##### Breaking
