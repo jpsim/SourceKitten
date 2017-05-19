@@ -285,12 +285,12 @@ The next release will require Swift 3.0.
   parsed declaration when generating docs.  
   [JP Simard](https://github.com/jpsim)
   [#45](https://github.com/jpsim/SourceKitten/issues/45)
-  [jazzy#226](https://github.com/realm/jazzy/issues/226)
+  [realm/jazzy#226](https://github.com/realm/jazzy/issues/226)
 
 * Fix issue where directories ending with `.swift` would be considered Swift
   source files.  
   [JP Simard](https://github.com/jpsim)
-  [jazzy#586](https://github.com/realm/jazzy/issues/586)
+  [realm/jazzy#586](https://github.com/realm/jazzy/issues/586)
 
 ## 0.13.0
 
@@ -403,7 +403,7 @@ The next release will require Swift 3.0.
 
 * Fix crash on DOS newlines.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [#315](https://github.com/realm/SwiftLint/issues/315)
+  [realm/SwiftLint#315](https://github.com/realm/SwiftLint/issues/315)
 
 * Fix doc.comment blank for many declarations, causing missing Jazzy docs.  
   [Norio Nomura](https://github.com/norio-nomura)
@@ -436,7 +436,7 @@ The next release will require Swift 3.0.
 
 * Fix crash when offset points end of string.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [SwiftLint#164](https://github.com/realm/SwiftLint/issues/164)
+  [realm/SwiftLint#164](https://github.com/realm/SwiftLint/issues/164)
 
 ## 0.9.0
 
@@ -471,7 +471,7 @@ The next release will require Swift 3.0.
 
 * Fix crash when file contains NULL character.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [SwiftLint#379](https://github.com/realm/SwiftLint/issues/379)
+  [realm/SwiftLint#379](https://github.com/realm/SwiftLint/issues/379)
 
 ## 0.7.4
 
@@ -491,7 +491,7 @@ The next release will require Swift 3.0.
 
 * Add support for parsing module imports in Objective-C.  
   [JP Simard](https://github.com/jpsim)
-  [jazzy#452](https://github.com/realm/jazzy/issues/452)
+  [realm/jazzy#452](https://github.com/realm/jazzy/issues/452)
 
 ## 0.7.3
 
@@ -564,11 +564,10 @@ None.
 
 * Fix `indexOfByteOffset(offset:)` failing when string include some emoji.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [#111](https://github.com/jpsim/SourceKitten/pull/111)
 
 * Fix pragma mark extraction with multibyte characters.  
   [1ec5](https://github.com/1ec5)
-  [#114](https://github.com/jpsim/SourceKitten/pull/114)
+  [#114](https://github.com/jpsim/SourceKitten/issues/114)
 
 ## 0.6.2
 
@@ -586,8 +585,8 @@ None.
 
 * Add support for C/C++ struct, field & ivar types.  
   [JP Simard](https://github.com/jpsim)
-  [jazzy#374](https://github.com/realm/jazzy/issues/374)
-  [jazzy#387](https://github.com/realm/jazzy/issues/387)
+  [realm/jazzy#374](https://github.com/realm/jazzy/issues/374)
+  [realm/jazzy#387](https://github.com/realm/jazzy/issues/387)
 
 
 ## 0.6.1
@@ -609,7 +608,7 @@ None.
 
 * Fix an out-of-bounds exception when generating pragma marks.  
   [JP Simard](https://github.com/jpsim)
-  [jazzy#370](https://github.com/realm/jazzy/issues/370)
+  [realm/jazzy#370](https://github.com/realm/jazzy/issues/370)
 
 
 ## 0.6.0
@@ -720,7 +719,7 @@ None.
 
 * Fixed a crash when parsing an empty documentation comment.  
   [JP Simard](https://github.com/jpsim)
-  [#236](https://github.com/realm/jazzy/issues/236)
+  [realm/jazzy#236](https://github.com/realm/jazzy/issues/236)
 
 
 ## 0.4.3
@@ -798,7 +797,7 @@ None.
 
 * Added definition line ranges to declarations.  
   [JP Simard](https://github.com/jpsim)
-  [#198](https://github.com/realm/jazzy/issues/198)
+  [realm/jazzy#198](https://github.com/realm/jazzy/issues/198)
 
 * Parse `doc.full_as_xml`.  
   [JP Simard](https://github.com/jpsim)
@@ -864,7 +863,7 @@ None.
 
 * Fixed issue where certain Swift files wouldn't be parsed.  
   [JP Simard](https://github.com/jpsim)
-  [#18](https://github.com/jpsim/sourcekitten/issues/18)
+  [#18](https://github.com/jpsim/SourceKitten/issues/18)
 
 ## 0.2.7
 
@@ -896,13 +895,13 @@ None.
 
 * Include parse errors in the JSON output.  
   [JP Simard](https://github.com/jpsim)
-  [#16](https://github.com/jpsim/sourcekitten/issues/16)
+  [#16](https://github.com/jpsim/SourceKitten/issues/16)
 
 ##### Bug Fixes
 
 * Fixed crash when files contained a declaration on the first line.  
   [JP Simard](https://github.com/jpsim)
-  [#14](https://github.com/jpsim/sourcekitten/issues/14)
+  [#14](https://github.com/jpsim/SourceKitten/issues/14)
 
 * Fixed invalid JSON issue when last file in an Xcode project failed to parse.  
   [JP Simard](https://github.com/jpsim)
