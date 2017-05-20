@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix importing default iOS frameworks in Objective-C code does not work.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#385](https://github.com/jpsim/SourceKitten/issues/385)
 
 ## 0.17.4
 
