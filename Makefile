@@ -97,6 +97,7 @@ get_version:
 
 set_version:
 	$(eval NEW_VERSION := $(filter-out $@,$(MAKECMDGOALS)))
+	@sed -i '' 's/## Master/## $(NEW_VERSION)/g' CHANGELOG.md
 	@sed 's/__VERSION__/$(NEW_VERSION)/g' script/Version.swift.template > Source/SourceKittenFramework/Version.swift
 	@/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $(NEW_VERSION)" "$(SOURCEKITTENFRAMEWORK_PLIST)"
 	@/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $(NEW_VERSION)" "$(SOURCEKITTEN_PLIST)"
