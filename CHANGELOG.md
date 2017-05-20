@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* Fix importing default iOS frameworks in Objective-C code does not work.  
+* Improve quality & accuracy of Swift interfaces for Objective-C declarations
+  when generating Objective-C docs.  
   [Norio Nomura](https://github.com/norio-nomura)
   [#385](https://github.com/jpsim/SourceKitten/issues/385)
 
