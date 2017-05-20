@@ -203,7 +203,7 @@ public enum Request {
     /// for which to generate code completion options and array of compiler arguments.
     case codeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
     /// ObjC Swift Interface
-    case interface(file: String, uuid: String)
+    case interface(file: String, uuid: String, arguments: [String])
     /// Find USR
     case findUSR(file: String, usr: String)
     /// Index
@@ -257,9 +257,14 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.offset"): sourcekitd_request_int64_create(offset),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
             ]
-        case .interface(let file, let uuid):
-            let arguments = ["-x", "objective-c", file, "-isysroot", sdkPath()]
-            var compilerargs = arguments.map({ sourcekitd_request_string_create($0) })
+        case .interface(let file, let uuid, var arguments):
+            if !arguments.contains("-x") {
+                arguments.append(contentsOf: ["-x", "objective-c"])
+            }
+            if !arguments.contains("-isysroot") {
+                arguments.append(contentsOf: ["-isysroot", sdkPath()])
+            }
+            var compilerargs = ([file] + arguments).map({ sourcekitd_request_string_create($0) })
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request"):
                     sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface.header")),

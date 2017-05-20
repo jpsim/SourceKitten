@@ -200,7 +200,7 @@ extension CXCursor {
             swiftUUID = NSUUID().uuidString
             setUUIDString(uidString: swiftUUID, for: file)
             // Generate Swift interface, associating it with the UUID
-            _ = Request.interface(file: file, uuid: swiftUUID).send()
+            _ = Request.interface(file: file, uuid: swiftUUID, arguments: compilerArguments).send()
         }
 
         guard let usr = usr(),
