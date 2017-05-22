@@ -55,9 +55,9 @@ func compareJSONString(withFixtureNamed name: String,
     }
 }
 
-private func compareDocs(withFixtureNamed name: String, file: StaticString = #file, line: UInt = #line) {
+private func compareDocs(withFixtureNamed name: String, processExpressions: Bool = false, file: StaticString = #file, line: UInt = #line) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
-    let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
+    let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath], processExpressions: processExpressions)!
 #if os(Linux)
     let name = "Linux" + name
 #endif
@@ -76,6 +76,15 @@ class SwiftDocsTests: XCTestCase {
 
     func testExtension() {
         compareDocs(withFixtureNamed: "Extension")
+    }
+
+    func testIncludeExpressions() {
+    #if swift(>=3.1) && os(Linux)
+        // FIXME
+        print("FIXME: Skip \(#function), because our sourcekitInProc on Swift 3.1 for Linux seems to be broken")
+    #else
+        compareDocs(withFixtureNamed: "Expression", processExpressions: true)
+    #endif
     }
 
     func testParseFullXMLDocs() {
@@ -101,6 +110,7 @@ class SwiftDocsTests: XCTestCase {
 }
 
 extension SwiftDocsTests {
+
     static var allTests: [(String, (SwiftDocsTests) -> () throws -> Void)] {
         return [
             ("testSubscript", testSubscript),

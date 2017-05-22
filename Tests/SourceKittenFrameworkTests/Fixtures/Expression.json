@@ -1,0 +1,110 @@
+{
+  "Expression.swift": {
+    "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
+    "key.substructure": [
+      {
+        "key.filepath": "Expression.swift",
+        "key.parsed_declaration": "class Hidden",
+        "key.annotated_decl": "<Declaration>class Hidden</Declaration>",
+        "key.fully_annotated_decl": "<decl.class><syntaxtype.keyword>class</syntaxtype.keyword> <decl.name>Hidden</decl.name></decl.class>",
+        "key.accessibility": "source.lang.swift.accessibility.internal",
+        "key.length": 15,
+        "key.runtime_name": "_TtC8__main__6Hidden",
+        "key.parsed_scope.start": 1,
+        "key.typeusr": "_Tt",
+        "key.kind": "source.lang.swift.decl.class",
+        "key.offset": 0,
+        "key.nameoffset": 6,
+        "key.typename": "Hidden.Type",
+        "key.actionable": [
+          {
+            "key.actionname": "Rename"
+          }
+        ],
+        "key.name": "Hidden",
+        "key.usr": "s:C10Expression6Hidden",
+        "key.bodyoffset": 14,
+        "key.bodylength": 0,
+        "key.parsed_scope.end": 1,
+        "key.namelength": 6
+      },
+      {
+        "key.filepath": "Expression.swift",
+        "key.parsed_declaration": "class HiddenUsage",
+        "key.annotated_decl": "<Declaration>class HiddenUsage</Declaration>",
+        "key.fully_annotated_decl": "<decl.class><syntaxtype.keyword>class</syntaxtype.keyword> <decl.name>HiddenUsage</decl.name></decl.class>",
+        "key.accessibility": "source.lang.swift.accessibility.internal",
+        "key.length": 126,
+        "key.substructure": [
+          {
+            "key.filepath": "Expression.swift",
+            "key.parsed_declaration": "func functionWithHiddenDependency()",
+            "key.annotated_decl": "<Declaration>func functionWithHiddenDependency()</Declaration>",
+            "key.fully_annotated_decl": "<decl.function.method.instance><syntaxtype.keyword>func</syntaxtype.keyword> <decl.name>functionWithHiddenDependency</decl.name>()</decl.function.method.instance>",
+            "key.accessibility": "source.lang.swift.accessibility.internal",
+            "key.length": 100,
+            "key.substructure": [
+              {
+                "key.namelength": 6,
+                "key.nameoffset": 100,
+                "key.length": 8,
+                "key.name": "Hidden",
+                "key.bodyoffset": 107,
+                "key.bodylength": 0,
+                "key.kind": "source.lang.swift.expr.call",
+                "key.offset": 100
+              },
+              {
+                "key.namelength": 5,
+                "key.nameoffset": 117,
+                "key.length": 18,
+                "key.name": "print",
+                "key.bodyoffset": 123,
+                "key.bodylength": 11,
+                "key.kind": "source.lang.swift.expr.call",
+                "key.offset": 117
+              }
+            ],
+            "key.parsed_scope.start": 4,
+            "key.typeusr": "_TtFT_T_",
+            "key.kind": "source.lang.swift.decl.function.method.instance",
+            "key.offset": 41,
+            "key.nameoffset": 46,
+            "key.typename": "(HiddenUsage) -> () -> ()",
+            "key.actionable": [
+              {
+                "key.actionname": "Rename"
+              }
+            ],
+            "key.name": "functionWithHiddenDependency()",
+            "key.usr": "s:FC10Expression11HiddenUsage28functionWithHiddenDependencyFT_T_",
+            "key.bodyoffset": 78,
+            "key.bodylength": 62,
+            "key.parsed_scope.end": 7,
+            "key.namelength": 30
+          }
+        ],
+        "key.runtime_name": "_TtC8__main__11HiddenUsage",
+        "key.parsed_scope.start": 3,
+        "key.typeusr": "_Tt",
+        "key.kind": "source.lang.swift.decl.class",
+        "key.offset": 17,
+        "key.nameoffset": 23,
+        "key.typename": "HiddenUsage.Type",
+        "key.actionable": [
+          {
+            "key.actionname": "Rename"
+          }
+        ],
+        "key.name": "HiddenUsage",
+        "key.usr": "s:C10Expression11HiddenUsage",
+        "key.bodyoffset": 36,
+        "key.bodylength": 106,
+        "key.parsed_scope.end": 8,
+        "key.namelength": 11
+      }
+    ],
+    "key.offset": 0,
+    "key.length": 143
+  }
+}

@@ -157,9 +157,11 @@ public final class File {
 
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
+    - parameter elementTypes:      Element types to process
     */
     public func process(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil,
-                        syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
+                        syntaxMap: SyntaxMap? = nil,
+                        elementTypes: ProcessableElements = .declarationsAndComments) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
             dictionary = merge(
@@ -185,7 +187,7 @@ public final class File {
         }
 
         // Update substructure
-        if let substructure = newSubstructure(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap) {
+        if let substructure = newSubstructure(dictionary, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap, elementTypes: elementTypes) {
             dictionary[SwiftDocKey.substructure.rawValue] = substructure
         }
         return dictionary
@@ -201,12 +203,13 @@ public final class File {
     */
     internal func furtherProcess(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int],
                                  cursorInfoRequest: sourcekitd_object_t,
-                                 syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
+                                 syntaxMap: SyntaxMap,
+                                 elementTypes: ProcessableElements) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         let offsetMap = makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
             if let rawResponse = Request.send(cursorInfoRequest: cursorInfoRequest, atOffset: Int64(offset)),
-               case let response = process(dictionary: rawResponse, cursorInfoRequest: nil, syntaxMap: syntaxMap),
+               case let response = process(dictionary: rawResponse, cursorInfoRequest: nil, syntaxMap: syntaxMap, elementTypes: elementTypes),
                let kind = SwiftDocKey.getKind(response),
                SwiftDeclarationKind(rawValue: kind) != nil,
                let parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
@@ -223,18 +226,20 @@ public final class File {
 
     - parameter dictionary:        Input dictionary to process its substructure.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
+    - parameter elementTypes:      Element types to process
 
     - returns: A copy of the input dictionary's substructure processed by running
                `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
                and declarations.
     */
     private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?,
-                                 syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
+                                 syntaxMap: SyntaxMap?,
+                                 elementTypes: ProcessableElements) -> [SourceKitRepresentable]? {
         return SwiftDocKey.getSubstructure(dictionary)?
             .map({ $0 as! [String: SourceKitRepresentable] })
-            .filter(isDeclarationOrCommentMark)
+            .filter { hasProcessable($0, elementType: elementTypes) }
             .map {
-                process(dictionary: $0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
+                process(dictionary: $0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap, elementTypes: elementTypes)
             }
     }
 
@@ -396,18 +401,51 @@ public final class File {
 
         return dictionary
     }
+
+    /**
+     Represents processable element types SourceKitten interested in
+     Possible values are comments, declarations and expression types
+     */
+    public struct ProcessableElements: OptionSet {
+        public let rawValue: Int
+
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+
+        public static let declaration = ProcessableElements(rawValue: 1 << 0)
+        public static let comment = ProcessableElements(rawValue: 1 << 1)
+        public static let expression = ProcessableElements(rawValue: 1 << 2)
+
+        public static let declarationsAndComments: ProcessableElements = [.declaration, .comment]
+        public static let all: ProcessableElements = [.declaration, .comment, .expression]
+    }
 }
 
 /**
-Returns true if the dictionary represents a source declaration or a mark-style comment.
+Returns true if the dictionary represents one of the processable element types, specified in elementType
 
 - parameter dictionary: Dictionary to parse.
+- parameter elementType: Element types to check for.
+
 */
-private func isDeclarationOrCommentMark(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
-    if let kind = SwiftDocKey.getKind(dictionary) {
-        return kind != SwiftDeclarationKind.varParameter.rawValue &&
-            (kind == SyntaxKind.commentMark.rawValue || SwiftDeclarationKind(rawValue: kind) != nil)
+private func hasProcessable(_ dictionary: [String: SourceKitRepresentable], elementType: File.ProcessableElements) -> Bool {
+    guard let kind = SwiftDocKey.getKind(dictionary) else {
+        return false
     }
+
+    if kind == SyntaxKind.commentMark.rawValue {
+        return elementType.contains(.comment)
+    }
+
+    if let declarationKind = SwiftDeclarationKind(rawValue: kind) {
+       return elementType.contains(.declaration) && declarationKind != .varParameter
+    }
+
+    if SwiftExpressionKind(rawValue: kind) != nil {
+        return elementType.contains(.expression)
+    }
+
     return false
 }
 
