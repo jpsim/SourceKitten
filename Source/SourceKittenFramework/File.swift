@@ -255,22 +255,26 @@ public final class File {
             return [SwiftDocKey.name.rawValue: markName]
         } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .varParameter {
             // Update if kind is a declaration (but not a parameter)
+            let innerTypeNameOffset = SwiftDocKey.getName(dictionary)?.byteOffsetOfInnerTypeName() ?? 0
             var updateDict = Request.send(cursorInfoRequest: cursorInfoRequest,
-                atOffset: SwiftDocKey.getNameOffset(dictionary)!) ?? [:]
+                atOffset: SwiftDocKey.getNameOffset(dictionary)! + innerTypeNameOffset) ?? [:]
 
-            // Skip kinds, since values from editor.open are more accurate than cursorinfo
-            updateDict.removeValue(forKey: SwiftDocKey.kind.rawValue)
+            File.untrustedCursorInfoKeys.forEach {
+                updateDict.removeValue(forKey: $0.rawValue)
+            }
 
-            // Skip offset and length.
-            // Their values are same with "key.nameoffset" and "key.namelength" in most case.
-            // When kind is extension, their values locate **the type's declaration** in their declared file.
-            // That may be different from the file declaring extension.
-            updateDict.removeValue(forKey: SwiftDocKey.offset.rawValue)
-            updateDict.removeValue(forKey: SwiftDocKey.length.rawValue)
             return updateDict
         }
         return nil
     }
+
+    /// Keys to ignore from cursorinfo when already have dictionary from editor.open
+    private static let untrustedCursorInfoKeys: [SwiftDocKey] = [
+        .kind,   // values from editor.open are more accurate than cursorinfo
+        .offset, // usually same as nameoffset, but for extension, value locates **type's declaration** in type's file
+        .length, // usually same as namelength, but for extension, value locates **type's declaration** in type's file
+        .name    // for extensions of nested types has just the inner name, prefer fully-qualified name
+    ]
 
     /**
     Returns whether or not a doc should be inserted into a parent at the provided offset.

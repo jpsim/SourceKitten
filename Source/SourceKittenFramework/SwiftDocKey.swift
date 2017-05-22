@@ -145,6 +145,17 @@ public enum SwiftDocKey: String {
     }
 
     /**
+     Get name string from dictionary.
+
+     - parameter dictionary: Dictionary to get value from.
+
+     - returns: Name string if successful.
+     */
+    internal static func getName(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+        return get(.name, dictionary)
+    }
+
+    /**
     Get type name string from dictionary.
 
     - parameter dictionary: Dictionary to get value from.

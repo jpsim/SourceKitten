@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix handling of Swift extensions of nested types.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ## 0.17.5
 
