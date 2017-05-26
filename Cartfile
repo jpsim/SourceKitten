@@ -1,2 +1,2 @@
-github "drmohundro/SWXMLHash" ~> 3.0
-github "jpsim/Yams" ~> 0.3
+github "drmohundro/SWXMLHash" "version-4.0-changes"
+github "jpsim/Yams" "jp-swift-4"
