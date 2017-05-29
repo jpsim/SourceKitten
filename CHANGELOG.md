@@ -6,7 +6,10 @@
 
 ##### Enhancements
 
-* None.
+* Cache `NSString.CacheContainer` on Linux, matching behavior on Darwin,
+  speeding up many repeated operations on `NSString` on Linux.  
+  [JP Simard](https://github.com/jpsim)
+  [realm/SwiftLint#1577](https://github.com/realm/SwiftLint/issues/1577)
 
 ##### Bug Fixes
 

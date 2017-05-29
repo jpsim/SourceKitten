@@ -32,8 +32,6 @@ private let commentLinePrefixCharacterSet: CharacterSet = {
     return characterSet
 }()
 
-private var keyCacheContainer = 0
-
 extension NSString {
     /**
     CacheContainer caches:
@@ -176,20 +174,21 @@ extension NSString {
         }
     }
 
+    static private var stringCache = [NSString: CacheContainer]()
+    static private var stringCacheLock = NSLock()
+
     /**
     CacheContainer instance is stored to instance of NSString as associated object.
     */
     private var cacheContainer: CacheContainer {
-        #if os(Linux)
-        return CacheContainer(self)
-        #else
-        if let cache = objc_getAssociatedObject(self, &keyCacheContainer) as? CacheContainer {
+        NSString.stringCacheLock.lock()
+        defer { NSString.stringCacheLock.unlock() }
+        if let cache = NSString.stringCache[self] {
             return cache
         }
         let cache = CacheContainer(self)
-        objc_setAssociatedObject(self, &keyCacheContainer, cache, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        NSString.stringCache[self] = cache
         return cache
-        #endif
     }
 
     /**
