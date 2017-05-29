@@ -3,6 +3,10 @@ import PackageDescription
 
 let package = Package(
   name: "SourceKitten",
+  products: [
+    .executable(name: "sourcekitten", targets: ["sourcekitten"]),
+    .library(name: "SourceKittenFramework", targets: ["SourceKittenFramework"])
+  ],
   dependencies: [
     .package(url: "https://github.com/Carthage/Commandant.git", from: "0.12.0"),
     .package(url: "https://github.com/drmohundro/SWXMLHash.git", .branch("version-4.0-changes")),
