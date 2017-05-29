@@ -1,23 +1,43 @@
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
   name: "SourceKitten",
-  targets: [
-    Target(name: "SourceKittenFramework"),
-    Target(name: "sourcekitten",
-      dependencies: [.Target(name: "SourceKittenFramework")]),
-  ],
   dependencies: [
-    .Package(url: "https://github.com/Carthage/Commandant.git", versions: Version(0, 12, 0)..<Version(0, 12, .max)),
-    .Package(url: "/root/SWXMLHash", majorVersion: 4),
-    .Package(url: "/root/Yams", majorVersion: 1),
-    .Package(url: "https://github.com/norio-nomura/Clang_C.git", majorVersion: 1),
-    .Package(url: "https://github.com/norio-nomura/SourceKit.git", majorVersion: 1),
+    .package(url: "https://github.com/Carthage/Commandant.git", from: "0.12.0"),
+    .package(url: "https://github.com/drmohundro/SWXMLHash.git", .branch("version-4.0-changes")),
+    .package(url: "https://github.com/jpsim/Yams.git", .branch("master")),
+    .package(url: "https://github.com/norio-nomura/Clang_C.git", from: "1.0.0"),
+    .package(url: "https://github.com/norio-nomura/SourceKit.git", from: "1.0.0"),
   ],
-  swiftLanguageVersions: [3, 4],
-  exclude: [
-    "Source/SourceKittenFramework/clang-c",
-    "Source/SourceKittenFramework/sourcekitd.h",
-    "Tests/SourceKittenFrameworkTests/Fixtures",
-  ]
+  targets: [
+    .target(
+      name: "sourcekitten",
+      dependencies: [
+        "Commandant",
+        "SourceKittenFramework",
+      ]
+    ),
+    .target(
+      name: "SourceKittenFramework",
+      dependencies: [
+        "SWXMLHash",
+        "Yams",
+      ],
+      exclude: [
+        "clang-c",
+        "sourcekitd.h",
+      ]
+    ),
+    .testTarget(
+      name: "SourceKittenFrameworkTests",
+      dependencies: [
+        "SourceKittenFramework"
+      ],
+      exclude: [
+        "Fixtures",
+      ]
+    )
+  ],
+  swiftLanguageVersions: [3, 4]
 )
