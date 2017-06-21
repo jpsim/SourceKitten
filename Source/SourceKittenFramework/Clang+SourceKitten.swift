@@ -93,7 +93,11 @@ extension CXCursor {
         guard let rootXML = SWXMLHash.parse(commentXML).children.first else {
             fatalError("couldn't parse XML")
         }
-        return rootXML["Declaration"].element?.text?
+        guard let text = rootXML["Declaration"].element?.text,
+            !text.isEmpty else {
+                return nil
+        }
+        return text
             .replacingOccurrences(of: "\n@end", with: "")
             .replacingOccurrences(of: "@property(", with: "@property (")
     }
