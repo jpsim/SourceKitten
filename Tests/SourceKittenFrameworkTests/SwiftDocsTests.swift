@@ -58,9 +58,6 @@ func compareJSONString(withFixtureNamed name: String,
 private func compareDocs(withFixtureNamed name: String, file: StaticString = #file, line: UInt = #line) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
     let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
-#if os(Linux)
-    let name = "Linux" + name
-#endif
     compareJSONString(withFixtureNamed: name, jsonString: docs, file: file, line: line)
 }
 
@@ -73,10 +70,18 @@ private func versionedExpectedFilename(for name: String) -> String {
     #else // if swift(>=3.1)
         versions = ["swift-3.1"]
     #endif
+    let platforms: [String]
+    #if os(Linux)
+        platforms = ["Linux", ""]
+    #else
+        platforms = [""]
+    #endif
     for version in versions {
-        let versionedFilename = "\(fixturesDirectory)\(name)@\(version).json"
-        if FileManager.default.fileExists(atPath: versionedFilename) {
-            return versionedFilename
+        for platform in platforms {
+            let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(version).json"
+            if FileManager.default.fileExists(atPath: versionedFilename) {
+                return versionedFilename
+            }
         }
     }
     return "\(fixturesDirectory)\(name).json"
