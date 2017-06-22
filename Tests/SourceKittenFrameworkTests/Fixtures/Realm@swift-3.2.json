@@ -1814,7 +1814,7 @@
           "key.name" : "RLMPropertyType",
           "key.doc.comment" : "Property types supported in Realm models.\n\nSee [Realm Models](http:\/\/realm.io\/docs\/objc\/latest\/#models)",
           "key.usr" : "c:@E@RLMPropertyType",
-          "key.parsed_declaration" : "enum RLMPropertyType : int32_t {}",
+          "key.parsed_declaration" : "enum RLMPropertyType {}",
           "key.parsed_scope.end" : 59
         },
         {
@@ -1967,7 +1967,7 @@
           "key.name" : "RLMError",
           "key.doc.comment" : "Enum representing all recoverable errors in Realm.",
           "key.usr" : "c:@E@RLMError",
-          "key.parsed_declaration" : "enum RLMError : NSInteger {}",
+          "key.parsed_declaration" : "enum RLMError {}",
           "key.parsed_scope.end" : 80
         },
         {
