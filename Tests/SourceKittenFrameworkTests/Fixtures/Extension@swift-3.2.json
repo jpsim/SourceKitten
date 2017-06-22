@@ -1,0 +1,338 @@
+{
+  "Extension.swift" : {
+    "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+    "key.substructure" : [
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.length" : 179,
+        "key.doc.type" : "Class",
+        "key.runtime_name" : "_TtC8__main__4Base",
+        "key.parsed_scope.start" : 2,
+        "key.kind" : "source.lang.swift.decl.class",
+        "key.doc.full_as_xml" : "<Class file=\"Extension.swift\" line=\"2\" column=\"7\"><Name>Base<\/Name><USR>s:C9Extension4Base<\/USR><Declaration>class Base<\/Declaration><Abstract><Para>Doc for Base<\/Para><\/Abstract><\/Class>",
+        "key.nameoffset" : 23,
+        "key.typename" : "Base.Type",
+        "key.doc.column" : 7,
+        "key.doc.comment" : "Doc for Base",
+        "key.bodyoffset" : 29,
+        "key.filepath" : "Extension.swift",
+        "key.doc.file" : "Extension.swift",
+        "key.annotated_decl" : "<Declaration>class Base<\/Declaration>",
+        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>Base<\/decl.name><\/decl.class>",
+        "key.doc.declaration" : "class Base",
+        "key.substructure" : [
+          {
+            "key.filepath" : "Extension.swift",
+            "key.doc.file" : "Extension.swift",
+            "key.annotated_decl" : "<Declaration>typealias Index = <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.typealias><syntaxtype.keyword>typealias<\/syntaxtype.keyword> <decl.name>Index<\/decl.name> = <ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.typealias>",
+            "key.doc.declaration" : "typealias Index = Int",
+            "key.length" : 5,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 5,
+            "key.typeusr" : "_Tt",
+            "key.kind" : "source.lang.swift.decl.typealias",
+            "key.doc.full_as_xml" : "<Other file=\"Extension.swift\" line=\"5\" column=\"15\"><Name>Index<\/Name><USR>s:C9Extension4Base5Index<\/USR><Declaration>typealias Index = Int<\/Declaration><Abstract><Para>Doc for Base.Index<\/Para><\/Abstract><\/Other>",
+            "key.offset" : 72,
+            "key.doc.line" : 5,
+            "key.typename" : "Int.Type",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
+            "key.doc.name" : "Index",
+            "key.doc.column" : 15,
+            "key.name" : "Index",
+            "key.doc.comment" : "Doc for Base.Index",
+            "key.usr" : "s:C9Extension4Base5Index",
+            "key.parsed_declaration" : "typealias Index = Int",
+            "key.parsed_scope.end" : 5
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.length" : 28,
+            "key.doc.type" : "Function",
+            "key.parsed_scope.start" : 8,
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.doc.full_as_xml" : "<Function file=\"Extension.swift\" line=\"8\" column=\"10\"><Name>f(index:)<\/Name><USR>s:FC9Extension4Base1fFT5indexSi_T_<\/USR><Declaration>func f(index: Index)<\/Declaration><Abstract><Para>Doc for Base.f<\/Para><\/Abstract><\/Function>",
+            "key.nameoffset" : 117,
+            "key.typename" : "(Base) -> (Int) -> ()",
+            "key.doc.column" : 10,
+            "key.doc.comment" : "Doc for Base.f",
+            "key.bodyoffset" : 134,
+            "key.filepath" : "Extension.swift",
+            "key.doc.file" : "Extension.swift",
+            "key.annotated_decl" : "<Declaration>func f(index: <Type usr=\"s:C9Extension4Base5Index\">Index<\/Type>)<\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>f<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>index<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.typealias usr=\"s:C9Extension4Base5Index\">Index<\/ref.typealias><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.method.instance>",
+            "key.doc.declaration" : "func f(index: Index)",
+            "key.substructure" : [
+
+            ],
+            "key.typeusr" : "_TtFT5indexSi_T_",
+            "key.offset" : 112,
+            "key.doc.line" : 8,
+            "key.doc.name" : "f(index:)",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
+            "key.name" : "f(index:)",
+            "key.usr" : "s:FC9Extension4Base1fFT5indexSi_T_",
+            "key.parsed_declaration" : "func f(index: Index)",
+            "key.bodylength" : 5,
+            "key.parsed_scope.end" : 9,
+            "key.namelength" : 15
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.length" : 20,
+            "key.doc.type" : "Class",
+            "key.parsed_scope.start" : 12,
+            "key.kind" : "source.lang.swift.decl.class",
+            "key.doc.full_as_xml" : "<Class file=\"Extension.swift\" line=\"12\" column=\"11\"><Name>Nested<\/Name><USR>s:CC9Extension4Base6Nested<\/USR><Declaration>class Nested<\/Declaration><Abstract><Para>Doc for Base.Nested<\/Para><\/Abstract><\/Class>",
+            "key.nameoffset" : 180,
+            "key.typename" : "Base.Nested.Type",
+            "key.doc.column" : 11,
+            "key.doc.comment" : "Doc for Base.Nested",
+            "key.bodyoffset" : 188,
+            "key.filepath" : "Extension.swift",
+            "key.doc.file" : "Extension.swift",
+            "key.annotated_decl" : "<Declaration>class Nested<\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>Nested<\/decl.name><\/decl.class>",
+            "key.doc.declaration" : "class Nested",
+            "key.typeusr" : "_Tt",
+            "key.offset" : 174,
+            "key.doc.line" : 12,
+            "key.doc.name" : "Nested",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
+            "key.name" : "Nested",
+            "key.usr" : "s:CC9Extension4Base6Nested",
+            "key.parsed_declaration" : "class Nested",
+            "key.bodylength" : 5,
+            "key.parsed_scope.end" : 13,
+            "key.namelength" : 6
+          }
+        ],
+        "key.typeusr" : "_Tt",
+        "key.offset" : 17,
+        "key.doc.line" : 2,
+        "key.doc.name" : "Base",
+        "key.actionable" : [
+          {
+            "key.actionname" : "Rename"
+          }
+        ],
+        "key.name" : "Base",
+        "key.usr" : "s:C9Extension4Base",
+        "key.parsed_declaration" : "class Base",
+        "key.bodylength" : 166,
+        "key.parsed_scope.end" : 14,
+        "key.namelength" : 4
+      },
+      {
+        "key.filepath" : "Extension.swift",
+        "key.doc.file" : "Extension.swift",
+        "key.annotated_decl" : "<Declaration>class Base<\/Declaration>",
+        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>Base<\/decl.name><\/decl.class>",
+        "key.doc.declaration" : "class Base",
+        "key.length" : 172,
+        "key.substructure" : [
+          {
+            "key.filepath" : "Extension.swift",
+            "key.doc.file" : "Extension.swift",
+            "key.annotated_decl" : "<Declaration>typealias ExtendedIndex = <Type usr=\"s:Sd\">Double<\/Type><\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.typealias><syntaxtype.keyword>typealias<\/syntaxtype.keyword> <decl.name>ExtendedIndex<\/decl.name> = <ref.struct usr=\"s:Sd\">Double<\/ref.struct><\/decl.typealias>",
+            "key.doc.declaration" : "typealias ExtendedIndex = Double",
+            "key.length" : 13,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 19,
+            "key.typeusr" : "_Tt",
+            "key.kind" : "source.lang.swift.decl.typealias",
+            "key.doc.full_as_xml" : "<Other file=\"Extension.swift\" line=\"19\" column=\"15\"><Name>ExtendedIndex<\/Name><USR>s:C9Extension4Base13ExtendedIndex<\/USR><Declaration>typealias ExtendedIndex = Double<\/Declaration><Abstract><Para>Doc for Base.ExtendedIndex<\/Para><\/Abstract><\/Other>",
+            "key.offset" : 265,
+            "key.doc.line" : 19,
+            "key.typename" : "Double.Type",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
+            "key.doc.name" : "ExtendedIndex",
+            "key.doc.column" : 15,
+            "key.name" : "ExtendedIndex",
+            "key.doc.comment" : "Doc for Base.ExtendedIndex",
+            "key.usr" : "s:C9Extension4Base13ExtendedIndex",
+            "key.parsed_declaration" : "typealias ExtendedIndex = Double",
+            "key.parsed_scope.end" : 19
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.length" : 44,
+            "key.doc.type" : "Function",
+            "key.parsed_scope.start" : 22,
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.doc.full_as_xml" : "<Function file=\"Extension.swift\" line=\"22\" column=\"10\"><Name>extendedF(index:)<\/Name><USR>s:FC9Extension4Base9extendedFFT5indexSd_T_<\/USR><Declaration>func extendedF(index: ExtendedIndex)<\/Declaration><Abstract><Para>Doc for Base.extendedF<\/Para><\/Abstract><\/Function>",
+            "key.nameoffset" : 329,
+            "key.typename" : "(Base) -> (Double) -> ()",
+            "key.doc.column" : 10,
+            "key.doc.comment" : "Doc for Base.extendedF",
+            "key.bodyoffset" : 362,
+            "key.filepath" : "Extension.swift",
+            "key.doc.file" : "Extension.swift",
+            "key.annotated_decl" : "<Declaration>func extendedF(index: <Type usr=\"s:C9Extension4Base13ExtendedIndex\">ExtendedIndex<\/Type>)<\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>extendedF<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>index<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.typealias usr=\"s:C9Extension4Base13ExtendedIndex\">ExtendedIndex<\/ref.typealias><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.method.instance>",
+            "key.doc.declaration" : "func extendedF(index: ExtendedIndex)",
+            "key.substructure" : [
+
+            ],
+            "key.typeusr" : "_TtFT5indexSd_T_",
+            "key.offset" : 324,
+            "key.doc.line" : 22,
+            "key.doc.name" : "extendedF(index:)",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
+            "key.name" : "extendedF(index:)",
+            "key.usr" : "s:FC9Extension4Base9extendedFFT5indexSd_T_",
+            "key.parsed_declaration" : "func extendedF(index: ExtendedIndex)",
+            "key.bodylength" : 5,
+            "key.parsed_scope.end" : 23,
+            "key.namelength" : 31
+          }
+        ],
+        "key.doc.type" : "Class",
+        "key.typeusr" : "_Tt",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.offset" : 198,
+        "key.doc.full_as_xml" : "<Class file=\"Extension.swift\" line=\"2\" column=\"7\"><Name>Base<\/Name><USR>s:C9Extension4Base<\/USR><Declaration>class Base<\/Declaration><Abstract><Para>Doc for Base<\/Para><\/Abstract><\/Class>",
+        "key.nameoffset" : 208,
+        "key.doc.line" : 2,
+        "key.typename" : "Base.Type",
+        "key.actionable" : [
+          {
+            "key.actionname" : "Rename"
+          }
+        ],
+        "key.doc.name" : "Base",
+        "key.doc.column" : 7,
+        "key.name" : "Base",
+        "key.usr" : "s:C9Extension4Base",
+        "key.bodyoffset" : 214,
+        "key.bodylength" : 155,
+        "key.namelength" : 4
+      },
+      {
+        "key.filepath" : "Extension.swift",
+        "key.doc.file" : "Extension.swift",
+        "key.annotated_decl" : "<Declaration>class Nested<\/Declaration>",
+        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>Nested<\/decl.name><\/decl.class>",
+        "key.doc.declaration" : "class Nested",
+        "key.length" : 25,
+        "key.doc.type" : "Class",
+        "key.typeusr" : "_Tt",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.offset" : 413,
+        "key.doc.full_as_xml" : "<Class file=\"Extension.swift\" line=\"12\" column=\"11\"><Name>Nested<\/Name><USR>s:CC9Extension4Base6Nested<\/USR><Declaration>class Nested<\/Declaration><Abstract><Para>Doc for Base.Nested<\/Para><\/Abstract><\/Class>",
+        "key.nameoffset" : 423,
+        "key.doc.line" : 12,
+        "key.typename" : "Base.Nested.Type",
+        "key.actionable" : [
+          {
+            "key.actionname" : "Rename"
+          }
+        ],
+        "key.doc.name" : "Nested",
+        "key.doc.column" : 11,
+        "key.name" : "Base.Nested",
+        "key.usr" : "s:CC9Extension4Base6Nested",
+        "key.bodyoffset" : 436,
+        "key.bodylength" : 1,
+        "key.namelength" : 11
+      },
+      {
+        "key.filepath" : "Extension.swift",
+        "key.parsed_declaration" : "class 🐽",
+        "key.annotated_decl" : "<Declaration>class 🐽<\/Declaration>",
+        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>🐽<\/decl.name><\/decl.class>",
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.length" : 38,
+        "key.substructure" : [
+          {
+            "key.filepath" : "Extension.swift",
+            "key.parsed_declaration" : "struct 🐧",
+            "key.annotated_decl" : "<Declaration>struct 🐧<\/Declaration>",
+            "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>🐧<\/decl.name><\/decl.struct>",
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.length" : 19,
+            "key.parsed_scope.start" : 32,
+            "key.typeusr" : "_Tt",
+            "key.kind" : "source.lang.swift.decl.struct",
+            "key.offset" : 457,
+            "key.nameoffset" : 464,
+            "key.typename" : "🐽.🐧.Type",
+            "key.actionable" : [
+              {
+                "key.actionname" : "Rename"
+              }
+            ],
+            "key.name" : "🐧",
+            "key.usr" : "s:VC9ExtensionX4ipIhX4voIh",
+            "key.bodyoffset" : 470,
+            "key.bodylength" : 5,
+            "key.parsed_scope.end" : 33,
+            "key.namelength" : 4
+          }
+        ],
+        "key.runtime_name" : "_TtC8__main__4🐽",
+        "key.parsed_scope.start" : 31,
+        "key.typeusr" : "_Tt",
+        "key.kind" : "source.lang.swift.decl.class",
+        "key.offset" : 440,
+        "key.nameoffset" : 446,
+        "key.typename" : "🐽.Type",
+        "key.actionable" : [
+          {
+            "key.actionname" : "Rename"
+          }
+        ],
+        "key.name" : "🐽",
+        "key.usr" : "s:C9ExtensionX4ipIh",
+        "key.bodyoffset" : 452,
+        "key.bodylength" : 25,
+        "key.parsed_scope.end" : 34,
+        "key.namelength" : 4
+      },
+      {
+        "key.filepath" : "Extension.swift",
+        "key.annotated_decl" : "<Declaration>struct 🐧<\/Declaration>",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>🐧<\/decl.name><\/decl.struct>",
+        "key.length" : 23,
+        "key.typeusr" : "_Tt",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.offset" : 480,
+        "key.nameoffset" : 490,
+        "key.typename" : "🐽.🐧.Type",
+        "key.actionable" : [
+          {
+            "key.actionname" : "Rename"
+          }
+        ],
+        "key.name" : "🐽.🐧",
+        "key.usr" : "s:VC9ExtensionX4ipIhX4voIh",
+        "key.bodyoffset" : 501,
+        "key.bodylength" : 1,
+        "key.namelength" : 9
+      }
+    ],
+    "key.offset" : 0,
+    "key.length" : 504
+  }
+}
