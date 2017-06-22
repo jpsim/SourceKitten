@@ -412,7 +412,7 @@ extension String {
         let matches = regex.matches(in: self, options: [], range: range)
 
         return matches.flatMap { match in
-            let markRange = match.rangeAt(2)
+            let markRange = match.range(at: 2)
             for excludedRange in excludeRanges {
                 if NSIntersectionRange(excludedRange, markRange).length > 0 {
                     return nil
@@ -496,7 +496,7 @@ extension String {
                     return []
                 }
                 return (1..<numberOfRanges).map { rangeIndex in
-                    let range = match.rangeAt(rangeIndex)
+                    let range = match.range(at: rangeIndex)
                     if range.location == NSNotFound {
                         return "" // empty capture group, return empty string
                     }

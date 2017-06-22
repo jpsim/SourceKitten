@@ -9,80 +9,80 @@
 import Foundation
 
 #if os(Linux)
-#if swift(>=3.1)
-#else
-public typealias Process = Task
-public typealias NSRegularExpression = RegularExpression
-#endif
+    #if !swift(>=3.1)
+        public typealias Process = Task
+        public typealias NSRegularExpression = RegularExpression
+    #endif
 
-extension CharacterSet {
-    public func bridge() -> NSCharacterSet {
-        return _bridgeToObjectiveC()
+    extension CharacterSet {
+        public func bridge() -> NSCharacterSet {
+            return _bridgeToObjectiveC()
+        }
     }
-}
-#if swift(>=4.0)
-extension NSTextCheckingResult {
-    public func rangeAt(_ index: Int) -> NSRange {
-        return range(at: index)
+    #if !swift(>=4.0)
+        extension TextCheckingResult {
+            public func rangeAt(_ index: Int) -> NSRange {
+                return range(at: index)
+            }
+        }
+    #endif
+    #if !swift(>=3.1)
+        extension NSString {
+            public var isAbsolutePath: Bool { return absolutePath }
+        }
+    #endif
+    extension Dictionary {
+        public func bridge() -> NSDictionary {
+            return NSDictionary(dictionary: self)
+        }
     }
-}
+    extension Array {
+        public func bridge() -> NSArray {
+            return NSArray(array: self)
+        }
+    }
+    extension String {
+        public func bridge() -> NSString {
+            return NSString(string: self)
+        }
+    }
+    extension NSString {
+        public func bridge() -> String {
+            return _bridgeToSwift()
+        }
+    }
 #else
-extension TextCheckingResult {
-    public func rangeAt(_ index: Int) -> NSRange {
-        return range(at: index)
+    extension CharacterSet {
+        public func bridge() -> NSCharacterSet {
+            return self as NSCharacterSet
+        }
     }
-}
-#endif
-#if swift(>=3.1)
-#else
-extension NSString {
-    public var isAbsolutePath: Bool { return absolutePath }
-}
-#endif
-extension Dictionary {
-    public func bridge() -> NSDictionary {
-        return NSDictionary(dictionary: self)
+    extension Dictionary {
+        public func bridge() -> NSDictionary {
+            return self as NSDictionary
+        }
     }
-}
-extension Array {
-    public func bridge() -> NSArray {
-        return NSArray(array: self)
+    extension Array {
+        public func bridge() -> NSArray {
+            return self as NSArray
+        }
     }
-}
-extension String {
-    public func bridge() -> NSString {
-        return NSString(string: self)
+    extension String {
+        public func bridge() -> NSString {
+            return self as NSString
+        }
     }
-}
-extension NSString {
-    public func bridge() -> String {
-        return _bridgeToSwift()
+    extension NSString {
+        public func bridge() -> String {
+            return self as String
+        }
     }
-}
-#else
-extension CharacterSet {
-    public func bridge() -> NSCharacterSet {
-        return self as NSCharacterSet
-    }
-}
-extension Dictionary {
-    public func bridge() -> NSDictionary {
-        return self as NSDictionary
-    }
-}
-extension Array {
-    public func bridge() -> NSArray {
-        return self as NSArray
-    }
-}
-extension String {
-    public func bridge() -> NSString {
-        return self as NSString
-    }
-}
-extension NSString {
-    public func bridge() -> String {
-        return self as String
-    }
-}
+    #if !swift(>=4.0)
+        extension NSTextCheckingResult {
+            func range(at idx: Int) -> NSRange {
+                return rangeAt(idx)
+            }
+        }
+    #endif
+
 #endif
