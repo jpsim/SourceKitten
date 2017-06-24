@@ -19,13 +19,6 @@ import Foundation
             return _bridgeToObjectiveC()
         }
     }
-    #if !swift(>=4.0)
-        extension TextCheckingResult {
-            public func rangeAt(_ index: Int) -> NSRange {
-                return range(at: index)
-            }
-        }
-    #endif
     #if !swift(>=3.1)
         extension NSString {
             public var isAbsolutePath: Bool { return absolutePath }
