@@ -8,16 +8,7 @@
 
 import Foundation
 
-#if os(Linux)
-    #if !swift(>=3.1)
-        public typealias Process = Task
-        public typealias NSRegularExpression = RegularExpression
-
-        extension NSString {
-            public var isAbsolutePath: Bool { return absolutePath }
-        }
-    #endif
-#else
+#if !os(Linux)
     #if !swift(>=4.0)
         extension NSTextCheckingResult {
             func range(at idx: Int) -> NSRange {

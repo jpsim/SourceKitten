@@ -62,18 +62,6 @@ extension SyntaxToken {
     }
 }
 
-#if swift(>=3.1)
-#else
-extension Array {
-    func prefix(while select: @escaping (Element) -> Bool) -> ArraySlice<Element> {
-        guard let firstSuffixIndex = index(where: { !select($0) }) else {
-            return ArraySlice(self)
-        }
-        return self[0..<firstSuffixIndex]
-    }
-}
-#endif
-
 extension SyntaxMap {
     /// The ranges of documentation comments described by the map, in the order
     /// that they occur in the file.
