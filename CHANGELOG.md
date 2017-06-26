@@ -2,7 +2,8 @@
 
 ##### Breaking
 
-* None.
+* Xcode 8.3 or later and Swift 3.1 or later are required to build.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Enhancements
 

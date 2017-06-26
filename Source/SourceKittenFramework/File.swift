@@ -462,7 +462,7 @@ private extension XMLIndexer {
         }
         let elements = children.flatMap { $0.element }
         func dictionary(from element: SWXMLHash.XMLElement) -> [String:SourceKitRepresentable] {
-            return [element.name: element.text ?? ""]
+            return [element.name: element.text]
         }
         return elements.map(dictionary(from:)) as [SourceKitRepresentable]
     }

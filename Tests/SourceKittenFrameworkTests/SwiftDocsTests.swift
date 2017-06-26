@@ -30,7 +30,7 @@ func compareJSONString(withFixtureNamed name: String,
                                                                    withTemplate: "\"key\\.filepath\" : \"\",")
     #endif
 
-    let expectedFile = File(path: fixturesDirectory + name + ".json")!
+    let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
     let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
@@ -58,10 +58,31 @@ func compareJSONString(withFixtureNamed name: String,
 private func compareDocs(withFixtureNamed name: String, file: StaticString = #file, line: UInt = #line) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
     let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
-#if os(Linux)
-    let name = "Linux" + name
-#endif
     compareJSONString(withFixtureNamed: name, jsonString: docs, file: file, line: line)
+}
+
+private func versionedExpectedFilename(for name: String) -> String {
+    #if swift(>=4.0)
+        let versions = ["swift-4.0", "swift-3.2", "swift-3.1"]
+    #elseif swift(>=3.2)
+        let versions = ["swift-3.2", "swift-3.1"]
+    #else // if swift(>=3.1)
+        let versions = ["swift-3.1"]
+    #endif
+    #if os(Linux)
+        let platforms = ["Linux", ""]
+    #else
+        let platforms = [""]
+    #endif
+    for version in versions {
+        for platform in platforms {
+            let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(version).json"
+            if FileManager.default.fileExists(atPath: versionedFilename) {
+                return versionedFilename
+            }
+        }
+    }
+    return "\(fixturesDirectory)\(name).json"
 }
 
 class SwiftDocsTests: XCTestCase {

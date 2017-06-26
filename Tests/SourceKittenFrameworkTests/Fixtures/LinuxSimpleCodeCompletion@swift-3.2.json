@@ -1,0 +1,318 @@
+[{
+  "typeName": "(partialValue: Int, overflow: ArithmeticOverflow)",
+  "descriptionKey": "addingReportingOverflow(other: Int)",
+  "sourcetext": "addingReportingOverflow(<#T##other: Int##Int#>)",
+  "name": "addingReportingOverflow(:)",
+  "associatedUSRs": "s:Si23addingReportingOverflowSi12partialValue_s010ArithmeticC0O8overflowtSiF s:s17FixedWidthIntegerP23addingReportingOverflowx12partialValue_s010ArithmeticF0O8overflowtxF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "advanced(by: Int)",
+  "sourcetext": "advanced(by: <#T##Int#>)",
+  "name": "advanced(by:)",
+  "associatedUSRs": "s:s13BinaryIntegerPsE8advancedxSi2by_tF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "advanced(by: Int)",
+  "sourcetext": "advanced(by: <#T##Int#>)",
+  "name": "advanced(by:)",
+  "associatedUSRs": "s:Si8advancedS2i2by_tF s:s10StrideableP8advancedx6StrideQz2by_tF s:s11_StrideableP8advancedx6StrideQz2by_tF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "bigEndian",
+  "sourcetext": "bigEndian",
+  "name": "bigEndian",
+  "docBrief": "The big-endian representation of this integer.",
+  "associatedUSRs": "s:Si9bigEndianSiv s:s17FixedWidthIntegerP9bigEndianxv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "bitWidth",
+  "sourcetext": "bitWidth",
+  "name": "bitWidth",
+  "associatedUSRs": "s:s17FixedWidthIntegerPsE03bitB0Siv",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "byteSwapped",
+  "sourcetext": "byteSwapped",
+  "name": "byteSwapped",
+  "docBrief": "A representation of this integer with the byte order swapped.",
+  "associatedUSRs": "s:Si11byteSwappedSiv s:s17FixedWidthIntegerP11byteSwappedxv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "countRepresentedWords",
+  "sourcetext": "countRepresentedWords",
+  "name": "countRepresentedWords",
+  "docBrief": "The number of words used for the current binary representation of this value.",
+  "associatedUSRs": "s:s13BinaryIntegerPsE21countRepresentedWordsSiv",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "Mirror",
+  "descriptionKey": "customMirror",
+  "sourcetext": "customMirror",
+  "name": "customMirror",
+  "docBrief": "A mirror that reflects the Int instance.",
+  "associatedUSRs": "s:Si12customMirrors0B0Vv s:s17CustomReflectableP12customMirrors0D0Vv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "PlaygroundQuickLook",
+  "descriptionKey": "customPlaygroundQuickLook",
+  "sourcetext": "customPlaygroundQuickLook",
+  "name": "customPlaygroundQuickLook",
+  "associatedUSRs": "s:Si25customPlaygroundQuickLooks0bcD0Ov s:s29CustomPlaygroundQuickLookableP06custombC4Looks0bcF0Ov",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "String",
+  "descriptionKey": "description",
+  "sourcetext": "description",
+  "name": "description",
+  "docBrief": "A textual representation of this value.",
+  "associatedUSRs": "s:s13SignedIntegerPsE11descriptionSSv",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "distance(to: Int)",
+  "sourcetext": "distance(to: <#T##Int#>)",
+  "name": "distance(to:)",
+  "associatedUSRs": "s:Si8distanceS2i2to_tF s:s10StrideableP8distance6StrideQzx2to_tF s:s11_StrideableP8distance6StrideQzx2to_tF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "distance(to: Int)",
+  "sourcetext": "distance(to: <#T##Int#>)",
+  "name": "distance(to:)",
+  "associatedUSRs": "s:s13BinaryIntegerPsE8distanceSix2to_tF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "(partialValue: Int, overflow: ArithmeticOverflow)",
+  "descriptionKey": "dividedReportingOverflow(by: Int)",
+  "sourcetext": "dividedReportingOverflow(by: <#T##Int#>)",
+  "name": "dividedReportingOverflow(by:)",
+  "associatedUSRs": "s:Si24dividedReportingOverflowSi12partialValue_s010ArithmeticC0O8overflowtSi2by_tF s:s17FixedWidthIntegerP24dividedReportingOverflowx12partialValue_s010ArithmeticF0O8overflowtx2by_tF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "(quotient: Int, remainder: Int)",
+  "descriptionKey": "dividingFullWidth(dividend: (high: Int, low: Int.Magnitude))",
+  "sourcetext": "dividingFullWidth(<#T##dividend: (high: Int, low: Int.Magnitude)##(high: Int, low: Int.Magnitude)#>)",
+  "name": "dividingFullWidth(:)",
+  "associatedUSRs": "s:Si17dividingFullWidthSi8quotient_Si9remaindertSi4high_Su3lowt_tF s:s17FixedWidthIntegerP012dividingFullB0x8quotient_x9remaindertx4high_9MagnitudeQz3lowt_tF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Void",
+  "descriptionKey": "encode(to: Encoder) throws",
+  "sourcetext": "encode(to: <#T##Encoder#>)",
+  "name": "encode(to:)",
+  "associatedUSRs": "s:Si6encodeys7Encoder_p2to_tKF s:s9EncodableP6encodeys7Encoder_p2to_tKF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "hashValue",
+  "sourcetext": "hashValue",
+  "name": "hashValue",
+  "docBrief": "The integer’s hash value.",
+  "associatedUSRs": "s:Si9hashValueSiv s:s8HashableP9hashValueSiv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "leadingZeroBitCount",
+  "sourcetext": "leadingZeroBitCount",
+  "name": "leadingZeroBitCount",
+  "associatedUSRs": "s:Si19leadingZeroBitCountSiv s:s17FixedWidthIntegerP19leadingZeroBitCountSiv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "littleEndian",
+  "sourcetext": "littleEndian",
+  "name": "littleEndian",
+  "docBrief": "The little-endian representation of this integer.",
+  "associatedUSRs": "s:Si12littleEndianSiv s:s17FixedWidthIntegerP12littleEndianxv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "UInt",
+  "descriptionKey": "magnitude",
+  "sourcetext": "magnitude",
+  "name": "magnitude",
+  "associatedUSRs": "s:Si9magnitudeSuv s:s7NumericP9magnitude9MagnitudeQzv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "(high: Int, low: Int.Magnitude)",
+  "descriptionKey": "multipliedFullWidth(by: Int)",
+  "sourcetext": "multipliedFullWidth(by: <#T##Int#>)",
+  "name": "multipliedFullWidth(by:)",
+  "associatedUSRs": "s:Si19multipliedFullWidthSi4high_Su3lowtSi2by_tF s:s17FixedWidthIntegerP014multipliedFullB0x4high_9MagnitudeQz3lowtx2by_tF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "(partialValue: Int, overflow: ArithmeticOverflow)",
+  "descriptionKey": "multipliedReportingOverflow(by: Int)",
+  "sourcetext": "multipliedReportingOverflow(by: <#T##Int#>)",
+  "name": "multipliedReportingOverflow(by:)",
+  "associatedUSRs": "s:Si27multipliedReportingOverflowSi12partialValue_s010ArithmeticC0O8overflowtSi2by_tF s:s17FixedWidthIntegerP27multipliedReportingOverflowx12partialValue_s010ArithmeticF0O8overflowtx2by_tF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Void",
+  "descriptionKey": "negate()",
+  "sourcetext": "negate()",
+  "name": "negate()",
+  "associatedUSRs": "s:s13SignedNumericPsE6negateyyF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "nonzeroBitCount",
+  "sourcetext": "nonzeroBitCount",
+  "name": "nonzeroBitCount",
+  "associatedUSRs": "s:Si15nonzeroBitCountSiv s:s17FixedWidthIntegerP15nonzeroBitCountSiv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "(quotient: Int, remainder: Int)",
+  "descriptionKey": "quotientAndRemainder(dividingBy: Int)",
+  "sourcetext": "quotientAndRemainder(dividingBy: <#T##Int#>)",
+  "name": "quotientAndRemainder(dividingBy:)",
+  "associatedUSRs": "s:s13BinaryIntegerPsE20quotientAndRemainderx0C0_x9remaindertx10dividingBy_tF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "(partialValue: Int, overflow: ArithmeticOverflow)",
+  "descriptionKey": "remainderReportingOverflow(dividingBy: Int)",
+  "sourcetext": "remainderReportingOverflow(dividingBy: <#T##Int#>)",
+  "name": "remainderReportingOverflow(dividingBy:)",
+  "associatedUSRs": "s:Si26remainderReportingOverflowSi12partialValue_s010ArithmeticC0O8overflowtSi10dividingBy_tF s:s17FixedWidthIntegerP26remainderReportingOverflowx12partialValue_s010ArithmeticF0O8overflowtx10dividingBy_tF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "signum()",
+  "sourcetext": "signum()",
+  "name": "signum()",
+  "associatedUSRs": "s:s13BinaryIntegerPsE6signumxyF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "signum()",
+  "sourcetext": "signum()",
+  "name": "signum()",
+  "associatedUSRs": "s:Si6signumSiyF s:s13BinaryIntegerP6signumxyF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "(partialValue: Int, overflow: ArithmeticOverflow)",
+  "descriptionKey": "subtractingReportingOverflow(other: Int)",
+  "sourcetext": "subtractingReportingOverflow(<#T##other: Int##Int#>)",
+  "name": "subtractingReportingOverflow(:)",
+  "associatedUSRs": "s:Si28subtractingReportingOverflowSi12partialValue_s010ArithmeticC0O8overflowtSiF s:s17FixedWidthIntegerP28subtractingReportingOverflowx12partialValue_s010ArithmeticF0O8overflowtxF",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "trailingZeroBitCount",
+  "sourcetext": "trailingZeroBitCount",
+  "name": "trailingZeroBitCount",
+  "associatedUSRs": "s:Si20trailingZeroBitCountSiv s:s13BinaryIntegerP20trailingZeroBitCountSiv",
+  "context": "source.codecompletion.context.thisclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "unsafeAdding(other: Int)",
+  "sourcetext": "unsafeAdding(<#T##other: Int##Int#>)",
+  "name": "unsafeAdding(:)",
+  "docBrief": "Returns the sum of this value and the given value without checking for arithmetic overflow.",
+  "associatedUSRs": "s:s17FixedWidthIntegerPsE12unsafeAddingxxF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "unsafeDivided(by: Int)",
+  "sourcetext": "unsafeDivided(by: <#T##Int#>)",
+  "name": "unsafeDivided(by:)",
+  "docBrief": "Returns the quotient of dividing this value by the given value without checking for arithmetic overflow.",
+  "associatedUSRs": "s:s17FixedWidthIntegerPsE13unsafeDividedxx2by_tF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "unsafeMultiplied(by: Int)",
+  "sourcetext": "unsafeMultiplied(by: <#T##Int#>)",
+  "name": "unsafeMultiplied(by:)",
+  "docBrief": "Returns the product of this value and the given value without checking for arithmetic overflow.",
+  "associatedUSRs": "s:s17FixedWidthIntegerPsE16unsafeMultipliedxx2by_tF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "Int",
+  "descriptionKey": "unsafeSubtracting(other: Int)",
+  "sourcetext": "unsafeSubtracting(<#T##other: Int##Int#>)",
+  "name": "unsafeSubtracting(:)",
+  "docBrief": "Returns the difference of this value and the given value without checking for arithmetic overflow.",
+  "associatedUSRs": "s:s17FixedWidthIntegerPsE17unsafeSubtractingxxF",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.function.method.instance"
+}, {
+  "typeName": "[UInt]",
+  "descriptionKey": "words",
+  "sourcetext": "words",
+  "name": "words",
+  "associatedUSRs": "s:s13BinaryIntegerPsE5wordsSaySuGv",
+  "context": "source.codecompletion.context.superclass",
+  "moduleName": "Swift",
+  "kind": "source.lang.swift.decl.var.instance"
+}]

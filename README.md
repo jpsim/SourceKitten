@@ -8,12 +8,12 @@ SourceKitten links and communicates with `sourcekitd.framework` to parse the Swi
 
 ## Installation
 
-Building SourceKitten on macOS requires Xcode 8.x or a Swift 3.x toolchain with
-the Swift Package Manager.
+Building SourceKitten on macOS requires Xcode 8.3 or later or a Swift 3.1
+toolchain or later with the Swift Package Manager.
 
 Building SourceKitten on Linux requires:
 
-* A Swift 3.x compiler and Swift Package Manager to be installed.
+* A Swift 3.1 or later compiler and Swift Package Manager to be installed.
 * `libsourcekitdInProc.so` to be built and located in `/usr/lib`, or in another
   location specified by the `LINUX_SOURCEKIT_LIB_PATH` environment variable.
 

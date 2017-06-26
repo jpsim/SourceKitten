@@ -56,12 +56,7 @@ extension ModuleTests {
             return directory + subDirectory + "/"
         }
 
-        let checkoutDirectory: String
-        #if swift(>=3.1)
-            checkoutDirectory = "/.build/checkouts/"
-        #else
-            checkoutDirectory = "/Packages/"
-        #endif
+        let checkoutDirectory = "/.build/checkouts/"
         guard let commandantPath = findCommandant(in: projectRoot + checkoutDirectory) else {
             XCTFail("Can't find Commandant")
             return
