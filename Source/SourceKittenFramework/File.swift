@@ -436,7 +436,9 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
         docs[SwiftDocKey.docName.rawValue] = rootXML["Name"].element?.text
         docs[SwiftDocKey.usr.rawValue] = rootXML["USR"].element?.text
         docs[SwiftDocKey.docDeclaration.rawValue] = rootXML["Declaration"].element?.text
-        let parameters = rootXML["Parameters"].children
+        // XML before swift 3.2 does not have CommentParts container
+        let commentPartsXML = (try? rootXML.byKey("CommentParts")) ?? rootXML
+        let parameters = commentPartsXML["Parameters"].children
         if !parameters.isEmpty {
             func docParameters(from indexer: XMLIndexer) -> [String:SourceKitRepresentable] {
                 return [
@@ -446,8 +448,8 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
             }
             docs[SwiftDocKey.docParameters.rawValue] = parameters.map(docParameters(from:)) as [SourceKitRepresentable]
         }
-        docs[SwiftDocKey.docDiscussion.rawValue] = rootXML["Discussion"].childrenAsArray()
-        docs[SwiftDocKey.docResultDiscussion.rawValue] = rootXML["ResultDiscussion"].childrenAsArray()
+        docs[SwiftDocKey.docDiscussion.rawValue] = commentPartsXML["Discussion"].childrenAsArray()
+        docs[SwiftDocKey.docResultDiscussion.rawValue] = commentPartsXML["ResultDiscussion"].childrenAsArray()
         return docs
     }
 }

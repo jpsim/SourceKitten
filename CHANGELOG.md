@@ -12,6 +12,9 @@
   [JP Simard](https://github.com/jpsim)
   [realm/SwiftLint#1577](https://github.com/realm/SwiftLint/issues/1577)
 
+* Process Swift 3.2/4 doc comments.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 ##### Bug Fixes
 
 * None.
