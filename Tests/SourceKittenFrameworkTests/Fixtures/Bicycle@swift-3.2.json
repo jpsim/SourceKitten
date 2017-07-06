@@ -53,7 +53,11 @@
             "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>public enum <Type usr=\"s:7BicycleAAC\">Bicycle<\/Type>.Style<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <ref.class usr=\"s:7BicycleAAC\">Bicycle<\/ref.class>.<decl.name>Style<\/decl.name><\/decl.enum>",
-            "key.doc.declaration" : "public enum Bicycle.Bicycle.Style",
+            "key.doc.discussion" : [
+              {
+                "List-Bullet" : ""
+              }
+            ],
             "key.substructure" : [
               {
                 "key.namelength" : 0,
@@ -137,6 +141,7 @@
                 "key.length" : 35
               }
             ],
+            "key.doc.declaration" : "public enum Bicycle.Bicycle.Style",
             "key.typeusr" : "_T07BicycleAAC5StyleOmD",
             "key.offset" : 480,
             "key.doc.line" : 17,
@@ -164,7 +169,11 @@
             "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>public enum <Type usr=\"s:7BicycleAAC\">Bicycle<\/Type>.Gearing<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <ref.class usr=\"s:7BicycleAAC\">Bicycle<\/ref.class>.<decl.name>Gearing<\/decl.name><\/decl.enum>",
-            "key.doc.declaration" : "public enum Bicycle.Bicycle.Gearing",
+            "key.doc.discussion" : [
+              {
+                "List-Bullet" : ""
+              }
+            ],
             "key.substructure" : [
               {
                 "key.namelength" : 0,
@@ -221,6 +230,7 @@
                 "key.length" : 27
               }
             ],
+            "key.doc.declaration" : "public enum Bicycle.Bicycle.Gearing",
             "key.typeusr" : "_T07BicycleAAC7GearingOmD",
             "key.offset" : 719,
             "key.doc.line" : 27,
@@ -248,7 +258,11 @@
             "key.doc.file" : "Bicycle.swift",
             "key.annotated_decl" : "<Declaration>enum <Type usr=\"s:7BicycleAAC\">Bicycle<\/Type>.Handlebar<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>enum<\/syntaxtype.keyword> <ref.class usr=\"s:7BicycleAAC\">Bicycle<\/ref.class>.<decl.name>Handlebar<\/decl.name><\/decl.enum>",
-            "key.doc.declaration" : "enum Bicycle.Bicycle.Handlebar",
+            "key.doc.discussion" : [
+              {
+                "List-Bullet" : ""
+              }
+            ],
             "key.substructure" : [
               {
                 "key.namelength" : 0,
@@ -332,6 +346,7 @@
                 "key.length" : 33
               }
             ],
+            "key.doc.declaration" : "enum Bicycle.Bicycle.Handlebar",
             "key.typeusr" : "_T07BicycleAAC9HandlebarOmD",
             "key.offset" : 993,
             "key.doc.line" : 40,
@@ -502,6 +517,7 @@
             "key.parsed_scope.end" : 60
           },
           {
+            "key.namelength" : 86,
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 281,
             "key.doc.type" : "Function",
@@ -521,6 +537,40 @@
             "key.substructure" : [
 
             ],
+            "key.doc.parameters" : [
+              {
+                "name" : "style",
+                "discussion" : [
+                  {
+                    "Para" : "The style of the bicycle"
+                  }
+                ]
+              },
+              {
+                "name" : "gearing",
+                "discussion" : [
+                  {
+                    "Para" : "The gearing of the bicycle"
+                  }
+                ]
+              },
+              {
+                "name" : "handlebar",
+                "discussion" : [
+                  {
+                    "Para" : "The handlebar of the bicycle"
+                  }
+                ]
+              },
+              {
+                "name" : "centimeters",
+                "discussion" : [
+                  {
+                    "Para" : "The frame size of the bicycle, in centimeters"
+                  }
+                ]
+              }
+            ],
             "key.typeusr" : "_T07BicycleAACAB5StyleO5style_AB7GearingO7gearingAB9HandlebarO9handlebarSi9frameSizetcD",
             "key.offset" : 1922,
             "key.doc.line" : 72,
@@ -528,9 +578,13 @@
             "key.name" : "init(style:gearing:handlebar:frameSize:)",
             "key.usr" : "s:7BicycleAACA2B5StyleO5style_AB7GearingO7gearingAB9HandlebarO9handlebarSi9frameSizetcfc",
             "key.parsed_declaration" : "init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)",
+            "key.doc.result_discussion" : [
+              {
+                "Para" : "A beautiful, brand-new, custom built just for you."
+              }
+            ],
             "key.bodylength" : 192,
-            "key.parsed_scope.end" : 80,
-            "key.namelength" : 86
+            "key.parsed_scope.end" : 80
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
@@ -551,6 +605,16 @@
             "key.doc.declaration" : "func travel(distance meters: Double)",
             "key.substructure" : [
 
+            ],
+            "key.doc.parameters" : [
+              {
+                "name" : "meters",
+                "discussion" : [
+                  {
+                    "Para" : "The distance to travel in meters."
+                  }
+                ]
+              }
             ],
             "key.typeusr" : "_T0ySd8distance_tcD",
             "key.offset" : 2318,

@@ -101,8 +101,11 @@ class SwiftDocsTests: XCTestCase {
 
     func testParseFullXMLDocs() {
         // swiftlint:disable:next line_length
-        let xmlDocsString = "<Type file=\"file\" line=\"1\" column=\"2\"><Name>name</Name><USR>usr</USR><Declaration>declaration</Declaration><Abstract><Para>discussion</Para></Abstract><Parameters><Parameter><Name>param1</Name><Direction isExplicit=\"0\">in</Direction><Discussion><Para>param1_discussion</Para></Discussion></Parameter></Parameters><ResultDiscussion><Para>result_discussion</Para></ResultDiscussion></Type>"
-        let parsed = parseFullXMLDocs(xmlDocsString)!
+        let xmlDocsStringPreSwift32 = "<Type file=\"file\" line=\"1\" column=\"2\"><Name>name</Name><USR>usr</USR><Declaration>declaration</Declaration><Abstract><Para>discussion</Para></Abstract><Parameters><Parameter><Name>param1</Name><Direction isExplicit=\"0\">in</Direction><Discussion><Para>param1_discussion</Para></Discussion></Parameter></Parameters><ResultDiscussion><Para>result_discussion</Para></ResultDiscussion></Type>"
+        // swiftlint:disable:next line_length
+        let xmlDocsStringSwift32 = "<Type file=\"file\" line=\"1\" column=\"2\"><Name>name</Name><USR>usr</USR><Declaration>declaration</Declaration><CommentParts><Abstract><Para>discussion</Para></Abstract><Parameters><Parameter><Name>param1</Name><Direction isExplicit=\"0\">in</Direction><Discussion><Para>param1_discussion</Para></Discussion></Parameter></Parameters><ResultDiscussion><Para>result_discussion</Para></ResultDiscussion></CommentParts></Type>"
+        let parsedPreSwift32 = parseFullXMLDocs(xmlDocsStringPreSwift32)!
+        let parsedSwift32 = parseFullXMLDocs(xmlDocsStringSwift32)!
         let expected: NSDictionary = [
             "key.doc.type": "Type",
             "key.doc.file": "file",
@@ -117,7 +120,8 @@ class SwiftDocsTests: XCTestCase {
             ]],
             "key.doc.result_discussion": [["Para": "result_discussion"]]
         ]
-        XCTAssertEqual(toNSDictionary(parsed), expected)
+        XCTAssertEqual(toNSDictionary(parsedPreSwift32), expected)
+        XCTAssertEqual(toNSDictionary(parsedSwift32), expected)
     }
 }
 
