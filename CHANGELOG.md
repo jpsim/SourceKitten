@@ -15,6 +15,9 @@
 * Process Swift 3.2/4 doc comments.  
   [John Fairhurst](https://github.com/johnfairh)
 
+* Support building with Xcode 9 beta 3 and the latest Swift 4 snapshots.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * None.
