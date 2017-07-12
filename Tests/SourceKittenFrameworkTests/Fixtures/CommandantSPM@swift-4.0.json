@@ -21,26 +21,31 @@
         "key.doc.declaration" : "public struct Argument<T>",
         "key.substructure" : [
           {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.length" : 20,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 17,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Argument.swift\" line=\"17\" column=\"13\"><Name>defaultValue<\/Name><USR>s:10Commandant8ArgumentV12defaultValuexSgv<\/USR><Declaration>public let defaultValue: T?<\/Declaration><CommentParts><Abstract><Para>The default value for this argument. This is the value that will be used if the argument is never explicitly specified on the command line.<\/Para><\/Abstract><Discussion><Para>If this is nil, this argument is always required.<\/Para><\/Discussion><\/CommentParts><\/Other>",
+            "key.nameoffset" : 469,
+            "key.typename" : "T?",
+            "key.doc.column" : 13,
+            "key.doc.comment" : "The default value for this argument. This is the value that will be used\nif the argument is never explicitly specified on the command line.\n\nIf this is nil, this argument is always required.",
             "key.filepath" : "Sources\/Commandant\/Argument.swift",
             "key.doc.file" : "Sources\/Commandant\/Argument.swift",
             "key.annotated_decl" : "<Declaration>public let defaultValue: <Type usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/Type>?<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>defaultValue<\/decl.name>: <decl.var.type><ref.generic_type_param usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/ref.generic_type_param>?<\/decl.var.type><\/decl.var.instance>",
-            "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.length" : 20,
+            "key.doc.discussion" : [
+              {
+                "Para" : "If this is nil, this argument is always required."
+              }
+            ],
             "key.doc.declaration" : "public let defaultValue: T?",
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 17,
             "key.typeusr" : "_T0xSgD",
-            "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 465,
-            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Argument.swift\" line=\"17\" column=\"13\"><Name>defaultValue<\/Name><USR>s:10Commandant8ArgumentV12defaultValuexSgv<\/USR><Declaration>public let defaultValue: T?<\/Declaration><CommentParts><Abstract><Para>The default value for this argument. This is the value that will be used if the argument is never explicitly specified on the command line.<\/Para><\/Abstract><Discussion><Para>If this is nil, this argument is always required.<\/Para><\/Discussion><\/CommentParts><\/Other>",
-            "key.nameoffset" : 469,
             "key.doc.line" : 17,
-            "key.typename" : "T?",
             "key.doc.name" : "defaultValue",
-            "key.doc.column" : 13,
             "key.name" : "defaultValue",
-            "key.doc.comment" : "The default value for this argument. This is the value that will be used\nif the argument is never explicitly specified on the command line.\n\nIf this is nil, this argument is always required.",
             "key.usr" : "s:10Commandant8ArgumentV12defaultValuexSgv",
             "key.parsed_declaration" : "public let defaultValue: T?",
             "key.namelength" : 12,
@@ -146,7 +151,11 @@
         "key.doc.file" : "Sources\/Commandant\/Argument.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;|&lt;T, ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, argument: <Type usr=\"s:10Commandant8ArgumentV\">Argument<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lF1TL_xmfp\">T<\/Type>&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lF1TL_xmfp\">T<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt;&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;|<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lF06ClientD0L_q_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>mode<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>argument<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant8ArgumentV\">Argument<\/ref.struct>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, argument: Argument<T>) -> Result<T, CommandantError<ClientError>> where T : ArgumentProtocol",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the argument’s `defaultValue` is used."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Argument.swift",
@@ -164,6 +173,7 @@
             "key.parsed_scope.end" : 38
           }
         ],
+        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, argument: Argument<T>) -> Result<T, CommandantError<ClientError>> where T : ArgumentProtocol",
         "key.typeusr" : "_T06ResultAAOyx10Commandant0B5ErrorOyq_GGAC11CommandModeO_AC8ArgumentVyxGtcAC0F8ProtocolRzr0_luD",
         "key.offset" : 1146,
         "key.doc.line" : 38,
@@ -214,7 +224,11 @@
         "key.doc.file" : "Sources\/Commandant\/Argument.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;|&lt;T, ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, argument: <Type usr=\"s:10Commandant8ArgumentV\">Argument<\/Type>&lt;[<Type usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyAEGtAA0G8ProtocolRzr0_lF1TL_xmfp\">T<\/Type>]&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;[<Type usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyAEGtAA0G8ProtocolRzr0_lF1TL_xmfp\">T<\/Type>], <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyAEGtAA0G8ProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt;&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;|<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyAEGtAA0G8ProtocolRzr0_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyAEGtAA0G8ProtocolRzr0_lF06ClientD0L_q_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>mode<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>argument<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant8ArgumentV\">Argument<\/ref.struct>&lt;[<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyAEGtAA0G8ProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>]&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;[<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyAEGtAA0G8ProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>], <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA8ArgumentVyAEGtAA0G8ProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, argument: Argument<[T]>) -> Result<[T], CommandantError<ClientError>> where T : ArgumentProtocol",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the argument’s `defaultValue` is used."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Argument.swift",
@@ -232,6 +246,7 @@
             "key.parsed_scope.end" : 64
           }
         ],
+        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, argument: Argument<[T]>) -> Result<[T], CommandantError<ClientError>> where T : ArgumentProtocol",
         "key.typeusr" : "_T06ResultAAOySayxG10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD8ArgumentVyACGtcAD0F8ProtocolRzr0_luD",
         "key.offset" : 1976,
         "key.doc.line" : 64,
@@ -747,6 +762,9 @@
             "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A8WallTimeV2eeoiSbAC_ACtFZ\">==(_: DispatchWallTime, _: DispatchWallTime) -&gt; Bool<\/RelatedName>"
           },
           {
+            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A12TimeIntervalO2eeoiSbAC_ACtFZ\">==(_: DispatchTimeInterval, _: DispatchTimeInterval) -&gt; Bool<\/RelatedName>"
+          },
+          {
             "key.annotated_decl" : "<RelatedName usr=\"s:10ObjectiveC2eeoiSbAA8SelectorV_ADtF\">==(_: Selector, _: Selector) -&gt; Bool<\/RelatedName>"
           },
           {
@@ -789,7 +807,17 @@
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.parsed_declaration" : "fileprivate var description: String",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Instead of accessing this property directly, convert an instance of any type to a string by using the `String(describing:)` initializer. For example:"
+              },
+              {
+                "CodeListing" : ""
+              },
+              {
+                "Para" : "The conversion of `p` to a string in the assignment to `s` uses the `Point` type’s `description` property."
+              }
+            ],
             "key.annotated_decl" : "<Declaration>fileprivate var description: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>fileprivate<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>description<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.fileprivate",
@@ -803,6 +831,7 @@
             "key.parsed_scope.start" : 42,
             "key.typeusr" : "_T0SSD",
             "key.doc.type" : "Other",
+            "key.parsed_declaration" : "fileprivate var description: String",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 937,
             "key.doc.full_as_xml" : "<Other><Name>description<\/Name><USR>s:s23CustomStringConvertibleP11descriptionSSv<\/USR><Declaration>var description: String { get }<\/Declaration><CommentParts><Abstract><Para>A textual representation of this instance.<\/Para><\/Abstract><Discussion><Para>Instead of accessing this property directly, convert an instance of any type to a string by using the <codeVoice>String(describing:)<\/codeVoice> initializer. For example:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[struct Point: CustomStringConvertible {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    let x: Int, y: Int]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    var description: String {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[        return \"(\\(x), \\(y))\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    }]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let p = Point(x: 21, y: 30)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let s = String(describing: p)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(s)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"(21, 30)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The conversion of <codeVoice>p<\/codeVoice> to a string in the assignment to <codeVoice>s<\/codeVoice> uses the <codeVoice>Point<\/codeVoice> type’s <codeVoice>description<\/codeVoice> property.<\/Para><\/Discussion><\/CommentParts><\/Other>",
@@ -966,10 +995,15 @@
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
             "key.annotated_decl" : "<Declaration>internal func consumeBoolean(forKey key: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type>?<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>consumeBoolean<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>forKey<\/decl.var.parameter.argument_label> <decl.var.parameter.name>key<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.struct usr=\"s:Sb\">Bool<\/ref.struct>?<\/decl.function.returntype><\/decl.function.method.instance>",
-            "key.doc.declaration" : "internal func consumeBoolean(forKey key: String) -> Bool?",
+            "key.doc.discussion" : [
+              {
+                "Para" : "If the key is found, it is then removed from the list of arguments remaining to be parsed."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "internal func consumeBoolean(forKey key: String) -> Bool?",
             "key.typeusr" : "_T0SbSgSS6forKey_tcD",
             "key.offset" : 2587,
             "key.doc.line" : 99,
@@ -1002,10 +1036,15 @@
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
             "key.annotated_decl" : "<Declaration>internal func consumeValue(forKey key: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>?, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:6Result7NoErrorO\">NoError<\/Type>&gt;&gt;<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>consumeValue<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>forKey<\/decl.var.parameter.argument_label> <decl.var.parameter.name>key<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>?, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.enum usr=\"s:6Result7NoErrorO\">NoError<\/ref.enum>&gt;&gt;<\/decl.function.returntype><\/decl.function.method.instance>",
-            "key.doc.declaration" : "internal func consumeValue(forKey key: String) -> Result<String?, CommandantError<NoError>>",
+            "key.doc.discussion" : [
+              {
+                "Para" : "If a value is found, the key and the value are both removed from the list of arguments remaining to be parsed."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "internal func consumeValue(forKey key: String) -> Result<String?, CommandantError<NoError>>",
             "key.typeusr" : "_T06ResultAAOySSSg10Commandant0B5ErrorOyAA02NoC0OGGSS6forKey_tcD",
             "key.offset" : 3231,
             "key.doc.line" : 123,
@@ -1230,6 +1269,11 @@
       },
       {
         "key.modulename" : "Swift",
+        "key.doc.discussion" : [
+          {
+            "Para" : "On 32-bit platforms, `Int` is the same size as `Int32`, and on 64-bit platforms, `Int` is the same size as `Int64`."
+          }
+        ],
         "key.annotated_decl" : "<Declaration>struct Int : <Type usr=\"s:s17FixedWidthIntegerP\">FixedWidthInteger<\/Type>, <Type usr=\"s:s13SignedIntegerP\">SignedInteger<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>Int<\/decl.name> : <ref.protocol usr=\"s:s17FixedWidthIntegerP\">FixedWidthInteger<\/ref.protocol>, <ref.protocol usr=\"s:s13SignedIntegerP\">SignedInteger<\/ref.protocol><\/decl.struct>",
         "key.doc.declaration" : "struct Int : FixedWidthInteger, SignedInteger",
@@ -1333,6 +1377,158 @@
       },
       {
         "key.modulename" : "Swift",
+        "key.doc.discussion" : [
+          {
+            "Para" : "A string is a series of characters, such as `\"Swift\"`, that forms a collection. Strings in Swift are Unicode correct and locale insensitive, and are designed to be efficient. The `String` type bridges with the Objective-C class `NSString` and offers interoperability with C functions that works with strings."
+          },
+          {
+            "Para" : "You can create new strings using string literals or string interpolations. A  is a series of characters enclosed in quotes."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : " are string literals that evaluate any included expressions and convert the results to string form. String interpolations give you an easy way to build a string from multiple pieces. Wrap each expression in a string interpolation in parentheses, prefixed by a backslash."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Combine strings using the concatenation operator (`+`)."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Multiline string literals are enclosed in three double quotation marks (`\"\"\"`), with each delimiter on its own line. Indentation is stripped from each line of a multiline string literal to match the indentation of the closing delimiter."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Strings always have value semantics. Modifying a copy of a string leaves the original unaffected."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Comparing strings for equality using the equal-to operator (`==`) or a relational operator (like `<` or `>=`) is always performed using Unicode canonical representation. As a result, different representations of a string compare as being equal."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The Unicode code point `\"\\u{301}\"` modifies the preceding character to include an accent, so `\"e\\u{301}\"` has the same canonical representation as the single Unicode code point `\"é\"`."
+          },
+          {
+            "Para" : "Basic string operations are not sensitive to locale settings, ensuring that string comparisons and other operations always have a single, stable result, allowing strings to be used as keys in `Dictionary` instances and for other purposes."
+          },
+          {
+            "Para" : "A string is a collection of , which approximate human-readable characters. Many individual characters, such as “é”, “김”, and “🇮🇳”, can be made up of multiple Unicode code points. These code points are combined by Unicode’s boundary algorithms into extended grapheme clusters, represented by the Swift `Character` type. Each element of a string is represented by a `Character` instance."
+          },
+          {
+            "Para" : "For example, to retrieve the first word of a longer string, you can search for a space and then create a substring from a prefix of the string up to that point:"
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The `firstName` constant is an instance of the `Substring` type—a type that represents substrings of a string while sharing the original string’s storage. Substrings present the same interface as strings."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "If you need to access the contents of a string as encoded in different Unicode encodings, use one of the string’s `unicodeScalars`, `utf16`, or `utf8` properties. Each property provides access to a view of the string as a series of code units, each encoded in a different Unicode encoding."
+          },
+          {
+            "Para" : "To demonstrate the different views available for every string, the following examples use this `String` instance:"
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The `cafe` string is a collection of the nine characters that are visible when the string is displayed."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "A string’s `unicodeScalars` property is a collection of Unicode scalar values, the 21-bit codes that are the basic unit of Unicode. Each scalar value is represented by a `Unicode.Scalar` instance and is equivalent to a UTF-32 code unit."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The `unicodeScalars` view’s elements comprise each Unicode scalar value in the `cafe` string. In particular, because `cafe` was declared using the decomposed form of the `\"é\"` character, `unicodeScalars` contains the code points for both the letter `\"e\"` (101) and the accent character `\"´\"` (769)."
+          },
+          {
+            "Para" : "A string’s `utf16` property is a collection of UTF-16 code units, the 16-bit encoding form of the string’s Unicode scalar values. Each code unit is stored as a `UInt16` instance."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The elements of the `utf16` view are the code units for the string when encoded in UTF-16. These elements match those accessed through indexed `NSString` APIs."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "A string’s `utf8` property is a collection of UTF-8 code units, the 8-bit encoding form of the string’s Unicode scalar values. Each code unit is stored as a `UInt8` instance."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The elements of the `utf8` view are the code units for the string when encoded in UTF-8. This representation matches the one used when `String` instances are passed to C APIs."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "When you need to know the length of a string, you must first consider what you’ll use the length for. Are you measuring the number of characters that will be displayed on the screen, or are you measuring the amount of storage needed for the string in a particular encoding? A single string can have greatly differing lengths when measured by its different views."
+          },
+          {
+            "Para" : "For example, an ASCII character like the capital letter  is represented by a single element in each of its four views. The Unicode scalar value of  is `65`, which is small enough to fit in a single code unit in both UTF-16 and UTF-8."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "On the other hand, an emoji flag character is constructed from a pair of Unicode scalar values, like `\"\\u{1F1F5}\"` and `\"\\u{1F1F7}\"`. Each of these scalar values, in turn, is too large to fit into a single UTF-16 or UTF-8 code unit. As a result, each view of the string `\"🇵🇷\"` reports a different length."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "To check whether a string is empty, use its `isEmpty` property instead of comparing the length of one of the views to `0`. Unlike with `isEmpty`, calculating a view’s `count` property requires iterating through the elements of the string."
+          },
+          {
+            "Para" : "To find individual elements of a string, use the appropriate view for your task. For example, to retrieve the first word of a longer string, you can search the `characters` view for a space and then create a new string from a prefix of the `characters` view up to that point."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "You can convert an index into one of a string’s views to an index into another view."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Although strings in Swift have value semantics, strings use a copy-on-write strategy to store their data in a buffer. This buffer can then be shared by different copies of a string. A string’s data is only copied lazily, upon mutation, when more than one string instance is using the same buffer. Therefore, the first in any sequence of mutating operations may cost O() time and space."
+          },
+          {
+            "Para" : "When a string’s contiguous storage fills up, a new buffer must be allocated and data must be moved to the new storage. String buffers use an exponential growth strategy that makes appending to a string a constant time operation when averaged over many append operations."
+          },
+          {
+            "Para" : "Any `String` instance can be bridged to `NSString` using the type-cast operator (`as`), and any `String` instance that originates in Objective-C may use an `NSString` instance as its storage. Because any arbitrary subclass of `NSString` can become a `String` instance, there are no guarantees about representation or efficiency when a `String` instance is backed by `NSString` storage. Because `NSString` is immutable, it is just as though the storage was shared by a copy. The first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost O() time and space, where  is the length of the string’s encoded representation (or more, if the underlying `NSString` has unusual performance characteristics)."
+          },
+          {
+            "Para" : "For more information about the Unicode terms used in this discussion, see the . In particular, this discussion mentions , , and ."
+          }
+        ],
         "key.annotated_decl" : "<Declaration>struct String<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>String<\/decl.name><\/decl.struct>",
         "key.doc.declaration" : "struct String",
@@ -1967,10 +2163,15 @@
             "key.doc.file" : "Sources\/Commandant\/Command.swift",
             "key.annotated_decl" : "<Declaration>public func register&lt;C&gt;(_ command: <Type usr=\"s:10Commandant15CommandRegistryC8registeryqd__11ClientErrorQyd__RszAA0B8ProtocolRd__7Options_AEQYd__AFRSlF1CL_qd__mfp\">C<\/Type>) where ClientError == C.ClientError, C : <Type usr=\"s:10Commandant15CommandProtocolP\">CommandProtocol<\/Type>, C.ClientError == C.Options.ClientError<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>register<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant15CommandRegistryC8registeryqd__11ClientErrorQyd__RszAA0B8ProtocolRd__7Options_AEQYd__AFRSlF1CL_qd__mfp\"><decl.generic_type_param.name>C<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>command<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant15CommandRegistryC8registeryqd__11ClientErrorQyd__RszAA0B8ProtocolRd__7Options_AEQYd__AFRSlF1CL_qd__mfp\">C<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>ClientError == C.ClientError<\/decl.generic_type_requirement>, <decl.generic_type_requirement>C : <ref.protocol usr=\"s:10Commandant15CommandProtocolP\">CommandProtocol<\/ref.protocol><\/decl.generic_type_requirement>, <decl.generic_type_requirement>C.ClientError == C.Options.ClientError<\/decl.generic_type_requirement><\/decl.function.method.instance>",
-            "key.doc.declaration" : "public func register<C>(_ command: C) where ClientError == C.ClientError, C : CommandProtocol, C.ClientError == C.Options.ClientError",
+            "key.doc.discussion" : [
+              {
+                "Para" : "If another command was already registered with the same `verb`, it will be overwritten."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "public func register<C>(_ command: C) where ClientError == C.ClientError, C : CommandProtocol, C.ClientError == C.Options.ClientError",
             "key.typeusr" : "_T0yqd__c11ClientErrorQyd__Rsz10Commandant15CommandProtocolRd__7Options_AAQYd__ABRSluD",
             "key.offset" : 2677,
             "key.doc.line" : 93,
@@ -1998,10 +2199,15 @@
             "key.doc.file" : "Sources\/Commandant\/Command.swift",
             "key.annotated_decl" : "<Declaration>public func run(command verb: <Type usr=\"s:SS\">String<\/Type>, arguments: [<Type usr=\"s:SS\">String<\/Type>]) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;(), <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant15CommandRegistryC11ClientErrorxmfp\">ClientError<\/Type>&gt;&gt;?<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>run<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>command<\/decl.var.parameter.argument_label> <decl.var.parameter.name>verb<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>arguments<\/decl.var.parameter.argument_label>: <decl.var.parameter.type>[<ref.struct usr=\"s:SS\">String<\/ref.struct>]<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<tuple>()<\/tuple>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant15CommandRegistryC11ClientErrorxmfp\">ClientError<\/ref.generic_type_param>&gt;&gt;?<\/decl.function.returntype><\/decl.function.method.instance>",
-            "key.doc.declaration" : "public func run(command verb: String, arguments: [String]) -> Result<(), CommandantError<ClientError>>?",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Returns the results of the execution, or nil if no such command exists."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "public func run(command verb: String, arguments: [String]) -> Result<(), CommandantError<ClientError>>?",
             "key.typeusr" : "_T06ResultAAOyyt10Commandant0B5ErrorOyxGGSgSS7command_SaySSG9argumentstcD",
             "key.offset" : 3043,
             "key.doc.line" : 101,
@@ -2077,10 +2283,24 @@
             "key.doc.file" : "Sources\/Commandant\/Command.swift",
             "key.annotated_decl" : "<Declaration>public func main(defaultVerb: <Type usr=\"s:SS\">String<\/Type>, errorHandler: (<Type usr=\"s:10Commandant15CommandRegistryC11ClientErrorxmfp\">ClientError<\/Type>) -&gt; ()) -&gt; <Type usr=\"s:s5NeverO\">Never<\/Type><\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>main<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>defaultVerb<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>errorHandler<\/decl.var.parameter.argument_label>: <decl.var.parameter.type>(<decl.var.parameter><decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant15CommandRegistryC11ClientErrorxmfp\">ClientError<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><tuple>()<\/tuple><\/decl.function.returntype><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:s5NeverO\">Never<\/ref.enum><\/decl.function.returntype><\/decl.function.method.instance>",
-            "key.doc.declaration" : "public func main(defaultVerb: String, errorHandler: (ClientError) -> ()) -> Never",
+            "key.doc.discussion" : [
+              {
+                "Para" : "If the chosen command executes successfully, the process will exit with a successful exit code."
+              },
+              {
+                "Para" : "If the chosen command fails, the provided error handler will be invoked, then the process will exit with a failure exit code."
+              },
+              {
+                "Para" : "If a matching command could not be found but there is any `executable-verb` style subcommand executable in the caller’s `$PATH`, the subcommand will be executed."
+              },
+              {
+                "Para" : "If a matching command could not be found or a usage error occurred, a helpful error message will be written to `stderr`, then the process will exit with a failure error code."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "public func main(defaultVerb: String, errorHandler: (ClientError) -> ()) -> Never",
             "key.typeusr" : "_T0s5NeverOSS11defaultVerb_yxc12errorHandlertcD",
             "key.offset" : 4230,
             "key.doc.line" : 130,
@@ -2113,10 +2333,24 @@
             "key.doc.file" : "Sources\/Commandant\/Command.swift",
             "key.annotated_decl" : "<Declaration>public func main(arguments: [<Type usr=\"s:SS\">String<\/Type>], defaultVerb: <Type usr=\"s:SS\">String<\/Type>, errorHandler: (<Type usr=\"s:10Commandant15CommandRegistryC11ClientErrorxmfp\">ClientError<\/Type>) -&gt; ()) -&gt; <Type usr=\"s:s5NeverO\">Never<\/Type><\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>main<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>arguments<\/decl.var.parameter.argument_label>: <decl.var.parameter.type>[<ref.struct usr=\"s:SS\">String<\/ref.struct>]<\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>defaultVerb<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>errorHandler<\/decl.var.parameter.argument_label>: <decl.var.parameter.type>(<decl.var.parameter><decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant15CommandRegistryC11ClientErrorxmfp\">ClientError<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><tuple>()<\/tuple><\/decl.function.returntype><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:s5NeverO\">Never<\/ref.enum><\/decl.function.returntype><\/decl.function.method.instance>",
-            "key.doc.declaration" : "public func main(arguments: [String], defaultVerb: String, errorHandler: (ClientError) -> ()) -> Never",
+            "key.doc.discussion" : [
+              {
+                "Para" : "If the chosen command executes successfully, the process will exit with a successful exit code."
+              },
+              {
+                "Para" : "If the chosen command fails, the provided error handler will be invoked, then the process will exit with a failure exit code."
+              },
+              {
+                "Para" : "If a matching command could not be found but there is any `executable-verb` style subcommand executable in the caller’s `$PATH`, the subcommand will be executed."
+              },
+              {
+                "Para" : "If a matching command could not be found or a usage error occurred, a helpful error message will be written to `stderr`, then the process will exit with a failure error code."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "public func main(arguments: [String], defaultVerb: String, errorHandler: (ClientError) -> ()) -> Never",
             "key.typeusr" : "_T0s5NeverOSaySSG9arguments_SS11defaultVerbyxc12errorHandlertcD",
             "key.offset" : 5204,
             "key.doc.line" : 151,
@@ -2134,6 +2368,7 @@
             "key.namelength" : 81
           },
           {
+            "key.namelength" : 86,
             "key.accessibility" : "source.lang.swift.accessibility.private",
             "key.length" : 593,
             "key.doc.type" : "Function",
@@ -2182,9 +2417,13 @@
             "key.name" : "executeSubcommandIfExists(_:verb:arguments:)",
             "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELLs5Int32VSgSS_SS4verbSaySSG9argumentstF",
             "key.parsed_declaration" : "private func executeSubcommandIfExists(_ executableName: String, verb: String, arguments: [String]) -> Int32?",
+            "key.doc.result_discussion" : [
+              {
+                "Para" : "The exit status of found subcommand or nil."
+              }
+            ],
             "key.bodylength" : 489,
-            "key.parsed_scope.end" : 213,
-            "key.namelength" : 86
+            "key.parsed_scope.end" : 213
           }
         ],
         "key.doc.type" : "Class",
@@ -2340,7 +2579,11 @@
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
         "key.annotated_decl" : "<Declaration>public enum CommandantError&lt;ClientError&gt; : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>CommandantError<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant0A5ErrorO06ClientB0xmfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; : <ref.protocol usr=\"s:s5ErrorP\">Error<\/ref.protocol><\/decl.enum>",
-        "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
+        "key.doc.discussion" : [
+          {
+            "Para" : "`ClientError` should be the type of error (if any) that can occur when running commands."
+          }
+        ],
         "key.substructure" : [
           {
             "key.namelength" : 0,
@@ -2413,6 +2656,7 @@
             "key.length" : 30
           }
         ],
+        "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
         "key.typeusr" : "_T010Commandant0A5ErrorOyxGmD",
         "key.offset" : 344,
         "key.doc.line" : 16,
@@ -2437,16 +2681,37 @@
         "key.namelength" : 15
       },
       {
+        "key.length" : 240,
+        "key.doc.type" : "Other",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Errors.swift\" line=\"16\" column=\"13\"><Name>CommandantError<\/Name><USR>s:10Commandant0A5ErrorO<\/USR><Declaration>public enum CommandantError&lt;ClientError&gt; : Error<\/Declaration><CommentParts><Abstract><Para>Possible errors that can originate from Commandant.<\/Para><\/Abstract><Discussion><Para><codeVoice>ClientError<\/codeVoice> should be the type of error (if any) that can occur when running commands.<\/Para><\/Discussion><\/CommentParts><\/Other>",
+        "key.nameoffset" : 556,
+        "key.typename" : "CommandantError<ClientError>.Type",
+        "key.doc.column" : 13,
+        "key.bodyoffset" : 598,
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
         "key.annotated_decl" : "<Declaration>public enum CommandantError&lt;ClientError&gt; : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>CommandantError<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant0A5ErrorO06ClientB0xmfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; : <ref.protocol usr=\"s:s5ErrorP\">Error<\/ref.protocol><\/decl.enum>",
-        "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
-        "key.length" : 240,
+        "key.doc.discussion" : [
+          {
+            "Para" : "`ClientError` should be the type of error (if any) that can occur when running commands."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Errors.swift",
-            "key.parsed_declaration" : "public var description: String",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Instead of accessing this property directly, convert an instance of any type to a string by using the `String(describing:)` initializer. For example:"
+              },
+              {
+                "CodeListing" : ""
+              },
+              {
+                "Para" : "The conversion of `p` to a string in the assignment to `s` uses the `Point` type’s `description` property."
+              }
+            ],
             "key.annotated_decl" : "<Declaration>public var description: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>description<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2460,6 +2725,7 @@
             "key.parsed_scope.start" : 25,
             "key.typeusr" : "_T0SSD",
             "key.doc.type" : "Other",
+            "key.parsed_declaration" : "public var description: String",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 607,
             "key.doc.full_as_xml" : "<Other><Name>description<\/Name><USR>s:s23CustomStringConvertibleP11descriptionSSv<\/USR><Declaration>var description: String { get }<\/Declaration><CommentParts><Abstract><Para>A textual representation of this instance.<\/Para><\/Abstract><Discussion><Para>Instead of accessing this property directly, convert an instance of any type to a string by using the <codeVoice>String(describing:)<\/codeVoice> initializer. For example:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[struct Point: CustomStringConvertible {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    let x: Int, y: Int]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    var description: String {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[        return \"(\\(x), \\(y))\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    }]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let p = Point(x: 21, y: 30)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let s = String(describing: p)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(s)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"(21, 30)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The conversion of <codeVoice>p<\/codeVoice> to a string in the assignment to <codeVoice>s<\/codeVoice> uses the <codeVoice>Point<\/codeVoice> type’s <codeVoice>description<\/codeVoice> property.<\/Para><\/Discussion><\/CommentParts><\/Other>",
@@ -2474,12 +2740,9 @@
             "key.namelength" : 11
           }
         ],
-        "key.doc.type" : "Other",
+        "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
         "key.typeusr" : "_T010Commandant0A5ErrorOyxGmD",
-        "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 546,
-        "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Errors.swift\" line=\"16\" column=\"13\"><Name>CommandantError<\/Name><USR>s:10Commandant0A5ErrorO<\/USR><Declaration>public enum CommandantError&lt;ClientError&gt; : Error<\/Declaration><CommentParts><Abstract><Para>Possible errors that can originate from Commandant.<\/Para><\/Abstract><Discussion><Para><codeVoice>ClientError<\/codeVoice> should be the type of error (if any) that can occur when running commands.<\/Para><\/Discussion><\/CommentParts><\/Other>",
-        "key.nameoffset" : 556,
         "key.doc.line" : 16,
         "key.elements" : [
           {
@@ -2488,9 +2751,7 @@
             "key.length" : 23
           }
         ],
-        "key.typename" : "CommandantError<ClientError>.Type",
         "key.doc.name" : "CommandantError",
-        "key.doc.column" : 13,
         "key.name" : "CommandantError",
         "key.inheritedtypes" : [
           {
@@ -2498,7 +2759,6 @@
           }
         ],
         "key.usr" : "s:10Commandant0A5ErrorO",
-        "key.bodyoffset" : 598,
         "key.bodylength" : 187,
         "key.namelength" : 15
       },
@@ -3224,7 +3484,11 @@
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
         "key.annotated_decl" : "<Declaration>public enum CommandantError&lt;ClientError&gt; : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.enum><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>CommandantError<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant0A5ErrorO06ClientB0xmfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; : <ref.protocol usr=\"s:s5ErrorP\">Error<\/ref.protocol><\/decl.enum>",
-        "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
+        "key.doc.discussion" : [
+          {
+            "Para" : "`ClientError` should be the type of error (if any) that can occur when running commands."
+          }
+        ],
         "key.length" : 384,
         "key.substructure" : [
           {
@@ -3266,6 +3530,7 @@
             "key.namelength" : 34
           }
         ],
+        "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
         "key.doc.type" : "Other",
         "key.typeusr" : "_T010Commandant0A5ErrorOyxGmD",
         "key.kind" : "source.lang.swift.decl.extension",
@@ -3292,6 +3557,158 @@
     "key.substructure" : [
       {
         "key.modulename" : "Swift",
+        "key.doc.discussion" : [
+          {
+            "Para" : "A string is a series of characters, such as `\"Swift\"`, that forms a collection. Strings in Swift are Unicode correct and locale insensitive, and are designed to be efficient. The `String` type bridges with the Objective-C class `NSString` and offers interoperability with C functions that works with strings."
+          },
+          {
+            "Para" : "You can create new strings using string literals or string interpolations. A  is a series of characters enclosed in quotes."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : " are string literals that evaluate any included expressions and convert the results to string form. String interpolations give you an easy way to build a string from multiple pieces. Wrap each expression in a string interpolation in parentheses, prefixed by a backslash."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Combine strings using the concatenation operator (`+`)."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Multiline string literals are enclosed in three double quotation marks (`\"\"\"`), with each delimiter on its own line. Indentation is stripped from each line of a multiline string literal to match the indentation of the closing delimiter."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Strings always have value semantics. Modifying a copy of a string leaves the original unaffected."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Comparing strings for equality using the equal-to operator (`==`) or a relational operator (like `<` or `>=`) is always performed using Unicode canonical representation. As a result, different representations of a string compare as being equal."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The Unicode code point `\"\\u{301}\"` modifies the preceding character to include an accent, so `\"e\\u{301}\"` has the same canonical representation as the single Unicode code point `\"é\"`."
+          },
+          {
+            "Para" : "Basic string operations are not sensitive to locale settings, ensuring that string comparisons and other operations always have a single, stable result, allowing strings to be used as keys in `Dictionary` instances and for other purposes."
+          },
+          {
+            "Para" : "A string is a collection of , which approximate human-readable characters. Many individual characters, such as “é”, “김”, and “🇮🇳”, can be made up of multiple Unicode code points. These code points are combined by Unicode’s boundary algorithms into extended grapheme clusters, represented by the Swift `Character` type. Each element of a string is represented by a `Character` instance."
+          },
+          {
+            "Para" : "For example, to retrieve the first word of a longer string, you can search for a space and then create a substring from a prefix of the string up to that point:"
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The `firstName` constant is an instance of the `Substring` type—a type that represents substrings of a string while sharing the original string’s storage. Substrings present the same interface as strings."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "If you need to access the contents of a string as encoded in different Unicode encodings, use one of the string’s `unicodeScalars`, `utf16`, or `utf8` properties. Each property provides access to a view of the string as a series of code units, each encoded in a different Unicode encoding."
+          },
+          {
+            "Para" : "To demonstrate the different views available for every string, the following examples use this `String` instance:"
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The `cafe` string is a collection of the nine characters that are visible when the string is displayed."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "A string’s `unicodeScalars` property is a collection of Unicode scalar values, the 21-bit codes that are the basic unit of Unicode. Each scalar value is represented by a `Unicode.Scalar` instance and is equivalent to a UTF-32 code unit."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The `unicodeScalars` view’s elements comprise each Unicode scalar value in the `cafe` string. In particular, because `cafe` was declared using the decomposed form of the `\"é\"` character, `unicodeScalars` contains the code points for both the letter `\"e\"` (101) and the accent character `\"´\"` (769)."
+          },
+          {
+            "Para" : "A string’s `utf16` property is a collection of UTF-16 code units, the 16-bit encoding form of the string’s Unicode scalar values. Each code unit is stored as a `UInt16` instance."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The elements of the `utf16` view are the code units for the string when encoded in UTF-16. These elements match those accessed through indexed `NSString` APIs."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "A string’s `utf8` property is a collection of UTF-8 code units, the 8-bit encoding form of the string’s Unicode scalar values. Each code unit is stored as a `UInt8` instance."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "The elements of the `utf8` view are the code units for the string when encoded in UTF-8. This representation matches the one used when `String` instances are passed to C APIs."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "When you need to know the length of a string, you must first consider what you’ll use the length for. Are you measuring the number of characters that will be displayed on the screen, or are you measuring the amount of storage needed for the string in a particular encoding? A single string can have greatly differing lengths when measured by its different views."
+          },
+          {
+            "Para" : "For example, an ASCII character like the capital letter  is represented by a single element in each of its four views. The Unicode scalar value of  is `65`, which is small enough to fit in a single code unit in both UTF-16 and UTF-8."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "On the other hand, an emoji flag character is constructed from a pair of Unicode scalar values, like `\"\\u{1F1F5}\"` and `\"\\u{1F1F7}\"`. Each of these scalar values, in turn, is too large to fit into a single UTF-16 or UTF-8 code unit. As a result, each view of the string `\"🇵🇷\"` reports a different length."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "To check whether a string is empty, use its `isEmpty` property instead of comparing the length of one of the views to `0`. Unlike with `isEmpty`, calculating a view’s `count` property requires iterating through the elements of the string."
+          },
+          {
+            "Para" : "To find individual elements of a string, use the appropriate view for your task. For example, to retrieve the first word of a longer string, you can search the `characters` view for a space and then create a new string from a prefix of the `characters` view up to that point."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "You can convert an index into one of a string’s views to an index into another view."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Although strings in Swift have value semantics, strings use a copy-on-write strategy to store their data in a buffer. This buffer can then be shared by different copies of a string. A string’s data is only copied lazily, upon mutation, when more than one string instance is using the same buffer. Therefore, the first in any sequence of mutating operations may cost O() time and space."
+          },
+          {
+            "Para" : "When a string’s contiguous storage fills up, a new buffer must be allocated and data must be moved to the new storage. String buffers use an exponential growth strategy that makes appending to a string a constant time operation when averaged over many append operations."
+          },
+          {
+            "Para" : "Any `String` instance can be bridged to `NSString` using the type-cast operator (`as`), and any `String` instance that originates in Objective-C may use an `NSString` instance as its storage. Because any arbitrary subclass of `NSString` can become a `String` instance, there are no guarantees about representation or efficiency when a `String` instance is backed by `NSString` storage. Because `NSString` is immutable, it is just as though the storage was shared by a copy. The first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost O() time and space, where  is the length of the string’s encoded representation (or more, if the underlying `NSString` has unusual performance characteristics)."
+          },
+          {
+            "Para" : "For more information about the Unicode terms used in this discussion, see the . In particular, this discussion mentions , , and ."
+          }
+        ],
         "key.annotated_decl" : "<Declaration>struct String<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>String<\/decl.name><\/decl.struct>",
         "key.doc.declaration" : "struct String",
@@ -3370,7 +3787,14 @@
         "key.doc.file" : "Sources\/Commandant\/HelpCommand.swift",
         "key.annotated_decl" : "<Declaration>public struct HelpCommand&lt;ClientError&gt; : <Type usr=\"s:10Commandant15CommandProtocolP\">CommandProtocol<\/Type> where ClientError : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>HelpCommand<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant11HelpCommandV11ClientErrorxmfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; : <ref.protocol usr=\"s:10Commandant15CommandProtocolP\">CommandProtocol<\/ref.protocol> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>ClientError : <ref.protocol usr=\"s:s5ErrorP\">Error<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
-        "key.doc.declaration" : "public struct HelpCommand<ClientError> : CommandProtocol where ClientError : Error",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If you want to use this command, initialize it with the registry, then add it to that same registry:"
+          },
+          {
+            "CodeListing" : ""
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/HelpCommand.swift",
@@ -3517,6 +3941,7 @@
             "key.namelength" : 23
           }
         ],
+        "key.doc.declaration" : "public struct HelpCommand<ClientError> : CommandProtocol where ClientError : Error",
         "key.typeusr" : "_T010Commandant11HelpCommandVyxGmD",
         "key.offset" : 558,
         "key.doc.line" : 21,
@@ -3632,10 +4057,15 @@
             "key.doc.file" : "Sources\/Commandant\/Option.swift",
             "key.annotated_decl" : "<Declaration>public static func evaluate(_ m: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant11HelpOptionsV\">HelpOptions<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant11HelpOptionsV11ClientErrorxmfp\">ClientError<\/Type>&gt;&gt;<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>evaluate<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>m<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.struct usr=\"s:10Commandant11HelpOptionsV\">HelpOptions<\/ref.struct>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant11HelpOptionsV11ClientErrorxmfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype><\/decl.function.method.static>",
-            "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Returns the parsed options or a `UsageError`."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
             "key.typeusr" : "_T06ResultAAOy10Commandant11HelpOptionsVyxGAC0B5ErrorOyxGGAC11CommandModeOcD",
             "key.offset" : 1983,
             "key.doc.line" : 44,
@@ -3707,7 +4137,17 @@
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
         "key.annotated_decl" : "<Declaration>public protocol OptionsProtocol<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.protocol><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>protocol<\/syntaxtype.keyword> <decl.name>OptionsProtocol<\/decl.name><\/decl.protocol>",
-        "key.doc.declaration" : "public protocol OptionsProtocol",
+        "key.doc.discussion" : [
+          {
+            "Para" : "This is most helpful when used in conjunction with the `Option` and `Switch` types, and `<*>` and `<|` combinators."
+          },
+          {
+            "Para" : "Example:"
+          },
+          {
+            "CodeListing" : ""
+          }
+        ],
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -3724,10 +4164,15 @@
             "key.doc.file" : "Sources\/Commandant\/Option.swift",
             "key.annotated_decl" : "<Declaration>static func evaluate(_ m: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant15OptionsProtocolP4Selfxmfp\">Self<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant15OptionsProtocolP11ClientError\">ClientError<\/Type>&gt;&gt;<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>evaluate<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>m<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant15OptionsProtocolP4Selfxmfp\">Self<\/ref.generic_type_param>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.associatedtype usr=\"s:10Commandant15OptionsProtocolP11ClientError\">ClientError<\/ref.associatedtype>&gt;&gt;<\/decl.function.returntype><\/decl.function.method.static>",
-            "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Returns the parsed options or a `UsageError`."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
             "key.typeusr" : "_T06ResultAAOyx10Commandant0B5ErrorOy06ClientC0QzGGAC11CommandModeOcD",
             "key.offset" : 1583,
             "key.doc.line" : 44,
@@ -3739,6 +4184,7 @@
             "key.parsed_scope.end" : 44
           }
         ],
+        "key.doc.declaration" : "public protocol OptionsProtocol",
         "key.typeusr" : "_T010Commandant15OptionsProtocol_pmD",
         "key.offset" : 1409,
         "key.doc.line" : 38,
@@ -3808,10 +4254,15 @@
             "key.doc.file" : "Sources\/Commandant\/Option.swift",
             "key.annotated_decl" : "<Declaration>public static func evaluate(_ m: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant9NoOptionsV\">NoOptions<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant9NoOptionsV11ClientErrorxmfp\">ClientError<\/Type>&gt;&gt;<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>evaluate<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>m<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.struct usr=\"s:10Commandant9NoOptionsV\">NoOptions<\/ref.struct>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant9NoOptionsV11ClientErrorxmfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype><\/decl.function.method.static>",
-            "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Returns the parsed options or a `UsageError`."
+              }
+            ],
             "key.substructure" : [
 
             ],
+            "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
             "key.typeusr" : "_T06ResultAAOy10Commandant9NoOptionsVyxGAC0B5ErrorOyxGGAC11CommandModeOcD",
             "key.offset" : 1808,
             "key.doc.line" : 44,
@@ -3918,26 +4369,31 @@
             "key.parsed_scope.end" : 64
           },
           {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.length" : 17,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 72,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Option.swift\" line=\"72\" column=\"13\"><Name>usage<\/Name><USR>s:10Commandant6OptionV5usageSSv<\/USR><Declaration>public let usage: String<\/Declaration><CommentParts><Abstract><Para>A human-readable string describing the purpose of this option. This will be shown in help messages.<\/Para><\/Abstract><Discussion><Para>For boolean operations, this should describe the effect of <emphasis>not<\/emphasis> using the default value (i.e., what will happen if you disable\/enable the flag differently from the default).<\/Para><\/Discussion><\/CommentParts><\/Other>",
+            "key.nameoffset" : 2663,
+            "key.typename" : "String",
+            "key.doc.column" : 13,
+            "key.doc.comment" : "A human-readable string describing the purpose of this option. This will\nbe shown in help messages.\n\nFor boolean operations, this should describe the effect of _not_ using\nthe default value (i.e., what will happen if you disable\/enable the flag\ndifferently from the default).",
             "key.filepath" : "Sources\/Commandant\/Option.swift",
             "key.doc.file" : "Sources\/Commandant\/Option.swift",
             "key.annotated_decl" : "<Declaration>public let usage: <Type usr=\"s:SS\">String<\/Type><\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>usage<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.type><\/decl.var.instance>",
-            "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.length" : 17,
+            "key.doc.discussion" : [
+              {
+                "Para" : "For boolean operations, this should describe the effect of  using the default value (i.e., what will happen if you disable\/enable the flag differently from the default)."
+              }
+            ],
             "key.doc.declaration" : "public let usage: String",
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 72,
             "key.typeusr" : "_T0SSD",
-            "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 2659,
-            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Option.swift\" line=\"72\" column=\"13\"><Name>usage<\/Name><USR>s:10Commandant6OptionV5usageSSv<\/USR><Declaration>public let usage: String<\/Declaration><CommentParts><Abstract><Para>A human-readable string describing the purpose of this option. This will be shown in help messages.<\/Para><\/Abstract><Discussion><Para>For boolean operations, this should describe the effect of <emphasis>not<\/emphasis> using the default value (i.e., what will happen if you disable\/enable the flag differently from the default).<\/Para><\/Discussion><\/CommentParts><\/Other>",
-            "key.nameoffset" : 2663,
             "key.doc.line" : 72,
-            "key.typename" : "String",
             "key.doc.name" : "usage",
-            "key.doc.column" : 13,
             "key.name" : "usage",
-            "key.doc.comment" : "A human-readable string describing the purpose of this option. This will\nbe shown in help messages.\n\nFor boolean operations, this should describe the effect of _not_ using\nthe default value (i.e., what will happen if you disable\/enable the flag\ndifferently from the default).",
             "key.usr" : "s:10Commandant6OptionV5usageSSv",
             "key.parsed_declaration" : "public let usage: String",
             "key.namelength" : 5,
@@ -3988,7 +4444,17 @@
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Option.swift",
-            "key.parsed_declaration" : "public var description: String",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Instead of accessing this property directly, convert an instance of any type to a string by using the `String(describing:)` initializer. For example:"
+              },
+              {
+                "CodeListing" : ""
+              },
+              {
+                "Para" : "The conversion of `p` to a string in the assignment to `s` uses the `Point` type’s `description` property."
+              }
+            ],
             "key.annotated_decl" : "<Declaration>public var description: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>description<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -4002,6 +4468,7 @@
             "key.parsed_scope.start" : 82,
             "key.typeusr" : "_T0SSD",
             "key.doc.type" : "Other",
+            "key.parsed_declaration" : "public var description: String",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 2869,
             "key.doc.full_as_xml" : "<Other><Name>description<\/Name><USR>s:s23CustomStringConvertibleP11descriptionSSv<\/USR><Declaration>var description: String { get }<\/Declaration><CommentParts><Abstract><Para>A textual representation of this instance.<\/Para><\/Abstract><Discussion><Para>Instead of accessing this property directly, convert an instance of any type to a string by using the <codeVoice>String(describing:)<\/codeVoice> initializer. For example:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[struct Point: CustomStringConvertible {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    let x: Int, y: Int]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    var description: String {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[        return \"(\\(x), \\(y))\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    }]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let p = Point(x: 21, y: 30)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let s = String(describing: p)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(s)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"(21, 30)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The conversion of <codeVoice>p<\/codeVoice> to a string in the assignment to <codeVoice>s<\/codeVoice> uses the <codeVoice>Point<\/codeVoice> type’s <codeVoice>description<\/codeVoice> property.<\/Para><\/Discussion><\/CommentParts><\/Other>",
@@ -4060,7 +4527,11 @@
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;*&gt;&lt;T, U, ClientError&gt;(f: (<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1TL_xmfp\">T<\/Type>) -&gt; <Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1UL_q_mfp\">U<\/Type>, value: <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1TL_xmfp\">T<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/Type>&gt;&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1UL_q_mfp\">U<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/Type>&gt;&gt;<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;*&gt;<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1UL_q_mfp\"><decl.generic_type_param.name>U<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF06ClientD0L_q0_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>f<\/decl.var.parameter.name>: <decl.var.parameter.type>(<decl.var.parameter><decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1TL_xmfp\">T<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1UL_q_mfp\">U<\/ref.generic_type_param><\/decl.function.returntype><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>value<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1TL_xmfp\">T<\/ref.generic_type_param>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF1UL_q_mfp\">U<\/ref.generic_type_param>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGq_xc_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <*><T, U, ClientError>(f: (T) -> U, value: Result<T, CommandantError<ClientError>>) -> Result<U, CommandantError<ClientError>>",
+        "key.doc.discussion" : [
+          {
+            "Para" : "In the context of command-line option parsing, this is used to chain together the parsing of multiple arguments. See OptionsProtocol for an example."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Option.swift",
@@ -4078,6 +4549,7 @@
             "key.parsed_scope.end" : 121
           }
         ],
+        "key.doc.declaration" : "public func <*><T, U, ClientError>(f: (T) -> U, value: Result<T, CommandantError<ClientError>>) -> Result<U, CommandantError<ClientError>>",
         "key.typeusr" : "_T06ResultAAOyq_10Commandant0B5ErrorOyq0_GGq_xc_AByxAFGtcr1_luD",
         "key.offset" : 4404,
         "key.doc.line" : 121,
@@ -4110,7 +4582,11 @@
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;*&gt;&lt;T, U, ClientError&gt;(f: <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;((<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1TL_xmfp\">T<\/Type>) -&gt; <Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1UL_q_mfp\">U<\/Type>), <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/Type>&gt;&gt;, value: <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1TL_xmfp\">T<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/Type>&gt;&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1UL_q_mfp\">U<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/Type>&gt;&gt;<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;*&gt;<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1UL_q_mfp\"><decl.generic_type_param.name>U<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF06ClientD0L_q0_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>f<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<tuple>(<tuple.element><tuple.element.type>(<decl.var.parameter><decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1TL_xmfp\">T<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1UL_q_mfp\">U<\/ref.generic_type_param><\/decl.function.returntype><\/tuple.element.type><\/tuple.element>)<\/tuple>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>value<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1TL_xmfp\">T<\/ref.generic_type_param>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1UL_q_mfp\">U<\/ref.generic_type_param>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant3lmgoi6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF06ClientD0L_q0_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <*><T, U, ClientError>(f: Result<((T) -> U), CommandantError<ClientError>>, value: Result<T, CommandantError<ClientError>>) -> Result<U, CommandantError<ClientError>>",
+        "key.doc.discussion" : [
+          {
+            "Para" : "In the context of command-line option parsing, this is used to chain together the parsing of multiple arguments. See OptionsProtocol for an example."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Option.swift",
@@ -4128,6 +4604,7 @@
             "key.parsed_scope.end" : 129
           }
         ],
+        "key.doc.declaration" : "public func <*><T, U, ClientError>(f: Result<((T) -> U), CommandantError<ClientError>>, value: Result<T, CommandantError<ClientError>>) -> Result<U, CommandantError<ClientError>>",
         "key.typeusr" : "_T06ResultAAOyq_10Commandant0B5ErrorOyq0_GGAByq_xcAFG_AByxAFGtcr1_luD",
         "key.offset" : 4797,
         "key.doc.line" : 129,
@@ -4160,7 +4637,11 @@
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;|&lt;T, ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt;&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;|<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>mode<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>option<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant6OptionV\">Option<\/ref.struct>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, option: Option<T>) -> Result<T, CommandantError<ClientError>> where T : ArgumentProtocol",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option’s `defaultValue` is used."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Option.swift",
@@ -4178,6 +4659,7 @@
             "key.parsed_scope.end" : 150
           }
         ],
+        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, option: Option<T>) -> Result<T, CommandantError<ClientError>> where T : ArgumentProtocol",
         "key.typeusr" : "_T06ResultAAOyx10Commandant0B5ErrorOyq_GGAC11CommandModeO_AC6OptionVyxGtcAC16ArgumentProtocolRzr0_luD",
         "key.offset" : 5509,
         "key.doc.line" : 150,
@@ -4228,7 +4710,11 @@
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;|&lt;T, ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>?&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>?, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOyxSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt;&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;|<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>mode<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>option<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant6OptionV\">Option<\/ref.struct>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>?&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>?, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOyxSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, option: Option<T?>) -> Result<T?, CommandantError<ClientError>> where T : ArgumentProtocol",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, `nil` is used."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Option.swift",
@@ -4246,6 +4732,7 @@
             "key.parsed_scope.end" : 161
           }
         ],
+        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, option: Option<T?>) -> Result<T?, CommandantError<ClientError>> where T : ArgumentProtocol",
         "key.typeusr" : "_T06ResultAAOyxSg10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD6OptionVyACGtcAD16ArgumentProtocolRzr0_luD",
         "key.offset" : 6029,
         "key.doc.line" : 161,
@@ -4296,7 +4783,11 @@
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;|&lt;T, ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;[<Type usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>]&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;[<Type usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>], <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt;&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;|<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>mode<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>option<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant6OptionV\">Option<\/ref.struct>&lt;[<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>]&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;[<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>], <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAEGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, option: Option<[T]>) -> Result<[T], CommandantError<ClientError>> where T : ArgumentProtocol",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option’s `defaultValue` is used."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Option.swift",
@@ -4314,6 +4805,7 @@
             "key.parsed_scope.end" : 200
           }
         ],
+        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, option: Option<[T]>) -> Result<[T], CommandantError<ClientError>> where T : ArgumentProtocol",
         "key.typeusr" : "_T06ResultAAOySayxG10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD6OptionVyACGtcAD16ArgumentProtocolRzr0_luD",
         "key.offset" : 7175,
         "key.doc.line" : 200,
@@ -4364,7 +4856,11 @@
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;|&lt;T, ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;[<Type usr=\"s:10Commandant2looi6ResultACOySayxGSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAFGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>]?&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;[<Type usr=\"s:10Commandant2looi6ResultACOySayxGSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAFGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>]?, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOySayxGSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAFGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt;&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;|<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAFGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAFGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>mode<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>option<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant6OptionV\">Option<\/ref.struct>&lt;[<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAFGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>]?&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;[<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAFGtAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>]?, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySayxGSgAA0A5ErrorOyq_GGAA11CommandModeO_AA6OptionVyAFGtAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, option: Option<[T]?>) -> Result<[T]?, CommandantError<ClientError>> where T : ArgumentProtocol",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, `nil` is used."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Option.swift",
@@ -4382,6 +4878,7 @@
             "key.parsed_scope.end" : 211
           }
         ],
+        "key.doc.declaration" : "public func <|<T, ClientError>(mode: CommandMode, option: Option<[T]?>) -> Result<[T]?, CommandantError<ClientError>> where T : ArgumentProtocol",
         "key.typeusr" : "_T06ResultAAOySayxGSg10Commandant0B5ErrorOyq_GGAE11CommandModeO_AE6OptionVyADGtcAE16ArgumentProtocolRzr0_luD",
         "key.offset" : 7701,
         "key.doc.line" : 211,
@@ -4432,7 +4929,11 @@
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;|&lt;ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;<Type usr=\"s:Sb\">Bool<\/Type>&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:Sb\">Bool<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOySbAA0A5ErrorOyxGGAA11CommandModeO_AA6OptionVySbGtlF06ClientD0L_xmfp\">ClientError<\/Type>&gt;&gt;<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;|<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOySbAA0A5ErrorOyxGGAA11CommandModeO_AA6OptionVySbGtlF06ClientD0L_xmfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>mode<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>option<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant6OptionV\">Option<\/ref.struct>&lt;<ref.struct usr=\"s:Sb\">Bool<\/ref.struct>&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.struct usr=\"s:Sb\">Bool<\/ref.struct>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySbAA0A5ErrorOyxGGAA11CommandModeO_AA6OptionVySbGtlF06ClientD0L_xmfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <|<ClientError>(mode: CommandMode, option: Option<Bool>) -> Result<Bool, CommandantError<ClientError>>",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option’s `defaultValue` is used."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Option.swift",
@@ -4450,6 +4951,7 @@
             "key.parsed_scope.end" : 255
           }
         ],
+        "key.doc.declaration" : "public func <|<ClientError>(mode: CommandMode, option: Option<Bool>) -> Result<Bool, CommandantError<ClientError>>",
         "key.typeusr" : "_T06ResultAAOySb10Commandant0B5ErrorOyxGGAC11CommandModeO_AC6OptionVySbGtcluD",
         "key.offset" : 9028,
         "key.doc.line" : 255,
@@ -4516,7 +5018,11 @@
         "key.doc.file" : "Sources\/Commandant\/Switch.swift",
         "key.annotated_decl" : "<Declaration>public struct Switch<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>Switch<\/decl.name><\/decl.struct>",
-        "key.doc.declaration" : "public struct Switch",
+        "key.doc.discussion" : [
+          {
+            "Para" : "For a boolean toggle that can be enabled and disabled use `Option<Bool>`."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Switch.swift",
@@ -4545,26 +5051,31 @@
             "key.parsed_scope.end" : 18
           },
           {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.length" : 20,
+            "key.doc.type" : "Other",
+            "key.parsed_scope.start" : 25,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Switch.swift\" line=\"25\" column=\"13\"><Name>flag<\/Name><USR>s:10Commandant6SwitchV4flags9CharacterVSgv<\/USR><Declaration>public let flag: Character?<\/Declaration><CommentParts><Abstract><Para>Optional single letter flag that enables this switch. For example, <codeVoice>-v<\/codeVoice> would be used as a shorthand for <codeVoice>--verbose<\/codeVoice>.<\/Para><\/Abstract><Discussion><Para>Multiple flags can be grouped together as a single argument and will split when parsing (e.g. <codeVoice>rm -rf<\/codeVoice> treats ‘r’ and ‘f’ as inidividual flags).<\/Para><\/Discussion><\/CommentParts><\/Other>",
+            "key.nameoffset" : 854,
+            "key.typename" : "Character?",
+            "key.doc.column" : 13,
+            "key.doc.comment" : "Optional single letter flag that enables this switch. For example, `-v` would\nbe used as a shorthand for `--verbose`.\n\nMultiple flags can be grouped together as a single argument and will split\nwhen parsing (e.g. `rm -rf` treats 'r' and 'f' as inidividual flags).",
             "key.filepath" : "Sources\/Commandant\/Switch.swift",
             "key.doc.file" : "Sources\/Commandant\/Switch.swift",
             "key.annotated_decl" : "<Declaration>public let flag: <Type usr=\"s:s9CharacterV\">Character<\/Type>?<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>flag<\/decl.name>: <decl.var.type><ref.struct usr=\"s:s9CharacterV\">Character<\/ref.struct>?<\/decl.var.type><\/decl.var.instance>",
-            "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.length" : 20,
+            "key.doc.discussion" : [
+              {
+                "Para" : "Multiple flags can be grouped together as a single argument and will split when parsing (e.g. `rm -rf` treats ‘r’ and ‘f’ as inidividual flags)."
+              }
+            ],
             "key.doc.declaration" : "public let flag: Character?",
-            "key.doc.type" : "Other",
-            "key.parsed_scope.start" : 25,
             "key.typeusr" : "_T0s9CharacterVSgD",
-            "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 850,
-            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Switch.swift\" line=\"25\" column=\"13\"><Name>flag<\/Name><USR>s:10Commandant6SwitchV4flags9CharacterVSgv<\/USR><Declaration>public let flag: Character?<\/Declaration><CommentParts><Abstract><Para>Optional single letter flag that enables this switch. For example, <codeVoice>-v<\/codeVoice> would be used as a shorthand for <codeVoice>--verbose<\/codeVoice>.<\/Para><\/Abstract><Discussion><Para>Multiple flags can be grouped together as a single argument and will split when parsing (e.g. <codeVoice>rm -rf<\/codeVoice> treats ‘r’ and ‘f’ as inidividual flags).<\/Para><\/Discussion><\/CommentParts><\/Other>",
-            "key.nameoffset" : 854,
             "key.doc.line" : 25,
-            "key.typename" : "Character?",
             "key.doc.name" : "flag",
-            "key.doc.column" : 13,
             "key.name" : "flag",
-            "key.doc.comment" : "Optional single letter flag that enables this switch. For example, `-v` would\nbe used as a shorthand for `--verbose`.\n\nMultiple flags can be grouped together as a single argument and will split\nwhen parsing (e.g. `rm -rf` treats 'r' and 'f' as inidividual flags).",
             "key.usr" : "s:10Commandant6SwitchV4flags9CharacterVSgv",
             "key.parsed_declaration" : "public let flag: Character?",
             "key.namelength" : 4,
@@ -4620,6 +5131,7 @@
             "key.namelength" : 56
           }
         ],
+        "key.doc.declaration" : "public struct Switch",
         "key.typeusr" : "_T010Commandant6SwitchVmD",
         "key.offset" : 397,
         "key.doc.line" : 15,
@@ -4632,16 +5144,37 @@
         "key.namelength" : 6
       },
       {
+        "key.length" : 184,
+        "key.doc.type" : "Class",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/Switch.swift\" line=\"15\" column=\"15\"><Name>Switch<\/Name><USR>s:10Commandant6SwitchV<\/USR><Declaration>public struct Switch<\/Declaration><CommentParts><Abstract><Para>Describes a parameterless command line flag that defaults to false and can only be switched on. Canonical examples include <codeVoice>--force<\/codeVoice> and <codeVoice>--recurse<\/codeVoice>.<\/Para><\/Abstract><Discussion><Para>For a boolean toggle that can be enabled and disabled use <codeVoice>Option&lt;Bool&gt;<\/codeVoice>.<\/Para><\/Discussion><\/CommentParts><\/Class>",
+        "key.nameoffset" : 1149,
+        "key.typename" : "Switch.Type",
+        "key.doc.column" : 15,
+        "key.bodyoffset" : 1182,
         "key.filepath" : "Sources\/Commandant\/Switch.swift",
         "key.doc.file" : "Sources\/Commandant\/Switch.swift",
         "key.annotated_decl" : "<Declaration>public struct Switch<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>Switch<\/decl.name><\/decl.struct>",
-        "key.doc.declaration" : "public struct Switch",
-        "key.length" : 184,
+        "key.doc.discussion" : [
+          {
+            "Para" : "For a boolean toggle that can be enabled and disabled use `Option<Bool>`."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Switch.swift",
-            "key.parsed_declaration" : "public var description: String",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Instead of accessing this property directly, convert an instance of any type to a string by using the `String(describing:)` initializer. For example:"
+              },
+              {
+                "CodeListing" : ""
+              },
+              {
+                "Para" : "The conversion of `p` to a string in the assignment to `s` uses the `Point` type’s `description` property."
+              }
+            ],
             "key.annotated_decl" : "<Declaration>public var description: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>description<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -4655,6 +5188,7 @@
             "key.parsed_scope.start" : 39,
             "key.typeusr" : "_T0SSD",
             "key.doc.type" : "Other",
+            "key.parsed_declaration" : "public var description: String",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.offset" : 1191,
             "key.doc.full_as_xml" : "<Other><Name>description<\/Name><USR>s:s23CustomStringConvertibleP11descriptionSSv<\/USR><Declaration>var description: String { get }<\/Declaration><CommentParts><Abstract><Para>A textual representation of this instance.<\/Para><\/Abstract><Discussion><Para>Instead of accessing this property directly, convert an instance of any type to a string by using the <codeVoice>String(describing:)<\/codeVoice> initializer. For example:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[struct Point: CustomStringConvertible {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    let x: Int, y: Int]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    var description: String {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[        return \"(\\(x), \\(y))\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    }]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let p = Point(x: 21, y: 30)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let s = String(describing: p)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(s)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"(21, 30)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The conversion of <codeVoice>p<\/codeVoice> to a string in the assignment to <codeVoice>s<\/codeVoice> uses the <codeVoice>Point<\/codeVoice> type’s <codeVoice>description<\/codeVoice> property.<\/Para><\/Discussion><\/CommentParts><\/Other>",
@@ -4669,12 +5203,9 @@
             "key.namelength" : 11
           }
         ],
-        "key.doc.type" : "Class",
+        "key.doc.declaration" : "public struct Switch",
         "key.typeusr" : "_T010Commandant6SwitchVmD",
-        "key.kind" : "source.lang.swift.decl.extension",
         "key.offset" : 1139,
-        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/Switch.swift\" line=\"15\" column=\"15\"><Name>Switch<\/Name><USR>s:10Commandant6SwitchV<\/USR><Declaration>public struct Switch<\/Declaration><CommentParts><Abstract><Para>Describes a parameterless command line flag that defaults to false and can only be switched on. Canonical examples include <codeVoice>--force<\/codeVoice> and <codeVoice>--recurse<\/codeVoice>.<\/Para><\/Abstract><Discussion><Para>For a boolean toggle that can be enabled and disabled use <codeVoice>Option&lt;Bool&gt;<\/codeVoice>.<\/Para><\/Discussion><\/CommentParts><\/Class>",
-        "key.nameoffset" : 1149,
         "key.doc.line" : 15,
         "key.elements" : [
           {
@@ -4683,9 +5214,7 @@
             "key.length" : 23
           }
         ],
-        "key.typename" : "Switch.Type",
         "key.doc.name" : "Switch",
-        "key.doc.column" : 15,
         "key.name" : "Switch",
         "key.inheritedtypes" : [
           {
@@ -4693,7 +5222,6 @@
           }
         ],
         "key.usr" : "s:10Commandant6SwitchV",
-        "key.bodyoffset" : 1182,
         "key.bodylength" : 140,
         "key.namelength" : 6
       },
@@ -4713,7 +5241,11 @@
         "key.doc.file" : "Sources\/Commandant\/Switch.swift",
         "key.annotated_decl" : "<Declaration>public func &lt;|&lt;ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, option: <Type usr=\"s:10Commandant6SwitchV\">Switch<\/Type>) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:Sb\">Bool<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant2looi6ResultACOySbAA0A5ErrorOyxGGAA11CommandModeO_AA6SwitchVtlF06ClientD0L_xmfp\">ClientError<\/Type>&gt;&gt;<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>&lt;|<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant2looi6ResultACOySbAA0A5ErrorOyxGGAA11CommandModeO_AA6SwitchVtlF06ClientD0L_xmfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.name>mode<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11CommandModeO\">CommandMode<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>option<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant6SwitchV\">Switch<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:6ResultAAO\">Result<\/ref.enum>&lt;<ref.struct usr=\"s:Sb\">Bool<\/ref.struct>, <ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant2looi6ResultACOySbAA0A5ErrorOyxGGAA11CommandModeO_AA6SwitchVtlF06ClientD0L_xmfp\">ClientError<\/ref.generic_type_param>&gt;&gt;<\/decl.function.returntype><\/decl.function.operator.infix>",
-        "key.doc.declaration" : "public func <|<ClientError>(mode: CommandMode, option: Switch) -> Result<Bool, CommandantError<ClientError>>",
+        "key.doc.discussion" : [
+          {
+            "Para" : "If parsing command line arguments, and no value was specified on the command line, the option’s `defaultValue` is used."
+          }
+        ],
         "key.substructure" : [
           {
             "key.filepath" : "Sources\/Commandant\/Switch.swift",
@@ -4731,6 +5263,7 @@
             "key.parsed_scope.end" : 52
           }
         ],
+        "key.doc.declaration" : "public func <|<ClientError>(mode: CommandMode, option: Switch) -> Result<Bool, CommandantError<ClientError>>",
         "key.typeusr" : "_T06ResultAAOySb10Commandant0B5ErrorOyxGGAC11CommandModeO_AC6SwitchVtcluD",
         "key.offset" : 1522,
         "key.doc.line" : 52,
