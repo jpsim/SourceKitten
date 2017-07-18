@@ -469,17 +469,3 @@ private extension XMLIndexer {
         return elements.map(dictionary(from:)) as [SourceKitRepresentable]
     }
 }
-
-// MARK: - migration support
-extension File {
-    @available(*, unavailable, renamed: "process(dictionary:cursorInfoRequest:syntaxMap:)")
-    public func processDictionary(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil,
-                                  syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
-        fatalError()
-    }
-
-    @available(*, unavailable, renamed: "parseDocumentationCommentBody(_:syntaxMap:)")
-    public func getDocumentationCommentBody(_ dictionary: [String: SourceKitRepresentable], syntaxMap: SyntaxMap) -> String? {
-        fatalError()
-    }
-}

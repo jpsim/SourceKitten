@@ -141,11 +141,3 @@ public func == (lhs: SyntaxMap, rhs: SyntaxMap) -> Bool {
     }
     return true
 }
-
-// MARK: - migration support
-extension SyntaxMap {
-    @available(*, unavailable, renamed: "commentRange(beforeOffset:)")
-    public func commentRangeBeforeOffset(_ offset: Int) -> Range<Int>? {
-        fatalError()
-    }
-}
