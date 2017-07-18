@@ -69,11 +69,3 @@ extension File {
         return offsetMap
     }
 }
-
-// MARK: - migration support
-extension File {
-    @available(*, unavailable, renamed: "makeOffsetMap(documentedTokenOffsets:dictionary:)")
-    public func generateOffsetMap(_ documentedTokenOffsets: [Int], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
-        fatalError()
-    }
-}
