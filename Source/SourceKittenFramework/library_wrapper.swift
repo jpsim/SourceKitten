@@ -24,7 +24,7 @@ struct DynamicLinkLibrary {
 #if os(Linux)
 let toolchainLoader = Loader(searchPaths: [linuxSourceKitLibPath])
 #else
-let toolchainLoader = Loader(searchPaths: [
+let toolchainLoader = Loader(searchPaths: sourcekitFrameworkPath.map({ [$0] }) ?? [
     xcodeDefaultToolchainOverride,
     toolchainDir,
     xcrunFindPath,
@@ -81,6 +81,12 @@ private let xcodeDefaultToolchainOverride = env("XCODE_DEFAULT_TOOLCHAIN_OVERRID
 /// `Xcode`/`xcodebuild` sets the toolchain path to the
 /// "TOOLCHAIN_DIR" environment variable.
 private let toolchainDir = env("TOOLCHAIN_DIR")
+
+/// Returns "TOOLCHAIN_DIR" environment variable
+///
+/// `Xcode`/`xcodebuild` sets the toolchain path to the
+/// "TOOLCHAIN_DIR" environment variable.
+private let sourcekitFrameworkPath = env("SOURCEKIT_FRAMEWORK_PATH")
 
 /// Returns toolchain directory that parsed from result of `xcrun -find swift`
 ///
