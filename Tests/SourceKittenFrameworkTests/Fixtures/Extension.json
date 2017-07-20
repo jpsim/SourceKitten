@@ -23,7 +23,7 @@
           {
             "key.filepath" : "Extension.swift",
             "key.doc.file" : "Extension.swift",
-            "key.annotated_decl" : "<Declaration>typealias <Type usr=\"s:9Extension4BaseC\">Base<\/Type>.Index = <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
+            "key.annotated_decl" : "<Declaration>typealias Index = Int<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.typealias><syntaxtype.keyword>typealias<\/syntaxtype.keyword> <ref.class usr=\"s:9Extension4BaseC\">Base<\/ref.class>.<decl.name>Index<\/decl.name> = <ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.typealias>",
             "key.doc.declaration" : "typealias Extension.Base.Index = Int",
             "key.length" : 5,
@@ -56,7 +56,7 @@
             "key.bodyoffset" : 134,
             "key.filepath" : "Extension.swift",
             "key.doc.file" : "Extension.swift",
-            "key.annotated_decl" : "<Declaration>func f(index: <Type usr=\"s:9Extension4BaseC5Indexa\">Index<\/Type>)<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>func f(index: Index)<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>f<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>index<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.typealias usr=\"s:9Extension4BaseC5Indexa\">Index<\/ref.typealias><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.method.instance>",
             "key.doc.declaration" : "func f(index: Index)",
             "key.substructure" : [
@@ -87,7 +87,7 @@
             "key.bodyoffset" : 188,
             "key.filepath" : "Extension.swift",
             "key.doc.file" : "Extension.swift",
-            "key.annotated_decl" : "<Declaration>class <Type usr=\"s:9Extension4BaseC\">Base<\/Type>.Nested<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>class Nested<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <ref.class usr=\"s:9Extension4BaseC\">Base<\/ref.class>.<decl.name>Nested<\/decl.name><\/decl.class>",
             "key.doc.declaration" : "class Extension.Base.Nested",
             "key.typeusr" : "_T09Extension4BaseC6NestedCmD",
@@ -126,7 +126,7 @@
           {
             "key.filepath" : "Extension.swift",
             "key.doc.file" : "Extension.swift",
-            "key.annotated_decl" : "<Declaration>typealias ExtendedIndex = <Type usr=\"s:Sd\">Double<\/Type><\/Declaration>",
+            "key.annotated_decl" : "<Declaration>typealias ExtendedIndex = Double<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.typealias><syntaxtype.keyword>typealias<\/syntaxtype.keyword> <decl.name>ExtendedIndex<\/decl.name> = <ref.struct usr=\"s:Sd\">Double<\/ref.struct><\/decl.typealias>",
             "key.doc.declaration" : "typealias ExtendedIndex = Double",
             "key.length" : 13,
@@ -159,7 +159,7 @@
             "key.bodyoffset" : 362,
             "key.filepath" : "Extension.swift",
             "key.doc.file" : "Extension.swift",
-            "key.annotated_decl" : "<Declaration>func extendedF(index: <Type usr=\"s:9Extension4BaseC13ExtendedIndexa\">ExtendedIndex<\/Type>)<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>func extendedF(index: ExtendedIndex)<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>extendedF<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>index<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.typealias usr=\"s:9Extension4BaseC13ExtendedIndexa\">ExtendedIndex<\/ref.typealias><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.method.instance>",
             "key.doc.declaration" : "func extendedF(index: ExtendedIndex)",
             "key.substructure" : [
@@ -199,7 +199,7 @@
       {
         "key.filepath" : "Extension.swift",
         "key.doc.file" : "Extension.swift",
-        "key.annotated_decl" : "<Declaration>class <Type usr=\"s:9Extension4BaseC\">Base<\/Type>.Nested<\/Declaration>",
+        "key.annotated_decl" : "<Declaration>class Nested<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <ref.class usr=\"s:9Extension4BaseC\">Base<\/ref.class>.<decl.name>Nested<\/decl.name><\/decl.class>",
         "key.doc.declaration" : "class Extension.Base.Nested",
         "key.length" : 25,
@@ -232,7 +232,7 @@
           {
             "key.filepath" : "Extension.swift",
             "key.body.start_line" : 32,
-            "key.annotated_decl" : "<Declaration>struct <Type usr=\"s:9Extension004ipIhC\">🐽<\/Type>.🐧<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>struct 🐧<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <ref.class usr=\"s:9Extension004ipIhC\">🐽<\/ref.class>.<decl.name>🐧<\/decl.name><\/decl.struct>",
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.length" : 19,
@@ -266,7 +266,7 @@
       },
       {
         "key.filepath" : "Extension.swift",
-        "key.annotated_decl" : "<Declaration>struct <Type usr=\"s:9Extension004ipIhC\">🐽<\/Type>.🐧<\/Declaration>",
+        "key.annotated_decl" : "<Declaration>struct 🐧<\/Declaration>",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <ref.class usr=\"s:9Extension004ipIhC\">🐽<\/ref.class>.<decl.name>🐧<\/decl.name><\/decl.struct>",
         "key.length" : 23,
         "key.typeusr" : "_T09Extension004ipIhC004voIhVmD",

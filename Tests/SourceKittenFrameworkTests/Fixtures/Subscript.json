@@ -13,7 +13,7 @@
           {
             "key.filepath" : "Subscript.swift",
             "key.doc.file" : "Subscript.swift",
-            "key.annotated_decl" : "<Declaration>subscript(key: <Type usr=\"s:SS\">String<\/Type>) -&gt; () { get set }<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>subscript(key: String) -> () { get set }<\/Declaration>",
             "key.fully_annotated_decl" : "<decl.function.subscript><syntaxtype.keyword>subscript<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.name>key<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><tuple>()<\/tuple><\/decl.function.returntype> { <syntaxtype.keyword>get<\/syntaxtype.keyword> <syntaxtype.keyword>set<\/syntaxtype.keyword> }<\/decl.function.subscript>",
             "key.doc.declaration" : "subscript(key: String) -> () { get set }",
             "key.length" : 9,
@@ -30,7 +30,7 @@
             "key.name" : "subscript(_:)",
             "key.doc.comment" : "Returns or sets Void.",
             "key.usr" : "s:9Subscript10VoidStructV9subscriptySSci",
-            "key.parsed_declaration" : "subscript(key: String) -> ()",
+            "key.parsed_declaration" : "subscript(key: String) -> () { get set }",
             "key.body.start_line" : 3
           }
         ],

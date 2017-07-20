@@ -100,16 +100,13 @@ public final class File {
     */
     public func parseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         guard shouldParseDeclaration(dictionary),
-            let start = SwiftDocKey.getOffset(dictionary).map({ Int($0) }) else {
-            return nil
+            SwiftDocKey.getOffset(dictionary).map({ Int($0) }) != nil,
+            let result = dictionary["key.annotated_decl"] as! String? else {
+                return nil
         }
-        let substring: String?
-        if let end = SwiftDocKey.getBodyOffset(dictionary) {
-            substring = contents.bridge().substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
-        } else {
-            substring = contents.bridge().substringLinesWithByteRange(start: start, length: 0)
-        }
-        return substring?.trimmingWhitespaceAndOpeningCurlyBrace()
+        return result.replacingOccurrences(of: "<Declaration>", with: "")
+                     .replacingOccurrences(of: "</Declaration>", with: "")
+                     .replacingOccurrences(of: "final let", with: "let")
     }
 
     /**
