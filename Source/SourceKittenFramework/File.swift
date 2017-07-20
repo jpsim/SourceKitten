@@ -147,7 +147,7 @@ public final class File {
         let offset = Int(SwiftDocKey.getOffset(dictionary)!)
         let length = Int(SwiftDocKey.getLength(dictionary)!)
         let fileContentsData = contents.data(using: .utf8)
-        let subdata = fileContentsData?.subdata(in: Range(offset..<(offset + length)))
+        let subdata = fileContentsData?.subdata(in: offset..<(offset + length))
         return subdata.flatMap { String(data: $0, encoding: .utf8) }
     }
 
