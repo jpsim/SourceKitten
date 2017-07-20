@@ -4,8 +4,7 @@
     "key.substructure" : [
       {
         "key.filepath" : "Subscript.swift",
-        "key.body.start_line" : 1,
-        "key.annotated_decl" : "<Declaration>struct VoidStruct<\/Declaration>",
+        "key.parsed_declaration" : "struct VoidStruct",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>VoidStruct<\/decl.name><\/decl.struct>",
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.length" : 133,
@@ -13,15 +12,14 @@
           {
             "key.filepath" : "Subscript.swift",
             "key.doc.file" : "Subscript.swift",
-            "key.annotated_decl" : "<Declaration>subscript(key: String) -> () { get set }<\/Declaration>",
-            "key.fully_annotated_decl" : "<decl.function.subscript><syntaxtype.keyword>subscript<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.name>key<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><tuple>()<\/tuple><\/decl.function.returntype> { <syntaxtype.keyword>get<\/syntaxtype.keyword> <syntaxtype.keyword>set<\/syntaxtype.keyword> }<\/decl.function.subscript>",
             "key.doc.declaration" : "subscript(key: String) -> () { get set }",
+            "key.fully_annotated_decl" : "<decl.function.subscript><syntaxtype.keyword>subscript<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.name>key<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><tuple>()<\/tuple><\/decl.function.returntype> { <syntaxtype.keyword>get<\/syntaxtype.keyword> <syntaxtype.keyword>set<\/syntaxtype.keyword> }<\/decl.function.subscript>",
             "key.length" : 9,
             "key.doc.type" : "Other",
             "key.typeusr" : "_T0ySScD",
             "key.kind" : "source.lang.swift.decl.function.subscript",
-            "key.doc.full_as_xml" : "<Other file=\"Subscript.swift\" line=\"3\" column=\"5\"><Name>subscript(_:)<\/Name><USR>s:9Subscript10VoidStructV9subscriptySSci<\/USR><Declaration>subscript(key: String) -&gt; () { get set }<\/Declaration><CommentParts><Abstract><Para>Returns or sets Void.<\/Para><\/Abstract><\/CommentParts><\/Other>",
             "key.offset" : 54,
+            "key.doc.full_as_xml" : "<Other file=\"Subscript.swift\" line=\"3\" column=\"5\"><Name>subscript(_:)<\/Name><USR>s:9Subscript10VoidStructV9subscriptySSci<\/USR><Declaration>subscript(key: String) -&gt; () { get set }<\/Declaration><CommentParts><Abstract><Para>Returns or sets Void.<\/Para><\/Abstract><\/CommentParts><\/Other>",
             "key.doc.line" : 3,
             "key.typename" : "(String) -> ()",
             "key.body.end_line" : 6,
@@ -42,9 +40,9 @@
         "key.body.end_line" : 7,
         "key.name" : "VoidStruct",
         "key.usr" : "s:9Subscript10VoidStructV",
-        "key.parsed_declaration" : "struct VoidStruct",
         "key.bodyoffset" : 19,
         "key.bodylength" : 113,
+        "key.body.start_line" : 1,
         "key.namelength" : 10
       }
     ],

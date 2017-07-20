@@ -100,13 +100,10 @@ public final class File {
     */
     public func parseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         guard shouldParseDeclaration(dictionary),
-            SwiftDocKey.getOffset(dictionary).map({ Int($0) }) != nil,
-            let result = dictionary["key.annotated_decl"] as! String? else {
+            let result = dictionary[SwiftDocKey.parsedDeclaration.rawValue] as! String? else {
                 return nil
         }
-        return result.replacingOccurrences(of: "<Declaration>", with: "")
-                     .replacingOccurrences(of: "</Declaration>", with: "")
-                     .replacingOccurrences(of: "final let", with: "let")
+        return result.replacingOccurrences(of: "final let", with: "let")
     }
 
     /**
@@ -145,6 +142,8 @@ public final class File {
         // Parse declaration and add to dictionary
         if let parsedDeclaration = parseDeclaration(dictionary) {
             dictionary[SwiftDocKey.parsedDeclaration.rawValue] = parsedDeclaration
+        } else {
+            dictionary.removeValue(forKey: SwiftDocKey.parsedDeclaration.rawValue)
         }
 
         // Parse `key.doc.full_as_xml` and add to dictionary
@@ -318,11 +317,10 @@ public final class File {
         // swiftlint:disable operator_usage_whitespace
         let sameFile                = shouldTreatAsSameFile(dictionary)
         let hasTypeName             = SwiftDocKey.getTypeName(dictionary) != nil
-        let hasAnnotatedDeclaration = SwiftDocKey.getAnnotatedDeclaration(dictionary) != nil
         let hasOffset               = SwiftDocKey.getOffset(dictionary) != nil
         let isntExtension           = SwiftDocKey.getKind(dictionary) != SwiftDeclarationKind.extension.rawValue
         // swiftlint:enable operator_usage_whitespace
-        return sameFile && hasTypeName && hasAnnotatedDeclaration && hasOffset && isntExtension
+        return sameFile && hasTypeName && hasOffset && isntExtension
     }
 
     /**
