@@ -32,7 +32,7 @@ func compareJSONString(withFixtureNamed name: String,
 
     let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
-    let overwrite = false
+    let overwrite = true
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
         return

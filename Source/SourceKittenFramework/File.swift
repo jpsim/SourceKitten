@@ -113,29 +113,6 @@ public final class File {
     }
 
     /**
-    Parse line numbers containing the declaration's implementation from SourceKit dictionary.
-    
-    - parameter dictionary: SourceKit dictionary to extract declaration from.
-    
-    - returns: Line numbers containing the declaration's implementation.
-    */
-    public func parseScopeRange(_ dictionary: [String: SourceKitRepresentable]) -> (start: Int, end: Int)? {
-        if !shouldParseDeclaration(dictionary) {
-            return nil
-        }
-        return SwiftDocKey.getOffset(dictionary).flatMap { start in
-            let start = Int(start)
-            let end = SwiftDocKey.getBodyOffset(dictionary).flatMap { bodyOffset in
-                return SwiftDocKey.getBodyLength(dictionary).map { bodyLength in
-                    return Int(bodyOffset + bodyLength)
-                }
-            } ?? start
-            let length = end - start
-            return contents.bridge().lineRangeWithByteRange(start: start, length: length)
-        }
-    }
-
-    /**
     Extract mark-style comment string from doc dictionary. e.g. '// MARK: - The Name'
 
     - parameter dictionary: Doc dictionary to parse.
@@ -171,12 +148,6 @@ public final class File {
         // Parse declaration and add to dictionary
         if let parsedDeclaration = parseDeclaration(dictionary) {
             dictionary[SwiftDocKey.parsedDeclaration.rawValue] = parsedDeclaration
-        }
-
-        // Parse scope range and add to dictionary
-        if let parsedScopeRange = parseScopeRange(dictionary) {
-            dictionary[SwiftDocKey.parsedScopeStart.rawValue] = Int64(parsedScopeRange.start)
-            dictionary[SwiftDocKey.parsedScopeEnd.rawValue] = Int64(parsedScopeRange.end)
         }
 
         // Parse `key.doc.full_as_xml` and add to dictionary

@@ -37,6 +37,38 @@
                BlueprintName = "SourceKittenFrameworkTests"
                ReferencedContainer = "container:SourceKitten.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ClangTranslationUnitTests">
+               </Test>
+               <Test
+                  Identifier = "CodeCompletionTests">
+               </Test>
+               <Test
+                  Identifier = "DocInfoTests">
+               </Test>
+               <Test
+                  Identifier = "FileTests">
+               </Test>
+               <Test
+                  Identifier = "ModuleTests">
+               </Test>
+               <Test
+                  Identifier = "OffsetMapTests">
+               </Test>
+               <Test
+                  Identifier = "SourceKitTests">
+               </Test>
+               <Test
+                  Identifier = "StringTests">
+               </Test>
+               <Test
+                  Identifier = "StructureTests">
+               </Test>
+               <Test
+                  Identifier = "SyntaxTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
@@ -56,7 +88,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "~/Projects/realm-cocoa"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "NO"
       debugXPCServices = "NO"
@@ -73,15 +106,16 @@
             ReferencedContainer = "container:SourceKitten.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "doc --module-name RealmSwift -- -scheme RealmSwift"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "DEVELOPER_DIR"
-            value = "${DEVELOPER_DIR}"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "TOOLCHAINS"
-            value = "${TOOLCHAINS}"
+            key = "SOURCEKIT_FRAMEWORK_PATH"
+            value = "/Users/jp/Projects/build/Ninja-ReleaseAssert/swift-macosx-x86_64/lib"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
