@@ -440,7 +440,7 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
         let commentPartsXML = (try? rootXML.byKey("CommentParts")) ?? rootXML
         let parameters = commentPartsXML["Parameters"].children
         if !parameters.isEmpty {
-            func docParameters(from indexer: XMLIndexer) -> [String:SourceKitRepresentable] {
+            func docParameters(from indexer: XMLIndexer) -> [String: SourceKitRepresentable] {
                 return [
                     "name": (indexer["Name"].element?.text ?? ""),
                     "discussion": (indexer["Discussion"].childrenAsArray() ?? [])
@@ -463,7 +463,7 @@ private extension XMLIndexer {
             return nil
         }
         let elements = children.flatMap { $0.element }
-        func dictionary(from element: SWXMLHash.XMLElement) -> [String:SourceKitRepresentable] {
+        func dictionary(from element: SWXMLHash.XMLElement) -> [String: SourceKitRepresentable] {
             return [element.name: element.text]
         }
         return elements.map(dictionary(from:)) as [SourceKitRepresentable]
