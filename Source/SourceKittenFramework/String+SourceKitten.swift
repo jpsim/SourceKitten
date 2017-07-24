@@ -577,7 +577,7 @@ extension String {
         guard let range = range(of: ".", options: .backwards) else {
             return 0
         }
-        let utf8pos = index(after: range.lowerBound).samePosition(in: utf8)
+        let utf8pos = index(after: range.lowerBound).samePosition(in: utf8)!
         return Int64(utf8.distance(from: utf8.startIndex, to: utf8pos))
     }
 }

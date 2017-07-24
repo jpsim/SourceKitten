@@ -63,6 +63,7 @@
 		E8AB1A301A64A21400452012 /* ClangTranslationUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AB1A2F1A64A21400452012 /* ClangTranslationUnitTests.swift */; };
 		E8AE53C71A5B5FCA0092D24A /* String+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */; };
 		E8C0DFCD1AD349DB007EE3D4 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */; };
+		E8C2D0371F268D9400596CD9 /* SourceKitRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C2D0361F268D9400596CD9 /* SourceKitRepresentable.swift */; };
 		E8C9EA041A5C986A00A6D4D1 /* StructureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EA031A5C986A00A6D4D1 /* StructureTests.swift */; };
 		E8C9EA081A5C99C400A6D4D1 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EA071A5C99C400A6D4D1 /* StringTests.swift */; };
 		E8C9EA0A1A5C9A2900A6D4D1 /* OffsetMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9EA091A5C9A2900A6D4D1 /* OffsetMapTests.swift */; };
@@ -211,6 +212,7 @@
 		E8AB1A2F1A64A21400452012 /* ClangTranslationUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClangTranslationUnitTests.swift; sourceTree = "<group>"; };
 		E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SourceKitten.swift"; sourceTree = "<group>"; };
 		E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8C2D0361F268D9400596CD9 /* SourceKitRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceKitRepresentable.swift; sourceTree = "<group>"; };
 		E8C9EA031A5C986A00A6D4D1 /* StructureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureTests.swift; sourceTree = "<group>"; };
 		E8C9EA071A5C99C400A6D4D1 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		E8C9EA091A5C9A2900A6D4D1 /* OffsetMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffsetMapTests.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				E806D2901BE058C400D1BE41 /* Parameter.swift */,
 				E86847391A587B4D0043DC65 /* Request.swift */,
 				E8A9B8911B56D1B100CD17D4 /* SourceDeclaration.swift */,
+				E8C2D0361F268D9400596CD9 /* SourceKitRepresentable.swift */,
 				D0D1217119E87B05005E4BAA /* SourceKittenFramework.h */,
 				E806D28C1BE0589B00D1BE41 /* SourceLocation.swift */,
 				E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */,
@@ -679,6 +682,7 @@
 				E83748C31A5BCD7900862B1B /* OffsetMap.swift in Sources */,
 				E806D2911BE058C400D1BE41 /* Parameter.swift in Sources */,
 				E868473A1A587B4D0043DC65 /* Request.swift in Sources */,
+				E8C2D0371F268D9400596CD9 /* SourceKitRepresentable.swift in Sources */,
 				E8A9B8921B56D1B100CD17D4 /* SourceDeclaration.swift in Sources */,
 				E806D28D1BE0589B00D1BE41 /* SourceLocation.swift in Sources */,
 				E8AE53C71A5B5FCA0092D24A /* String+SourceKitten.swift in Sources */,
@@ -758,8 +762,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xfrontend -warn-long-function-bodies=200";
-				SWIFT_VERSION = 3.0;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -772,8 +776,8 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xfrontend -warn-long-function-bodies=200";
-				SWIFT_VERSION = 3.0;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -789,6 +793,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFramework;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -813,6 +818,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFramework;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -831,6 +837,7 @@
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 			};
@@ -842,6 +849,7 @@
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 			};
@@ -856,8 +864,8 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xfrontend -warn-long-function-bodies=200";
-				SWIFT_VERSION = 3.0;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Profile;
 		};
@@ -873,6 +881,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFramework;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -891,6 +900,7 @@
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 			};
@@ -905,8 +915,8 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xfrontend -warn-long-function-bodies=200";
-				SWIFT_VERSION = 3.0;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Test;
 		};
@@ -922,6 +932,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFramework;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -940,6 +951,7 @@
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFrameworkTests;
 			};
@@ -951,6 +963,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = Source/sourcekitten/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks @executable_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -962,6 +975,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = Source/sourcekitten/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks @executable_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -973,6 +987,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = Source/sourcekitten/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks @executable_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -984,6 +999,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = Source/sourcekitten/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks/SourceKittenFramework.framework/Versions/Current/Frameworks @executable_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
