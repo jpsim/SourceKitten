@@ -12,6 +12,7 @@ import Foundation
 public struct SyntaxMap {
     /// Array of SyntaxToken's.
     public let tokens: [SyntaxToken]
+    internal var file: File?
 
     /**
     Create a SyntaxMap by passing in tokens directly.
@@ -50,6 +51,7 @@ public struct SyntaxMap {
     */
     public init(file: File) {
         self.init(sourceKitResponse: Request.editorOpen(file: file).send())
+        self.file = file
     }
 }
 
@@ -116,7 +118,8 @@ extension SyntaxMap {
 extension SyntaxMap: CustomStringConvertible {
     /// A textual JSON representation of `SyntaxMap`.
     public var description: String {
-        return toJSON(tokens.map { $0.dictionaryValue })
+        let contents = file!.contents.bridge()
+        return toJSON(tokens.map { $0.atomValue(contents: contents) })
     }
 }
 

@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Clang_C",
+        "repositoryURL": "https://github.com/norio-nomura/Clang_C.git",
+        "state": {
+          "branch": null,
+          "revision": "90a9574276f0fd17f02f58979423c3fd4d73b59e",
+          "version": "1.0.2"
+        }
+      },
+      {
+        "package": "Commandant",
+        "repositoryURL": "https://github.com/Carthage/Commandant.git",
+        "state": {
+          "branch": null,
+          "revision": "c281992c31c3f41c48b5036c5a38185eaec32626",
+          "version": "0.12.0"
+        }
+      },
+      {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result.git",
+        "state": {
+          "branch": null,
+          "revision": "c8446185238659a2b27c0261f64ff1254291d07d",
+          "version": "3.2.3"
+        }
+      },
+      {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
+        "state": {
+          "branch": null,
+          "revision": "3959d0799b045b423680d3c99c8359b8dfe288a5",
+          "version": "4.1.1"
+        }
+      },
+      {
+        "package": "SourceKit",
+        "repositoryURL": "https://github.com/norio-nomura/SourceKit.git",
+        "state": {
+          "branch": null,
+          "revision": "18eaa67ca44443bbe39646916792b9f0c98dbaa1",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "Yams",
+        "repositoryURL": "https://github.com/jpsim/Yams.git",
+        "state": {
+          "branch": null,
+          "revision": "0728fc42e9db36f457183fba6bad1508cfd43423",
+          "version": "0.3.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

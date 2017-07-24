@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+import Foundation
+
 /// Represents a single Swift syntax token.
 public struct SyntaxToken {
     /// Token type. See SyntaxKind.
@@ -18,6 +20,22 @@ public struct SyntaxToken {
     /// Dictionary representation of SyntaxToken. Useful for NSJSONSerialization.
     public var dictionaryValue: [String: Any] {
         return ["type": type, "offset": offset, "length": length]
+    }
+
+    /// Dictionary representation of SyntaxToken. Useful for NSJSONSerialization.
+    public func atomValue(contents: NSString) -> [String: Any] {
+        let startPosition = contents.lineAndCharacter(forByteOffset: offset)!
+        let endPosition = contents.lineAndCharacter(forByteOffset: offset + length - 1)!
+        let value = contents.substringWithByteRange(start: offset, length: length)!
+        return [
+            "value": value,
+            "sourcekitType": type,
+            "type": SyntaxKind(rawValue: type)!.atomValue,
+            "startIndex": offset,
+            "startPosition": ["row": startPosition.line - 1, "column": startPosition.character - 1],
+            "endIndex": offset + length,
+            "endPosition": ["row": endPosition.line - 1, "column": endPosition.character]
+        ]
     }
 
     /**

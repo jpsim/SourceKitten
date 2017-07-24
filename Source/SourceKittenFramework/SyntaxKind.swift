@@ -53,3 +53,29 @@ public enum SyntaxKind: String, SwiftLangSyntax {
         return [.commentURL, .docComment, .docCommentField]
     }
 }
+
+extension SyntaxKind {
+    internal var atomValue: String {
+        switch self {
+        case .argument: return "keyword"
+        case .attributeBuiltin: return "storage.syntax--modifier"
+        case .attributeID: return "keyword"
+        case .buildconfigID: return "keyword"
+        case .buildconfigKeyword: return "keyword"
+        case .comment: return "comment"
+        case .commentMark: return "comment"
+        case .commentURL: return "comment"
+        case .docComment: return "comment.syntax--block.syntax--documentation"
+        case .docCommentField: return "markup.syntax--underline"
+        case .identifier: return "entity"
+        case .keyword: return "keyword"
+        case .number: return "constant"
+        case .objectLiteral: return "constant"
+        case .parameter: return "variable"
+        case .placeholder: return "variable"
+        case .string: return "string"
+        case .stringInterpolationAnchor: return "punctuation.syntax--section.syntax--embedded.syntax"
+        case .typeidentifier: return "entity.syntax--name.syntax--type"
+        }
+    }
+}
