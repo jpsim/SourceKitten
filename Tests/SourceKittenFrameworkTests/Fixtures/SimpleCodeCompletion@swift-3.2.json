@@ -61,17 +61,6 @@
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
 }, {
-  "descriptionKey" : "countRepresentedWords",
-  "kind" : "source.lang.swift.decl.var.instance",
-  "name" : "countRepresentedWords",
-  "sourcetext" : "countRepresentedWords",
-  "numBytesToErase" : 0,
-  "typeName" : "Int",
-  "docBrief" : "The number of words used for the current binary representation of this value.",
-  "associatedUSRs" : "s:s13BinaryIntegerPsE21countRepresentedWordsSiv",
-  "moduleName" : "Swift",
-  "context" : "source.codecompletion.context.superclass"
-}, {
   "descriptionKey" : "customMirror",
   "kind" : "source.lang.swift.decl.var.instance",
   "name" : "customMirror",
@@ -110,9 +99,9 @@
   "sourcetext" : "distance(to: <#T##Int#>)",
   "numBytesToErase" : 0,
   "typeName" : "Int",
-  "associatedUSRs" : "s:Si8distanceS2i2to_tF s:s10StrideableP8distance6StrideQzx2to_tF s:s11_StrideableP8distance6StrideQzx2to_tF",
+  "associatedUSRs" : "s:s13BinaryIntegerPsE8distanceSix2to_tF",
   "moduleName" : "Swift",
-  "context" : "source.codecompletion.context.thisclass"
+  "context" : "source.codecompletion.context.superclass"
 }, {
   "descriptionKey" : "distance(to: Int)",
   "kind" : "source.lang.swift.decl.function.method.instance",
@@ -120,9 +109,9 @@
   "sourcetext" : "distance(to: <#T##Int#>)",
   "numBytesToErase" : 0,
   "typeName" : "Int",
-  "associatedUSRs" : "s:s13BinaryIntegerPsE8distanceSix2to_tF",
+  "associatedUSRs" : "s:Si8distanceS2i2to_tF s:s10StrideableP8distance6StrideQzx2to_tF s:s11_StrideableP8distance6StrideQzx2to_tF",
   "moduleName" : "Swift",
-  "context" : "source.codecompletion.context.superclass"
+  "context" : "source.codecompletion.context.thisclass"
 }, {
   "descriptionKey" : "dividedReportingOverflow(by: Int)",
   "kind" : "source.lang.swift.decl.function.method.instance",

@@ -624,16 +624,7 @@
             "key.annotated_decl" : "<RelatedName usr=\"s:SS2eeoiSbSS_SStFZ\">==(_: String, _: String) -&gt; Bool<\/RelatedName>"
           },
           {
-            "key.annotated_decl" : "<RelatedName usr=\"s:SS13CharacterViewV5IndexV2eeoiSbAD_ADtFZ\">==(_: String.Index, _: String.Index) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:SS17UnicodeScalarViewV5IndexV2eeoiSbAD_ADtFZ\">==(_: String.UnicodeScalarView.Index, _: String.UnicodeScalarView.Index) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:SS9UTF16ViewV5IndexV2eeoiSbAD_ADtFZ\">==(_: String.UTF16View.Index, _: String.UTF16View.Index) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:SS8UTF8ViewV5IndexV2eeoiSbAD_ADtFZ\">==(_: String.UTF8View.Index, _: String.UTF8View.Index) -&gt; Bool<\/RelatedName>"
+            "key.annotated_decl" : "<RelatedName usr=\"s:SS5IndexV2eeoiSbAB_ABtFZ\">==(_: String.Index, _: String.Index) -&gt; Bool<\/RelatedName>"
           },
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:s14StringProtocolPsE2eeoiSbx_qd__tsAARd__lFZ\">==&lt;R&gt;(_: Self, _: R) -&gt; Bool where R : StringProtocol<\/RelatedName>"
