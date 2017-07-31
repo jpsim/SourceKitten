@@ -82,7 +82,7 @@ docker_test:
 	docker run -v `pwd`:`pwd` -w `pwd` --rm norionomura/sourcekit:311 swift test
 
 docker_test_4:
-	docker run -v `pwd`:`pwd` -w `pwd` --rm norionomura/swift:4020170623a swift test
+	docker run -v `pwd`:`pwd` -w `pwd` --rm norionomura/swift:4020170725a swift test
 
 # http://irace.me/swift-profiling/
 display_compilation_time:

@@ -541,7 +541,7 @@ extension String {
 
         return lineComponents.map { line in
             if line.characters.count >= minLeadingCharacters {
-                let range = line.index(line.startIndex, offsetBy: minLeadingCharacters)..<line.endIndex
+                let range: Range = line.index(line.startIndex, offsetBy: minLeadingCharacters)..<line.endIndex
                 return line.substring(with: range)
             }
             return line
@@ -577,7 +577,11 @@ extension String {
         guard let range = range(of: ".", options: .backwards) else {
             return 0
         }
+#if swift(>=4.0)
+        let utf8pos = index(after: range.lowerBound).samePosition(in: utf8)!
+#else
         let utf8pos = index(after: range.lowerBound).samePosition(in: utf8)
+#endif
         return Int64(utf8.distance(from: utf8.startIndex, to: utf8pos))
     }
 }
