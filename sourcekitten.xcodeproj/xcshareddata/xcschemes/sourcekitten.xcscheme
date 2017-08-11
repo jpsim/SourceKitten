@@ -56,7 +56,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "~/Desktop/SourceKitten"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "NO"
       debugXPCServices = "NO"
@@ -73,15 +74,16 @@
             ReferencedContainer = "container:SourceKitten.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "doc --spm-module Result"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "DEVELOPER_DIR"
-            value = "${DEVELOPER_DIR}"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "TOOLCHAINS"
-            value = "${TOOLCHAINS}"
+            key = "TOOLCHAIN_DIR"
+            value = "/Applications/Xcode-9.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
