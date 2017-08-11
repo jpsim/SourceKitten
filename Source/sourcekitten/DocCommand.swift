@@ -59,28 +59,39 @@ struct DocCommand: CommandProtocol {
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
         if let module = Module(spmName: moduleName) {
             // Find unused imports
-            for file in module.sourceFiles {
-                let unusedImports = File(path: file)!.unusedImports(compilerArguments: module.compilerArguments)
-                if !unusedImports.isEmpty {
-                    print("Unused imports in \(file.bridge().lastPathComponent):")
-                    for module in unusedImports {
-                        print("- \(module)")
-                    }
-                }
-            }
+//            for file in module.sourceFiles {
+//                let unusedImports = File(path: file)!.unusedImports(compilerArguments: module.compilerArguments)
+//                if !unusedImports.isEmpty {
+//                    print("Unused imports in \(file.bridge().lastPathComponent):")
+//                    for module in unusedImports {
+//                        print("- \(module)")
+//                    }
+//                }
+//            }
 
             // Find `private` or `fileprivate` declarations that aren't used within that file
-            for file in module.sourceFiles {
-                let file = File(path: file)!
-                let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
-                let privateDeclarationUSRs = File.privateDeclarationUSRs(allCursorInfo: allCursorInfo)
-                let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
-                let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
-                if !unusedPrivateDeclarations.isEmpty {
-                    print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
-                    print(unusedPrivateDeclarations)
-                }
-            }
+//            var fileIndex = 1
+//            for file in module.sourceFiles where
+//                file != "/Users/jp/Projects/SourceKitten/Source/SourceKittenFramework/File.swift" &&
+//                file != "/Users/jp/Projects/SourceKitten/Source/SourceKittenFramework/String+SourceKitten.swift" &&
+//                file != "/Users/jp/Projects/SourceKitten/.build/checkouts/Yams.git-8068124914099325722/Sources/Yams/Resolver.swift" &&
+//                file != "/Users/jp/Projects/SwiftLint/Source/SwiftLintFramework/Extensions/File+SwiftLint.swift" &&
+//                file != "/Users/jp/Projects/SwiftLint/Source/SwiftLintFramework/Models/LinterCache.swift" &&
+//                file != "/Users/jp/Projects/SwiftLint/Source/SwiftLintFramework/Models/RuleList.swift" &&
+//                file != "/Users/jp/Projects/SwiftLint/Source/SwiftLintFramework/Rules/NimbleOperatorRule.swift" {
+//                let progress = "(\(fileIndex)/\(module.sourceFiles.count))"
+//                fileIndex += 1
+//                print("checking for unused private/fileprivate declarations in '\(file)' \(progress)")
+//                let file = File(path: file)!
+//                let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
+//                let privateDeclarationUSRs = File.privateDeclarationUSRs(allCursorInfo: allCursorInfo)
+//                let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
+//                let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
+//                if !unusedPrivateDeclarations.isEmpty {
+//                    print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
+//                    print(unusedPrivateDeclarations)
+//                }
+//            }
 
             // Find `internal` declarations that should be `private` or `fileprivate`
             var internalDeclarationsPerFile = [String: [String]]()
@@ -89,6 +100,13 @@ struct DocCommand: CommandProtocol {
             for file in module.sourceFiles {
                 idx += 1
                 print("\(file.bridge().lastPathComponent) (\(idx)/\(module.sourceFiles.count))")
+                let filesToSkip = [
+                    ""
+                ]
+                if filesToSkip.contains(file) {
+                    print("skipping")
+                    continue
+                }
                 let allCursorInfo = File(path: file)!.allCursorInfo(compilerArguments: module.compilerArguments)
                 internalDeclarationsPerFile[file] = File.internalDeclarationUSRs(allCursorInfo: allCursorInfo)
                 refsPerFile[file] = File.allRefUSRs(allCursorInfo: allCursorInfo)
@@ -98,6 +116,13 @@ struct DocCommand: CommandProtocol {
                 for file in testsModule.sourceFiles {
                     idx += 1
                     print("\(file.bridge().lastPathComponent) (\(idx)/\(testsModule.sourceFiles.count))")
+                    let filesToSkip = [
+                        ""
+                    ]
+                    if filesToSkip.contains(file) {
+                        print("skipping")
+                        continue
+                    }
                     let allCursorInfo = File(path: file)!.allCursorInfo(compilerArguments: testsModule.compilerArguments)
                     refsPerFile[file] = File.allRefUSRs(allCursorInfo: allCursorInfo)
                 }
@@ -107,7 +132,8 @@ struct DocCommand: CommandProtocol {
                 copy.removeValue(forKey: file)
                 let nonFileRefs = Array(copy.values).flatMap({ $0 })
                 for decl in internalDeclarations where !nonFileRefs.contains(decl) {
-                    print("\(file.bridge().lastPathComponent) decl should be fileprivate:")
+                    print("\(file.bridge().lastPathComponent) decl is internal but not referenced in other files " +
+                          "from the module or its tests:")
                     print(decl)
                 }
             }
@@ -169,10 +195,18 @@ private let syntaxTypesToSkip = [
 
 extension File {
     fileprivate func allCursorInfo(compilerArguments: [String]) -> [[String: SourceKitRepresentable]] {
+        // swiftlint:disable number_separator
+        // swiftlint:disable line_length
+        let filesToSkip = [
+            "": [0]
+        ]
         let editorOpen = Request.editorOpen(file: self).send()
         let syntaxMap = SyntaxMap(sourceKitResponse: editorOpen)
         return syntaxMap.tokens.flatMap { token in
             guard !syntaxTypesToSkip.contains(token.type) else {
+                return nil
+            }
+            if let offsetsToSkip = filesToSkip[path!], offsetsToSkip.contains(token.offset) {
                 return nil
             }
             var cursorInfo = Request.cursorInfo(file: path!, offset: Int64(token.offset),
@@ -257,6 +291,10 @@ extension File {
     }
 
     fileprivate func unusedImports(compilerArguments: [String]) -> [String] {
+        if (path ?? "").contains("File.swift") ||
+            (path ?? "").contains("String+SourceKitten.swift") {
+            return []
+        }
         let syntaxMap = SyntaxMap(sourceKitResponse: Request.editorOpen(file: self).send())
         var imports = [String]()
         var usrs = [String]()
