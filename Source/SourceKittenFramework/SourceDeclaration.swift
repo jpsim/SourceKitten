@@ -63,6 +63,34 @@ public struct SourceDeclaration {
         return accessorUSR(getter: false)
     }
 
+    private enum AccessorType {
+        case `class`, instance
+
+        var propertyTypeString: String {
+            switch self {
+            case .class: return "(cpy)"
+            case .instance: return "(py)"
+            }
+        }
+
+        var methodTypeString: String {
+            switch self {
+            case .class: return "(cm)"
+            case .instance: return "(im)"
+            }
+        }
+    }
+
+    private func propertyTypeStringStartAndAcessorType(usr: String) -> (String.Index, AccessorType) {
+        if let accessorTypeStringStartIndex = usr.range(of: AccessorType.class.propertyTypeString)?.lowerBound {
+            return (accessorTypeStringStartIndex, .class)
+        } else if let accessorTypeStringStartIndex = usr.range(of: AccessorType.instance.propertyTypeString)?.lowerBound {
+            return (accessorTypeStringStartIndex, .instance)
+        } else {
+            fatalError("expected an instance or class property by got \(usr)")
+        }
+    }
+
     private func accessorUSR(getter: Bool) -> String {
         assert(type == .property)
         guard let usr = usr else {
@@ -71,37 +99,12 @@ public struct SourceDeclaration {
         guard let declaration = declaration else {
             fatalError("Couldn't extract declaration")
         }
-        enum AccessorType { // swiftlint:disable:this nesting
-            case `class`, instance
 
-            var propertyTypeString: String {
-                switch self {
-                case .class: return "(cpy)"
-                case .instance: return "(py)"
-                }
-            }
-
-            var methodTypeString: String {
-                switch self {
-                case .class: return "(cm)"
-                case .instance: return "(im)"
-                }
-            }
-        }
-        let propertyTypeStringStart: String.Index
-        let accessorType: AccessorType
-        if let accessorTypeStringStartIndex = usr.range(of: AccessorType.class.propertyTypeString)?.lowerBound {
-            propertyTypeStringStart = accessorTypeStringStartIndex
-            accessorType = .class
-        } else if let accessorTypeStringStartIndex = usr.range(of: AccessorType.instance.propertyTypeString)?.lowerBound {
-            propertyTypeStringStart = accessorTypeStringStartIndex
-            accessorType = .instance
-        } else {
-            fatalError("expected an instance or class property by got \(usr)")
-        }
+        let (propertyTypeStringStart, accessorType) = propertyTypeStringStartAndAcessorType(usr: usr)
         let nsDeclaration = declaration as NSString
         let usrPrefix = usr.substring(to: propertyTypeStringStart)
-        let regex = try! NSRegularExpression(pattern: getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)")
+        let pattern = getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)"
+        let regex = try! NSRegularExpression(pattern: pattern)
         let matches = regex.matches(in: declaration, options: [], range: NSRange(location: 0, length: nsDeclaration.length))
         if !matches.isEmpty {
             let accessorName = nsDeclaration.substring(with: matches[0].range(at: 1))
