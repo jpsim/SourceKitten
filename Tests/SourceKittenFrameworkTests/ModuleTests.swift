@@ -47,31 +47,12 @@ class ModuleTests: XCTestCase {
 
 #if SWIFT_PACKAGE
 extension ModuleTests {
-    func testCommandantDocsSPM() {
-        func findCommandant(in directory: String) -> String? {
-            guard let contents = try? FileManager.default.contentsOfDirectory(atPath: directory),
-                let subDirectory = contents.first(where: { $0.hasPrefix("Commandant") }) else {
-                    return nil
-            }
-            return directory + subDirectory + "/"
-        }
-
-        let checkoutDirectory = "/.build/checkouts/"
-        guard let commandantPath = findCommandant(in: projectRoot + checkoutDirectory) else {
-            XCTFail("Can't find Commandant")
-            return
-        }
-        let commandantModule = Module(spmName: "Commandant")!
-        compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs, rootDirectory: commandantPath)
-    }
-
     static var allTests: [(String, (ModuleTests) -> () throws -> Void)] {
         return [
             // Disabled on Linux because these tests require Xcode
             // ("testModuleNilInPathWithNoXcodeProject", testModuleNilInPathWithNoXcodeProject),
             // ("testSourceKittenFrameworkDocsAreValidJSON", testSourceKittenFrameworkDocsAreValidJSON),
-            // ("testCommandantDocs", testCommandantDocs),
-            ("testCommandantDocsSPM", testCommandantDocsSPM)
+            // ("testCommandantDocs", testCommandantDocs)
         ]
     }
 }
