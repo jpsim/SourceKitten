@@ -541,8 +541,12 @@ extension String {
 
         return lineComponents.map { line in
             if line.characters.count >= minLeadingCharacters {
+#if swift(>=3.2)
+                return String(line[line.index(line.startIndex, offsetBy: minLeadingCharacters)...])
+#else
                 let range: Range = line.index(line.startIndex, offsetBy: minLeadingCharacters)..<line.endIndex
                 return line.substring(with: range)
+#endif
             }
             return line
         }.joined(separator: "\n")

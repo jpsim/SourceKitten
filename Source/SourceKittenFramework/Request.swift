@@ -455,12 +455,16 @@ extension String {
             SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
         }).flatMap { function -> String? in
             let fullFunctionName = function["key.name"] as! String
+#if swift(>=3.2)
+            let name = String(fullFunctionName[..<fullFunctionName.range(of: "(")!.lowerBound])
+#else
             let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
+#endif
             let unsupportedFunctions = [
                 "clang_executeOnThread",
                 "sourcekitd_variant_dictionary_apply",
                 "sourcekitd_variant_array_apply"
-                ]
+            ]
             guard !unsupportedFunctions.contains(name) else {
                 return nil
             }
@@ -475,9 +479,16 @@ extension String {
             if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
                 let start = index(startIndex, offsetBy: Int(offset))
                 let end = index(start, offsetBy: Int(length))
-                let functionDeclaration = substring(with: start..<end)
+                let functionDeclaration = self[start..<end]
                 if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
+#if swift(>=3.2)
+                    let adjustedDistance = distance(from: startIndex, to: startOfReturnArrow)
+                    let adjustedReturnTypeStartIndex = functionDeclaration.index(functionDeclaration.startIndex,
+                                                                                 offsetBy: adjustedDistance + 3)
+                    returnTypes.append(String(functionDeclaration[adjustedReturnTypeStartIndex...]))
+#else
                     returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
+#endif
                 }
             }
 

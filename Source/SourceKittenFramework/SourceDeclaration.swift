@@ -102,7 +102,11 @@ public struct SourceDeclaration {
 
         let (propertyTypeStringStart, accessorType) = propertyTypeStringStartAndAcessorType(usr: usr)
         let nsDeclaration = declaration as NSString
+#if swift(>=3.2)
+        let usrPrefix = usr[..<propertyTypeStringStart]
+#else
         let usrPrefix = usr.substring(to: propertyTypeStringStart)
+#endif
         let pattern = getter ? "getter\\s*=\\s*(\\w+)" : "setter\\s*=\\s*(\\w+:)"
         let regex = try! NSRegularExpression(pattern: pattern)
         let matches = regex.matches(in: declaration, options: [], range: NSRange(location: 0, length: nsDeclaration.length))
@@ -114,7 +118,12 @@ public struct SourceDeclaration {
         }
         // Setter
         let setterOffset = accessorType.propertyTypeString.characters.count
-        let capitalizedSetterName = usr.substring(from: usr.characters.index(propertyTypeStringStart, offsetBy: setterOffset)).capitalizingFirstLetter()
+        let from = usr.index(propertyTypeStringStart, offsetBy: setterOffset)
+#if swift(>=3.2)
+        let capitalizedSetterName = String(usr[from...]).capitalizingFirstLetter()
+#else
+        let capitalizedSetterName = usr.substring(from: from).capitalizingFirstLetter()
+#endif
         return "\(usrPrefix)\(accessorType.methodTypeString)set\(capitalizedSetterName):"
     }
 }

@@ -109,11 +109,11 @@ private let xcrunFindPath: String? = {
     var end = output.startIndex
     var contentsEnd = output.startIndex
     output.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: start..<start)
-    let xcrunFindSwiftPath = output.substring(with: start..<contentsEnd)
+    let xcrunFindSwiftPath = output[start..<contentsEnd]
     guard xcrunFindSwiftPath.hasSuffix("/usr/bin/swift") else {
         return nil
     }
-    let xcrunFindPath = xcrunFindSwiftPath.deleting(lastPathComponents: 3)
+    let xcrunFindPath = String(xcrunFindSwiftPath).deleting(lastPathComponents: 3)
     // Return nil if xcrunFindPath points to "Command Line Tools OS X for Xcode"
     // because it doesn't contain `sourcekitd.framework`.
     if xcrunFindPath == "/Library/Developer/CommandLineTools" {
