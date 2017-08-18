@@ -57,7 +57,8 @@ struct DocCommand: CommandProtocol {
     }
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
-        if let module = Module(spmName: moduleName) {
+        let args = ["-workspace", "Lyft.xcworkspace", "-scheme", "Lyft"]
+        if let module = Module(xcodeBuildArguments: args, name: "Lyft") {
             // Find unused imports
 //            for file in module.sourceFiles {
 //                let unusedImports = File(path: file)!.unusedImports(compilerArguments: module.compilerArguments)
