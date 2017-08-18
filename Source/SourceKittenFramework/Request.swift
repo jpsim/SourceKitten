@@ -479,7 +479,7 @@ extension String {
             if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
                 let start = index(startIndex, offsetBy: Int(offset))
                 let end = index(start, offsetBy: Int(length))
-                let functionDeclaration = self[start..<end]
+                let functionDeclaration = String(self[start..<end])
                 if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
 #if swift(>=3.2)
                     let adjustedDistance = distance(from: startIndex, to: startOfReturnArrow)
