@@ -1,278 +1,226 @@
 {
+  "key.dependencies": [
+    {
+      "key.is_system": true,
+      "key.name": "Swift",
+      "key.filepath" : "",
+      "key.hash" : "",
+      "key.kind": "source.lang.swift.import.module.swift"
+    },
+    {
+      "key.filepath" : "",
+      "key.name": "Foundation",
+      "key.dependencies": [
+        {
+          "key.is_system": true,
+          "key.name": "CoreFoundation",
+          "key.filepath" : "",
+          "key.kind": "source.lang.swift.import.module.clang"
+        },
+        {
+          "key.is_system": true,
+          "key.name": "Dispatch",
+          "key.filepath" : "",
+          "key.dependencies": [
+            {
+              "key.is_system": true,
+              "key.name": "CDispatch",
+              "key.filepath" : "",
+              "key.kind": "source.lang.swift.import.module.clang"
+            },
+            {
+              "key.is_system": true,
+              "key.name": "Dispatch",
+              "key.filepath" : "",
+              "key.kind": "source.lang.swift.import.module.clang"
+            },
+            {
+              "key.is_system": true,
+              "key.name": "Swift",
+              "key.filepath" : "",
+              "key.hash" : "",
+              "key.kind": "source.lang.swift.import.module.swift"
+            }
+          ],
+          "key.kind": "source.lang.swift.import.module.swift",
+          "key.hash" : "",
+        },
+        {
+          "key.filepath" : "",
+          "key.name": "Glibc",
+          "key.dependencies": [
+            {
+              "key.is_system": true,
+              "key.name": "Swift",
+              "key.filepath" : "",
+              "key.hash" : "",
+              "key.kind": "source.lang.swift.import.module.swift"
+            },
+            {
+              "key.is_system": true,
+              "key.name": "SwiftGlibc",
+              "key.filepath" : "",
+              "key.kind": "source.lang.swift.import.module.clang"
+            }
+          ],
+          "key.hash" : "",
+          "key.kind": "source.lang.swift.import.module.swift"
+        },
+        {
+          "key.is_system": true,
+          "key.name": "Swift",
+          "key.filepath" : "",
+          "key.hash" : "",
+          "key.kind": "source.lang.swift.import.module.swift"
+        }
+      ],
+      "key.hash" : "",
+      "key.kind": "source.lang.swift.import.module.swift"
+    }
+  ],
+  "key.hash" : "",
   "key.entities": [
     {
       "key.kind": "source.lang.swift.ref.class",
+      "key.name": "NSString",
       "key.column": 18,
-      "key.line": 5,
       "key.usr": "s:10Foundation8NSStringC",
-      "key.name": "NSString"
+      "key.line": 5
     },
     {
       "key.kind": "source.lang.swift.decl.class",
-      "key.column": 14,
-      "key.line": 8,
-      "key.usr": "s:7BicycleAAC",
       "key.name": "Bicycle",
       "key.entities": [
         {
           "key.kind": "source.lang.swift.decl.enum",
-          "key.column": 17,
-          "key.line": 17,
-          "key.usr": "s:7BicycleAAC5StyleO",
           "key.name": "Style",
           "key.entities": [
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Road",
               "key.column": 14,
-              "key.line": 18,
               "key.usr": "s:7BicycleAAC5StyleO4RoadA2DmF",
-              "key.name": "Road"
+              "key.line": 18
             },
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Touring",
               "key.column": 20,
-              "key.line": 18,
               "key.usr": "s:7BicycleAAC5StyleO7TouringA2DmF",
-              "key.name": "Touring"
+              "key.line": 18
             },
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Cruiser",
               "key.column": 29,
-              "key.line": 18,
               "key.usr": "s:7BicycleAAC5StyleO7CruiserA2DmF",
-              "key.name": "Cruiser"
+              "key.line": 18
             },
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Hybrid",
               "key.column": 38,
-              "key.line": 18,
               "key.usr": "s:7BicycleAAC5StyleO6HybridA2DmF",
-              "key.name": "Hybrid"
+              "key.line": 18
             }
-          ]
+          ],
+          "key.column": 17,
+          "key.usr": "s:7BicycleAAC5StyleO",
+          "key.line": 17
         },
         {
           "key.kind": "source.lang.swift.decl.enum",
-          "key.column": 17,
-          "key.line": 27,
-          "key.usr": "s:7BicycleAAC7GearingO",
           "key.name": "Gearing",
           "key.entities": [
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Fixed",
               "key.column": 14,
-              "key.line": 28,
               "key.usr": "s:7BicycleAAC7GearingO5FixedA2DmF",
-              "key.name": "Fixed"
+              "key.line": 28
             },
             {
               "key.kind": "source.lang.swift.decl.enumelement",
-              "key.column": 14,
-              "key.line": 29,
-              "key.usr": "s:7BicycleAAC7GearingO9FreewheelADSi6speeds_tcADmF",
               "key.name": "Freewheel",
               "key.entities": [
                 {
                   "key.kind": "source.lang.swift.ref.struct",
+                  "key.name": "Int",
                   "key.column": 32,
-                  "key.line": 29,
                   "key.usr": "s:Si",
-                  "key.name": "Int"
+                  "key.line": 29
                 }
-              ]
+              ],
+              "key.column": 14,
+              "key.usr": "s:7BicycleAAC7GearingO9FreewheelADSi6speeds_tcADmF",
+              "key.line": 29
             }
-          ]
+          ],
+          "key.column": 17,
+          "key.usr": "s:7BicycleAAC7GearingO",
+          "key.line": 27
         },
         {
           "key.kind": "source.lang.swift.decl.enum",
-          "key.column": 10,
-          "key.line": 40,
-          "key.usr": "s:7BicycleAAC9HandlebarO",
           "key.name": "Handlebar",
           "key.entities": [
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Riser",
               "key.column": 14,
-              "key.line": 41,
               "key.usr": "s:7BicycleAAC9HandlebarO5RiserA2DmF",
-              "key.name": "Riser"
+              "key.line": 41
             },
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Café",
               "key.column": 21,
-              "key.line": 41,
               "key.usr": "s:7BicycleAAC9HandlebarO007Caf_dmaA2DmF",
-              "key.name": "Café"
+              "key.line": 41
             },
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Drop",
               "key.column": 28,
-              "key.line": 41,
               "key.usr": "s:7BicycleAAC9HandlebarO4DropA2DmF",
-              "key.name": "Drop"
+              "key.line": 41
             },
             {
               "key.kind": "source.lang.swift.decl.enumelement",
+              "key.name": "Bullhorn",
               "key.column": 34,
-              "key.line": 41,
               "key.usr": "s:7BicycleAAC9HandlebarO8BullhornA2DmF",
-              "key.name": "Bullhorn"
-            }
-          ]
-        },
-        {
-          "key.line": 45,
-          "key.entities": [
-            {
-              "key.attributes": [
-                {
-                  "key.attribute": "source.decl.attribute.final"
-                }
-              ],
-              "key.kind": "source.lang.swift.decl.function.accessor.getter",
-              "key.line": 45,
-              "key.column": 9,
-              "key.usr": "s:7BicycleAAC5styleAB5StyleOfg"
-            },
-            {
-              "key.attributes": [
-                {
-                  "key.attribute": "source.decl.attribute.final"
-                }
-              ],
-              "key.kind": "source.lang.swift.decl.function.accessor.setter",
-              "key.line": 45,
-              "key.column": 9,
-              "key.usr": "s:7BicycleAAC5styleAB5StyleOfs"
+              "key.line": 41
             }
           ],
-          "key.attributes": [
-            {
-              "key.attribute": "source.decl.attribute.final"
-            }
-          ],
-          "key.kind": "source.lang.swift.decl.var.instance",
-          "key.column": 9,
-          "key.usr": "s:7BicycleAAC5styleAB5StyleOv",
-          "key.name": "style"
-        },
-        {
-          "key.kind": "source.lang.swift.ref.enum",
-          "key.column": 16,
-          "key.line": 45,
-          "key.usr": "s:7BicycleAAC5StyleO",
-          "key.name": "Style"
-        },
-        {
-          "key.line": 48,
-          "key.entities": [
-            {
-              "key.attributes": [
-                {
-                  "key.attribute": "source.decl.attribute.final"
-                }
-              ],
-              "key.kind": "source.lang.swift.decl.function.accessor.getter",
-              "key.line": 48,
-              "key.column": 9,
-              "key.usr": "s:7BicycleAAC7gearingAB7GearingOfg"
-            },
-            {
-              "key.attributes": [
-                {
-                  "key.attribute": "source.decl.attribute.final"
-                }
-              ],
-              "key.kind": "source.lang.swift.decl.function.accessor.setter",
-              "key.line": 48,
-              "key.column": 9,
-              "key.usr": "s:7BicycleAAC7gearingAB7GearingOfs"
-            }
-          ],
-          "key.attributes": [
-            {
-              "key.attribute": "source.decl.attribute.final"
-            }
-          ],
-          "key.kind": "source.lang.swift.decl.var.instance",
-          "key.column": 9,
-          "key.usr": "s:7BicycleAAC7gearingAB7GearingOv",
-          "key.name": "gearing"
-        },
-        {
-          "key.kind": "source.lang.swift.ref.enum",
-          "key.column": 18,
-          "key.line": 48,
-          "key.usr": "s:7BicycleAAC7GearingO",
-          "key.name": "Gearing"
-        },
-        {
-          "key.line": 51,
-          "key.entities": [
-            {
-              "key.attributes": [
-                {
-                  "key.attribute": "source.decl.attribute.final"
-                }
-              ],
-              "key.kind": "source.lang.swift.decl.function.accessor.getter",
-              "key.line": 51,
-              "key.column": 9,
-              "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOfg"
-            },
-            {
-              "key.attributes": [
-                {
-                  "key.attribute": "source.decl.attribute.final"
-                }
-              ],
-              "key.kind": "source.lang.swift.decl.function.accessor.setter",
-              "key.line": 51,
-              "key.column": 9,
-              "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOfs"
-            }
-          ],
-          "key.attributes": [
-            {
-              "key.attribute": "source.decl.attribute.final"
-            }
-          ],
-          "key.kind": "source.lang.swift.decl.var.instance",
-          "key.column": 9,
-          "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOv",
-          "key.name": "handlebar"
-        },
-        {
-          "key.kind": "source.lang.swift.ref.enum",
-          "key.column": 20,
-          "key.line": 51,
+          "key.column": 10,
           "key.usr": "s:7BicycleAAC9HandlebarO",
-          "key.name": "Handlebar"
+          "key.line": 40
         },
         {
-          "key.line": 54,
+          "key.name": "style",
           "key.entities": [
             {
+              "key.kind": "source.lang.swift.decl.function.accessor.getter",
               "key.attributes": [
                 {
                   "key.attribute": "source.decl.attribute.final"
                 }
               ],
-              "key.kind": "source.lang.swift.decl.function.accessor.getter",
-              "key.line": 54,
               "key.column": 9,
-              "key.usr": "s:7BicycleAAC9frameSizeSifg"
+              "key.usr": "s:7BicycleAAC5styleAB5StyleOfg",
+              "key.line": 45
             },
             {
+              "key.kind": "source.lang.swift.decl.function.accessor.setter",
               "key.attributes": [
                 {
                   "key.attribute": "source.decl.attribute.final"
                 }
               ],
-              "key.kind": "source.lang.swift.decl.function.accessor.setter",
-              "key.line": 54,
               "key.column": 9,
-              "key.usr": "s:7BicycleAAC9frameSizeSifs"
+              "key.usr": "s:7BicycleAAC5styleAB5StyleOfs",
+              "key.line": 45
             }
           ],
           "key.attributes": [
@@ -280,379 +228,431 @@
               "key.attribute": "source.decl.attribute.final"
             }
           ],
-          "key.kind": "source.lang.swift.decl.var.instance",
           "key.column": 9,
-          "key.usr": "s:7BicycleAAC9frameSizeSiv",
-          "key.name": "frameSize"
+          "key.line": 45,
+          "key.kind": "source.lang.swift.decl.var.instance",
+          "key.usr": "s:7BicycleAAC5styleAB5StyleOv"
+        },
+        {
+          "key.kind": "source.lang.swift.ref.enum",
+          "key.name": "Style",
+          "key.column": 16,
+          "key.usr": "s:7BicycleAAC5StyleO",
+          "key.line": 45
+        },
+        {
+          "key.name": "gearing",
+          "key.entities": [
+            {
+              "key.kind": "source.lang.swift.decl.function.accessor.getter",
+              "key.attributes": [
+                {
+                  "key.attribute": "source.decl.attribute.final"
+                }
+              ],
+              "key.column": 9,
+              "key.usr": "s:7BicycleAAC7gearingAB7GearingOfg",
+              "key.line": 48
+            },
+            {
+              "key.kind": "source.lang.swift.decl.function.accessor.setter",
+              "key.attributes": [
+                {
+                  "key.attribute": "source.decl.attribute.final"
+                }
+              ],
+              "key.column": 9,
+              "key.usr": "s:7BicycleAAC7gearingAB7GearingOfs",
+              "key.line": 48
+            }
+          ],
+          "key.attributes": [
+            {
+              "key.attribute": "source.decl.attribute.final"
+            }
+          ],
+          "key.column": 9,
+          "key.line": 48,
+          "key.kind": "source.lang.swift.decl.var.instance",
+          "key.usr": "s:7BicycleAAC7gearingAB7GearingOv"
+        },
+        {
+          "key.kind": "source.lang.swift.ref.enum",
+          "key.name": "Gearing",
+          "key.column": 18,
+          "key.usr": "s:7BicycleAAC7GearingO",
+          "key.line": 48
+        },
+        {
+          "key.name": "handlebar",
+          "key.entities": [
+            {
+              "key.kind": "source.lang.swift.decl.function.accessor.getter",
+              "key.attributes": [
+                {
+                  "key.attribute": "source.decl.attribute.final"
+                }
+              ],
+              "key.column": 9,
+              "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOfg",
+              "key.line": 51
+            },
+            {
+              "key.kind": "source.lang.swift.decl.function.accessor.setter",
+              "key.attributes": [
+                {
+                  "key.attribute": "source.decl.attribute.final"
+                }
+              ],
+              "key.column": 9,
+              "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOfs",
+              "key.line": 51
+            }
+          ],
+          "key.attributes": [
+            {
+              "key.attribute": "source.decl.attribute.final"
+            }
+          ],
+          "key.column": 9,
+          "key.line": 51,
+          "key.kind": "source.lang.swift.decl.var.instance",
+          "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOv"
+        },
+        {
+          "key.kind": "source.lang.swift.ref.enum",
+          "key.name": "Handlebar",
+          "key.column": 20,
+          "key.usr": "s:7BicycleAAC9HandlebarO",
+          "key.line": 51
+        },
+        {
+          "key.name": "frameSize",
+          "key.entities": [
+            {
+              "key.kind": "source.lang.swift.decl.function.accessor.getter",
+              "key.attributes": [
+                {
+                  "key.attribute": "source.decl.attribute.final"
+                }
+              ],
+              "key.column": 9,
+              "key.usr": "s:7BicycleAAC9frameSizeSifg",
+              "key.line": 54
+            },
+            {
+              "key.kind": "source.lang.swift.decl.function.accessor.setter",
+              "key.attributes": [
+                {
+                  "key.attribute": "source.decl.attribute.final"
+                }
+              ],
+              "key.column": 9,
+              "key.usr": "s:7BicycleAAC9frameSizeSifs",
+              "key.line": 54
+            }
+          ],
+          "key.attributes": [
+            {
+              "key.attribute": "source.decl.attribute.final"
+            }
+          ],
+          "key.column": 9,
+          "key.line": 54,
+          "key.kind": "source.lang.swift.decl.var.instance",
+          "key.usr": "s:7BicycleAAC9frameSizeSiv"
         },
         {
           "key.kind": "source.lang.swift.ref.struct",
+          "key.name": "Int",
           "key.column": 20,
-          "key.line": 54,
           "key.usr": "s:Si",
-          "key.name": "Int"
+          "key.line": 54
         },
         {
           "key.kind": "source.lang.swift.decl.var.instance",
-          "key.column": 22,
-          "key.line": 57,
-          "key.usr": "s:7BicycleAAC13numberOfTripsSiv",
           "key.name": "numberOfTrips",
           "key.entities": [
             {
+              "key.usr": "s:7BicycleAAC13numberOfTripsSifg",
               "key.is_dynamic": true,
-              "key.kind": "source.lang.swift.decl.function.accessor.getter",
-              "key.line": 57,
               "key.column": 22,
-              "key.usr": "s:7BicycleAAC13numberOfTripsSifg"
+              "key.line": 57,
+              "key.kind": "source.lang.swift.decl.function.accessor.getter"
             },
             {
+              "key.usr": "s:7BicycleAAC13numberOfTripsSifs",
               "key.is_dynamic": true,
-              "key.kind": "source.lang.swift.decl.function.accessor.setter",
-              "key.line": 57,
               "key.column": 22,
-              "key.usr": "s:7BicycleAAC13numberOfTripsSifs"
+              "key.line": 57,
+              "key.kind": "source.lang.swift.decl.function.accessor.setter"
             }
-          ]
+          ],
+          "key.column": 22,
+          "key.usr": "s:7BicycleAAC13numberOfTripsSiv",
+          "key.line": 57
         },
         {
           "key.kind": "source.lang.swift.ref.struct",
+          "key.name": "Int",
           "key.column": 37,
-          "key.line": 57,
           "key.usr": "s:Si",
-          "key.name": "Int"
+          "key.line": 57
         },
         {
           "key.kind": "source.lang.swift.decl.var.instance",
-          "key.column": 22,
-          "key.line": 60,
-          "key.usr": "s:7BicycleAAC17distanceTravelledSdv",
           "key.name": "distanceTravelled",
           "key.entities": [
             {
+              "key.usr": "s:7BicycleAAC17distanceTravelledSdfg",
               "key.is_dynamic": true,
-              "key.kind": "source.lang.swift.decl.function.accessor.getter",
-              "key.line": 60,
               "key.column": 22,
-              "key.usr": "s:7BicycleAAC17distanceTravelledSdfg"
+              "key.line": 60,
+              "key.kind": "source.lang.swift.decl.function.accessor.getter"
             },
             {
+              "key.usr": "s:7BicycleAAC17distanceTravelledSdfs",
               "key.is_dynamic": true,
-              "key.kind": "source.lang.swift.decl.function.accessor.setter",
-              "key.line": 60,
               "key.column": 22,
-              "key.usr": "s:7BicycleAAC17distanceTravelledSdfs"
+              "key.line": 60,
+              "key.kind": "source.lang.swift.decl.function.accessor.setter"
             }
-          ]
+          ],
+          "key.column": 22,
+          "key.usr": "s:7BicycleAAC17distanceTravelledSdv",
+          "key.line": 60
         },
         {
           "key.kind": "source.lang.swift.ref.struct",
+          "key.name": "Double",
           "key.column": 41,
-          "key.line": 60,
           "key.usr": "s:Sd",
-          "key.name": "Double"
+          "key.line": 60
         },
         {
           "key.kind": "source.lang.swift.decl.function.constructor",
-          "key.column": 5,
-          "key.line": 72,
-          "key.usr": "s:7BicycleAACA2B5StyleO5style_AB7GearingO7gearingAB9HandlebarO9handlebarSi9frameSizetcfc",
           "key.name": "init(style:gearing:handlebar:frameSize:)",
           "key.entities": [
             {
               "key.kind": "source.lang.swift.ref.enum",
+              "key.name": "Style",
               "key.column": 17,
-              "key.line": 72,
               "key.usr": "s:7BicycleAAC5StyleO",
-              "key.name": "Style"
+              "key.line": 72
             },
             {
               "key.kind": "source.lang.swift.ref.enum",
+              "key.name": "Gearing",
               "key.column": 33,
-              "key.line": 72,
               "key.usr": "s:7BicycleAAC7GearingO",
-              "key.name": "Gearing"
+              "key.line": 72
             },
             {
               "key.kind": "source.lang.swift.ref.enum",
+              "key.name": "Handlebar",
               "key.column": 53,
-              "key.line": 72,
               "key.usr": "s:7BicycleAAC9HandlebarO",
-              "key.name": "Handlebar"
+              "key.line": 72
             },
             {
               "key.kind": "source.lang.swift.ref.struct",
+              "key.name": "Int",
               "key.column": 87,
-              "key.line": 72,
               "key.usr": "s:Si",
-              "key.name": "Int"
+              "key.line": 72
             },
             {
               "key.kind": "source.lang.swift.ref.var.instance",
-              "key.column": 14,
-              "key.line": 73,
-              "key.usr": "s:7BicycleAAC5styleAB5StyleOv",
               "key.name": "style",
               "key.entities": [
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 73,
+                  "key.is_dynamic": true,
                   "key.column": 14,
-                  "key.usr": "s:7BicycleAAC5styleAB5StyleOfs",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.usr": "s:7BicycleAAC5styleAB5StyleOfs"
                 }
-              ]
+              ],
+              "key.column": 14,
+              "key.usr": "s:7BicycleAAC5styleAB5StyleOv",
+              "key.line": 73
             },
             {
               "key.kind": "source.lang.swift.ref.var.instance",
-              "key.column": 14,
-              "key.line": 74,
-              "key.usr": "s:7BicycleAAC7gearingAB7GearingOv",
               "key.name": "gearing",
               "key.entities": [
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 74,
+                  "key.is_dynamic": true,
                   "key.column": 14,
-                  "key.usr": "s:7BicycleAAC7gearingAB7GearingOfs",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.usr": "s:7BicycleAAC7gearingAB7GearingOfs"
                 }
-              ]
+              ],
+              "key.column": 14,
+              "key.usr": "s:7BicycleAAC7gearingAB7GearingOv",
+              "key.line": 74
             },
             {
               "key.kind": "source.lang.swift.ref.var.instance",
-              "key.column": 14,
-              "key.line": 75,
-              "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOv",
               "key.name": "handlebar",
               "key.entities": [
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 75,
+                  "key.is_dynamic": true,
                   "key.column": 14,
-                  "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOfs",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOfs"
                 }
-              ]
+              ],
+              "key.column": 14,
+              "key.usr": "s:7BicycleAAC9handlebarAB9HandlebarOv",
+              "key.line": 75
             },
             {
               "key.kind": "source.lang.swift.ref.var.instance",
-              "key.column": 14,
-              "key.line": 76,
-              "key.usr": "s:7BicycleAAC9frameSizeSiv",
               "key.name": "frameSize",
               "key.entities": [
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 76,
+                  "key.is_dynamic": true,
                   "key.column": 14,
-                  "key.usr": "s:7BicycleAAC9frameSizeSifs",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.usr": "s:7BicycleAAC9frameSizeSifs"
                 }
-              ]
+              ],
+              "key.column": 14,
+              "key.usr": "s:7BicycleAAC9frameSizeSiv",
+              "key.line": 76
             },
             {
               "key.kind": "source.lang.swift.ref.var.instance",
-              "key.column": 9,
-              "key.line": 78,
-              "key.usr": "s:7BicycleAAC13numberOfTripsSiv",
               "key.name": "numberOfTrips",
               "key.entities": [
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 78,
+                  "key.is_dynamic": true,
                   "key.column": 9,
-                  "key.usr": "s:7BicycleAAC13numberOfTripsSifs",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.usr": "s:7BicycleAAC13numberOfTripsSifs"
                 }
-              ]
+              ],
+              "key.column": 9,
+              "key.usr": "s:7BicycleAAC13numberOfTripsSiv",
+              "key.line": 78
             },
             {
               "key.kind": "source.lang.swift.ref.var.instance",
-              "key.column": 9,
-              "key.line": 79,
-              "key.usr": "s:7BicycleAAC17distanceTravelledSdv",
               "key.name": "distanceTravelled",
               "key.entities": [
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 79,
+                  "key.is_dynamic": true,
                   "key.column": 9,
-                  "key.usr": "s:7BicycleAAC17distanceTravelledSdfs",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.usr": "s:7BicycleAAC17distanceTravelledSdfs"
                 }
-              ]
+              ],
+              "key.column": 9,
+              "key.usr": "s:7BicycleAAC17distanceTravelledSdv",
+              "key.line": 79
             }
-          ]
+          ],
+          "key.column": 5,
+          "key.usr": "s:7BicycleAACA2B5StyleO5style_AB7GearingO7gearingAB9HandlebarO9handlebarSi9frameSizetcfc",
+          "key.line": 72
         },
         {
-          "key.is_dynamic": true,
-          "key.line": 87,
+          "key.name": "travel(distance:)",
           "key.entities": [
             {
               "key.kind": "source.lang.swift.ref.struct",
+              "key.name": "Double",
               "key.column": 34,
-              "key.line": 87,
               "key.usr": "s:Sd",
-              "key.name": "Double"
+              "key.line": 87
             },
             {
               "key.kind": "source.lang.swift.ref.var.instance",
-              "key.column": 13,
-              "key.line": 89,
-              "key.usr": "s:7BicycleAAC17distanceTravelledSdv",
               "key.name": "distanceTravelled",
               "key.entities": [
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.getter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 89,
+                  "key.is_dynamic": true,
                   "key.column": 13,
-                  "key.usr": "s:7BicycleAAC17distanceTravelledSdfg",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.getter",
+                  "key.usr": "s:7BicycleAAC17distanceTravelledSdfg"
                 },
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 89,
+                  "key.is_dynamic": true,
                   "key.column": 13,
-                  "key.usr": "s:7BicycleAAC17distanceTravelledSdfs",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.usr": "s:7BicycleAAC17distanceTravelledSdfs"
                 }
-              ]
+              ],
+              "key.column": 13,
+              "key.usr": "s:7BicycleAAC17distanceTravelledSdv",
+              "key.line": 89
             },
             {
               "key.kind": "source.lang.swift.ref.function.method.static",
+              "key.name": "+=(_:_:)",
               "key.column": 31,
-              "key.line": 89,
               "key.usr": "s:Sd2peoiySdz_SdtFZ",
-              "key.name": "+=(_:_:)"
+              "key.line": 89
             },
             {
               "key.kind": "source.lang.swift.ref.var.instance",
-              "key.column": 13,
-              "key.line": 90,
-              "key.usr": "s:7BicycleAAC13numberOfTripsSiv",
               "key.name": "numberOfTrips",
               "key.entities": [
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.getter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 90,
+                  "key.is_dynamic": true,
                   "key.column": 13,
-                  "key.usr": "s:7BicycleAAC13numberOfTripsSifg",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.getter",
+                  "key.usr": "s:7BicycleAAC13numberOfTripsSifg"
                 },
                 {
-                  "key.is_dynamic": true,
-                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.receiver_usr": "s:7BicycleAAC",
                   "key.line": 90,
+                  "key.is_dynamic": true,
                   "key.column": 13,
-                  "key.usr": "s:7BicycleAAC13numberOfTripsSifs",
-                  "key.receiver_usr": "s:7BicycleAAC"
+                  "key.kind": "source.lang.swift.ref.function.accessor.setter",
+                  "key.usr": "s:7BicycleAAC13numberOfTripsSifs"
                 }
-              ]
+              ],
+              "key.column": 13,
+              "key.usr": "s:7BicycleAAC13numberOfTripsSiv",
+              "key.line": 90
             },
             {
               "key.kind": "source.lang.swift.ref.function.method.static",
+              "key.name": "+=(_:_:)",
               "key.column": 27,
-              "key.line": 90,
               "key.usr": "s:Si2peoiySiz_SitFZ",
-              "key.name": "+=(_:_:)"
+              "key.line": 90
             }
           ],
-          "key.kind": "source.lang.swift.decl.function.method.instance",
           "key.column": 10,
-          "key.usr": "s:7BicycleAAC6travelySd8distance_tF",
-          "key.name": "travel(distance:)"
-        }
-      ]
-    }
-  ],
-  "key.hash" : "",
-  "key.dependencies": [
-    {
-      "key.kind": "source.lang.swift.import.module.swift",
-      "key.hash" : "",
-      "key.is_system": true,
-      "key.filepath" : "",
-      "key.name": "Swift"
-    },
-    {
-      "key.kind": "source.lang.swift.import.module.swift",
-      "key.hash" : "",
-      "key.dependencies": [
-        {
-          "key.kind": "source.lang.swift.import.module.clang",
-          "key.is_system": true,
-          "key.filepath" : "",
-          "key.name": "CoreFoundation"
-        },
-        {
-          "key.kind": "source.lang.swift.import.module.swift",
-          "key.hash" : "",
-          "key.dependencies": [
-            {
-              "key.kind": "source.lang.swift.import.module.clang",
-              "key.is_system": true,
-              "key.filepath" : "",
-              "key.name": "CDispatch"
-            },
-            {
-              "key.kind": "source.lang.swift.import.module.clang",
-              "key.is_system": true,
-              "key.filepath" : "",
-              "key.name": "Dispatch"
-            },
-            {
-              "key.kind": "source.lang.swift.import.module.swift",
-              "key.hash" : "",
-              "key.is_system": true,
-              "key.filepath" : "",
-              "key.name": "Swift"
-            }
-          ],
-          "key.is_system": true,
-          "key.filepath" : "",
-          "key.name": "Dispatch"
-        },
-        {
-          "key.kind": "source.lang.swift.import.module.swift",
-          "key.hash" : "",
-          "key.dependencies": [
-            {
-              "key.kind": "source.lang.swift.import.module.swift",
-              "key.hash" : "",
-              "key.is_system": true,
-              "key.filepath" : "",
-              "key.name": "Swift"
-            },
-            {
-              "key.kind": "source.lang.swift.import.module.clang",
-              "key.is_system": true,
-              "key.filepath" : "",
-              "key.name": "SwiftGlibc"
-            }
-          ],
-          "key.filepath" : "",
-          "key.name": "Glibc"
-        },
-        {
-          "key.kind": "source.lang.swift.import.module.swift",
-          "key.hash" : "",
-          "key.is_system": true,
-          "key.filepath" : "",
-          "key.name": "Swift"
+          "key.is_dynamic": true,
+          "key.line": 87,
+          "key.kind": "source.lang.swift.decl.function.method.instance",
+          "key.usr": "s:7BicycleAAC6travelySd8distance_tF"
         }
       ],
-      "key.filepath" : "",
-      "key.name": "Foundation"
+      "key.column": 14,
+      "key.usr": "s:7BicycleAAC",
+      "key.line": 8
     }
   ]
 }
