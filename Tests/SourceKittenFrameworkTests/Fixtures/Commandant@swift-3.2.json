@@ -4727,6 +4727,9 @@
             "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbs26_OptionalNilComparisonTypeV_xSgtlF\">==&lt;T&gt;(_: _OptionalNilComparisonType, _: T?) -&gt; Bool<\/RelatedName>"
           },
           {
+            "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbyt_yttF\">==(_: (), _: ()) -&gt; Bool<\/RelatedName>"
+          },
+          {
             "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbx_q_t_x_q_tts9EquatableRzsABR_r0_lF\">==&lt;A, B&gt;(_: (A, B), _: (A, B)) -&gt; Bool where A : Equatable, B : Equatable<\/RelatedName>"
           },
           {

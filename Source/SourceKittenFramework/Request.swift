@@ -450,34 +450,49 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
 }
 
 extension String {
+    private func nameFromFullFunctionName() -> String {
+#if swift(>=3.2)
+        return String(self[..<range(of: "(")!.lowerBound])
+#else
+        return substring(to: range(of: "(")!.lowerBound)
+#endif
+    }
+
     fileprivate func extractFreeFunctions(inSubstructure substructure: [[String: SourceKitRepresentable]]) -> [String] {
         return substructure.filter({
             SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
         }).flatMap { function -> String? in
-            let fullFunctionName = function["key.name"] as! String
-            let name = fullFunctionName.substring(to: fullFunctionName.range(of: "(")!.lowerBound)
+            let name = (function["key.name"] as! String).nameFromFullFunctionName()
             let unsupportedFunctions = [
                 "clang_executeOnThread",
                 "sourcekitd_variant_dictionary_apply",
                 "sourcekitd_variant_array_apply"
-                ]
+            ]
             guard !unsupportedFunctions.contains(name) else {
                 return nil
             }
 
-            var parameters = [String]()
-            if let functionSubstructure = SwiftDocKey.getSubstructure(function) {
-                for parameterStructure in functionSubstructure {
-                    parameters.append((parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String)
-                }
-            }
+            let parameters = SwiftDocKey.getSubstructure(function)?.map { parameterStructure in
+                return (parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String
+            } ?? []
             var returnTypes = [String]()
             if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
                 let start = index(startIndex, offsetBy: Int(offset))
                 let end = index(start, offsetBy: Int(length))
-                let functionDeclaration = substring(with: start..<end)
+#if swift(>=4.0)
+                let functionDeclaration = String(self[start..<end])
+#else
+                let functionDeclaration = self[start..<end]
+#endif
                 if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
+#if swift(>=3.2)
+                    let adjustedDistance = distance(from: startIndex, to: startOfReturnArrow)
+                    let adjustedReturnTypeStartIndex = functionDeclaration.index(functionDeclaration.startIndex,
+                                                                                 offsetBy: adjustedDistance + 3)
+                    returnTypes.append(String(functionDeclaration[adjustedReturnTypeStartIndex...]))
+#else
                     returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
+#endif
                 }
             }
 
