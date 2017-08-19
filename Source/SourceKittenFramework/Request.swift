@@ -479,7 +479,7 @@ extension String {
             if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
                 let start = index(startIndex, offsetBy: Int(offset))
                 let end = index(start, offsetBy: Int(length))
-#if swift(>=3.2)
+#if swift(>=4.0)
                 let functionDeclaration = String(self[start..<end])
 #else
                 let functionDeclaration = self[start..<end]
