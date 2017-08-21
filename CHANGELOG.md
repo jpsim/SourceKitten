@@ -11,7 +11,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix compilation failures due to long debug times by removing compiler flag:
+  `-warn-long-function-bodies=200`.  
+  [Marcelo Fabri](https://github.com/marcelofabri)
 
 ## 0.18.0
 
