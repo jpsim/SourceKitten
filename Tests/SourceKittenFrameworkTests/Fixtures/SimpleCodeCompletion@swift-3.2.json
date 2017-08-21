@@ -5,6 +5,7 @@
   "sourcetext" : "addingReportingOverflow(<#T##other: Int##Int#>)",
   "numBytesToErase" : 0,
   "typeName" : "(partialValue: Int, overflow: Bool)",
+  "docBrief" : "Returns the sum of this value and the given value along with a flag indicating whether overflow occurred in the operation.",
   "associatedUSRs" : "s:Si23addingReportingOverflowSi12partialValue_Sb8overflowtSiF s:s17FixedWidthIntegerP23addingReportingOverflowx12partialValue_Sb8overflowtxF",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -45,6 +46,7 @@
   "sourcetext" : "bitWidth",
   "numBytesToErase" : 0,
   "typeName" : "Int",
+  "docBrief" : "The number of bits in the binary representation of this value.",
   "associatedUSRs" : "s:s17FixedWidthIntegerPsE03bitB0Siv",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.superclass"
@@ -118,6 +120,7 @@
   "sourcetext" : "dividedReportingOverflow(by: <#T##Int#>)",
   "numBytesToErase" : 0,
   "typeName" : "(partialValue: Int, overflow: Bool)",
+  "docBrief" : "Returns the quotient of dividing this value by the given value along with a flag indicating whether overflow occurred in the operation.",
   "associatedUSRs" : "s:Si24dividedReportingOverflowSi12partialValue_Sb8overflowtSi2by_tF s:s17FixedWidthIntegerP24dividedReportingOverflowx12partialValue_Sb8overflowtx2by_tF",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -159,6 +162,7 @@
   "sourcetext" : "leadingZeroBitCount",
   "numBytesToErase" : 0,
   "typeName" : "Int",
+  "docBrief" : "The number of leading zeros in this value’s binary representation.",
   "associatedUSRs" : "s:Si19leadingZeroBitCountSiv s:s17FixedWidthIntegerP19leadingZeroBitCountSiv",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -179,6 +183,7 @@
   "sourcetext" : "magnitude",
   "numBytesToErase" : 0,
   "typeName" : "UInt",
+  "docBrief" : "The magnitude of this value.",
   "associatedUSRs" : "s:Si9magnitudeSuv s:s7NumericP9magnitude9MagnitudeQzv",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -199,6 +204,7 @@
   "sourcetext" : "multipliedReportingOverflow(by: <#T##Int#>)",
   "numBytesToErase" : 0,
   "typeName" : "(partialValue: Int, overflow: Bool)",
+  "docBrief" : "Returns the product of this value and the given value along with a flag indicating whether overflow occurred in the operation.",
   "associatedUSRs" : "s:Si27multipliedReportingOverflowSi12partialValue_Sb8overflowtSi2by_tF s:s17FixedWidthIntegerP27multipliedReportingOverflowx12partialValue_Sb8overflowtx2by_tF",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -209,6 +215,7 @@
   "sourcetext" : "negate()",
   "numBytesToErase" : 0,
   "typeName" : "Void",
+  "docBrief" : "Replaces this value with its additive inverse.",
   "associatedUSRs" : "s:s13SignedNumericPsE6negateyyF",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.superclass"
@@ -219,6 +226,7 @@
   "sourcetext" : "nonzeroBitCount",
   "numBytesToErase" : 0,
   "typeName" : "Int",
+  "docBrief" : "The number of bits equal to 1 in this value’s binary representation.",
   "associatedUSRs" : "s:Si15nonzeroBitCountSiv s:s17FixedWidthIntegerP15nonzeroBitCountSiv",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -239,6 +247,7 @@
   "sourcetext" : "remainderReportingOverflow(dividingBy: <#T##Int#>)",
   "numBytesToErase" : 0,
   "typeName" : "(partialValue: Int, overflow: Bool)",
+  "docBrief" : "Returns the remainder of dividing this value by the given value along with a flag indicating whether overflow occurred in the operation.",
   "associatedUSRs" : "s:Si26remainderReportingOverflowSi12partialValue_Sb8overflowtSi10dividingBy_tF s:s17FixedWidthIntegerP26remainderReportingOverflowx12partialValue_Sb8overflowtx10dividingBy_tF",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -259,6 +268,7 @@
   "sourcetext" : "signum()",
   "numBytesToErase" : 0,
   "typeName" : "Int",
+  "docBrief" : "Returns -1 if this value is negative and 1 if it’s positive; otherwise, 0.",
   "associatedUSRs" : "s:Si6signumSiyF s:s13BinaryIntegerP6signumxyF",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -269,6 +279,7 @@
   "sourcetext" : "subtractingReportingOverflow(<#T##other: Int##Int#>)",
   "numBytesToErase" : 0,
   "typeName" : "(partialValue: Int, overflow: Bool)",
+  "docBrief" : "Returns the difference of this value and the given value along with a flag indicating whether overflow occurred in the operation.",
   "associatedUSRs" : "s:Si28subtractingReportingOverflowSi12partialValue_Sb8overflowtSiF s:s17FixedWidthIntegerP28subtractingReportingOverflowx12partialValue_Sb8overflowtxF",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -279,6 +290,7 @@
   "sourcetext" : "trailingZeroBitCount",
   "numBytesToErase" : 0,
   "typeName" : "Int",
+  "docBrief" : "The number of trailing zeros in this value’s binary representation.",
   "associatedUSRs" : "s:Si20trailingZeroBitCountSiv s:s13BinaryIntegerP20trailingZeroBitCountSiv",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
@@ -333,6 +345,7 @@
   "sourcetext" : "words",
   "numBytesToErase" : 0,
   "typeName" : "Int.Words",
+  "docBrief" : "A collection containing the words of this value’s binary representation, in order from the least significant to most significant.",
   "associatedUSRs" : "s:Si5wordsSi5WordsVv s:s13BinaryIntegerP5words5WordsQzv",
   "moduleName" : "Swift",
   "context" : "source.codecompletion.context.thisclass"
