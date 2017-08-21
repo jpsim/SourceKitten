@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Updates to support Xcode 9 beta 5 & accompanying versions of Swift 3.2/4.0.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Bug Fixes
 
