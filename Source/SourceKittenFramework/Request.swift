@@ -24,6 +24,74 @@ extension String: SourceKitRepresentable {}
 extension Int64: SourceKitRepresentable {}
 extension Bool: SourceKitRepresentable {}
 
+// swiftlint:disable:next cyclomatic_complexity
+public func toSourceKitRepresentable(_ input: Any) -> SourceKitRepresentable? {
+    if let result = input as? SourceKitRepresentable {
+        return result
+    } else if let result = input as? Bool {
+        return result
+    } else if let result = input as? Int64 {
+        return result
+    } else if let result = input as? String {
+        return result
+    } else if let result = input as? [SourceKitRepresentable] {
+        return result
+    } else if let result = input as? [String: SourceKitRepresentable] {
+        return result
+    } else if let result = input as? [String: Any] {
+        var skResult = [String: SourceKitRepresentable]()
+        for (key, val) in result {
+            if let skVal = toSourceKitRepresentable(val) {
+                skResult[key] = skVal
+            } else {
+                fatalError("oh shit")
+            }
+        }
+        return skResult
+    } else if let result = input as? [Any] {
+        var skResult = [SourceKitRepresentable]()
+        for val in result {
+            if let skVal = toSourceKitRepresentable(val) {
+                skResult.append(skVal)
+            } else {
+                fatalError("oh shit")
+            }
+        }
+        return skResult
+    }
+    return nil
+}
+
+public func toSourceKit(_ input: SourceKitRepresentable) -> sourcekitd_object_t {
+    if let result = input as? Bool {
+        return sourcekitd_request_int64_create(result ? 1 : 0)
+    } else if let result = input as? Int64 {
+        return sourcekitd_request_int64_create(result)
+    } else if let result = input as? String {
+        return sourcekitd_request_string_create(result)
+    } else if let result = input as? [SourceKitRepresentable] {
+        var skResults: [sourcekitd_object_t?] = result.map(toSourceKit)
+        return sourcekitd_request_array_create(&skResults, skResults.count)
+    } else if let result = input as? [String: SourceKitRepresentable] {
+        var skKeys = [sourcekitd_uid_t?]()
+        var skValues = [sourcekitd_object_t?]()
+        for (key, value) in result {
+            skKeys.append(sourcekitd_uid_get_from_cstr(key))
+            if key == "key.request", let stringValue = value as? String {
+                skValues.append(sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr(stringValue)))
+            } else {
+                skValues.append(toSourceKit(value))
+            }
+        }
+        return sourcekitd_request_dictionary_create(&skKeys, &skValues, result.count)
+    }
+    fatalError("didn't handle conversion")
+}
+
+public func skDump(_ input: sourcekitd_object_t) {
+    sourcekitd_request_description_dump(input)
+}
+
 extension SourceKitRepresentable {
     public func isEqualTo(_ rhs: SourceKitRepresentable) -> Bool {
         switch self {

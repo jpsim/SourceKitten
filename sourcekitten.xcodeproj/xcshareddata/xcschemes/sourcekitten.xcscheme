@@ -73,6 +73,12 @@
             ReferencedContainer = "container:SourceKitten.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/jsimard/Downloads/sk.log"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "DEVELOPER_DIR"
