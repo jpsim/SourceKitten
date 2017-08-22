@@ -58,7 +58,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "~/Desktop/SourceKitten"
+      customWorkingDirectory = "~/src/Lyft-iOS"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "NO"
       debugXPCServices = "NO"
@@ -77,7 +77,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "doc --spm-module Result"
+            argument = "doc --spm-module Yams"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
