@@ -155,6 +155,22 @@ class StringTests: XCTestCase {
         let string = "public typealias 🔳 = QRCode"
         XCTAssert(string.bridge().lineAndCharacter(forByteOffset: 17)! == (1, 18))
     }
+
+    func testLineAndCharacterForCharacterOffset() {
+        let string = "" +
+        "func foo() {\n" + // 13 characters
+        "    test()\n" +   // 11 characters
+        "  \ttest()\n" +   // 10 characters
+        "\ttest()\n" +     // 8 characters
+        "}"
+
+        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 4)! == (1, 5))
+        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 17)! == (2, 5))
+        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 27)! == (3, 5))
+        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 2)! == (3, 5))
+        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 35)! == (4, 5))
+        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 2)! == (4, 3))
+    }
 }
 
 typealias LineRangeType = (start: Int, end: Int)
@@ -180,7 +196,8 @@ extension StringTests {
             ("testSubstringWithByteRange", testSubstringWithByteRange),
             ("testSubstringLinesWithByteRange", testSubstringLinesWithByteRange),
             ("testLineRangeWithByteRange", testLineRangeWithByteRange),
-            ("testLineAndCharacterForByteOffset", testLineAndCharacterForByteOffset)
+            ("testLineAndCharacterForByteOffset", testLineAndCharacterForByteOffset),
+            ("testLineAndCharacterForCharacterOffset", testLineAndCharacterForCharacterOffset)
         ]
     }
 }

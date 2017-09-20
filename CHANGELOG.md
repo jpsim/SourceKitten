@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Add `tabWidth` parameter (default: `1`) for `lineAndCharacter`.  
+  [Marcel Jackwerth](https://github.com/sirlantis)
 
 ##### Bug Fixes
 
