@@ -144,32 +144,38 @@ class StringTests: XCTestCase {
     func testLineRangeWithByteRange() {
         XCTAssert("".bridge().lineRangeWithByteRange(start: 0, length: 0) == nil)
         let string = "👨‍👩‍👧‍👧\n123"
-        XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 0)! == (1, 1))
-        XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 25)! == (1, 1))
-        XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 26)! == (1, 2))
-        XCTAssert(string.bridge().lineRangeWithByteRange(start: 0, length: 27)! == (1, 2))
-        XCTAssert(string.bridge().lineRangeWithByteRange(start: 27, length: 0)! == (2, 2))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: 0, length: 0), (1, 1))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: 0, length: 25), (1, 1))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: 0, length: 26), (1, 2))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: 0, length: 27), (1, 2))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: 27, length: 0), (2, 2))
     }
 
     func testLineAndCharacterForByteOffset() {
         let string = "public typealias 🔳 = QRCode"
-        XCTAssert(string.bridge().lineAndCharacter(forByteOffset: 17)! == (1, 18))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forByteOffset: 17), (1, 18))
     }
 
     func testLineAndCharacterForCharacterOffset() {
         let string = "" +
-        "func foo() {\n" + // 13 characters
-        "    test()\n" +   // 11 characters
-        "  \ttest()\n" +   // 10 characters
-        "\ttest()\n" +     // 8 characters
+        "func foo() {\n" + //     12+1 characters, start=0
+        "    test()\n" +   //     10+1 characters, start=13
+        "  \ttest()\n" +   // 2+t+06+1 characters, start=24
+        "\ttest()\n" +     // t+  06+1 characters
         "}"
 
-        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 4)! == (1, 5))
-        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 17)! == (2, 5))
-        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 27)! == (3, 5))
-        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 2)! == (3, 5))
-        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 35)! == (4, 5))
-        XCTAssert(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 2)! == (4, 3))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset:  4, tabWidth: 1), (1, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 17, tabWidth: 1), (2, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27 /* tabWidth: default */), (3, 4))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 1), (3, 4))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 2), (3, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 4), (3, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 8), (3, 9))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35 /* tabWidth: default */), (4, 2))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 1), (4, 2))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 2), (4, 3))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 4), (4, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 8), (4, 9))
     }
 }
 
@@ -177,6 +183,14 @@ typealias LineRangeType = (start: Int, end: Int)
 
 func == (lhs: LineRangeType, rhs: LineRangeType) -> Bool {
     return lhs.start == rhs.start && lhs.end == rhs.end
+}
+
+private func XCTAssertEqual(_ actual: (Int, Int)?, _ expected: (Int, Int), file: StaticString = #file, line: UInt = #line) {
+    XCTAssertNotNil(actual, file: file, line: line)
+
+    if let actual = actual {
+        XCTAssertEqual([actual.0, actual.1], [expected.0, expected.1], file: file, line: line)
+    }
 }
 
 extension StringTests {
