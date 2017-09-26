@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix Swift declarations when generating Objective-C docs being truncated where
+  ampersands were included.  
+  [JP Simard](https://github.com/jpsim)
 
 ## 0.18.1
 
