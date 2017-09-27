@@ -160,7 +160,7 @@ extension NSString {
             return line.byteRange.location + byteDiff
         }
 
-        func lineAndCharacter(forCharacterOffset offset: Int, tabWidth: Int) -> (line: Int, character: Int)? {
+        func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
             assert(tabWidth > 0)
 
             let index = lines.index(where: { NSLocationInRange(offset, $0.range) })
@@ -186,9 +186,9 @@ extension NSString {
             }
         }
 
-        func lineAndCharacter(forByteOffset offset: Int, tabWidth: Int) -> (line: Int, character: Int)? {
+        func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
             let characterOffset = location(fromByteOffset: offset)
-            return lineAndCharacter(forCharacterOffset: characterOffset, tabWidth: tabWidth)
+            return lineAndCharacter(forCharacterOffset: characterOffset, expandingTabsToWidth: tabWidth)
         }
     }
 
@@ -213,20 +213,20 @@ extension NSString {
     Returns line number and character for utf16 based offset.
 
     - parameter offset: utf16 based index.
-    - parameter tabWidth: the assumed tab width.
+    - parameter tabWidth: the width in spaces to expand tabs to.
     */
-    public func lineAndCharacter(forCharacterOffset offset: Int, tabWidth: Int = 1) -> (line: Int, character: Int)? {
-        return cacheContainer.lineAndCharacter(forCharacterOffset: offset, tabWidth: tabWidth)
+    public func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
+        return cacheContainer.lineAndCharacter(forCharacterOffset: offset, expandingTabsToWidth: tabWidth)
     }
 
     /**
     Returns line number and character for byte offset.
 
     - parameter offset: byte offset.
-    - parameter tabWidth: the assumed tab width.
+    - parameter tabWidth: the width in spaces to expand tabs to.
     */
-    public func lineAndCharacter(forByteOffset offset: Int, tabWidth: Int = 1) -> (line: Int, character: Int)? {
-        return cacheContainer.lineAndCharacter(forByteOffset: offset, tabWidth: tabWidth)
+    public func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
+        return cacheContainer.lineAndCharacter(forByteOffset: offset, expandingTabsToWidth: tabWidth)
     }
 
     /**

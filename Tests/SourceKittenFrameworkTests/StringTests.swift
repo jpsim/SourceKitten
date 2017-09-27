@@ -164,18 +164,18 @@ class StringTests: XCTestCase {
         "\ttest()\n" +     // t+  06+1 characters
         "}"
 
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset:  4, tabWidth: 1), (1, 5))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 17, tabWidth: 1), (2, 5))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27 /* tabWidth: default */), (3, 4))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 1), (3, 4))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 2), (3, 5))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 4), (3, 5))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, tabWidth: 8), (3, 9))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset:  4, expandingTabsToWidth: 1), (1, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 17, expandingTabsToWidth: 1), (2, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27 /* expandingTabsToWidth: default */), (3, 4))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, expandingTabsToWidth: 1), (3, 4))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, expandingTabsToWidth: 2), (3, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, expandingTabsToWidth: 4), (3, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, expandingTabsToWidth: 8), (3, 9))
         XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35 /* tabWidth: default */), (4, 2))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 1), (4, 2))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 2), (4, 3))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 4), (4, 5))
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, tabWidth: 8), (4, 9))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, expandingTabsToWidth: 1), (4, 2))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, expandingTabsToWidth: 2), (4, 3))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, expandingTabsToWidth: 4), (4, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 35, expandingTabsToWidth: 8), (4, 9))
     }
 }
 
