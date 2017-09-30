@@ -1016,8 +1016,26 @@ struct DocCommand: CommandProtocol {
 //            "-Xcc",
 //            "-working-directory/Users/jsimard/src/Lyft-iOS"
 //        ]
-        let args = ["-workspace", "Lyft.xcworkspace", "-scheme", "Models"]
-        if let module = Module(xcodeBuildArguments: args, name: "Models") {
+        let schemes = [
+            "API",
+            "CoreAPI-iOS",
+            "LocationFeedbackNotification",
+            "Lyft",
+            "LyftAnalytics",
+            "LyftKit-iOS",
+            "LyftNetworking-iOS",
+            "LyftUI",
+            "Models",
+            "RideUpdateNotification",
+            "Siri",
+            "SiriUI"
+        ]
+        for scheme in schemes {
+        autoreleasepool {
+        print("Adding missing selfs to \(scheme)")
+        let module = String(scheme.split(separator: "-")[0].split(separator: " ")[0])
+        let args = ["-workspace", "Lyft.xcworkspace", "-scheme", scheme]
+        if let module = Module(xcodeBuildArguments: args, name: module) {
 //        if let module = Module(spmName: moduleName) {
             // Find unused imports
 //            for file in module.sourceFiles {
@@ -1121,6 +1139,8 @@ struct DocCommand: CommandProtocol {
 //                    print(decl)
 //                }
 //            }
+        }
+        }
         }
         return .success(())
     }
