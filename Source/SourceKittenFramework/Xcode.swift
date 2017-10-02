@@ -27,29 +27,21 @@ internal func runXcodeBuild(arguments: [String], inPath path: String) -> String?
     let pipe = Pipe()
     task.standardOutput = pipe
     task.standardError = pipe
+    let fileHandle = pipe.fileHandleForReading
+    defer {
+        fileHandle.closeFile()
+        fileHandle.readabilityHandler = nil
+    }
 
-//    NotificationCenter.default.addObserver(forName: .NSFileHandleDataAvailable, object: nil, queue: nil)
-//    { notification in
-//        let fh = notification.object as! FileHandle
-//        // Get the data from the FileHandle
-//        let data = fh.availableData
-//        // Only deal with the data if it actually exists
-//        if data.count > 1 {
-//            // Since we just got the notification from fh, we must tell it to notify us again when it gets more data
-//            fh.waitForDataInBackgroundAndNotify()
-//            print(String(data: data, encoding: .ascii)!)
+//    fileHandle.readabilityHandler = { file in
+//        if let output = String(data: file.availableData, encoding: .utf8) {
+//            print(output, terminator: "")
 //        }
 //    }
-//
-//    let fh = pipe.fileHandleForReading
-//    fh.waitForDataInBackgroundAndNotify()
 
     task.launch()
 
-    let file = pipe.fileHandleForReading
-    defer { file.closeFile() }
-
-    return String(data: file.readDataToEndOfFile(), encoding: .utf8)
+    return String(data: fileHandle.readDataToEndOfFile(), encoding: .utf8)
 }
 
 /**
