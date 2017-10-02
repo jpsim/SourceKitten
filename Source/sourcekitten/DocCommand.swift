@@ -191,6 +191,12 @@ extension File {
                 kind.contains("source.lang.swift.decl"),
                 let accessibility = cursorInfo["key.accessibility"] as? String,
                 privateACLs.contains(accessibility) {
+                // Skip declarations marked as @IBOutlet or @IBAction
+                // since those might not be referenced in code, but only in Interface Builder
+                if let annotatedDecl = cursorInfo["key.annotated_decl"] as? String,
+                    ["@IBOutlet", "@IBAction"].contains(where: annotatedDecl.contains) {
+                    continue
+                }
                 usrs.append(usr)
             }
         }
