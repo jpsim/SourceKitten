@@ -78,10 +78,6 @@ struct DocCommand: CommandProtocol {
                 let args = ["-workspace", "Lyft.xcworkspace", "-scheme", scheme]
                 if let module = Module(xcodeBuildArguments: args, name: module) {
                     // Find `private` or `fileprivate` declarations that aren't used within that file
-                    // TODO: Fix false positives where the private declaration is used to conform to a
-                    // protocol, such as InstabugManager.swift.
-                    // Also skip declarations marked as 'override'.
-                    // Also skip initializers since we can't reliably detect if they're used.
                     var fileIndex = 1
                     for file in module.sourceFiles {
                         let progress = "(\(fileIndex)/\(module.sourceFiles.count))"
@@ -177,6 +173,8 @@ extension File {
             if let usr = cursorInfo["key.usr"] as? String,
                 let kind = cursorInfo["key.kind"] as? String,
                 kind.contains("source.lang.swift.decl"),
+                // Skip initializers since we can't reliably detect if they're used.
+                kind != "source.lang.swift.decl.function.constructor",
                 let accessibility = cursorInfo["key.accessibility"] as? String,
                 privateACLs.contains(accessibility) {
                 // Skip declarations marked as @IBOutlet or @IBAction
