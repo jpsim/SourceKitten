@@ -185,6 +185,11 @@ extension File {
                     ["@IBOutlet", "@IBAction", "@objc"].contains(where: annotatedDecl.contains) {
                     continue
                 }
+                // Skip declarations that override another. This works for both subclass overrides &
+                // protocol extension overrides.
+                if cursorInfo["key.overrides"] != nil {
+                    continue
+                }
                 usrs.append(usr)
             }
         }
