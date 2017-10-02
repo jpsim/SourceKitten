@@ -78,6 +78,10 @@ struct DocCommand: CommandProtocol {
                 let args = ["-workspace", "Lyft.xcworkspace", "-scheme", scheme]
                 if let module = Module(xcodeBuildArguments: args, name: module) {
                     // Find `private` or `fileprivate` declarations that aren't used within that file
+                    // TODO: Fix false positives where the private declaration is used to conform to a
+                    // protocol, such as InstabugManager.swift.
+                    // Also skip declarations marked as 'override'.
+                    // Also skip initializers since we can't reliably detect if they're used.
                     var fileIndex = 1
                     for file in module.sourceFiles {
                         let progress = "(\(fileIndex)/\(module.sourceFiles.count))"
@@ -153,25 +157,9 @@ private let syntaxTypesToSkip = [
 
 extension File {
     fileprivate func allCursorInfo(compilerArguments: [String]) -> [[String: SourceKitRepresentable]] {
-        // swiftlint:disable number_separator line_length
-        let filesToSkip = [
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Passenger/CostEstimate.swift": [887],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Common/AppInfoConstants.swift": [2727, 3723],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Common/Mapper/Transform+Range.swift": [426],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Common/Ride.swift": [6344, 11478, 11533],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Passenger/PartySizePricing.swift": [349],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Common/CurrentUser.swift": [2766],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Passenger/NearbyCar.swift": [1371],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Common/Route.swift": [5009],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/Models/Passenger/RidePaymentDetails.swift": [1129, 1675, 1965],
-            "/Users/jsimard/src/Lyft-iOS/Lyft/API/Common/LyftAPI+PassengerRide.swift": [10282]
-        ]
         let editorOpen = Request.editorOpen(file: self).send()
         let syntaxMap = SyntaxMap(sourceKitResponse: editorOpen)
         return syntaxMap.tokens.flatMap { token in
-            if let offsetsToSkip = filesToSkip[path!], offsetsToSkip.contains(token.offset) {
-                return nil
-            }
             var cursorInfo = Request.cursorInfo(file: path!, offset: Int64(token.offset),
                                                 arguments: compilerArguments).send()
             if let acl = File.aclAtOffset(Int64(token.offset), editorOpen: editorOpen) {
@@ -194,7 +182,7 @@ extension File {
                 // Skip declarations marked as @IBOutlet or @IBAction
                 // since those might not be referenced in code, but only in Interface Builder
                 if let annotatedDecl = cursorInfo["key.annotated_decl"] as? String,
-                    ["@IBOutlet", "@IBAction"].contains(where: annotatedDecl.contains) {
+                    ["@IBOutlet", "@IBAction", "@objc"].contains(where: annotatedDecl.contains) {
                     continue
                 }
                 usrs.append(usr)
