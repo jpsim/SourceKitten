@@ -58,18 +58,18 @@ struct DocCommand: CommandProtocol {
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
         let schemes = [
-//            "API",
-//            "CoreAPI-iOS",
-//            "LocationFeedbackNotification",
-//            "Lyft",
-//            "LyftAnalytics",
-//            "LyftKit-iOS",
-//            "LyftNetworking-iOS",
-//            "LyftUI",
+            "API",
+            "CoreAPI-iOS",
+            "LocationFeedbackNotification",
+            "Lyft",
+            "LyftAnalytics",
+            "LyftKit-iOS",
+            "LyftNetworking-iOS",
+            "LyftUI",
             "Models",
-//            "RideUpdateNotification",
-//            "Siri",
-//            "SiriUI"
+            "RideUpdateNotification",
+            "Siri",
+            "SiriUI"
         ]
         for scheme in schemes {
             autoreleasepool {
@@ -77,14 +77,20 @@ struct DocCommand: CommandProtocol {
                 let module = String(scheme.split(separator: "-")[0])
                 let args = ["-workspace", "Lyft.xcworkspace", "-scheme", scheme]
                 if let module = Module(xcodeBuildArguments: args, name: module) {
-                    print("Finding unused imports in \(scheme)")
+                    // Find `private` or `fileprivate` declarations that aren't used within that file
+                    var fileIndex = 1
                     for file in module.sourceFiles {
-                        let unusedImports = File(path: file)!.unusedImports(compilerArguments: module.compilerArguments)
-                        if !unusedImports.isEmpty {
-                            print("Unused imports in \(file):")
-                            for module in unusedImports {
-                                print("- \(module)")
-                            }
+                        let progress = "(\(fileIndex)/\(module.sourceFiles.count))"
+                        fileIndex += 1
+                        print("checking for unused private/fileprivate declarations in '\(file)' \(progress)")
+                        let file = File(path: file)!
+                        let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
+                        let privateDeclarationUSRs = File.privateDeclarationUSRs(allCursorInfo: allCursorInfo)
+                        let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
+                        let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
+                        if !unusedPrivateDeclarations.isEmpty {
+                            print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
+                            print(unusedPrivateDeclarations)
                         }
                     }
                 }
