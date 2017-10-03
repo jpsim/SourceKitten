@@ -12,11 +12,34 @@ import Foundation
 import Result
 import SourceKittenFramework
 
-extension Array {
+private extension Array {
     func parallelForEach(block: @escaping (Int, Element) -> Void) {
         DispatchQueue.concurrentPerform(iterations: count) { index in
             block(index, self[index])
         }
+    }
+
+    func parallelFlatMap<T>(transform: @escaping ((Element) -> [T])) -> [T] {
+        return parallelMap(transform: transform).flatMap { $0 }
+    }
+
+    func parallelFlatMap<T>(transform: @escaping ((Element) -> T?)) -> [T] {
+        return parallelMap(transform: transform).flatMap { $0 }
+    }
+
+    func parallelMap<T>(transform: @escaping ((Element) -> T)) -> [T] {
+        var result = [(Int, T)]()
+        result.reserveCapacity(count)
+
+        let queueLabelPrefix = "io.realm.SwiftLintFramework.map.\(NSUUID().uuidString)"
+        let resultAccumulatorQueue = DispatchQueue(label: "\(queueLabelPrefix).resultAccumulator")
+        DispatchQueue.concurrentPerform(iterations: count) { index in
+            let jobIndexAndResults = (index, transform(self[index]))
+            resultAccumulatorQueue.sync {
+                result.append(jobIndexAndResults)
+            }
+        }
+        return result.sorted { $0.0 < $1.0 }.map { $0.1 }
     }
 }
 
@@ -67,42 +90,49 @@ struct DocCommand: CommandProtocol {
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
         let schemes = [
-            "API",
-            "CoreAPI-iOS",
-            "LocationFeedbackNotification",
+//            "API",
+//            "CoreAPI-iOS",
+//            "LocationFeedbackNotification",
             "Lyft",
-            "LyftAnalytics",
-            "LyftKit-iOS",
-            "LyftNetworking-iOS",
-            "LyftUI",
-            "Models",
-            "RideUpdateNotification",
-            "Siri",
-            "SiriUI"
+//            "LyftAnalytics",
+//            "LyftKit-iOS",
+//            "LyftNetworking-iOS",
+//            "LyftUI",
+//            "Models",
+//            "RideUpdateNotification",
+//            "Siri",
+//            "SiriUI"
         ]
         for scheme in schemes {
             autoreleasepool {
                 print("Building \(scheme)")
-                let module = String(scheme.split(separator: "-")[0])
+                let moduleName = String(scheme.split(separator: "-")[0])
                 let args = ["-workspace", "Lyft.xcworkspace", "-scheme", scheme]
-                if let module = Module(xcodeBuildArguments: args, name: module) {
-                    // Find `private` or `fileprivate` declarations that aren't used within that file
-                    // FIXME: private declaration used in string interpolation not counted
+                if let module = Module(xcodeBuildArguments: args, name: moduleName) {
+                    // Find `internal`, `private` or `fileprivate` declarations that aren't used within that module
+                    // FIXME: declarations used in string interpolation not counted
                     // e.g. in SuggestedStopPresenter.swift (557)
+                    var fileIndex = 1
                     let files = module.sourceFiles
-                    files.parallelForEach { fileIndex, file in
-                        let progress = "(\(fileIndex)/\(files.count))"
-                        print("checking for unused private/fileprivate declarations in '\(file)' \(progress)")
-                        let file = File(path: file)!
-                        let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
-                        let privateDeclarationUSRs = File.declarationUSRs(allCursorInfo: allCursorInfo,
-                                                                          acls: ["private", "fileprivate"])
-                        let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
-                        let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
-                        if !unusedPrivateDeclarations.isEmpty {
-                            print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
-                            print(unusedPrivateDeclarations)
+                    let allCursorInfo = files.parallelMap { file -> [[String: SourceKitRepresentable]] in
+                        DispatchQueue.main.async {
+                            let progress = "(\(fileIndex)/\(files.count))"
+                            fileIndex += 1
+                            print("getting all cursor info in '\(file)' \(progress)")
                         }
+                        let file = File(path: file)!
+                        return file.allCursorInfo(compilerArguments: module.compilerArguments)
+                    }
+                    let allDeclarations = allCursorInfo.flatMap { allCursorInfo in
+                        return File.declarationUSRs(allCursorInfo: allCursorInfo, acls: ["internal", "private", "fileprivate"])
+                    }
+                    let allReferences = allCursorInfo.flatMap { allCursorInfo in
+                        return File.allRefUSRs(allCursorInfo: allCursorInfo)
+                    }
+                    let unusedDeclarations = Set(allDeclarations.map({$0.0})).subtracting(allReferences)
+                    print("Unused declarations in \(moduleName):")
+                    for cursorInfo in allDeclarations where unusedDeclarations.contains(cursorInfo.0) {
+                        print(cursorInfo.1)
                     }
                 }
             }
@@ -178,8 +208,8 @@ extension File {
     }
 
     fileprivate static func declarationUSRs(allCursorInfo: [[String: SourceKitRepresentable]],
-                                            acls: [String]) -> [String] {
-        var usrs = [String]()
+                                            acls: [String]) -> [(String, String)] {
+        var usrs = [(String, String)]()
         let fullACLs = acls.map { "source.lang.swift.accessibility.\($0)" }
         for cursorInfo in allCursorInfo {
             if let usr = cursorInfo["key.usr"] as? String,
@@ -187,12 +217,16 @@ extension File {
                 kind.contains("source.lang.swift.decl"),
                 // Skip initializers since we can't reliably detect if they're used.
                 kind != "source.lang.swift.decl.function.constructor",
+                // Skip `deinit` methods since those are never invoked directly anyway.
+                kind != "source.lang.swift.decl.function.destructor",
+                // Skip enum cases since those are listed as 'internal' even when they're public
+                kind != "source.lang.swift.decl.enumelement",
                 let accessibility = cursorInfo["key.accessibility"] as? String,
                 fullACLs.contains(accessibility) {
-                // Skip declarations marked as @IBOutlet or @IBAction
+                // Skip declarations marked as @IBOutlet, @IBAction or @IBInspectable
                 // since those might not be referenced in code, but only in Interface Builder
                 if let annotatedDecl = cursorInfo["key.annotated_decl"] as? String,
-                    ["@IBOutlet", "@IBAction", "@objc"].contains(where: annotatedDecl.contains) {
+                    ["@IBOutlet", "@IBAction", "@IBInspectable", "@objc"].contains(where: annotatedDecl.contains) {
                     continue
                 }
                 // Skip declarations that override another. This works for both subclass overrides &
@@ -200,7 +234,11 @@ extension File {
                 if cursorInfo["key.overrides"] != nil {
                     continue
                 }
-                usrs.append(usr)
+                // Skip declarations with related declarations, since those might be protocol declarations
+                if cursorInfo["key.related_decls"] != nil {
+                    continue
+                }
+                usrs.append((usr, toJSON(cursorInfo)))
             }
         }
         return usrs
