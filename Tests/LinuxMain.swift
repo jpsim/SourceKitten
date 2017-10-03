@@ -12,5 +12,6 @@ XCTMain([
     testCase(StringTests.allTests),
     testCase(StructureTests.allTests),
     testCase(SwiftDocsTests.allTests),
-    testCase(SyntaxTests.allTests)
+    testCase(SyntaxTests.allTests),
+    testCase(RequestTests.allTests)
 ])
