@@ -29,7 +29,6 @@ extension Dictionary where Key == String, Value == Any {
         }
         return kinds.contains(kind)
     }
-
 }
 
 protocol SwiftDocDictionaryInitializable {
@@ -43,22 +42,28 @@ extension SwiftDocDictionaryInitializable {
         return dictionary.get(.name) ?? "[NO NAME]"
     }
     var comment: String {
-        return dictionary.get(.documentationComment) ?? "_Not documented_"
+        return dictionary.get(.documentationComment) ?? ""
     }
     var declaration: String {
-        return dictionary.get(.parsedDeclaration) ?? "[NO DECLARATION]"
+        return dictionary.get(.parsedDeclaration) ?? ""
     }
     var typename: String {
-        return dictionary.get(.typeName) ?? "[NO TYPE]"
+        return dictionary.get(.typeName) ?? ""
     }
 
-    var defaultOutput: String {
-        return """
+    var declarationOutput: String {
+        return declaration.isEmpty ? "" : """
         ```swift
         \(declaration)
         ```
+        """
+    }
 
-        \(comment)
+    func collectionOutput(title: String, collection: [MarkdownConvertible]) -> String {
+        return collection.isEmpty ? "" : """
+        \(title)
+        \(collection.output)
         """
     }
 }
+

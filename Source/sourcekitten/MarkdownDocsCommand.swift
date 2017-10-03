@@ -62,7 +62,6 @@ struct MarkdownDocsCommand: CommandProtocol {
         }
         let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
         return runSwiftModule(moduleName: moduleName, args: args)
-        defer { print("Done 🎉") }
     }
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
@@ -107,20 +106,35 @@ struct MarkdownDocsCommand: CommandProtocol {
     }
 
     private func process(dictionary: SwiftDocDictionary) {
-        if let value: String = dictionary.get(.kind), let kind = SwiftDeclarationKind(rawValue: value), dictionary.hasPublicACL {
+        if let value: String = dictionary.get(.kind), let kind = SwiftDeclarationKind(rawValue: value) {
             if let name: String = dictionary.get(.name) {
                 print("Processing element: \(name)")
             }
+            let basePath = "\(FileManager.default.currentDirectoryPath)/\(docsPath)"
             switch kind {
             case .struct:
                 if let item = MarkdownObject(dictionary: dictionary) {
-                    let file = MarkdownFile(filename: item.name, content: [item])
-                    try? file.write(basePath: "\(FileManager.default.currentDirectoryPath)/\(docsPath)/structs/")
+                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/structs/")
                 }
             case .class:
                 if let item = MarkdownObject(dictionary: dictionary) {
-                    let file = MarkdownFile(filename: item.name, content: [item])
-                    try? file.write(basePath: "\(FileManager.default.currentDirectoryPath)/\(docsPath)/classes/")
+                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/classes/")
+                }
+            case .extension, .extensionProtocol, .extensionStruct, .extensionClass, .extensionEnum:
+                if let item = MarkdownExtension(dictionary: dictionary) {
+                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/extensions/")
+                }
+            case .enum:
+                if let item = MarkdownEnum(dictionary: dictionary) {
+                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/enums/")
+                }
+            case .protocol:
+                if let item = MarkdownProtocol(dictionary: dictionary) {
+                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/protocols/")
+                }
+            case .typealias:
+                if let item = MarkdownTypealias(dictionary: dictionary) {
+                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/typealiases/")
                 }
             default:
                 break
