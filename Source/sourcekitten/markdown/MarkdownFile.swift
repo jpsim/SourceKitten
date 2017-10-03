@@ -11,9 +11,18 @@ struct MarkdownFile {
     let filename: String
     let content: [MarkdownConvertible]
 
-    func write() {
-        let output = content.map { $0.output }.joined(separator: "\n")
-        try? output.write(toFile: "docs/\(filename).md", atomically: true, encoding: .utf8)
+    func write(basePath: String) throws {
+        try makePath(basePath: basePath)
+        let output = content.output
+        let filepath = "\(basePath)\(filename).md"
+        print("Writting documentation file: \(filepath)")
+        try output.write(toFile: filepath, atomically: true, encoding: .utf8)
     }
 
+    private func makePath(basePath: String) throws {
+        var isDir : ObjCBool = false
+        if FileManager.default.fileExists(atPath: basePath, isDirectory: &isDir) == false {
+            try FileManager.default.createDirectory(atPath: basePath, withIntermediateDirectories: true, attributes: nil)
+        }
+    }
 }

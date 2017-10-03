@@ -15,6 +15,13 @@ struct MarkdownDocsCommand: CommandProtocol {
     let verb = "mdocs"
     let function = "Generate Swift or Objective-C docs in Markdown format"
 
+    /// Base path for generated Markdown reference documentation (not including trailing slash)
+    /// Note: Constant for now, could be parametrized later on
+    let docsPath = "docs/reference"
+
+//    /// Map of Markdown files to be
+//    var markdownFiles = [String: MarkdownFile]()
+
     struct Options: OptionsProtocol {
         let spmModule: String
         let singleFile: Bool
@@ -44,7 +51,7 @@ struct MarkdownDocsCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        print("Generating some awesome docs...")
+        print("Generating some awesome docs at: \(FileManager.default.currentDirectoryPath)/\(docsPath)")
         let args = options.arguments
         if !options.spmModule.isEmpty {
             return runSPMModule(moduleName: options.spmModule)
@@ -55,7 +62,7 @@ struct MarkdownDocsCommand: CommandProtocol {
         }
         let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
         return runSwiftModule(moduleName: moduleName, args: args)
-//        defer { print("Done 🎉") }
+        defer { print("Done 🎉") }
     }
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
@@ -91,21 +98,30 @@ struct MarkdownDocsCommand: CommandProtocol {
     }
 
     private func process(docs: [SwiftDocs]) {
-        let dicts = docs.flatMap { $0.docsDictionary.bridge() as? [String: Any] }
-        process(dictionaries: dicts)
+        let dictionaries = docs.flatMap { $0.docsDictionary.bridge() as? SwiftDocDictionary }
+        process(dictionaries: dictionaries)
     }
 
-    private func process(dictionaries: [[String: Any]]) {
+    private func process(dictionaries: [SwiftDocDictionary]) {
         dictionaries.forEach { process(dictionary: $0) }
     }
 
-    private func process(dictionary: [String: Any]) {
-        if let kind: String = get(.kind, from: dictionary) {
+    private func process(dictionary: SwiftDocDictionary) {
+        if let value: String = dictionary.get(.kind), let kind = SwiftDeclarationKind(rawValue: value), dictionary.hasPublicACL {
+            if let name: String = dictionary.get(.name) {
+                print("Processing element: \(name)")
+            }
             switch kind {
-            case "source.lang.swift.decl.struct":
-                let item = MarkdownStruct(dictionary: dictionary)
-                let file = MarkdownFile(filename: item.name, content: [item])
-                file.write()
+            case .struct:
+                if let item = MarkdownObject(dictionary: dictionary) {
+                    let file = MarkdownFile(filename: item.name, content: [item])
+                    try? file.write(basePath: "\(FileManager.default.currentDirectoryPath)/\(docsPath)/structs/")
+                }
+            case .class:
+                if let item = MarkdownObject(dictionary: dictionary) {
+                    let file = MarkdownFile(filename: item.name, content: [item])
+                    try? file.write(basePath: "\(FileManager.default.currentDirectoryPath)/\(docsPath)/classes/")
+                }
             default:
                 break
             }
