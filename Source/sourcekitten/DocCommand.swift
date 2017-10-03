@@ -7,9 +7,18 @@
 //
 
 import Commandant
+import Dispatch
 import Foundation
 import Result
 import SourceKittenFramework
+
+extension Array {
+    func parallelForEach(block: @escaping (Int, Element) -> Void) {
+        DispatchQueue.concurrentPerform(iterations: count) { index in
+            block(index, self[index])
+        }
+    }
+}
 
 struct DocCommand: CommandProtocol {
     let verb = "doc"
@@ -78,12 +87,11 @@ struct DocCommand: CommandProtocol {
                 let args = ["-workspace", "Lyft.xcworkspace", "-scheme", scheme]
                 if let module = Module(xcodeBuildArguments: args, name: module) {
                     // Find `private` or `fileprivate` declarations that aren't used within that file
-                    var fileIndex = 1
                     // FIXME: private declaration used in string interpolation not counted
                     // e.g. in SuggestedStopPresenter.swift (557)
-                    for file in module.sourceFiles {
-                        let progress = "(\(fileIndex)/\(module.sourceFiles.count))"
-                        fileIndex += 1
+                    let files = module.sourceFiles
+                    files.parallelForEach { fileIndex, file in
+                        let progress = "(\(fileIndex)/\(files.count))"
                         print("checking for unused private/fileprivate declarations in '\(file)' \(progress)")
                         autoreleasepool {
                             let file = File(path: file)!
