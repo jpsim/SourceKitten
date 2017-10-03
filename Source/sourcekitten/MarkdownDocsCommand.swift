@@ -44,20 +44,59 @@ struct MarkdownDocsCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-//        let args = options.arguments
-//        if !options.spmModule.isEmpty {
-//            return runSPMModule(moduleName: options.spmModule)
-//        } else if options.objc {
-//            return runObjC(options: options, args: args)
-//        } else if options.singleFile {
-//            return runSwiftSingleFile(args: args)
-//        }
-//        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
-//        return runSwiftModule(moduleName: moduleName, args: args)
         print("Generating some awesome docs...")
-        print("Done 🎉")
+        let args = options.arguments
+        if !options.spmModule.isEmpty {
+            return runSPMModule(moduleName: options.spmModule)
+        } else if options.objc {
+            return runObjC(options: options, args: args)
+        } else if options.singleFile {
+            return runSwiftSingleFile(args: args)
+        }
+        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
+        return runSwiftModule(moduleName: moduleName, args: args)
+//        defer { print("Done 🎉") }
+    }
+
+    func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
+        guard let docs = Module(spmName: moduleName)?.docs else {
+            return .failure(.docFailed)
+        }
+        processDocs(docs: docs)
         return .success(())
     }
 
-}
+    func runSwiftModule(moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
+        guard let docs = Module(xcodeBuildArguments: args, name: moduleName)?.docs else {
+            return .failure(.docFailed)
+        }
+        processDocs(docs: docs)
+        return .success(())
+    }
 
+    func runSwiftSingleFile(args: [String]) -> Result<(), SourceKittenError> {
+        if args.isEmpty {
+            return .failure(.invalidArgument(description: "at least 5 arguments are required when using `--single-file`"))
+        }
+        let sourcekitdArguments = Array(args.dropFirst(1))
+        guard let file = File(path: args[0]), let docs = SwiftDocs(file: file, arguments: sourcekitdArguments) else {
+            return .failure(.readFailed(path: args[0]))
+        }
+        processDocs(docs: [docs])
+        return .success(())
+    }
+
+    func runObjC(options: Options, args: [String]) -> Result<(), SourceKittenError> {
+        fatalError("unsupported")
+    }
+
+    private func processDocs(docs: [SwiftDocs]) {
+        //  (doc.docsDictionary["key.substructure"] as? [[String: SourceKitRepresentable]])?[0]["key.name"]
+        let structs = docs.filter { $0.docsDictionary["key.kind"].debugDescription.contains("struct") }
+        print(structs)
+        for doc in docs {
+            print(doc)
+        }
+    }
+
+}
