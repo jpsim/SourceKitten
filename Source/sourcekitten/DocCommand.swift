@@ -79,18 +79,22 @@ struct DocCommand: CommandProtocol {
                 if let module = Module(xcodeBuildArguments: args, name: module) {
                     // Find `private` or `fileprivate` declarations that aren't used within that file
                     var fileIndex = 1
+                    // FIXME: private declaration used in string interpolation not counted
+                    // e.g. in SuggestedStopPresenter.swift (557)
                     for file in module.sourceFiles {
                         let progress = "(\(fileIndex)/\(module.sourceFiles.count))"
                         fileIndex += 1
                         print("checking for unused private/fileprivate declarations in '\(file)' \(progress)")
-                        let file = File(path: file)!
-                        let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
-                        let privateDeclarationUSRs = File.privateDeclarationUSRs(allCursorInfo: allCursorInfo)
-                        let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
-                        let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
-                        if !unusedPrivateDeclarations.isEmpty {
-                            print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
-                            print(unusedPrivateDeclarations)
+                        autoreleasepool {
+                            let file = File(path: file)!
+                            let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
+                            let privateDeclarationUSRs = File.privateDeclarationUSRs(allCursorInfo: allCursorInfo)
+                            let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
+                            let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
+                            if !unusedPrivateDeclarations.isEmpty {
+                                print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
+                                print(unusedPrivateDeclarations)
+                            }
                         }
                     }
                 }
