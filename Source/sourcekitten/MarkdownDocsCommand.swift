@@ -62,7 +62,7 @@ struct MarkdownDocsCommand: CommandProtocol {
         guard let docs = Module(spmName: moduleName)?.docs else {
             return .failure(.docFailed)
         }
-        processDocs(docs: docs)
+        process(docs: docs)
         return .success(())
     }
 
@@ -70,7 +70,7 @@ struct MarkdownDocsCommand: CommandProtocol {
         guard let docs = Module(xcodeBuildArguments: args, name: moduleName)?.docs else {
             return .failure(.docFailed)
         }
-        processDocs(docs: docs)
+        process(docs: docs)
         return .success(())
     }
 
@@ -82,7 +82,7 @@ struct MarkdownDocsCommand: CommandProtocol {
         guard let file = File(path: args[0]), let docs = SwiftDocs(file: file, arguments: sourcekitdArguments) else {
             return .failure(.readFailed(path: args[0]))
         }
-        processDocs(docs: [docs])
+        process(docs: [docs])
         return .success(())
     }
 
@@ -90,12 +90,29 @@ struct MarkdownDocsCommand: CommandProtocol {
         fatalError("unsupported")
     }
 
-    private func processDocs(docs: [SwiftDocs]) {
-        //  (doc.docsDictionary["key.substructure"] as? [[String: SourceKitRepresentable]])?[0]["key.name"]
-        let structs = docs.filter { $0.docsDictionary["key.kind"].debugDescription.contains("struct") }
-        print(structs)
-        for doc in docs {
-            print(doc)
+    private func process(docs: [SwiftDocs]) {
+        let dicts = docs.flatMap { $0.docsDictionary.bridge() as? [String: Any] }
+        process(dictionaries: dicts)
+    }
+
+    private func process(dictionaries: [[String: Any]]) {
+        dictionaries.forEach { process(dictionary: $0) }
+    }
+
+    private func process(dictionary: [String: Any]) {
+        if let kind: String = get(.kind, from: dictionary) {
+            switch kind {
+            case "source.lang.swift.decl.struct":
+                let item = MarkdownStruct(dictionary: dictionary)
+                let file = MarkdownFile(filename: item.name, content: [item])
+                file.write()
+            default:
+                break
+            }
+        }
+
+        if let substructure = dictionary[SwiftDocKey.substructure.rawValue] as? [[String: Any]] {
+            process(dictionaries: substructure)
         }
     }
 
