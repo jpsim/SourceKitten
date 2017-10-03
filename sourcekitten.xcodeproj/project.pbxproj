@@ -23,6 +23,7 @@
 		6CCFCE8C1CFECFF1003239EB /* Yams.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9517865F1F830D9B00CF6FE0 /* MarkdownDocsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9517865E1F830D9B00CF6FE0 /* MarkdownDocsCommand.swift */; };
 		B2FA87E26BC9C5F774FD694C /* SwiftLangSyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */; };
 		C236E84B1DFF5120003807D2 /* YamlRequestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */; };
 		D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -145,6 +146,7 @@
 		6C7F0A841EDB0AAD008EC581 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		6CC381621ECACB50000C6F81 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		9517865E1F830D9B00CF6FE0 /* MarkdownDocsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDocsCommand.swift; sourceTree = "<group>"; };
 		B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLangSyntax.swift; sourceTree = "<group>"; };
 		C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YamlRequestCommand.swift; sourceTree = "<group>"; };
 		D0D1211B19E87861005E4BAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -303,6 +305,7 @@
 				5499CA981A2394BD00783309 /* Supporting Files */,
 				E8F4AF111B9A56A70054C51C /* CompleteCommand.swift */,
 				E80604B41A5D474B0016D959 /* DocCommand.swift */,
+				9517865E1F830D9B00CF6FE0 /* MarkdownDocsCommand.swift */,
 				E8D86D841A688EF20063E8E9 /* Errors.swift */,
 				E8DB29151CFA4818007C30E8 /* FormatCommand.swift */,
 				E813023A1CCD09DB0056E826 /* IndexCommand.swift */,
@@ -587,7 +590,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "SourceKitten" */;
+			buildConfigurationList = D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "sourcekitten" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -719,6 +722,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8DB29161CFA4818007C30E8 /* FormatCommand.swift in Sources */,
+				9517865F1F830D9B00CF6FE0 /* MarkdownDocsCommand.swift in Sources */,
 				E8F4AF121B9A56A70054C51C /* CompleteCommand.swift in Sources */,
 				E8DD06E81AE447E9006D9C86 /* DocCommand.swift in Sources */,
 				E8D86D851A688EF20063E8E9 /* Errors.swift in Sources */,
@@ -992,7 +996,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "SourceKitten" */ = {
+		D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "sourcekitten" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0D1211D19E87861005E4BAA /* Debug */,

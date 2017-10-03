@@ -21,6 +21,7 @@ DispatchQueue.global(qos: .default).async {
     let registry = CommandRegistry<SourceKittenError>()
     registry.register(CompleteCommand())
     registry.register(DocCommand())
+    registry.register(MarkdownDocsCommand())
     registry.register(FormatCommand())
     registry.register(IndexCommand())
     registry.register(SyntaxCommand())
