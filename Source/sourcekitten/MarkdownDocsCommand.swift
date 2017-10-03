@@ -107,9 +107,6 @@ struct MarkdownDocsCommand: CommandProtocol {
 
     private func process(dictionary: SwiftDocDictionary) {
         if let value: String = dictionary.get(.kind), let kind = SwiftDeclarationKind(rawValue: value) {
-            if let name: String = dictionary.get(.name) {
-                print("Processing element: \(name)")
-            }
             let basePath = "\(FileManager.default.currentDirectoryPath)/\(docsPath)"
             switch kind {
             case .struct:
