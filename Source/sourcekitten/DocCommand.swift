@@ -93,16 +93,15 @@ struct DocCommand: CommandProtocol {
                     files.parallelForEach { fileIndex, file in
                         let progress = "(\(fileIndex)/\(files.count))"
                         print("checking for unused private/fileprivate declarations in '\(file)' \(progress)")
-                        autoreleasepool {
-                            let file = File(path: file)!
-                            let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
-                            let privateDeclarationUSRs = File.privateDeclarationUSRs(allCursorInfo: allCursorInfo)
-                            let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
-                            let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
-                            if !unusedPrivateDeclarations.isEmpty {
-                                print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
-                                print(unusedPrivateDeclarations)
-                            }
+                        let file = File(path: file)!
+                        let allCursorInfo = file.allCursorInfo(compilerArguments: module.compilerArguments)
+                        let privateDeclarationUSRs = File.declarationUSRs(allCursorInfo: allCursorInfo,
+                                                                          acls: ["private", "fileprivate"])
+                        let refUSRs = File.allRefUSRs(allCursorInfo: allCursorInfo)
+                        let unusedPrivateDeclarations = Set(privateDeclarationUSRs).subtracting(refUSRs)
+                        if !unusedPrivateDeclarations.isEmpty {
+                            print("Unused private declarations in \(file.path!.bridge().lastPathComponent):")
+                            print(unusedPrivateDeclarations)
                         }
                     }
                 }
@@ -178,9 +177,10 @@ extension File {
         }
     }
 
-    fileprivate static func privateDeclarationUSRs(allCursorInfo: [[String: SourceKitRepresentable]]) -> [String] {
+    fileprivate static func declarationUSRs(allCursorInfo: [[String: SourceKitRepresentable]],
+                                            acls: [String]) -> [String] {
         var usrs = [String]()
-        let privateACLs = ["source.lang.swift.accessibility.private", "source.lang.swift.accessibility.fileprivate"]
+        let fullACLs = acls.map { "source.lang.swift.accessibility.\($0)" }
         for cursorInfo in allCursorInfo {
             if let usr = cursorInfo["key.usr"] as? String,
                 let kind = cursorInfo["key.kind"] as? String,
@@ -188,7 +188,7 @@ extension File {
                 // Skip initializers since we can't reliably detect if they're used.
                 kind != "source.lang.swift.decl.function.constructor",
                 let accessibility = cursorInfo["key.accessibility"] as? String,
-                privateACLs.contains(accessibility) {
+                fullACLs.contains(accessibility) {
                 // Skip declarations marked as @IBOutlet or @IBAction
                 // since those might not be referenced in code, but only in Interface Builder
                 if let annotatedDecl = cursorInfo["key.annotated_decl"] as? String,
@@ -200,20 +200,6 @@ extension File {
                 if cursorInfo["key.overrides"] != nil {
                     continue
                 }
-                usrs.append(usr)
-            }
-        }
-        return usrs
-    }
-
-    fileprivate static func internalDeclarationUSRs(allCursorInfo: [[String: SourceKitRepresentable]]) -> [String] {
-        var usrs = [String]()
-        for cursorInfo in allCursorInfo {
-            if let usr = cursorInfo["key.usr"] as? String,
-                let kind = cursorInfo["key.kind"] as? String,
-                kind.contains("source.lang.swift.decl"),
-                let accessibility = cursorInfo["key.accessibility"] as? String,
-                accessibility == "source.lang.swift.accessibility.internal" {
                 usrs.append(usr)
             }
         }
