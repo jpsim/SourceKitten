@@ -66,4 +66,3 @@ extension SwiftDocDictionaryInitializable {
         """
     }
 }
-

@@ -20,7 +20,7 @@ struct MarkdownFile {
     }
 
     private func makePath(basePath: String) throws {
-        var isDir : ObjCBool = false
+        var isDir: ObjCBool = false
         if FileManager.default.fileExists(atPath: basePath, isDirectory: &isDir) == false {
             try FileManager.default.createDirectory(atPath: basePath, withIntermediateDirectories: true, attributes: nil)
         }

@@ -22,8 +22,7 @@ struct MarkdownObject: SwiftDocDictionaryInitializable, MarkdownConvertible {
         if let structure: [SwiftDocDictionary] = dictionary.get(.substructure) {
             properties = structure.flatMap { MarkdownVariable(dictionary: $0) }
             methods = structure.flatMap { MarkdownMethod(dictionary: $0) }
-        }
-        else {
+        } else {
             properties = []
             methods = []
         }
@@ -43,7 +42,7 @@ struct MarkdownObject: SwiftDocDictionaryInitializable, MarkdownConvertible {
         let properties = collectionOutput(title: "## Properties", collection: self.properties)
         let methods = collectionOutput(title: "## Methods", collection: self.methods)
         return """
-        <small>\(elementType.uppercased())</small>
+        <sub>**\(elementType.uppercased())**</sub>
         # \(name)
 
         \(declarationOutput)
@@ -80,8 +79,7 @@ struct MarkdownEnum: SwiftDocDictionaryInitializable, MarkdownConvertible {
             }
             properties = structure.flatMap { MarkdownVariable(dictionary: $0) }
             methods = structure.flatMap { MarkdownMethod(dictionary: $0) }
-        }
-        else {
+        } else {
             cases = []
             properties = []
             methods = []
@@ -93,7 +91,7 @@ struct MarkdownEnum: SwiftDocDictionaryInitializable, MarkdownConvertible {
         let properties = collectionOutput(title: "## Properties", collection: self.properties)
         let methods = collectionOutput(title: "## Methods", collection: self.methods)
         return """
-        <small>ENUM</small>
+        <sub>**ENUM**</sub>
         # \(name)
 
         \(declarationOutput)
@@ -146,8 +144,7 @@ struct MarkdownProtocol: SwiftDocDictionaryInitializable, MarkdownConvertible {
         if let structure: [SwiftDocDictionary] = dictionary.get(.substructure) {
             properties = structure.flatMap { MarkdownVariable(dictionary: $0) }
             methods = structure.flatMap { MarkdownMethod(dictionary: $0) }
-        }
-        else {
+        } else {
             properties = []
             methods = []
         }
@@ -157,7 +154,7 @@ struct MarkdownProtocol: SwiftDocDictionaryInitializable, MarkdownConvertible {
         let properties = collectionOutput(title: "## Properties", collection: self.properties)
         let methods = collectionOutput(title: "## Methods", collection: self.methods)
         return """
-        <small>PROTOCOL</small>
+        <sub>**PROTOCOL**</sub>
         # \(name)
 
         \(declarationOutput)
@@ -185,7 +182,7 @@ struct MarkdownTypealias: SwiftDocDictionaryInitializable, MarkdownConvertible {
 
     var output: String {
         return """
-        <small>TYPEALIAS</small>
+        <sub>**TYPEALIAS**</sub>
         # \(name)
 
         \(declarationOutput)
@@ -211,8 +208,7 @@ struct MarkdownExtension: SwiftDocDictionaryInitializable, MarkdownConvertible {
         if let structure: [SwiftDocDictionary] = dictionary.get(.substructure) {
             properties = structure.flatMap { MarkdownVariable(dictionary: $0) }
             methods = structure.flatMap { MarkdownMethod(dictionary: $0) }
-        }
-        else {
+        } else {
             properties = []
             methods = []
         }
@@ -227,7 +223,7 @@ struct MarkdownExtension: SwiftDocDictionaryInitializable, MarkdownConvertible {
         let properties = collectionOutput(title: "## Properties", collection: self.properties)
         let methods = collectionOutput(title: "## Methods", collection: self.methods)
         return """
-        <small>EXTENSION</small>
+        <sub>**EXTENSION**</sub>
         # \(name)
 
         \(declarationOutput)
@@ -275,8 +271,7 @@ struct MarkdownMethod: SwiftDocDictionaryInitializable, MarkdownConvertible {
         self.dictionary = dictionary
         if let params: [SwiftDocDictionary] = dictionary.get(.docParameters) {
             parameters = params.flatMap { MarkdownMethodParameter(dictionary: $0) }
-        }
-        else {
+        } else {
             parameters = []
         }
     }
@@ -316,8 +311,7 @@ struct MarkdownMethodParameter: SwiftDocDictionaryInitializable, MarkdownConvert
         name = dictionary["name"] as? String ?? "[NO NAME]"
         if let discussion = dictionary["discussion"] as? [SwiftDocDictionary] {
             self.discussion = discussion.flatMap { $0["Para"] as? String }
-        }
-        else {
+        } else {
             discussion = []
         }
     }

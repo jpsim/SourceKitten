@@ -52,6 +52,8 @@ struct MarkdownDocsCommand: CommandProtocol {
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
         print("Generating some awesome docs at: \(FileManager.default.currentDirectoryPath)/\(docsPath)")
+        defer { print("Done.") }
+
         let args = options.arguments
         if !options.spmModule.isEmpty {
             return runSPMModule(moduleName: options.spmModule)
@@ -107,32 +109,19 @@ struct MarkdownDocsCommand: CommandProtocol {
 
     private func process(dictionary: SwiftDocDictionary) {
         if let value: String = dictionary.get(.kind), let kind = SwiftDeclarationKind(rawValue: value) {
-            let basePath = "\(FileManager.default.currentDirectoryPath)/\(docsPath)"
             switch kind {
             case .struct:
-                if let item = MarkdownObject(dictionary: dictionary) {
-                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/structs/")
-                }
+                try? writeFile(content: MarkdownObject(dictionary: dictionary), subdirectory: "structs")
             case .class:
-                if let item = MarkdownObject(dictionary: dictionary) {
-                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/classes/")
-                }
+                try? writeFile(content: MarkdownObject(dictionary: dictionary), subdirectory: "classes")
             case .extension, .extensionProtocol, .extensionStruct, .extensionClass, .extensionEnum:
-                if let item = MarkdownExtension(dictionary: dictionary) {
-                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/extensions/")
-                }
+                try? writeFile(content: MarkdownExtension(dictionary: dictionary), subdirectory: "extensions")
             case .enum:
-                if let item = MarkdownEnum(dictionary: dictionary) {
-                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/enums/")
-                }
+                try? writeFile(content: MarkdownEnum(dictionary: dictionary), subdirectory: "enums")
             case .protocol:
-                if let item = MarkdownProtocol(dictionary: dictionary) {
-                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/protocols/")
-                }
+                try? writeFile(content: MarkdownProtocol(dictionary: dictionary), subdirectory: "protocols")
             case .typealias:
-                if let item = MarkdownTypealias(dictionary: dictionary) {
-                    try? MarkdownFile(filename: item.name, content: [item]).write(basePath: "\(basePath)/typealiases/")
-                }
+                try? writeFile(content: MarkdownTypealias(dictionary: dictionary), subdirectory: "typealiases")
             default:
                 break
             }
@@ -141,6 +130,14 @@ struct MarkdownDocsCommand: CommandProtocol {
         if let substructure = dictionary[SwiftDocKey.substructure.rawValue] as? [[String: Any]] {
             process(dictionaries: substructure)
         }
+    }
+
+    private func writeFile(content item: MarkdownConvertible?, subdirectory: String) throws {
+        guard let item = item, let filename = (item as? SwiftDocDictionaryInitializable)?.name else {
+            return
+        }
+        let basePath = "\(FileManager.default.currentDirectoryPath)/\(docsPath)"
+        try MarkdownFile(filename: filename, content: [item]).write(basePath: "\(basePath)/\(subdirectory)/")
     }
 
 }
