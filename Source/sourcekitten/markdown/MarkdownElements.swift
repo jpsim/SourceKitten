@@ -332,3 +332,20 @@ struct MarkdownMethodParameter: SwiftDocDictionaryInitializable, MarkdownConvert
         """
     }
 }
+
+struct MarkdownList: MarkdownConvertible {
+    let items: [MarkdownConvertible]
+
+    var output: String {
+        return items.map { "- \($0.output)" }.joined(separator: "\n")
+    }
+}
+
+struct MarkdownLink: MarkdownConvertible {
+    let title: String
+    let url: String
+
+    var output: String {
+        return "[\(title)](\(url))"
+    }
+}

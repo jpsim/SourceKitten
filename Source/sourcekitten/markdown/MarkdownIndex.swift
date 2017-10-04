@@ -19,21 +19,42 @@ class MarkdownIndex {
     var typealiases: [MarkdownTypealias] = []
 
     func write(to docsPath: String) throws {
-        let basePath = "\(FileManager.default.currentDirectoryPath)/\(docsPath)"
-        print("Writting Markdown documentation files at: \(basePath)")
-        try writeFiles(content: structs, at: "\(basePath)/structs")
-        try writeFiles(content: classes, at: "\(basePath)/classes")
-        try writeFiles(content: flattenedExtensions(), at: "\(basePath)/extensions")
-        try writeFiles(content: enums, at: "\(basePath)/enums")
-        try writeFiles(content: protocols, at: "\(basePath)/protocols")
-        try writeFiles(content: typealiases, at: "\(basePath)/typealiases")
+        extensions = flattenedExtensions()
+
+        print("Generating Markdown documentation...")
+        var content: [MarkdownConvertible] = ["# Inline Documentation Reference"]
+
+        try content.append(writeAndIndexFiles(items: structs, to: docsPath, collectionTitle: "Structs"))
+        try content.append(writeAndIndexFiles(items: classes, to: docsPath, collectionTitle: "Classes"))
+        try content.append(writeAndIndexFiles(items: extensions, to: docsPath, collectionTitle: "Extensions"))
+        try content.append(writeAndIndexFiles(items: enums, to: docsPath, collectionTitle: "Enums"))
+        try content.append(writeAndIndexFiles(items: protocols, to: docsPath, collectionTitle: "Protocols"))
+        try content.append(writeAndIndexFiles(items: typealiases, to: docsPath, collectionTitle: "Typealiases"))
+
+        try MarkdownFile(filename: "index", basePath: docsPath, content: content).write()
         print("Done 🎉")
     }
 
-    private func writeFiles(content: [MarkdownConvertible & SwiftDocDictionaryInitializable], at basePath: String) throws {
-        for item in content {
-            try MarkdownFile(filename: item.name, content: [item]).write(basePath: basePath)
+    private func writeAndIndexFiles(items: [MarkdownConvertible & SwiftDocDictionaryInitializable],
+                                    to docsPath: String, collectionTitle: String) throws -> [MarkdownConvertible] {
+        if items.isEmpty {
+            return []
         }
+
+        // Make and write files
+        let files = makeFiles(with: items, basePath: "\(docsPath)/\(collectionTitle.lowercased())")
+        try files.forEach { try $0.write() }
+
+        // Make links for index
+        let links = files.map { MarkdownLink(title: $0.filename, url: "/\($0.filePath)") }
+        return [
+            "## \(collectionTitle)",
+            MarkdownList(items: links.sorted { $0.title < $1.title })
+        ]
+    }
+
+    private func makeFiles(with items: [MarkdownConvertible & SwiftDocDictionaryInitializable], basePath: String) -> [MarkdownFile] {
+        return items.map { MarkdownFile(filename: $0.name, basePath: basePath, content: [$0]) }
     }
 
     /// While other types can only have one declaration within a Swift module, there can be multiple extensions for the same type.

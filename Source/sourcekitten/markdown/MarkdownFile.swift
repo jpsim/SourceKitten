@@ -9,20 +9,24 @@ import Foundation
 
 struct MarkdownFile {
     let filename: String
+    let basePath: String
     let content: [MarkdownConvertible]
 
-    func write(basePath: String) throws {
-        try makePath(basePath: basePath)
-        let output = content.output
-        let filepath = "\(basePath)/\(filename).md"
-        print("Writting documentation file: \(filepath)")
-        try output.write(toFile: filepath, atomically: true, encoding: .utf8)
+    var filePath: String {
+        return "\(basePath)/\(filename).md"
     }
 
-    private func makePath(basePath: String) throws {
+    func write() throws {
+        try createDirectory(path: "\(FileManager.default.currentDirectoryPath)/\(basePath)")
+        let absolutePath = "\(FileManager.default.currentDirectoryPath)/\(filePath)"
+        print("Writting documentation file: \(absolutePath)")
+        try content.output.write(toFile: absolutePath, atomically: true, encoding: .utf8)
+    }
+
+    private func createDirectory(path: String) throws {
         var isDir: ObjCBool = false
-        if FileManager.default.fileExists(atPath: basePath, isDirectory: &isDir) == false {
-            try FileManager.default.createDirectory(atPath: basePath, withIntermediateDirectories: true, attributes: nil)
+        if FileManager.default.fileExists(atPath: path, isDirectory: &isDir) == false {
+            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         }
     }
 }
