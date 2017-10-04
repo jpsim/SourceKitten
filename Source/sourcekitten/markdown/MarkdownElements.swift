@@ -123,9 +123,9 @@ struct MarkdownEnumCaseElement: SwiftDocDictionaryInitializable, MarkdownConvert
         return """
         ### \(name)
 
-        \(comment)
-
         \(declarationOutput)
+
+        \(comment)
         """
     }
 }
@@ -253,9 +253,9 @@ struct MarkdownVariable: SwiftDocDictionaryInitializable, MarkdownConvertible {
         return """
         ### \(name)
 
-        \(comment)
-
         \(declarationOutput)
+
+        \(comment)
         """
     }
 }
@@ -292,9 +292,9 @@ struct MarkdownMethod: SwiftDocDictionaryInitializable, MarkdownConvertible {
         return """
         ### \(name)
 
-        \(comment)
-
         \(declarationOutput)
+
+        \(comment)
 
         \(parametersTable)
         """

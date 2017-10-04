@@ -53,6 +53,7 @@ extension SwiftDocDictionaryInitializable {
 
     var declarationOutput: String {
         return declaration.isEmpty ? "" : """
+        <sub>**Declaration**</sub>
         ```swift
         \(declaration)
         ```
