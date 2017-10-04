@@ -22,7 +22,13 @@ class MarkdownIndex {
         extensions = flattenedExtensions()
 
         print("Generating Markdown documentation...")
-        var content: [MarkdownConvertible] = ["# Inline Documentation Reference"]
+        var content: [MarkdownConvertible] = [
+            """
+            # Inline Reference Documentation
+            This Inline Reference Documentation has been generated with [SourceKitten](https://github.com/jpsim/SourceKitten).
+            Run `sourcekitten mdocs` in the repository root to update this documentation.
+            """
+        ]
 
         try content.append(writeAndIndexFiles(items: structs, to: docsPath, collectionTitle: "Structs"))
         try content.append(writeAndIndexFiles(items: classes, to: docsPath, collectionTitle: "Classes"))
@@ -31,7 +37,7 @@ class MarkdownIndex {
         try content.append(writeAndIndexFiles(items: protocols, to: docsPath, collectionTitle: "Protocols"))
         try content.append(writeAndIndexFiles(items: typealiases, to: docsPath, collectionTitle: "Typealiases"))
 
-        try MarkdownFile(filename: "index", basePath: docsPath, content: content).write()
+        try MarkdownFile(filename: "README", basePath: docsPath, content: content).write()
         print("Done 🎉")
     }
 
