@@ -45,7 +45,9 @@ struct MarkdownObject: SwiftDocDictionaryInitializable, MarkdownConvertible {
         <sub>**\(elementType.uppercased())**</sub>
         # \(name)
 
-        \(declarationOutput)
+        \(declaration)
+
+        \(typename)
 
         \(comment)
 
@@ -94,7 +96,9 @@ struct MarkdownEnum: SwiftDocDictionaryInitializable, MarkdownConvertible {
         <sub>**ENUM**</sub>
         # \(name)
 
-        \(declarationOutput)
+        \(declaration)
+
+        \(typename)
 
         \(comment)
 
@@ -123,7 +127,9 @@ struct MarkdownEnumCaseElement: SwiftDocDictionaryInitializable, MarkdownConvert
         return """
         ### \(name)
 
-        \(declarationOutput)
+        \(declaration)
+
+        \(typename)
 
         \(comment)
         """
@@ -157,7 +163,9 @@ struct MarkdownProtocol: SwiftDocDictionaryInitializable, MarkdownConvertible {
         <sub>**PROTOCOL**</sub>
         # \(name)
 
-        \(declarationOutput)
+        \(declaration)
+
+        \(typename)
 
         \(comment)
 
@@ -185,7 +193,9 @@ struct MarkdownTypealias: SwiftDocDictionaryInitializable, MarkdownConvertible {
         <sub>**TYPEALIAS**</sub>
         # \(name)
 
-        \(declarationOutput)
+        \(declaration)
+
+        \(typename)
 
         \(comment)
 
@@ -196,8 +206,8 @@ struct MarkdownTypealias: SwiftDocDictionaryInitializable, MarkdownConvertible {
 
 struct MarkdownExtension: SwiftDocDictionaryInitializable, MarkdownConvertible {
     let dictionary: SwiftDocDictionary
-    let properties: [MarkdownVariable]
-    let methods: [MarkdownMethod]
+    var properties: [MarkdownVariable]
+    var methods: [MarkdownMethod]
 
     init?(dictionary: SwiftDocDictionary) {
         guard dictionary.isKind([.extension, .extensionEnum, .extensionClass, .extensionStruct, .extensionProtocol]) else {
@@ -226,10 +236,6 @@ struct MarkdownExtension: SwiftDocDictionaryInitializable, MarkdownConvertible {
         <sub>**EXTENSION**</sub>
         # \(name)
 
-        \(declarationOutput)
-
-        \(comment)
-
         --------------------
 
         \(properties)
@@ -253,7 +259,9 @@ struct MarkdownVariable: SwiftDocDictionaryInitializable, MarkdownConvertible {
         return """
         ### \(name)
 
-        \(declarationOutput)
+        \(declaration)
+
+        \(typename)
 
         \(comment)
         """
@@ -292,7 +300,9 @@ struct MarkdownMethod: SwiftDocDictionaryInitializable, MarkdownConvertible {
         return """
         ### \(name)
 
-        \(declarationOutput)
+        \(declaration)
+
+        \(typename)
 
         \(comment)
 

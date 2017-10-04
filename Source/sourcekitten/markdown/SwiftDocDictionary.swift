@@ -45,17 +45,23 @@ extension SwiftDocDictionaryInitializable {
         return dictionary.get(.documentationComment) ?? ""
     }
     var declaration: String {
-        return dictionary.get(.parsedDeclaration) ?? ""
+        guard let declaration: String = dictionary.get(.parsedDeclaration) else {
+            return ""
+        }
+        return codeBlock(title: "Declaration", code: declaration)
     }
     var typename: String {
-        return dictionary.get(.typeName) ?? ""
+        guard let typename: String = dictionary.get(.typeName) else {
+            return ""
+        }
+        return codeBlock(title: "Infered Type", code: typename)
     }
 
-    var declarationOutput: String {
-        return declaration.isEmpty ? "" : """
-        <sub>**Declaration**</sub>
+    func codeBlock(title: String, code: String) -> String {
+        return """
+        <sub>**\(title)**</sub>
         ```swift
-        \(declaration)
+        \(code)
         ```
         """
     }

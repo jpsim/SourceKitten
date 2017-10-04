@@ -28,6 +28,7 @@
 		951786821F8433D000CF6FE0 /* SwiftDocDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9517867D1F8433D000CF6FE0 /* SwiftDocDictionary.swift */; };
 		951786831F8433D000CF6FE0 /* MarkdownFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9517867E1F8433D000CF6FE0 /* MarkdownFile.swift */; };
 		951786841F8433D000CF6FE0 /* MarkdownDocsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9517867F1F8433D000CF6FE0 /* MarkdownDocsCommand.swift */; };
+		95DE62391F855F4D0085204F /* MarkdownIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DE62381F855F4D0085204F /* MarkdownIndex.swift */; };
 		B2FA87E26BC9C5F774FD694C /* SwiftLangSyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */; };
 		C236E84B1DFF5120003807D2 /* YamlRequestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */; };
 		D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -155,6 +156,7 @@
 		9517867D1F8433D000CF6FE0 /* SwiftDocDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDocDictionary.swift; sourceTree = "<group>"; };
 		9517867E1F8433D000CF6FE0 /* MarkdownFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownFile.swift; sourceTree = "<group>"; };
 		9517867F1F8433D000CF6FE0 /* MarkdownDocsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownDocsCommand.swift; sourceTree = "<group>"; };
+		95DE62381F855F4D0085204F /* MarkdownIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownIndex.swift; sourceTree = "<group>"; };
 		B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLangSyntax.swift; sourceTree = "<group>"; };
 		C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YamlRequestCommand.swift; sourceTree = "<group>"; };
 		D0D1211B19E87861005E4BAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -289,6 +291,7 @@
 				9517867C1F8433D000CF6FE0 /* MarkdownElements.swift */,
 				9517867D1F8433D000CF6FE0 /* SwiftDocDictionary.swift */,
 				9517867E1F8433D000CF6FE0 /* MarkdownFile.swift */,
+				95DE62381F855F4D0085204F /* MarkdownIndex.swift */,
 			);
 			path = markdown;
 			sourceTree = "<group>";
@@ -610,7 +613,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "sourcekitten" */;
+			buildConfigurationList = D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "SourceKitten" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -750,6 +753,7 @@
 				E8DD06E81AE447E9006D9C86 /* DocCommand.swift in Sources */,
 				E8D86D851A688EF20063E8E9 /* Errors.swift in Sources */,
 				D0E7B65619E9C76900EDBA4D /* main.swift in Sources */,
+				95DE62391F855F4D0085204F /* MarkdownIndex.swift in Sources */,
 				E813023B1CCD09DB0056E826 /* IndexCommand.swift in Sources */,
 				E8DD06E61AE44540006D9C86 /* StructureCommand.swift in Sources */,
 				951786801F8433D000CF6FE0 /* MarkdownConvertible.swift in Sources */,
@@ -1020,7 +1024,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "sourcekitten" */ = {
+		D0D1211319E87861005E4BAA /* Build configuration list for PBXProject "SourceKitten" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0D1211D19E87861005E4BAA /* Debug */,

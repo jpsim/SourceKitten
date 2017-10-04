@@ -19,9 +19,6 @@ struct MarkdownDocsCommand: CommandProtocol {
     /// Note: Constant for now, could be parametrized later on
     let docsPath = "docs/reference"
 
-//    /// Map of Markdown files to be
-//    var markdownFiles = [String: MarkdownFile]()
-
     struct Options: OptionsProtocol {
         let spmModule: String
         let singleFile: Bool
@@ -51,9 +48,6 @@ struct MarkdownDocsCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        print("Generating some awesome docs at: \(FileManager.default.currentDirectoryPath)/\(docsPath)")
-        defer { print("Done.") }
-
         let args = options.arguments
         if !options.spmModule.isEmpty {
             return runSPMModule(moduleName: options.spmModule)
@@ -71,6 +65,7 @@ struct MarkdownDocsCommand: CommandProtocol {
             return .failure(.docFailed)
         }
         process(docs: docs)
+        try? MarkdownIndex.shared.write(to: docsPath)
         return .success(())
     }
 
@@ -79,6 +74,7 @@ struct MarkdownDocsCommand: CommandProtocol {
             return .failure(.docFailed)
         }
         process(docs: docs)
+        try? MarkdownIndex.shared.write(to: docsPath)
         return .success(())
     }
 
@@ -91,11 +87,12 @@ struct MarkdownDocsCommand: CommandProtocol {
             return .failure(.readFailed(path: args[0]))
         }
         process(docs: [docs])
+        try? MarkdownIndex.shared.write(to: docsPath)
         return .success(())
     }
 
     func runObjC(options: Options, args: [String]) -> Result<(), SourceKittenError> {
-        fatalError("unsupported")
+        fatalError("ObjC is not yet supported")
     }
 
     private func process(docs: [SwiftDocs]) {
@@ -109,35 +106,25 @@ struct MarkdownDocsCommand: CommandProtocol {
 
     private func process(dictionary: SwiftDocDictionary) {
         if let value: String = dictionary.get(.kind), let kind = SwiftDeclarationKind(rawValue: value) {
-            switch kind {
-            case .struct:
-                try? writeFile(content: MarkdownObject(dictionary: dictionary), subdirectory: "structs")
-            case .class:
-                try? writeFile(content: MarkdownObject(dictionary: dictionary), subdirectory: "classes")
-            case .extension, .extensionProtocol, .extensionStruct, .extensionClass, .extensionEnum:
-                try? writeFile(content: MarkdownExtension(dictionary: dictionary), subdirectory: "extensions")
-            case .enum:
-                try? writeFile(content: MarkdownEnum(dictionary: dictionary), subdirectory: "enums")
-            case .protocol:
-                try? writeFile(content: MarkdownProtocol(dictionary: dictionary), subdirectory: "protocols")
-            case .typealias:
-                try? writeFile(content: MarkdownTypealias(dictionary: dictionary), subdirectory: "typealiases")
-            default:
-                break
+            if kind == .struct, let item = MarkdownObject(dictionary: dictionary) {
+                MarkdownIndex.shared.structs.append(item)
+            } else if kind == .class, let item = MarkdownObject(dictionary: dictionary) {
+                MarkdownIndex.shared.classes.append(item)
+            } else if [.extension, .extensionProtocol, .extensionStruct, .extensionClass, .extensionEnum].contains(kind),
+                let item = MarkdownExtension(dictionary: dictionary) {
+                    MarkdownIndex.shared.extensions.append(item)
+            } else if kind == .enum, let item = MarkdownEnum(dictionary: dictionary) {
+                MarkdownIndex.shared.enums.append(item)
+            } else if kind == .protocol, let item = MarkdownProtocol(dictionary: dictionary) {
+                MarkdownIndex.shared.protocols.append(item)
+            } else if kind == .typealias, let item = MarkdownTypealias(dictionary: dictionary) {
+                MarkdownIndex.shared.typealiases.append(item)
             }
         }
 
         if let substructure = dictionary[SwiftDocKey.substructure.rawValue] as? [[String: Any]] {
             process(dictionaries: substructure)
         }
-    }
-
-    private func writeFile(content item: MarkdownConvertible?, subdirectory: String) throws {
-        guard let item = item, let filename = (item as? SwiftDocDictionaryInitializable)?.name else {
-            return
-        }
-        let basePath = "\(FileManager.default.currentDirectoryPath)/\(docsPath)"
-        try MarkdownFile(filename: filename, content: [item]).write(basePath: "\(basePath)/\(subdirectory)/")
     }
 
 }

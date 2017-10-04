@@ -14,7 +14,7 @@ struct MarkdownFile {
     func write(basePath: String) throws {
         try makePath(basePath: basePath)
         let output = content.output
-        let filepath = "\(basePath)\(filename).md"
+        let filepath = "\(basePath)/\(filename).md"
         print("Writting documentation file: \(filepath)")
         try output.write(toFile: filepath, atomically: true, encoding: .utf8)
     }
