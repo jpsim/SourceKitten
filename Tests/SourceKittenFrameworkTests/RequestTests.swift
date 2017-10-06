@@ -29,7 +29,7 @@ class RequestTests: XCTestCase {
             "_T021SourceKittenFramework7RequestOD",
             "_T0s10DictionaryVySS9Structure22SourceKitRepresentable_pGD"
         ]
-
+#if swift(>=4.0)
         let expectedResult: NSDictionary = [
             "key.results": [
                 ["key.name": "Swift.String"],
@@ -39,6 +39,17 @@ class RequestTests: XCTestCase {
                 ["key.name": "Swift.Dictionary<Swift.String, Structure.SourceKitRepresentable>"]
             ]
         ]
+#else
+        let expectedResult: NSDictionary = [
+            "key.results": [
+                ["key.name": "Swift.String"],
+                ["key.name": "__C.NSRange with unmangled suffix \"mD\""],
+                ["key.name": "__ObjC.Process"],
+                ["key.name": "SourceKittenFramework.Request"],
+                ["key.name": "Swift.Dictionary<Swift.String, Structure.SourceKitRepresentable>"]
+            ]
+        ]
+#endif
         let result = Request.demangle(names: mangledNames).send()
         XCTAssertEqual(toNSDictionary(result), expectedResult, "should demange names.")
     }

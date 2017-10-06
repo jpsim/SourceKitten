@@ -85,4 +85,3 @@ private func transform(any: Any) -> sourcekitd_object_t {
         fatalError("RequestBuilder: Unsupported value type: \(type(of: any)) value: \(any)")
     }
 }
-
