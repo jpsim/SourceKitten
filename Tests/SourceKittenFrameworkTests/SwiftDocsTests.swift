@@ -31,7 +31,9 @@ func compareJSONString(withFixtureNamed name: String,
                                                                    withTemplate: "\"key\\.filepath\" : \"\",")
     #endif
 
-    let expectedFile = File(path: versionedExpectedFilename(for: name))!
+    let versionedFilename = versionedExpectedFilename(for: name)
+    print("Loading \(versionedFilename)")
+    let expectedFile = File(path: versionedFilename)!
 
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
@@ -80,14 +82,11 @@ private func versionedExpectedFilename(for name: String) -> String {
         for platform in platforms {
             let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(version).json"
             if FileManager.default.fileExists(atPath: versionedFilename) {
-                print("Loading \(versionedFilename)")
                 return versionedFilename
             }
         }
     }
-    let fallbackFilename = "\(fixturesDirectory)\(name).json"
-    print("Loading \(fallbackFilename)")
-    return fallbackFilename
+    return "\(fixturesDirectory)\(name).json"
 }
 
 class SwiftDocsTests: XCTestCase {
