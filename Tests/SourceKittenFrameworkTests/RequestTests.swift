@@ -29,7 +29,7 @@ class RequestTests: XCTestCase {
             "_T021SourceKittenFramework7RequestOD",
             "_T0s10DictionaryVySS9Structure22SourceKitRepresentable_pGD"
         ]
-#if swift(>=4.0)
+#if swift(>=3.2)
         let expectedResult: NSDictionary = [
             "key.results": [
                 ["key.name": "Swift.String"],
