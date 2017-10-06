@@ -80,11 +80,14 @@ private func versionedExpectedFilename(for name: String) -> String {
         for platform in platforms {
             let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(version).json"
             if FileManager.default.fileExists(atPath: versionedFilename) {
+                print("Loading \(versionedFilename)")
                 return versionedFilename
             }
         }
     }
-    return "\(fixturesDirectory)\(name).json"
+    let fallbackFilename = "\(fixturesDirectory)\(name).json"
+    print("Loading \(fallbackFilename)")
+    return fallbackFilename
 }
 
 class SwiftDocsTests: XCTestCase {
