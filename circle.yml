@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run: git submodule update --init --recursive
       - run: swift test
-      - run: swiftlint
+      - run: brew install swiftlint && swiftlint
 
   linux_swift_3:
     docker:
@@ -42,7 +42,7 @@ jobs:
       - checkout
       - run: git submodule update --init --recursive
       - run: swift test
-      - run: swiftlint
+      - run: brew install swiftlint && swiftlint
 
   linux_swift_4:
     docker:
