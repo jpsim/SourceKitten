@@ -1,0 +1,62 @@
+version: 2
+jobs:
+
+  xcode_8:
+    macos:
+      xcode: "8.3.3"
+    steps:
+      - checkout
+      - run: pod repo update
+      - run: make test
+      - run: pod lib lint
+
+  swiftpm_3:
+    macos:
+      xcode: "8.3.3"
+    steps:
+      - checkout
+      - run: git submodule update --init --recursive
+      - run: swift test
+
+  linux_swift_3:
+    docker:
+      - image: norionomura/sourcekit:311
+    steps:
+      - checkout
+      - run: swift test
+
+  xcode_9:
+    macos:
+      xcode: "9.0"
+    steps:
+      - checkout
+      - run: pod repo update
+      - run: make test
+      - run: pod lib lint
+
+  swiftpm_4:
+    macos:
+      xcode: "9.0"
+    steps:
+      - checkout
+      - run: git submodule update --init --recursive
+      - run: swift test
+      - run: brew install swiftlint && swiftlint lint --strict
+
+  linux_swift_4:
+    docker:
+      - image: norionomura/swift:40
+    steps:
+      - checkout
+      - run: swift test
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - xcode_8
+      - swiftpm_3
+      - linux_swift_3
+      - xcode_9
+      - swiftpm_4
+      - linux_swift_4
