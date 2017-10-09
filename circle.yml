@@ -28,7 +28,7 @@ jobs:
 
   xcode_9:
     macos:
-      xcode: "8.3.3"
+      xcode: "9.0"
     steps:
       - checkout
       - run: pod repo update
@@ -37,7 +37,7 @@ jobs:
 
   swiftpm_4:
     macos:
-      xcode: "8.3.3"
+      xcode: "9.0"
     steps:
       - checkout
       - run: git submodule update --init --recursive
