@@ -164,7 +164,7 @@ class StringTests: XCTestCase {
         "\ttest()\n" +     // t+  06+1 characters
         "}"
 
-        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset:  4, expandingTabsToWidth: 1), (1, 5))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 4, expandingTabsToWidth: 1), (1, 5))
         XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 17, expandingTabsToWidth: 1), (2, 5))
         XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27 /* expandingTabsToWidth: default */), (3, 4))
         XCTAssertEqual(string.bridge().lineAndCharacter(forCharacterOffset: 27, expandingTabsToWidth: 1), (3, 4))
