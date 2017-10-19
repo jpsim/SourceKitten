@@ -108,6 +108,24 @@ class StringTests: XCTestCase {
         XCTAssertEqual("class ClassA", file.parseDeclaration(dict)!, "should extract declaration from source text")
     }
 
+    func testParseMultiLineDeclaration() {
+        let dict: [String: SourceKitRepresentable] = [
+            "key.kind": "source.lang.swift.decl.function.free",
+            "key.offset": Int64(4),
+            "key.bodyoffset": Int64(40),
+            "key.annotated_decl": "",
+            "key.typename": "(Int, Int) -> ()"
+        ]
+        let contents = "    func f(a: Int,\n" +
+                       "           b: Int) {\n" +
+                       "    }\n"
+        let file = File(contents: contents)
+        let parsedDecl = file.parseDeclaration(dict)!
+        let expectedDecl = "func f(a: Int,\n" +
+                           "       b: Int)"
+        XCTAssertEqual(parsedDecl, expectedDecl, "should preserve declaration alignment")
+    }
+
     func testGenerateDocumentedTokenOffsets() {
         let fileContents = "/// Comment\nlet global = 0"
         let syntaxMap = SyntaxMap(file: File(contents: fileContents))
@@ -204,6 +222,7 @@ extension StringTests {
             ("testAbsolutePath", testAbsolutePath),
             ("testIsTokenDocumentable", testIsTokenDocumentable),
             ("testParseDeclaration", testParseDeclaration),
+            ("testParseMultiLineDeclaration", testParseMultiLineDeclaration),
             ("testGenerateDocumentedTokenOffsets", testGenerateDocumentedTokenOffsets),
             ("testDocumentedTokenOffsetsWithSubscript", testDocumentedTokenOffsetsWithSubscript),
             ("testGenerateDocumentedTokenOffsetsEmpty", testGenerateDocumentedTokenOffsetsEmpty),

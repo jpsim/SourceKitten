@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Preserve horizontal alignment in multi-line Swift declarations.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ## 0.18.2
 
