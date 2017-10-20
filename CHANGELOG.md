@@ -9,6 +9,9 @@
 * Add `tabWidth` parameter (default: `1`) for `lineAndCharacter`.  
   [Marcel Jackwerth](https://github.com/sirlantis)
 
+* Add `File(pathDeferringReading:)` initializer.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * Fix Swift declarations when generating Objective-C docs being truncated where
