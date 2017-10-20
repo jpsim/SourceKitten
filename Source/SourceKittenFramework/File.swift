@@ -20,9 +20,32 @@ public final class File {
     /// File path. Nil if initialized directly with `File(contents:)`.
     public let path: String?
     /// File contents.
-    public var contents: String
+    public var contents: String {
+        get {
+            if _contents == nil {
+                _contents = try! String(contentsOfFile: path!, encoding: .utf8)
+            }
+            return _contents!
+        }
+        set {
+            _contents = newValue
+        }
+    }
     /// File lines.
-    public var lines: [Line]
+    public var lines: [Line] {
+        get {
+            if _lines == nil {
+                _lines = contents.bridge().lines()
+            }
+            return _lines!
+        }
+        set {
+            _lines = newValue
+        }
+    }
+
+    private var _contents: String?
+    private var _lines: [Line]?
 
     /**
     Failable initializer by path. Fails if file contents could not be read as a UTF8 string.
@@ -38,6 +61,10 @@ public final class File {
             fputs("Could not read contents of `\(path)`\n", stderr)
             return nil
         }
+    }
+
+    public init(pathDeferringReading path: String) {
+        self.path = path.bridge().absolutePathRepresentation()
     }
 
     /**
