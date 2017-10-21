@@ -136,7 +136,8 @@ public final class File {
         } else {
             substring = contents.bridge().substringLinesWithByteRange(start: start, length: 0)
         }
-        return substring?.trimmingWhitespaceAndOpeningCurlyBrace()
+        return substring?.removingCommonLeadingWhitespaceFromLines()
+                         .trimmingWhitespaceAndOpeningCurlyBrace()
     }
 
     /**
