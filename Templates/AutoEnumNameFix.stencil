@@ -1,0 +1,40 @@
+import Swift
+
+// swiftlint:disable type_body_length function_body_length cyclomatic_complexity file_length
+public struct SourceKitDef {
+    {% for enum in types.all %}
+
+    public enum {{ enum.name }} {
+        {% for case in enum.cases %}case {{ case.name|lowerFirst }}
+        {% endfor %}
+        case unrecognized(String)
+
+        public init(string: String) {
+            switch string {
+            {% for case in enum.cases %}case "{{ case.rawValue }}":
+                self = .{{ case.name|lowerFirst }}
+            {% endfor %}
+            default:
+                self = .unrecognized(string)
+            }
+        }
+
+        public var stringRepresentation: String {
+            switch self {
+            {% for case in enum.cases %}case .{{ case.name|lowerFirst }}:
+                return "{{ case.rawValue }}"
+            {% endfor %}
+            case let .unrecognized(string):
+                return string
+            }
+        }
+    }
+    {% endfor %}
+}
+
+{% for enum in types.all %}
+
+public extension SourceKitDef.{{ enum.name }} {
+    public static let count: Int = {{ enum.cases.count }}
+}
+{% endfor %}

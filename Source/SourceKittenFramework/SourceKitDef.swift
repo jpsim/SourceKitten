@@ -1,9 +1,10 @@
-// Generated using Sourcery 0.8.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.9.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
-// swiftlint:disable type_body_length function_body_length cyclomatic_complexity file_length
+
 import Swift
 
+// swiftlint:disable type_body_length function_body_length cyclomatic_complexity file_length
 public struct SourceKitDef {
 
     public enum Key {
@@ -1640,6 +1641,7 @@ public struct SourceKitDef {
         }
     }
 }
+
 
 public extension SourceKitDef.Key {
     public static let count: Int = 134
