@@ -63,7 +63,8 @@ jobs:
       - run: make test|xcpretty -r junit
       - store_test_results:
           path: build/reports/
-      - run: pod lib lint
+      # Disable until the next version of SWXMLHash is released.
+      # - run: pod lib lint
 
   swiftpm_4.0.2:
     macos:
