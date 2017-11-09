@@ -117,7 +117,11 @@ public struct SourceDeclaration {
             return usr.replacingOccurrences(of: accessorType.propertyTypeString, with: accessorType.methodTypeString)
         }
         // Setter
+#if swift(>=3.2)
+        let setterOffset = accessorType.propertyTypeString.count
+#else
         let setterOffset = accessorType.propertyTypeString.characters.count
+#endif
         let from = usr.index(propertyTypeStringStart, offsetBy: setterOffset)
 #if swift(>=3.2)
         let capitalizedSetterName = String(usr[from...]).capitalizingFirstLetter()

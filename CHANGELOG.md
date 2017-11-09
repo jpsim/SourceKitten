@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Support Swift 4.0.2.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#435](https://github.com/jpsim/SourceKitten/issues/435)
 
 ##### Bug Fixes
 

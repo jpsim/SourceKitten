@@ -7,7 +7,9 @@ jobs:
     steps:
       - checkout
       - run: pod repo update
-      - run: make test
+      - run: make test|xcpretty -r junit
+      - store_test_results:
+          path: build/reports/
       - run: pod lib lint
 
   swiftpm_3:
@@ -31,7 +33,9 @@ jobs:
     steps:
       - checkout
       - run: pod repo update
-      - run: make test
+      - run: make test|xcpretty -r junit
+      - store_test_results:
+          path: build/reports/
       - run: pod lib lint
 
   swiftpm_4:
@@ -50,6 +54,34 @@ jobs:
       - checkout
       - run: swift test
 
+  xcode_9.1:
+    macos:
+      xcode: "9.1.0"
+    steps:
+      - checkout
+      - run: pod repo update
+      - run: make test|xcpretty -r junit
+      - store_test_results:
+          path: build/reports/
+      # Disable until the next version of SWXMLHash is released.
+      # - run: pod lib lint
+
+  swiftpm_4.0.2:
+    macos:
+      xcode: "9.1.0"
+    steps:
+      - checkout
+      - run: git submodule update --init --recursive
+      - run: swift test
+      - run: brew install swiftlint && swiftlint lint --strict
+
+  linux_swift_4.0.2:
+    docker:
+      - image: norionomura/swift:402
+    steps:
+      - checkout
+      - run: swift test
+
 workflows:
   version: 2
   workflow:
@@ -60,3 +92,6 @@ workflows:
       - xcode_9
       - swiftpm_4
       - linux_swift_4
+      - xcode_9.1
+      - swiftpm_4.0.2
+      - linux_swift_4.0.2
