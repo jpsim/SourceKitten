@@ -7,7 +7,9 @@ jobs:
     steps:
       - checkout
       - run: pod repo update
-      - run: make test
+      - run: make test|xcpretty -r junit
+      - store_test_results:
+          path: build/reports/
       - run: pod lib lint
 
   swiftpm_3:
@@ -31,7 +33,9 @@ jobs:
     steps:
       - checkout
       - run: pod repo update
-      - run: make test
+      - run: make test|xcpretty -r junit
+      - store_test_results:
+          path: build/reports/
       - run: pod lib lint
 
   swiftpm_4:
@@ -56,7 +60,9 @@ jobs:
     steps:
       - checkout
       - run: pod repo update
-      - run: make test
+      - run: make test|xcpretty -r junit
+      - store_test_results:
+          path: build/reports/
       - run: pod lib lint
 
   swiftpm_4.0.2:
