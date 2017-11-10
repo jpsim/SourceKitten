@@ -134,9 +134,8 @@ extension SwiftDocsTests {
         return [
             ("testSubscript", testSubscript),
             ("testBicycle", testBicycle),
-            ("testExtension", testExtension)
-            // Fails on Linux
-            // ("testParseFullXMLDocs", testParseFullXMLDocs),
+            ("testExtension", testExtension),
+            ("testParseFullXMLDocs", testParseFullXMLDocs)
         ]
     }
 }
