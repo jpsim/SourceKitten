@@ -15,7 +15,13 @@ let projectRoot = #file.bridge()
     .deletingLastPathComponent.bridge()
     .deletingLastPathComponent
 
-let sourcekittenXcodebuildArguments = ["-workspace", "SourceKitten.xcworkspace", "-scheme", "SourceKittenFramework"]
+let sourcekittenXcodebuildArguments = [
+    "-workspace", "SourceKitten.xcworkspace",
+    "-scheme", "SourceKittenFramework",
+    "-derivedDataPath",
+    URL(fileURLWithPath: NSTemporaryDirectory())
+        .appendingPathComponent("testSourceKittenFrameworkDocsAreValidJSON").path
+]
 
 class ModuleTests: XCTestCase {
 
