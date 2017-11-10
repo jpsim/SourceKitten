@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix Swift 4.0.2 deprecation warnings in dependencies, specifically
+  SWXMLHash.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ## 0.18.3
 
