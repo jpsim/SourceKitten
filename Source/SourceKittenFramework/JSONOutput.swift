@@ -21,18 +21,14 @@ public func toJSON(_ object: Any) -> String {
     }
     do {
         let options: JSONSerialization.WritingOptions
-#if swift(>=3.2)
-    #if os(Linux)
+#if os(Linux)
         options = [.prettyPrinted, .sortedKeys]
-    #else
+#else
         if #available(macOS 10.13, *) {
             options = [.prettyPrinted, .sortedKeys]
         } else {
             options = .prettyPrinted
         }
-    #endif
-#else
-        options = .prettyPrinted
 #endif
         let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: options)
         if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
