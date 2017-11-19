@@ -1,0 +1,79 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Clang_C",
+        "repositoryURL": "https://github.com/norio-nomura/Clang_C.git",
+        "state": {
+          "branch": null,
+          "revision": "90a9574276f0fd17f02f58979423c3fd4d73b59e",
+          "version": "1.0.2"
+        }
+      },
+      {
+        "package": "Commandant",
+        "repositoryURL": "https://github.com/Carthage/Commandant.git",
+        "state": {
+          "branch": "master",
+          "revision": "3ff9019f7afd189c43a349f819684988031053a0",
+          "version": null
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "38c9ab0846a3fbec308eb2aa9ef68b10a7434eb4",
+          "version": "7.0.2"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "0ff81f2c665b4381f526bd656f8708dd52a9ea2f",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result.git",
+        "state": {
+          "branch": null,
+          "revision": "7477584259bfce2560a19e06ad9f71db441fff11",
+          "version": "3.2.4"
+        }
+      },
+      {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
+        "state": {
+          "branch": null,
+          "revision": "12496b370363034ccc919e1d72a99b9970b4941e",
+          "version": "4.2.5"
+        }
+      },
+      {
+        "package": "SourceKit",
+        "repositoryURL": "https://github.com/norio-nomura/SourceKit.git",
+        "state": {
+          "branch": null,
+          "revision": "18eaa67ca44443bbe39646916792b9f0c98dbaa1",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "Yams",
+        "repositoryURL": "https://github.com/jpsim/Yams.git",
+        "state": {
+          "branch": null,
+          "revision": "95f45caf07472ec78223ebada45255086a85b01a",
+          "version": "0.5.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
