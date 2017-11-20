@@ -141,7 +141,6 @@
 		6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_Index.swift; sourceTree = "<group>"; };
 		6C4CF6481C79802A008532C5 /* library_wrapper_CXString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_CXString.swift; sourceTree = "<group>"; };
 		6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_Documentation.swift; sourceTree = "<group>"; };
-		6C7F0A831EDB0AAD008EC581 /* Package@swift-4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Package@swift-4.swift"; sourceTree = "<group>"; };
 		6C7F0A841EDB0AAD008EC581 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		6CC381621ECACB50000C6F81 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -275,7 +274,6 @@
 		D0D1210F19E87861005E4BAA = {
 			isa = PBXGroup;
 			children = (
-				6C7F0A831EDB0AAD008EC581 /* Package@swift-4.swift */,
 				6C7F0A841EDB0AAD008EC581 /* Package.swift */,
 				D0D1211919E87861005E4BAA /* Products */,
 				D0D1211A19E87861005E4BAA /* sourcekitten */,

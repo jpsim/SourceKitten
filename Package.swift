@@ -1,23 +1,47 @@
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
-  name: "SourceKitten",
-  targets: [
-    Target(name: "SourceKittenFramework"),
-    Target(name: "sourcekitten",
-      dependencies: [.Target(name: "SourceKittenFramework")]),
-  ],
-  dependencies: [
-    .Package(url: "https://github.com/Carthage/Commandant.git", majorVersion: 0, minor: 12),
-    .Package(url: "https://github.com/drmohundro/SWXMLHash.git", majorVersion: 4),
-    .Package(url: "https://github.com/jpsim/Yams.git", majorVersion: 0, minor: 4),
-    .Package(url: "https://github.com/norio-nomura/Clang_C.git", majorVersion: 1),
-    .Package(url: "https://github.com/norio-nomura/SourceKit.git", majorVersion: 1),
-  ],
-  swiftLanguageVersions: [3, 4],
-  exclude: [
-    "Source/SourceKittenFramework/clang-c",
-    "Source/SourceKittenFramework/sourcekitd.h",
-    "Tests/SourceKittenFrameworkTests/Fixtures",
-  ]
+    name: "SourceKitten",
+    products: [
+        .executable(name: "sourcekitten", targets: ["sourcekitten"]),
+        .library(name: "SourceKittenFramework", targets: ["SourceKittenFramework"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/Carthage/Commandant.git", .branch("master")),
+        .package(url: "https://github.com/drmohundro/SWXMLHash.git", from: "4.2.0"),
+        .package(url: "https://github.com/jpsim/Yams.git", .upToNextMinor(from: "0.5.0") ),
+        .package(url: "https://github.com/norio-nomura/Clang_C.git", from: "1.0.0"),
+        .package(url: "https://github.com/norio-nomura/SourceKit.git", from: "1.0.0"),
+    ],
+    targets: [
+        .target(
+            name: "sourcekitten",
+            dependencies: [
+                "Commandant",
+                "SourceKittenFramework",
+            ]
+        ),
+        .target(
+            name: "SourceKittenFramework",
+            dependencies: [
+                "SWXMLHash",
+                "Yams",
+            ],
+            exclude: [
+                "clang-c",
+                "sourcekitd.h",
+            ]
+        ),
+        .testTarget(
+            name: "SourceKittenFrameworkTests",
+            dependencies: [
+                "SourceKittenFramework"
+            ],
+            exclude: [
+                "Fixtures",
+            ]
+        )
+    ],
+    swiftLanguageVersions: [3, 4]
 )

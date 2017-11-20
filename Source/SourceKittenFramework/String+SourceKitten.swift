@@ -173,7 +173,6 @@ extension NSString {
                 if tabWidth == 1 {
                     character = prefixLength
                 } else {
-#if swift(>=3.2)
                     character = line.content.prefix(prefixLength).reduce(0) { sum, character in
                         if character == "\t" {
                             return sum - (sum % tabWidth) + tabWidth
@@ -181,15 +180,6 @@ extension NSString {
                             return sum + 1
                         }
                     }
-#else
-                    character = line.content.characters.prefix(prefixLength).reduce(0) { sum, character in
-                        if character == "\t" {
-                            return sum - (sum % tabWidth) + tabWidth
-                        } else {
-                            return sum + 1
-                        }
-                    }
-#endif
                 }
 
                 return (line: line.index, character: character + 1)
@@ -425,11 +415,7 @@ extension String {
     }
 
     internal func capitalizingFirstLetter() -> String {
-#if swift(>=3.2)
         return String(prefix(1)).capitalized + String(dropFirst())
-#else
-        return String(characters.prefix(1)).capitalized + String(characters.dropFirst())
-#endif
     }
 
 #if !os(Linux)
@@ -568,28 +554,15 @@ extension String {
             let lineLeadingWhitespace = line.countOfLeadingCharacters(in: .whitespacesAndNewlines)
             let lineLeadingCharacters = line.countOfLeadingCharacters(in: commentLinePrefixCharacterSet)
             // Is this prefix smaller than our last and not entirely whitespace?
-#if swift(>=3.2)
             if lineLeadingCharacters < minLeadingCharacters && lineLeadingWhitespace != line.count {
                 minLeadingCharacters = lineLeadingCharacters
             }
-#else
-            if lineLeadingCharacters < minLeadingCharacters && lineLeadingWhitespace != line.characters.count {
-                minLeadingCharacters = lineLeadingCharacters
-            }
-#endif
         }
 
         return lineComponents.map { line in
-#if swift(>=3.2)
             if line.count >= minLeadingCharacters {
                 return String(line[line.index(line.startIndex, offsetBy: minLeadingCharacters)...])
             }
-#else
-            if line.characters.count >= minLeadingCharacters {
-                let range: Range = line.index(line.startIndex, offsetBy: minLeadingCharacters)..<line.endIndex
-                return line.substring(with: range)
-            }
-#endif
             return line
         }.joined(separator: "\n")
     }

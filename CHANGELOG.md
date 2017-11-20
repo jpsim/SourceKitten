@@ -2,7 +2,8 @@
 
 ##### Breaking
 
-* None.
+* SourceKitten now requires Xcode 9 and Swift 3.2+ to build.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Enhancements
 

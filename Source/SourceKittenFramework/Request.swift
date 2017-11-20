@@ -451,11 +451,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
 
 extension String {
     private func nameFromFullFunctionName() -> String {
-#if swift(>=3.2)
         return String(self[..<range(of: "(")!.lowerBound])
-#else
-        return substring(to: range(of: "(")!.lowerBound)
-#endif
     }
 
     fileprivate func extractFreeFunctions(inSubstructure substructure: [[String: SourceKitRepresentable]]) -> [String] {
@@ -485,14 +481,10 @@ extension String {
                 let functionDeclaration = self[start..<end]
 #endif
                 if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
-#if swift(>=3.2)
                     let adjustedDistance = distance(from: startIndex, to: startOfReturnArrow)
                     let adjustedReturnTypeStartIndex = functionDeclaration.index(functionDeclaration.startIndex,
                                                                                  offsetBy: adjustedDistance + 3)
                     returnTypes.append(String(functionDeclaration[adjustedReturnTypeStartIndex...]))
-#else
-                    returnTypes.append(functionDeclaration.substring(from: functionDeclaration.index(startOfReturnArrow, offsetBy: 3)))
-#endif
                 }
             }
 
