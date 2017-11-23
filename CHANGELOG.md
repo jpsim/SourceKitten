@@ -5,7 +5,7 @@
 * SourceKitten now requires Xcode 9 and Swift 3.2+ to build.  
   [Norio Nomura](https://github.com/norio-nomura)
 
-* Deprecated `Request.send()`.  
+* Deprecated `Request.send()`. Please use `Request.failableSend()` instead.  
   [Norio Nomura](https://github.com/norio-nomura)
 
 * Some APIs changed to `throws`.  
