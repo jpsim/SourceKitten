@@ -218,12 +218,12 @@ extension CXCursor {
         }
 
         guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).failableSend() else {
-                return nil
+            return nil
         }
 
         if let annotatedDeclarationXML = cursorInfo[SwiftDocKey.annotatedDeclaration.rawValue] as? String,
-           let swiftDeclaration = SWXMLHash.parse(annotatedDeclarationXML).element?.recursiveText {
-                return swiftDeclaration
+            let swiftDeclaration = SWXMLHash.parse(annotatedDeclarationXML).element?.recursiveText {
+            return swiftDeclaration
         }
 
         return nil

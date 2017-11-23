@@ -17,9 +17,7 @@ class FileTests: XCTestCase {
 
     func testFormat() {
         let file = File(path: fixturesDirectory + "BicycleUnformatted.swift")
-        let formattedFile = try! file?.format(trimmingTrailingWhitespace: true,
-                                         useTabs: false,
-                                         indentWidth: 4)
+        let formattedFile = try! file?.format(trimmingTrailingWhitespace: true, useTabs: false, indentWidth: 4)
         XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift", encoding: .utf8))
     }
 }
