@@ -11,11 +11,6 @@ import SourceKittenFramework
 import XCTest
 
 class RequestTests: XCTestCase {
-    func testProtocolVersion() {
-        let version = Request.protocolVersion().send()
-        compareJSONString(withFixtureNamed: "ProtocolVersion", jsonString: toJSON(toNSDictionary(version)))
-    }
-
     func testSwiftModuleGroups() {
         let groups = Request.moduleGroups(module: "Swift", arguments: ["-sdk", sdkPath()]).send()
         compareJSONString(withFixtureNamed: "SwiftModuleGroups", jsonString: toJSON(toNSDictionary(groups)))
@@ -29,7 +24,6 @@ class RequestTests: XCTestCase {
             "_T021SourceKittenFramework7RequestOD",
             "_T0s10DictionaryVySS9Structure22SourceKitRepresentable_pGD"
         ]
-#if swift(>=3.2)
         let expectedResult: NSDictionary = [
             "key.results": [
                 ["key.name": "Swift.String"],
@@ -39,17 +33,7 @@ class RequestTests: XCTestCase {
                 ["key.name": "Swift.Dictionary<Swift.String, Structure.SourceKitRepresentable>"]
             ]
         ]
-#else
-        let expectedResult: NSDictionary = [
-            "key.results": [
-                ["key.name": "Swift.String"],
-                ["key.name": "__C.NSRange with unmangled suffix \"mD\""],
-                ["key.name": "__ObjC.Process"],
-                ["key.name": "SourceKittenFramework.Request"],
-                ["key.name": "Swift.Dictionary<Swift.String, Structure.SourceKitRepresentable>"]
-            ]
-        ]
-#endif
+
         let result = Request.demangle(names: mangledNames).send()
         XCTAssertEqual(toNSDictionary(result), expectedResult, "should demange names.")
     }
@@ -58,7 +42,7 @@ class RequestTests: XCTestCase {
         let result = Request.editorOpenInterface(
             name: UUID().uuidString,
             moduleName: "Swift",
-            group: .name("Assert"), // Choose a relative small group.
+            group: .name("Assert"), // Choose a relatively small group.
             synthesizedExtension: true,
             arguments: ["-sdk", sdkPath()]
         ).send()
@@ -69,7 +53,6 @@ class RequestTests: XCTestCase {
 extension RequestTests {
     static var allTests: [(String, (RequestTests) -> () throws -> Void)] {
         return [
-            ("testProtocolVersion", testProtocolVersion),
             ("testSwiftModuleGroups", testSwiftModuleGroups),
             ("testEditorOpenInterface", testEditorOpenInterface)
         ]
