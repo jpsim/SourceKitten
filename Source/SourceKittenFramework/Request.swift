@@ -303,7 +303,7 @@ extension Request {
         if offset == 0 {
             return nil
         }
-        sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue), offset)
+        sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue)!, offset)
         return try? Request.customRequest(request: cursorInfoRequest).failableSend()
     }
 }
@@ -517,7 +517,7 @@ extension Request {
         public let yaml: String
 
         public func sourcekitObject() -> sourcekitd_object_t {
-            return sourcekitd_request_create_from_yaml(yaml, nil)
+            return sourcekitd_request_create_from_yaml(yaml, nil)!
         }
     }
 
