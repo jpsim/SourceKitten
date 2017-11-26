@@ -14,7 +14,7 @@ public struct UID {
             switch string {
             {% for case in enum.cases %}
             case "{{ case.rawValue }}":
-                self = .{{ case.name|lowerFirstWord }}
+                self = .{{ case.name|lowerFirstWord|replace:"uiDs","uids" }}
             {% endfor %}
             default:
                 self = .unrecognized(string)
@@ -24,7 +24,7 @@ public struct UID {
         public var description: String {
             switch self {
             {% for case in enum.cases %}
-            case .{{ case.name|lowerFirstWord }}:
+            case .{{ case.name|lowerFirstWord|replace:"uiDs","uids" }}:
                 return "{{ case.rawValue }}"
             {% endfor %}
             case let .unrecognized(string):
@@ -35,6 +35,21 @@ public struct UID {
     {% endfor %}
 }
 
+// MARK: - Hashable
+{% for enum in types.all %}
+
+extension UID.{{ enum.name }}: Hashable {
+    public var hashValue: Int {
+        return description.hashValue
+    }
+
+    public static func == (lhs: UID.{{ enum.name }}, rhs: UID.{{ enum.name }}) -> Bool {
+        return lhs.description == rhs.description
+    }
+}
+{% endfor %}
+
+// MARK: -
 {% for enum in types.all %}
 
 public extension UID.{{ enum.name }} {

@@ -486,7 +486,7 @@ public struct UID {
             case "key.names":
                 self = .names
             case "key.uids":
-                self = .uiDs
+                self = .uids
             case "key.syntactic_only":
                 self = .syntacticOnly
             case "key.actionable":
@@ -760,7 +760,7 @@ public struct UID {
                 return "key.usingswiftargs"
             case .names:
                 return "key.names"
-            case .uiDs:
+            case .uids:
                 return "key.uids"
             case .syntacticOnly:
                 return "key.syntactic_only"
@@ -1957,6 +1957,39 @@ public struct UID {
     }
 }
 
+// MARK: - Hashable
+
+extension UID.Key: Hashable {
+    public var hashValue: Int {
+        return description.hashValue
+    }
+
+    public static func == (lhs: UID.Key, rhs: UID.Key) -> Bool {
+        return lhs.description == rhs.description
+    }
+}
+
+extension UID.Kind: Hashable {
+    public var hashValue: Int {
+        return description.hashValue
+    }
+
+    public static func == (lhs: UID.Kind, rhs: UID.Kind) -> Bool {
+        return lhs.description == rhs.description
+    }
+}
+
+extension UID.Request: Hashable {
+    public var hashValue: Int {
+        return description.hashValue
+    }
+
+    public static func == (lhs: UID.Request, rhs: UID.Request) -> Bool {
+        return lhs.description == rhs.description
+    }
+}
+
+// MARK: -
 
 public extension UID.Key {
     public static let count: Int = 134
