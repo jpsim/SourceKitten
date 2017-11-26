@@ -17,7 +17,7 @@ extension Request {
         public func sourcekitObject() -> sourcekitd_object_t {
             let requestBuilder = RequestBuilder(type: .editorFindUSR)
             requestBuilder[.sourceFile] = sourceFile
-            requestBuilder[.uSR] = usr
+            requestBuilder[.usr] = usr
             return requestBuilder.makeRequest()
         }
     }

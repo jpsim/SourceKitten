@@ -4,142 +4,276 @@
 
 import Swift
 
-public struct SourceKitDef {
+public struct UID {
 
-    public enum Key {
+    public enum Key: CustomStringConvertible {
+        /// key.version_major
         case versionMajor
+        /// key.version_minor
         case versionMinor
+        /// key.results
         case results
+        /// key.request
         case request
+        /// key.notification
         case notification
+        /// key.kind
         case kind
+        /// key.accessibility
         case accessLevel
+        /// key.setter_accessibility
         case setterAccessLevel
+        /// key.keyword
         case keyword
+        /// key.name
         case name
-        case uSR
+        /// key.usr
+        case usr
+        /// key.original_usr
         case originalUSR
+        /// key.default_implementation_of
         case defaultImplementationOf
+        /// key.interested_usr
         case interestedUSR
+        /// key.generic_params
         case genericParams
+        /// key.generic_requirements
         case genericRequirements
+        /// key.doc.full_as_xml
         case docFullAsXML
+        /// key.line
         case line
+        /// key.column
         case column
+        /// key.receiver_usr
         case receiverUSR
+        /// key.is_dynamic
         case isDynamic
+        /// key.filepath
         case filePath
+        /// key.module_interface_name
         case moduleInterfaceName
+        /// key.hash
         case hash
+        /// key.compilerargs
         case compilerArgs
+        /// key.severity
         case severity
+        /// key.offset
         case offset
+        /// key.length
         case length
+        /// key.sourcefile
         case sourceFile
+        /// key.sourcetext
         case sourceText
+        /// key.enablesyntaxmap
         case enableSyntaxMap
+        /// key.enablesubstructure
         case enableStructure
+        /// key.description
         case description
+        /// key.typename
         case typeName
+        /// key.runtime_name
         case runtimeName
+        /// key.selector_name
         case selectorName
+        /// key.annotated_decl
         case annotatedDecl
+        /// key.fully_annotated_decl
         case fullyAnnotatedDecl
+        /// key.doc.brief
         case docBrief
+        /// key.context
         case context
+        /// key.moduleimportdepth
         case moduleImportDepth
+        /// key.num_bytes_to_erase
         case numBytesToErase
+        /// key.not_recommended
         case notRecommended
+        /// key.annotations
         case annotations
+        /// key.diagnostic_stage
         case diagnosticStage
+        /// key.syntaxmap
         case syntaxMap
+        /// key.is_system
         case isSystem
+        /// key.related
         case related
+        /// key.inherits
         case inherits
+        /// key.conforms
         case conforms
+        /// key.extends
         case extends
+        /// key.dependencies
         case dependencies
+        /// key.entities
         case entities
+        /// key.nameoffset
         case nameOffset
+        /// key.namelength
         case nameLength
+        /// key.bodyoffset
         case bodyOffset
+        /// key.bodylength
         case bodyLength
+        /// key.throwoffset
         case throwOffset
+        /// key.throwlength
         case throwLength
+        /// key.docoffset
         case docOffset
+        /// key.doclength
         case docLength
+        /// key.is_local
         case isLocal
+        /// key.inheritedtypes
         case inheritedTypes
+        /// key.attributes
         case attributes
+        /// key.attribute
         case attribute
+        /// key.elements
         case elements
+        /// key.substructure
         case subStructure
+        /// key.ranges
         case ranges
+        /// key.fixits
         case fixits
+        /// key.diagnostics
         case diagnostics
+        /// key.editor.format.options
         case formatOptions
+        /// key.codecomplete.options
         case codeCompleteOptions
+        /// key.codecomplete.filterrules
         case filterRules
+        /// key.nextrequeststart
         case nextRequestStart
+        /// key.popular
         case popular
+        /// key.unpopular
         case unpopular
+        /// key.hide
         case hide
+        /// key.platform
         case platform
+        /// key.is_deprecated
         case isDeprecated
+        /// key.is_unavailable
         case isUnavailable
+        /// key.is_optional
         case isOptional
+        /// key.message
         case message
+        /// key.introduced
         case introduced
+        /// key.deprecated
         case deprecated
+        /// key.obsoleted
         case obsoleted
+        /// key.removecache
         case removeCache
+        /// key.typeinterface
         case typeInterface
+        /// key.typeusr
         case typeUsr
+        /// key.containertypeusr
         case containerTypeUsr
+        /// key.modulegroups
         case moduleGroups
+        /// key.basename
         case baseName
+        /// key.argnames
         case argNames
+        /// key.selectorpieces
         case selectorPieces
+        /// key.namekind
         case nameKind
+        /// key.localization_key
         case localizationKey
+        /// key.is_zero_arg_selector
         case isZeroArgSelector
+        /// key.swift_version
         case swiftVersion
+        /// key.enablediagnostics
         case enableDiagnostics
+        /// key.groupname
         case groupName
+        /// key.actionname
         case actionName
+        /// key.synthesizedextensions
         case synthesizedExtension
+        /// key.usingswiftargs
         case usingSwiftArgs
+        /// key.names
         case names
-        case uIDs
+        /// key.uids
+        case uids
+        /// key.syntactic_only
         case syntacticOnly
+        /// key.actionable
         case actionable
+        /// key.parent_loc
         case parentLoc
+        /// key.is_test_candidate
         case isTestCandidate
+        /// key.overrides
         case overrides
+        /// key.associated_usrs
         case associatedUSRs
+        /// key.modulename
         case moduleName
+        /// key.related_decls
         case relatedDecls
+        /// key.simplified
         case simplified
+        /// key.rangecontent
         case rangeContent
+        /// key.cancel_on_subsequent_request
         case cancelOnSubsequentRequest
+        /// key.renamelocations
         case renameLocations
+        /// key.locations
         case locations
+        /// key.nametype
         case nameType
+        /// key.newname
         case newName
+        /// key.categorizededits
         case categorizedEdits
+        /// key.categorizedranges
         case categorizedRanges
+        /// key.rangesworthnote
         case rangesWorthNote
+        /// key.edits
         case edits
+        /// key.endline
         case endLine
+        /// key.endcolumn
         case endColumn
+        /// key.argindex
         case argIndex
+        /// key.text
         case text
+        /// key.category
         case category
+        /// key.is_function_like
         case isFunctionLike
+        /// key.is_non_protocol_type
         case isNonProtocolType
+        /// key.refactor_actions
         case refactorActions
+        /// key.retrieve_refactor_actions
         case retrieveRefactorActions
+        /// key.actionuid
         case actionUID
+        /// key.actionunavailablereason
         case actionUnavailableReason
         case unrecognized(String)
 
@@ -166,7 +300,7 @@ public struct SourceKitDef {
             case "key.name":
                 self = .name
             case "key.usr":
-                self = .uSR
+                self = .usr
             case "key.original_usr":
                 self = .originalUSR
             case "key.default_implementation_of":
@@ -352,7 +486,7 @@ public struct SourceKitDef {
             case "key.names":
                 self = .names
             case "key.uids":
-                self = .uIDs
+                self = .uiDs
             case "key.syntactic_only":
                 self = .syntacticOnly
             case "key.actionable":
@@ -418,7 +552,7 @@ public struct SourceKitDef {
             }
         }
 
-        public var stringRepresentation: String {
+        public var description: String {
             switch self {
             case .versionMajor:
                 return "key.version_major"
@@ -440,7 +574,7 @@ public struct SourceKitDef {
                 return "key.keyword"
             case .name:
                 return "key.name"
-            case .uSR:
+            case .usr:
                 return "key.usr"
             case .originalUSR:
                 return "key.original_usr"
@@ -626,7 +760,7 @@ public struct SourceKitDef {
                 return "key.usingswiftargs"
             case .names:
                 return "key.names"
-            case .uIDs:
+            case .uiDs:
                 return "key.uids"
             case .syntacticOnly:
                 return "key.syntactic_only"
@@ -694,152 +828,298 @@ public struct SourceKitDef {
         }
     }
 
-    public enum Kind {
+    public enum Kind: CustomStringConvertible {
+        /// source.lang.swift.decl.function.free
         case declFunctionFree
+        /// source.lang.swift.ref.function.free
         case refFunctionFree
+        /// source.lang.swift.decl.function.method.instance
         case declMethodInstance
+        /// source.lang.swift.ref.function.method.instance
         case refMethodInstance
+        /// source.lang.swift.decl.function.method.static
         case declMethodStatic
+        /// source.lang.swift.ref.function.method.static
         case refMethodStatic
+        /// source.lang.swift.decl.function.method.class
         case declMethodClass
+        /// source.lang.swift.ref.function.method.class
         case refMethodClass
+        /// source.lang.swift.decl.function.accessor.getter
         case declAccessorGetter
+        /// source.lang.swift.ref.function.accessor.getter
         case refAccessorGetter
+        /// source.lang.swift.decl.function.accessor.setter
         case declAccessorSetter
+        /// source.lang.swift.ref.function.accessor.setter
         case refAccessorSetter
+        /// source.lang.swift.decl.function.accessor.willset
         case declAccessorWillSet
+        /// source.lang.swift.ref.function.accessor.willset
         case refAccessorWillSet
+        /// source.lang.swift.decl.function.accessor.didset
         case declAccessorDidSet
+        /// source.lang.swift.ref.function.accessor.didset
         case refAccessorDidSet
+        /// source.lang.swift.decl.function.accessor.address
         case declAccessorAddress
+        /// source.lang.swift.ref.function.accessor.address
         case refAccessorAddress
+        /// source.lang.swift.decl.function.accessor.mutableaddress
         case declAccessorMutableAddress
+        /// source.lang.swift.ref.function.accessor.mutableaddress
         case refAccessorMutableAddress
+        /// source.lang.swift.decl.function.constructor
         case declConstructor
+        /// source.lang.swift.ref.function.constructor
         case refConstructor
+        /// source.lang.swift.decl.function.destructor
         case declDestructor
+        /// source.lang.swift.ref.function.destructor
         case refDestructor
+        /// source.lang.swift.decl.function.operator.prefix
         case declFunctionPrefixOperator
+        /// source.lang.swift.decl.function.operator.postfix
         case declFunctionPostfixOperator
+        /// source.lang.swift.decl.function.operator.infix
         case declFunctionInfixOperator
+        /// source.lang.swift.ref.function.operator.prefix
         case refFunctionPrefixOperator
+        /// source.lang.swift.ref.function.operator.postfix
         case refFunctionPostfixOperator
+        /// source.lang.swift.ref.function.operator.infix
         case refFunctionInfixOperator
+        /// source.lang.swift.decl.precedencegroup
         case declPrecedenceGroup
+        /// source.lang.swift.ref.precedencegroup
         case refPrecedenceGroup
+        /// source.lang.swift.decl.function.subscript
         case declSubscript
+        /// source.lang.swift.ref.function.subscript
         case refSubscript
+        /// source.lang.swift.decl.var.global
         case declVarGlobal
+        /// source.lang.swift.ref.var.global
         case refVarGlobal
+        /// source.lang.swift.decl.var.instance
         case declVarInstance
+        /// source.lang.swift.ref.var.instance
         case refVarInstance
+        /// source.lang.swift.decl.var.static
         case declVarStatic
+        /// source.lang.swift.ref.var.static
         case refVarStatic
+        /// source.lang.swift.decl.var.class
         case declVarClass
+        /// source.lang.swift.ref.var.class
         case refVarClass
+        /// source.lang.swift.decl.var.local
         case declVarLocal
+        /// source.lang.swift.ref.var.local
         case refVarLocal
+        /// source.lang.swift.decl.var.parameter
         case declVarParam
+        /// source.lang.swift.decl.module
         case declModule
+        /// source.lang.swift.decl.class
         case declClass
+        /// source.lang.swift.ref.class
         case refClass
+        /// source.lang.swift.decl.struct
         case declStruct
+        /// source.lang.swift.ref.struct
         case refStruct
+        /// source.lang.swift.decl.enum
         case declEnum
+        /// source.lang.swift.ref.enum
         case refEnum
+        /// source.lang.swift.decl.enumcase
         case declEnumCase
+        /// source.lang.swift.decl.enumelement
         case declEnumElement
+        /// source.lang.swift.ref.enumelement
         case refEnumElement
+        /// source.lang.swift.decl.protocol
         case declProtocol
+        /// source.lang.swift.ref.protocol
         case refProtocol
+        /// source.lang.swift.decl.extension
         case declExtension
+        /// source.lang.swift.decl.extension.struct
         case declExtensionStruct
+        /// source.lang.swift.decl.extension.class
         case declExtensionClass
+        /// source.lang.swift.decl.extension.enum
         case declExtensionEnum
+        /// source.lang.swift.decl.extension.protocol
         case declExtensionProtocol
+        /// source.lang.swift.decl.associatedtype
         case declAssociatedType
+        /// source.lang.swift.ref.associatedtype
         case refAssociatedType
+        /// source.lang.swift.decl.typealias
         case declTypeAlias
+        /// source.lang.swift.ref.typealias
         case refTypeAlias
+        /// source.lang.swift.decl.generic_type_param
         case declGenericTypeParam
+        /// source.lang.swift.ref.generic_type_param
         case refGenericTypeParam
+        /// source.lang.swift.ref.module
         case refModule
+        /// source.lang.swift.stmt.foreach
         case stmtForEach
+        /// source.lang.swift.stmt.for
         case stmtFor
+        /// source.lang.swift.stmt.while
         case stmtWhile
+        /// source.lang.swift.stmt.repeatwhile
         case stmtRepeatWhile
+        /// source.lang.swift.stmt.if
         case stmtIf
+        /// source.lang.swift.stmt.guard
         case stmtGuard
+        /// source.lang.swift.stmt.switch
         case stmtSwitch
+        /// source.lang.swift.stmt.case
         case stmtCase
+        /// source.lang.swift.stmt.brace
         case stmtBrace
+        /// source.lang.swift.expr.call
         case exprCall
+        /// source.lang.swift.expr.argument
         case exprArg
+        /// source.lang.swift.expr.array
         case exprArray
+        /// source.lang.swift.expr.dictionary
         case exprDictionary
+        /// source.lang.swift.expr.object_literal
         case exprObjectLiteral
+        /// source.lang.swift.structure.elem.id
         case structureElemId
+        /// source.lang.swift.structure.elem.expr
         case structureElemExpr
+        /// source.lang.swift.structure.elem.init_expr
         case structureElemInitExpr
+        /// source.lang.swift.structure.elem.condition_expr
         case structureElemCondExpr
+        /// source.lang.swift.structure.elem.pattern
         case structureElemPattern
+        /// source.lang.swift.structure.elem.typeref
         case structureElemTypeRef
+        /// source.lang.swift.range.singlestatement
         case rangeSingleStatement
+        /// source.lang.swift.range.singleexpression
         case rangeSingleExpression
+        /// source.lang.swift.range.singledeclaration
         case rangeSingleDeclaration
+        /// source.lang.swift.range.multistatement
         case rangeMultiStatement
+        /// source.lang.swift.range.invalid
         case rangeInvalid
+        /// source.lang.name.kind.objc
         case nameObjc
+        /// source.lang.name.kind.swift
         case nameSwift
+        /// source.lang.swift.syntaxtype.keyword
         case keyword
+        /// source.lang.swift.syntaxtype.identifier
         case identifier
+        /// source.lang.swift.syntaxtype.typeidentifier
         case typeIdentifier
+        /// source.lang.swift.syntaxtype.buildconfig.keyword
         case buildConfigKeyword
+        /// source.lang.swift.syntaxtype.buildconfig.id
         case buildConfigId
+        /// source.lang.swift.syntaxtype.attribute.id
         case attributeId
+        /// source.lang.swift.syntaxtype.attribute.builtin
         case attributeBuiltin
+        /// source.lang.swift.syntaxtype.number
         case number
+        /// source.lang.swift.syntaxtype.string
         case string
+        /// source.lang.swift.syntaxtype.string_interpolation_anchor
         case stringInterpolation
+        /// source.lang.swift.syntaxtype.comment
         case comment
+        /// source.lang.swift.syntaxtype.doccomment
         case docComment
+        /// source.lang.swift.syntaxtype.doccomment.field
         case docCommentField
+        /// source.lang.swift.syntaxtype.comment.mark
         case commentMarker
+        /// source.lang.swift.syntaxtype.comment.url
         case commentURL
+        /// source.lang.swift.syntaxtype.placeholder
         case placeholder
+        /// source.lang.swift.syntaxtype.objectliteral
         case objectLiteral
+        /// source.lang.swift.expr
         case expr
+        /// source.lang.swift.stmt
         case stmt
+        /// source.lang.swift.type
         case type
+        /// source.lang.swift.foreach.sequence
         case forEachSequence
+        /// source.diagnostic.severity.note
         case diagNote
+        /// source.diagnostic.severity.warning
         case diagWarning
+        /// source.diagnostic.severity.error
         case diagError
+        /// source.codecompletion.everything
         case codeCompletionEverything
+        /// source.codecompletion.module
         case codeCompletionModule
+        /// source.codecompletion.keyword
         case codeCompletionKeyword
+        /// source.codecompletion.literal
         case codeCompletionLiteral
+        /// source.codecompletion.custom
         case codeCompletionCustom
+        /// source.codecompletion.identifier
         case codeCompletionIdentifier
+        /// source.codecompletion.description
         case codeCompletionDescription
+        /// source.edit.kind.active
         case editActive
+        /// source.edit.kind.inactive
         case editInactive
+        /// source.edit.kind.selector
         case editSelector
+        /// source.edit.kind.string
         case editString
+        /// source.edit.kind.comment
         case editComment
+        /// source.edit.kind.mismatch
         case editMismatch
+        /// source.edit.kind.unknown
         case editUnknown
+        /// source.refactoring.range.kind.basename
         case renameRangeBase
+        /// source.refactoring.range.kind.keyword-basename
         case renameRangeKeywordBase
+        /// source.refactoring.range.kind.parameter-and-whitespace
         case renameRangeParam
+        /// source.refactoring.range.kind.decl-argument-label
         case renameRangeDeclArgLabel
+        /// source.refactoring.range.kind.call-argument-label
         case renameRangeCallArgLabel
+        /// source.refactoring.range.kind.call-argument-colon
         case renameRangeCallArgColon
+        /// source.refactoring.range.kind.call-argument-combined
         case renameRangeCallArgCombined
+        /// source.refactoring.range.kind.selector-argument-label
         case renameRangeSelectorArgLabel
+        /// source.syntacticrename.definition
         case definition
+        /// source.syntacticrename.reference
         case reference
+        /// source.syntacticrename.call
         case call
+        /// source.syntacticrename.unknown
         case unknown
         case unrecognized(String)
 
@@ -1142,7 +1422,7 @@ public struct SourceKitDef {
             }
         }
 
-        public var stringRepresentation: String {
+        public var description: String {
             switch self {
             case .declFunctionFree:
                 return "source.lang.swift.decl.function.free"
@@ -1442,42 +1722,78 @@ public struct SourceKitDef {
         }
     }
 
-    public enum Request {
+    public enum Request: CustomStringConvertible {
+        /// source.request.protocol_version
         case protocolVersion
+        /// source.request.crash_exit
         case crashWithExit
+        /// source.request.demangle
         case demangle
+        /// source.request.mangle_simple_class
         case mangleSimpleClass
+        /// source.request.indexsource
         case index
+        /// source.request.docinfo
         case docInfo
+        /// source.request.codecomplete
         case codeComplete
+        /// source.request.codecomplete.open
         case codeCompleteOpen
+        /// source.request.codecomplete.close
         case codeCompleteClose
+        /// source.request.codecomplete.update
         case codeCompleteUpdate
+        /// source.request.codecomplete.cache.ondisk
         case codeCompleteCacheOnDisk
+        /// source.request.codecomplete.setpopularapi
         case codeCompleteSetPopularAPI
+        /// source.request.codecomplete.setcustom
         case codeCompleteSetCustom
+        /// source.request.cursorinfo
         case cursorInfo
+        /// source.request.rangeinfo
         case rangeInfo
+        /// source.request.relatedidents
         case relatedIdents
+        /// source.request.editor.open
         case editorOpen
+        /// source.request.editor.open.interface
         case editorOpenInterface
+        /// source.request.editor.open.interface.header
         case editorOpenHeaderInterface
+        /// source.request.editor.open.interface.swiftsource
         case editorOpenSwiftSourceInterface
+        /// source.request.editor.open.interface.swifttype
         case editorOpenSwiftTypeInterface
+        /// source.request.editor.extract.comment
         case editorExtractTextFromComment
+        /// source.request.editor.close
         case editorClose
+        /// source.request.editor.replacetext
         case editorReplaceText
+        /// source.request.editor.formattext
         case editorFormatText
+        /// source.request.editor.expand_placeholder
         case editorExpandPlaceholder
+        /// source.request.editor.find_usr
         case editorFindUSR
+        /// source.request.editor.find_interface_doc
         case editorFindInterfaceDoc
+        /// source.request.buildsettings.register
         case buildSettingsRegister
+        /// source.request.module.groups
         case moduleGroups
+        /// source.request.name.translation
         case nameTranslation
+        /// source.request.convert.markup.xml
         case markupToXML
+        /// source.request.syntacticrename
         case syntacticRename
+        /// source.request.find-syntactic-rename-ranges
         case findRenameRanges
+        /// source.request.find-local-rename-ranges
         case findLocalRenameRanges
+        /// source.request.semantic.refactoring
         case semanticRefactoring
         case unrecognized(String)
 
@@ -1560,7 +1876,7 @@ public struct SourceKitDef {
             }
         }
 
-        public var stringRepresentation: String {
+        public var description: String {
             switch self {
             case .protocolVersion:
                 return "source.request.protocol_version"
@@ -1642,14 +1958,14 @@ public struct SourceKitDef {
 }
 
 
-public extension SourceKitDef.Key {
+public extension UID.Key {
     public static let count: Int = 134
 }
 
-public extension SourceKitDef.Kind {
+public extension UID.Kind {
     public static let count: Int = 146
 }
 
-public extension SourceKitDef.Request {
+public extension UID.Request {
     public static let count: Int = 36
 }

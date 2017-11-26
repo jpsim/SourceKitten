@@ -38,7 +38,7 @@ extension Request {
             requestBuilder[.name] = name
             requestBuilder[.sourceFile] = sourceFile
             requestBuilder[.cancelOnSubsequentRequest] = cancelOnSubsequentRequest
-            requestBuilder[.uSR] = location.usr
+            requestBuilder[.usr] = location.usr
             requestBuilder[.offset] = location.offset
             requestBuilder[.length] = location.length
             requestBuilder[.retrieveRefactorActions] = location.retrieveRefactorActions

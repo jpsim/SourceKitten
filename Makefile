@@ -86,9 +86,9 @@ docker_test_4:
 	docker run -v `pwd`:`pwd` -w `pwd` --rm norionomura/swift:40 swift test
 
 generate_sourcekit_defines:
-	clang -E -P Templates/TypeDefs.h -o Templates/SourceKitDef.swift
-	sourcery --sources Templates/SourceKitDef.swift --templates Templates/AutoEnumNameFix.stencil --output Templates/SourceKitDef.swift
-	mv Templates/SourceKitDef.swift Source/SourceKittenFramework
+	clang -E -P Templates/TypeDefs.h -o Templates/UID.swift
+	sourcery --sources Templates/UID.swift --templates Templates/AutoEnumNameFix.stencil --output Templates/UID.swift
+	mv Templates/UID.swift Source/SourceKittenFramework
 
 # http://irace.me/swift-profiling/
 display_compilation_time:

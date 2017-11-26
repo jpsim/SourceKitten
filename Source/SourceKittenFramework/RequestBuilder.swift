@@ -14,13 +14,13 @@ import SourceKit
 public class RequestBuilder {
     private var dict: [sourcekitd_uid_t: sourcekitd_object_t] = [:]
 
-    public init(type: SourceKitDef.Request) {
-        dict[transform(key: "key.request")] = sourcekitd_request_uid_create(transform(key: type.stringRepresentation))
+    public init(type: UID.Request) {
+        dict[transform(key: "key.request")] = sourcekitd_request_uid_create(transform(key: type.description))
     }
 
-    public subscript(_ key: SourceKitDef.Key) -> Any? {
-        get { return dict[transform(key: key.stringRepresentation)] }
-        set { set(newValue, for: key.stringRepresentation) }
+    public subscript(_ key: UID.Key) -> Any? {
+        get { return dict[transform(key: key.description)] }
+        set { set(newValue, for: key.description) }
     }
 
     public func makeRequest() -> sourcekitd_object_t {

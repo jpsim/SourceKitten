@@ -1,26 +1,30 @@
 import Swift
 
-public struct SourceKitDef {
+public struct UID {
     {% for enum in types.all %}
 
-    public enum {{ enum.name }} {
-        {% for case in enum.cases %}case {{ case.name|lowerFirst }}
+    public enum {{ enum.name }}: CustomStringConvertible {
+        {% for case in enum.cases %}
+        /// {{ case.rawValue }}
+        case {{ case.name|lowerFirstWord|replace:"uiDs","uids" }}
         {% endfor %}
         case unrecognized(String)
 
         public init(string: String) {
             switch string {
-            {% for case in enum.cases %}case "{{ case.rawValue }}":
-                self = .{{ case.name|lowerFirst }}
+            {% for case in enum.cases %}
+            case "{{ case.rawValue }}":
+                self = .{{ case.name|lowerFirstWord }}
             {% endfor %}
             default:
                 self = .unrecognized(string)
             }
         }
 
-        public var stringRepresentation: String {
+        public var description: String {
             switch self {
-            {% for case in enum.cases %}case .{{ case.name|lowerFirst }}:
+            {% for case in enum.cases %}
+            case .{{ case.name|lowerFirstWord }}:
                 return "{{ case.rawValue }}"
             {% endfor %}
             case let .unrecognized(string):
@@ -33,7 +37,7 @@ public struct SourceKitDef {
 
 {% for enum in types.all %}
 
-public extension SourceKitDef.{{ enum.name }} {
+public extension UID.{{ enum.name }} {
     public static let count: Int = {{ enum.cases.count }}
 }
 {% endfor %}
