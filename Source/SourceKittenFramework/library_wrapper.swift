@@ -109,11 +109,7 @@ private let xcrunFindPath: String? = {
     var end = output.startIndex
     var contentsEnd = output.startIndex
     output.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: start..<start)
-#if swift(>=4.0)
-    let xcrunFindSwiftPath = String(output[start..<contentsEnd])
-#else
     let xcrunFindSwiftPath = output[start..<contentsEnd]
-#endif
     guard xcrunFindSwiftPath.hasSuffix("/usr/bin/swift") else {
         return nil
     }
@@ -132,7 +128,7 @@ private let applicationsDir: String? =
 private let userApplicationsDir: String? =
     NSSearchPathForDirectoriesInDomains(.applicationDirectory, .userDomainMask, true).first
 
-private extension String {
+private extension StringProtocol {
     var toolchainDir: String {
         return appending(pathComponent: "Toolchains/XcodeDefault.xctoolchain")
     }
@@ -150,14 +146,12 @@ private extension String {
     }
 
     func appending(pathComponent: String) -> String {
-        return URL(fileURLWithPath: self).appendingPathComponent(pathComponent).path
+        return URL(fileURLWithPath: String(self)).appendingPathComponent(pathComponent).path
     }
 
     func deleting(lastPathComponents numberOfPathComponents: Int) -> String {
-        var url = URL(fileURLWithPath: self)
-        for _ in 0..<numberOfPathComponents {
-            url = url.deletingLastPathComponent()
-        }
-        return url.path
+        return (0..<numberOfPathComponents).reduce(URL(fileURLWithPath: String(self)), { url, _ in
+            return url.deletingLastPathComponent()
+        }).path
     }
 }
