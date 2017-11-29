@@ -212,21 +212,9 @@ extension CXCursor {
             return nil
         }
 
-        // SourceKit with Xcode 9+ doesn't escape ampersands in its XML output, so let's sanitize the XML ourselves.
-        func fixAmpersandInXML(_ xml: String) -> String {
-            return xml.replacingOccurrences(of: " & ", with: " &amp; ")
-        }
-
         let cursorInfo = Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
-        if let docsXML = cursorInfo[SwiftDocKey.fullXMLDocs.rawValue] as? String,
-            case let fixedDocsXML = fixAmpersandInXML(docsXML),
-           let swiftDeclaration = SWXMLHash.parse(fixedDocsXML).children.first?["Declaration"].element?.text {
-                return swiftDeclaration
-        }
-
         if let annotatedDeclarationXML = cursorInfo[SwiftDocKey.annotatedDeclaration.rawValue] as? String,
-            case let fixedAnnotatedDeclarationXML = fixAmpersandInXML(annotatedDeclarationXML),
-           let swiftDeclaration = SWXMLHash.parse(fixedAnnotatedDeclarationXML).element?.recursiveText {
+           let swiftDeclaration = SWXMLHash.parse(annotatedDeclarationXML).element?.recursiveText {
                 return swiftDeclaration
         }
 

@@ -838,7 +838,7 @@
               "key.usr" : "c:objc(cs)RLMArray(cm)new"
             }
           ],
-          "key.swift_declaration" : "class RLMArray",
+          "key.swift_declaration" : "class RLMArray<RLMObjectType> : NSObject, RLMCollection, NSFastEnumeration where RLMObjectType : RLMObject",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMArray"
         },
@@ -5487,7 +5487,7 @@
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)objectsWithPredicate:\n    (nonnull NSPredicate *)predicate;",
               "key.parsed_scope.end" : 132,
               "key.parsed_scope.start" : 132,
-              "key.swift_declaration" : "func objects(with predicate: NSPredicate) -> RLMResults",
+              "key.swift_declaration" : "func objects(with predicate: NSPredicate) -> RLMResults<RLMObjectType>",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)objectsWithPredicate:"
             },
@@ -5532,7 +5532,7 @@
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)\nsortedResultsUsingProperty:(nonnull NSString *)property\n                 ascending:(BOOL)ascending;",
               "key.parsed_scope.end" : 142,
               "key.parsed_scope.start" : 142,
-              "key.swift_declaration" : "func sortedResults(usingProperty property: String, ascending: Bool) -> RLMResults",
+              "key.swift_declaration" : "func sortedResults(usingProperty property: String, ascending: Bool) -> RLMResults<RLMObjectType>",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)sortedResultsUsingProperty:ascending:"
             },
@@ -5568,7 +5568,7 @@
               "key.parsed_declaration" : "- (nonnull RLMResults<RLMObjectType> *)sortedResultsUsingDescriptors:\n    (nonnull NSArray *)properties;",
               "key.parsed_scope.end" : 151,
               "key.parsed_scope.start" : 151,
-              "key.swift_declaration" : "func sortedResults(usingDescriptors properties: [Any]) -> RLMResults",
+              "key.swift_declaration" : "func sortedResults(usingDescriptors properties: [Any]) -> RLMResults<RLMObjectType>",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)sortedResultsUsingDescriptors:"
             },
@@ -5790,7 +5790,7 @@
               "key.usr" : "c:objc(cs)RLMResults(cm)new"
             }
           ],
-          "key.swift_declaration" : "class RLMResults",
+          "key.swift_declaration" : "class RLMResults<RLMObjectType> : NSObject, RLMCollection, NSFastEnumeration where RLMObjectType : RLMObject",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMResults"
         }
