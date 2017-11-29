@@ -7,6 +7,7 @@ excluded:
   - Source/SourceKittenFramework/library_wrapper_Documentation.swift
   - Source/SourceKittenFramework/library_wrapper_Index.swift
   - Source/SourceKittenFramework/library_wrapper_sourcekitd.swift
+  - Source/SourceKittenFramework/SourceKitDef.swift
 opt_in_rules:
   - attributes
   - closure_end_indentation

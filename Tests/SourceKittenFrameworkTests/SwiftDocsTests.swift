@@ -13,6 +13,7 @@ import XCTest
 func compareJSONString(withFixtureNamed name: String,
                        jsonString: CustomStringConvertible,
                        rootDirectory: String = fixturesDirectory,
+                       overwrite: Bool = false,
                        file: StaticString = #file,
                        line: UInt = #line) {
     #if os(Linux)
@@ -30,9 +31,10 @@ func compareJSONString(withFixtureNamed name: String,
                                                                    withTemplate: "\"key\\.filepath\" : \"\",")
     #endif
 
-    let expectedFile = File(path: versionedExpectedFilename(for: name))!
+    let versionedFilename = versionedExpectedFilename(for: name)
+    print("Loading \(versionedFilename)")
+    let expectedFile = File(path: versionedFilename)!
 
-    let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
         return
