@@ -205,19 +205,19 @@ extension CXCursor {
             setUUIDString(uidString: swiftUUID, for: file)
             // Generate Swift interface, associating it with the UUID
             do {
-                _ = try Request.interface(file: file, uuid: swiftUUID, arguments: compilerArguments).failableSend()
+                _ = try Request.interface(file: file, uuid: swiftUUID, arguments: compilerArguments).send()
             } catch {
                 return nil
             }
         }
 
         guard let usr = usr(),
-            let findUSR = try? Request.findUSR(file: swiftUUID, usr: usr).failableSend(),
+            let findUSR = try? Request.findUSR(file: swiftUUID, usr: usr).send(),
             let usrOffset = findUSR[SwiftDocKey.offset.rawValue] as? Int64 else {
             return nil
         }
 
-        guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).failableSend() else {
+        guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send() else {
             return nil
         }
 

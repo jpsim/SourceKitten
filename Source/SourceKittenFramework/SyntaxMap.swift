@@ -50,7 +50,7 @@ public struct SyntaxMap {
     - throws: Request.Error
     */
     public init(file: File) throws {
-        self.init(sourceKitResponse: try Request.editorOpen(file: file).failableSend())
+        self.init(sourceKitResponse: try Request.editorOpen(file: file).send())
     }
 }
 

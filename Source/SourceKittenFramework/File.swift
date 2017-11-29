@@ -92,14 +92,14 @@ public final class File {
         guard let path = path else {
             return contents
         }
-        _ = try Request.editorOpen(file: self).failableSend()
+        _ = try Request.editorOpen(file: self).send()
         var newContents = [String]()
         var offset = 0
         for line in lines {
             let formatResponse = try Request.format(file: path,
                                                 line: Int64(line.index),
                                                 useTabs: useTabs,
-                                                indentWidth: Int64(indentWidth)).failableSend()
+                                                indentWidth: Int64(indentWidth)).send()
             let newText = formatResponse["key.sourcetext"] as! String
             newContents.append(newText)
 
@@ -108,7 +108,7 @@ public final class File {
             _ = try Request.replaceText(file: path,
                                     offset: Int64(line.byteRange.location + offset),
                                     length: Int64(line.byteRange.length - 1),
-                                    sourceText: newText).failableSend()
+                                    sourceText: newText).send()
             let oldLength = line.byteRange.length
             let newLength = newText.lengthOfBytes(using: .utf8)
             offset += 1 + newLength - oldLength

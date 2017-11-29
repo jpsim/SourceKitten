@@ -358,19 +358,26 @@ public enum Request {
             return nil
         }
         sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue)!, offset)
-        return try? Request.customRequest(request: cursorInfoRequest).failableSend()
+        return try? Request.customRequest(request: cursorInfoRequest).send()
     }
 
     /**
     Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
 
     - returns: SourceKit output as a dictionary.
+    - throws: Request.Error on fail ()
     */
-    @available(*, deprecated, renamed: "failableSend()")
-    public func send() -> [String: SourceKitRepresentable] {
-        initializeSourceKit
+    public func send() throws -> [String: SourceKitRepresentable] {
+        initializeSourceKitFailable
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response!) }
+        if sourcekitd_response_is_error(response!) {
+            let error = Request.Error(response: response!)
+            if case .connectionInterrupted = error {
+                _ = sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now() + 10)
+            }
+            throw error
+        }
         return fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
     }
 
@@ -415,18 +422,9 @@ public enum Request {
     - returns: SourceKit output as a dictionary.
     - throws: Request.Error on fail ()
     */
+    @available(*, deprecated, renamed: "send()")
     public func failableSend() throws -> [String: SourceKitRepresentable] {
-        initializeSourceKitFailable
-        let response = sourcekitd_send_request_sync(sourcekitObject)
-        defer { sourcekitd_response_dispose(response!) }
-        if sourcekitd_response_is_error(response!) {
-            let error = Request.Error(response: response!)
-            if case .connectionInterrupted = error {
-                _ = sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now() + 10)
-            }
-            throw error
-        }
-        return fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
+        return try send()
     }
 }
 
@@ -447,7 +445,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) t
     ]
     var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
     var values = Array(dict.values)
-    return try Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)!).failableSend()
+    return try Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)!).send()
 }
 
 extension String {

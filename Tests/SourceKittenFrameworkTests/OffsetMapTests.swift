@@ -19,7 +19,7 @@ class OffsetMapTests: XCTestCase {
             "get { return () }\nset {}\n}\n}"
         )
         let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap: try! SyntaxMap(file: file))
-        let response = file.process(dictionary: try! Request.editorOpen(file: file).failableSend(), cursorInfoRequest: nil)
+        let response = file.process(dictionary: try! Request.editorOpen(file: file).send(), cursorInfoRequest: nil)
         let offsetMap = file.makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: response)
         XCTAssertEqual(offsetMap, [46: 7], "should generate correct offset map of [(declaration offset): (parent offset)]")
     }
@@ -28,7 +28,7 @@ class OffsetMapTests: XCTestCase {
         // Struct declarations are parsed by SourceKit, so OffsetMap shouldn't contain its offset.
         let file = File(contents: "/// Doc Comment\nstruct DocumentedStruct {}")
         let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap: try! SyntaxMap(file: file))
-        let response = file.process(dictionary: try! Request.editorOpen(file: file).failableSend(), cursorInfoRequest: nil)
+        let response = file.process(dictionary: try! Request.editorOpen(file: file).send(), cursorInfoRequest: nil)
         let offsetMap = file.makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: response)
         XCTAssertEqual(offsetMap, [:], "should generate empty offset map")
     }
