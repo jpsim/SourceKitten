@@ -11,7 +11,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix Swift declarations when generating Objective-C docs for generic types.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ## 0.18.4
 
