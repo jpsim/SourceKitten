@@ -24,7 +24,7 @@
 /**
  The year the musician was born. i.e. 1926
  */
-@property (nonatomic, readonly) NSUInteger birthyear;
+@property (nonatomic, readonly) NSUInteger birthyear NS_SWIFT_NAME(year);
 
 #pragma mark - Initializers-hyphenated
 
@@ -40,6 +40,6 @@
  
  @return          An initialized JAZMusician instance.
  */
-- (instancetype)initWithName:(NSString *)name birthyear:(NSUInteger)birthyear;
+- (instancetype)initWithName:(NSString *)name birthyear:(NSUInteger)birthyear NS_SWIFT_NAME(init(name:year:));
 
 @end
