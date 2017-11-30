@@ -45,6 +45,7 @@
               "key.parsed_scope.end" : 17,
               "key.parsed_scope.start" : 17,
               "key.swift_declaration" : "class var isMusician: Bool { get set }",
+              "key.swift_name" : "isMusician",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)JAZMusician(cpy)isMusician"
             },
@@ -64,6 +65,7 @@
               "key.parsed_scope.end" : 22,
               "key.parsed_scope.start" : 22,
               "key.swift_declaration" : "var name: String! { get }",
+              "key.swift_name" : "name",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)JAZMusician(py)name"
             },
@@ -82,7 +84,8 @@
               "key.parsed_declaration" : "@property (readonly, nonatomic) NSUInteger birthyear;",
               "key.parsed_scope.end" : 27,
               "key.parsed_scope.start" : 27,
-              "key.swift_declaration" : "var birthyear: UInt { get }",
+              "key.swift_declaration" : "var year: UInt { get }",
+              "key.swift_name" : "year",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)JAZMusician(py)birthyear"
             },
@@ -137,12 +140,14 @@
               "key.parsed_declaration" : "- (instancetype)initWithName:(NSString *)name birthyear:(NSUInteger)birthyear;",
               "key.parsed_scope.end" : 43,
               "key.parsed_scope.start" : 43,
-              "key.swift_declaration" : "init!(name: String!, birthyear: UInt)",
+              "key.swift_declaration" : "init!(name: String!, year birthyear: UInt)",
+              "key.swift_name" : "init(name:year:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)JAZMusician(im)initWithName:birthyear:"
             }
           ],
           "key.swift_declaration" : "class JAZMusician : NSObject",
+          "key.swift_name" : "JAZMusician",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)JAZMusician"
         }

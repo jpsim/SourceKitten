@@ -45,6 +45,7 @@
               "key.parsed_scope.end" : 69,
               "key.parsed_scope.start" : 69,
               "key.swift_declaration" : "var count: UInt { get }",
+              "key.swift_name" : "count",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(py)count"
             },
@@ -64,6 +65,7 @@
               "key.parsed_scope.end" : 74,
               "key.parsed_scope.start" : 74,
               "key.swift_declaration" : "var objectClassName: String { get }",
+              "key.swift_name" : "objectClassName",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(py)objectClassName"
             },
@@ -83,6 +85,7 @@
               "key.parsed_scope.end" : 79,
               "key.parsed_scope.start" : 79,
               "key.swift_declaration" : "var realm: RLMRealm? { get }",
+              "key.swift_name" : "realm",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(py)realm"
             },
@@ -102,6 +105,7 @@
               "key.parsed_scope.end" : 84,
               "key.parsed_scope.start" : 84,
               "key.swift_declaration" : "var isInvalidated: Bool { get }",
+              "key.swift_name" : "isInvalidated",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(py)invalidated"
             },
@@ -148,6 +152,7 @@
               "key.parsed_scope.end" : 95,
               "key.parsed_scope.start" : 95,
               "key.swift_declaration" : "func object(at index: UInt) -> RLMObjectType",
+              "key.swift_name" : "object(at:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)objectAtIndex:"
             },
@@ -173,6 +178,7 @@
               "key.parsed_scope.end" : 104,
               "key.parsed_scope.start" : 104,
               "key.swift_declaration" : "func firstObject() -> RLMObjectType?",
+              "key.swift_name" : "firstObject()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)firstObject"
             },
@@ -198,6 +204,7 @@
               "key.parsed_scope.end" : 113,
               "key.parsed_scope.start" : 113,
               "key.swift_declaration" : "func lastObject() -> RLMObjectType?",
+              "key.swift_name" : "lastObject()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)lastObject"
             },
@@ -238,6 +245,7 @@
               "key.parsed_scope.end" : 126,
               "key.parsed_scope.start" : 126,
               "key.swift_declaration" : "func add(_ object: RLMObjectType)",
+              "key.swift_name" : "add(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)addObject:"
             },
@@ -268,6 +276,7 @@
               "key.parsed_scope.end" : 136,
               "key.parsed_scope.start" : 136,
               "key.swift_declaration" : "func addObjects(_ objects: NSFastEnumeration)",
+              "key.swift_name" : "addObjects(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)addObjects:"
             },
@@ -307,6 +316,7 @@
               "key.parsed_scope.end" : 148,
               "key.parsed_scope.start" : 148,
               "key.swift_declaration" : "func insert(_ anObject: RLMObjectType, at index: UInt)",
+              "key.swift_name" : "insert(_:at:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)insertObject:atIndex:"
             },
@@ -337,6 +347,7 @@
               "key.parsed_scope.end" : 159,
               "key.parsed_scope.start" : 159,
               "key.swift_declaration" : "func removeObject(at index: UInt)",
+              "key.swift_name" : "removeObject(at:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)removeObjectAtIndex:"
             },
@@ -356,6 +367,7 @@
               "key.parsed_scope.end" : 166,
               "key.parsed_scope.start" : 166,
               "key.swift_declaration" : "func removeLastObject()",
+              "key.swift_name" : "removeLastObject()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)removeLastObject"
             },
@@ -375,6 +387,7 @@
               "key.parsed_scope.end" : 173,
               "key.parsed_scope.start" : 173,
               "key.swift_declaration" : "func removeAllObjects()",
+              "key.swift_name" : "removeAllObjects()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)removeAllObjects"
             },
@@ -414,6 +427,7 @@
               "key.parsed_scope.end" : 185,
               "key.parsed_scope.start" : 185,
               "key.swift_declaration" : "func replaceObject(at index: UInt, with anObject: RLMObjectType)",
+              "key.swift_name" : "replaceObject(at:with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)replaceObjectAtIndex:withObject:"
             },
@@ -453,6 +467,7 @@
               "key.parsed_scope.end" : 198,
               "key.parsed_scope.start" : 198,
               "key.swift_declaration" : "func moveObject(at sourceIndex: UInt, to destinationIndex: UInt)",
+              "key.swift_name" : "moveObject(at:to:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)moveObjectAtIndex:toIndex:"
             },
@@ -492,6 +507,7 @@
               "key.parsed_scope.end" : 210,
               "key.parsed_scope.start" : 210,
               "key.swift_declaration" : "func exchangeObject(at index1: UInt, withObjectAt index2: UInt)",
+              "key.swift_name" : "exchangeObject(at:withObjectAt:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)exchangeObjectAtIndex:withObjectAtIndex:"
             },
@@ -532,6 +548,7 @@
               "key.parsed_scope.end" : 221,
               "key.parsed_scope.start" : 221,
               "key.swift_declaration" : "func index(of object: RLMObjectType) -> UInt",
+              "key.swift_name" : "index(of:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)indexOfObject:"
             },
@@ -603,6 +620,7 @@
               "key.parsed_scope.end" : 239,
               "key.parsed_scope.start" : 239,
               "key.swift_declaration" : "func indexOfObject(with predicate: NSPredicate) -> UInt",
+              "key.swift_name" : "indexOfObject(with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)indexOfObjectWithPredicate:"
             },
@@ -674,6 +692,7 @@
               "key.parsed_scope.end" : 257,
               "key.parsed_scope.start" : 257,
               "key.swift_declaration" : "func objects(with predicate: NSPredicate) -> RLMResults",
+              "key.swift_name" : "objects(with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)objectsWithPredicate:"
             },
@@ -719,6 +738,7 @@
               "key.parsed_scope.end" : 267,
               "key.parsed_scope.start" : 267,
               "key.swift_declaration" : "func sortedResults(usingProperty property: String, ascending: Bool) -> RLMResults",
+              "key.swift_name" : "sortedResults(usingProperty:ascending:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)sortedResultsUsingProperty:ascending:"
             },
@@ -755,6 +775,7 @@
               "key.parsed_scope.end" : 276,
               "key.parsed_scope.start" : 276,
               "key.swift_declaration" : "func sortedResults(usingDescriptors properties: [Any]) -> RLMResults",
+              "key.swift_name" : "sortedResults(usingDescriptors:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)sortedResultsUsingDescriptors:"
             },
@@ -772,6 +793,7 @@
               "key.parsed_scope.end" : 278,
               "key.parsed_scope.start" : 278,
               "key.swift_declaration" : "subscript(index: UInt) -> RLMObjectType { get set }",
+              "key.swift_name" : "subscript(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)objectAtIndexedSubscript:"
             },
@@ -839,6 +861,7 @@
             }
           ],
           "key.swift_declaration" : "class RLMArray<RLMObjectType> : NSObject, RLMCollection, NSFastEnumeration where RLMObjectType : RLMObject",
+          "key.swift_name" : "RLMArray",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMArray"
         },
@@ -884,6 +907,7 @@
               "key.parsed_scope.end" : 310,
               "key.parsed_scope.start" : 310,
               "key.swift_declaration" : "var property: String { get }",
+              "key.swift_name" : "property",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMSortDescriptor(py)property"
             },
@@ -903,6 +927,7 @@
               "key.parsed_scope.end" : 315,
               "key.parsed_scope.start" : 315,
               "key.swift_declaration" : "var ascending: Bool { get }",
+              "key.swift_name" : "ascending",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMSortDescriptor(py)ascending"
             },
@@ -932,6 +957,7 @@
               "key.parsed_scope.end" : 322,
               "key.parsed_scope.start" : 322,
               "key.swift_declaration" : "convenience init(property propertyName: String, ascending: Bool)",
+              "key.swift_name" : "init(property:ascending:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMSortDescriptor(cm)sortDescriptorWithProperty:ascending:"
             },
@@ -951,11 +977,13 @@
               "key.parsed_scope.end" : 327,
               "key.parsed_scope.start" : 327,
               "key.swift_declaration" : "func reversed() -> Self",
+              "key.swift_name" : "reversed()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMSortDescriptor(im)reversedSortDescriptor"
             }
           ],
           "key.swift_declaration" : "class RLMSortDescriptor : NSObject",
+          "key.swift_name" : "RLMSortDescriptor",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMSortDescriptor"
         },
@@ -989,6 +1017,7 @@
               "key.parsed_scope.end" : 334,
               "key.parsed_scope.start" : 334,
               "key.swift_declaration" : "init(objectClassName: String)",
+              "key.swift_name" : "init(objectClassName:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMArray(im)initWithObjectClassName:"
             }
@@ -1045,6 +1074,7 @@
               "key.parsed_scope.end" : 37,
               "key.parsed_scope.start" : 37,
               "key.swift_declaration" : "var count: UInt { get }",
+              "key.swift_name" : "count",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(py)count"
             },
@@ -1064,6 +1094,7 @@
               "key.parsed_scope.end" : 42,
               "key.parsed_scope.start" : 42,
               "key.swift_declaration" : "var objectClassName: String { get }",
+              "key.swift_name" : "objectClassName",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(py)objectClassName"
             },
@@ -1083,6 +1114,7 @@
               "key.parsed_scope.end" : 47,
               "key.parsed_scope.start" : 47,
               "key.swift_declaration" : "var realm: RLMRealm { get }",
+              "key.swift_name" : "realm",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(py)realm"
             },
@@ -1129,6 +1161,7 @@
               "key.parsed_scope.end" : 58,
               "key.parsed_scope.start" : 58,
               "key.swift_declaration" : "func object(at index: UInt) -> Any",
+              "key.swift_name" : "object(at:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)objectAtIndex:"
             },
@@ -1154,6 +1187,7 @@
               "key.parsed_scope.end" : 67,
               "key.parsed_scope.start" : 67,
               "key.swift_declaration" : "func firstObject() -> Any?",
+              "key.swift_name" : "firstObject()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)firstObject"
             },
@@ -1179,6 +1213,7 @@
               "key.parsed_scope.end" : 76,
               "key.parsed_scope.start" : 76,
               "key.swift_declaration" : "func lastObject() -> Any?",
+              "key.swift_name" : "lastObject()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)lastObject"
             },
@@ -1219,6 +1254,7 @@
               "key.parsed_scope.end" : 87,
               "key.parsed_scope.start" : 87,
               "key.swift_declaration" : "func index(of object: RLMObject) -> UInt",
+              "key.swift_name" : "index(of:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)indexOfObject:"
             },
@@ -1290,6 +1326,7 @@
               "key.parsed_scope.end" : 105,
               "key.parsed_scope.start" : 105,
               "key.swift_declaration" : "func indexOfObject(with predicate: NSPredicate) -> UInt",
+              "key.swift_name" : "indexOfObject(with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)indexOfObjectWithPredicate:"
             },
@@ -1361,6 +1398,7 @@
               "key.parsed_scope.end" : 123,
               "key.parsed_scope.start" : 123,
               "key.swift_declaration" : "func objects(with predicate: NSPredicate) -> RLMResults",
+              "key.swift_name" : "objects(with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)objectsWithPredicate:"
             },
@@ -1406,6 +1444,7 @@
               "key.parsed_scope.end" : 133,
               "key.parsed_scope.start" : 133,
               "key.swift_declaration" : "func sortedResults(usingProperty property: String, ascending: Bool) -> RLMResults",
+              "key.swift_name" : "sortedResults(usingProperty:ascending:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)sortedResultsUsingProperty:ascending:"
             },
@@ -1442,6 +1481,7 @@
               "key.parsed_scope.end" : 142,
               "key.parsed_scope.start" : 142,
               "key.swift_declaration" : "func sortedResults(usingDescriptors properties: [Any]) -> RLMResults",
+              "key.swift_name" : "sortedResults(usingDescriptors:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)sortedResultsUsingDescriptors:"
             },
@@ -1459,6 +1499,7 @@
               "key.parsed_scope.end" : 144,
               "key.parsed_scope.start" : 144,
               "key.swift_declaration" : "subscript(index: UInt) -> Any { get }",
+              "key.swift_name" : "subscript(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)objectAtIndexedSubscript:"
             },
@@ -1495,6 +1536,7 @@
               "key.parsed_scope.end" : 153,
               "key.parsed_scope.start" : 153,
               "key.swift_declaration" : "func value(forKey key: String) -> Any?",
+              "key.swift_name" : "value(forKey:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)valueForKey:"
             },
@@ -1534,11 +1576,13 @@
               "key.parsed_scope.end" : 163,
               "key.parsed_scope.start" : 163,
               "key.swift_declaration" : "func setValue(_ value: Any?, forKey key: String)",
+              "key.swift_name" : "setValue(_:forKey:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(pl)RLMCollection(im)setValue:forKey:"
             }
           ],
           "key.swift_declaration" : "protocol RLMCollection : NSFastEnumeration",
+          "key.swift_name" : "RLMCollection",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(pl)RLMCollection"
         }
@@ -1619,6 +1663,7 @@
               "key.parsed_scope.end" : 34,
               "key.parsed_scope.start" : 34,
               "key.swift_declaration" : "case int = 0",
+              "key.swift_name" : "int",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeInt"
             },
@@ -1638,6 +1683,7 @@
               "key.parsed_scope.end" : 36,
               "key.parsed_scope.start" : 36,
               "key.swift_declaration" : "case bool = 1",
+              "key.swift_name" : "bool",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeBool"
             },
@@ -1657,6 +1703,7 @@
               "key.parsed_scope.end" : 38,
               "key.parsed_scope.start" : 38,
               "key.swift_declaration" : "case float = 9",
+              "key.swift_name" : "float",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeFloat"
             },
@@ -1676,6 +1723,7 @@
               "key.parsed_scope.end" : 40,
               "key.parsed_scope.start" : 40,
               "key.swift_declaration" : "case double = 10",
+              "key.swift_name" : "double",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeDouble"
             },
@@ -1705,6 +1753,7 @@
               "key.parsed_scope.end" : 45,
               "key.parsed_scope.start" : 45,
               "key.swift_declaration" : "case string = 2",
+              "key.swift_name" : "string",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeString"
             },
@@ -1724,6 +1773,7 @@
               "key.parsed_scope.end" : 47,
               "key.parsed_scope.start" : 47,
               "key.swift_declaration" : "case data = 4",
+              "key.swift_name" : "data",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeData"
             },
@@ -1743,6 +1793,7 @@
               "key.parsed_scope.end" : 49,
               "key.parsed_scope.start" : 49,
               "key.swift_declaration" : "case any = 6",
+              "key.swift_name" : "any",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeAny"
             },
@@ -1762,6 +1813,7 @@
               "key.parsed_scope.end" : 51,
               "key.parsed_scope.start" : 51,
               "key.swift_declaration" : "case date = 7",
+              "key.swift_name" : "date",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeDate"
             },
@@ -1791,6 +1843,7 @@
               "key.parsed_scope.end" : 56,
               "key.parsed_scope.start" : 56,
               "key.swift_declaration" : "case object = 12",
+              "key.swift_name" : "object",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeObject"
             },
@@ -1810,11 +1863,13 @@
               "key.parsed_scope.end" : 58,
               "key.parsed_scope.start" : 58,
               "key.swift_declaration" : "case array = 13",
+              "key.swift_name" : "array",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMPropertyType@RLMPropertyTypeArray"
             }
           ],
           "key.swift_declaration" : "enum RLMPropertyType : Int32",
+          "key.swift_name" : "RLMPropertyType",
           "key.unavailable_message" : "",
           "key.usr" : "c:@E@RLMPropertyType"
         },
@@ -1868,6 +1923,7 @@
               "key.parsed_scope.end" : 66,
               "key.parsed_scope.start" : 66,
               "key.swift_declaration" : "case fail = 1",
+              "key.swift_name" : "fail",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMError@RLMErrorFail"
             },
@@ -1887,6 +1943,7 @@
               "key.parsed_scope.end" : 68,
               "key.parsed_scope.start" : 68,
               "key.swift_declaration" : "case fileAccessError = 2",
+              "key.swift_name" : "fileAccessError",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMError@RLMErrorFileAccessError"
             },
@@ -1906,6 +1963,7 @@
               "key.parsed_scope.end" : 71,
               "key.parsed_scope.start" : 71,
               "key.swift_declaration" : "case filePermissionDenied = 3",
+              "key.swift_name" : "filePermissionDenied",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMError@RLMErrorFilePermissionDenied"
             },
@@ -1925,6 +1983,7 @@
               "key.parsed_scope.end" : 73,
               "key.parsed_scope.start" : 73,
               "key.swift_declaration" : "case fileExists = 4",
+              "key.swift_name" : "fileExists",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMError@RLMErrorFileExists"
             },
@@ -1944,6 +2003,7 @@
               "key.parsed_scope.end" : 75,
               "key.parsed_scope.start" : 75,
               "key.swift_declaration" : "case fileNotFound = 5",
+              "key.swift_name" : "fileNotFound",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMError@RLMErrorFileNotFound"
             },
@@ -1963,11 +2023,13 @@
               "key.parsed_scope.end" : 79,
               "key.parsed_scope.start" : 79,
               "key.swift_declaration" : "case incompatibleLockFile = 8",
+              "key.swift_name" : "incompatibleLockFile",
               "key.unavailable_message" : "",
               "key.usr" : "c:@E@RLMError@RLMErrorIncompatibleLockFile"
             }
           ],
           "key.swift_declaration" : "enum RLMError : Int",
+          "key.swift_name" : "RLMError",
           "key.unavailable_message" : "",
           "key.usr" : "c:@E@RLMError"
         },
@@ -2007,6 +2069,7 @@
           "key.parsed_scope.end" : 94,
           "key.parsed_scope.start" : 94,
           "key.swift_declaration" : "static let RLMRealmRefreshRequired: NSNotification.Name",
+          "key.swift_name" : "RLMRealmRefreshRequired",
           "key.unavailable_message" : "",
           "key.usr" : "c:@RLMRealmRefreshRequiredNotification"
         },
@@ -2026,6 +2089,7 @@
           "key.parsed_scope.end" : 107,
           "key.parsed_scope.start" : 107,
           "key.swift_declaration" : "static let RLMRealmDidChange: NSNotification.Name",
+          "key.swift_name" : "RLMRealmDidChange",
           "key.unavailable_message" : "",
           "key.usr" : "c:@RLMRealmDidChangeNotification"
         },
@@ -2055,6 +2119,7 @@
           "key.parsed_scope.end" : 112,
           "key.parsed_scope.start" : 112,
           "key.swift_declaration" : "let RLMNotVersioned: UInt64",
+          "key.swift_name" : "RLMNotVersioned",
           "key.unavailable_message" : "",
           "key.usr" : "c:@RLMNotVersioned"
         },
@@ -2074,6 +2139,7 @@
           "key.parsed_scope.end" : 115,
           "key.parsed_scope.start" : 115,
           "key.swift_declaration" : "let RLMErrorDomain: String",
+          "key.swift_name" : "RLMErrorDomain",
           "key.unavailable_message" : "",
           "key.usr" : "c:@RLMErrorDomain"
         },
@@ -2093,6 +2159,7 @@
           "key.parsed_scope.end" : 118,
           "key.parsed_scope.start" : 118,
           "key.swift_declaration" : "let RLMExceptionName: String",
+          "key.swift_name" : "RLMExceptionName",
           "key.unavailable_message" : "",
           "key.usr" : "c:@RLMExceptionName"
         },
@@ -2112,6 +2179,7 @@
           "key.parsed_scope.end" : 121,
           "key.parsed_scope.start" : 121,
           "key.swift_declaration" : "let RLMRealmVersionKey: String",
+          "key.swift_name" : "RLMRealmVersionKey",
           "key.unavailable_message" : "",
           "key.usr" : "c:@RLMRealmVersionKey"
         },
@@ -2131,6 +2199,7 @@
           "key.parsed_scope.end" : 124,
           "key.parsed_scope.start" : 124,
           "key.swift_declaration" : "let RLMRealmCoreVersionKey: String",
+          "key.swift_name" : "RLMRealmCoreVersionKey",
           "key.unavailable_message" : "",
           "key.usr" : "c:@RLMRealmCoreVersionKey"
         },
@@ -2150,6 +2219,7 @@
           "key.parsed_scope.end" : 127,
           "key.parsed_scope.start" : 127,
           "key.swift_declaration" : "let RLMInvalidatedKey: String",
+          "key.swift_name" : "RLMInvalidatedKey",
           "key.unavailable_message" : "",
           "key.usr" : "c:@RLMInvalidatedKey"
         }
@@ -2174,6 +2244,7 @@
           "key.parsed_scope.end" : 28,
           "key.parsed_scope.start" : 28,
           "key.swift_declaration" : "typealias RLMObjectMigrationBlock = (RLMObject?, RLMObject?) -> Void",
+          "key.swift_name" : "RLMObjectMigrationBlock",
           "key.unavailable_message" : "",
           "key.usr" : "c:RLMMigration.h@T@RLMObjectMigrationBlock"
         },
@@ -2219,6 +2290,7 @@
               "key.parsed_scope.end" : 44,
               "key.parsed_scope.start" : 44,
               "key.swift_declaration" : "var oldSchema: RLMSchema { get }",
+              "key.swift_name" : "oldSchema",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMMigration(py)oldSchema"
             },
@@ -2238,6 +2310,7 @@
               "key.parsed_scope.end" : 50,
               "key.parsed_scope.start" : 50,
               "key.swift_declaration" : "var newSchema: RLMSchema { get }",
+              "key.swift_name" : "newSchema",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMMigration(py)newSchema"
             },
@@ -2278,6 +2351,7 @@
               "key.parsed_scope.end" : 65,
               "key.parsed_scope.start" : 65,
               "key.swift_declaration" : "func enumerateObjects(_ className: String, block: @escaping RLMObjectMigrationBlock)",
+              "key.swift_name" : "enumerateObjects(_:block:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMMigration(im)enumerateObjects:block:"
             },
@@ -2317,6 +2391,7 @@
               "key.parsed_scope.end" : 78,
               "key.parsed_scope.start" : 78,
               "key.swift_declaration" : "func createObject(_ className: String, withValue value: Any) -> RLMObject",
+              "key.swift_name" : "createObject(_:withValue:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMMigration(im)createObject:withValue:"
             },
@@ -2347,6 +2422,7 @@
               "key.parsed_scope.end" : 85,
               "key.parsed_scope.start" : 85,
               "key.swift_declaration" : "func delete(_ object: RLMObject)",
+              "key.swift_name" : "delete(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMMigration(im)deleteObject:"
             },
@@ -2383,11 +2459,13 @@
               "key.parsed_scope.end" : 96,
               "key.parsed_scope.start" : 96,
               "key.swift_declaration" : "func deleteData(forClassName name: String) -> Bool",
+              "key.swift_name" : "deleteData(forClassName:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMMigration(im)deleteDataForClassName:"
             }
           ],
           "key.swift_declaration" : "class RLMMigration : NSObject",
+          "key.swift_name" : "RLMMigration",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMMigration"
         }
@@ -2440,6 +2518,7 @@
               "key.parsed_scope.end" : 99,
               "key.parsed_scope.start" : 99,
               "key.swift_declaration" : "init()",
+              "key.swift_name" : "init()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(im)init"
             },
@@ -2459,6 +2538,7 @@
               "key.parsed_scope.end" : 110,
               "key.parsed_scope.start" : 110,
               "key.swift_declaration" : "init(value: Any)",
+              "key.swift_name" : "init(value:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(im)initWithValue:"
             },
@@ -2484,6 +2564,7 @@
               "key.parsed_scope.end" : 121,
               "key.parsed_scope.start" : 121,
               "key.swift_declaration" : "class func className() -> String",
+              "key.swift_name" : "className()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)className"
             },
@@ -2514,6 +2595,7 @@
               "key.parsed_scope.end" : 141,
               "key.parsed_scope.start" : 141,
               "key.swift_declaration" : "class func createInDefaultRealm(withValue value: Any) -> Self",
+              "key.swift_name" : "createInDefaultRealm(withValue:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)createInDefaultRealmWithValue:"
             },
@@ -2553,6 +2635,7 @@
               "key.parsed_scope.end" : 162,
               "key.parsed_scope.start" : 162,
               "key.swift_declaration" : "class func create(in realm: RLMRealm, withValue value: Any) -> Self",
+              "key.swift_name" : "create(in:withValue:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)createInRealm:withValue:"
             },
@@ -2583,6 +2666,7 @@
               "key.parsed_scope.end" : 185,
               "key.parsed_scope.start" : 185,
               "key.swift_declaration" : "class func createOrUpdateInDefaultRealm(withValue value: Any) -> Self",
+              "key.swift_name" : "createOrUpdateInDefaultRealm(withValue:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)createOrUpdateInDefaultRealmWithValue:"
             },
@@ -2622,6 +2706,7 @@
               "key.parsed_scope.end" : 209,
               "key.parsed_scope.start" : 209,
               "key.swift_declaration" : "class func createOrUpdate(in realm: RLMRealm, withValue value: Any) -> Self",
+              "key.swift_name" : "createOrUpdate(in:withValue:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)createOrUpdateInRealm:withValue:"
             },
@@ -2651,6 +2736,7 @@
               "key.parsed_scope.end" : 216,
               "key.parsed_scope.start" : 216,
               "key.swift_declaration" : "var realm: RLMRealm? { get }",
+              "key.swift_name" : "realm",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(py)realm"
             },
@@ -2670,6 +2756,7 @@
               "key.parsed_scope.end" : 221,
               "key.parsed_scope.start" : 221,
               "key.swift_declaration" : "var objectSchema: RLMObjectSchema { get }",
+              "key.swift_name" : "objectSchema",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(py)objectSchema"
             },
@@ -2689,6 +2776,7 @@
               "key.parsed_scope.end" : 229,
               "key.parsed_scope.start" : 229,
               "key.swift_declaration" : "var isInvalidated: Bool { get }",
+              "key.swift_name" : "isInvalidated",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(py)invalidated"
             },
@@ -2724,6 +2812,7 @@
               "key.parsed_scope.end" : 239,
               "key.parsed_scope.start" : 239,
               "key.swift_declaration" : "class func indexedProperties() -> [Any]",
+              "key.swift_name" : "indexedProperties()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)indexedProperties"
             },
@@ -2749,6 +2838,7 @@
               "key.parsed_scope.end" : 246,
               "key.parsed_scope.start" : 246,
               "key.swift_declaration" : "class func defaultPropertyValues() -> [AnyHashable : Any]?",
+              "key.swift_name" : "defaultPropertyValues()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)defaultPropertyValues"
             },
@@ -2774,6 +2864,7 @@
               "key.parsed_scope.end" : 256,
               "key.parsed_scope.start" : 256,
               "key.swift_declaration" : "class func primaryKey() -> String?",
+              "key.swift_name" : "primaryKey()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)primaryKey"
             },
@@ -2799,6 +2890,7 @@
               "key.parsed_scope.end" : 264,
               "key.parsed_scope.start" : 264,
               "key.swift_declaration" : "class func ignoredProperties() -> [Any]?",
+              "key.swift_name" : "ignoredProperties()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)ignoredProperties"
             },
@@ -2824,6 +2916,7 @@
               "key.parsed_scope.end" : 279,
               "key.parsed_scope.start" : 279,
               "key.swift_declaration" : "class func requiredProperties() -> [Any]",
+              "key.swift_name" : "requiredProperties()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)requiredProperties"
             },
@@ -2859,6 +2952,7 @@
               "key.parsed_scope.end" : 289,
               "key.parsed_scope.start" : 289,
               "key.swift_declaration" : "class func allObjects() -> RLMResults",
+              "key.swift_name" : "allObjects()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)allObjects"
             },
@@ -2930,6 +3024,7 @@
               "key.parsed_scope.end" : 308,
               "key.parsed_scope.start" : 308,
               "key.swift_declaration" : "class func objects(with predicate: NSPredicate?) -> RLMResults",
+              "key.swift_name" : "objects(with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)objectsWithPredicate:"
             },
@@ -2955,6 +3050,7 @@
               "key.parsed_scope.end" : 322,
               "key.parsed_scope.start" : 322,
               "key.swift_declaration" : "convenience init?(forPrimaryKey primaryKey: Any?)",
+              "key.swift_name" : "init(forPrimaryKey:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)objectForPrimaryKey:"
             },
@@ -3001,6 +3097,7 @@
               "key.parsed_scope.end" : 334,
               "key.parsed_scope.start" : 334,
               "key.swift_declaration" : "class func allObjects(in realm: RLMRealm) -> RLMResults",
+              "key.swift_name" : "allObjects(in:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)allObjectsInRealm:"
             },
@@ -3090,6 +3187,7 @@
               "key.parsed_scope.end" : 354,
               "key.parsed_scope.start" : 354,
               "key.swift_declaration" : "class func objects(in realm: RLMRealm, with predicate: NSPredicate?) -> RLMResults",
+              "key.swift_name" : "objects(in:with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)objectsInRealm:withPredicate:"
             },
@@ -3115,6 +3213,7 @@
               "key.parsed_scope.end" : 368,
               "key.parsed_scope.start" : 368,
               "key.swift_declaration" : "convenience init?(in realm: RLMRealm, forPrimaryKey primaryKey: Any?)",
+              "key.swift_name" : "init(in:forPrimaryKey:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(cm)objectInRealm:forPrimaryKey:"
             },
@@ -3170,6 +3269,7 @@
               "key.parsed_scope.end" : 381,
               "key.parsed_scope.start" : 381,
               "key.swift_declaration" : "func linkingObjects(ofClass className: String, forProperty property: String) -> [Any]",
+              "key.swift_name" : "linkingObjects(ofClass:forProperty:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(im)linkingObjectsOfClass:forProperty:"
             },
@@ -3206,6 +3306,7 @@
               "key.parsed_scope.end" : 392,
               "key.parsed_scope.start" : 392,
               "key.swift_declaration" : "func isEqual(to object: RLMObject) -> Bool",
+              "key.swift_name" : "isEqual(to:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(im)isEqualToObject:"
             },
@@ -3233,6 +3334,7 @@
               "key.parsed_scope.end" : 396,
               "key.parsed_scope.start" : 396,
               "key.swift_declaration" : "subscript(key: String) -> Any? { get set }",
+              "key.swift_name" : "subscript(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObject(im)objectForKeyedSubscript:"
             },
@@ -3254,6 +3356,7 @@
             }
           ],
           "key.swift_declaration" : "class RLMObject : RLMObjectBase",
+          "key.swift_name" : "RLMObject",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMObject"
         },
@@ -3302,6 +3405,7 @@
               "key.parsed_scope.end" : 30,
               "key.parsed_scope.start" : 30,
               "key.swift_declaration" : "var isInvalidated: Bool { get }",
+              "key.swift_name" : "isInvalidated",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectBase(py)invalidated"
             },
@@ -3319,6 +3423,7 @@
               "key.parsed_scope.end" : 32,
               "key.parsed_scope.start" : 32,
               "key.swift_declaration" : "init()",
+              "key.swift_name" : "init()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectBase(im)init"
             },
@@ -3336,6 +3441,7 @@
               "key.parsed_scope.end" : 34,
               "key.parsed_scope.start" : 34,
               "key.swift_declaration" : "class func className() -> String",
+              "key.swift_name" : "className()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectBase(cm)className"
             },
@@ -3353,11 +3459,13 @@
               "key.parsed_scope.end" : 37,
               "key.parsed_scope.start" : 37,
               "key.swift_declaration" : "class func shouldIncludeInDefaultSchema() -> Bool",
+              "key.swift_name" : "shouldIncludeInDefaultSchema()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectBase(cm)shouldIncludeInDefaultSchema"
             }
           ],
           "key.swift_declaration" : "class RLMObjectBase : NSObject",
+          "key.swift_name" : "RLMObjectBase",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMObjectBase"
         }
@@ -3410,6 +3518,7 @@
               "key.parsed_scope.end" : 43,
               "key.parsed_scope.start" : 43,
               "key.swift_declaration" : "var properties: [Any] { get }",
+              "key.swift_name" : "properties",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectSchema(py)properties"
             },
@@ -3429,6 +3538,7 @@
               "key.parsed_scope.end" : 48,
               "key.parsed_scope.start" : 48,
               "key.swift_declaration" : "var className: String { get }",
+              "key.swift_name" : "className",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectSchema(py)className"
             },
@@ -3448,6 +3558,7 @@
               "key.parsed_scope.end" : 53,
               "key.parsed_scope.start" : 53,
               "key.swift_declaration" : "var primaryKeyProperty: RLMProperty? { get }",
+              "key.swift_name" : "primaryKeyProperty",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectSchema(py)primaryKeyProperty"
             },
@@ -3494,6 +3605,7 @@
               "key.parsed_scope.end" : 64,
               "key.parsed_scope.start" : 64,
               "key.swift_declaration" : "subscript(propertyName: NSCopying) -> RLMProperty? { get }",
+              "key.swift_name" : "subscript(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectSchema(im)objectForKeyedSubscript:"
             },
@@ -3513,11 +3625,13 @@
               "key.parsed_scope.end" : 69,
               "key.parsed_scope.start" : 69,
               "key.swift_declaration" : "func isEqual(to objectSchema: RLMObjectSchema) -> Bool",
+              "key.swift_name" : "isEqual(to:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMObjectSchema(im)isEqualToObjectSchema:"
             }
           ],
           "key.swift_declaration" : "class RLMObjectSchema : NSObject, NSCopying",
+          "key.swift_name" : "RLMObjectSchema",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMObjectSchema"
         }
@@ -3542,6 +3656,7 @@
           "key.parsed_scope.end" : 26,
           "key.parsed_scope.start" : 25,
           "key.swift_declaration" : "protocol RLMInt",
+          "key.swift_name" : "RLMInt",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(pl)RLMInt"
         },
@@ -3559,6 +3674,7 @@
           "key.parsed_scope.end" : 28,
           "key.parsed_scope.start" : 27,
           "key.swift_declaration" : "protocol RLMBool",
+          "key.swift_name" : "RLMBool",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(pl)RLMBool"
         },
@@ -3576,6 +3692,7 @@
           "key.parsed_scope.end" : 30,
           "key.parsed_scope.start" : 29,
           "key.swift_declaration" : "protocol RLMDouble",
+          "key.swift_name" : "RLMDouble",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(pl)RLMDouble"
         },
@@ -3593,6 +3710,7 @@
           "key.parsed_scope.end" : 32,
           "key.parsed_scope.start" : 31,
           "key.swift_declaration" : "protocol RLMFloat",
+          "key.swift_name" : "RLMFloat",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(pl)RLMFloat"
         },
@@ -3654,6 +3772,7 @@
               "key.parsed_scope.end" : 52,
               "key.parsed_scope.start" : 52,
               "key.swift_declaration" : "var name: String { get }",
+              "key.swift_name" : "name",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMProperty(py)name"
             },
@@ -3673,6 +3792,7 @@
               "key.parsed_scope.end" : 59,
               "key.parsed_scope.start" : 59,
               "key.swift_declaration" : "var type: RLMPropertyType { get }",
+              "key.swift_name" : "type",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMProperty(py)type"
             },
@@ -3692,6 +3812,7 @@
               "key.parsed_scope.end" : 66,
               "key.parsed_scope.start" : 66,
               "key.swift_declaration" : "var indexed: Bool { get }",
+              "key.swift_name" : "indexed",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMProperty(py)indexed"
             },
@@ -3711,6 +3832,7 @@
               "key.parsed_scope.end" : 71,
               "key.parsed_scope.start" : 71,
               "key.swift_declaration" : "var objectClassName: String? { get }",
+              "key.swift_name" : "objectClassName",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMProperty(py)objectClassName"
             },
@@ -3730,6 +3852,7 @@
               "key.parsed_scope.end" : 76,
               "key.parsed_scope.start" : 76,
               "key.swift_declaration" : "var optional: Bool { get }",
+              "key.swift_name" : "optional",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMProperty(py)optional"
             },
@@ -3759,11 +3882,13 @@
               "key.parsed_scope.end" : 83,
               "key.parsed_scope.start" : 83,
               "key.swift_declaration" : "func isEqual(to property: RLMProperty) -> Bool",
+              "key.swift_name" : "isEqual(to:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMProperty(im)isEqualToProperty:"
             }
           ],
           "key.swift_declaration" : "class RLMProperty : NSObject",
+          "key.swift_name" : "RLMProperty",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMProperty"
         }
@@ -3822,6 +3947,7 @@
               "key.parsed_scope.end" : 67,
               "key.parsed_scope.start" : 67,
               "key.swift_declaration" : "class func `default`() -> Self",
+              "key.swift_name" : "default()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(cm)defaultRealm"
             },
@@ -3867,6 +3993,7 @@
               "key.parsed_scope.end" : 79,
               "key.parsed_scope.start" : 79,
               "key.swift_declaration" : "convenience init(configuration: RLMRealmConfiguration) throws",
+              "key.swift_name" : "init(configuration:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(cm)realmWithConfiguration:error:"
             },
@@ -3903,6 +4030,7 @@
               "key.parsed_scope.end" : 88,
               "key.parsed_scope.start" : 88,
               "key.swift_declaration" : "convenience init(path: String)",
+              "key.swift_name" : "init(path:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(cm)realmWithPath:"
             },
@@ -3922,6 +4050,7 @@
               "key.parsed_scope.end" : 93,
               "key.parsed_scope.start" : 93,
               "key.swift_declaration" : "var path: String { get }",
+              "key.swift_name" : "path",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(py)path"
             },
@@ -3941,6 +4070,7 @@
               "key.parsed_scope.end" : 98,
               "key.parsed_scope.start" : 98,
               "key.swift_declaration" : "var isReadOnly: Bool { get }",
+              "key.swift_name" : "isReadOnly",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(py)readOnly"
             },
@@ -3960,6 +4090,7 @@
               "key.parsed_scope.end" : 103,
               "key.parsed_scope.start" : 103,
               "key.swift_declaration" : "var schema: RLMSchema! { get }",
+              "key.swift_name" : "schema",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(py)schema"
             },
@@ -3979,6 +4110,7 @@
               "key.parsed_scope.end" : 113,
               "key.parsed_scope.start" : 113,
               "key.swift_declaration" : "var inWriteTransaction: Bool { get }",
+              "key.swift_name" : "inWriteTransaction",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(py)inWriteTransaction"
             },
@@ -3998,6 +4130,7 @@
               "key.parsed_scope.end" : 118,
               "key.parsed_scope.start" : 118,
               "key.swift_declaration" : "var configuration: RLMRealmConfiguration { get }",
+              "key.swift_name" : "configuration",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(py)configuration"
             },
@@ -4017,6 +4150,7 @@
               "key.parsed_scope.end" : 123,
               "key.parsed_scope.start" : 123,
               "key.swift_declaration" : "var isEmpty: Bool { get }",
+              "key.swift_name" : "isEmpty",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(py)isEmpty"
             },
@@ -4073,6 +4207,7 @@
               "key.parsed_scope.end" : 151,
               "key.parsed_scope.start" : 151,
               "key.swift_declaration" : "func addNotificationBlock(_ block: @escaping RLMNotificationBlock) -> RLMNotificationToken",
+              "key.swift_name" : "addNotificationBlock(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)addNotificationBlock:"
             },
@@ -4103,6 +4238,7 @@
               "key.parsed_scope.end" : 160,
               "key.parsed_scope.start" : 160,
               "key.swift_declaration" : "func removeNotification(_ notificationToken: RLMNotificationToken)",
+              "key.swift_name" : "removeNotification(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)removeNotification:"
             },
@@ -4142,6 +4278,7 @@
               "key.parsed_scope.end" : 186,
               "key.parsed_scope.start" : 186,
               "key.swift_declaration" : "func beginWriteTransaction()",
+              "key.swift_name" : "beginWriteTransaction()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)beginWriteTransaction"
             },
@@ -4196,6 +4333,7 @@
               "key.parsed_scope.end" : 210,
               "key.parsed_scope.start" : 210,
               "key.swift_declaration" : "func commitWriteTransaction() throws",
+              "key.swift_name" : "commitWriteTransaction()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)commitWriteTransaction:"
             },
@@ -4215,6 +4353,7 @@
               "key.parsed_scope.end" : 237,
               "key.parsed_scope.start" : 237,
               "key.swift_declaration" : "func cancelWriteTransaction()",
+              "key.swift_name" : "cancelWriteTransaction()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)cancelWriteTransaction"
             },
@@ -4278,6 +4417,7 @@
               "key.parsed_scope.end" : 254,
               "key.parsed_scope.start" : 254,
               "key.swift_declaration" : "func transaction(_ block: @escaping () -> Void) throws",
+              "key.swift_name" : "transaction(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)transactionWithBlock:error:"
             },
@@ -4303,6 +4443,7 @@
               "key.parsed_scope.end" : 261,
               "key.parsed_scope.start" : 261,
               "key.swift_declaration" : "func refresh() -> Bool",
+              "key.swift_name" : "refresh()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)refresh"
             },
@@ -4322,6 +4463,7 @@
               "key.parsed_scope.end" : 288,
               "key.parsed_scope.start" : 288,
               "key.swift_declaration" : "var autorefresh: Bool { get set }",
+              "key.swift_name" : "autorefresh",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(py)autorefresh"
             },
@@ -4367,6 +4509,7 @@
               "key.parsed_scope.end" : 302,
               "key.parsed_scope.start" : 302,
               "key.swift_declaration" : "func writeCopy(toPath path: String) throws",
+              "key.swift_name" : "writeCopy(toPath:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)writeCopyToPath:error:"
             },
@@ -4421,6 +4564,7 @@
               "key.parsed_scope.end" : 317,
               "key.parsed_scope.start" : 317,
               "key.swift_declaration" : "func writeCopy(toPath path: String, encryptionKey key: Data) throws",
+              "key.swift_name" : "writeCopy(toPath:encryptionKey:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)writeCopyToPath:encryptionKey:error:"
             },
@@ -4440,6 +4584,7 @@
               "key.parsed_scope.end" : 339,
               "key.parsed_scope.start" : 339,
               "key.swift_declaration" : "func invalidate()",
+              "key.swift_name" : "invalidate()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)invalidate"
             },
@@ -4490,6 +4635,7 @@
               "key.parsed_scope.end" : 362,
               "key.parsed_scope.start" : 362,
               "key.swift_declaration" : "func add(_ object: RLMObject)",
+              "key.swift_name" : "add(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)addObject:"
             },
@@ -4520,6 +4666,7 @@
               "key.parsed_scope.end" : 374,
               "key.parsed_scope.start" : 374,
               "key.swift_declaration" : "func addObjects(_ array: NSFastEnumeration)",
+              "key.swift_name" : "addObjects(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)addObjects:"
             },
@@ -4550,6 +4697,7 @@
               "key.parsed_scope.end" : 387,
               "key.parsed_scope.start" : 387,
               "key.swift_declaration" : "func addOrUpdate(_ object: RLMObject)",
+              "key.swift_name" : "addOrUpdate(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)addOrUpdateObject:"
             },
@@ -4580,6 +4728,7 @@
               "key.parsed_scope.end" : 398,
               "key.parsed_scope.start" : 398,
               "key.swift_declaration" : "func addOrUpdateObjects(fromArray array: Any)",
+              "key.swift_name" : "addOrUpdateObjects(fromArray:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)addOrUpdateObjectsFromArray:"
             },
@@ -4610,6 +4759,7 @@
               "key.parsed_scope.end" : 405,
               "key.parsed_scope.start" : 405,
               "key.swift_declaration" : "func delete(_ object: RLMObject)",
+              "key.swift_name" : "delete(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)deleteObject:"
             },
@@ -4640,6 +4790,7 @@
               "key.parsed_scope.end" : 412,
               "key.parsed_scope.start" : 412,
               "key.swift_declaration" : "func deleteObjects(_ array: Any)",
+              "key.swift_name" : "deleteObjects(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)deleteObjects:"
             },
@@ -4659,6 +4810,7 @@
               "key.parsed_scope.end" : 417,
               "key.parsed_scope.start" : 417,
               "key.swift_declaration" : "func deleteAllObjects()",
+              "key.swift_name" : "deleteAllObjects()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(im)deleteAllObjects"
             },
@@ -4714,6 +4866,7 @@
               "key.parsed_scope.end" : 443,
               "key.parsed_scope.start" : 443,
               "key.swift_declaration" : "class func schemaVersion(atPath realmPath: String, error: NSErrorPointer) -> UInt64",
+              "key.swift_name" : "schemaVersion(atPath:error:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(cm)schemaVersionAtPath:error:"
             },
@@ -4768,6 +4921,7 @@
               "key.parsed_scope.end" : 456,
               "key.parsed_scope.start" : 456,
               "key.swift_declaration" : "class func schemaVersion(atPath realmPath: String, encryptionKey key: Data?, error: NSErrorPointer) -> UInt64",
+              "key.swift_name" : "schemaVersion(atPath:encryptionKey:error:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(cm)schemaVersionAtPath:encryptionKey:error:"
             },
@@ -4804,11 +4958,13 @@
               "key.parsed_scope.end" : 470,
               "key.parsed_scope.start" : 470,
               "key.swift_declaration" : "class func migrateRealm(_ configuration: RLMRealmConfiguration) -> Error",
+              "key.swift_name" : "migrateRealm(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealm(cm)migrateRealm:"
             }
           ],
           "key.swift_declaration" : "class RLMRealm : NSObject",
+          "key.swift_name" : "RLMRealm",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMRealm"
         },
@@ -4826,6 +4982,7 @@
           "key.parsed_scope.end" : 127,
           "key.parsed_scope.start" : 127,
           "key.swift_declaration" : "typealias RLMNotificationBlock = (String, RLMRealm) -> Void",
+          "key.swift_name" : "RLMNotificationBlock",
           "key.unavailable_message" : "",
           "key.usr" : "c:RLMRealm.h@T@RLMNotificationBlock"
         },
@@ -4865,6 +5022,7 @@
           "key.parsed_scope.end" : 431,
           "key.parsed_scope.start" : 431,
           "key.swift_declaration" : "typealias RLMMigrationBlock = (RLMMigration, UInt64) -> Void",
+          "key.swift_name" : "RLMMigrationBlock",
           "key.unavailable_message" : "",
           "key.usr" : "c:RLMRealm.h@T@RLMMigrationBlock"
         },
@@ -4884,6 +5042,7 @@
           "key.parsed_scope.end" : 478,
           "key.parsed_scope.start" : 477,
           "key.swift_declaration" : "class RLMNotificationToken : NSObject",
+          "key.swift_name" : "RLMNotificationToken",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMNotificationToken"
         }
@@ -4942,6 +5101,7 @@
               "key.parsed_scope.end" : 38,
               "key.parsed_scope.start" : 38,
               "key.swift_declaration" : "class func `default`() -> Self",
+              "key.swift_name" : "default()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(cm)defaultConfiguration"
             },
@@ -4972,6 +5132,7 @@
               "key.parsed_scope.end" : 45,
               "key.parsed_scope.start" : 45,
               "key.swift_declaration" : "class func setDefault(_ configuration: RLMRealmConfiguration)",
+              "key.swift_name" : "setDefault(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(cm)setDefaultConfiguration:"
             },
@@ -5001,6 +5162,7 @@
               "key.parsed_scope.end" : 50,
               "key.parsed_scope.start" : 50,
               "key.swift_declaration" : "var path: String? { get set }",
+              "key.swift_name" : "path",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)path"
             },
@@ -5020,6 +5182,7 @@
               "key.parsed_scope.end" : 53,
               "key.parsed_scope.start" : 53,
               "key.swift_declaration" : "var inMemoryIdentifier: String? { get set }",
+              "key.swift_name" : "inMemoryIdentifier",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)inMemoryIdentifier"
             },
@@ -5039,6 +5202,7 @@
               "key.parsed_scope.end" : 56,
               "key.parsed_scope.start" : 56,
               "key.swift_declaration" : "var encryptionKey: Data? { get set }",
+              "key.swift_name" : "encryptionKey",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)encryptionKey"
             },
@@ -5058,6 +5222,7 @@
               "key.parsed_scope.end" : 59,
               "key.parsed_scope.start" : 59,
               "key.swift_declaration" : "var readOnly: Bool { get set }",
+              "key.swift_name" : "readOnly",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)readOnly"
             },
@@ -5077,6 +5242,7 @@
               "key.parsed_scope.end" : 62,
               "key.parsed_scope.start" : 62,
               "key.swift_declaration" : "var schemaVersion: UInt64 { get set }",
+              "key.swift_name" : "schemaVersion",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)schemaVersion"
             },
@@ -5096,6 +5262,7 @@
               "key.parsed_scope.end" : 65,
               "key.parsed_scope.start" : 65,
               "key.swift_declaration" : "var migrationBlock: RLMMigrationBlock? { get set }",
+              "key.swift_name" : "migrationBlock",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)migrationBlock"
             },
@@ -5115,11 +5282,13 @@
               "key.parsed_scope.end" : 68,
               "key.parsed_scope.start" : 68,
               "key.swift_declaration" : "var objectClasses: [Any]? { get set }",
+              "key.swift_name" : "objectClasses",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMRealmConfiguration(py)objectClasses"
             }
           ],
           "key.swift_declaration" : "class RLMRealmConfiguration : NSObject, NSCopying",
+          "key.swift_name" : "RLMRealmConfiguration",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMRealmConfiguration"
         }
@@ -5172,6 +5341,7 @@
               "key.parsed_scope.end" : 43,
               "key.parsed_scope.start" : 43,
               "key.swift_declaration" : "var count: UInt { get }",
+              "key.swift_name" : "count",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(py)count"
             },
@@ -5191,6 +5361,7 @@
               "key.parsed_scope.end" : 48,
               "key.parsed_scope.start" : 48,
               "key.swift_declaration" : "var objectClassName: String { get }",
+              "key.swift_name" : "objectClassName",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(py)objectClassName"
             },
@@ -5210,6 +5381,7 @@
               "key.parsed_scope.end" : 53,
               "key.parsed_scope.start" : 53,
               "key.swift_declaration" : "var realm: RLMRealm { get }",
+              "key.swift_name" : "realm",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(py)realm"
             },
@@ -5256,6 +5428,7 @@
               "key.parsed_scope.end" : 64,
               "key.parsed_scope.start" : 64,
               "key.swift_declaration" : "func object(at index: UInt) -> RLMObjectType",
+              "key.swift_name" : "object(at:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)objectAtIndex:"
             },
@@ -5281,6 +5454,7 @@
               "key.parsed_scope.end" : 73,
               "key.parsed_scope.start" : 73,
               "key.swift_declaration" : "func firstObject() -> RLMObjectType?",
+              "key.swift_name" : "firstObject()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)firstObject"
             },
@@ -5306,6 +5480,7 @@
               "key.parsed_scope.end" : 82,
               "key.parsed_scope.start" : 82,
               "key.swift_declaration" : "func lastObject() -> RLMObjectType?",
+              "key.swift_name" : "lastObject()",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)lastObject"
             },
@@ -5346,6 +5521,7 @@
               "key.parsed_scope.end" : 96,
               "key.parsed_scope.start" : 96,
               "key.swift_declaration" : "func index(of object: RLMObjectType) -> UInt",
+              "key.swift_name" : "index(of:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)indexOfObject:"
             },
@@ -5417,6 +5593,7 @@
               "key.parsed_scope.end" : 114,
               "key.parsed_scope.start" : 114,
               "key.swift_declaration" : "func indexOfObject(with predicate: NSPredicate) -> UInt",
+              "key.swift_name" : "indexOfObject(with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)indexOfObjectWithPredicate:"
             },
@@ -5488,6 +5665,7 @@
               "key.parsed_scope.end" : 132,
               "key.parsed_scope.start" : 132,
               "key.swift_declaration" : "func objects(with predicate: NSPredicate) -> RLMResults<RLMObjectType>",
+              "key.swift_name" : "objects(with:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)objectsWithPredicate:"
             },
@@ -5533,6 +5711,7 @@
               "key.parsed_scope.end" : 142,
               "key.parsed_scope.start" : 142,
               "key.swift_declaration" : "func sortedResults(usingProperty property: String, ascending: Bool) -> RLMResults<RLMObjectType>",
+              "key.swift_name" : "sortedResults(usingProperty:ascending:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)sortedResultsUsingProperty:ascending:"
             },
@@ -5569,6 +5748,7 @@
               "key.parsed_scope.end" : 151,
               "key.parsed_scope.start" : 151,
               "key.swift_declaration" : "func sortedResults(usingDescriptors properties: [Any]) -> RLMResults<RLMObjectType>",
+              "key.swift_name" : "sortedResults(usingDescriptors:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)sortedResultsUsingDescriptors:"
             },
@@ -5615,6 +5795,7 @@
               "key.parsed_scope.end" : 167,
               "key.parsed_scope.start" : 167,
               "key.swift_declaration" : "func min(ofProperty property: String) -> Any?",
+              "key.swift_name" : "min(ofProperty:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)minOfProperty:"
             },
@@ -5651,6 +5832,7 @@
               "key.parsed_scope.end" : 180,
               "key.parsed_scope.start" : 180,
               "key.swift_declaration" : "func max(ofProperty property: String) -> Any?",
+              "key.swift_name" : "max(ofProperty:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)maxOfProperty:"
             },
@@ -5687,6 +5869,7 @@
               "key.parsed_scope.end" : 193,
               "key.parsed_scope.start" : 193,
               "key.swift_declaration" : "func sum(ofProperty property: String) -> NSNumber",
+              "key.swift_name" : "sum(ofProperty:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)sumOfProperty:"
             },
@@ -5723,6 +5906,7 @@
               "key.parsed_scope.end" : 207,
               "key.parsed_scope.start" : 207,
               "key.swift_declaration" : "func average(ofProperty property: String) -> NSNumber?",
+              "key.swift_name" : "average(ofProperty:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)averageOfProperty:"
             },
@@ -5740,6 +5924,7 @@
               "key.parsed_scope.end" : 209,
               "key.parsed_scope.start" : 209,
               "key.swift_declaration" : "subscript(index: UInt) -> Any { get }",
+              "key.swift_name" : "subscript(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMResults(im)objectAtIndexedSubscript:"
             },
@@ -5791,6 +5976,7 @@
             }
           ],
           "key.swift_declaration" : "class RLMResults<RLMObjectType> : NSObject, RLMCollection, NSFastEnumeration where RLMObjectType : RLMObject",
+          "key.swift_name" : "RLMResults",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMResults"
         }
@@ -5843,6 +6029,7 @@
               "key.parsed_scope.end" : 44,
               "key.parsed_scope.start" : 44,
               "key.swift_declaration" : "var objectSchema: [Any] { get }",
+              "key.swift_name" : "objectSchema",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMSchema(py)objectSchema"
             },
@@ -5889,6 +6076,7 @@
               "key.parsed_scope.end" : 56,
               "key.parsed_scope.start" : 56,
               "key.swift_declaration" : "func schema(forClassName className: String) -> RLMObjectSchema?",
+              "key.swift_name" : "schema(forClassName:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMSchema(im)schemaForClassName:"
             },
@@ -5925,6 +6113,7 @@
               "key.parsed_scope.end" : 67,
               "key.parsed_scope.start" : 67,
               "key.swift_declaration" : "subscript(className: NSCopying) -> RLMObjectSchema { get }",
+              "key.swift_name" : "subscript(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMSchema(im)objectForKeyedSubscript:"
             },
@@ -5944,11 +6133,13 @@
               "key.parsed_scope.end" : 72,
               "key.parsed_scope.start" : 72,
               "key.swift_declaration" : "func isEqual(to schema: RLMSchema) -> Bool",
+              "key.swift_name" : "isEqual(to:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)RLMSchema(im)isEqualToSchema:"
             }
           ],
           "key.swift_declaration" : "class RLMSchema : NSObject, NSCopying",
+          "key.swift_name" : "RLMSchema",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)RLMSchema"
         }

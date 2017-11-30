@@ -194,7 +194,7 @@ extension CXCursor {
         return commentBody
     }
 
-    func swiftDeclaration(compilerArguments: [String]) -> String? {
+    private func getCursorInfo(compilerArguments: [String]) -> [String: Any]? {
         let file = location().file
         let swiftUUID: String
 
@@ -214,10 +214,18 @@ extension CXCursor {
         guard let usr = usr(),
             let findUSR = try? Request.findUSR(file: swiftUUID, usr: usr).send(),
             let usrOffset = findUSR[SwiftDocKey.offset.rawValue] as? Int64 else {
-            return nil
+                return nil
         }
 
         guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send() else {
+            return nil
+        }
+
+        return cursorInfo
+    }
+
+    func swiftDeclaration(compilerArguments: [String]) -> String? {
+        guard let cursorInfo = getCursorInfo(compilerArguments: compilerArguments) else {
             return nil
         }
 
@@ -227,6 +235,14 @@ extension CXCursor {
         }
 
         return nil
+    }
+
+    func swiftName(compilerArguments: [String]) -> String? {
+        guard let cursorInfo = getCursorInfo(compilerArguments: compilerArguments) else {
+            return nil
+        }
+
+        return cursorInfo[SwiftDocKey.name.rawValue] as? String
     }
 }
 
