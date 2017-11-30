@@ -21,15 +21,15 @@ public func toJSON(_ object: Any) -> String {
     }
     do {
         let options: JSONSerialization.WritingOptions
-#if os(Linux)
-        options = [.prettyPrinted, .sortedKeys]
-#else
-        if #available(macOS 10.13, *) {
+        #if os(Linux)
             options = [.prettyPrinted, .sortedKeys]
-        } else {
-            options = .prettyPrinted
-        }
-#endif
+        #else
+            if #available(macOS 10.13, *) {
+                options = [.prettyPrinted, .sortedKeys]
+            } else {
+                options = .prettyPrinted
+            }
+        #endif
         let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: options)
         if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
             return jsonString
@@ -72,68 +72,70 @@ public func toNSDictionary(_ dictionary: [String: SourceKitRepresentable]) -> NS
 
 #if !os(Linux)
 
-public func declarationsToJSON(_ decl: [String: [SourceDeclaration]]) -> String {
-    let keyValueToDictionary: ((String, [SourceDeclaration])) -> [String: Any] = { [$0.0: toOutputDictionary($0.1)] }
-    let dictionaries: [[String: Any]] = decl.map(keyValueToDictionary).sorted { $0.keys.first! < $1.keys.first! }
-    return toJSON(dictionaries)
-}
+    public func declarationsToJSON(_ decl: [String: [SourceDeclaration]]) -> String {
+        let keyValueToDictionary: ((String, [SourceDeclaration])) -> [String: Any] = { [$0.0: toOutputDictionary($0.1)] }
+        let dictionaries: [[String: Any]] = decl.map(keyValueToDictionary).sorted { $0.keys.first! < $1.keys.first! }
+        return toJSON(dictionaries)
+    }
 
-private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: Any] {
-    var dict = [String: Any]()
-    func set(_ key: SwiftDocKey, _ value: Any?) {
-        if let value = value {
-            dict[key.rawValue] = value
+    private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: Any] {
+        var dict = [String: Any]()
+        func set(_ key: SwiftDocKey, _ value: Any?) {
+            if let value = value {
+                dict[key.rawValue] = value
+            }
+        }
+        func setA(_ key: SwiftDocKey, _ value: [Any]?) {
+            if let value = value, !value.isEmpty {
+                dict[key.rawValue] = value
+            }
+        }
+
+        set(.kind, decl.type.rawValue)
+        set(.filePath, decl.location.file)
+        set(.docFile, decl.location.file)
+        set(.docLine, Int(decl.location.line))
+        set(.docColumn, Int(decl.location.column))
+        set(.name, decl.name)
+        set(.usr, decl.usr)
+        set(.parsedDeclaration, decl.declaration)
+        set(.documentationComment, decl.commentBody)
+        set(.parsedScopeStart, Int(decl.extent.start.line))
+        set(.parsedScopeEnd, Int(decl.extent.end.line))
+        set(.swiftDeclaration, decl.swiftDeclaration)
+        set(.swiftName, decl.swiftName)
+        set(.alwaysDeprecated, decl.availability?.alwaysDeprecated)
+        set(.alwaysUnavailable, decl.availability?.alwaysUnavailable)
+        set(.deprecationMessage, decl.availability?.deprecationMessage)
+        set(.unavailableMessage, decl.availability?.unavailableMessage)
+
+        setA(.docResultDiscussion, decl.documentation?.returnDiscussion.map(toOutputDictionary))
+        setA(.docParameters, decl.documentation?.parameters.map(toOutputDictionary))
+        setA(.substructure, decl.children.map(toOutputDictionary))
+
+        if decl.commentBody != nil {
+            set(.fullXMLDocs, "")
+        }
+
+        return dict
+    }
+
+    private func toOutputDictionary(_ decl: [SourceDeclaration]) -> [String: Any] {
+        return ["key.substructure": decl.map(toOutputDictionary), "key.diagnostic_stage": ""]
+    }
+
+    private func toOutputDictionary(_ param: Parameter) -> [String: Any] {
+        return ["name": param.name, "discussion": param.discussion.map(toOutputDictionary)]
+    }
+
+    private func toOutputDictionary(_ text: Text) -> [String: Any] {
+        switch text {
+        case .para(let str, let kind):
+            return ["kind": kind ?? "", "Para": str]
+        case .verbatim(let str):
+            return ["kind": "", "Verbatim": str]
         }
     }
-    func setA(_ key: SwiftDocKey, _ value: [Any]?) {
-        if let value = value, !value.isEmpty {
-            dict[key.rawValue] = value
-        }
-    }
-
-    set(.kind, decl.type.rawValue)
-    set(.filePath, decl.location.file)
-    set(.docFile, decl.location.file)
-    set(.docLine, Int(decl.location.line))
-    set(.docColumn, Int(decl.location.column))
-    set(.name, decl.name)
-    set(.usr, decl.usr)
-    set(.parsedDeclaration, decl.declaration)
-    set(.documentationComment, decl.commentBody)
-    set(.parsedScopeStart, Int(decl.extent.start.line))
-    set(.parsedScopeEnd, Int(decl.extent.end.line))
-    set(.swiftDeclaration, decl.swiftDeclaration)
-    set(.alwaysDeprecated, decl.availability?.alwaysDeprecated)
-    set(.alwaysUnavailable, decl.availability?.alwaysUnavailable)
-    set(.deprecationMessage, decl.availability?.deprecationMessage)
-    set(.unavailableMessage, decl.availability?.unavailableMessage)
-
-    setA(.docResultDiscussion, decl.documentation?.returnDiscussion.map(toOutputDictionary))
-    setA(.docParameters, decl.documentation?.parameters.map(toOutputDictionary))
-    setA(.substructure, decl.children.map(toOutputDictionary))
-
-    if decl.commentBody != nil {
-        set(.fullXMLDocs, "")
-    }
-
-    return dict
-}
-
-private func toOutputDictionary(_ decl: [SourceDeclaration]) -> [String: Any] {
-    return ["key.substructure": decl.map(toOutputDictionary), "key.diagnostic_stage": ""]
-}
-
-private func toOutputDictionary(_ param: Parameter) -> [String: Any] {
-    return ["name": param.name, "discussion": param.discussion.map(toOutputDictionary)]
-}
-
-private func toOutputDictionary(_ text: Text) -> [String: Any] {
-    switch text {
-    case .para(let str, let kind):
-        return ["kind": kind ?? "", "Para": str]
-    case .verbatim(let str):
-        return ["kind": "", "Verbatim": str]
-    }
-}
 
 #endif
+
