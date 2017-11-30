@@ -29,19 +29,23 @@ struct RequestCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        if options.yaml.isEmpty {
-            return .failure(.invalidArgument(description: "yaml file or text must be provided"))
-        }
+        do {
+            if options.yaml.isEmpty {
+                return .failure(.invalidArgument(description: "yaml file or text must be provided"))
+            }
 
-        let yaml: String
-        if let file = File(path: options.yaml) {
-            yaml = file.contents
-        } else {
-            yaml = options.yaml
-        }
+            let yaml: String
+            if let file = File(path: options.yaml) {
+                yaml = file.contents
+            } else {
+                yaml = options.yaml
+            }
 
-        let request = Request.yamlRequest(yaml: yaml)
-        print(toJSON(toNSDictionary(request.send())))
-        return .success(())
+            let request = Request.yamlRequest(yaml: yaml)
+            print(toJSON(toNSDictionary(try request.send())))
+            return .success(())
+        } catch {
+            return .failure(.failed(error))
+        }
     }
 }

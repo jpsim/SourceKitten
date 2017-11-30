@@ -17,6 +17,9 @@ enum SourceKittenError: Error, CustomStringConvertible {
     /// Failed to generate documentation.
     case docFailed
 
+    /// failed with Error
+    case failed(Swift.Error)
+
     /// An error message corresponding to this error.
     var description: String {
         switch self {
@@ -26,6 +29,8 @@ enum SourceKittenError: Error, CustomStringConvertible {
             return "Failed to read file at '\(path)'"
         case .docFailed:
             return "Failed to generate documentation"
+        case let .failed(error):
+            return error.localizedDescription
         }
     }
 }

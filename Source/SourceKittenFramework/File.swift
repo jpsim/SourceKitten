@@ -78,20 +78,25 @@ public final class File {
         lines = contents.bridge().lines()
     }
 
-    /**
-     Formats the file.
-     */
+    /// Formats the file.
+    ///
+    /// - Parameters:
+    ///   - trimmingTrailingWhitespace: Boolean
+    ///   - useTabs: Boolean
+    ///   - indentWidth: Int
+    /// - Returns: formatted String
+    /// - Throws: Request.Error
     public func format(trimmingTrailingWhitespace: Bool,
                        useTabs: Bool,
-                       indentWidth: Int) -> String {
+                       indentWidth: Int) throws -> String {
         guard let path = path else {
             return contents
         }
-        _ = Request.editorOpen(file: self).send()
+        _ = try Request.editorOpen(file: self).send()
         var newContents = [String]()
         var offset = 0
         for line in lines {
-            let formatResponse = Request.format(file: path,
+            let formatResponse = try Request.format(file: path,
                                                 line: Int64(line.index),
                                                 useTabs: useTabs,
                                                 indentWidth: Int64(indentWidth)).send()
@@ -100,7 +105,7 @@ public final class File {
 
             guard newText != line.content else { continue }
 
-            _ = Request.replaceText(file: path,
+            _ = try Request.replaceText(file: path,
                                     offset: Int64(line.byteRange.location + offset),
                                     length: Int64(line.byteRange.length - 1),
                                     sourceText: newText).send()

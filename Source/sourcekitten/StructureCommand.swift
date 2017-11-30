@@ -33,19 +33,23 @@ struct StructureCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        if !options.file.isEmpty {
-            if let file = File(path: options.file) {
-                print(Structure(file: file))
+        do {
+            if !options.file.isEmpty {
+                if let file = File(path: options.file) {
+                    print(try Structure(file: file))
+                    return .success(())
+                }
+                return .failure(.readFailed(path: options.file))
+            }
+            if !options.text.isEmpty {
+                print(try Structure(file: File(contents: options.text)))
                 return .success(())
             }
-            return .failure(.readFailed(path: options.file))
+            return .failure(
+                .invalidArgument(description: "either file or text must be set when calling structure")
+            )
+        } catch {
+            return .failure(.failed(error))
         }
-        if !options.text.isEmpty {
-            print(Structure(file: File(contents: options.text)))
-            return .success(())
-        }
-        return .failure(
-            .invalidArgument(description: "either file or text must be set when calling structure")
-        )
     }
 }

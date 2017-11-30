@@ -358,18 +358,26 @@ public enum Request {
             return nil
         }
         sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue)!, offset)
-        return try? Request.customRequest(request: cursorInfoRequest).failableSend()
+        return try? Request.customRequest(request: cursorInfoRequest).send()
     }
 
     /**
     Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
 
     - returns: SourceKit output as a dictionary.
+    - throws: Request.Error on fail ()
     */
-    public func send() -> [String: SourceKitRepresentable] {
-        initializeSourceKit
+    public func send() throws -> [String: SourceKitRepresentable] {
+        initializeSourceKitFailable
         let response = sourcekitd_send_request_sync(sourcekitObject)
         defer { sourcekitd_response_dispose(response!) }
+        if sourcekitd_response_is_error(response!) {
+            let error = Request.Error(response: response!)
+            if case .connectionInterrupted = error {
+                _ = sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now() + 10)
+            }
+            throw error
+        }
         return fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
     }
 
@@ -414,18 +422,9 @@ public enum Request {
     - returns: SourceKit output as a dictionary.
     - throws: Request.Error on fail ()
     */
+    @available(*, deprecated, renamed: "send()")
     public func failableSend() throws -> [String: SourceKitRepresentable] {
-        initializeSourceKitFailable
-        let response = sourcekitd_send_request_sync(sourcekitObject)
-        defer { sourcekitd_response_dispose(response!) }
-        if sourcekitd_response_is_error(response!) {
-            let error = Request.Error(response: response!)
-            if case .connectionInterrupted = error {
-                _ = sourceKitWaitingRestoredSemaphore.wait(timeout: DispatchTime.now() + 10)
-            }
-            throw error
-        }
-        return fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
+        return try send()
     }
 }
 
@@ -436,7 +435,7 @@ extension Request: CustomStringConvertible {
     public var description: String { return String(validatingUTF8: sourcekitd_request_description_copy(sourcekitObject)!)! }
 }
 
-private func interfaceForModule(_ module: String, compilerArguments: [String]) -> [String: SourceKitRepresentable] {
+private func interfaceForModule(_ module: String, compilerArguments: [String]) throws -> [String: SourceKitRepresentable] {
     var compilerargs = compilerArguments.map { sourcekitd_request_string_create($0) }
     let dict = [
         sourcekitd_uid_get_from_cstr("key.request")!: sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.editor.open.interface")!),
@@ -446,7 +445,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) -
     ]
     var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
     var values = Array(dict.values)
-    return Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)!).send()
+    return try Request.customRequest(request: sourcekitd_request_dictionary_create(&keys, &values, dict.count)!).send()
 }
 
 extension String {
@@ -497,8 +496,8 @@ extension String {
     }
 }
 
-internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) -> String {
-    let sourceKitResponse = interfaceForModule(module, compilerArguments: compilerArguments)
+internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) throws -> String {
+    let sourceKitResponse = try interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
