@@ -77,6 +77,8 @@ public enum SwiftDocKey: String {
     case parsedScopeStart     = "key.parsed_scope.start"
     /// Swift Declaration (String).
     case swiftDeclaration     = "key.swift_declaration"
+    /// Swift Name (String).
+    case swiftName            = "key.swift_name"
     /// Always deprecated (Bool).
     case alwaysDeprecated     = "key.always_deprecated"
     /// Always unavailable (Bool).
@@ -89,57 +91,57 @@ public enum SwiftDocKey: String {
     // MARK: Typed SwiftDocKey Getters
 
     /**
-    Returns the typed value of a dictionary key.
+     Returns the typed value of a dictionary key.
 
-    - parameter key:        SwiftDoctKey to get from the dictionary.
-    - parameter dictionary: Dictionary to get value from.
+     - parameter key:        SwiftDoctKey to get from the dictionary.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Typed value of a dictionary key.
-    */
+     - returns: Typed value of a dictionary key.
+     */
     private static func get<T>(_ key: SwiftDocKey, _ dictionary: [String: SourceKitRepresentable]) -> T? {
         return dictionary[key.rawValue] as! T?
     }
 
     /**
-    Get kind string from dictionary.
+     Get kind string from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Kind string if successful.
-    */
+     - returns: Kind string if successful.
+     */
     internal static func getKind(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.kind, dictionary)
     }
 
     /**
-    Get syntax map data from dictionary.
+     Get syntax map data from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Syntax map data if successful.
-    */
+     - returns: Syntax map data if successful.
+     */
     internal static func getSyntaxMap(_ dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
         return get(.syntaxMap, dictionary)
     }
 
     /**
-    Get offset int from dictionary.
+     Get offset int from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Offset int if successful.
-    */
+     - returns: Offset int if successful.
+     */
     internal static func getOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.offset, dictionary)
     }
 
     /**
-    Get length int from dictionary.
+     Get length int from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Length int if successful.
-    */
+     - returns: Length int if successful.
+     */
     internal static func getLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.length, dictionary)
     }
@@ -156,100 +158,100 @@ public enum SwiftDocKey: String {
     }
 
     /**
-    Get type name string from dictionary.
+     Get type name string from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Type name string if successful.
-    */
+     - returns: Type name string if successful.
+     */
     internal static func getTypeName(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.typeName, dictionary)
     }
 
     /**
-    Get annotated declaration string from dictionary.
+     Get annotated declaration string from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Annotated declaration string if successful.
-    */
+     - returns: Annotated declaration string if successful.
+     */
     internal static func getAnnotatedDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.annotatedDeclaration, dictionary)
     }
 
     /**
-    Get substructure array from dictionary.
+     Get substructure array from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Substructure array if successful.
-    */
+     - returns: Substructure array if successful.
+     */
     internal static func getSubstructure(_ dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
         return get(.substructure, dictionary)
     }
 
     /**
-    Get name offset int from dictionary.
+     Get name offset int from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Name offset int if successful.
-    */
+     - returns: Name offset int if successful.
+     */
     internal static func getNameOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.nameOffset, dictionary)
     }
 
     /**
-    Get length int from dictionary.
+     Get length int from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Length int if successful.
-    */
+     - returns: Length int if successful.
+     */
     internal static func getNameLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.nameLength, dictionary)
     }
 
     /**
-    Get body offset int from dictionary.
+     Get body offset int from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Body offset int if successful.
-    */
+     - returns: Body offset int if successful.
+     */
     internal static func getBodyOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.bodyOffset, dictionary)
     }
 
     /**
-    Get body length int from dictionary.
+     Get body length int from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Body length int if successful.
-    */
+     - returns: Body length int if successful.
+     */
     internal static func getBodyLength(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
         return get(.bodyLength, dictionary)
     }
 
     /**
-    Get file path string from dictionary.
+     Get file path string from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: File path string if successful.
-    */
+     - returns: File path string if successful.
+     */
     internal static func getFilePath(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.filePath, dictionary)
     }
 
     /**
-    Get full xml docs string from dictionary.
+     Get full xml docs string from dictionary.
 
-    - parameter dictionary: Dictionary to get value from.
+     - parameter dictionary: Dictionary to get value from.
 
-    - returns: Full xml docs string if successful.
-    */
+     - returns: Full xml docs string if successful.
+     */
     internal static func getFullXMLDocs(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         return get(.fullXMLDocs, dictionary)
     }
@@ -263,7 +265,7 @@ extension SwiftDocKey {
      - parameter dictionary: Dictionary to get value from.
 
      - returns: Best 'offset' for the declaration.  Name offset normally preferable,
-       but some eg. enumcase have invalid 0 here.
+     but some eg. enumcase have invalid 0 here.
      */
     internal static func getBestOffset(_ dictionary: [String: SourceKitRepresentable]) -> Int64? {
         if let nameOffset = getNameOffset(dictionary), nameOffset > 0 {
@@ -272,3 +274,4 @@ extension SwiftDocKey {
         return getOffset(dictionary)
     }
 }
+

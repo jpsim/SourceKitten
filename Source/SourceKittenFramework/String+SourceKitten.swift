@@ -34,12 +34,12 @@ private let commentLinePrefixCharacterSet: CharacterSet = {
 
 extension NSString {
     /**
-    CacheContainer caches:
+     CacheContainer caches:
 
-    - UTF16-based NSRange
-    - UTF8-based NSRange
-    - Line
-    */
+     - UTF16-based NSRange
+     - UTF8-based NSRange
+     - Line
+     */
     private class CacheContainer {
         let lines: [Line]
         let utf8View: String.UTF8View
@@ -103,12 +103,12 @@ extension NSString {
         }
 
         /**
-        Returns UTF16 offset from UTF8 offset.
+         Returns UTF16 offset from UTF8 offset.
 
-        - parameter byteOffset: UTF8-based offset of string.
+         - parameter byteOffset: UTF8-based offset of string.
 
-        - returns: UTF16 based offset of string.
-        */
+         - returns: UTF16 based offset of string.
+         */
         func location(fromByteOffset byteOffset: Int) -> Int {
             if lines.isEmpty {
                 return 0
@@ -132,12 +132,12 @@ extension NSString {
         }
 
         /**
-        Returns UTF8 offset from UTF16 offset.
+         Returns UTF8 offset from UTF16 offset.
 
-        - parameter location: UTF16-based offset of string.
+         - parameter location: UTF16-based offset of string.
 
-        - returns: UTF8 based offset of string.
-        */
+         - returns: UTF8 based offset of string.
+         */
         func byteOffset(fromLocation location: Int) -> Int {
             if lines.isEmpty {
                 return 0
@@ -196,8 +196,8 @@ extension NSString {
     static private var stringCacheLock = NSLock()
 
     /**
-    CacheContainer instance is stored to instance of NSString as associated object.
-    */
+     CacheContainer instance is stored to instance of NSString as associated object.
+     */
     private var cacheContainer: CacheContainer {
         NSString.stringCacheLock.lock()
         defer { NSString.stringCacheLock.unlock() }
@@ -210,31 +210,31 @@ extension NSString {
     }
 
     /**
-    Returns line number and character for utf16 based offset.
+     Returns line number and character for utf16 based offset.
 
-    - parameter offset: utf16 based index.
-    - parameter tabWidth: the width in spaces to expand tabs to.
-    */
+     - parameter offset: utf16 based index.
+     - parameter tabWidth: the width in spaces to expand tabs to.
+     */
     public func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
         return cacheContainer.lineAndCharacter(forCharacterOffset: offset, expandingTabsToWidth: tabWidth)
     }
 
     /**
-    Returns line number and character for byte offset.
+     Returns line number and character for byte offset.
 
-    - parameter offset: byte offset.
-    - parameter tabWidth: the width in spaces to expand tabs to.
-    */
+     - parameter offset: byte offset.
+     - parameter tabWidth: the width in spaces to expand tabs to.
+     */
     public func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
         return cacheContainer.lineAndCharacter(forByteOffset: offset, expandingTabsToWidth: tabWidth)
     }
 
     /**
-    Returns a copy of `self` with the trailing contiguous characters belonging to `characterSet`
-    removed.
+     Returns a copy of `self` with the trailing contiguous characters belonging to `characterSet`
+     removed.
 
-    - parameter characterSet: Character set to check for membership.
-    */
+     - parameter characterSet: Character set to check for membership.
+     */
     public func trimmingTrailingCharacters(in characterSet: CharacterSet) -> String {
         guard length > 0 else {
             return ""
@@ -250,28 +250,28 @@ extension NSString {
     }
 
     /**
-    Returns self represented as an absolute path.
+     Returns self represented as an absolute path.
 
-    - parameter rootDirectory: Absolute parent path if not already an absolute path.
-    */
+     - parameter rootDirectory: Absolute parent path if not already an absolute path.
+     */
     public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
         if isAbsolutePath { return bridge() }
         #if os(Linux)
-        return NSURL(fileURLWithPath: NSURL.fileURL(withPathComponents: [rootDirectory, bridge()])!.path).standardizingPath!.path
+            return NSURL(fileURLWithPath: NSURL.fileURL(withPathComponents: [rootDirectory, bridge()])!.path).standardizingPath!.path
         #else
-        return NSString.path(withComponents: [rootDirectory, bridge()]).bridge().standardizingPath
+            return NSString.path(withComponents: [rootDirectory, bridge()]).bridge().standardizingPath
         #endif
     }
 
     /**
-    Converts a range of byte offsets in `self` to an `NSRange` suitable for filtering `self` as an
-    `NSString`.
+     Converts a range of byte offsets in `self` to an `NSRange` suitable for filtering `self` as an
+     `NSString`.
 
-    - parameter start: Starting byte offset.
-    - parameter length: Length of bytes to include in range.
+     - parameter start: Starting byte offset.
+     - parameter length: Length of bytes to include in range.
 
-    - returns: An equivalent `NSRange`.
-    */
+     - returns: An equivalent `NSRange`.
+     */
     public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
         if self.length == 0 { return nil }
         let utf16Start = cacheContainer.location(fromByteOffset: start)
@@ -283,14 +283,14 @@ extension NSString {
     }
 
     /**
-    Converts an `NSRange` suitable for filtering `self` as an
-    `NSString` to a range of byte offsets in `self`.
+     Converts an `NSRange` suitable for filtering `self` as an
+     `NSString` to a range of byte offsets in `self`.
 
-    - parameter start: Starting character index in the string.
-    - parameter length: Number of characters to include in range.
+     - parameter start: Starting character index in the string.
+     - parameter length: Number of characters to include in range.
 
-    - returns: An equivalent `NSRange`.
-    */
+     - returns: An equivalent `NSRange`.
+     */
     public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
         let string = bridge()
 
@@ -323,22 +323,22 @@ extension NSString {
     }
 
     /**
-    Returns a substring with the provided byte range.
+     Returns a substring with the provided byte range.
 
-    - parameter start: Starting byte offset.
-    - parameter length: Length of bytes to include in range.
-    */
+     - parameter start: Starting byte offset.
+     - parameter length: Length of bytes to include in range.
+     */
     public func substringWithByteRange(start: Int, length: Int) -> String? {
         return byteRangeToNSRange(start: start, length: length).map(substring)
     }
 
     /**
-    Returns a substring starting at the beginning of `start`'s line and ending at the end of `end`'s
-    line. Returns `start`'s entire line if `end` is nil.
+     Returns a substring starting at the beginning of `start`'s line and ending at the end of `end`'s
+     line. Returns `start`'s entire line if `end` is nil.
 
-    - parameter start: Starting byte offset.
-    - parameter length: Length of bytes to include in range.
-    */
+     - parameter start: Starting byte offset.
+     - parameter length: Length of bytes to include in range.
+     */
     public func substringLinesWithByteRange(start: Int, length: Int) -> String? {
         return byteRangeToNSRange(start: start, length: length).map { range in
             var lineStart = 0, lineEnd = 0
@@ -356,11 +356,11 @@ extension NSString {
     }
 
     /**
-    Returns line numbers containing starting and ending byte offsets.
+     Returns line numbers containing starting and ending byte offsets.
 
-    - parameter start: Starting byte offset.
-    - parameter length: Length of bytes to include in range.
-    */
+     - parameter start: Starting byte offset.
+     - parameter length: Length of bytes to include in range.
+     */
     public func lineRangeWithByteRange(start: Int, length: Int) -> (start: Int, end: Int)? {
         return byteRangeToNSRange(start: start, length: length).flatMap { range in
             var numberOfLines = 0, index = 0, lineRangeStart = 0
@@ -379,34 +379,34 @@ extension NSString {
     }
 
     /**
-    Returns an array of Lines for each line in the file.
-    */
+     Returns an array of Lines for each line in the file.
+     */
     public func lines() -> [Line] {
         return cacheContainer.lines
     }
 
     /**
-    Returns true if self is an Objective-C header file.
-    */
+     Returns true if self is an Objective-C header file.
+     */
     public func isObjectiveCHeaderFile() -> Bool {
         return ["h", "hpp", "hh"].contains(pathExtension)
     }
 
     /**
-    Returns true if self is a Swift file.
-    */
+     Returns true if self is a Swift file.
+     */
     public func isSwiftFile() -> Bool {
         return pathExtension == "swift"
     }
 
-#if !os(Linux)
+    #if !os(Linux)
     /**
-    Returns a substring from a start and end SourceLocation.
-    */
+     Returns a substring from a start and end SourceLocation.
+     */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
         return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
     }
-#endif
+    #endif
 }
 
 extension String {
@@ -418,7 +418,7 @@ extension String {
         return String(prefix(1)).capitalized + String(dropFirst())
     }
 
-#if !os(Linux)
+    #if !os(Linux)
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     public func pragmaMarks(filename: String, excludeRanges: [NSRange], limit: NSRange?) -> [SourceDeclaration] {
@@ -446,24 +446,25 @@ extension String {
                 return nil
             }
             let location = SourceLocation(file: filename,
-                line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
-                column: 1, offset: UInt32(markByteRange.location))
+                                          line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
+                                          column: 1, offset: UInt32(markByteRange.location))
             return SourceDeclaration(type: .mark, location: location, extent: (location, location), name: markString,
-                usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [], swiftDeclaration: nil, availability: nil)
+                                     usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [],
+                                     swiftDeclaration: nil, swiftName: nil, availability: nil)
         }
     }
-#endif
+    #endif
 
     /**
-    Returns whether or not the `token` can be documented. Either because it is a
-    `SyntaxKind.Identifier` or because it is a function treated as a `SyntaxKind.Keyword`:
+     Returns whether or not the `token` can be documented. Either because it is a
+     `SyntaxKind.Identifier` or because it is a function treated as a `SyntaxKind.Keyword`:
 
-    - `subscript`
-    - `init`
-    - `deinit`
+     - `subscript`
+     - `init`
+     - `deinit`
 
-    - parameter token: Token to process.
-    */
+     - parameter token: Token to process.
+     */
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
         if token.type == SyntaxKind.keyword.rawValue {
             let keywordFunctions = ["subscript", "init", "deinit"]
@@ -474,12 +475,12 @@ extension String {
     }
 
     /**
-    Find integer offsets of documented Swift tokens in self.
+     Find integer offsets of documented Swift tokens in self.
 
-    - parameter syntaxMap: Syntax Map returned from SourceKit editor.open request.
+     - parameter syntaxMap: Syntax Map returned from SourceKit editor.open request.
 
-    - returns: Array of documented token offsets.
-    */
+     - returns: Array of documented token offsets.
+     */
     public func documentedTokenOffsets(syntaxMap: SyntaxMap) -> [Int] {
         let documentableOffsets = syntaxMap.tokens.filter(isTokenDocumentable).map {
             $0.offset
@@ -495,10 +496,10 @@ extension String {
     }
 
     /**
-    Returns the body of the comment if the string is a comment.
+     Returns the body of the comment if the string is a comment.
 
-    - parameter range: Range to restrict the search for a comment body.
-    */
+     - parameter range: Range to restrict the search for a comment body.
+     */
     public func commentBody(range: NSRange? = nil) -> String? {
         let nsString = bridge()
         let patterns: [(pattern: String, options: NSRegularExpression.Options)] = [
@@ -525,7 +526,7 @@ extension String {
                     let indexRange = NSRange(location: range.location, length: 0)
                     nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: indexRange)
                     let leadingWhitespaceCountToAdd = nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart))
-                                                              .countOfLeadingCharacters(in: .whitespacesAndNewlines)
+                        .countOfLeadingCharacters(in: .whitespacesAndNewlines)
                     let leadingWhitespaceToAdd = String(repeating: " ", count: leadingWhitespaceCountToAdd)
 
                     let bodySubstring = nsString.substring(with: range)
@@ -564,14 +565,14 @@ extension String {
                 return String(line[line.index(line.startIndex, offsetBy: minLeadingCharacters)...])
             }
             return line
-        }.joined(separator: "\n")
+            }.joined(separator: "\n")
     }
 
     /**
-    Returns the number of contiguous characters at the start of `self` belonging to `characterSet`.
+     Returns the number of contiguous characters at the start of `self` belonging to `characterSet`.
 
-    - parameter characterSet: Character set to check for membership.
-    */
+     - parameter characterSet: Character set to check for membership.
+     */
     public func countOfLeadingCharacters(in characterSet: CharacterSet) -> Int {
         let characterSet = characterSet.bridge()
         var count = 0
@@ -596,11 +597,12 @@ extension String {
         guard let range = range(of: ".", options: .backwards) else {
             return 0
         }
-#if swift(>=4.0)
-        let utf8pos = index(after: range.lowerBound).samePosition(in: utf8)!
-#else
-        let utf8pos = index(after: range.lowerBound).samePosition(in: utf8)
-#endif
+        #if swift(>=4.0)
+            let utf8pos = index(after: range.lowerBound).samePosition(in: utf8)!
+        #else
+            let utf8pos = index(after: range.lowerBound).samePosition(in: utf8)
+        #endif
         return Int64(utf8.distance(from: utf8.startIndex, to: utf8pos))
     }
 }
+
