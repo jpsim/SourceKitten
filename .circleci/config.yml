@@ -10,7 +10,14 @@ jobs:
       - run: make test|xcpretty -r junit
       - store_test_results:
           path: build/reports/
+      - restore_cache:
+          keys:
+            - cocoapods-{{ .Environment.CIRCLE_JOB }}
       - run: pod lib lint
+      - save_cache:
+          key: cocoapods-{{ .Environment.CIRCLE_JOB }}
+          paths:
+            - ~/.cocoapods
 
   swiftpm_4:
     macos:
@@ -37,7 +44,14 @@ jobs:
       - run: make test|xcpretty -r junit
       - store_test_results:
           path: build/reports/
+      - restore_cache:
+          keys:
+            - cocoapods-{{ .Environment.CIRCLE_JOB }}
       - run: pod lib lint
+      - save_cache:
+          key: cocoapods-{{ .Environment.CIRCLE_JOB }}
+          paths:
+            - ~/.cocoapods
 
   swiftpm_4.0.2:
     macos:
