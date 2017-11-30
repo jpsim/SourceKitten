@@ -11,11 +11,10 @@ jobs:
       - store_test_results:
           path: build/reports/
       - restore_cache:
-          keys:
-            - cocoapods-{{ .Environment.CIRCLE_JOB }}
+          key: cocoapods
       - run: pod lib lint
       - save_cache:
-          key: cocoapods-{{ .Environment.CIRCLE_JOB }}
+          key: cocoapods
           paths:
             - ~/.cocoapods
 
@@ -45,11 +44,10 @@ jobs:
       - store_test_results:
           path: build/reports/
       - restore_cache:
-          keys:
-            - cocoapods-{{ .Environment.CIRCLE_JOB }}
+          key: cocoapods
       - run: pod lib lint
       - save_cache:
-          key: cocoapods-{{ .Environment.CIRCLE_JOB }}
+          key: cocoapods
           paths:
             - ~/.cocoapods
 
