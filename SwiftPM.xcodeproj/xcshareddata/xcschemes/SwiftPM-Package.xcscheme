@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "9999"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::TestSupportExecutable"
+               BuildableName = "TestSupportExecutable"
+               BlueprintName = "TestSupportExecutable"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::swift-run"
+               BuildableName = "swift-run"
+               BlueprintName = "swift-run"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::swift-test"
+               BuildableName = "swift-test"
+               BlueprintName = "swift-test"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::swift-package"
+               BuildableName = "swift-package"
+               BlueprintName = "swift-package"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::swiftpm-xctest-helper"
+               BuildableName = "swiftpm-xctest-helper"
+               BlueprintName = "swiftpm-xctest-helper"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::TestSupport"
+               BuildableName = "TestSupport.framework"
+               BlueprintName = "TestSupport"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::swift-build"
+               BuildableName = "swift-build"
+               BlueprintName = "swift-build"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::Commands"
+               BuildableName = "Commands.framework"
+               BlueprintName = "Commands"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::Workspace"
+               BuildableName = "Workspace.framework"
+               BlueprintName = "Workspace"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::Xcodeproj"
+               BuildableName = "Xcodeproj.framework"
+               BlueprintName = "Xcodeproj"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::Build"
+               BuildableName = "Build.framework"
+               BlueprintName = "Build"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageGraph"
+               BuildableName = "PackageGraph.framework"
+               BlueprintName = "PackageGraph"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::SourceControl"
+               BuildableName = "SourceControl.framework"
+               BlueprintName = "SourceControl"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageLoading"
+               BuildableName = "PackageLoading.framework"
+               BlueprintName = "PackageLoading"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageModel"
+               BuildableName = "PackageModel.framework"
+               BlueprintName = "PackageModel"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::Utility"
+               BuildableName = "Utility.framework"
+               BlueprintName = "Utility"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageDescription4"
+               BuildableName = "PackageDescription4.framework"
+               BlueprintName = "PackageDescription4"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageDescription"
+               BuildableName = "PackageDescription.framework"
+               BlueprintName = "PackageDescription"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::Basic"
+               BuildableName = "Basic.framework"
+               BlueprintName = "Basic"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::POSIX"
+               BuildableName = "POSIX.framework"
+               BlueprintName = "POSIX"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::libc"
+               BuildableName = "libc.framework"
+               BlueprintName = "libc"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::clibc"
+               BuildableName = "clibc.framework"
+               BlueprintName = "clibc"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageModelTests"
+               BuildableName = "PackageModelTests.xctest"
+               BlueprintName = "PackageModelTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageDescriptionTests"
+               BuildableName = "PackageDescriptionTests.xctest"
+               BlueprintName = "PackageDescriptionTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::BuildTests"
+               BuildableName = "BuildTests.xctest"
+               BlueprintName = "BuildTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::TestSupportTests"
+               BuildableName = "TestSupportTests.xctest"
+               BlueprintName = "TestSupportTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageLoadingPerformanceTests"
+               BuildableName = "PackageLoadingPerformanceTests.xctest"
+               BlueprintName = "PackageLoadingPerformanceTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::WorkspaceTests"
+               BuildableName = "WorkspaceTests.xctest"
+               BlueprintName = "WorkspaceTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageDescription4Tests"
+               BuildableName = "PackageDescription4Tests.xctest"
+               BlueprintName = "PackageDescription4Tests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::CommandsTests"
+               BuildableName = "CommandsTests.xctest"
+               BlueprintName = "CommandsTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::FunctionalPerformanceTests"
+               BuildableName = "FunctionalPerformanceTests.xctest"
+               BlueprintName = "FunctionalPerformanceTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::BasicPerformanceTests"
+               BuildableName = "BasicPerformanceTests.xctest"
+               BlueprintName = "BasicPerformanceTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageLoadingTests"
+               BuildableName = "PackageLoadingTests.xctest"
+               BlueprintName = "PackageLoadingTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::UtilityTests"
+               BuildableName = "UtilityTests.xctest"
+               BlueprintName = "UtilityTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::POSIXTests"
+               BuildableName = "POSIXTests.xctest"
+               BlueprintName = "POSIXTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::BasicTests"
+               BuildableName = "BasicTests.xctest"
+               BlueprintName = "BasicTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageGraphPerformanceTests"
+               BuildableName = "PackageGraphPerformanceTests.xctest"
+               BlueprintName = "PackageGraphPerformanceTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::SourceControlTests"
+               BuildableName = "SourceControlTests.xctest"
+               BlueprintName = "SourceControlTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::FunctionalTests"
+               BuildableName = "FunctionalTests.xctest"
+               BlueprintName = "FunctionalTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::XcodeprojTests"
+               BuildableName = "XcodeprojTests.xctest"
+               BlueprintName = "XcodeprojTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftPM::PackageGraphTests"
+               BuildableName = "PackageGraphTests.xctest"
+               BlueprintName = "PackageGraphTests"
+               ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "SwiftPM::TestSupportExecutable"
+            BuildableName = "TestSupportExecutable"
+            BlueprintName = "TestSupportExecutable"
+            ReferencedContainer = "container:../../../SwiftPM.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

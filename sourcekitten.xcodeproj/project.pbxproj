@@ -18,6 +18,9 @@
 		6C4CF6521C798082008532C5 /* library_wrapper_CXString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6481C79802A008532C5 /* library_wrapper_CXString.swift */; };
 		6C4CF6551C798086008532C5 /* library_wrapper_Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */; };
 		6C4CF6581C79808C008532C5 /* library_wrapper_Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */; };
+		6C85C83E1FD11995005BC1EB /* PackageLoading.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C85C83F1FD11995005BC1EB /* PackageLoading.framework */; };
+		6C85C8401FD1199B005BC1EB /* PackageLoading.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C85C83F1FD11995005BC1EB /* PackageLoading.framework */; };
+		6C85C8411FD119A1005BC1EB /* PackageLoading.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = 6C85C83F1FD11995005BC1EB /* PackageLoading.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CC381641ECACB6F000C6F81 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC381621ECACB50000C6F81 /* Version.swift */; };
 		6CCFCE891CFECFED003239EB /* SWXMLHash.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CCFCE8C1CFECFF1003239EB /* Yams.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -108,6 +111,7 @@
 			dstPath = SourceKittenFramework.framework/Versions/Current/Frameworks;
 			dstSubfolderSpec = 10;
 			files = (
+				6C85C8411FD119A1005BC1EB /* PackageLoading.framework in Embed Frameworks into SourceKittenFramework.framework */,
 				6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */,
 				6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */,
 				6CCFCE891CFECFED003239EB /* SWXMLHash.framework in Embed Frameworks into SourceKittenFramework.framework */,
@@ -142,6 +146,7 @@
 		6C4CF6481C79802A008532C5 /* library_wrapper_CXString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_CXString.swift; sourceTree = "<group>"; };
 		6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_Documentation.swift; sourceTree = "<group>"; };
 		6C7F0A841EDB0AAD008EC581 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		6C85C83F1FD11995005BC1EB /* PackageLoading.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PackageLoading.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CC381621ECACB50000C6F81 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLangSyntax.swift; sourceTree = "<group>"; };
@@ -234,6 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C85C83E1FD11995005BC1EB /* PackageLoading.framework in Frameworks */,
 				E80678051CF2749300AFC816 /* Yams.framework in Frameworks */,
 				E8C0DFCD1AD349DB007EE3D4 /* SWXMLHash.framework in Frameworks */,
 			);
@@ -251,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C85C8401FD1199B005BC1EB /* PackageLoading.framework in Frameworks */,
 				2C55B3331BEB3CAB002E8C6B /* Commandant.framework in Frameworks */,
 				2C55B3321BEB3CA7002E8C6B /* Result.framework in Frameworks */,
 				D0E7B65319E9C6AD00EDBA4D /* SourceKittenFramework.framework in Frameworks */,
@@ -271,6 +278,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6C85C6521FD1153E005BC1EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C85C83F1FD11995005BC1EB /* PackageLoading.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D0D1210F19E87861005E4BAA = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +294,7 @@
 				D0D1211A19E87861005E4BAA /* sourcekitten */,
 				D0D1216E19E87B05005E4BAA /* SourceKittenFramework */,
 				D0D1217B19E87B05005E4BAA /* SourceKittenFrameworkTests */,
+				6C85C6521FD1153E005BC1EB /* Frameworks */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
