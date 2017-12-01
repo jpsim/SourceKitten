@@ -13,3 +13,6 @@
 [submodule "Carthage/Checkouts/Yams"]
 	path = Carthage/Checkouts/Yams
 	url = https://github.com/jpsim/Yams.git
+[submodule "Carthage/Checkouts/swift-package-manager"]
+	path = Carthage/Checkouts/swift-package-manager
+	url = https://github.com/apple/swift-package-manager.git
