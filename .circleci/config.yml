@@ -67,6 +67,13 @@ jobs:
       - checkout
       - run: swift test
 
+  linux_swift_4.0.3:
+    docker:
+      - image: norionomura/swift:403
+    steps:
+      - checkout
+      - run: swift test
+
 workflows:
   version: 2
   workflow:
@@ -77,3 +84,4 @@ workflows:
       - xcode_9.1
       - swiftpm_4.0.2
       - linux_swift_4.0.2
+      - linux_swift_4.0.3
