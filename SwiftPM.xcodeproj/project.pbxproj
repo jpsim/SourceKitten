@@ -13,7 +13,6 @@
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_1829 /* PBXTargetDependency */,
 				OBJ_1830 /* PBXTargetDependency */,
 				OBJ_1831 /* PBXTargetDependency */,
 				OBJ_1832 /* PBXTargetDependency */,
@@ -72,7 +71,6 @@
 		OBJ_1006 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1007 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1008 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1009 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1030 /* DependencyResolverPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_224 /* DependencyResolverPerfTests.swift */; };
 		OBJ_1031 /* PackageGraphPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_225 /* PackageGraphPerfTests.swift */; };
 		OBJ_1033 /* TestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::TestSupport::Product" /* TestSupport.framework */; };
@@ -90,7 +88,6 @@
 		OBJ_1045 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1046 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1047 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1048 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1070 /* GitRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_219 /* GitRepositoryTests.swift */; };
 		OBJ_1071 /* InMemoryGitRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_220 /* InMemoryGitRepositoryTests.swift */; };
 		OBJ_1072 /* RepositoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_221 /* RepositoryManagerTests.swift */; };
@@ -110,7 +107,6 @@
 		OBJ_1087 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1088 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1089 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1090 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1112 /* ClangModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_210 /* ClangModuleTests.swift */; };
 		OBJ_1113 /* DependencyResolutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_211 /* DependencyResolutionTests.swift */; };
 		OBJ_1114 /* MiscellaneousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_212 /* MiscellaneousTests.swift */; };
@@ -134,7 +130,6 @@
 		OBJ_1133 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1134 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1135 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1136 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1160 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_190 /* main.swift */; };
 		OBJ_1162 /* Commands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Commands::Product" /* Commands.framework */; };
 		OBJ_1163 /* Workspace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Workspace::Product" /* Workspace.framework */; };
@@ -150,7 +145,6 @@
 		OBJ_1173 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1174 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1175 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1176 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1196 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_188 /* main.swift */; };
 		OBJ_1198 /* Commands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Commands::Product" /* Commands.framework */; };
 		OBJ_1199 /* Workspace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Workspace::Product" /* Workspace.framework */; };
@@ -166,7 +160,6 @@
 		OBJ_1209 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1210 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1211 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1212 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1233 /* FunctionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_202 /* FunctionalTests.swift */; };
 		OBJ_1234 /* GenerateXcodeprojTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_203 /* GenerateXcodeprojTests.swift */; };
 		OBJ_1235 /* PackageGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_204 /* PackageGraphTests.swift */; };
@@ -189,7 +182,6 @@
 		OBJ_1253 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1254 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1255 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1256 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1278 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_186 /* main.swift */; };
 		OBJ_1285 /* DependencyResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_197 /* DependencyResolverTests.swift */; };
 		OBJ_1286 /* PackageGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_198 /* PackageGraphTests.swift */; };
@@ -210,7 +202,6 @@
 		OBJ_1302 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1303 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1304 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1305 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1326 /* AssertMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_171 /* AssertMatch.swift */; };
 		OBJ_1327 /* DiagnosticsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_172 /* DiagnosticsEngine.swift */; };
 		OBJ_1328 /* FileSystemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_173 /* FileSystemExtensions.swift */; };
@@ -239,7 +230,6 @@
 		OBJ_1352 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1353 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1354 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1355 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1375 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_169 /* main.swift */; };
 		OBJ_1377 /* Commands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Commands::Product" /* Commands.framework */; };
 		OBJ_1378 /* Workspace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Workspace::Product" /* Workspace.framework */; };
@@ -255,7 +245,6 @@
 		OBJ_1388 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1389 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1390 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1391 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1411 /* Completions+bash.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_155 /* Completions+bash.swift */; };
 		OBJ_1412 /* Completions+zsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_156 /* Completions+zsh.swift */; };
 		OBJ_1413 /* Describe.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_157 /* Describe.swift */; };
@@ -282,7 +271,6 @@
 		OBJ_1435 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1436 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1437 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1438 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1457 /* CheckoutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_147 /* CheckoutState.swift */; };
 		OBJ_1458 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_148 /* Diagnostics.swift */; };
 		OBJ_1459 /* InitPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_149 /* InitPackage.swift */; };
@@ -302,7 +290,6 @@
 		OBJ_1474 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1475 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1476 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1477 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1495 /* Module+PBXProj.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_139 /* Module+PBXProj.swift */; };
 		OBJ_1496 /* Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_140 /* Plist.swift */; };
 		OBJ_1497 /* XcodeProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_141 /* XcodeProjectModel.swift */; };
@@ -320,7 +307,6 @@
 		OBJ_1510 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1511 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1512 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1513 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1529 /* BuildPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_131 /* BuildPlan.swift */; };
 		OBJ_1530 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_132 /* Command.swift */; };
 		OBJ_1531 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_133 /* Configuration.swift */; };
@@ -338,7 +324,6 @@
 		OBJ_1544 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1545 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1546 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1547 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1563 /* DependencyResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_124 /* DependencyResolver.swift */; };
 		OBJ_1564 /* PackageGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_125 /* PackageGraph.swift */; };
 		OBJ_1565 /* PackageGraphLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_126 /* PackageGraphLoader.swift */; };
@@ -354,7 +339,6 @@
 		OBJ_1576 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1577 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1578 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1579 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1594 /* GitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_119 /* GitRepository.swift */; };
 		OBJ_1595 /* InMemoryGitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_120 /* InMemoryGitRepository.swift */; };
 		OBJ_1596 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_121 /* Repository.swift */; };
@@ -363,7 +347,6 @@
 		OBJ_1600 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1601 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1602 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1603 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1613 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_109 /* Diagnostics.swift */; };
 		OBJ_1614 /* ManifestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_110 /* ManifestLoader.swift */; };
 		OBJ_1615 /* Module+PkgConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_111 /* Module+PkgConfig.swift */; };
@@ -380,7 +363,6 @@
 		OBJ_1627 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1628 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1629 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1630 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1643 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_101 /* Manifest.swift */; };
 		OBJ_1644 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_102 /* Module.swift */; };
 		OBJ_1645 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_103 /* Package.swift */; };
@@ -394,7 +376,6 @@
 		OBJ_1654 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1655 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1656 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1657 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1669 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* ArgumentParser.swift */; };
 		OBJ_1670 /* ArgumentParserShellCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_82 /* ArgumentParserShellCompletion.swift */; };
 		OBJ_1671 /* BuildFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_83 /* BuildFlags.swift */; };
@@ -417,7 +398,6 @@
 		OBJ_1689 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_1690 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1691 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1692 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1701 /* CXXLanguageStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* CXXLanguageStandard.swift */; };
 		OBJ_1702 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* JSON.swift */; };
 		OBJ_1703 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* Package.swift */; };
@@ -470,7 +450,6 @@
 		OBJ_1760 /* misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* misc.swift */; };
 		OBJ_1762 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_1763 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1764 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1772 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Error.swift */; };
 		OBJ_1773 /* chdir.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* chdir.swift */; };
 		OBJ_1774 /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* env.swift */; };
@@ -483,10 +462,7 @@
 		OBJ_1781 /* stat.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* stat.swift */; };
 		OBJ_1782 /* usleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* usleep.swift */; };
 		OBJ_1784 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_1785 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_1792 /* libc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* libc.swift */; };
-		OBJ_1794 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
-		OBJ_1800 /* libc.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* libc.c */; };
 		OBJ_388 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_394 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_335 /* ModuleTests.swift */; };
 		OBJ_395 /* ToolsVersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_336 /* ToolsVersionTests.swift */; };
@@ -498,7 +474,6 @@
 		OBJ_402 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_403 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_404 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_405 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_427 /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_330 /* JSONTests.swift */; };
 		OBJ_428 /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_331 /* PackageTests.swift */; };
 		OBJ_429 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_332 /* VersionTests.swift */; };
@@ -522,7 +497,6 @@
 		OBJ_455 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_456 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_457 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_458 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_488 /* TestSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_323 /* TestSupportTests.swift */; };
 		OBJ_489 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_324 /* XCTestManifests.swift */; };
 		OBJ_491 /* TestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::TestSupport::Product" /* TestSupport.framework */; };
@@ -540,7 +514,6 @@
 		OBJ_503 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_504 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_505 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_506 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_528 /* ManifestLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_321 /* ManifestLoadingTests.swift */; };
 		OBJ_530 /* TestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::TestSupport::Product" /* TestSupport.framework */; };
 		OBJ_531 /* Commands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Commands::Product" /* Commands.framework */; };
@@ -557,7 +530,6 @@
 		OBJ_542 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_543 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_544 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_545 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_567 /* InitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_315 /* InitTests.swift */; };
 		OBJ_568 /* PinsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_316 /* PinsStoreTests.swift */; };
 		OBJ_569 /* ToolsVersionWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_317 /* ToolsVersionWriterTests.swift */; };
@@ -578,7 +550,6 @@
 		OBJ_585 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_586 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_587 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_588 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_610 /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_310 /* JSONTests.swift */; };
 		OBJ_611 /* PackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_311 /* PackageTests.swift */; };
 		OBJ_612 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_312 /* VersionTests.swift */; };
@@ -604,7 +575,6 @@
 		OBJ_640 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_641 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_642 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_643 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_673 /* BuildPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_302 /* BuildPerfTests.swift */; };
 		OBJ_675 /* TestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::TestSupport::Product" /* TestSupport.framework */; };
 		OBJ_676 /* Commands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Commands::Product" /* Commands.framework */; };
@@ -621,7 +591,6 @@
 		OBJ_687 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_688 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_689 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_690 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_715 /* ByteStringPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_295 /* ByteStringPerfTests.swift */; };
 		OBJ_716 /* OutputByteStreamPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_296 /* OutputByteStreamPerfTests.swift */; };
 		OBJ_717 /* PathPerfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_297 /* PathPerfTests.swift */; };
@@ -643,7 +612,6 @@
 		OBJ_734 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_735 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_736 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_737 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_759 /* JSONSerializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_283 /* JSONSerializationTests.swift */; };
 		OBJ_760 /* ManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_284 /* ManifestTests.swift */; };
 		OBJ_761 /* ModuleMapGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_285 /* ModuleMapGenerationTests.swift */; };
@@ -670,7 +638,6 @@
 		OBJ_783 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_784 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_785 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_786 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_808 /* ArgumentParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_271 /* ArgumentParserTests.swift */; };
 		OBJ_809 /* CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_272 /* CollectionTests.swift */; };
 		OBJ_810 /* InterruptHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_273 /* InterruptHandlerTests.swift */; };
@@ -697,7 +664,6 @@
 		OBJ_832 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_833 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_834 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_835 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_859 /* EnvTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_265 /* EnvTests.swift */; };
 		OBJ_860 /* PosixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_266 /* PosixTests.swift */; };
 		OBJ_861 /* ReaddirTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_267 /* ReaddirTests.swift */; };
@@ -718,7 +684,6 @@
 		OBJ_877 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_878 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_879 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_880 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_902 /* AwaitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_227 /* AwaitTests.swift */; };
 		OBJ_903 /* ByteStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_228 /* ByteStringTests.swift */; };
 		OBJ_904 /* CStringArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_229 /* CStringArrayTests.swift */; };
@@ -771,13 +736,11 @@
 		OBJ_952 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_953 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_954 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_955 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_977 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_194 /* main.swift */; };
 		OBJ_979 /* Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Utility::Product" /* Utility.framework */; };
 		OBJ_980 /* Basic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Basic::Product" /* Basic.framework */; };
 		OBJ_981 /* POSIX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::POSIX::Product" /* POSIX.framework */; };
 		OBJ_982 /* libc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::libc::Product" /* libc.framework */; };
-		OBJ_983 /* clibc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::clibc::Product" /* clibc.framework */; };
 		OBJ_993 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_192 /* main.swift */; };
 		OBJ_995 /* Commands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Commands::Product" /* Commands.framework */; };
 		OBJ_996 /* Workspace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPM::Workspace::Product" /* Workspace.framework */; };
@@ -836,20 +799,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C6651FD11948005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
-		6C85C6661FD11948005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C6671FD11948005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -892,13 +841,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C66D1FD11948005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C66E1FD11948005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -912,13 +854,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C6701FD11948005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C6711FD11948005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -941,26 +876,12 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C6741FD11948005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C6751FD11948005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C6761FD11948005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C6771FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1010,13 +931,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C67E1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C67F1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1095,13 +1009,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C68A1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C68B1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -1157,13 +1064,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C6931FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C6941FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1227,13 +1127,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C69D1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C69E1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1312,13 +1205,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C6A91FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C6AA1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -1388,13 +1274,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C6B41FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C6B51FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1479,13 +1358,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C6C11FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C6C21FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1577,13 +1449,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C6CF1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C6D01FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1682,13 +1547,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C6DE1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C6DF1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1795,13 +1653,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C6EE1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C6EF1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -1907,13 +1758,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C6FE1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C6FF1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -2018,13 +1862,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C70E1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C70F1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2145,13 +1982,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7201FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7211FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -2256,13 +2086,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C7301FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C7311FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2369,13 +2192,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7401FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7411FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -2481,13 +2297,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7501FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7511FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -2585,13 +2394,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C75F1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C7601FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2719,13 +2521,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7721FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7731FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -2830,13 +2625,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C7821FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C7831FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2943,13 +2731,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7921FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7931FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -2984,13 +2765,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C7981FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C7991FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3097,13 +2871,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7A81FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7A91FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -3208,13 +2975,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C7B81FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C7B91FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3328,13 +3088,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7C91FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7CA1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -3440,13 +3193,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7D91FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7DA1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -3551,13 +3297,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C7E91FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C7EA1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3685,13 +3424,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C7FC1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C7FD1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -3797,13 +3529,6 @@
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
 		};
-		6C85C80C1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
-		};
 		6C85C80D1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -3908,13 +3633,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::libc";
 			remoteInfo = libc;
-		};
-		6C85C81C1FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C81D1FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -4048,13 +3766,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftPM::PackageModelTests";
 			remoteInfo = PackageModelTests;
-		};
-		6C85C8301FD11949005BC1EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SwiftPM::clibc";
-			remoteInfo = clibc;
 		};
 		6C85C8311FD11949005BC1EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -4475,7 +4186,6 @@
 		"SwiftPM::WorkspaceTests::Product" /* WorkspaceTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = WorkspaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftPM::Xcodeproj::Product" /* Xcodeproj.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Xcodeproj.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftPM::XcodeprojTests::Product" /* XcodeprojTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = XcodeprojTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"SwiftPM::clibc::Product" /* clibc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = clibc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftPM::libc::Product" /* libc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = libc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftPM::swift-build::Product" /* swift-build */ = {isa = PBXFileReference; lastKnownFileType = text; path = "swift-build"; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftPM::swift-package::Product" /* swift-package */ = {isa = PBXFileReference; lastKnownFileType = text; path = "swift-package"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4504,7 +4214,6 @@
 				OBJ_1045 /* Basic.framework in Frameworks */,
 				OBJ_1046 /* POSIX.framework in Frameworks */,
 				OBJ_1047 /* libc.framework in Frameworks */,
-				OBJ_1048 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4527,7 +4236,6 @@
 				OBJ_1087 /* Basic.framework in Frameworks */,
 				OBJ_1088 /* POSIX.framework in Frameworks */,
 				OBJ_1089 /* libc.framework in Frameworks */,
-				OBJ_1090 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4550,7 +4258,6 @@
 				OBJ_1133 /* Basic.framework in Frameworks */,
 				OBJ_1134 /* POSIX.framework in Frameworks */,
 				OBJ_1135 /* libc.framework in Frameworks */,
-				OBJ_1136 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4572,7 +4279,6 @@
 				OBJ_1173 /* Basic.framework in Frameworks */,
 				OBJ_1174 /* POSIX.framework in Frameworks */,
 				OBJ_1175 /* libc.framework in Frameworks */,
-				OBJ_1176 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4594,7 +4300,6 @@
 				OBJ_1209 /* Basic.framework in Frameworks */,
 				OBJ_1210 /* POSIX.framework in Frameworks */,
 				OBJ_1211 /* libc.framework in Frameworks */,
-				OBJ_1212 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4617,7 +4322,6 @@
 				OBJ_1253 /* Basic.framework in Frameworks */,
 				OBJ_1254 /* POSIX.framework in Frameworks */,
 				OBJ_1255 /* libc.framework in Frameworks */,
-				OBJ_1256 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4647,7 +4351,6 @@
 				OBJ_1302 /* Basic.framework in Frameworks */,
 				OBJ_1303 /* POSIX.framework in Frameworks */,
 				OBJ_1304 /* libc.framework in Frameworks */,
-				OBJ_1305 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4669,7 +4372,6 @@
 				OBJ_1352 /* Basic.framework in Frameworks */,
 				OBJ_1353 /* POSIX.framework in Frameworks */,
 				OBJ_1354 /* libc.framework in Frameworks */,
-				OBJ_1355 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4691,7 +4393,6 @@
 				OBJ_1388 /* Basic.framework in Frameworks */,
 				OBJ_1389 /* POSIX.framework in Frameworks */,
 				OBJ_1390 /* libc.framework in Frameworks */,
-				OBJ_1391 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4712,7 +4413,6 @@
 				OBJ_1435 /* Basic.framework in Frameworks */,
 				OBJ_1436 /* POSIX.framework in Frameworks */,
 				OBJ_1437 /* libc.framework in Frameworks */,
-				OBJ_1438 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4732,7 +4432,6 @@
 				OBJ_1474 /* Basic.framework in Frameworks */,
 				OBJ_1475 /* POSIX.framework in Frameworks */,
 				OBJ_1476 /* libc.framework in Frameworks */,
-				OBJ_1477 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4750,7 +4449,6 @@
 				OBJ_1510 /* Basic.framework in Frameworks */,
 				OBJ_1511 /* POSIX.framework in Frameworks */,
 				OBJ_1512 /* libc.framework in Frameworks */,
-				OBJ_1513 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4768,7 +4466,6 @@
 				OBJ_1544 /* Basic.framework in Frameworks */,
 				OBJ_1545 /* POSIX.framework in Frameworks */,
 				OBJ_1546 /* libc.framework in Frameworks */,
-				OBJ_1547 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4785,7 +4482,6 @@
 				OBJ_1576 /* Basic.framework in Frameworks */,
 				OBJ_1577 /* POSIX.framework in Frameworks */,
 				OBJ_1578 /* libc.framework in Frameworks */,
-				OBJ_1579 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4797,7 +4493,6 @@
 				OBJ_1600 /* Basic.framework in Frameworks */,
 				OBJ_1601 /* POSIX.framework in Frameworks */,
 				OBJ_1602 /* libc.framework in Frameworks */,
-				OBJ_1603 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4812,7 +4507,6 @@
 				OBJ_1627 /* Basic.framework in Frameworks */,
 				OBJ_1628 /* POSIX.framework in Frameworks */,
 				OBJ_1629 /* libc.framework in Frameworks */,
-				OBJ_1630 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4826,7 +4520,6 @@
 				OBJ_1654 /* Basic.framework in Frameworks */,
 				OBJ_1655 /* POSIX.framework in Frameworks */,
 				OBJ_1656 /* libc.framework in Frameworks */,
-				OBJ_1657 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4837,7 +4530,6 @@
 				OBJ_1689 /* Basic.framework in Frameworks */,
 				OBJ_1690 /* POSIX.framework in Frameworks */,
 				OBJ_1691 /* libc.framework in Frameworks */,
-				OBJ_1692 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4861,7 +4553,6 @@
 			files = (
 				OBJ_1762 /* POSIX.framework in Frameworks */,
 				OBJ_1763 /* libc.framework in Frameworks */,
-				OBJ_1764 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4870,19 +4561,10 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_1784 /* libc.framework in Frameworks */,
-				OBJ_1785 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		OBJ_1793 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_1794 /* clibc.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_1801 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
@@ -4900,7 +4582,6 @@
 				OBJ_402 /* Basic.framework in Frameworks */,
 				OBJ_403 /* POSIX.framework in Frameworks */,
 				OBJ_404 /* libc.framework in Frameworks */,
-				OBJ_405 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4931,7 +4612,6 @@
 				OBJ_455 /* Basic.framework in Frameworks */,
 				OBJ_456 /* POSIX.framework in Frameworks */,
 				OBJ_457 /* libc.framework in Frameworks */,
-				OBJ_458 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4954,7 +4634,6 @@
 				OBJ_503 /* Basic.framework in Frameworks */,
 				OBJ_504 /* POSIX.framework in Frameworks */,
 				OBJ_505 /* libc.framework in Frameworks */,
-				OBJ_506 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4977,7 +4656,6 @@
 				OBJ_542 /* Basic.framework in Frameworks */,
 				OBJ_543 /* POSIX.framework in Frameworks */,
 				OBJ_544 /* libc.framework in Frameworks */,
-				OBJ_545 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5000,7 +4678,6 @@
 				OBJ_585 /* Basic.framework in Frameworks */,
 				OBJ_586 /* POSIX.framework in Frameworks */,
 				OBJ_587 /* libc.framework in Frameworks */,
-				OBJ_588 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5031,7 +4708,6 @@
 				OBJ_640 /* Basic.framework in Frameworks */,
 				OBJ_641 /* POSIX.framework in Frameworks */,
 				OBJ_642 /* libc.framework in Frameworks */,
-				OBJ_643 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5054,7 +4730,6 @@
 				OBJ_687 /* Basic.framework in Frameworks */,
 				OBJ_688 /* POSIX.framework in Frameworks */,
 				OBJ_689 /* libc.framework in Frameworks */,
-				OBJ_690 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5077,7 +4752,6 @@
 				OBJ_734 /* Basic.framework in Frameworks */,
 				OBJ_735 /* POSIX.framework in Frameworks */,
 				OBJ_736 /* libc.framework in Frameworks */,
-				OBJ_737 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5100,7 +4774,6 @@
 				OBJ_783 /* Basic.framework in Frameworks */,
 				OBJ_784 /* POSIX.framework in Frameworks */,
 				OBJ_785 /* libc.framework in Frameworks */,
-				OBJ_786 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5123,7 +4796,6 @@
 				OBJ_832 /* Basic.framework in Frameworks */,
 				OBJ_833 /* POSIX.framework in Frameworks */,
 				OBJ_834 /* libc.framework in Frameworks */,
-				OBJ_835 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5146,7 +4818,6 @@
 				OBJ_877 /* Basic.framework in Frameworks */,
 				OBJ_878 /* POSIX.framework in Frameworks */,
 				OBJ_879 /* libc.framework in Frameworks */,
-				OBJ_880 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5169,7 +4840,6 @@
 				OBJ_952 /* Basic.framework in Frameworks */,
 				OBJ_953 /* POSIX.framework in Frameworks */,
 				OBJ_954 /* libc.framework in Frameworks */,
-				OBJ_955 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5181,7 +4851,6 @@
 				OBJ_980 /* Basic.framework in Frameworks */,
 				OBJ_981 /* POSIX.framework in Frameworks */,
 				OBJ_982 /* libc.framework in Frameworks */,
-				OBJ_983 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5203,7 +4872,6 @@
 				OBJ_1006 /* Basic.framework in Frameworks */,
 				OBJ_1007 /* POSIX.framework in Frameworks */,
 				OBJ_1008 /* libc.framework in Frameworks */,
-				OBJ_1009 /* clibc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5834,12 +5502,11 @@
 				"SwiftPM::Basic::Product" /* Basic.framework */,
 				"SwiftPM::POSIX::Product" /* POSIX.framework */,
 				"SwiftPM::libc::Product" /* libc.framework */,
-				"SwiftPM::clibc::Product" /* clibc.framework */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -5850,7 +5517,6 @@
 				OBJ_340 /* Fixtures */,
 				OBJ_341 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_63 /* PackageDescription */ = {
@@ -5965,7 +5631,6 @@
 			dependencies = (
 				OBJ_1765 /* PBXTargetDependency */,
 				OBJ_1766 /* PBXTargetDependency */,
-				OBJ_1767 /* PBXTargetDependency */,
 			);
 			name = Basic;
 			productName = Basic;
@@ -5997,7 +5662,6 @@
 				OBJ_750 /* PBXTargetDependency */,
 				OBJ_751 /* PBXTargetDependency */,
 				OBJ_752 /* PBXTargetDependency */,
-				OBJ_753 /* PBXTargetDependency */,
 			);
 			name = BasicPerformanceTests;
 			productName = BasicPerformanceTests;
@@ -6030,7 +5694,6 @@
 				OBJ_969 /* PBXTargetDependency */,
 				OBJ_970 /* PBXTargetDependency */,
 				OBJ_971 /* PBXTargetDependency */,
-				OBJ_972 /* PBXTargetDependency */,
 			);
 			name = BasicTests;
 			productName = BasicTests;
@@ -6057,7 +5720,6 @@
 				OBJ_1555 /* PBXTargetDependency */,
 				OBJ_1556 /* PBXTargetDependency */,
 				OBJ_1557 /* PBXTargetDependency */,
-				OBJ_1558 /* PBXTargetDependency */,
 			);
 			name = Build;
 			productName = Build;
@@ -6089,7 +5751,6 @@
 				OBJ_479 /* PBXTargetDependency */,
 				OBJ_480 /* PBXTargetDependency */,
 				OBJ_481 /* PBXTargetDependency */,
-				OBJ_482 /* PBXTargetDependency */,
 			);
 			name = BuildTests;
 			productName = BuildTests;
@@ -6119,7 +5780,6 @@
 				OBJ_1449 /* PBXTargetDependency */,
 				OBJ_1450 /* PBXTargetDependency */,
 				OBJ_1451 /* PBXTargetDependency */,
-				OBJ_1452 /* PBXTargetDependency */,
 			);
 			name = Commands;
 			productName = Commands;
@@ -6155,7 +5815,6 @@
 				OBJ_664 /* PBXTargetDependency */,
 				OBJ_665 /* PBXTargetDependency */,
 				OBJ_666 /* PBXTargetDependency */,
-				OBJ_667 /* PBXTargetDependency */,
 			);
 			name = CommandsTests;
 			productName = CommandsTests;
@@ -6190,7 +5849,6 @@
 				OBJ_706 /* PBXTargetDependency */,
 				OBJ_707 /* PBXTargetDependency */,
 				OBJ_708 /* PBXTargetDependency */,
-				OBJ_709 /* PBXTargetDependency */,
 			);
 			name = FunctionalPerformanceTests;
 			productName = FunctionalPerformanceTests;
@@ -6225,7 +5883,6 @@
 				OBJ_1152 /* PBXTargetDependency */,
 				OBJ_1153 /* PBXTargetDependency */,
 				OBJ_1154 /* PBXTargetDependency */,
-				OBJ_1155 /* PBXTargetDependency */,
 			);
 			name = FunctionalTests;
 			productName = FunctionalTests;
@@ -6243,7 +5900,6 @@
 			);
 			dependencies = (
 				OBJ_1786 /* PBXTargetDependency */,
-				OBJ_1787 /* PBXTargetDependency */,
 			);
 			name = POSIX;
 			productName = POSIX;
@@ -6275,7 +5931,6 @@
 				OBJ_893 /* PBXTargetDependency */,
 				OBJ_894 /* PBXTargetDependency */,
 				OBJ_895 /* PBXTargetDependency */,
-				OBJ_896 /* PBXTargetDependency */,
 			);
 			name = POSIXTests;
 			productName = POSIXTests;
@@ -6367,7 +6022,6 @@
 				OBJ_1586 /* PBXTargetDependency */,
 				OBJ_1587 /* PBXTargetDependency */,
 				OBJ_1588 /* PBXTargetDependency */,
-				OBJ_1589 /* PBXTargetDependency */,
 			);
 			name = PackageGraph;
 			productName = PackageGraph;
@@ -6399,7 +6053,6 @@
 				OBJ_1061 /* PBXTargetDependency */,
 				OBJ_1062 /* PBXTargetDependency */,
 				OBJ_1063 /* PBXTargetDependency */,
-				OBJ_1064 /* PBXTargetDependency */,
 			);
 			name = PackageGraphPerformanceTests;
 			productName = PackageGraphPerformanceTests;
@@ -6431,7 +6084,6 @@
 				OBJ_1318 /* PBXTargetDependency */,
 				OBJ_1319 /* PBXTargetDependency */,
 				OBJ_1320 /* PBXTargetDependency */,
-				OBJ_1321 /* PBXTargetDependency */,
 			);
 			name = PackageGraphTests;
 			productName = PackageGraphTests;
@@ -6455,7 +6107,6 @@
 				OBJ_1635 /* PBXTargetDependency */,
 				OBJ_1636 /* PBXTargetDependency */,
 				OBJ_1637 /* PBXTargetDependency */,
-				OBJ_1638 /* PBXTargetDependency */,
 			);
 			name = PackageLoading;
 			productName = PackageLoading;
@@ -6487,7 +6138,6 @@
 				OBJ_558 /* PBXTargetDependency */,
 				OBJ_559 /* PBXTargetDependency */,
 				OBJ_560 /* PBXTargetDependency */,
-				OBJ_561 /* PBXTargetDependency */,
 			);
 			name = PackageLoadingPerformanceTests;
 			productName = PackageLoadingPerformanceTests;
@@ -6519,7 +6169,6 @@
 				OBJ_799 /* PBXTargetDependency */,
 				OBJ_800 /* PBXTargetDependency */,
 				OBJ_801 /* PBXTargetDependency */,
-				OBJ_802 /* PBXTargetDependency */,
 			);
 			name = PackageLoadingTests;
 			productName = PackageLoadingTests;
@@ -6542,7 +6191,6 @@
 				OBJ_1661 /* PBXTargetDependency */,
 				OBJ_1662 /* PBXTargetDependency */,
 				OBJ_1663 /* PBXTargetDependency */,
-				OBJ_1664 /* PBXTargetDependency */,
 			);
 			name = PackageModel;
 			productName = PackageModel;
@@ -6566,7 +6214,6 @@
 				OBJ_414 /* PBXTargetDependency */,
 				OBJ_416 /* PBXTargetDependency */,
 				OBJ_418 /* PBXTargetDependency */,
-				OBJ_420 /* PBXTargetDependency */,
 			);
 			name = PackageModelTests;
 			productName = PackageModelTests;
@@ -6587,7 +6234,6 @@
 				OBJ_1605 /* PBXTargetDependency */,
 				OBJ_1606 /* PBXTargetDependency */,
 				OBJ_1607 /* PBXTargetDependency */,
-				OBJ_1608 /* PBXTargetDependency */,
 			);
 			name = SourceControl;
 			productName = SourceControl;
@@ -6619,7 +6265,6 @@
 				OBJ_1103 /* PBXTargetDependency */,
 				OBJ_1104 /* PBXTargetDependency */,
 				OBJ_1105 /* PBXTargetDependency */,
-				OBJ_1106 /* PBXTargetDependency */,
 			);
 			name = SourceControlTests;
 			productName = SourceControlTests;
@@ -6664,7 +6309,6 @@
 				OBJ_1367 /* PBXTargetDependency */,
 				OBJ_1368 /* PBXTargetDependency */,
 				OBJ_1369 /* PBXTargetDependency */,
-				OBJ_1370 /* PBXTargetDependency */,
 			);
 			name = TestSupport;
 			productName = TestSupport;
@@ -6685,7 +6329,6 @@
 				OBJ_985 /* PBXTargetDependency */,
 				OBJ_986 /* PBXTargetDependency */,
 				OBJ_987 /* PBXTargetDependency */,
-				OBJ_988 /* PBXTargetDependency */,
 			);
 			name = TestSupportExecutable;
 			productName = TestSupportExecutable;
@@ -6717,7 +6360,6 @@
 				OBJ_519 /* PBXTargetDependency */,
 				OBJ_520 /* PBXTargetDependency */,
 				OBJ_521 /* PBXTargetDependency */,
-				OBJ_522 /* PBXTargetDependency */,
 			);
 			name = TestSupportTests;
 			productName = TestSupportTests;
@@ -6737,7 +6379,6 @@
 				OBJ_1693 /* PBXTargetDependency */,
 				OBJ_1694 /* PBXTargetDependency */,
 				OBJ_1695 /* PBXTargetDependency */,
-				OBJ_1696 /* PBXTargetDependency */,
 			);
 			name = Utility;
 			productName = Utility;
@@ -6770,7 +6411,6 @@
 				OBJ_850 /* PBXTargetDependency */,
 				OBJ_851 /* PBXTargetDependency */,
 				OBJ_852 /* PBXTargetDependency */,
-				OBJ_853 /* PBXTargetDependency */,
 			);
 			name = UtilityTests;
 			productName = UtilityTests;
@@ -6799,7 +6439,6 @@
 				OBJ_1487 /* PBXTargetDependency */,
 				OBJ_1488 /* PBXTargetDependency */,
 				OBJ_1489 /* PBXTargetDependency */,
-				OBJ_1490 /* PBXTargetDependency */,
 			);
 			name = Workspace;
 			productName = Workspace;
@@ -6831,7 +6470,6 @@
 				OBJ_601 /* PBXTargetDependency */,
 				OBJ_602 /* PBXTargetDependency */,
 				OBJ_603 /* PBXTargetDependency */,
-				OBJ_604 /* PBXTargetDependency */,
 			);
 			name = WorkspaceTests;
 			productName = WorkspaceTests;
@@ -6858,7 +6496,6 @@
 				OBJ_1521 /* PBXTargetDependency */,
 				OBJ_1522 /* PBXTargetDependency */,
 				OBJ_1523 /* PBXTargetDependency */,
-				OBJ_1524 /* PBXTargetDependency */,
 			);
 			name = Xcodeproj;
 			productName = Xcodeproj;
@@ -6890,28 +6527,11 @@
 				OBJ_1269 /* PBXTargetDependency */,
 				OBJ_1270 /* PBXTargetDependency */,
 				OBJ_1271 /* PBXTargetDependency */,
-				OBJ_1272 /* PBXTargetDependency */,
 			);
 			name = XcodeprojTests;
 			productName = XcodeprojTests;
 			productReference = "SwiftPM::XcodeprojTests::Product" /* XcodeprojTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		"SwiftPM::clibc" /* clibc */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_1796 /* Build configuration list for PBXNativeTarget "clibc" */;
-			buildPhases = (
-				OBJ_1799 /* Sources */,
-				OBJ_1801 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = clibc;
-			productName = clibc;
-			productReference = "SwiftPM::clibc::Product" /* clibc.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		"SwiftPM::libc" /* libc */ = {
 			isa = PBXNativeTarget;
@@ -6923,7 +6543,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_1795 /* PBXTargetDependency */,
 			);
 			name = libc;
 			productName = libc;
@@ -6954,7 +6573,6 @@
 				OBJ_1403 /* PBXTargetDependency */,
 				OBJ_1404 /* PBXTargetDependency */,
 				OBJ_1405 /* PBXTargetDependency */,
-				OBJ_1406 /* PBXTargetDependency */,
 			);
 			name = "swift-build";
 			productName = swift_build;
@@ -6985,7 +6603,6 @@
 				OBJ_1224 /* PBXTargetDependency */,
 				OBJ_1225 /* PBXTargetDependency */,
 				OBJ_1226 /* PBXTargetDependency */,
-				OBJ_1227 /* PBXTargetDependency */,
 			);
 			name = "swift-package";
 			productName = swift_package;
@@ -7016,7 +6633,6 @@
 				OBJ_1021 /* PBXTargetDependency */,
 				OBJ_1022 /* PBXTargetDependency */,
 				OBJ_1023 /* PBXTargetDependency */,
-				OBJ_1024 /* PBXTargetDependency */,
 			);
 			name = "swift-run";
 			productName = swift_run;
@@ -7047,7 +6663,6 @@
 				OBJ_1188 /* PBXTargetDependency */,
 				OBJ_1189 /* PBXTargetDependency */,
 				OBJ_1190 /* PBXTargetDependency */,
-				OBJ_1191 /* PBXTargetDependency */,
 			);
 			name = "swift-test";
 			productName = swift_test;
@@ -7085,7 +6700,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_341 /* Products */;
 			projectDirPath = "Carthage/Checkouts/swift-package-manager";
 			projectRoot = "";
@@ -7131,7 +6746,6 @@
 				"SwiftPM::Basic" /* Basic */,
 				"SwiftPM::POSIX" /* POSIX */,
 				"SwiftPM::libc" /* libc */,
-				"SwiftPM::clibc" /* clibc */,
 				"SwiftPM::SwiftPMPackageTests::ProductTarget" /* SwiftPMPackageTests */,
 				"SwiftPM::SwiftPM::ProductTarget" /* SwiftPM */,
 			);
@@ -7491,14 +7105,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_1799 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_1800 /* libc.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		OBJ_387 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
@@ -7792,11 +7398,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C71F1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1024 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7201FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1049 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -7872,11 +7473,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7D81FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1064 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7D91FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1091 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -7951,11 +7547,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7E81FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_1106 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7E91FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_1137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8047,11 +7638,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7FB1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1155 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7FC1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1177 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Commands" /* Commands */;
@@ -8122,11 +7708,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C72F1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1191 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7301FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1213 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Commands" /* Commands */;
@@ -8196,11 +7777,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C73F1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_1227 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7401FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_1257 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8277,11 +7853,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C80B1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1272 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C80C1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1306 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -8357,11 +7928,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C81B1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1321 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C81C1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1356 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Commands" /* Commands */;
@@ -8431,11 +7997,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6CE1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_1370 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6CF1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_1392 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8507,11 +8068,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C74F1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1406 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7501FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1439 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Workspace" /* Workspace */;
@@ -8577,11 +8133,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6C01FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1452 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6C11FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1478 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Xcodeproj" /* Xcodeproj */;
@@ -8642,11 +8193,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6B31FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1490 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6B41FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1514 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::PackageGraph" /* PackageGraph */;
@@ -8696,11 +8242,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C69C1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_1524 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C69D1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_1548 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8752,11 +8293,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6A81FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1558 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6A91FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1580 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::SourceControl" /* SourceControl */;
@@ -8802,11 +8338,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6921FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1589 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6931FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1604 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Utility" /* Utility */;
@@ -8826,11 +8357,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6891FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_1608 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C68A1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_1631 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8867,11 +8393,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6641FD11948005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1638 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6651FD11948005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1658 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Utility" /* Utility */;
@@ -8902,11 +8423,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C66C1FD11948005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1664 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C66D1FD11948005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1693 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Basic" /* Basic */;
@@ -8922,11 +8438,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6731FD11948005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1696 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6741FD11948005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1765 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::POSIX" /* POSIX */;
@@ -8937,25 +8448,10 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C66F1FD11948005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_1767 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6701FD11948005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_1786 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6751FD11948005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_1787 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6761FD11948005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_1795 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6661FD11948005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_1806 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -9051,11 +8547,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::PackageModelTests" /* PackageModelTests */;
 			targetProxy = 6C85C82F1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_1829 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C8301FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_1830 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -9157,11 +8648,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C67D1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_420 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C67E1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_433 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::PackageDescription" /* PackageDescription */;
@@ -9242,11 +8728,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6DD1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_482 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6DE1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_507 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -9321,11 +8802,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6ED1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_522 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6EE1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_546 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -9402,11 +8878,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C6FD1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_561 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C6FE1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_589 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -9481,11 +8952,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C70D1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_604 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C70E1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_616 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -9587,11 +9053,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C75E1FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_667 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C75F1FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_691 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -9682,11 +9143,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7711FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_709 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7721FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_738 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -9762,11 +9218,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7811FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_753 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7821FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_787 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -9841,11 +9292,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7911FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_802 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7921FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_836 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -9927,11 +9373,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7A71FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_853 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7A81FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_881 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::TestSupport" /* TestSupport */;
@@ -10006,11 +9447,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7B71FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_896 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7B81FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 		OBJ_956 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -10092,11 +9528,6 @@
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7C81FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
-		OBJ_972 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7C91FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
 		OBJ_984 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftPM::Utility" /* Utility */;
@@ -10116,11 +9547,6 @@
 			isa = PBXTargetDependency;
 			target = "SwiftPM::libc" /* libc */;
 			targetProxy = 6C85C7971FD11949005BC1EB /* PBXContainerItemProxy */;
-		};
-		OBJ_988 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SwiftPM::clibc" /* clibc */;
-			targetProxy = 6C85C7981FD11949005BC1EB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -11213,6 +10639,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Sources/clibc/include/clibc.h";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = libc;
 			};
@@ -11238,58 +10665,9 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Sources/clibc/include/clibc.h";
 				SWIFT_VERSION = 4.0;
 				TARGET_NAME = libc;
-			};
-			name = Release;
-		};
-		OBJ_1797 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEFINES_MODULE = NO;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Sources/clibc/include",
-				);
-				INFOPLIST_FILE = ../../../SwiftPM.xcodeproj/clibc_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = clibc;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGET_NAME = clibc;
-			};
-			name = Debug;
-		};
-		OBJ_1798 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEFINES_MODULE = NO;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Sources/clibc/include",
-				);
-				INFOPLIST_FILE = ../../../SwiftPM.xcodeproj/clibc_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = clibc;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGET_NAME = clibc;
 			};
 			name = Release;
 		};
@@ -12256,15 +11634,6 @@
 			buildConfigurations = (
 				OBJ_1789 /* Debug */,
 				OBJ_1790 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		OBJ_1796 /* Build configuration list for PBXNativeTarget "clibc" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_1797 /* Debug */,
-				OBJ_1798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
