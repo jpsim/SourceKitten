@@ -45,11 +45,14 @@
               "key.parsed_scope.end" : 13,
               "key.parsed_scope.start" : 13,
               "key.swift_declaration" : "@IBAction func superSize(_ sender: Any!)",
+              "key.swift_name" : "superSize(_:)",
               "key.unavailable_message" : "",
               "key.usr" : "c:objc(cs)SuperScript(im)superSize:"
             }
           ],
           "key.swift_declaration" : "class SuperScript : NSObject",
+          "key.swift_name" : "SuperScript",
+          "key.name" : "class SuperScript : NSObject",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)SuperScript"
         }

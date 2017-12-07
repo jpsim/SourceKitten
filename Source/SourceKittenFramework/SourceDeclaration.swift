@@ -42,6 +42,7 @@ public struct SourceDeclaration {
     public let commentBody: String?
     public var children: [SourceDeclaration]
     public let swiftDeclaration: String?
+    public let swiftName: String?
     public let availability: ClangAvailability?
 
     /// Range
@@ -137,6 +138,7 @@ extension SourceDeclaration {
             SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
         }).rejectPropertyMethods()
         swiftDeclaration = cursor.swiftDeclaration(compilerArguments: compilerArguments)
+        swiftName = cursor.swiftName(compilerArguments: compilerArguments)
         availability = cursor.platformAvailability()
     }
 }
