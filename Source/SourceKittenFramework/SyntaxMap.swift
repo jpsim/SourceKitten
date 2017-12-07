@@ -67,7 +67,7 @@ extension SyntaxMap {
     /// The ranges of documentation comments described by the map, in the order
     /// that they occur in the file.
     internal var docCommentRanges: [Range<Int>] {
-        let docCommentBlocks = tokens.split { !$0.isDocComment }
+        let docCommentBlocks = tokens.split(whereSeparator: { !$0.isDocComment })
         return docCommentBlocks.flatMap { ranges in
             ranges.first.flatMap { first in
                 ranges.last.flatMap { last -> Range<Int>? in

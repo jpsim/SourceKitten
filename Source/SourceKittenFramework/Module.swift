@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PackageLoading
 import Yams
 
 /// Represents source module to be documented.

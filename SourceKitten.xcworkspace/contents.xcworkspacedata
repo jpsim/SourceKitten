@@ -8,6 +8,9 @@
       location = "group:Carthage/Checkouts/Commandant/Commandant.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:SwiftPM.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Carthage/Checkouts/SWXMLHash/SWXMLHash.xcodeproj">
    </FileRef>
    <FileRef
