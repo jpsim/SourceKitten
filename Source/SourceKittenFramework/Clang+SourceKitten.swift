@@ -194,7 +194,7 @@ extension CXCursor {
         return commentBody
     }
 
-    func swiftDeclarationAndName(compilerArguments: [String]) -> (String?, String?) {
+    func swiftDeclarationAndName(compilerArguments: [String]) -> (swiftDeclaration: String?, swiftName: String?) {
         let file = location().file
         let swiftUUID: String
 
