@@ -103,6 +103,7 @@ private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: Any] {
     set(.parsedScopeStart, Int(decl.extent.start.line))
     set(.parsedScopeEnd, Int(decl.extent.end.line))
     set(.swiftDeclaration, decl.swiftDeclaration)
+    set(.swiftName, decl.swiftName)
     set(.alwaysDeprecated, decl.availability?.alwaysDeprecated)
     set(.alwaysUnavailable, decl.availability?.alwaysUnavailable)
     set(.deprecationMessage, decl.availability?.deprecationMessage)

@@ -194,7 +194,7 @@ extension CXCursor {
         return commentBody
     }
 
-    func swiftDeclaration(compilerArguments: [String]) -> String? {
+    func swiftDeclarationAndName(compilerArguments: [String]) -> (swiftDeclaration: String?, swiftName: String?) {
         let file = location().file
         let swiftUUID: String
 
@@ -207,26 +207,26 @@ extension CXCursor {
             do {
                 _ = try Request.interface(file: file, uuid: swiftUUID, arguments: compilerArguments).send()
             } catch {
-                return nil
+                return (nil, nil)
             }
         }
 
         guard let usr = usr(),
             let findUSR = try? Request.findUSR(file: swiftUUID, usr: usr).send(),
             let usrOffset = findUSR[SwiftDocKey.offset.rawValue] as? Int64 else {
-            return nil
+                return (nil, nil)
         }
 
         guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send() else {
-            return nil
+            return (nil, nil)
         }
 
-        if let annotatedDeclarationXML = cursorInfo[SwiftDocKey.annotatedDeclaration.rawValue] as? String,
-            let swiftDeclaration = SWXMLHash.parse(annotatedDeclarationXML).element?.recursiveText {
-            return swiftDeclaration
-        }
+        let swiftDeclaration = (cursorInfo[SwiftDocKey.annotatedDeclaration.rawValue] as? String)
+            .flatMap(SWXMLHash.parse)?.element?.recursiveText
 
-        return nil
+        let swiftName = cursorInfo[SwiftDocKey.name.rawValue] as? String
+
+        return (swiftDeclaration, swiftName)
     }
 }
 

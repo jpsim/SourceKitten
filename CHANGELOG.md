@@ -16,7 +16,8 @@
 
 ##### Enhancements
 
-* None.
+* Return `SWIFT_NAME` when generating Objective-C docs.  
+  [Ibrahim Ulukaya](https://github.com/ulukaya)
 
 ##### Bug Fixes
 
