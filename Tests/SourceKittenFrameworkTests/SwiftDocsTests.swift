@@ -32,9 +32,20 @@ func compareJSONString(withFixtureNamed name: String,
 
     let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
+    // Use if changes are introduced by changes in SourceKitten.
     let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
+        return
+    }
+
+    // Use if changes are introduced by the new Swift version.
+    let appendFixturesForNewSwiftVersion = false
+    if appendFixturesForNewSwiftVersion && actualContent != expectedFile.contents,
+        var path = expectedFile.path, let index = path.index(of: "@"),
+        !path.hasSuffix("@\(buildingSwiftVersion).json") {
+        path.replaceSubrange(index..<path.endIndex, with: "@\(buildingSwiftVersion).json")
+        _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: path), options: [])
         return
     }
 
@@ -123,6 +134,28 @@ private func diff(original: String, modified: String) -> String {
         return "\(error)"
     }
 }
+
+private let buildingSwiftVersion: String = {
+    #if swift(>=4.1)
+        return "swift-4.1"
+    #elseif swift(>=4.0.3)
+        return "swift-4.0.3"
+    #elseif swift(>=4.0.2)
+        return "swift-4.0.2"
+    #elseif swift(>=4.0)
+        return "swift-4.0"
+    #elseif swift(>=3.3)
+        return "swift-3.3"
+    #elseif swift(>=3.2.3)
+        return "swift-3.2.3"
+    #elseif swift(>=3.2.2)
+        return "swift-3.2.2"
+    #elseif swift(>=3.2)
+        return "swift-3.2"
+    #else
+        fatalError("Swift 3.2 or later is required!")
+    #endif
+}()
 
 class SwiftDocsTests: XCTestCase {
 
