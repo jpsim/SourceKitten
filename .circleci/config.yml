@@ -67,6 +67,32 @@ jobs:
       - checkout
       - run: swift test
 
+  xcode_9.2:
+    macos:
+      xcode: "9.2.0"
+    steps:
+      - checkout
+      - run: pod repo update
+      - run: make test|xcpretty -r junit
+      - store_test_results:
+          path: build/reports/
+      - restore_cache:
+          key: cocoapods
+      - run: pod lib lint
+      - save_cache:
+          key: cocoapods
+          paths:
+            - ~/.cocoapods
+
+  swiftpm_4.0.3:
+    macos:
+      xcode: "9.2.0"
+    steps:
+      - checkout
+      - run: git submodule update --init --recursive
+      - run: swift test
+      - run: brew install swiftlint && swiftlint lint --strict
+
   linux_swift_4.0.3:
     docker:
       - image: norionomura/swift:403
@@ -84,4 +110,6 @@ workflows:
       - xcode_9.1
       - swiftpm_4.0.2
       - linux_swift_4.0.2
+      - xcode_9.2
+      - swiftpm_4.0.3
       - linux_swift_4.0.3
