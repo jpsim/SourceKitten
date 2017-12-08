@@ -62,10 +62,19 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
 }
 
 private func versionedExpectedFilename(for name: String) -> String {
-    #if swift(>=4.0.2)
+    #if swift(>=4.1)
+        let versions = ["swift-4.1", "swift-3.3", "swift-4.0.3", "swift-3.2.3", "swift-4.0.2", "swift-3.2.2",
+                        "swift-4.0", "swift-3.2"]
+    #elseif swift(>=4.0.3)
+        let versions = ["swift-4.0.3", "swift-3.2.3", "swift-4.0.2", "swift-3.2.2", "swift-4.0", "swift-3.2"]
+    #elseif swift(>=4.0.2)
         let versions = ["swift-4.0.2", "swift-3.2.2", "swift-4.0", "swift-3.2"]
     #elseif swift(>=4.0)
         let versions = ["swift-4.0", "swift-3.2"]
+    #elseif swift(>=3.3)
+        let versions = ["swift-3.3", "swift-3.2.3", "swift-3.2.2", "swift-3.2"]
+    #elseif swift(>=3.2.3)
+        let versions = ["swift-3.2.3", "swift-3.2.2", "swift-3.2"]
     #elseif swift(>=3.2.2)
         let versions = ["swift-3.2.2", "swift-3.2"]
     #else // if swift(>=3.2)
