@@ -51,7 +51,7 @@ func compareJSONString(withFixtureNamed name: String,
 
     if jsonValue(actualContent) != jsonValue(expectedFile.contents) {
         XCTFail("output should match expected fixture", file: file, line: line)
-        print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
+        print(diff(original: expectedFile.contents, modified: actualContent))
     }
 }
 
@@ -94,6 +94,34 @@ private func versionedExpectedFilename(for name: String) -> String {
         }
     }
     return "\(fixturesDirectory)\(name).json"
+}
+
+private func diff(original: String, modified: String) -> String {
+    do {
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("SwiftDocsTests-diff-\(NSUUID())")
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+
+        try original.data(using: .utf8)?.write(to: url.appendingPathComponent("original.json"))
+        try modified.data(using: .utf8)?.write(to: url.appendingPathComponent("modified.json"))
+
+        let task = Process()
+        task.launchPath = "/usr/bin/env"
+        task.currentDirectoryPath = url.path
+        task.arguments = ["git", "diff", "original.json", "modified.json"]
+
+        let pipe = Pipe()
+        task.standardOutput = pipe
+        task.standardError = pipe
+
+        task.launch()
+
+        let file = pipe.fileHandleForReading
+        defer { file.closeFile() }
+
+        return String(data: file.readDataToEndOfFile(), encoding: .utf8) ?? ""
+    } catch {
+        return "\(error)"
+    }
 }
 
 class SwiftDocsTests: XCTestCase {
