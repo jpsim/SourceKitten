@@ -32,9 +32,20 @@ func compareJSONString(withFixtureNamed name: String,
 
     let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
+    // Use if changes are introduced by changes in SourceKitten.
     let overwrite = false
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
+        return
+    }
+
+    // Use if changes are introduced by the new Swift version.
+    let appendFixturesForNewSwiftVersion = false
+    if appendFixturesForNewSwiftVersion && actualContent != expectedFile.contents,
+        var path = expectedFile.path, let index = path.index(of: "@"),
+        !path.hasSuffix("@\(buildingSwiftVersion).json") {
+        path.replaceSubrange(index..<path.endIndex, with: "@\(buildingSwiftVersion).json")
+        _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: path), options: [])
         return
     }
 
@@ -51,7 +62,7 @@ func compareJSONString(withFixtureNamed name: String,
 
     if jsonValue(actualContent) != jsonValue(expectedFile.contents) {
         XCTFail("output should match expected fixture", file: file, line: line)
-        print("actual:\n\(actualContent)\nexpected:\n\(expectedFile.contents)")
+        print(diff(original: expectedFile.contents, modified: actualContent))
     }
 }
 
@@ -62,10 +73,19 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
 }
 
 private func versionedExpectedFilename(for name: String) -> String {
-    #if swift(>=4.0.2)
+    #if swift(>=4.1)
+        let versions = ["swift-4.1", "swift-3.3", "swift-4.0.3", "swift-3.2.3", "swift-4.0.2", "swift-3.2.2",
+                        "swift-4.0", "swift-3.2"]
+    #elseif swift(>=4.0.3)
+        let versions = ["swift-4.0.3", "swift-3.2.3", "swift-4.0.2", "swift-3.2.2", "swift-4.0", "swift-3.2"]
+    #elseif swift(>=4.0.2)
         let versions = ["swift-4.0.2", "swift-3.2.2", "swift-4.0", "swift-3.2"]
     #elseif swift(>=4.0)
         let versions = ["swift-4.0", "swift-3.2"]
+    #elseif swift(>=3.3)
+        let versions = ["swift-3.3", "swift-3.2.3", "swift-3.2.2", "swift-3.2"]
+    #elseif swift(>=3.2.3)
+        let versions = ["swift-3.2.3", "swift-3.2.2", "swift-3.2"]
     #elseif swift(>=3.2.2)
         let versions = ["swift-3.2.2", "swift-3.2"]
     #else // if swift(>=3.2)
@@ -86,6 +106,56 @@ private func versionedExpectedFilename(for name: String) -> String {
     }
     return "\(fixturesDirectory)\(name).json"
 }
+
+private func diff(original: String, modified: String) -> String {
+    do {
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("SwiftDocsTests-diff-\(NSUUID())")
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+
+        try original.data(using: .utf8)?.write(to: url.appendingPathComponent("original.json"))
+        try modified.data(using: .utf8)?.write(to: url.appendingPathComponent("modified.json"))
+
+        let task = Process()
+        task.launchPath = "/usr/bin/env"
+        task.currentDirectoryPath = url.path
+        task.arguments = ["git", "diff", "original.json", "modified.json"]
+
+        let pipe = Pipe()
+        task.standardOutput = pipe
+        task.standardError = pipe
+
+        task.launch()
+
+        let file = pipe.fileHandleForReading
+        defer { file.closeFile() }
+
+        return String(data: file.readDataToEndOfFile(), encoding: .utf8) ?? ""
+    } catch {
+        return "\(error)"
+    }
+}
+
+private let buildingSwiftVersion: String = {
+    #if swift(>=4.1)
+        return "swift-4.1"
+    #elseif swift(>=4.0.3)
+        return "swift-4.0.3"
+    #elseif swift(>=4.0.2)
+        return "swift-4.0.2"
+    #elseif swift(>=4.0)
+        return "swift-4.0"
+    #elseif swift(>=3.3)
+        return "swift-3.3"
+    #elseif swift(>=3.2.3)
+        return "swift-3.2.3"
+    #elseif swift(>=3.2.2)
+        return "swift-3.2.2"
+    #elseif swift(>=3.2)
+        return "swift-3.2"
+    #else
+        fatalError("Swift 3.2 or later is required!")
+    #endif
+}()
 
 class SwiftDocsTests: XCTestCase {
 
