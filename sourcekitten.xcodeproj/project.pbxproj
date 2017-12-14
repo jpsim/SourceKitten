@@ -136,6 +136,7 @@
 		3F56EACF1BAB251C006433D0 /* JSONOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONOutput.swift; sourceTree = "<group>"; };
 		5499CA961A2394B700783309 /* Components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Components.plist; sourceTree = "<group>"; };
 		5499CA971A2394B700783309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C4981EB1FE33F4500633AC8 /* Mac-XCTest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Mac-XCTest.xcconfig"; sourceTree = "<group>"; };
 		6C4CF5721C78B47F008532C5 /* library_wrapper_sourcekitd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_sourcekitd.swift; sourceTree = "<group>"; };
 		6C4CF5741C78B47F008532C5 /* library_wrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper.swift; sourceTree = "<group>"; };
 		6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_Index.swift; sourceTree = "<group>"; };
@@ -376,6 +377,7 @@
 				D0D1213619E878CC005E4BAA /* Mac-DynamicLibrary.xcconfig */,
 				D0D1213719E878CC005E4BAA /* Mac-Framework.xcconfig */,
 				D0D1213819E878CC005E4BAA /* Mac-StaticLibrary.xcconfig */,
+				6C4981EB1FE33F4500633AC8 /* Mac-XCTest.xcconfig */,
 			);
 			path = "Mac OS X";
 			sourceTree = "<group>";
@@ -825,7 +827,7 @@
 		};
 		D0D1218219E87B05005E4BAA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
+			baseConfigurationReference = 6C4981EB1FE33F4500633AC8 /* Mac-XCTest.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
@@ -836,7 +838,7 @@
 		};
 		D0D1218319E87B05005E4BAA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
+			baseConfigurationReference = 6C4981EB1FE33F4500633AC8 /* Mac-XCTest.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
@@ -885,7 +887,7 @@
 		};
 		D0D1218A19E87B38005E4BAA /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
+			baseConfigurationReference = 6C4981EB1FE33F4500633AC8 /* Mac-XCTest.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
@@ -934,7 +936,7 @@
 		};
 		D0D1218E19E87B3B005E4BAA /* Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0D1213419E878CC005E4BAA /* Mac-Application.xcconfig */;
+			baseConfigurationReference = 6C4981EB1FE33F4500633AC8 /* Mac-XCTest.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Tests/SourceKittenFrameworkTests/Info.plist;
