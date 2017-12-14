@@ -52,7 +52,6 @@
           ],
           "key.swift_declaration" : "class SuperScript : NSObject",
           "key.swift_name" : "SuperScript",
-          "key.name" : "class SuperScript : NSObject",
           "key.unavailable_message" : "",
           "key.usr" : "c:objc(cs)SuperScript"
         }
