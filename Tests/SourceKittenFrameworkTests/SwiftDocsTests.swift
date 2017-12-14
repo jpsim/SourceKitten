@@ -15,7 +15,7 @@ func compareJSONString(withFixtureNamed name: String,
                        rootDirectory: String = fixturesDirectory,
                        file: StaticString = #file,
                        line: UInt = #line) {
-    #if os(Linux)
+    #if os(Linux) && !swift(>=4.1)
     let jsonString = String(describing: jsonString).replacingOccurrences(of: rootDirectory, with: "")
     let actualContent = jsonString
     #else
