@@ -20,26 +20,44 @@ struct DocCommand: CommandProtocol {
         let singleFile: Bool
         let moduleName: String
         let objc: Bool
+        let objcXcodebuild: Bool
+        let umbrellaHeader: String
         let arguments: [String]
 
-        static func create(spmModule: String) -> (_ singleFile: Bool) -> (_ moduleName: String) -> (_ objc: Bool) -> (_ arguments: [String]) -> Options {
-            return { singleFile in { moduleName in { objc in { arguments in
-                self.init(spmModule: spmModule, singleFile: singleFile, moduleName: moduleName, objc: objc, arguments: arguments)
-            }}}}
+        static func create(spmModule: String) -> (_ singleFile: Bool) -> (_ moduleName: String) ->
+            (_ objc: Bool) -> (_ objcXcodebuild: Bool) -> (_ objcUmbrellaHeader: String) -> (_ arguments: [String]) -> Options {
+            return { singleFile in { moduleName in { objc in { objcXcodebuild in { umbrellaHeader in { arguments in
+            self.init(spmModule: spmModule,
+                      singleFile: singleFile,
+                      moduleName: moduleName,
+                      objc: objc,
+                      objcXcodebuild: objcXcodebuild,
+                      umbrellaHeader: umbrellaHeader,
+                      arguments: arguments)
+            }}}}}}
+        }
+
+        var moduleNameOrNil: String? {
+            return moduleName.isEmpty ? nil : moduleName
         }
 
         static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
                 <*> mode <| Option(key: "spm-module", defaultValue: "",
-                                   usage: "document a Swift Package Manager module")
+                                   usage: "Document a Swift Package Manager module")
                 <*> mode <| Option(key: "single-file", defaultValue: false,
-                                   usage: "only document one file")
+                                   usage: "Document only one Swift file")
                 <*> mode <| Option(key: "module-name", defaultValue: "",
-                                   usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
+                                   usage: "Name of module to document (can't be used with `--single-file` or `--objc`)")
                 <*> mode <| Option(key: "objc", defaultValue: false,
-                                   usage: "document Objective-C headers")
+                                   usage: "Document Objective-C headers. Pass all clang arguments in the arguments list.")
+                <*> mode <| Option(key: "objc-xcodebuild", defaultValue: false,
+                                   usage: "Document Objective-C headers. Use xcodebuild to guess clang arguments. " +
+                                          "Pass additional xcodebuild arguments in the arguments list.")
+                <*> mode <| Option(key: "umbrella-header", defaultValue: "",
+                                   usage: "Path to the top-level Objective-C header file for use with `--objc-xcodebuild`.")
                 <*> mode <| Argument(defaultValue: [],
-                                     usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
+                                     usage: "Arguments list passed to xcodebuild/clang. If `-` prefixed argument exists, place ` -- ` before that.")
         }
     }
 
@@ -48,12 +66,13 @@ struct DocCommand: CommandProtocol {
         if !options.spmModule.isEmpty {
             return runSPMModule(moduleName: options.spmModule)
         } else if options.objc {
-            return runObjC(options: options, args: args)
+            return runObjCDirect(options: options, args: args)
+        } else if options.objcXcodebuild {
+            return runObjCXcodebuild(umbrellaHeader: options.umbrellaHeader, moduleName: options.moduleNameOrNil, args: args)
         } else if options.singleFile {
             return runSwiftSingleFile(args: args)
         }
-        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
-        return runSwiftModule(moduleName: moduleName, args: args)
+        return runSwiftModule(moduleName: options.moduleNameOrNil, args: args)
     }
 
     func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
@@ -87,7 +106,7 @@ struct DocCommand: CommandProtocol {
         return .failure(.readFailed(path: args[0]))
     }
 
-    func runObjC(options: Options, args: [String]) -> Result<(), SourceKittenError> {
+    func runObjCDirect(options: Options, args: [String]) -> Result<(), SourceKittenError> {
         #if os(Linux)
         fatalError("unsupported")
         #else
@@ -96,6 +115,17 @@ struct DocCommand: CommandProtocol {
         }
         let translationUnit = ClangTranslationUnit(headerFiles: [args[0]], compilerArguments: Array(args.dropFirst(1)))
         print(translationUnit)
+        return .success(())
+        #endif
+    }
+
+    func runObjCXcodebuild(umbrellaHeader: String, moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
+        #if os(Linux)
+        fatalError("unsupported")
+        #else
+        print("module: \(moduleName ?? "(default module)")")
+        print("umbrella: " + umbrellaHeader)
+        print("args: \(args)")
         return .success(())
         #endif
     }
