@@ -87,13 +87,13 @@ private func partiallyFilter(arguments args: [String]) -> ([String], Bool) {
 }
 
 /**
-Filters compiler arguments from `xcodebuild` to something that SourceKit/Clang will accept.
+Filters Swift compiler arguments from `xcodebuild` to something that SourceKit will accept.
 
 - parameter args: Compiler arguments, as parsed from `xcodebuild`.
 
 - returns: Filtered compiler arguments.
 */
-private func filter(arguments args: [String]) -> [String] {
+private func filterSwift(arguments args: [String]) -> [String] {
     var args = args
     args.append(contentsOf: ["-D", "DEBUG"])
     var shouldContinueToFilterArguments = true
@@ -118,23 +118,55 @@ private func filter(arguments args: [String]) -> [String] {
 }
 
 /**
+ Filters clang compiler arguments from `xcodebuild` to something that can be reused.
+
+ - parameter args: Compiler arguments, as parsed from `xcodebuild`.
+
+ - returns: Filtered compiler arguments.
+ */
+private func filterObjC(arguments args: [String]) -> [String] {
+    args.forEach { print($0) }
+    return args
+}
+
+extension Language {
+    /// Regexp pattern matching an invocation of the language's compiler.
+    private var basePattern: String {
+        switch self {
+        case .swift: return "/usr/bin/swiftc.*"
+        case .objc:  return "/usr/bin/clang.*-x objective-c .*"
+        }
+    }
+
+    /// Name of the compiler flag used to specify the module name
+    private var moduleFlag: String {
+        switch self {
+        case .swift: return "-module-name "
+        case .objc:  return "-fmodule-name="
+        }
+    }
+
+    /// Regexp pattern matching an invocation of the language's compiler,
+    /// optionally targetting a specific module.
+    internal func compileCommandPattern(moduleName: String?) -> String {
+        guard let moduleName = moduleName else {
+            return basePattern
+        }
+        return "\(basePattern)\(moduleFlag)\(moduleName) .*"
+    }
+}
+
+/**
 Parses the compiler arguments needed to compile the `language` files.
 
 - parameter xcodebuildOutput: Output of `xcodebuild` to be parsed for compiler arguments.
 - parameter language:         Language to parse for.
 - parameter moduleName:       Name of the Module for which to extract compiler arguments.
 
-- returns: Compiler arguments, filtered for suitable use by SourceKit if `.Swift` or Clang if `.ObjC`.
+- returns: Compiler arguments, filtered for suitable use by SourceKit if `.swift` or Clang if `.objc`.
 */
 internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Language, moduleName: String?) -> [String]? {
-    let pattern: String
-    if language == .objc {
-        pattern = "/usr/bin/clang.*"
-    } else if let moduleName = moduleName {
-        pattern = "/usr/bin/swiftc.*-module-name \(moduleName) .*"
-    } else {
-        pattern = "/usr/bin/swiftc.*"
-    }
+    let pattern = language.compileCommandPattern(moduleName: moduleName)
     let regex = try! NSRegularExpression(pattern: pattern, options: []) // Safe to force try
     let range = NSRange(location: 0, length: xcodebuildOutput.length)
 
@@ -143,10 +175,14 @@ internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Langu
     }
 
     let escapedSpacePlaceholder = "\u{0}"
-    let args = filter(arguments: xcodebuildOutput
-        .substring(with: regexMatch.range)
-        .replacingOccurrences(of: "\\ ", with: escapedSpacePlaceholder)
-        .components(separatedBy: " "))
+    let unfilteredArgs = xcodebuildOutput.substring(with: regexMatch.range)
+                                         .replacingOccurrences(of: "\\ ", with: escapedSpacePlaceholder)
+                                         .components(separatedBy: " ")
+    let args: [String]
+    switch language {
+    case .swift: args = filterSwift(arguments: unfilteredArgs)
+    case .objc: args = filterObjC(arguments: unfilteredArgs)
+    }
 
     // Remove first argument (swiftc/clang) and re-add spaces in arguments
     return (args[1..<args.count]).map {
