@@ -118,15 +118,61 @@ private func filterSwift(arguments args: [String]) -> [String] {
 }
 
 /**
- Filters clang compiler arguments from `xcodebuild` to something that can be reused.
+Filters clang compiler arguments from `xcodebuild` to something that can be reused.
+Take out those that specify output files or are specific to this particular input file.
 
- - parameter args: Compiler arguments, as parsed from `xcodebuild`.
+- parameter args: Compiler arguments, as parsed from `xcodebuild`.
 
- - returns: Filtered compiler arguments.
+- returns: Filtered compiler arguments.
  */
-private func filterObjC(arguments args: [String]) -> [String] {
-    args.forEach { print($0) }
-    return args
+private func filterObjC(arguments: [String]) -> [String] {
+
+    func shouldFilterArg(arg: String) -> Bool {
+        /* args to match completely and then remove */
+        let argsToRemove = ["-c", /* Input source file */
+                            "-o", /* Output obj file */
+                            "--serialize-diagnostics", /* Output compiler diagnostics */
+                            "-fmodules-validate-once-per-build-session", /* Causes SourceKit to fail */
+                            "-fobjc-arc" /* Causes unwanted __strong etc. in declarations */
+                           ]
+
+        /* args to match by prefix and then remove */
+        let argPrefixesToRemove = ["-M", /* Anything to do with dependency generation */
+                                   "-O", /* Anything to do with optimization */
+                                   "-fbuild-session-file", /* Module validation in xcodebuild's session */
+                                   "-Wdocumentation" /* Causes errors with doc comments and NS_ENUM, bizarrely */
+                                  ]
+
+        if argsToRemove.contains(arg) {
+            return true
+        }
+
+        for prefix in argPrefixesToRemove {
+            if arg.starts(with: prefix) {
+                return true
+            }
+        }
+
+        return false
+    }
+
+    var args = Array(arguments.reversed())
+    var filteredArgs: [String] = []
+    while !args.isEmpty {
+        let arg = args.removeLast()
+        if shouldFilterArg(arg: arg) {
+            /* If the arg is followed by something not starting with '-', filter that one too */
+            if let nextArg = args.last,
+               !nextArg.starts(with: "-") {
+                args.removeLast()
+            }
+        } else {
+            /* Keep it */
+            filteredArgs.append(arg)
+        }
+    }
+
+    return filteredArgs
 }
 
 extension Language {

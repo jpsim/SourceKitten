@@ -84,7 +84,8 @@ public struct ClangTranslationUnit {
             reportXcodeBuildError(xcodeBuildOutput: xcodeBuildOutput, language: .objc)
             return nil
         }
-        self.init(headerFiles: [umbrellaHeader], compilerArguments: clangArguments)
+        // add current dir to include path as last place to look - eases transition from raw clang objc mode
+        self.init(headerFiles: [umbrellaHeader], compilerArguments: clangArguments + ["-I", path])
     }
 }
 
