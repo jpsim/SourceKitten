@@ -70,20 +70,21 @@ public struct ClangTranslationUnit {
     }
 
     /**
-    Failable initializer to create a ClangTranslationUnit by passing Objective-C header files and
-    `xcodebuild` arguments. Optionally pass in a `path`.
+    Failable initializer to create a ClangTranslationUnit for a module by passing the root (umbrella)
+    Objective-C header file and using xcodebuild to guess the clang arguments.
 
-    - parameter headerFiles:         Objective-C header files to document.
-    - parameter xcodeBuildArguments: The arguments necessary pass in to `xcodebuild` to link these header files.
+    - parameter umbrellaHeader:      Objective-C header files containing declarations for the module.
+    - parameter xcodeBuildArguments: Additional arguments for `xcodebuild` to build the module.
+    - parameter moduleName:          Name of the module to build. If not set, uses the first one built by `xcodebuild`.
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
-    public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = FileManager.default.currentDirectoryPath) {
+    public init?(umbrellaHeader: String, xcodeBuildArguments: [String], moduleName: String?, inPath path: String = FileManager.default.currentDirectoryPath) {
         let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments + ["-dry-run"], inPath: path) ?? ""
-        guard let clangArguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .objc, moduleName: nil) else {
-            fputs("could not parse compiler arguments\n\(xcodeBuildOutput)\n", stderr)
+        guard let clangArguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput as NSString, language: .objc, moduleName: moduleName) else {
+            reportXcodeBuildError(xcodeBuildOutput: xcodeBuildOutput, language: .objc)
             return nil
         }
-        self.init(headerFiles: headerFiles, compilerArguments: clangArguments)
+        self.init(headerFiles: [umbrellaHeader], compilerArguments: clangArguments)
     }
 }
 

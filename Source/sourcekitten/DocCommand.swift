@@ -123,9 +123,16 @@ struct DocCommand: CommandProtocol {
         #if os(Linux)
         fatalError("unsupported")
         #else
-        print("module: \(moduleName ?? "(default module)")")
-        print("umbrella: " + umbrellaHeader)
-        print("args: \(args)")
+        guard !umbrellaHeader.isEmpty else {
+            return .failure(.invalidArgument(description: "`--umbrella-header` is required when using `--objc-xcodebuild`"))
+        }
+        guard FileManager.default.fileExists(atPath: umbrellaHeader) else {
+            return .failure(.invalidArgument(description: "umbrella header file \(umbrellaHeader) does not exist"))
+        }
+        guard let translationUnit = ClangTranslationUnit(umbrellaHeader: umbrellaHeader, xcodeBuildArguments: args, moduleName: moduleName) else {
+            return .failure(.docFailed)
+        }
+        print(translationUnit)
         return .success(())
         #endif
     }
