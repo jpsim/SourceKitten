@@ -37,6 +37,20 @@ internal func runXcodeBuild(arguments: [String], inPath path: String) -> String?
 }
 
 /**
+Report a problem when the `xcodebuild` arguments can't be parsed as expected.
+
+- parameter xcodeBuildOutput: The output from `xcodebuild` that looks wrong.
+- parameter language:         The language of the project that was expected.
+*/
+internal func reportXcodeBuildError(xcodeBuildOutput: String, language: Language) {
+    fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
+    fputs("Please confirm that `xcodebuild` is building a \(language) module.\n", stderr)
+    let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
+    try! xcodeBuildOutput.data(using: .utf8)?.write(to: file)
+    fputs("Saved `xcodebuild` log file: \(file.path)\n", stderr)
+}
+
+/**
 Parses likely module name from compiler or `xcodebuild` arguments.
 
 Will the following values, in this priority: module name, target name, scheme name.

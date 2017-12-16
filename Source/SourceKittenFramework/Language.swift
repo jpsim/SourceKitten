@@ -7,9 +7,17 @@
 //
 
 /// Language Enum.
-public enum Language {
+public enum Language: CustomStringConvertible {
     /// Swift.
     case swift
     /// Objective-C.
     case objc
+
+    /// User-facing name of the language
+    public var description: String {
+        switch self {
+        case .swift: return "Swift"
+        case .objc: return "Objective-C"
+        }
+    }
 }

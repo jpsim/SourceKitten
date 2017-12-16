@@ -75,11 +75,7 @@ public struct Module {
         let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
         guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput.bridge(), language: .swift,
                                                      moduleName: name ?? moduleName(fromArguments: xcodeBuildArguments)) else {
-            fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
-            fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
-            let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
-            try! xcodeBuildOutput.data(using: .utf8)?.write(to: file)
-            fputs("Saved `xcodebuild` log file: \(file.path)\n", stderr)
+            reportXcodeBuildError(xcodeBuildOutput: xcodeBuildOutput, language: .swift)
             return nil
         }
         guard let moduleName = moduleName(fromArguments: arguments) else {
