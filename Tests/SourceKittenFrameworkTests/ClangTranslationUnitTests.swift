@@ -76,6 +76,17 @@ class ClangTranslationUnitTests: XCTestCase {
     func testRealmObjectiveCDocs() {
         compare(clangFixture: "Realm/Realm/Realm", subdir: "Realm")
     }
+
+    func testRealmObjectiveCDocsXcodebuild() {
+        guard let tu = ClangTranslationUnit(umbrellaHeader: fixturesDirectory + "Realm/Realm/Realm.h",
+                                            xcodeBuildArguments: [],
+                                            moduleName: nil,
+                                            inPath: fixturesDirectory + "Realm") else {
+            XCTFail("Failed to create realm docs from xcodebuild")
+            return
+        }
+        compareJSONString(withFixtureNamed: "Realm", jsonString: tu)
+    }
 }
 
 #endif
