@@ -19,6 +19,10 @@
 * Return `SWIFT_NAME` when generating Objective-C docs.  
   [Ibrahim Ulukaya](https://github.com/ulukaya)
 
+* Add `doc --objc-xcodebuild` mode to generate Objective-C docs using `xcodebuild`
+  to guess compiler flags.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 ##### Bug Fixes
 
 * Fix Swift declarations when generating Objective-C docs for generic types.  
