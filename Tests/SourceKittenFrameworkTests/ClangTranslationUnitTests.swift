@@ -59,9 +59,9 @@ class ClangTranslationUnitTests: XCTestCase {
         XCTAssertEqual(actualFilteredArgs, expectedFilteredArgs)
     }
 
-    private func compare(clangFixture fixture: String) {
+    private func compare(clangFixture fixture: String, subdir: String = "") {
         let tu = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
-                                      compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
+                                      compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory + subdir])
         compareJSONString(withFixtureNamed: (fixture as NSString).lastPathComponent, jsonString: tu)
     }
 
@@ -74,7 +74,7 @@ class ClangTranslationUnitTests: XCTestCase {
     }
 
     func testRealmObjectiveCDocs() {
-        compare(clangFixture: "Realm/Realm")
+        compare(clangFixture: "Realm/Realm/Realm", subdir: "Realm")
     }
 }
 
