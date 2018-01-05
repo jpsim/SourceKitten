@@ -135,6 +135,7 @@ environment variable.
 * https://github.com/tomquist/MagicMirror
 * https://github.com/TurfDb/TurfGen
 * https://github.com/vadimue/AwesomeWeather
+* https://github.com/yonaskolb/Beak
 * https://github.com/zenzz/vs-swifter-server
 * https://github.com/zenzz/zxxswifter-server
 </details>
