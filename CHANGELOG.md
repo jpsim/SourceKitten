@@ -23,6 +23,8 @@
 
 * Fix Swift declarations when generating Objective-C docs for generic types.  
   [John Fairhurst](https://github.com/johnfairh)
+* Test suite now runs without failures on Linux and the Swift 4.0 toolchain.  
+  [Alexander Lash](https://github.com/abl)
 
 ## 0.18.4
 

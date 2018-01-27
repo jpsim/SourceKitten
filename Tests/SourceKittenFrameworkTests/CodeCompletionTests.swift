@@ -14,9 +14,14 @@ class CodeCompletionTests: XCTestCase {
 
     func testSimpleCodeCompletion() {
         let file = "\(NSUUID().uuidString).swift"
+        #if os(Linux)
+        let arguments = ["-c", file]
+        #else
+        let arguments = ["-c", file, "-sdk", sdkPath()]
+        #endif
         let completionItems = CodeCompletionItem.parse(response:
             try! Request.codeCompletionRequest(file: file, contents: "0.", offset: 2,
-                                               arguments: ["-c", file, "-sdk", sdkPath()]).send())
+                                               arguments: arguments).send())
         compareJSONString(withFixtureNamed: "SimpleCodeCompletion",
                           jsonString: completionItems)
     }

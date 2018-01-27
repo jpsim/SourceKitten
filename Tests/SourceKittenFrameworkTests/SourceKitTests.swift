@@ -183,7 +183,11 @@ class SourceKitTests: XCTestCase {
 
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
-        let arguments = ["-sdk", sdkPath(), "-j4", file ]
+        #if os(Linux)
+        let arguments = ["-j4", file]
+        #else
+        let arguments = ["-sdk", sdkPath(), "-j4", file]
+        #endif
         let indexJSON = NSMutableString(string: toJSON(toNSDictionary(try! Request.index(file: file, arguments: arguments).send())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {

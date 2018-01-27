@@ -55,9 +55,12 @@ struct CompleteCommand: CommandProtocol {
         var args: [String]
         if options.spmModule.isEmpty {
             args = ["-c", path] + options.compilerargs
+            #if os(Linux)
+            #else
             if args.index(of: "-sdk") == nil {
                 args.append(contentsOf: ["-sdk", sdkPath()])
             }
+            #endif
         } else {
             guard let module = Module(spmName: options.spmModule) else {
                 return .failure(.invalidArgument(description: "Bad module name"))

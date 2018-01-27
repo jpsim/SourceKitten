@@ -156,6 +156,9 @@ public func parseHeaderFilesAndXcodebuildArguments(sourcekittenArguments: [Strin
     return (headerFiles, xcodebuildArguments)
 }
 
+#if os(Linux)
+/// This function should never be called on Linux.
+#else
 public func sdkPath() -> String {
     let task = Process()
     task.launchPath = "/usr/bin/xcrun"
@@ -171,3 +174,4 @@ public func sdkPath() -> String {
     file.closeFile()
     return sdkPath?.replacingOccurrences(of: "\n", with: "") ?? ""
 }
+#endif

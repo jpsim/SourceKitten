@@ -261,9 +261,12 @@ public enum Request {
             if !arguments.contains("-x") {
                 arguments.append(contentsOf: ["-x", "objective-c"])
             }
+            #if os(Linux)
+            #else
             if !arguments.contains("-isysroot") {
                 arguments.append(contentsOf: ["-isysroot", sdkPath()])
             }
+            #endif
             var compilerargs = ([file] + arguments).map({ sourcekitd_request_string_create($0) })
             dict = [
                 sourcekitd_uid_get_from_cstr("key.request")!:
