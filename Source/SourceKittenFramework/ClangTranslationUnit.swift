@@ -33,8 +33,8 @@ extension Sequence {
 extension Dictionary {
     fileprivate init(_ pairs: [Element]) {
         self.init()
-        for (k, v) in pairs {
-            self[k] = v
+        for (key, value) in pairs {
+            self[key] = value
         }
     }
 
