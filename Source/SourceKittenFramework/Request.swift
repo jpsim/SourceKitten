@@ -437,7 +437,7 @@ extension String {
     fileprivate func extractFreeFunctions(inSubstructure substructure: [[String: SourceKitRepresentable]]) -> [String] {
         return substructure.filter({
             SwiftDeclarationKind(rawValue: SwiftDocKey.getKind($0)!) == .functionFree
-        }).flatMap { function -> String? in
+        }).compactMap { function -> String? in
             let name = (function["key.name"] as! String).nameFromFullFunctionName()
             let unsupportedFunctions = [
                 "clang_executeOnThread",

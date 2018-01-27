@@ -487,7 +487,7 @@ extension String {
         }
         let matches = regex.matches(in: self, options: [], range: range)
 
-        return matches.flatMap { match in
+        return matches.compactMap { match in
             let markRange = match.range(at: 2)
             for excludedRange in excludeRanges {
                 if NSIntersectionRange(excludedRange, markRange).length > 0 {
@@ -546,7 +546,7 @@ extension String {
         let range = NSRange(location: 0, length: utf16.count)
         let matches = regex.matches(in: self, options: [], range: range)
 
-        return matches.flatMap { match in
+        return matches.compactMap { match in
             documentableOffsets.first { $0 >= match.range.location }
         }
     }
