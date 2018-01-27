@@ -28,7 +28,21 @@ private func run(executable: String, arguments: [String]) -> String? {
 
 private let sourcekitStrings: [String] = {
     #if os(Linux)
-    let sourceKitPath = "\(linuxSourceKitLibPath)/libsourcekitdInProc.so"
+    let searchPaths = [
+        linuxSourceKitLibPath,
+        linuxFindSwiftenvActiveLibPath,
+        linuxFindSwiftInstallationLibPath,
+        linuxDefaultLibPath
+    ].flatMap({ $0 })
+    let sourceKitPath: String = {
+        for path in searchPaths {
+            let sopath = "\(path)/libsourcekitdInProc.so"
+            if FileManager.default.fileExists(atPath: sopath) {
+                return sopath
+            }
+        }
+        fatalError("Could not find or load libsourcekitdInProc.so")
+    }()
     #else
     let sourceKitPath = run(executable: "/usr/bin/xcrun", arguments: ["-f", "swiftc"])!.bridge()
         .deletingLastPathComponent.bridge()
@@ -183,7 +197,11 @@ class SourceKitTests: XCTestCase {
 
     func testIndex() {
         let file = "\(fixturesDirectory)Bicycle.swift"
-        let arguments = ["-sdk", sdkPath(), "-j4", file ]
+        #if os(Linux)
+        let arguments = ["-j4", file]
+        #else
+        let arguments = ["-sdk", sdkPath(), "-j4", file]
+        #endif
         let indexJSON = NSMutableString(string: toJSON(toNSDictionary(try! Request.index(file: file, arguments: arguments).send())) + "\n")
 
         func replace(_ pattern: String, withTemplate template: String) {
