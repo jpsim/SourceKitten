@@ -28,21 +28,7 @@ private func run(executable: String, arguments: [String]) -> String? {
 
 private let sourcekitStrings: [String] = {
     #if os(Linux)
-    let searchPaths = [
-        linuxSourceKitLibPath,
-        linuxFindSwiftenvActiveLibPath,
-        linuxFindSwiftInstallationLibPath,
-        linuxDefaultLibPath
-    ].flatMap({ $0 })
-    let sourceKitPath: String = {
-        for path in searchPaths {
-            let sopath = "\(path)/libsourcekitdInProc.so"
-            if FileManager.default.fileExists(atPath: sopath) {
-                return sopath
-            }
-        }
-        fatalError("Could not find or load libsourcekitdInProc.so")
-    }()
+    let sourceKitPath = "\(linuxSourceKitLibPath)/libsourcekitdInProc.so"
     #else
     let sourceKitPath = run(executable: "/usr/bin/xcrun", arguments: ["-f", "swiftc"])!.bridge()
         .deletingLastPathComponent.bridge()
