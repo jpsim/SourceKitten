@@ -1,4 +1,773 @@
 [{
+  "Sources\/Commandant\/OrderedSet.swift" : {
+    "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+    "key.length" : 921,
+    "key.offset" : 0,
+    "key.substructure" : [
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
+        "key.bodylength" : 343,
+        "key.bodyoffset" : 71,
+        "key.doc.column" : 17,
+        "key.doc.comment" : "A poor man's ordered set.",
+        "key.doc.declaration" : "internal struct OrderedSet<T> where T : Hashable",
+        "key.doc.file" : "Sources\/Commandant\/OrderedSet.swift",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.line" : 2,
+        "key.doc.name" : "OrderedSet",
+        "key.doc.type" : "Class",
+        "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
+        "key.kind" : "source.lang.swift.decl.struct",
+        "key.length" : 376,
+        "key.name" : "OrderedSet",
+        "key.namelength" : 10,
+        "key.nameoffset" : 46,
+        "key.offset" : 39,
+        "key.parsed_declaration" : "internal struct OrderedSet<T: Hashable>",
+        "key.parsed_scope.end" : 19,
+        "key.parsed_scope.start" : 2,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.fileprivate",
+            "key.annotated_decl" : "<Declaration>fileprivate var values: [T]<\/Declaration>",
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>fileprivate<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>values<\/decl.name>: <decl.var.type>[T]<\/decl.var.type><\/decl.var.instance>",
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 20,
+            "key.name" : "values",
+            "key.namelength" : 6,
+            "key.nameoffset" : 89,
+            "key.offset" : 85,
+            "key.parsed_declaration" : "fileprivate var values: [T] = []",
+            "key.parsed_scope.end" : 3,
+            "key.parsed_scope.start" : 3,
+            "key.setter_accessibility" : "source.lang.swift.accessibility.fileprivate",
+            "key.typename" : "[T]",
+            "key.typeusr" : "_T0SayxGD",
+            "key.usr" : "s:10Commandant10OrderedSetV6values33_E700A43BE27995F7283A44882E2B4A42LLSayxGv"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>init&lt;S&gt;(_ sequence: <Type usr=\"s:10Commandant10OrderedSetVACyxGqd__c7ElementQyd__Rszs8SequenceRd__lufc1SL_qd__mfp\">S<\/Type>) where T == S.Element, S : <Type usr=\"s:s8SequenceP\">Sequence<\/Type><\/Declaration>",
+            "key.bodylength" : 74,
+            "key.bodyoffset" : 163,
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>init<\/syntaxtype.keyword>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetVACyxGqd__c7ElementQyd__Rszs8SequenceRd__lufc1SL_qd__mfp\"><decl.generic_type_param.name>S<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>sequence<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant10OrderedSetVACyxGqd__c7ElementQyd__Rszs8SequenceRd__lufc1SL_qd__mfp\">S<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T == S.Element<\/decl.generic_type_requirement>, <decl.generic_type_requirement>S : <ref.protocol usr=\"s:s8SequenceP\">Sequence<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.constructor>",
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.length" : 130,
+            "key.name" : "init(_:)",
+            "key.namelength" : 32,
+            "key.nameoffset" : 108,
+            "key.offset" : 108,
+            "key.parsed_declaration" : "init<S: Sequence>(_ sequence: S) where S.Element == T",
+            "key.parsed_scope.end" : 9,
+            "key.parsed_scope.start" : 5,
+            "key.substructure" : [
+
+            ],
+            "key.typename" : "<T, S where T : Hashable, T == S.Element, S : Sequence> (OrderedSet<T>.Type) -> (S) -> OrderedSet<T>",
+            "key.typeusr" : "_T010Commandant10OrderedSetVyxGqd__c7ElementQyd__Rszs8SequenceRd__luD",
+            "key.usr" : "s:10Commandant10OrderedSetVACyxGqd__c7ElementQyd__Rszs8SequenceRd__lufc"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>@discardableResult mutating func remove(_ member: <Type usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/Type>) -&gt; <Type usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/Type>?<\/Declaration>",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.mutating"
+              },
+              {
+                "key.attribute" : "source.decl.attribute.discardableResult"
+              }
+            ],
+            "key.bodylength" : 110,
+            "key.bodyoffset" : 302,
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.attribute.builtin><syntaxtype.attribute.name>@discardableResult<\/syntaxtype.attribute.name><\/syntaxtype.attribute.builtin> <syntaxtype.keyword>mutating<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>remove<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>member<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/ref.generic_type_param>?<\/decl.function.returntype><\/decl.function.method.instance>",
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.length" : 143,
+            "key.name" : "remove(_:)",
+            "key.namelength" : 19,
+            "key.nameoffset" : 275,
+            "key.offset" : 270,
+            "key.parsed_declaration" : "mutating func remove(_ member: T) -> T?",
+            "key.parsed_scope.end" : 18,
+            "key.parsed_scope.start" : 12,
+            "key.substructure" : [
+
+            ],
+            "key.typename" : "<T where T : Hashable> (inout OrderedSet<T>) -> (T) -> T?",
+            "key.typeusr" : "_T0xSgxcD",
+            "key.usr" : "s:10Commandant10OrderedSetV6removexSgxF"
+          }
+        ],
+        "key.typename" : "OrderedSet<T>.Type",
+        "key.typeusr" : "_T010Commandant10OrderedSetVyxGmD",
+        "key.usr" : "s:10Commandant10OrderedSetV"
+      },
+      {
+        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
+        "key.bodylength" : 101,
+        "key.bodyoffset" : 450,
+        "key.doc.column" : 17,
+        "key.doc.declaration" : "internal struct OrderedSet<T> where T : Hashable",
+        "key.doc.file" : "Sources\/Commandant\/OrderedSet.swift",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.line" : 2,
+        "key.doc.name" : "OrderedSet",
+        "key.doc.type" : "Class",
+        "key.elements" : [
+          {
+            "key.kind" : "source.lang.swift.structure.elem.typeref",
+            "key.length" : 9,
+            "key.offset" : 439
+          }
+        ],
+        "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
+        "key.inheritedtypes" : [
+          {
+            "key.name" : "Equatable"
+          }
+        ],
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 135,
+        "key.name" : "OrderedSet",
+        "key.namelength" : 10,
+        "key.nameoffset" : 427,
+        "key.offset" : 417,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>static func ==(lhs: <Type usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/Type>, rhs: <Type usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type><\/Declaration>",
+            "key.bodylength" : 36,
+            "key.bodyoffset" : 513,
+            "key.doc.declaration" : "static func ==(lhs: Self, rhs: Self) -> Bool",
+            "key.doc.discussion" : [
+              {
+                "Para" : "Equality is the inverse of inequality. For any values `a` and `b`, `a == b` implies that `a != b` is `false`."
+              }
+            ],
+            "key.doc.full_as_xml" : "<Function><Name>==(_:_:)<\/Name><USR>s:s9EquatableP2eeoiSbx_xtFZ<\/USR><Declaration>static func ==(lhs: Self, rhs: Self) -&gt; Bool<\/Declaration><CommentParts><Abstract><Para>Returns a Boolean value indicating whether two values are equal.<\/Para><\/Abstract><Parameters><Parameter><Name>lhs<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>A value to compare.<\/Para><\/Discussion><\/Parameter><Parameter><Name>rhs<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>Another value to compare.<\/Para><\/Discussion><\/Parameter><\/Parameters><Discussion><Para>Equality is the inverse of inequality. For any values <codeVoice>a<\/codeVoice> and <codeVoice>b<\/codeVoice>, <codeVoice>a == b<\/codeVoice> implies that <codeVoice>a != b<\/codeVoice> is <codeVoice>false<\/codeVoice>.<\/Para><\/Discussion><\/CommentParts><\/Function>",
+            "key.doc.name" : "==(_:_:)",
+            "key.doc.parameters" : [
+              {
+                "discussion" : [
+                  {
+                    "Para" : "A value to compare."
+                  }
+                ],
+                "name" : "lhs"
+              },
+              {
+                "discussion" : [
+                  {
+                    "Para" : "Another value to compare."
+                  }
+                ],
+                "name" : "rhs"
+              }
+            ],
+            "key.doc.type" : "Function",
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>==<\/decl.name>(<decl.var.parameter><decl.var.parameter.name>lhs<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>rhs<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.struct usr=\"s:Sb\">Bool<\/ref.struct><\/decl.function.returntype><\/decl.function.operator.infix>",
+            "key.kind" : "source.lang.swift.decl.function.method.static",
+            "key.length" : 98,
+            "key.name" : "==(_:_:)",
+            "key.namelength" : 39,
+            "key.nameoffset" : 464,
+            "key.offset" : 452,
+            "key.overrides" : [
+              {
+                "key.usr" : "s:s9EquatableP2eeoiSbx_xtFZ"
+              }
+            ],
+            "key.parsed_declaration" : "static func == (_ lhs: OrderedSet, rhs: OrderedSet) -> Bool",
+            "key.parsed_scope.end" : 24,
+            "key.parsed_scope.start" : 22,
+            "key.related_decls" : [
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation15AffineTransformV2eeoiSbAC_ACtFZ\">==(_: AffineTransform, _: AffineTransform) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8CalendarV2eeoiSbAC_ACtFZ\">==(_: Calendar, _: Calendar) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12CharacterSetV2eeoiSbAC_ACtFZ\">==(_: CharacterSet, _: CharacterSet) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4DataV2eeoiSbAC_ACtFZ\">==(_: Data, _: Data) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4DateV2eeoiSbAC_ACtFZ\">==(_: Date, _: Date) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation14DateComponentsV2eeoiSbAC_ACtFZ\">==(_: DateComponents, _: DateComponents) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12DateIntervalV2eeoiSbAC_ACtFZ\">==(_: DateInterval, _: DateInterval) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SC7DecimalV10FoundationE2eeoiSbAB_ABtFZ\">==(_: Decimal, _: Decimal) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation9IndexPathV2eeoiSbAC_ACtFZ\">==(_: IndexPath, _: IndexPath) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV0B0V2eeoiSbAE_AEtFZ\">==(_: IndexSet.Index, _: IndexSet.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV9RangeViewV2eeoiSbAE_AEtFZ\">==(_: IndexSet.RangeView, _: IndexSet.RangeView) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV2eeoiSbAC_ACtFZ\">==(_: IndexSet, _: IndexSet) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation6LocaleV2eeoiSbAC_ACtFZ\">==(_: Locale, _: Locale) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation11MeasurementV2eeoiSbACyqd__G_ACyqd_0_GtSo4UnitCRbd__AHRbd_0_r0_lFZ\">==&lt;LeftHandSideType, RightHandSideType&gt;(_: Measurement&lt;LeftHandSideType&gt;, _: Measurement&lt;RightHandSideType&gt;) -&gt; Bool where LeftHandSideType : Unit, RightHandSideType : Unit<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12NotificationV2eeoiSbAC_ACtFZ\">==(_: Notification, _: Notification) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation16__BridgedNSErrorPA2aBRzs16RawRepresentableRzs13SignedInteger0D5ValuesADPRpzlE2eeoiSbx_xtFZ\">==(_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation16__BridgedNSErrorPA2aBRzs16RawRepresentableRzs15UnsignedInteger0D5ValuesADPRpzlE2eeoiSbx_xtFZ\">==(_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation21_BridgedStoredNSErrorPAAE2eeoiSbx_xtFZ\">==(_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SC8_NSRangeV10FoundationE2eeoiSbAB_ABtFZ\">==(_: NSRange, _: NSRange) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SS10FoundationE8EncodingV2eeoiSbAC_ACtFZ\">==(_: String.Encoding, _: String.Encoding) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation20PersonNameComponentsV2eeoiSbAC_ACtFZ\">==(_: PersonNameComponents, _: PersonNameComponents) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8TimeZoneV2eeoiSbAC_ACtFZ\">==(_: TimeZone, _: TimeZone) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation3URLV2eeoiSbAC_ACtFZ\">==(_: URL, _: URL) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation13URLComponentsV2eeoiSbAC_ACtFZ\">==(_: URLComponents, _: URLComponents) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12URLQueryItemV2eeoiSbAC_ACtFZ\">==(_: URLQueryItem, _: URLQueryItem) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation10URLRequestV2eeoiSbAC_ACtFZ\">==(_: URLRequest, _: URLRequest) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4UUIDV2eeoiSbAC_ACtFZ\">==(_: UUID, _: UUID) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:14CoreFoundation9_CFObjectPAAE2eeoiSbx_xtFZ\">==(_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:6Darwin2eeoiSbAA0A7BooleanV_ADtF\">==(_: DarwinBoolean, _: DarwinBoolean) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch2eeoiSbAA0A3QoSV_ADtF\">==(_: DispatchQoS, _: DispatchQoS) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A4TimeV2eeoiSbAC_ACtFZ\">==(_: DispatchTime, _: DispatchTime) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A8WallTimeV2eeoiSbAC_ACtFZ\">==(_: DispatchWallTime, _: DispatchWallTime) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A12TimeIntervalO2eeoiSbAC_ACtFZ\">==(_: DispatchTimeInterval, _: DispatchTimeInterval) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10ObjectiveC2eeoiSbAA8SelectorV_ADtF\">==(_: Selector, _: Selector) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10ObjectiveC2eeoiSbSo8NSObjectC_ADtF\">==(_: NSObject, _: NSObject) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SC17CGAffineTransformV12CoreGraphicsE2eeoiSbAB_ABtFZ\">==(_: CGAffineTransform, _: CGAffineTransform) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SC7CGPointV12CoreGraphicsE2eeoiSbAB_ABtFZ\">==(_: CGPoint, _: CGPoint) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SC6CGSizeV12CoreGraphicsE2eeoiSbAB_ABtFZ\">==(_: CGSize, _: CGSize) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SC8CGVectorV12CoreGraphicsE2eeoiSbAB_ABtFZ\">==(_: CGVector, _: CGVector) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SC6CGRectV12CoreGraphicsE2eeoiSbAB_ABtFZ\">==(_: CGRect, _: CGRect) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbs15ContiguousArrayVyxG_ADts9EquatableRzlF\">==&lt;Element&gt;(_: ContiguousArray&lt;Element&gt;, _: ContiguousArray&lt;Element&gt;) -&gt; Bool where Element : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbs10ArraySliceVyxG_ADts9EquatableRzlF\">==&lt;Element&gt;(_: ArraySlice&lt;Element&gt;, _: ArraySlice&lt;Element&gt;) -&gt; Bool where Element : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbSayxG_ABts9EquatableRzlF\">==&lt;Element&gt;(_: Array&lt;Element&gt;, _: Array&lt;Element&gt;) -&gt; Bool where Element : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbypXpSg_ABtF\">==(_: Any.Type?, _: Any.Type?) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbx_xts16RawRepresentableRzs9Equatable0B5ValueRpzlF\">==&lt;T&gt;(_: T, _: T) -&gt; Bool where T : RawRepresentable, T.RawValue : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbxSg_ABts9EquatableRzlF\">==&lt;T&gt;(_: T?, _: T?) -&gt; Bool where T : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbxSg_s26_OptionalNilComparisonTypeVtlF\">==&lt;T&gt;(_: T?, _: _OptionalNilComparisonType) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbs26_OptionalNilComparisonTypeV_xSgtlF\">==&lt;T&gt;(_: _OptionalNilComparisonType, _: T?) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbyt_yttF\">==(_: (), _: ()) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbx_q_t_x_q_tts9EquatableRzsABR_r0_lF\">==&lt;A, B&gt;(_: (A, B), _: (A, B)) -&gt; Bool where A : Equatable, B : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbx_q_q0_t_x_q_q0_tts9EquatableRzsABR_sABR0_r1_lF\">==&lt;A, B, C&gt;(_: (A, B, C), _: (A, B, C)) -&gt; Bool where A : Equatable, B : Equatable, C : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbx_q_q0_q1_t_x_q_q0_q1_tts9EquatableRzsABR_sABR0_sABR1_r2_lF\">==&lt;A, B, C, D&gt;(_: (A, B, C, D), _: (A, B, C, D)) -&gt; Bool where A : Equatable, B : Equatable, C : Equatable, D : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbx_q_q0_q1_q2_t_x_q_q0_q1_q2_tts9EquatableRzsABR_sABR0_sABR1_sABR2_r3_lF\">==&lt;A, B, C, D, E&gt;(_: (A, B, C, D, E), _: (A, B, C, D, E)) -&gt; Bool where A : Equatable, B : Equatable, C : Equatable, D : Equatable, E : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbx_q_q0_q1_q2_q3_t_x_q_q0_q1_q2_q3_tts9EquatableRzsABR_sABR0_sABR1_sABR2_sABR3_r4_lF\">==&lt;A, B, C, D, E, F&gt;(_: (A, B, C, D, E, F), _: (A, B, C, D, E, F)) -&gt; Bool where A : Equatable, B : Equatable, C : Equatable, D : Equatable, E : Equatable, F : Equatable<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:Sb2eeoiS2b_SbtFZ\">==(_: Bool, _: Bool) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s33AutoreleasingUnsafeMutablePointerV2eeoiSbAByxG_ADtFZ\">==(_: AutoreleasingUnsafeMutablePointer&lt;Pointee&gt;, _: AutoreleasingUnsafeMutablePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s9CharacterV2eeoiSbAB_ABtFZ\">==(_: Character, _: Character) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s9CharacterV17UnicodeScalarViewV5IndexV2eeoiSbAF_AFtFZ\">==(_: Character.UnicodeScalarView.Index, _: Character.UnicodeScalarView.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s17CodingUserInfoKeyV2eeoiSbAB_ABtFZ\">==(_: CodingUserInfoKey, _: CodingUserInfoKey) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s16ClosedRangeIndexV2eeoiSbAByxG_ADtFZ\">==(_: ClosedRangeIndex&lt;Bound&gt;, _: ClosedRangeIndex&lt;Bound&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s13OpaquePointerV2eeoiSbAB_ABtFZ\">==(_: OpaquePointer, _: OpaquePointer) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s18LazyDropWhileIndexV2eeoiSbAByxG_ADtFZ\">==(_: LazyDropWhileIndex&lt;Base&gt;, _: LazyDropWhileIndex&lt;Base&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s15EmptyCollectionV2eeoiSbAByxG_ADtFZ\">==(_: EmptyCollection&lt;Element&gt;, _: EmptyCollection&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s9EquatableP2eeoiSbx_xtFZ\">==(_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s22FlattenCollectionIndexV2eeoiSbAByxG_ADtFZ\">==(_: FlattenCollectionIndex&lt;BaseElements&gt;, _: FlattenCollectionIndex&lt;BaseElements&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s35FlattenBidirectionalCollectionIndexV2eeoiSbAByxG_ADtFZ\">==(_: FlattenBidirectionalCollectionIndex&lt;BaseElements&gt;, _: FlattenBidirectionalCollectionIndex&lt;BaseElements&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s13FloatingPointPsE2eeoiSbx_xtFZ\">==(_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s3SetV2eeoiSbAByxG_ADtFZ\">==(_: Set&lt;Element&gt;, _: Set&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s10DictionaryV4KeysV2eeoiSbADyxq__G_AFtFZ\">==(_: Dictionary&lt;Key, Value&gt;.Keys, _: Dictionary&lt;Key, Value&gt;.Keys) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s10DictionaryVss8HashableRzs9EquatableR_r0_lE2eeoiSbAByxq_G_AFtFZ\">==(_: [Key : Value], _: [Key : Value]) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s3SetV5IndexV2eeoiSbADyx_G_AFtFZ\">==(_: Set&lt;Element&gt;.Index, _: Set&lt;Element&gt;.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s10DictionaryV5IndexV2eeoiSbADyxq__G_AFtFZ\">==(_: Dictionary&lt;Key, Value&gt;.Index, _: Dictionary&lt;Key, Value&gt;.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s11AnyHashableV2eeoiSbAB_ABtFZ\">==(_: AnyHashable, _: AnyHashable) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s13BinaryIntegerPsE2eeoiSbx_qd__tsAARd__lFZ\">==&lt;Other&gt;(_: Self, _: Other) -&gt; Bool where Other : BinaryInteger<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s5UInt8V2eeoiSbAB_ABtFZ\">==(_: UInt8, _: UInt8) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s4Int8V2eeoiSbAB_ABtFZ\">==(_: Int8, _: Int8) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s6UInt16V2eeoiSbAB_ABtFZ\">==(_: UInt16, _: UInt16) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s5Int16V2eeoiSbAB_ABtFZ\">==(_: Int16, _: Int16) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s6UInt32V2eeoiSbAB_ABtFZ\">==(_: UInt32, _: UInt32) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s5Int32V2eeoiSbAB_ABtFZ\">==(_: Int32, _: Int32) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s6UInt64V2eeoiSbAB_ABtFZ\">==(_: UInt64, _: UInt64) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s5Int64V2eeoiSbAB_ABtFZ\">==(_: Int64, _: Int64) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:Su2eeoiSbSu_SutFZ\">==(_: UInt, _: UInt) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:Si2eeoiSbSi_SitFZ\">==(_: Int, _: Int) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s10AnyKeyPathC2eeoiSbAB_ABtFZ\">==(_: AnyKeyPath, _: AnyKeyPath) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s20ManagedBufferPointerV2eeoiSbAByxq_G_ADtFZ\">==(_: ManagedBufferPointer&lt;Header, Element&gt;, _: ManagedBufferPointer&lt;Header, Element&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO6ScalarV2eeoiSbAD_ADtFZ\">==(_: Unicode.Scalar, _: Unicode.Scalar) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s16ObjectIdentifierV2eeoiSbAB_ABtFZ\">==(_: ObjectIdentifier, _: ObjectIdentifier) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s20LazyPrefixWhileIndexV2eeoiSbAByxG_ADtFZ\">==(_: LazyPrefixWhileIndex&lt;Base&gt;, _: LazyPrefixWhileIndex&lt;Base&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s5RangeV2eeoiSbAByxG_ADtFZ\">==(_: Range&lt;Bound&gt;, _: Range&lt;Bound&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s14CountableRangeV2eeoiSbAByxG_ADtFZ\">==(_: CountableRange&lt;Bound&gt;, _: CountableRange&lt;Bound&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s11ClosedRangeV2eeoiSbAByxG_ADtFZ\">==(_: ClosedRange&lt;Bound&gt;, _: ClosedRange&lt;Bound&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s20CountableClosedRangeV2eeoiSbAByxG_ADtFZ\">==(_: CountableClosedRange&lt;Bound&gt;, _: CountableClosedRange&lt;Bound&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s13ReversedIndexV2eeoiSbAByxG_ADtFZ\">==(_: ReversedIndex&lt;Base&gt;, _: ReversedIndex&lt;Base&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s25ReversedRandomAccessIndexV2eeoiSbAByxG_ADtFZ\">==(_: ReversedRandomAccessIndex&lt;Base&gt;, _: ReversedRandomAccessIndex&lt;Base&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s10StrideablePsE2eeoiSbx_xtFZ\">==(_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SS2eeoiSbSS_SStFZ\">==(_: String, _: String) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SS5IndexV2eeoiSbAB_ABtFZ\">==(_: String.Index, _: String.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s14StringProtocolPsE2eeoiSbx_qd__tsAARd__lFZ\">==&lt;R&gt;(_: Self, _: R) -&gt; Bool where R : StringProtocol<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s11_UIntBufferV5IndexV2eeoiSbADyxq__G_AFtFZ\">==(_: _UIntBuffer&lt;Storage, Element&gt;.Index, _: _UIntBuffer&lt;Storage, Element&gt;.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:Sp2eeoiSbSpyxG_ABtFZ\">==(_: UnsafeMutablePointer&lt;Pointee&gt;, _: UnsafeMutablePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SP2eeoiSbSPyxG_ABtFZ\">==(_: UnsafePointer&lt;Pointee&gt;, _: UnsafePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:Sv2eeoiSbSv_SvtFZ\">==(_: UnsafeMutableRawPointer, _: UnsafeMutableRawPointer) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SV2eeoiSbSV_SVtFZ\">==(_: UnsafeRawPointer, _: UnsafeRawPointer) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s21UnicodeDecodingResultO2eeoiSbAB_ABtFZ\">==(_: UnicodeDecodingResult, _: UnicodeDecodingResult) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s16_ValidUTF8BufferV5IndexV2eeoiSbADyx_G_AFtFZ\">==(_: _ValidUTF8Buffer&lt;Storage&gt;.Index, _: _ValidUTF8Buffer&lt;Storage&gt;.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:SC30_SwiftNSOperatingSystemVersionVsE2eeoiSbAB_ABtFZ\">==(_: _SwiftNSOperatingSystemVersion, _: _SwiftNSOperatingSystemVersion) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s8AnyIndexV2eeoiSbAB_ABtFZ\">==(_: AnyIndex, _: AnyIndex) -&gt; Bool<\/RelatedName>"
+              }
+            ],
+            "key.substructure" : [
+
+            ],
+            "key.typename" : "<T where T : Hashable> (OrderedSet<T>.Type) -> (OrderedSet<T>, OrderedSet<T>) -> Bool",
+            "key.typeusr" : "_T0Sb10Commandant10OrderedSetVyxG_ADtcD",
+            "key.usr" : "s:s9EquatableP2eeoiSbx_xtFZ"
+          }
+        ],
+        "key.typename" : "OrderedSet<T>.Type",
+        "key.typeusr" : "_T010Commandant10OrderedSetVyxGmD",
+        "key.usr" : "s:10Commandant10OrderedSetV"
+      },
+      {
+        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
+        "key.bodylength" : 331,
+        "key.bodyoffset" : 588,
+        "key.doc.column" : 17,
+        "key.doc.declaration" : "internal struct OrderedSet<T> where T : Hashable",
+        "key.doc.file" : "Sources\/Commandant\/OrderedSet.swift",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.line" : 2,
+        "key.doc.name" : "OrderedSet",
+        "key.doc.type" : "Class",
+        "key.elements" : [
+          {
+            "key.kind" : "source.lang.swift.structure.elem.typeref",
+            "key.length" : 10,
+            "key.offset" : 576
+          }
+        ],
+        "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
+        "key.inheritedtypes" : [
+          {
+            "key.name" : "Collection"
+          }
+        ],
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 366,
+        "key.name" : "OrderedSet",
+        "key.namelength" : 10,
+        "key.nameoffset" : 564,
+        "key.offset" : 554,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>var count: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
+            "key.bodylength" : 24,
+            "key.bodyoffset" : 669,
+            "key.doc.declaration" : "var count: Self.IndexDistance { get }",
+            "key.doc.discussion" : [
+              {
+                "Para" : "To check whether a collection is empty, use its `isEmpty` property instead of comparing `count` to zero. Unless the collection guarantees random-access performance, calculating `count` can be an O() operation."
+              },
+              {
+                "Complexity" : ""
+              }
+            ],
+            "key.doc.full_as_xml" : "<Other><Name>count<\/Name><USR>s:s10CollectionP5count13IndexDistanceQzv<\/USR><Declaration>var count: Self.IndexDistance { get }<\/Declaration><CommentParts><Abstract><Para>The number of elements in the collection.<\/Para><\/Abstract><Discussion><Para>To check whether a collection is empty, use its <codeVoice>isEmpty<\/codeVoice> property instead of comparing <codeVoice>count<\/codeVoice> to zero. Unless the collection guarantees random-access performance, calculating <codeVoice>count<\/codeVoice> can be an O(<emphasis>n<\/emphasis>) operation.<\/Para><Complexity><Para>O(1) if the collection conforms to <codeVoice>RandomAccessCollection<\/codeVoice>; otherwise, O(<emphasis>n<\/emphasis>), where <emphasis>n<\/emphasis> is the length of the collection.<\/Para><\/Complexity><\/Discussion><\/CommentParts><\/Other>",
+            "key.doc.name" : "count",
+            "key.doc.type" : "Other",
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>count<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 41,
+            "key.name" : "count",
+            "key.namelength" : 5,
+            "key.nameoffset" : 657,
+            "key.offset" : 653,
+            "key.overrides" : [
+              {
+                "key.usr" : "s:s10CollectionP5count13IndexDistanceQzv"
+              }
+            ],
+            "key.parsed_declaration" : "var count: Int",
+            "key.parsed_scope.end" : 34,
+            "key.parsed_scope.start" : 32,
+            "key.typename" : "Int",
+            "key.typeusr" : "_T0SiD",
+            "key.usr" : "s:s10CollectionP5count13IndexDistanceQzv"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>var isEmpty: <Type usr=\"s:Sb\">Bool<\/Type> { get }<\/Declaration>",
+            "key.bodylength" : 26,
+            "key.bodyoffset" : 716,
+            "key.doc.declaration" : "var isEmpty: Bool { get }",
+            "key.doc.discussion" : [
+              {
+                "Para" : "When you need to check whether your collection is empty, use the `isEmpty` property instead of checking that the `count` property is equal to zero. For collections that don’t conform to `RandomAccessCollection`, accessing the `count` property iterates through the elements of the collection."
+              },
+              {
+                "CodeListing" : ""
+              },
+              {
+                "Complexity" : ""
+              }
+            ],
+            "key.doc.full_as_xml" : "<Other><Name>isEmpty<\/Name><USR>s:s10CollectionP7isEmptySbv<\/USR><Declaration>var isEmpty: Bool { get }<\/Declaration><CommentParts><Abstract><Para>A Boolean value indicating whether the collection is empty.<\/Para><\/Abstract><Discussion><Para>When you need to check whether your collection is empty, use the <codeVoice>isEmpty<\/codeVoice> property instead of checking that the <codeVoice>count<\/codeVoice> property is equal to zero. For collections that don’t conform to <codeVoice>RandomAccessCollection<\/codeVoice>, accessing the <codeVoice>count<\/codeVoice> property iterates through the elements of the collection.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let horseName = \"Silver\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[if horseName.isEmpty {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"I've been through the desert on a horse with no name.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[} else {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"Hi ho, \\(horseName)!\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Hi ho, Silver!\")]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Complexity><Para>O(1)<\/Para><\/Complexity><\/Discussion><\/CommentParts><\/Other>",
+            "key.doc.name" : "isEmpty",
+            "key.doc.type" : "Other",
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>isEmpty<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Sb\">Bool<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 46,
+            "key.name" : "isEmpty",
+            "key.namelength" : 7,
+            "key.nameoffset" : 701,
+            "key.offset" : 697,
+            "key.overrides" : [
+              {
+                "key.usr" : "s:s10CollectionP7isEmptySbv"
+              }
+            ],
+            "key.parsed_declaration" : "var isEmpty: Bool",
+            "key.parsed_scope.end" : 38,
+            "key.parsed_scope.start" : 36,
+            "key.typename" : "Bool",
+            "key.typeusr" : "_T0SbD",
+            "key.usr" : "s:s10CollectionP7isEmptySbv"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>var startIndex: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
+            "key.bodylength" : 29,
+            "key.bodyoffset" : 767,
+            "key.doc.declaration" : "var startIndex: Self.Index { get }",
+            "key.doc.discussion" : [
+              {
+                "Para" : "If the collection is empty, `startIndex` is equal to `endIndex`."
+              }
+            ],
+            "key.doc.full_as_xml" : "<Other><Name>startIndex<\/Name><USR>s:s14_IndexableBaseP10startIndex0D0Qzv<\/USR><Declaration>var startIndex: Self.Index { get }<\/Declaration><CommentParts><Abstract><Para>The position of the first element in a nonempty collection.<\/Para><\/Abstract><Discussion><Para>If the collection is empty, <codeVoice>startIndex<\/codeVoice> is equal to <codeVoice>endIndex<\/codeVoice>.<\/Para><\/Discussion><\/CommentParts><\/Other>",
+            "key.doc.name" : "startIndex",
+            "key.doc.type" : "Other",
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>startIndex<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 51,
+            "key.name" : "startIndex",
+            "key.namelength" : 10,
+            "key.nameoffset" : 750,
+            "key.offset" : 746,
+            "key.overrides" : [
+              {
+                "key.usr" : "s:s14_IndexableBaseP10startIndex0D0Qzv"
+              }
+            ],
+            "key.parsed_declaration" : "var startIndex: Int",
+            "key.parsed_scope.end" : 42,
+            "key.parsed_scope.start" : 40,
+            "key.typename" : "Int",
+            "key.typeusr" : "_T0SiD",
+            "key.usr" : "s:s14_IndexableBaseP10startIndex0D0Qzv"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>var endIndex: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
+            "key.bodylength" : 27,
+            "key.bodyoffset" : 819,
+            "key.doc.declaration" : "var endIndex: Self.Index { get }",
+            "key.doc.discussion" : [
+              {
+                "Para" : "When you need a range that includes the last element of a collection, use the half-open range operator (`..<`) with `endIndex`. The `..<` operator creates a range that doesn’t include the upper bound, so it’s always safe to use with `endIndex`. For example:"
+              },
+              {
+                "CodeListing" : ""
+              },
+              {
+                "Para" : "If the collection is empty, `endIndex` is equal to `startIndex`."
+              }
+            ],
+            "key.doc.full_as_xml" : "<Other><Name>endIndex<\/Name><USR>s:s14_IndexableBaseP8endIndex0D0Qzv<\/USR><Declaration>var endIndex: Self.Index { get }<\/Declaration><CommentParts><Abstract><Para>The collection’s “past the end” position—that is, the position one greater than the last valid subscript argument.<\/Para><\/Abstract><Discussion><Para>When you need a range that includes the last element of a collection, use the half-open range operator (<codeVoice>..&lt;<\/codeVoice>) with <codeVoice>endIndex<\/codeVoice>. The <codeVoice>..&lt;<\/codeVoice> operator creates a range that doesn’t include the upper bound, so it’s always safe to use with <codeVoice>endIndex<\/codeVoice>. For example:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let numbers = [10, 20, 30, 40, 50]]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[if let index = numbers.index(of: 30) {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(numbers[index ..< numbers.endIndex])]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[30, 40, 50]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>If the collection is empty, <codeVoice>endIndex<\/codeVoice> is equal to <codeVoice>startIndex<\/codeVoice>.<\/Para><\/Discussion><\/CommentParts><\/Other>",
+            "key.doc.name" : "endIndex",
+            "key.doc.type" : "Other",
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>endIndex<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 47,
+            "key.name" : "endIndex",
+            "key.namelength" : 8,
+            "key.nameoffset" : 804,
+            "key.offset" : 800,
+            "key.overrides" : [
+              {
+                "key.usr" : "s:s14_IndexableBaseP8endIndex0D0Qzv"
+              }
+            ],
+            "key.parsed_declaration" : "var endIndex: Int",
+            "key.parsed_scope.end" : 46,
+            "key.parsed_scope.start" : 44,
+            "key.typename" : "Int",
+            "key.typeusr" : "_T0SiD",
+            "key.usr" : "s:s14_IndexableBaseP8endIndex0D0Qzv"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>func index(after i: <Type usr=\"s:Si\">Int<\/Type>) -&gt; <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
+            "key.bodylength" : 34,
+            "key.bodyoffset" : 883,
+            "key.doc.declaration" : "func index(after i: Self.Index) -> Self.Index",
+            "key.doc.discussion" : [
+              {
+                "Para" : "The successor of an index must be well defined. For an index `i` into a collection `c`, calling `c.index(after: i)` returns the same index every time."
+              }
+            ],
+            "key.doc.full_as_xml" : "<Function><Name>index(after:)<\/Name><USR>s:s14_IndexableBaseP5index5IndexQzAE5after_tF<\/USR><Declaration>func index(after i: Self.Index) -&gt; Self.Index<\/Declaration><CommentParts><Abstract><Para>Returns the position immediately after the given index.<\/Para><\/Abstract><Parameters><Parameter><Name>i<\/Name><Direction isExplicit=\"0\">in<\/Direction><Discussion><Para>A valid index of the collection. <codeVoice>i<\/codeVoice> must be less than <codeVoice>endIndex<\/codeVoice>.<\/Para><\/Discussion><\/Parameter><\/Parameters><ResultDiscussion><Para>The index value immediately after <codeVoice>i<\/codeVoice>.<\/Para><\/ResultDiscussion><Discussion><Para>The successor of an index must be well defined. For an index <codeVoice>i<\/codeVoice> into a collection <codeVoice>c<\/codeVoice>, calling <codeVoice>c.index(after: i)<\/codeVoice> returns the same index every time.<\/Para><\/Discussion><\/CommentParts><\/Function>",
+            "key.doc.name" : "index(after:)",
+            "key.doc.parameters" : [
+              {
+                "discussion" : [
+                  {
+                    "Para" : "A valid index of the collection. `i` must be less than `endIndex`."
+                  }
+                ],
+                "name" : "i"
+              }
+            ],
+            "key.doc.result_discussion" : [
+              {
+                "Para" : "The index value immediately after `i`."
+              }
+            ],
+            "key.doc.type" : "Function",
+            "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
+            "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>index<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>after<\/decl.var.parameter.argument_label> <decl.var.parameter.name>i<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.function.returntype><\/decl.function.method.instance>",
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.length" : 68,
+            "key.name" : "index(after:)",
+            "key.namelength" : 19,
+            "key.nameoffset" : 855,
+            "key.offset" : 850,
+            "key.overrides" : [
+              {
+                "key.usr" : "s:s14_IndexableBaseP5index5IndexQzAE5after_tF"
+              }
+            ],
+            "key.parsed_declaration" : "func index(after i: Int) -> Int",
+            "key.parsed_scope.end" : 50,
+            "key.parsed_scope.start" : 48,
+            "key.substructure" : [
+
+            ],
+            "key.typename" : "<T where T : Hashable> (OrderedSet<T>) -> (Int) -> Int",
+            "key.typeusr" : "_T0S2i5after_tcD",
+            "key.usr" : "s:s14_IndexableBaseP5index5IndexQzAE5after_tF"
+          }
+        ],
+        "key.typename" : "OrderedSet<T>.Type",
+        "key.typeusr" : "_T010Commandant10OrderedSetVyxGmD",
+        "key.usr" : "s:10Commandant10OrderedSetV"
+      }
+    ]
+  }
+}, {
   "Sources\/Commandant\/Argument.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 2979,
@@ -661,7 +1430,7 @@
 }, {
   "Sources\/Commandant\/ArgumentProtocol.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-    "key.length" : 742,
+    "key.length" : 1141,
     "key.offset" : 0,
     "key.substructure" : [
       {
@@ -1132,6 +1901,190 @@
         "key.typename" : "String.Type",
         "key.typeusr" : "_T0SSmD",
         "key.usr" : "s:SS"
+      },
+      {
+        "key.annotated_decl" : "<Declaration>protocol RawRepresentable<\/Declaration>",
+        "key.bodylength" : 112,
+        "key.bodyoffset" : 826,
+        "key.doc.declaration" : "protocol RawRepresentable",
+        "key.doc.discussion" : [
+          {
+            "Para" : "With a `RawRepresentable` type, you can switch back and forth between a custom type and an associated `RawValue` type without losing the value of the original `RawRepresentable` type. Using the raw value of a conforming type streamlines interoperation with Objective-C and legacy APIs and simplifies conformance to other protocols, such as `Equatable`, `Comparable`, and `Hashable`."
+          },
+          {
+            "Para" : "The `RawRepresentable` protocol is seen mainly in two categories of types: enumerations with raw value types and option sets."
+          },
+          {
+            "Para" : "For any enumeration with a string, integer, or floating-point raw type, the Swift compiler automatically adds `RawRepresentable` conformance. When defining your own custom enumeration, you give it a raw type by specifying the raw type as the first item in the enumeration’s type inheritance list. You can also use literals to specify values for one or more cases."
+          },
+          {
+            "Para" : "For example, the `Counter` enumeration defined here has an `Int` raw value type and gives the first case a raw value of `1`:"
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "You can create a `Counter` instance from an integer value between 1 and 5 by using the `init?(rawValue:)` initializer declared in the `RawRepresentable` protocol. This initializer is failable because although every case of the `Counter` type has a corresponding `Int` value, there are many `Int` values that  correspond to a case of `Counter`."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Option sets all conform to `RawRepresentable` by inheritance using the `OptionSet` protocol. Whether using an option set or creating your own, you use the raw value of an option set instance to store the instance’s bitfield. The raw value must therefore be of a type that conforms to the `FixedWidthInteger` protocol, such as `UInt8` or `Int`. For example, the `Direction` type defines an option set for the four directions you can move in a game."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Unlike enumerations, option sets provide a nonfailable `init(rawValue:)` initializer to convert from a raw value, because option sets don’t have an enumerated list of all possible cases. Option set values have a one-to-one correspondence with their associated raw values."
+          },
+          {
+            "Para" : "In the case of the `Directions` option set, an instance can contain zero, one, or more of the four defined directions. This example declares a constant with three currently allowed moves. The raw value of the `allowedMoves` instance is the result of the bitwise OR of its three members’ raw values:"
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Option sets use bitwise operations on their associated raw values to implement their mathematical set operations. For example, the `contains()` method on `allowedMoves` performs a bitwise AND operation to check whether the option set contains an element."
+          },
+          {
+            "CodeListing" : ""
+          }
+        ],
+        "key.doc.full_as_xml" : "<Class><Name>RawRepresentable<\/Name><USR>s:s16RawRepresentableP<\/USR><Declaration>protocol RawRepresentable<\/Declaration><CommentParts><Abstract><Para>A type that can be converted to and from an associated raw value.<\/Para><\/Abstract><Discussion><Para>With a <codeVoice>RawRepresentable<\/codeVoice> type, you can switch back and forth between a custom type and an associated <codeVoice>RawValue<\/codeVoice> type without losing the value of the original <codeVoice>RawRepresentable<\/codeVoice> type. Using the raw value of a conforming type streamlines interoperation with Objective-C and legacy APIs and simplifies conformance to other protocols, such as <codeVoice>Equatable<\/codeVoice>, <codeVoice>Comparable<\/codeVoice>, and <codeVoice>Hashable<\/codeVoice>.<\/Para><Para>The <codeVoice>RawRepresentable<\/codeVoice> protocol is seen mainly in two categories of types: enumerations with raw value types and option sets.<\/Para><rawHTML><![CDATA[<h1>]]><\/rawHTML>Enumerations with Raw Values<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>For any enumeration with a string, integer, or floating-point raw type, the Swift compiler automatically adds <codeVoice>RawRepresentable<\/codeVoice> conformance. When defining your own custom enumeration, you give it a raw type by specifying the raw type as the first item in the enumeration’s type inheritance list. You can also use literals to specify values for one or more cases.<\/Para><Para>For example, the <codeVoice>Counter<\/codeVoice> enumeration defined here has an <codeVoice>Int<\/codeVoice> raw value type and gives the first case a raw value of <codeVoice>1<\/codeVoice>:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[enum Counter: Int {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    case one = 1, two, three, four, five]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>You can create a <codeVoice>Counter<\/codeVoice> instance from an integer value between 1 and 5 by using the <codeVoice>init?(rawValue:)<\/codeVoice> initializer declared in the <codeVoice>RawRepresentable<\/codeVoice> protocol. This initializer is failable because although every case of the <codeVoice>Counter<\/codeVoice> type has a corresponding <codeVoice>Int<\/codeVoice> value, there are many <codeVoice>Int<\/codeVoice> values that <emphasis>don’t<\/emphasis> correspond to a case of <codeVoice>Counter<\/codeVoice>.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[for i in 3...6 {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(Counter(rawValue: i))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Optional(Counter.three)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Optional(Counter.four)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Optional(Counter.five)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"nil\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Option Sets<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>Option sets all conform to <codeVoice>RawRepresentable<\/codeVoice> by inheritance using the <codeVoice>OptionSet<\/codeVoice> protocol. Whether using an option set or creating your own, you use the raw value of an option set instance to store the instance’s bitfield. The raw value must therefore be of a type that conforms to the <codeVoice>FixedWidthInteger<\/codeVoice> protocol, such as <codeVoice>UInt8<\/codeVoice> or <codeVoice>Int<\/codeVoice>. For example, the <codeVoice>Direction<\/codeVoice> type defines an option set for the four directions you can move in a game.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[struct Directions: OptionSet {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    let rawValue: UInt8]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    static let up    = Directions(rawValue: 1 << 0)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    static let down  = Directions(rawValue: 1 << 1)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    static let left  = Directions(rawValue: 1 << 2)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    static let right = Directions(rawValue: 1 << 3)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Unlike enumerations, option sets provide a nonfailable <codeVoice>init(rawValue:)<\/codeVoice> initializer to convert from a raw value, because option sets don’t have an enumerated list of all possible cases. Option set values have a one-to-one correspondence with their associated raw values.<\/Para><Para>In the case of the <codeVoice>Directions<\/codeVoice> option set, an instance can contain zero, one, or more of the four defined directions. This example declares a constant with three currently allowed moves. The raw value of the <codeVoice>allowedMoves<\/codeVoice> instance is the result of the bitwise OR of its three members’ raw values:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let allowedMoves: Directions = [.up, .down, .left]]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(allowedMoves.rawValue)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"7\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Option sets use bitwise operations on their associated raw values to implement their mathematical set operations. For example, the <codeVoice>contains()<\/codeVoice> method on <codeVoice>allowedMoves<\/codeVoice> performs a bitwise AND operation to check whether the option set contains an element.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(allowedMoves.contains(.right))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"false\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(allowedMoves.rawValue & Directions.right.rawValue)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"0\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><\/Discussion><\/CommentParts><\/Class>",
+        "key.doc.name" : "RawRepresentable",
+        "key.doc.type" : "Class",
+        "key.fully_annotated_decl" : "<decl.protocol><syntaxtype.keyword>protocol<\/syntaxtype.keyword> <decl.name>RawRepresentable<\/decl.name><\/decl.protocol>",
+        "key.groupname" : "Protocols",
+        "key.is_system" : true,
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 196,
+        "key.modulename" : "Swift",
+        "key.name" : "RawRepresentable",
+        "key.namelength" : 16,
+        "key.nameoffset" : 753,
+        "key.offset" : 743,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.annotated_decl" : "<Declaration>public static func from(string: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:s16RawRepresentableP10CommandantAC16ArgumentProtocolRzsAARzs06StringE00A5ValueABRpzlE4Selfxmfp\">Self<\/Type>?<\/Declaration>",
+            "key.bodylength" : 58,
+            "key.bodyoffset" : 878,
+            "key.filepath" : "Sources\/Commandant\/ArgumentProtocol.swift",
+            "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>from<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>string<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.generic_type_param usr=\"s:s16RawRepresentableP10CommandantAC16ArgumentProtocolRzsAARzs06StringE00A5ValueABRpzlE4Selfxmfp\">Self<\/ref.generic_type_param>?<\/decl.function.returntype><\/decl.function.method.static>",
+            "key.groupname" : "Protocols",
+            "key.kind" : "source.lang.swift.decl.function.method.static",
+            "key.length" : 102,
+            "key.name" : "from(string:)",
+            "key.namelength" : 20,
+            "key.nameoffset" : 847,
+            "key.offset" : 835,
+            "key.parsed_declaration" : "public static func from(string: String) -> Self?",
+            "key.parsed_scope.end" : 37,
+            "key.parsed_scope.start" : 35,
+            "key.substructure" : [
+
+            ],
+            "key.typename" : "<Self where Self : ArgumentProtocol, Self : RawRepresentable, Self.RawValue : StringProtocol> (Self.Type) -> (String) -> Self?",
+            "key.typeusr" : "_T0xSgSS6string_tcD",
+            "key.usr" : "s:s16RawRepresentableP10CommandantAC16ArgumentProtocolRzsAARzs06StringE00A5ValueABRpzlE4fromxSgSS6string_tFZ"
+          }
+        ],
+        "key.typename" : "RawRepresentable.Protocol",
+        "key.typeusr" : "_T0s16RawRepresentable_pmD",
+        "key.usr" : "s:s16RawRepresentableP"
+      },
+      {
+        "key.annotated_decl" : "<Declaration>protocol RawRepresentable<\/Declaration>",
+        "key.bodylength" : 112,
+        "key.bodyoffset" : 1027,
+        "key.doc.declaration" : "protocol RawRepresentable",
+        "key.doc.discussion" : [
+          {
+            "Para" : "With a `RawRepresentable` type, you can switch back and forth between a custom type and an associated `RawValue` type without losing the value of the original `RawRepresentable` type. Using the raw value of a conforming type streamlines interoperation with Objective-C and legacy APIs and simplifies conformance to other protocols, such as `Equatable`, `Comparable`, and `Hashable`."
+          },
+          {
+            "Para" : "The `RawRepresentable` protocol is seen mainly in two categories of types: enumerations with raw value types and option sets."
+          },
+          {
+            "Para" : "For any enumeration with a string, integer, or floating-point raw type, the Swift compiler automatically adds `RawRepresentable` conformance. When defining your own custom enumeration, you give it a raw type by specifying the raw type as the first item in the enumeration’s type inheritance list. You can also use literals to specify values for one or more cases."
+          },
+          {
+            "Para" : "For example, the `Counter` enumeration defined here has an `Int` raw value type and gives the first case a raw value of `1`:"
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "You can create a `Counter` instance from an integer value between 1 and 5 by using the `init?(rawValue:)` initializer declared in the `RawRepresentable` protocol. This initializer is failable because although every case of the `Counter` type has a corresponding `Int` value, there are many `Int` values that  correspond to a case of `Counter`."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Option sets all conform to `RawRepresentable` by inheritance using the `OptionSet` protocol. Whether using an option set or creating your own, you use the raw value of an option set instance to store the instance’s bitfield. The raw value must therefore be of a type that conforms to the `FixedWidthInteger` protocol, such as `UInt8` or `Int`. For example, the `Direction` type defines an option set for the four directions you can move in a game."
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Unlike enumerations, option sets provide a nonfailable `init(rawValue:)` initializer to convert from a raw value, because option sets don’t have an enumerated list of all possible cases. Option set values have a one-to-one correspondence with their associated raw values."
+          },
+          {
+            "Para" : "In the case of the `Directions` option set, an instance can contain zero, one, or more of the four defined directions. This example declares a constant with three currently allowed moves. The raw value of the `allowedMoves` instance is the result of the bitwise OR of its three members’ raw values:"
+          },
+          {
+            "CodeListing" : ""
+          },
+          {
+            "Para" : "Option sets use bitwise operations on their associated raw values to implement their mathematical set operations. For example, the `contains()` method on `allowedMoves` performs a bitwise AND operation to check whether the option set contains an element."
+          },
+          {
+            "CodeListing" : ""
+          }
+        ],
+        "key.doc.full_as_xml" : "<Class><Name>RawRepresentable<\/Name><USR>s:s16RawRepresentableP<\/USR><Declaration>protocol RawRepresentable<\/Declaration><CommentParts><Abstract><Para>A type that can be converted to and from an associated raw value.<\/Para><\/Abstract><Discussion><Para>With a <codeVoice>RawRepresentable<\/codeVoice> type, you can switch back and forth between a custom type and an associated <codeVoice>RawValue<\/codeVoice> type without losing the value of the original <codeVoice>RawRepresentable<\/codeVoice> type. Using the raw value of a conforming type streamlines interoperation with Objective-C and legacy APIs and simplifies conformance to other protocols, such as <codeVoice>Equatable<\/codeVoice>, <codeVoice>Comparable<\/codeVoice>, and <codeVoice>Hashable<\/codeVoice>.<\/Para><Para>The <codeVoice>RawRepresentable<\/codeVoice> protocol is seen mainly in two categories of types: enumerations with raw value types and option sets.<\/Para><rawHTML><![CDATA[<h1>]]><\/rawHTML>Enumerations with Raw Values<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>For any enumeration with a string, integer, or floating-point raw type, the Swift compiler automatically adds <codeVoice>RawRepresentable<\/codeVoice> conformance. When defining your own custom enumeration, you give it a raw type by specifying the raw type as the first item in the enumeration’s type inheritance list. You can also use literals to specify values for one or more cases.<\/Para><Para>For example, the <codeVoice>Counter<\/codeVoice> enumeration defined here has an <codeVoice>Int<\/codeVoice> raw value type and gives the first case a raw value of <codeVoice>1<\/codeVoice>:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[enum Counter: Int {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    case one = 1, two, three, four, five]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>You can create a <codeVoice>Counter<\/codeVoice> instance from an integer value between 1 and 5 by using the <codeVoice>init?(rawValue:)<\/codeVoice> initializer declared in the <codeVoice>RawRepresentable<\/codeVoice> protocol. This initializer is failable because although every case of the <codeVoice>Counter<\/codeVoice> type has a corresponding <codeVoice>Int<\/codeVoice> value, there are many <codeVoice>Int<\/codeVoice> values that <emphasis>don’t<\/emphasis> correspond to a case of <codeVoice>Counter<\/codeVoice>.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[for i in 3...6 {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(Counter(rawValue: i))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Optional(Counter.three)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Optional(Counter.four)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Optional(Counter.five)\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"nil\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Option Sets<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>Option sets all conform to <codeVoice>RawRepresentable<\/codeVoice> by inheritance using the <codeVoice>OptionSet<\/codeVoice> protocol. Whether using an option set or creating your own, you use the raw value of an option set instance to store the instance’s bitfield. The raw value must therefore be of a type that conforms to the <codeVoice>FixedWidthInteger<\/codeVoice> protocol, such as <codeVoice>UInt8<\/codeVoice> or <codeVoice>Int<\/codeVoice>. For example, the <codeVoice>Direction<\/codeVoice> type defines an option set for the four directions you can move in a game.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[struct Directions: OptionSet {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    let rawValue: UInt8]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    static let up    = Directions(rawValue: 1 << 0)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    static let down  = Directions(rawValue: 1 << 1)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    static let left  = Directions(rawValue: 1 << 2)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    static let right = Directions(rawValue: 1 << 3)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Unlike enumerations, option sets provide a nonfailable <codeVoice>init(rawValue:)<\/codeVoice> initializer to convert from a raw value, because option sets don’t have an enumerated list of all possible cases. Option set values have a one-to-one correspondence with their associated raw values.<\/Para><Para>In the case of the <codeVoice>Directions<\/codeVoice> option set, an instance can contain zero, one, or more of the four defined directions. This example declares a constant with three currently allowed moves. The raw value of the <codeVoice>allowedMoves<\/codeVoice> instance is the result of the bitwise OR of its three members’ raw values:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let allowedMoves: Directions = [.up, .down, .left]]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(allowedMoves.rawValue)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"7\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Option sets use bitwise operations on their associated raw values to implement their mathematical set operations. For example, the <codeVoice>contains()<\/codeVoice> method on <codeVoice>allowedMoves<\/codeVoice> performs a bitwise AND operation to check whether the option set contains an element.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(allowedMoves.contains(.right))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"false\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(allowedMoves.rawValue & Directions.right.rawValue)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"0\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><\/Discussion><\/CommentParts><\/Class>",
+        "key.doc.name" : "RawRepresentable",
+        "key.doc.type" : "Class",
+        "key.fully_annotated_decl" : "<decl.protocol><syntaxtype.keyword>protocol<\/syntaxtype.keyword> <decl.name>RawRepresentable<\/decl.name><\/decl.protocol>",
+        "key.groupname" : "Protocols",
+        "key.is_system" : true,
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 199,
+        "key.modulename" : "Swift",
+        "key.name" : "RawRepresentable",
+        "key.namelength" : 16,
+        "key.nameoffset" : 951,
+        "key.offset" : 941,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.annotated_decl" : "<Declaration>public static func from(string: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:s16RawRepresentableP10CommandantAC16ArgumentProtocolRzsAARzs17FixedWidthInteger0A5ValueABRpzlE4Selfxmfp\">Self<\/Type>?<\/Declaration>",
+            "key.bodylength" : 58,
+            "key.bodyoffset" : 1079,
+            "key.filepath" : "Sources\/Commandant\/ArgumentProtocol.swift",
+            "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>from<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>string<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.generic_type_param usr=\"s:s16RawRepresentableP10CommandantAC16ArgumentProtocolRzsAARzs17FixedWidthInteger0A5ValueABRpzlE4Selfxmfp\">Self<\/ref.generic_type_param>?<\/decl.function.returntype><\/decl.function.method.static>",
+            "key.groupname" : "Protocols",
+            "key.kind" : "source.lang.swift.decl.function.method.static",
+            "key.length" : 102,
+            "key.name" : "from(string:)",
+            "key.namelength" : 20,
+            "key.nameoffset" : 1048,
+            "key.offset" : 1036,
+            "key.parsed_declaration" : "public static func from(string: String) -> Self?",
+            "key.parsed_scope.end" : 43,
+            "key.parsed_scope.start" : 41,
+            "key.substructure" : [
+
+            ],
+            "key.typename" : "<Self where Self : ArgumentProtocol, Self : RawRepresentable, Self.RawValue : FixedWidthInteger> (Self.Type) -> (String) -> Self?",
+            "key.typeusr" : "_T0xSgSS6string_tcD",
+            "key.usr" : "s:s16RawRepresentableP10CommandantAC16ArgumentProtocolRzsAARzs17FixedWidthInteger0A5ValueABRpzlE4fromxSgSS6string_tFZ"
+          }
+        ],
+        "key.typename" : "RawRepresentable.Protocol",
+        "key.typeusr" : "_T0s16RawRepresentable_pmD",
+        "key.usr" : "s:s16RawRepresentableP"
       }
     ]
   }
@@ -4063,13 +5016,13 @@
 }, {
   "Sources\/Commandant\/ArgumentParser.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-    "key.length" : 4942,
+    "key.length" : 4956,
     "key.offset" : 0,
     "key.substructure" : [
       {
         "key.accessibility" : "source.lang.swift.accessibility.private",
         "key.annotated_decl" : "<Declaration>private enum RawArgument : <Type usr=\"s:s9EquatableP\">Equatable<\/Type><\/Declaration>",
-        "key.bodylength" : 289,
+        "key.bodylength" : 296,
         "key.bodyoffset" : 280,
         "key.doc.column" : 14,
         "key.doc.comment" : "Represents an argument passed on the command line.",
@@ -4094,7 +5047,7 @@
           }
         ],
         "key.kind" : "source.lang.swift.decl.enum",
-        "key.length" : 319,
+        "key.length" : 326,
         "key.name" : "RawArgument",
         "key.namelength" : 11,
         "key.nameoffset" : 256,
@@ -4175,36 +5128,36 @@
           },
           {
             "key.kind" : "source.lang.swift.decl.enumcase",
-            "key.length" : 25,
+            "key.length" : 32,
             "key.namelength" : 0,
             "key.nameoffset" : 0,
             "key.offset" : 543,
             "key.substructure" : [
               {
                 "key.accessibility" : "source.lang.swift.accessibility.private",
-                "key.annotated_decl" : "<Declaration>case flag(<Type usr=\"s:s3SetV\">Set<\/Type>&lt;<Type usr=\"s:s9CharacterV\">Character<\/Type>&gt;)<\/Declaration>",
+                "key.annotated_decl" : "<Declaration>case flag(<Type usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/Type>&lt;<Type usr=\"s:s9CharacterV\">Character<\/Type>&gt;)<\/Declaration>",
                 "key.doc.column" : 7,
                 "key.doc.comment" : "One or more flag arguments (e.g 'r' and 'f' for `-rf`)",
                 "key.doc.declaration" : "",
                 "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-                "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"22\" column=\"7\"><Name>flag<\/Name><USR>s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO4flagADs3SetVys9CharacterVGcADmF<\/USR><Declaration><\/Declaration><CommentParts><Abstract><Para>One or more flag arguments (e.g ‘r’ and ‘f’ for <codeVoice>-rf<\/codeVoice>)<\/Para><\/Abstract><\/CommentParts><\/Other>",
+                "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"22\" column=\"7\"><Name>flag<\/Name><USR>s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO4flagAdA10OrderedSetVys9CharacterVGcADmF<\/USR><Declaration><\/Declaration><CommentParts><Abstract><Para>One or more flag arguments (e.g ‘r’ and ‘f’ for <codeVoice>-rf<\/codeVoice>)<\/Para><\/Abstract><\/CommentParts><\/Other>",
                 "key.doc.line" : 22,
                 "key.doc.name" : "flag",
                 "key.doc.type" : "Other",
                 "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
-                "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>flag<\/decl.name>(<ref.struct usr=\"s:s3SetV\">Set<\/ref.struct>&lt;<ref.struct usr=\"s:s9CharacterV\">Character<\/ref.struct>&gt;)<\/decl.enumelement>",
+                "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>flag<\/decl.name>(<ref.struct usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/ref.struct>&lt;<ref.struct usr=\"s:s9CharacterV\">Character<\/ref.struct>&gt;)<\/decl.enumelement>",
                 "key.kind" : "source.lang.swift.decl.enumelement",
-                "key.length" : 20,
+                "key.length" : 27,
                 "key.name" : "flag",
                 "key.namelength" : 4,
                 "key.nameoffset" : 548,
                 "key.offset" : 548,
-                "key.parsed_declaration" : "case flag(Set<Character>)",
+                "key.parsed_declaration" : "case flag(OrderedSet<Character>)",
                 "key.parsed_scope.end" : 22,
                 "key.parsed_scope.start" : 22,
-                "key.typename" : "(RawArgument.Type) -> (Set<Character>) -> RawArgument",
-                "key.typeusr" : "_T010Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOs3SetVys9CharacterVGcADmcD",
-                "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO4flagADs3SetVys9CharacterVGcADmF"
+                "key.typename" : "(RawArgument.Type) -> (OrderedSet<Character>) -> RawArgument",
+                "key.typeusr" : "_T010Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOAA10OrderedSetVys9CharacterVGcADmcD",
+                "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO4flagAdA10OrderedSetVys9CharacterVGcADmF"
               }
             ]
           }
@@ -4217,19 +5170,22 @@
         "key.accessibility" : "source.lang.swift.accessibility.private",
         "key.annotated_decl" : "<Declaration>private func ==(lhs: <Type usr=\"s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO\">RawArgument<\/Type>, rhs: <Type usr=\"s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO\">RawArgument<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type><\/Declaration>",
         "key.bodylength" : 239,
-        "key.bodyoffset" : 633,
+        "key.bodyoffset" : 640,
         "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>private<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>==<\/decl.name>(<decl.var.parameter><decl.var.parameter.name>lhs<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO\">RawArgument<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>rhs<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO\">RawArgument<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.struct usr=\"s:Sb\">Bool<\/ref.struct><\/decl.function.returntype><\/decl.function.operator.infix>",
         "key.kind" : "source.lang.swift.decl.function.free",
         "key.length" : 293,
         "key.name" : "==(_:_:)",
         "key.namelength" : 38,
-        "key.nameoffset" : 585,
-        "key.offset" : 580,
+        "key.nameoffset" : 592,
+        "key.offset" : 587,
         "key.parsed_declaration" : "private func ==(lhs: RawArgument, rhs: RawArgument) -> Bool",
         "key.parsed_scope.end" : 39,
         "key.parsed_scope.start" : 25,
         "key.related_decls" : [
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant10OrderedSetV2eeoiSbACyxG_AEtFZ\">==(_: OrderedSet, _: OrderedSet) -&gt; Bool<\/RelatedName>"
+          },
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation15AffineTransformV2eeoiSbAC_ACtFZ\">==(_: AffineTransform, _: AffineTransform) -&gt; Bool<\/RelatedName>"
           },
@@ -4571,7 +5527,7 @@
       {
         "key.annotated_decl" : "<Declaration>private enum RawArgument : <Type usr=\"s:s9EquatableP\">Equatable<\/Type><\/Declaration>",
         "key.bodylength" : 214,
-        "key.bodyoffset" : 923,
+        "key.bodyoffset" : 930,
         "key.doc.column" : 14,
         "key.doc.declaration" : "private enum RawArgument : Equatable",
         "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -4583,7 +5539,7 @@
           {
             "key.kind" : "source.lang.swift.structure.elem.typeref",
             "key.length" : 23,
-            "key.offset" : 898
+            "key.offset" : 905
           }
         ],
         "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -4597,14 +5553,14 @@
         "key.length" : 263,
         "key.name" : "RawArgument",
         "key.namelength" : 11,
-        "key.nameoffset" : 885,
-        "key.offset" : 875,
+        "key.nameoffset" : 892,
+        "key.offset" : 882,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.fileprivate",
             "key.annotated_decl" : "<Declaration>fileprivate var description: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 173,
-            "key.bodyoffset" : 962,
+            "key.bodyoffset" : 969,
             "key.doc.declaration" : "var description: String { get }",
             "key.doc.discussion" : [
               {
@@ -4626,8 +5582,8 @@
             "key.length" : 199,
             "key.name" : "description",
             "key.namelength" : 11,
-            "key.nameoffset" : 941,
-            "key.offset" : 937,
+            "key.nameoffset" : 948,
+            "key.offset" : 944,
             "key.overrides" : [
               {
                 "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSv"
@@ -4653,8 +5609,8 @@
             "key.attribute" : "source.decl.attribute.final"
           }
         ],
-        "key.bodylength" : 3706,
-        "key.bodyoffset" : 1234,
+        "key.bodylength" : 3713,
+        "key.bodyoffset" : 1241,
         "key.doc.column" : 20,
         "key.doc.comment" : "Destructively parses a list of command-line arguments.",
         "key.doc.declaration" : "public final class ArgumentParser",
@@ -4666,11 +5622,11 @@
         "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
         "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>final<\/syntaxtype.keyword> <syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>ArgumentParser<\/decl.name><\/decl.class>",
         "key.kind" : "source.lang.swift.decl.class",
-        "key.length" : 3729,
+        "key.length" : 3736,
         "key.name" : "ArgumentParser",
         "key.namelength" : 14,
-        "key.nameoffset" : 1218,
-        "key.offset" : 1212,
+        "key.nameoffset" : 1225,
+        "key.offset" : 1219,
         "key.parsed_declaration" : "public final class ArgumentParser",
         "key.parsed_scope.end" : 192,
         "key.parsed_scope.start" : 57,
@@ -4693,8 +5649,8 @@
             "key.length" : 36,
             "key.name" : "rawArguments",
             "key.namelength" : 12,
-            "key.nameoffset" : 1313,
-            "key.offset" : 1309,
+            "key.nameoffset" : 1320,
+            "key.offset" : 1316,
             "key.parsed_declaration" : "private var rawArguments: [RawArgument] = []",
             "key.parsed_scope.end" : 59,
             "key.parsed_scope.start" : 59,
@@ -4706,8 +5662,8 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.annotated_decl" : "<Declaration>public init(_ arguments: [<Type usr=\"s:SS\">String<\/Type>])<\/Declaration>",
-            "key.bodylength" : 734,
-            "key.bodyoffset" : 1461,
+            "key.bodylength" : 741,
+            "key.bodyoffset" : 1468,
             "key.doc.column" : 9,
             "key.doc.comment" : "Initializes the generator from a simple list of command-line arguments.",
             "key.doc.declaration" : "public init(_ arguments: [String])",
@@ -4719,11 +5675,11 @@
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
             "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>arguments<\/decl.var.parameter.name>: <decl.var.parameter.type>[<ref.struct usr=\"s:SS\">String<\/ref.struct>]<\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.constructor>",
             "key.kind" : "source.lang.swift.decl.function.method.instance",
-            "key.length" : 764,
+            "key.length" : 771,
             "key.name" : "init(_:)",
             "key.namelength" : 27,
-            "key.nameoffset" : 1432,
-            "key.offset" : 1432,
+            "key.nameoffset" : 1439,
+            "key.offset" : 1439,
             "key.parsed_declaration" : "public init(_ arguments: [String])",
             "key.parsed_scope.end" : 87,
             "key.parsed_scope.start" : 62,
@@ -4738,7 +5694,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal var remainingArguments: [<Type usr=\"s:SS\">String<\/Type>]? { get }<\/Declaration>",
             "key.bodylength" : 76,
-            "key.bodyoffset" : 2281,
+            "key.bodyoffset" : 2295,
             "key.doc.column" : 15,
             "key.doc.comment" : "Returns the remaining arguments.",
             "key.doc.declaration" : "internal var remainingArguments: [String]? { get }",
@@ -4753,8 +5709,8 @@
             "key.length" : 112,
             "key.name" : "remainingArguments",
             "key.namelength" : 18,
-            "key.nameoffset" : 2250,
-            "key.offset" : 2246,
+            "key.nameoffset" : 2264,
+            "key.offset" : 2260,
             "key.parsed_declaration" : "internal var remainingArguments: [String]?",
             "key.parsed_scope.end" : 92,
             "key.parsed_scope.start" : 90,
@@ -4766,7 +5722,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consumeBoolean(forKey key: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type>?<\/Declaration>",
             "key.bodylength" : 281,
-            "key.bodyoffset" : 2626,
+            "key.bodyoffset" : 2640,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given key was enabled or disabled, or nil if it\nwas not given at all.\n\nIf the key is found, it is then removed from the list of arguments\nremaining to be parsed.",
             "key.doc.declaration" : "internal func consumeBoolean(forKey key: String) -> Bool?",
@@ -4786,8 +5742,8 @@
             "key.length" : 332,
             "key.name" : "consumeBoolean(forKey:)",
             "key.namelength" : 34,
-            "key.nameoffset" : 2581,
-            "key.offset" : 2576,
+            "key.nameoffset" : 2595,
+            "key.offset" : 2590,
             "key.parsed_declaration" : "internal func consumeBoolean(forKey key: String) -> Bool?",
             "key.parsed_scope.end" : 115,
             "key.parsed_scope.start" : 99,
@@ -4807,7 +5763,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consumeValue(forKey key: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>?, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:6Result7NoErrorO\">NoError<\/Type>&gt;&gt;<\/Declaration>",
             "key.bodylength" : 503,
-            "key.bodyoffset" : 3304,
+            "key.bodyoffset" : 3318,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns the value associated with the given flag, or nil if the flag was\nnot specified. If the key is presented, but no value was given, an error\nis returned.\n\nIf a value is found, the key and the value are both removed from the\nlist of arguments remaining to be parsed.",
             "key.doc.declaration" : "internal func consumeValue(forKey key: String) -> Result<String?, CommandantError<NoError>>",
@@ -4827,8 +5783,8 @@
             "key.length" : 588,
             "key.name" : "consumeValue(forKey:)",
             "key.namelength" : 32,
-            "key.nameoffset" : 3225,
-            "key.offset" : 3220,
+            "key.nameoffset" : 3239,
+            "key.offset" : 3234,
             "key.parsed_declaration" : "internal func consumeValue(forKey key: String) -> Result<String?, CommandantError<NoError>>",
             "key.parsed_scope.end" : 148,
             "key.parsed_scope.start" : 123,
@@ -4843,7 +5799,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consumePositionalArgument() -&gt; <Type usr=\"s:SS\">String<\/Type>?<\/Declaration>",
             "key.bodylength" : 164,
-            "key.bodyoffset" : 3993,
+            "key.bodyoffset" : 4007,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns the next positional argument that hasn't yet been returned, or\nnil if there are no more positional arguments.",
             "key.doc.declaration" : "internal func consumePositionalArgument() -> String?",
@@ -4858,8 +5814,8 @@
             "key.length" : 210,
             "key.name" : "consumePositionalArgument()",
             "key.namelength" : 27,
-            "key.nameoffset" : 3953,
-            "key.offset" : 3948,
+            "key.nameoffset" : 3967,
+            "key.offset" : 3962,
             "key.parsed_declaration" : "internal func consumePositionalArgument() -> String?",
             "key.parsed_scope.end" : 161,
             "key.parsed_scope.start" : 152,
@@ -4874,7 +5830,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consume(key: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type><\/Declaration>",
             "key.bodylength" : 143,
-            "key.bodyoffset" : 4312,
+            "key.bodyoffset" : 4326,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given key was specified and removes it from the\nlist of arguments remaining.",
             "key.doc.declaration" : "internal func consume(key: String) -> Bool",
@@ -4889,8 +5845,8 @@
             "key.length" : 179,
             "key.name" : "consume(key:)",
             "key.namelength" : 20,
-            "key.nameoffset" : 4282,
-            "key.offset" : 4277,
+            "key.nameoffset" : 4296,
+            "key.offset" : 4291,
             "key.parsed_declaration" : "internal func consume(key: String) -> Bool",
             "key.parsed_scope.end" : 170,
             "key.parsed_scope.start" : 165,
@@ -4905,7 +5861,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consumeBoolean(flag: <Type usr=\"s:s9CharacterV\">Character<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type><\/Declaration>",
             "key.bodylength" : 316,
-            "key.bodyoffset" : 4622,
+            "key.bodyoffset" : 4636,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given flag was specified and removes it from the\nlist of arguments remaining.",
             "key.doc.declaration" : "internal func consumeBoolean(flag: Character) -> Bool",
@@ -4920,8 +5876,8 @@
             "key.length" : 363,
             "key.name" : "consumeBoolean(flag:)",
             "key.namelength" : 31,
-            "key.nameoffset" : 4581,
-            "key.offset" : 4576,
+            "key.nameoffset" : 4595,
+            "key.offset" : 4590,
             "key.parsed_declaration" : "internal func consumeBoolean(flag: Character) -> Bool",
             "key.parsed_scope.end" : 191,
             "key.parsed_scope.start" : 174,
