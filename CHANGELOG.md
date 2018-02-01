@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix Swift Package Manager warnings when using SourceKitten targets as
+  dependencies.  
+  [JP Simard](https://github.com/jpsim)
 
 ## 0.19.0
 

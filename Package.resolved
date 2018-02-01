@@ -14,8 +14,8 @@
         "package": "Commandant",
         "repositoryURL": "https://github.com/Carthage/Commandant.git",
         "state": {
-          "branch": "master",
-          "revision": "3ff9019f7afd189c43a349f819684988031053a0",
+          "branch": null,
+          "revision": "ab5f20d3e845dc3845eb4c79a4bd8d5ac8af5e1c",
           "version": null
         }
       },
