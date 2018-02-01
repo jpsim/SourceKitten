@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "SourceKittenFramework", targets: ["SourceKittenFramework"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Carthage/Commandant.git", .branch("master")),
+        .package(url: "https://github.com/Carthage/Commandant.git", from: "0.13.0"),
         .package(url: "https://github.com/drmohundro/SWXMLHash.git", from: "4.2.0"),
         .package(url: "https://github.com/jpsim/Yams.git", .upToNextMinor(from: "0.5.0") ),
         .package(url: "https://github.com/norio-nomura/Clang_C.git", from: "1.0.0"),

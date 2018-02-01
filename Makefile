@@ -80,9 +80,6 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:`pwd` -w `pwd` --rm norionomura/sourcekit:311 swift test
-
-docker_test_4:
 	docker run -v `pwd`:`pwd` -w `pwd` --rm norionomura/swift:40 swift test
 
 # http://irace.me/swift-profiling/
