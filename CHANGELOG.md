@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix `index` command fails using filename with spaces in compiler arguments.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#480](https://github.com/jpsim/SourceKitten/issues/480)
 
 ## 0.19.1
 
