@@ -329,7 +329,10 @@ extension NSString {
     - parameter length: Length of bytes to include in range.
     */
     public func substringWithByteRange(start: Int, length: Int) -> String? {
-        return byteRangeToNSRange(start: start, length: length).map(substring)
+        guard let subdata = data(using: String.Encoding.utf8.rawValue)?.subdata(in: start..<start+length) else {
+            return nil
+        }
+        return String(data: subdata, encoding: .utf8)
     }
 
     /**
