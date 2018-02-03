@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Only allow U+000A and U+000D as line break tokens.  
+  [Marcelo Fabri](https://github.com/marcelofabri)
+  [#475](https://github.com/jpsim/SourceKitten/issues/475)
 
 ## 0.19.1
 
