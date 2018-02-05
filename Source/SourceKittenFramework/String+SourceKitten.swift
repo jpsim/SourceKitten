@@ -32,6 +32,9 @@ private let commentLinePrefixCharacterSet: CharacterSet = {
     return characterSet
 }()
 
+// https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html#//apple_ref/swift/grammar/line-break
+private let newLinesCharacterSet = CharacterSet(charactersIn: "\u{000A}\u{000D}")
+
 extension NSString {
     /**
     CacheContainer caches:
@@ -63,12 +66,12 @@ extension NSString {
             var utf16CountSoFar = 0
             var bytesSoFar = 0
             var lines = [Line]()
-            let lineContents = string.components(separatedBy: .newlines)
+            let lineContents = string.components(separatedBy: newLinesCharacterSet)
             // Be compatible with `NSString.getLineStart(_:end:contentsEnd:forRange:)`
             let endsWithNewLineCharacter: Bool
             if let lastChar = string.utf16.last,
                 let lastCharScalar = UnicodeScalar(lastChar) {
-                endsWithNewLineCharacter = CharacterSet.newlines.contains(lastCharScalar)
+                endsWithNewLineCharacter = newLinesCharacterSet.contains(lastCharScalar)
             } else {
                 endsWithNewLineCharacter = false
             }
@@ -549,7 +552,7 @@ extension String {
     public func removingCommonLeadingWhitespaceFromLines() -> String {
         var minLeadingCharacters = Int.max
 
-        let lineComponents = components(separatedBy: .newlines)
+        let lineComponents = components(separatedBy: newLinesCharacterSet)
 
         for line in lineComponents {
             let lineLeadingWhitespace = line.countOfLeadingCharacters(in: .whitespacesAndNewlines)
