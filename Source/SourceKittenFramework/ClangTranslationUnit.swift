@@ -61,7 +61,7 @@ public struct ClangTranslationUnit {
         let clangIndex = ClangIndex()
         clangTranslationUnits = headerFiles.map { clangIndex.open(file: $0, args: cStringCompilerArguments) }
         declarations = clangTranslationUnits
-            .flatMap { $0.cursor().flatMap({ SourceDeclaration(cursor: $0, compilerArguments: compilerArguments) }) }
+            .flatMap { $0.cursor().compactMap({ SourceDeclaration(cursor: $0, compilerArguments: compilerArguments) }) }
             .rejectEmptyDuplicateEnums()
             .distinct()
             .sorted()
