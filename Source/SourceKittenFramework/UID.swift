@@ -22,6 +22,10 @@ public struct UID {
         self.init(sourcekitd_uid_get_from_cstr(string)!)
     }
 
+    public init<T>(_ rawRepresentable: T) where T: RawRepresentable, T.RawValue == String {
+        self.init(rawRepresentable.rawValue)
+    }
+
     var string: String {
         return String(cString: sourcekitd_uid_get_string_ptr(uid)!)
     }
