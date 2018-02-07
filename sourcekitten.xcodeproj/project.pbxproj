@@ -18,6 +18,9 @@
 		6C4CF6521C798082008532C5 /* library_wrapper_CXString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6481C79802A008532C5 /* library_wrapper_CXString.swift */; };
 		6C4CF6551C798086008532C5 /* library_wrapper_Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */; };
 		6C4CF6581C79808C008532C5 /* library_wrapper_Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */; };
+		6CB68C23202AC40B00D82E91 /* SourceKitObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB68C22202AC40B00D82E91 /* SourceKitObjectTests.swift */; };
+		6CC1639C202AA3AF0086C459 /* SourceKitObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1639A202AA3AE0086C459 /* SourceKitObject.swift */; };
+		6CC1639D202AA3AF0086C459 /* UID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1639B202AA3AE0086C459 /* UID.swift */; };
 		6CC381641ECACB6F000C6F81 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC381621ECACB50000C6F81 /* Version.swift */; };
 		6CCFCE891CFECFED003239EB /* SWXMLHash.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8C0DFCC1AD349DB007EE3D4 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CCFCE8C1CFECFF1003239EB /* Yams.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -143,6 +146,9 @@
 		6C4CF6481C79802A008532C5 /* library_wrapper_CXString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_CXString.swift; sourceTree = "<group>"; };
 		6C4CF6491C79802A008532C5 /* library_wrapper_Documentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_Documentation.swift; sourceTree = "<group>"; };
 		6C7F0A841EDB0AAD008EC581 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		6CB68C22202AC40B00D82E91 /* SourceKitObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceKitObjectTests.swift; sourceTree = "<group>"; };
+		6CC1639A202AA3AE0086C459 /* SourceKitObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceKitObject.swift; sourceTree = "<group>"; };
+		6CC1639B202AA3AE0086C459 /* UID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UID.swift; sourceTree = "<group>"; };
 		6CC381621ECACB50000C6F81 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLangSyntax.swift; sourceTree = "<group>"; };
@@ -408,6 +414,7 @@
 				E806D2901BE058C400D1BE41 /* Parameter.swift */,
 				E86847391A587B4D0043DC65 /* Request.swift */,
 				E8A9B8911B56D1B100CD17D4 /* SourceDeclaration.swift */,
+				6CC1639A202AA3AE0086C459 /* SourceKitObject.swift */,
 				D0D1217119E87B05005E4BAA /* SourceKittenFramework.h */,
 				E806D28C1BE0589B00D1BE41 /* SourceLocation.swift */,
 				E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */,
@@ -420,6 +427,7 @@
 				E8CC8A2C1A587FD300D1FEC7 /* SyntaxMap.swift */,
 				E80F236A1A5CB04100FD2352 /* SyntaxToken.swift */,
 				E806D28E1BE058B100D1BE41 /* Text.swift */,
+				6CC1639B202AA3AE0086C459 /* UID.swift */,
 				6CC381621ECACB50000C6F81 /* Version.swift */,
 				E8A9B88F1B56CB5500CD17D4 /* Xcode.swift */,
 				B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */,
@@ -451,6 +459,7 @@
 				E805A0491B560FCA00EA654A /* FileTests.swift */,
 				E8241CA21A5E01840047687E /* ModuleTests.swift */,
 				E8C9EA091A5C9A2900A6D4D1 /* OffsetMapTests.swift */,
+				6CB68C22202AC40B00D82E91 /* SourceKitObjectTests.swift */,
 				E805A0471B55CBAF00EA654A /* SourceKitTests.swift */,
 				E8C9EA071A5C99C400A6D4D1 /* StringTests.swift */,
 				E8C9EA031A5C986A00A6D4D1 /* StructureTests.swift */,
@@ -661,6 +670,7 @@
 			files = (
 				E82882541DAEEDD1002E0564 /* LinuxCompatibility.swift in Sources */,
 				E806D2931BE058D600D1BE41 /* Documentation.swift in Sources */,
+				6CC1639D202AA3AF0086C459 /* UID.swift in Sources */,
 				3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */,
 				2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */,
 				6C4CF6551C798086008532C5 /* library_wrapper_Documentation.swift in Sources */,
@@ -673,6 +683,7 @@
 				3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */,
 				E8A18A3B1A58971D000362B7 /* Language.swift in Sources */,
 				E806D28F1BE058B100D1BE41 /* Text.swift in Sources */,
+				6CC1639C202AA3AF0086C459 /* SourceKitObject.swift in Sources */,
 				E8241CA51A5E01A10047687E /* Module.swift in Sources */,
 				E877D9271B5693E70095BB2B /* ObjCDeclarationKind.swift in Sources */,
 				6C4CF6521C798082008532C5 /* library_wrapper_CXString.swift in Sources */,
@@ -704,6 +715,7 @@
 				E845EFEC1B9941AA00CFA57B /* CodeCompletionTests.swift in Sources */,
 				E805A04A1B560FCA00EA654A /* FileTests.swift in Sources */,
 				E8241CA31A5E01840047687E /* ModuleTests.swift in Sources */,
+				6CB68C23202AC40B00D82E91 /* SourceKitObjectTests.swift in Sources */,
 				3DEF4C591DBF9C2D00B3B54A /* DocInfoTests.swift in Sources */,
 				E8C9EA0A1A5C9A2900A6D4D1 /* OffsetMapTests.swift in Sources */,
 				E805A0481B55CBAF00EA654A /* SourceKitTests.swift in Sources */,

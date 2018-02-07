@@ -2,9 +2,18 @@
 
 ##### Breaking
 
-* None.
+* Change type of parameter from `sourcekitd_object_t` to `SourceKitObject?`.  
+  - `File.process(dictionary:cursorInfoRequest:syntaxMap:)`  
+  - `Request.customRequest(request:)`
+  - `SwiftDocs.init(file:dictionary:cursorInfoRequest:)`  
+
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Enhancements
+
+* Add `SourceKitObject` that represents `sourcekitd_object_t` in Swift.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#489](https://github.com/jpsim/SourceKitten/issues/489)
 
 * Replaced linear index search with binary search in NSString extension.  
   [Tamas Lustyik](https://github.com/lvsti)
