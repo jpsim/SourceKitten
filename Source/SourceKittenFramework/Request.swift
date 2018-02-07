@@ -489,18 +489,23 @@ extension String {
 
             let joinedParameters = parameters.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", ")
             let joinedReturnTypes = returnTypes.map({ $0.replacingOccurrences(of: "!", with: "?") }).joined(separator: ", ")
-            let lhs = "internal let \(name): @convention(c) (\(joinedParameters)) -> (\(joinedReturnTypes))"
+            let lhs = "let \(name): @convention(c) (\(joinedParameters)) -> (\(joinedReturnTypes))"
             let rhs = "library.load(symbol: \"\(name)\")"
             return "\(lhs) = \(rhs)".replacingOccurrences(of: "SourceKittenFramework.", with: "")
         }
     }
 }
 
-internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) throws -> String {
+internal func libraryWrapperForModule(_ module: String, // swiftlint:disable:this function_parameter_count
+                                      accessControlLevel: String,
+                                      loadPath: String,
+                                      linuxPath: String?,
+                                      spmModule: String,
+                                      compilerArguments: [String]) throws -> String {
     let sourceKitResponse = try interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
     let source = sourceKitResponse["key.sourcetext"] as! String
-    let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
+    let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure).map { "\(accessControlLevel) \($0)" }
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
     let library: String
     if let linuxPath = linuxPath {

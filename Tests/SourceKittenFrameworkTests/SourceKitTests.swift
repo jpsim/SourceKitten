@@ -162,17 +162,17 @@ class SourceKitTests: XCTestCase {
 
     func testLibraryWrappersAreUpToDate() {
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
-        let modules: [(module: String, path: String, linuxPath: String?, spmModule: String)] = [
-            ("CXString", "libclang.dylib", nil, "Clang_C"),
-            ("Documentation", "libclang.dylib", nil, "Clang_C"),
-            ("Index", "libclang.dylib", nil, "Clang_C"),
-            ("sourcekitd", "sourcekitd.framework/Versions/A/sourcekitd", "libsourcekitdInProc.so", "SourceKit")
+        let modules: [(module: String, acl: String, path: String, linuxPath: String?, spmModule: String)] = [
+            ("CXString", "internal", "libclang.dylib", nil, "Clang_C"),
+            ("Documentation", "internal", "libclang.dylib", nil, "Clang_C"),
+            ("Index", "internal", "libclang.dylib", nil, "Clang_C"),
+            ("sourcekitd", "public", "sourcekitd.framework/Versions/A/sourcekitd", "libsourcekitdInProc.so", "SourceKit")
         ]
-        for (module, path, linuxPath, spmModule) in modules {
+        for (module, acl, path, linuxPath, spmModule) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = try! libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule,
-                                                           compilerArguments: sourceKittenFrameworkModule.compilerArguments)
+            let generatedWrapper = try! libraryWrapperForModule(module, accessControlLevel: acl, loadPath: path, linuxPath: linuxPath, spmModule: spmModule,
+                                                                compilerArguments: sourceKittenFrameworkModule.compilerArguments)
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
             if existingWrapper != generatedWrapper && overwrite {
