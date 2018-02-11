@@ -36,7 +36,7 @@ public enum SwiftDocKey: String {
     case nameOffset           = "key.nameoffset"
     /// Offset (Int64).
     case offset               = "key.offset"
-    /// Substructure ([SourceKitRepresentable]).
+    /// Substructure ([[String: SourceKitRepresentable]]).
     case substructure         = "key.substructure"
     /// Syntax map (NSData).
     case syntaxMap            = "key.syntaxmap"
