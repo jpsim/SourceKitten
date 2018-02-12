@@ -186,7 +186,7 @@ public enum SwiftDocKey: String {
 
     - returns: Substructure array if successful.
     */
-    internal static func getSubstructure(_ dictionary: [String: SourceKitRepresentable]) -> [SourceKitRepresentable]? {
+    internal static func getSubstructure(_ dictionary: [String: SourceKitRepresentable]) -> [[String: SourceKitRepresentable]]? {
         return get(.substructure, dictionary)
     }
 

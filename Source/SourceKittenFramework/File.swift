@@ -264,7 +264,6 @@ public final class File {
     private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?,
                                  syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
         return SwiftDocKey.getSubstructure(dictionary)?
-            .map({ $0 as! [String: SourceKitRepresentable] })
             .filter(isDeclarationOrCommentMark)
             .map {
                 process(dictionary: $0, cursorInfoRequest: cursorInfoRequest, syntaxMap: syntaxMap)
@@ -336,7 +335,7 @@ public final class File {
     private func insert(doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: Int64) -> [String: SourceKitRepresentable]? {
         var parent = parent
         if shouldInsert(parent: parent, offset: offset) {
-            var substructure = SwiftDocKey.getSubstructure(parent) as! [[String: SourceKitRepresentable]]
+            var substructure = SwiftDocKey.getSubstructure(parent)!
             let docOffset = SwiftDocKey.getBestOffset(doc)!
 
             let insertIndex = substructure.index(where: { structure in
@@ -423,7 +422,7 @@ public final class File {
 
         if let substructure = SwiftDocKey.getSubstructure(dictionary) {
             dictionary[SwiftDocKey.substructure.rawValue] = substructure.map {
-                addDocComments(dictionary: $0 as! [String: SourceKitRepresentable], finder: finder)
+                addDocComments(dictionary: $0, finder: finder)
             }
         }
 
