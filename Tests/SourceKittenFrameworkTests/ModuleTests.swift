@@ -52,18 +52,43 @@ class ModuleTests: XCTestCase {
 }
 
 #if SWIFT_PACKAGE
+let commandantPathForSPM: String? = {
+    struct Package: Decodable {
+        var name: String
+        var path: String
+        var dependencies: [Package]
+    }
+
+    let task = Process()
+    task.launchPath = "/usr/bin/env"
+    task.arguments = ["swift", "package", "show-dependencies", "--format", "json"]
+    task.currentDirectoryPath = projectRoot
+
+    let pipe = Pipe()
+    task.standardOutput = pipe
+
+    task.launch()
+    task.waitUntilExit()
+
+    let file = pipe.fileHandleForReading
+    let data = file.readDataToEndOfFile()
+    file.closeFile()
+    guard task.terminationStatus == 0 else {
+        print("`\(task.arguments?.joined(separator: " ") ?? "")` returns error: \(task.terminationStatus)")
+        return nil
+    }
+    do {
+        let package = try JSONDecoder().decode(Package.self, from: data)
+        return (package.dependencies.first(where: { $0.name == "Commandant" })?.path).map { $0 + "/" }
+    } catch {
+        print("failed to decode output of `\(task.arguments?.joined(separator: " ") ?? "")`: \(error)")
+        return nil
+    }
+}()
+
 extension ModuleTests {
     func testCommandantDocsSPM() {
-        func findCommandant(in directory: String) -> String? {
-            guard let contents = try? FileManager.default.contentsOfDirectory(atPath: directory),
-                let subDirectory = contents.first(where: { $0.hasPrefix("Commandant") }) else {
-                    return nil
-            }
-            return directory + subDirectory + "/"
-        }
-
-        let checkoutDirectory = "/.build/checkouts/"
-        guard let commandantPath = findCommandant(in: projectRoot + checkoutDirectory) else {
+        guard let commandantPath = commandantPathForSPM else {
             XCTFail("Can't find Commandant")
             return
         }
