@@ -468,7 +468,7 @@ extension String {
             }
 
             let parameters = SwiftDocKey.getSubstructure(function)?.map { parameterStructure in
-                return (parameterStructure as! [String: SourceKitRepresentable])["key.typename"] as! String
+                return parameterStructure["key.typename"] as! String
             } ?? []
             var returnTypes = [String]()
             if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
@@ -498,7 +498,7 @@ extension String {
 
 internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) throws -> String {
     let sourceKitResponse = try interfaceForModule(module, compilerArguments: compilerArguments)
-    let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!.map({ $0 as! [String: SourceKitRepresentable] })
+    let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
     let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
