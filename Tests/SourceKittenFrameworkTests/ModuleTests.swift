@@ -68,6 +68,7 @@ let commandantPathForSPM: String? = {
     task.standardOutput = pipe
 
     task.launch()
+    task.waitUntilExit()
 
     let file = pipe.fileHandleForReading
     let data = file.readDataToEndOfFile()
