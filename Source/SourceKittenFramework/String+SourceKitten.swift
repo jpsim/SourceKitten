@@ -32,6 +32,31 @@ private let commentLinePrefixCharacterSet: CharacterSet = {
     return characterSet
 }()
 
+private func indexInSortedCollection<C>(_ collection: C, comparing: (C.Element) throws -> ComparisonResult) rethrows -> C.Index? where C: RandomAccessCollection {
+    guard !collection.isEmpty else {
+        return nil
+    }
+    
+    var lowerBound = collection.startIndex
+    var upperBound = collection.index(before: collection.endIndex)
+    var midIndex: C.Index
+    
+    while lowerBound <= upperBound {
+        let distance = collection.distance(from: lowerBound, to: upperBound)
+        midIndex = collection.index(lowerBound, offsetBy: distance / 2)
+        let midElem = collection[midIndex]
+        
+        switch try comparing(midElem) {
+        case .orderedDescending: lowerBound = collection.index(midIndex, offsetBy: 1)
+        case .orderedAscending: upperBound = collection.index(midIndex, offsetBy: -1)
+        case .orderedSame: return midIndex
+        }
+    }
+    
+    return nil
+}
+
+
 extension NSString {
     /**
     CacheContainer caches:
@@ -113,7 +138,15 @@ extension NSString {
             if lines.isEmpty {
                 return 0
             }
-            let index = lines.index(where: { NSLocationInRange(byteOffset, $0.byteRange) })
+            let index = indexInSortedCollection(lines) { line in
+                if byteOffset < line.byteRange.location {
+                    return .orderedAscending
+                }
+                else if byteOffset >= line.byteRange.location + line.byteRange.length {
+                    return .orderedDescending
+                }
+                return .orderedSame
+            }
             // byteOffset may be out of bounds when sourcekitd points end of string.
             guard let line = (index.map { lines[$0] } ?? lines.last) else {
                 fatalError()
@@ -142,7 +175,15 @@ extension NSString {
             if lines.isEmpty {
                 return 0
             }
-            let index = lines.index(where: { NSLocationInRange(location, $0.range) })
+            let index = indexInSortedCollection(lines) { line in
+                if location < line.range.location {
+                    return .orderedAscending
+                }
+                else if location >= line.range.location + line.range.length {
+                    return .orderedDescending
+                }
+                return .orderedSame
+            }
             // location may be out of bounds when NSRegularExpression points end of string.
             guard let line = (index.map { lines[$0] } ?? lines.last) else {
                 fatalError()
@@ -163,7 +204,15 @@ extension NSString {
         func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
             assert(tabWidth > 0)
 
-            let index = lines.index(where: { NSLocationInRange(offset, $0.range) })
+            let index = indexInSortedCollection(lines) { line in
+                if offset < line.range.location {
+                    return .orderedAscending
+                }
+                else if offset >= line.range.location + line.range.length {
+                    return .orderedDescending
+                }
+                return .orderedSame
+            }
             return index.map {
                 let line = lines[$0]
 
