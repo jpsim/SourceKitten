@@ -12,6 +12,9 @@
 * SourceKit search strategy improved on Linux. Supports swiftenv.  
   [Alexander Lash](https://github.com/abl)
 
+* Add `elements` case to `SwiftDocKey`.  
+  [Sho Ikeda](https://github.com/ikesyo)
+
 ##### Bug Fixes
 
 * Fix `index` command fails using filename with spaces in compiler arguments.  
