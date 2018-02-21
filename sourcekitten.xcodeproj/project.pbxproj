@@ -25,6 +25,7 @@
 		6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2FA87E26BC9C5F774FD694C /* SwiftLangSyntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */; };
 		C236E84B1DFF5120003807D2 /* YamlRequestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */; };
+		CDB51F33203E2899007563AE /* SwiftDocKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */; };
 		D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0D1217219E87B05005E4BAA /* SourceKittenFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = D0D1217119E87B05005E4BAA /* SourceKittenFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0D1217819E87B05005E4BAA /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; };
@@ -147,6 +148,7 @@
 		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		B2FA804AA9D4427FF571EFB2 /* SwiftLangSyntax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLangSyntax.swift; sourceTree = "<group>"; };
 		C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YamlRequestCommand.swift; sourceTree = "<group>"; };
+		CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDocKeyTests.swift; sourceTree = "<group>"; };
 		D0D1211B19E87861005E4BAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0D1212419E878CC005E4BAA /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		D0D1212619E878CC005E4BAA /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				E805A0471B55CBAF00EA654A /* SourceKitTests.swift */,
 				E8C9EA071A5C99C400A6D4D1 /* StringTests.swift */,
 				E8C9EA031A5C986A00A6D4D1 /* StructureTests.swift */,
+				CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */,
 				E80F23661A5CADD900FD2352 /* SwiftDocsTests.swift */,
 				D0DB09A319EA354200234B16 /* SyntaxTests.swift */,
 			);
@@ -708,6 +711,7 @@
 				E8C9EA0A1A5C9A2900A6D4D1 /* OffsetMapTests.swift in Sources */,
 				E805A0481B55CBAF00EA654A /* SourceKitTests.swift in Sources */,
 				E8C9EA081A5C99C400A6D4D1 /* StringTests.swift in Sources */,
+				CDB51F33203E2899007563AE /* SwiftDocKeyTests.swift in Sources */,
 				E8C9EA041A5C986A00A6D4D1 /* StructureTests.swift in Sources */,
 				E80F23671A5CADD900FD2352 /* SwiftDocsTests.swift in Sources */,
 				D0DB09A419EA354200234B16 /* SyntaxTests.swift in Sources */,
