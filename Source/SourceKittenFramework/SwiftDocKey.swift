@@ -20,6 +20,8 @@ public enum SwiftDocKey: String {
     case bodyOffset           = "key.bodyoffset"
     /// Diagnostic stage (String).
     case diagnosticStage      = "key.diagnostic_stage"
+    /// Elements ([[String: SourceKitRepresentable]]).
+    case elements             = "key.elements"
     /// File path (String).
     case filePath             = "key.filepath"
     /// Full XML docs (String).

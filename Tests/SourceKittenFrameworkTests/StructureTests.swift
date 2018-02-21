@@ -73,6 +73,40 @@ class StructureTests: XCTestCase {
         XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
     }
 
+    func testInheritedType() {
+        let structure = try! Structure(file: File(contents: "class Foo: Bar {}"))
+        let expected: NSDictionary = [
+            "key.substructure": [
+                [
+                    "key.kind": "source.lang.swift.decl.class",
+                    "key.accessibility": "source.lang.swift.accessibility.internal",
+                    "key.offset": 0,
+                    "key.nameoffset": 6,
+                    "key.namelength": 3,
+                    "key.bodyoffset": 16,
+                    "key.bodylength": 0,
+                    "key.length": 17,
+                    "key.name": "Foo",
+                    "key.elements": [
+                        [
+                            "key.kind": "source.lang.swift.structure.elem.typeref",
+                            "key.offset": 11,
+                            "key.length": 3
+                        ]
+                    ],
+                    "key.runtime_name": "_TtC8__main__3Foo",
+                    "key.inheritedtypes": [
+                        ["key.name": "Bar"]
+                    ]
+                ]
+            ],
+            "key.offset": 0,
+            "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
+            "key.length": 17
+        ]
+        XCTAssertEqual(toNSDictionary(structure.dictionary), expected, "should generate expected structure")
+    }
+
     func testStructurePrintValidJSON() {
         let structure = try! Structure(file: File(contents: "struct A { func b() {} }"))
         let expectedStructure: NSDictionary = [
