@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Add `elements` case to `SwiftDocKey`.  
+  [Sho Ikeda](https://github.com/ikesyo)
 
 ##### Bug Fixes
 
