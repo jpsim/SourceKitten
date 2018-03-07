@@ -43,9 +43,12 @@ Once SourceKitten is installed, you may use it from the command line.
 $ sourcekitten help
 Available commands:
 
-   complete    Generate code completion options.
-   doc         Print Swift docs as JSON or Objective-C docs as XML
+   complete    Generate code completion options
+   doc         Print Swift or Objective-C docs as JSON
+   format      Format Swift file
    help        Display general or command-specific help
+   index       Index Swift file and print as JSON
+   request     Run a raw sourcekit request
    structure   Print Swift structure information as JSON
    syntax      Print Swift syntax information as JSON
    version     Display the current version of SourceKitten
