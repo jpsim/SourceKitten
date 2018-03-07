@@ -9,6 +9,9 @@
 * Replaced linear index search with binary search in NSString extension.  
   [Tamas Lustyik](https://github.com/lvsti)
 
+* SourceKit search strategy improved on Linux. Supports swiftenv.  
+  [Alexander Lash](https://github.com/abl)
+
 ##### Bug Fixes
 
 * None.
@@ -50,8 +53,6 @@
 
 * Return `SWIFT_NAME` when generating Objective-C docs.  
   [Ibrahim Ulukaya](https://github.com/ulukaya)
-* libsourcekitdInProc search strategy improved on Linux. Supports swiftenv.  
-  [Alexander Lash](https://github.com/abl)
 
 ##### Bug Fixes
 
