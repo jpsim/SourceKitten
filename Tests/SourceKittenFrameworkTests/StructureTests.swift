@@ -154,6 +154,7 @@ extension StructureTests {
             ("testPrintEmptyStructure", testPrintEmptyStructure),
             ("testGenerateSameStructureFileAndContents", testGenerateSameStructureFileAndContents),
             ("testEnum", testEnum),
+            ("testInheritedType", testInheritedType),
             ("testStructurePrintValidJSON", testStructurePrintValidJSON)
         ]
     }
