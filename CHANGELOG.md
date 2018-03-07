@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Replaced linear index search with binary search in NSString extension.  
+  [Tamas Lustyik](https://github.com/lvsti)
 
 ##### Bug Fixes
 
