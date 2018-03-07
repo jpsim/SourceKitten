@@ -32,29 +32,35 @@ private let commentLinePrefixCharacterSet: CharacterSet = {
     return characterSet
 }()
 
-private func indexInSortedCollection<C>(_ collection: C,
-                                        comparing: (C.Element) throws -> ComparisonResult) rethrows -> C.Index? where C: RandomAccessCollection {
-    guard !collection.isEmpty else {
+private extension RandomAccessCollection {
+    /// Binary search assuming the collection is already sorted.
+    ///
+    /// - parameter comparing: Comparison function.
+    ///
+    /// - returns: The index in the collection of the element matching the `comparing` function.
+    func indexAssumingSorted(comparing: (Element) throws -> ComparisonResult) rethrows -> Index? {
+        guard !isEmpty else {
+            return nil
+        }
+
+        var lowerBound = startIndex
+        var upperBound = index(before: endIndex)
+        var midIndex: Index
+
+        while lowerBound <= upperBound {
+            let boundDistance = distance(from: lowerBound, to: upperBound)
+            midIndex = index(lowerBound, offsetBy: boundDistance / 2)
+            let midElem = self[midIndex]
+
+            switch try comparing(midElem) {
+            case .orderedDescending: lowerBound = index(midIndex, offsetBy: 1)
+            case .orderedAscending: upperBound = index(midIndex, offsetBy: -1)
+            case .orderedSame: return midIndex
+            }
+        }
+
         return nil
     }
-
-    var lowerBound = collection.startIndex
-    var upperBound = collection.index(before: collection.endIndex)
-    var midIndex: C.Index
-
-    while lowerBound <= upperBound {
-        let distance = collection.distance(from: lowerBound, to: upperBound)
-        midIndex = collection.index(lowerBound, offsetBy: distance / 2)
-        let midElem = collection[midIndex]
-
-        switch try comparing(midElem) {
-        case .orderedDescending: lowerBound = collection.index(midIndex, offsetBy: 1)
-        case .orderedAscending: upperBound = collection.index(midIndex, offsetBy: -1)
-        case .orderedSame: return midIndex
-        }
-    }
-
-    return nil
 }
 
 extension NSString {
@@ -138,7 +144,7 @@ extension NSString {
             if lines.isEmpty {
                 return 0
             }
-            let index = indexInSortedCollection(lines) { line in
+            let index = lines.indexAssumingSorted { line in
                 if byteOffset < line.byteRange.location {
                     return .orderedAscending
                 } else if byteOffset >= line.byteRange.location + line.byteRange.length {
@@ -174,7 +180,7 @@ extension NSString {
             if lines.isEmpty {
                 return 0
             }
-            let index = indexInSortedCollection(lines) { line in
+            let index = lines.indexAssumingSorted { line in
                 if location < line.range.location {
                     return .orderedAscending
                 } else if location >= line.range.location + line.range.length {
@@ -202,7 +208,7 @@ extension NSString {
         func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
             assert(tabWidth > 0)
 
-            let index = indexInSortedCollection(lines) { line in
+            let index = lines.indexAssumingSorted { line in
                 if offset < line.range.location {
                     return .orderedAscending
                 } else if offset >= line.range.location + line.range.length {
