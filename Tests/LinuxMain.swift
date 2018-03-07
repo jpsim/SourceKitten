@@ -8,6 +8,7 @@ XCTMain([
     testCase(FileTests.allTests),
     testCase(ModuleTests.allTests),
     testCase(OffsetMapTests.allTests),
+    testCase(SourceKitObjectTests.allTests),
     testCase(SourceKitTests.allTests),
     testCase(StringTests.allTests),
     testCase(StructureTests.allTests),

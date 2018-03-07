@@ -191,7 +191,7 @@ public final class File {
     - parameter dictionary:        Dictionary to process.
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
-    public func process(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t? = nil,
+    public func process(dictionary: [String: SourceKitRepresentable], cursorInfoRequest: SourceKitObject? = nil,
                         syntaxMap: SyntaxMap? = nil) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         if let cursorInfoRequest = cursorInfoRequest {
@@ -233,7 +233,7 @@ public final class File {
     - parameter cursorInfoRequest:      Cursor.Info request to get declaration information.
     */
     internal func furtherProcess(dictionary: [String: SourceKitRepresentable], documentedTokenOffsets: [Int],
-                                 cursorInfoRequest: sourcekitd_object_t,
+                                 cursorInfoRequest: SourceKitObject,
                                  syntaxMap: SyntaxMap) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
         let offsetMap = makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
@@ -261,7 +261,7 @@ public final class File {
                `processDictionary(_:cursorInfoRequest:syntaxMap:)` on its elements, only keeping comment marks
                and declarations.
     */
-    private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: sourcekitd_object_t?,
+    private func newSubstructure(_ dictionary: [String: SourceKitRepresentable], cursorInfoRequest: SourceKitObject?,
                                  syntaxMap: SyntaxMap?) -> [SourceKitRepresentable]? {
         return SwiftDocKey.getSubstructure(dictionary)?
             .filter(isDeclarationOrCommentMark)
@@ -277,7 +277,7 @@ public final class File {
     - parameter cursorInfoRequest: Cursor.Info request to get declaration information.
     */
     private func dictWithCommentMarkNamesCursorInfo(_ dictionary: [String: SourceKitRepresentable],
-                                                    cursorInfoRequest: sourcekitd_object_t) -> [String: SourceKitRepresentable]? {
+                                                    cursorInfoRequest: SourceKitObject) -> [String: SourceKitRepresentable]? {
         guard let kind = SwiftDocKey.getKind(dictionary) else {
             return nil
         }
