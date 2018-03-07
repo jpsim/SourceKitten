@@ -17,19 +17,21 @@ struct IndexCommand: CommandProtocol {
 
     struct Options: OptionsProtocol {
         let file: String
-        let compilerargs: String
+        let compilerargs: [String]
 
-        static func create(file: String) -> (_ compilerargs: String) -> Options {
-            return { compilerargs in
+        static func create(file: String) -> (_: Bool) -> (_ compilerargs: [String]) -> Options {
+            return { _ in { compilerargs in
                 self.init(file: file, compilerargs: compilerargs)
-            }
+            }}
         }
 
         static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
                 <*> mode <| Option(key: "file", defaultValue: "", usage: "relative or absolute path of Swift file to index")
-                <*> mode <| Option(key: "compilerargs", defaultValue: "",
-                                   usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
+                <*> mode <| Switch(key: "compilerargs",
+                                   usage: "It remains for compatibility with older versions. It is simply ignored.")
+                <*> mode <| Argument(defaultValue: [],
+                                     usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
         }
     }
 
@@ -38,7 +40,7 @@ struct IndexCommand: CommandProtocol {
             return .failure(.invalidArgument(description: "file must be set when calling index"))
         }
         let absoluteFile = options.file.bridge().absolutePathRepresentation()
-        let request = Request.index(file: absoluteFile, arguments: options.compilerargs.components(separatedBy: " "))
+        let request = Request.index(file: absoluteFile, arguments: options.compilerargs)
         do {
             print(toJSON(toNSDictionary(try request.send())))
             return .success(())
