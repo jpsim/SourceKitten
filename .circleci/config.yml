@@ -82,6 +82,11 @@ jobs:
       - image: norionomura/swift:403
     steps: *steps-for-linux
 
+  linux_swift_4.1:
+    docker:
+      - image: norionomura/swift:swift-4.1-branch
+    steps: *steps-for-linux
+
 workflows:
   version: 2
   workflow:
@@ -95,3 +100,4 @@ workflows:
       - xcode_9.2
       - swiftpm_4.0.3
       - linux_swift_4.0.3
+      - linux_swift_4.1

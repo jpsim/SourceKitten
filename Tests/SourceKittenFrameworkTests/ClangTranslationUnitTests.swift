@@ -32,9 +32,9 @@ class ClangTranslationUnitTests: XCTestCase {
     }
 
     private func compare(clangFixture fixture: String) {
-        let tu = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
-                                      compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
-        compareJSONString(withFixtureNamed: (fixture as NSString).lastPathComponent, jsonString: tu)
+        let unit = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
+                                        compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
+        compareJSONString(withFixtureNamed: (fixture as NSString).lastPathComponent, jsonString: unit)
     }
 
     func testBasicObjectiveCDocs() {

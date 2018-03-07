@@ -351,10 +351,12 @@ public final class File {
             guard var subArray = parent[key] as? [SourceKitRepresentable] else {
                 continue
             }
-            for i in 0..<subArray.count {
-                let subDict = insert(doc: doc, parent: subArray[i] as! [String: SourceKitRepresentable], offset: offset)
+            for index in 0..<subArray.count {
+                let subDict = insert(doc: doc,
+                                     parent: subArray[index] as! [String: SourceKitRepresentable],
+                                     offset: offset)
                 if let subDict = subDict {
-                    subArray[i] = subDict
+                    subArray[index] = subDict
                     parent[key] = subArray
                     return parent
                 }
@@ -494,7 +496,7 @@ private extension XMLIndexer {
         if children.isEmpty {
             return nil
         }
-        let elements = children.flatMap { $0.element }
+        let elements = children.compactMap { $0.element }
         func dictionary(from element: SWXMLHash.XMLElement) -> [String: SourceKitRepresentable] {
             return [element.name: element.text]
         }

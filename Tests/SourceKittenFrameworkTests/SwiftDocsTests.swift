@@ -15,7 +15,7 @@ func compareJSONString(withFixtureNamed name: String,
                        rootDirectory: String = fixturesDirectory,
                        file: StaticString = #file,
                        line: UInt = #line) {
-    #if os(Linux) && !swift(>=4.1)
+    #if os(Linux) && ((!swift(>=4.1) && swift(>=4.0)) || !swift(>=3.3))
     let jsonString = String(describing: jsonString).replacingOccurrences(of: rootDirectory, with: "")
     let actualContent = jsonString
     #else
@@ -96,8 +96,8 @@ private func versionedExpectedFilename(for name: String) -> String {
     #else
         let platforms = [""]
     #endif
-    for version in versions {
-        for platform in platforms {
+    for platform in platforms {
+        for version in versions {
             let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(version).json"
             if FileManager.default.fileExists(atPath: versionedFilename) {
                 return versionedFilename

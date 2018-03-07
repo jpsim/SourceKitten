@@ -21,7 +21,11 @@ class OffsetMapTests: XCTestCase {
         let documentedTokenOffsets = file.contents.documentedTokenOffsets(syntaxMap: try! SyntaxMap(file: file))
         let response = file.process(dictionary: try! Request.editorOpen(file: file).send(), cursorInfoRequest: nil)
         let offsetMap = file.makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: response)
+    #if swift(>=4.1) || (!swift(>=4.0) && swift(>=3.3))
+        XCTAssertEqual(offsetMap, [:], "should generate correct offset map of [(declaration offset): (parent offset)]")
+    #else
         XCTAssertEqual(offsetMap, [46: 7], "should generate correct offset map of [(declaration offset): (parent offset)]")
+    #endif
     }
 
     func testOffsetMapDoesntContainAlreadyDocumentedDeclarationOffset() {

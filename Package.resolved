@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {
           "branch": null,
-          "revision": "4e7f5af6331735d39fc357b2c71c3bb15af97c8f",
-          "version": "4.3.6"
+          "revision": "1b8d10f33b92be746c74346f4e713216cb1cb480",
+          "version": "4.5.0"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/jpsim/Yams.git",
         "state": {
           "branch": null,
-          "revision": "95f45caf07472ec78223ebada45255086a85b01a",
-          "version": "0.5.0"
+          "revision": "de06b2c819bb12e95bcdf75075b3336a8890e67c",
+          "version": "0.6.0"
         }
       }
     ]
