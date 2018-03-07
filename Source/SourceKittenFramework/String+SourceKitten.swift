@@ -32,6 +32,7 @@ private let commentLinePrefixCharacterSet: CharacterSet = {
     return characterSet
 }()
 
+// swiftlint:disable:next line_length
 // https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html#//apple_ref/swift/grammar/line-break
 private let newLinesCharacterSet = CharacterSet(charactersIn: "\u{000A}\u{000D}")
 
