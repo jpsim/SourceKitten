@@ -12,22 +12,23 @@ import Foundation
 #endif
 
 // MARK: - SourceKitObjectConvertible
+
 public protocol SourceKitObjectConvertible {
-    var sourceKitObject: sourcekitd_object_t? { get }
+    var sourcekitdObject: sourcekitd_object_t? { get }
 }
 
 extension Array: SourceKitObjectConvertible {
-    public var sourceKitObject: sourcekitd_object_t? {
+    public var sourcekitdObject: sourcekitd_object_t? {
         guard Element.self is SourceKitObjectConvertible.Type else {
             fatalError("Array confirms to SourceKitObjectConvertible when Elements is SourceKitObjectConvertible!")
         }
-        let objects: [sourcekitd_object_t?] = map { ($0 as! SourceKitObjectConvertible).sourceKitObject }
+        let objects: [sourcekitd_object_t?] = map { ($0 as! SourceKitObjectConvertible).sourcekitdObject }
         return sourcekitd_request_array_create(objects, objects.count)
     }
 }
 
 extension Dictionary: SourceKitObjectConvertible {
-    public var sourceKitObject: sourcekitd_object_t? {
+    public var sourcekitdObject: sourcekitd_object_t? {
         let keys: [sourcekitd_uid_t?]
         if Key.self is UID.Type {
             keys = self.keys.map { ($0 as! UID).uid }
@@ -39,25 +40,25 @@ extension Dictionary: SourceKitObjectConvertible {
         guard Value.self is SourceKitObjectConvertible.Type else {
             fatalError("Dictionary confirms to SourceKitObjectConvertible when `Value` is `SourceKitObjectConvertible`!")
         }
-        let values: [sourcekitd_object_t?] = self.map { ($0.value as! SourceKitObjectConvertible).sourceKitObject }
+        let values: [sourcekitd_object_t?] = self.map { ($0.value as! SourceKitObjectConvertible).sourcekitdObject }
         return sourcekitd_request_dictionary_create(keys, values, count)
     }
 }
 
 extension Int: SourceKitObjectConvertible {
-    public var sourceKitObject: sourcekitd_object_t? {
+    public var sourcekitdObject: sourcekitd_object_t? {
         return sourcekitd_request_int64_create(Int64(self))
     }
 }
 
 extension Int64: SourceKitObjectConvertible {
-    public var sourceKitObject: sourcekitd_object_t? {
+    public var sourcekitdObject: sourcekitd_object_t? {
         return sourcekitd_request_int64_create(self)
     }
 }
 
 extension String: SourceKitObjectConvertible {
-    public var sourceKitObject: sourcekitd_object_t? {
+    public var sourcekitdObject: sourcekitd_object_t? {
         return sourcekitd_request_string_create(self)
     }
 }
@@ -66,10 +67,10 @@ extension String: SourceKitObjectConvertible {
 
 /// Swift representation of sourcekitd_object_t
 public struct SourceKitObject {
-    public let sourceKitObject: sourcekitd_object_t?
+    public let sourcekitdObject: sourcekitd_object_t?
 
-    public init(_ sourceKitObject: sourcekitd_object_t) {
-        self.sourceKitObject = sourceKitObject
+    public init(_ sourcekitdObject: sourcekitd_object_t) {
+        self.sourcekitdObject = sourcekitdObject
     }
 
     /// Updates the value stored in the dictionary for the given key,
@@ -80,9 +81,9 @@ public struct SourceKitObject {
     ///   - key: The key to associate with value. If key already exists in the dictionary, 
     ///     value replaces the existing associated value. If key isn't already a key of the dictionary
     public func updateValue(_ value: SourceKitObjectConvertible, forKey key: UID) {
-        precondition(sourceKitObject != nil)
-        precondition(value.sourceKitObject != nil)
-        sourcekitd_request_dictionary_set_value(sourceKitObject!, key.uid, value.sourceKitObject!)
+        precondition(sourcekitdObject != nil)
+        precondition(value.sourcekitdObject != nil)
+        sourcekitd_request_dictionary_set_value(sourcekitdObject!, key.uid, value.sourcekitdObject!)
     }
 
     public func updateValue(_ value: SourceKitObjectConvertible, forKey key: String) {
@@ -98,7 +99,7 @@ extension SourceKitObject: SourceKitObjectConvertible {}
 
 extension SourceKitObject: CustomStringConvertible {
     public var description: String {
-        guard let object = sourceKitObject else { return "" }
+        guard let object = sourcekitdObject else { return "" }
         let bytes = sourcekitd_request_description_copy(object)!
         let length = Int(strlen(bytes))
         return String(bytesNoCopy: bytes, length: length, encoding: .utf8, freeWhenDone: true)!
@@ -107,26 +108,26 @@ extension SourceKitObject: CustomStringConvertible {
 
 extension SourceKitObject: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: SourceKitObject...) {
-        sourceKitObject = elements.sourceKitObject
+        sourcekitdObject = elements.sourcekitdObject
     }
 }
 
 extension SourceKitObject: ExpressibleByDictionaryLiteral {
     public init(dictionaryLiteral elements: (UID, SourceKitObjectConvertible)...) {
         let keys: [sourcekitd_uid_t?] = elements.map { $0.0.uid }
-        let values: [sourcekitd_object_t?] = elements.map { $0.1.sourceKitObject }
-        sourceKitObject = sourcekitd_request_dictionary_create(keys, values, elements.count)
+        let values: [sourcekitd_object_t?] = elements.map { $0.1.sourcekitdObject }
+        sourcekitdObject = sourcekitd_request_dictionary_create(keys, values, elements.count)
     }
 }
 
 extension SourceKitObject: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: IntegerLiteralType) {
-        sourceKitObject = value.sourceKitObject
+        sourcekitdObject = value.sourcekitdObject
     }
 }
 
 extension SourceKitObject: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
-       sourceKitObject = value.sourceKitObject
+       sourcekitdObject = value.sourcekitdObject
     }
 }

@@ -54,7 +54,7 @@ extension UID: Hashable {
 }
 
 extension UID: SourceKitObjectConvertible {
-    public var sourceKitObject: sourcekitd_object_t? {
+    public var sourcekitdObject: sourcekitd_object_t? {
         return sourcekitd_request_uid_create(uid)
     }
 }

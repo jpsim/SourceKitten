@@ -354,7 +354,7 @@ public enum Request {
     */
     public func send() throws -> [String: SourceKitRepresentable] {
         initializeSourceKitFailable
-        let response = sourcekitd_send_request_sync(sourcekitObject.sourceKitObject!)
+        let response = sourcekitd_send_request_sync(sourcekitObject.sourcekitdObject!)
         defer { sourcekitd_response_dispose(response!) }
         if sourcekitd_response_is_error(response!) {
             let error = Request.Error(response: response!)
