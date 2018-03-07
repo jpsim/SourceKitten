@@ -20,7 +20,7 @@ public protocol SourceKitObjectConvertible {
 extension Array: SourceKitObjectConvertible {
     public var sourcekitdObject: sourcekitd_object_t? {
         guard Element.self is SourceKitObjectConvertible.Type else {
-            fatalError("Array confirms to SourceKitObjectConvertible when Elements is SourceKitObjectConvertible!")
+            fatalError("Array conforms to SourceKitObjectConvertible when Elements is SourceKitObjectConvertible!")
         }
         let objects: [sourcekitd_object_t?] = map { ($0 as! SourceKitObjectConvertible).sourcekitdObject }
         return sourcekitd_request_array_create(objects, objects.count)
@@ -35,10 +35,10 @@ extension Dictionary: SourceKitObjectConvertible {
         } else if Key.self is String.Type {
             keys = self.keys.map { UID($0 as! String).uid }
         } else {
-            fatalError("Dictionary confirms to SourceKitObjectConvertible when `Key` is `UID` or `String`!")
+            fatalError("Dictionary conforms to SourceKitObjectConvertible when `Key` is `UID` or `String`!")
         }
         guard Value.self is SourceKitObjectConvertible.Type else {
-            fatalError("Dictionary confirms to SourceKitObjectConvertible when `Value` is `SourceKitObjectConvertible`!")
+            fatalError("Dictionary conforms to SourceKitObjectConvertible when `Value` is `SourceKitObjectConvertible`!")
         }
         let values: [sourcekitd_object_t?] = self.map { ($0.value as! SourceKitObjectConvertible).sourcekitdObject }
         return sourcekitd_request_dictionary_create(keys, values, count)
