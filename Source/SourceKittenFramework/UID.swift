@@ -8,7 +8,7 @@
 
 import Foundation
 #if SWIFT_PACKAGE
-    import SourceKit
+import SourceKit
 #endif
 
 /// Swift representation of sourcekitd_uid_t
