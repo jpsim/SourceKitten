@@ -3,10 +3,9 @@
 ##### Breaking
 
 * Change type of parameter from `sourcekitd_object_t` to `SourceKitObject?`.  
-  - `File.process(dictionary:cursorInfoRequest:syntaxMap:)`  
+  - `File.process(dictionary:cursorInfoRequest:syntaxMap:)`
   - `Request.customRequest(request:)`
-  - `SwiftDocs.init(file:dictionary:cursorInfoRequest:)`  
-
+  - `SwiftDocs.init(file:dictionary:cursorInfoRequest:)`
   [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Enhancements
