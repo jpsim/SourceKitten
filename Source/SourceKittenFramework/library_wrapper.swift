@@ -27,7 +27,7 @@ let toolchainLoader = Loader(searchPaths: [
     linuxFindSwiftenvActiveLibPath,
     linuxFindSwiftInstallationLibPath,
     linuxDefaultLibPath
-].flatMap({ $0 }))
+].compactMap({ $0 }))
 #else
 let toolchainLoader = Loader(searchPaths: [
     xcodeDefaultToolchainOverride,
