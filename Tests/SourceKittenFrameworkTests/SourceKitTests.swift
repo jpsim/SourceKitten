@@ -33,7 +33,7 @@ private let sourcekitStrings: [String] = {
         linuxFindSwiftenvActiveLibPath,
         linuxFindSwiftInstallationLibPath,
         linuxDefaultLibPath
-    ].flatMap({ $0 })
+    ].compactMap({ $0 })
     let sourceKitPath: String = {
         for path in searchPaths {
             let sopath = "\(path)/libsourcekitdInProc.so"
