@@ -83,8 +83,7 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         }
         return dict
     case SOURCEKITD_VARIANT_TYPE_STRING:
-        return String(bytes: sourcekitd_variant_string_get_ptr(sourcekitObject)!,
-                      length: sourcekitd_variant_string_get_length(sourcekitObject))
+        return String(cString: sourcekitd_variant_string_get_ptr(sourcekitObject)!)
     case SOURCEKITD_VARIANT_TYPE_INT64:
         return sourcekitd_variant_int64_get_value(sourcekitObject)
     case SOURCEKITD_VARIANT_TYPE_BOOL:
@@ -124,68 +123,9 @@ private extension String {
     - returns: Cached UID string if available, nil otherwise.
     */
     init?(sourceKitUID: sourcekitd_uid_t) {
-        let length = sourcekitd_uid_get_length(sourceKitUID)
         let bytes = sourcekitd_uid_get_string_ptr(sourceKitUID)
-        if let uidString = String(bytes: bytes!, length: length) {
-            /*
-            `String` created by `String(UTF8String:)` is based on `NSString`.
-            `NSString` base `String` has performance penalty on getting `hashValue`.
-            Everytime on getting `hashValue`, it calls `decomposedStringWithCanonicalMapping` for
-            "Unicode Normalization Form D" and creates autoreleased `CFString (mutable)` and
-            `CFString (store)`. Those `CFString` are created every time on using `hashValue`, such as
-            using `String` for Dictionary's key or adding to Set.
-
-            For avoiding those penalty, replaces with enum's rawValue String if defined in SourceKitten.
-            That does not cause calling `decomposedStringWithCanonicalMapping`.
-            */
-
-            self = String(uidString: uidString)
-            return
-        }
-        return nil
-    }
-
-    /**
-     Assigns SourceKitten defined enum's rawValue String from string.
-     rawValue String if defined in SourceKitten, nil otherwise.
-
-     - parameter uidString: String created from sourcekitd_uid_get_string_ptr().
-     */
-    init(uidString: String) {
-        if let rawValue = SwiftDocKey(rawValue: uidString)?.rawValue {
-            self = rawValue
-        } else if let rawValue = SwiftDeclarationKind(rawValue: uidString)?.rawValue {
-            self = rawValue
-        } else if let rawValue = SyntaxKind(rawValue: uidString)?.rawValue {
-            self = rawValue
-        } else {
-            self = "\(uidString)"
-        }
-    }
-
-    /**
-     Returns Swift's native String from NSUTF8StringEncoding bytes and length
-
-     `String(bytesNoCopy:length:encoding:)` creates `String` based on `NSString`.
-     That is slower than Swift's native String on some scene.
-
-     - parameter bytes: UnsafePointer<Int8>
-     - parameter length: length of bytes
-
-     - returns: String Swift's native String
-     */
-    init?(bytes: UnsafePointer<Int8>, length: Int) {
-        let pointer = UnsafeMutablePointer<Int8>(mutating: bytes)
-        // It seems SourceKitService returns string in other than NSUTF8StringEncoding.
-        // We'll try another encodings if fail.
-        for encoding in [String.Encoding.utf8, .nextstep, .ascii] {
-            if let string = String(bytesNoCopy: pointer, length: length, encoding: encoding,
-                                   freeWhenDone: false) {
-                self = "\(string)"
-                return
-            }
-        }
-        return nil
+        self = String(cString: bytes!)
+        return
     }
 }
 
