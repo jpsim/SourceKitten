@@ -22,30 +22,40 @@ public final class File {
     /// File contents.
     public var contents: String {
         get {
-            if _contents == nil {
-                _contents = try! String(contentsOfFile: path!, encoding: .utf8)
+            _contentsQueue.sync {
+                if _contents == nil {
+                    _contents = try! String(contentsOfFile: path!, encoding: .utf8)
+                }
             }
             return _contents!
         }
         set {
-            _contents = newValue
+            _contentsQueue.sync {
+                _contents = newValue
+            }
         }
     }
     /// File lines.
     public var lines: [Line] {
         get {
-            if _lines == nil {
-                _lines = contents.bridge().lines()
+            _linesQueue.sync {
+                if _lines == nil {
+                    _lines = contents.bridge().lines()
+                }
             }
             return _lines!
         }
         set {
-            _lines = newValue
+            _linesQueue.sync {
+                _lines = newValue
+            }
         }
     }
 
     private var _contents: String?
     private var _lines: [Line]?
+    private let _contentsQueue = DispatchQueue.init(label: "com.sourcekitten.sourcekitten.file.contents")
+    private let _linesQueue = DispatchQueue.init(label: "com.sourcekitten.sourcekitten.file.lines")
 
     /**
     Failable initializer by path. Fails if file contents could not be read as a UTF8 string.
