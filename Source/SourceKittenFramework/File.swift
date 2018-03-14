@@ -17,7 +17,7 @@ import SWXMLHash
 // This file could easily be split up
 
 /// Represents a source file.
-public final class File {
+public final class File { // swiftlint:disable:this type_body_length
     /// File path. Nil if initialized directly with `File(contents:)`.
     public let path: String?
     /// File contents.
@@ -55,8 +55,8 @@ public final class File {
 
     private var _contents: String?
     private var _lines: [Line]?
-    private let _contentsQueue = DispatchQueue.init(label: "com.sourcekitten.sourcekitten.file.contents")
-    private let _linesQueue = DispatchQueue.init(label: "com.sourcekitten.sourcekitten.file.lines")
+    private let _contentsQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.contents")
+    private let _linesQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.lines")
 
     /**
     Failable initializer by path. Fails if file contents could not be read as a UTF8 string.
