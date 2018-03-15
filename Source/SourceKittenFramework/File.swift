@@ -17,7 +17,7 @@ import SWXMLHash
 // This file could easily be split up
 
 /// Represents a source file.
-public final class File { // swiftlint:disable:this type_body_length
+public final class File {
     /// File path. Nil if initialized directly with `File(contents:)`.
     public let path: String?
     /// File contents.
@@ -41,19 +41,12 @@ public final class File { // swiftlint:disable:this type_body_length
     }
     /// File lines.
     public var lines: [Line] {
-        get {
-            _linesQueue.sync {
-                if _lines == nil {
-                    _lines = contents.bridge().lines()
-                }
-            }
-            return _lines!
-        }
-        set {
-            _linesQueue.sync {
-                _lines = newValue
+        _linesQueue.sync {
+            if _lines == nil {
+                _lines = contents.bridge().lines()
             }
         }
+        return _lines!
     }
 
     private var _contents: String?
@@ -69,8 +62,7 @@ public final class File { // swiftlint:disable:this type_body_length
     public init?(path: String) {
         self.path = path.bridge().absolutePathRepresentation()
         do {
-            contents = try String(contentsOfFile: path, encoding: .utf8)
-            lines = contents.bridge().lines()
+            _contents = try String(contentsOfFile: path, encoding: .utf8)
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
             return nil
@@ -88,8 +80,7 @@ public final class File { // swiftlint:disable:this type_body_length
     */
     public init(contents: String) {
         path = nil
-        self.contents = contents
-        lines = contents.bridge().lines()
+        _contents = contents
     }
 
     /// Formats the file.
