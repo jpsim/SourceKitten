@@ -33,6 +33,9 @@ public final class File { // swiftlint:disable:this type_body_length
         set {
             _contentsQueue.sync {
                 _contents = newValue
+                _linesQueue.sync {
+                    _lines = nil
+                }
             }
         }
     }
