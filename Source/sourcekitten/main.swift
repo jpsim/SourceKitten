@@ -22,6 +22,7 @@ DispatchQueue.global(qos: .default).async {
     registry.register(DocCommand())
     registry.register(FormatCommand())
     registry.register(IndexCommand())
+    registry.register(ModuleInfoCommand())
     registry.register(SyntaxCommand())
     registry.register(StructureCommand())
     registry.register(RequestCommand())
