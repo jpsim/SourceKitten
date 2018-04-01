@@ -26,7 +26,7 @@ struct ModuleInfoCommand: CommandProtocol {
 
         static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
-                <*> mode <| Option(key: "module", defaultValue: "", usage: "name of the Swift module to index")
+                <*> mode <| Option(key: "module", defaultValue: "", usage: "name of the Swift module")
                 <*> mode <| Argument(defaultValue: [],
                                      usage: "Compiler arguments to pass to SourceKit. This must be specified following the '--'")
         }
