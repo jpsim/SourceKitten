@@ -10,6 +10,7 @@
 		2C55B3321BEB3CA7002E8C6B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; };
 		2C55B3331BEB3CAB002E8C6B /* Commandant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; };
 		2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED279151C61E2A100084460 /* StatementKind.swift */; };
+		3DEC5006206F7F190097835E /* ModuleInfoCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC5005206F7F180097835E /* ModuleInfoCommand.swift */; };
 		3DEF4C591DBF9C2D00B3B54A /* DocInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF4C581DBF9C2D00B3B54A /* DocInfoTests.swift */; };
 		3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */; };
 		3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56EACF1BAB251C006433D0 /* JSONOutput.swift */; };
@@ -135,6 +136,7 @@
 
 /* Begin PBXFileReference section */
 		2ED279151C61E2A100084460 /* StatementKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatementKind.swift; sourceTree = "<group>"; };
+		3DEC5005206F7F180097835E /* ModuleInfoCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleInfoCommand.swift; sourceTree = "<group>"; };
 		3DEF4C581DBF9C2D00B3B54A /* DocInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocInfoTests.swift; sourceTree = "<group>"; };
 		3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Clang+SourceKitten.swift"; sourceTree = "<group>"; };
 		3F56EACF1BAB251C006433D0 /* JSONOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONOutput.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				E8DB29151CFA4818007C30E8 /* FormatCommand.swift */,
 				E813023A1CCD09DB0056E826 /* IndexCommand.swift */,
 				D0D1211B19E87861005E4BAA /* main.swift */,
+				3DEC5005206F7F180097835E /* ModuleInfoCommand.swift */,
 				E80604B21A5D452C0016D959 /* StructureCommand.swift */,
 				E83A0B361A5D399A0041A60A /* SyntaxCommand.swift */,
 				C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */,
@@ -734,6 +737,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DEC5006206F7F190097835E /* ModuleInfoCommand.swift in Sources */,
 				E8DB29161CFA4818007C30E8 /* FormatCommand.swift in Sources */,
 				E8F4AF121B9A56A70054C51C /* CompleteCommand.swift in Sources */,
 				E8DD06E81AE447E9006D9C86 /* DocCommand.swift in Sources */,

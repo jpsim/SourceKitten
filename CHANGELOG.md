@@ -23,6 +23,9 @@
 * Add `elements` case to `SwiftDocKey`.  
   [Sho Ikeda](https://github.com/ikesyo)
 
+* Added `module_info` command to `sourcekitten` CLI.  
+  [Erik Abair](https://github.com/abaire)
+
 ##### Bug Fixes
 
 * Fix `index` command fails using filename with spaces in compiler arguments.  
