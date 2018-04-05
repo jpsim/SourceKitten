@@ -82,6 +82,17 @@ jobs:
       - image: norionomura/swift:403
     steps: *steps-for-linux
 
+  xcode_9.3:
+    macos:
+      xcode: "9.3.0"
+    shell: /bin/bash --login -eo pipefail
+    steps: *steps-for-xcode
+
+  swiftpm_4.1:
+    macos:
+      xcode: "9.3.0"
+    steps: *steps-for-swiftpm
+
   linux_swift_4.1:
     docker:
       - image: norionomura/swift:swift-4.1-branch
@@ -100,4 +111,6 @@ workflows:
       - xcode_9.2
       - swiftpm_4.0.3
       - linux_swift_4.0.3
+      - xcode_9.3
+      - swiftpm_4.1
       - linux_swift_4.1
