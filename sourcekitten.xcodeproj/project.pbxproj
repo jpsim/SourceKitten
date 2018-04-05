@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182F385020753FAD0054F063 /* SwiftDeclarationAttributeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182F384F20753FAD0054F063 /* SwiftDeclarationAttributeKind.swift */; };
 		2C55B3321BEB3CA7002E8C6B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; };
 		2C55B3331BEB3CAB002E8C6B /* Commandant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; };
 		2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED279151C61E2A100084460 /* StatementKind.swift */; };
@@ -135,6 +136,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		182F384F20753FAD0054F063 /* SwiftDeclarationAttributeKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDeclarationAttributeKind.swift; sourceTree = "<group>"; };
 		2ED279151C61E2A100084460 /* StatementKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatementKind.swift; sourceTree = "<group>"; };
 		3DEC5005206F7F180097835E /* ModuleInfoCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleInfoCommand.swift; sourceTree = "<group>"; };
 		3DEF4C581DBF9C2D00B3B54A /* DocInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocInfoTests.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */,
 				E834740E1A593B5B00532B9A /* Structure.swift */,
 				E89291A81A5B800300D91568 /* SwiftDeclarationKind.swift */,
+				182F384F20753FAD0054F063 /* SwiftDeclarationAttributeKind.swift */,
 				E89291A61A5B7FF800D91568 /* SwiftDocKey.swift */,
 				E8A18A3E1A592246000362B7 /* SwiftDocs.swift */,
 				2ED279151C61E2A100084460 /* StatementKind.swift */,
@@ -702,6 +705,7 @@
 				E8AE53C71A5B5FCA0092D24A /* String+SourceKitten.swift in Sources */,
 				E834740F1A593B5B00532B9A /* Structure.swift in Sources */,
 				E89291A91A5B800300D91568 /* SwiftDeclarationKind.swift in Sources */,
+				182F385020753FAD0054F063 /* SwiftDeclarationAttributeKind.swift in Sources */,
 				E89291A71A5B7FF800D91568 /* SwiftDocKey.swift in Sources */,
 				E8A18A3F1A592246000362B7 /* SwiftDocs.swift in Sources */,
 				E80F23691A5CB01A00FD2352 /* SyntaxKind.swift in Sources */,
