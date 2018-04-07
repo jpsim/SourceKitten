@@ -771,14 +771,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1212619E878CC005E4BAA /* Debug.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -787,13 +780,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1212819E878CC005E4BAA /* Release.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -802,14 +789,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1213719E878CC005E4BAA /* Mac-Framework.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFramework;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -826,14 +810,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1213719E878CC005E4BAA /* Mac-Framework.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFramework;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -872,12 +853,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1212719E878CC005E4BAA /* Profile.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Profile;
@@ -886,14 +862,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1213719E878CC005E4BAA /* Mac-Framework.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFramework;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -921,12 +894,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1212919E878CC005E4BAA /* Test.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Test;
@@ -935,14 +903,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0D1213719E878CC005E4BAA /* Mac-Framework.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Source/SourceKittenFramework/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sourcekitten.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SourceKittenFramework;
 				VERSIONING_SYSTEM = "apple-generic";
