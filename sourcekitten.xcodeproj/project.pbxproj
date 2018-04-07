@@ -585,7 +585,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = SourceKitten;
 				TargetAttributes = {
 					D0D1216C19E87B05005E4BAA = {
@@ -793,6 +793,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
