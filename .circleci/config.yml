@@ -15,7 +15,7 @@ aliases:
     - restore_cache:
         key: cocoapods
     - run: pod repo update
-    - run: bundle exec pod lib lint
+    - run: bundle exec pod lib lint --swift-version=4.0
     - save_cache:
         key: cocoapods
         paths:
