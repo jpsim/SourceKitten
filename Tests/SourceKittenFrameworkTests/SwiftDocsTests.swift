@@ -15,10 +15,10 @@ func compareJSONString(withFixtureNamed name: String,
                        rootDirectory: String = fixturesDirectory,
                        file: StaticString = #file,
                        line: UInt = #line) {
-    #if os(Linux) && ((!swift(>=4.1) && swift(>=4.0)) || !swift(>=3.3))
+#if os(Linux) && !swift(>=4.1)
     let jsonString = String(describing: jsonString).replacingOccurrences(of: rootDirectory, with: "")
     let actualContent = jsonString
-    #else
+#else
     // Strip out fixtures directory since it's dependent on the test machine's setup
     let escapedFixturesDirectory = rootDirectory.replacingOccurrences(of: "/", with: "\\/")
     let jsonString = String(describing: jsonString).replacingOccurrences(of: escapedFixturesDirectory, with: "")
@@ -28,7 +28,7 @@ func compareJSONString(withFixtureNamed name: String,
     let actualContent = absolutePathRegex.stringByReplacingMatches(in: jsonString, options: [],
                                                                    range: NSRange(location: 0, length: jsonString.bridge().length),
                                                                    withTemplate: "\"key\\.filepath\" : \"\",")
-    #endif
+#endif
 
     let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
@@ -73,23 +73,20 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
 }
 
 private func versionedExpectedFilename(for name: String) -> String {
-    #if swift(>=4.1)
-        let versions = ["swift-4.1", "swift-3.3", "swift-4.0.3", "swift-3.2.3", "swift-4.0.2", "swift-3.2.2",
-                        "swift-4.0", "swift-3.2"]
+    #if swift(>=4.2)
+        let versions = ["swift-4.2", "swift-4.1.1", "swift-4.1", "swift-4.0.3", "swift-4.0.2", "swift-4.0"]
+    #elseif swift(>=4.1.1)
+        let versions = ["swift-4.1.1", "swift-4.1", "swift-4.0.3", "swift-4.0.2", "swift-4.0"]
+    #elseif swift(>=4.1)
+        let versions = ["swift-4.1", "swift-4.0.3", "swift-4.0.2", "swift-4.0"]
     #elseif swift(>=4.0.3)
-        let versions = ["swift-4.0.3", "swift-3.2.3", "swift-4.0.2", "swift-3.2.2", "swift-4.0", "swift-3.2"]
+        let versions = ["swift-4.0.3", "swift-4.0.2", "swift-4.0"]
     #elseif swift(>=4.0.2)
-        let versions = ["swift-4.0.2", "swift-3.2.2", "swift-4.0", "swift-3.2"]
+        let versions = ["swift-4.0.2", "swift-4.0"]
     #elseif swift(>=4.0)
-        let versions = ["swift-4.0", "swift-3.2"]
-    #elseif swift(>=3.3)
-        let versions = ["swift-3.3", "swift-3.2.3", "swift-3.2.2", "swift-3.2"]
-    #elseif swift(>=3.2.3)
-        let versions = ["swift-3.2.3", "swift-3.2.2", "swift-3.2"]
-    #elseif swift(>=3.2.2)
-        let versions = ["swift-3.2.2", "swift-3.2"]
-    #else // if swift(>=3.2)
-        let versions = ["swift-3.2"]
+        let versions = ["swift-4.0"]
+    #else
+        fatalError("Swift 4.0 or later is required!")
     #endif
     #if os(Linux)
         let platforms = ["Linux", ""]
@@ -136,7 +133,11 @@ private func diff(original: String, modified: String) -> String {
 }
 
 private let buildingSwiftVersion: String = {
-    #if swift(>=4.1)
+    #if swift(>=4.2)
+        return "swift-4.2"
+    #elseif swift(>=4.1.1)
+        return "swift-4.1.1"
+    #elseif swift(>=4.1)
         return "swift-4.1"
     #elseif swift(>=4.0.3)
         return "swift-4.0.3"
@@ -144,16 +145,8 @@ private let buildingSwiftVersion: String = {
         return "swift-4.0.2"
     #elseif swift(>=4.0)
         return "swift-4.0"
-    #elseif swift(>=3.3)
-        return "swift-3.3"
-    #elseif swift(>=3.2.3)
-        return "swift-3.2.3"
-    #elseif swift(>=3.2.2)
-        return "swift-3.2.2"
-    #elseif swift(>=3.2)
-        return "swift-3.2"
     #else
-        fatalError("Swift 3.2 or later is required!")
+        fatalError("Swift 4.0 or later is required!")
     #endif
 }()
 
