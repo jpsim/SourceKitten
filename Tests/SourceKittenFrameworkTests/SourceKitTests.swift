@@ -235,9 +235,9 @@ class SourceKitTests: XCTestCase {
         .objcRuntimeName,
         .staticInitializeObjCMetadata,
         .restatedObjCConformance
-        ]
+    ]
 
-        #if (swift(>=4.1) || (swift(>=3.3) && !swift(>=4.0)))
+#if swift(>=4.1)
         expected.append(contentsOf: [
             .private,
             .fileprivate,
@@ -252,13 +252,13 @@ class SourceKitTests: XCTestCase {
             .implicitlyUnwrappedOptional,
             .optimize,
             .consuming
-            ])
-        #else
+        ])
+#else
         expected.append(contentsOf: [
             .autoclosure,
             .noescape
-            ])
-        #endif
+        ])
+#endif
 
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
         let expectedStrings = Set(expected.map { $0.rawValue })
