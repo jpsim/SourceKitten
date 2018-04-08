@@ -9,8 +9,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Carthage/Commandant.git", from: "0.13.0"),
-        .package(url: "https://github.com/drmohundro/SWXMLHash.git", from: "4.5.0"),
-        .package(url: "https://github.com/jpsim/Yams.git", from: "0.6.0"),
+        .package(url: "https://github.com/drmohundro/SWXMLHash.git", from: "4.6.0"),
+        .package(url: "https://github.com/jpsim/Yams.git", from: "0.7.0"),
         .package(url: "https://github.com/norio-nomura/Clang_C.git", from: "1.0.0"),
         .package(url: "https://github.com/norio-nomura/SourceKit.git", from: "1.0.0"),
     ],

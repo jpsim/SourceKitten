@@ -1,7 +1,6 @@
 aliases:
   - &steps-for-xcode
     - checkout
-    - run: pod repo update
     - run: make test|xcpretty -r junit
     - store_test_results:
         path: build/reports/
@@ -15,7 +14,8 @@ aliases:
           - vendor/bundle
     - restore_cache:
         key: cocoapods
-    - run: bundle exec pod lib lint
+    - run: pod repo update
+    - run: bundle exec pod lib lint --swift-version=4.0
     - save_cache:
         key: cocoapods
         paths:
