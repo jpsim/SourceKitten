@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 SourceKitten. All rights reserved.
 //
 
+import Dispatch
 import Foundation
 #if SWIFT_PACKAGE
 import SourceKit
@@ -22,30 +23,36 @@ public final class File {
     /// File contents.
     public var contents: String {
         get {
-            if _contents == nil {
-                _contents = try! String(contentsOfFile: path!, encoding: .utf8)
+            _contentsQueue.sync {
+                if _contents == nil {
+                    _contents = try! String(contentsOfFile: path!, encoding: .utf8)
+                }
             }
             return _contents!
         }
         set {
-            _contents = newValue
+            _contentsQueue.sync {
+                _contents = newValue
+                _linesQueue.sync {
+                    _lines = nil
+                }
+            }
         }
     }
     /// File lines.
     public var lines: [Line] {
-        get {
+        _linesQueue.sync {
             if _lines == nil {
                 _lines = contents.bridge().lines()
             }
-            return _lines!
         }
-        set {
-            _lines = newValue
-        }
+        return _lines!
     }
 
     private var _contents: String?
     private var _lines: [Line]?
+    private let _contentsQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.contents")
+    private let _linesQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.lines")
 
     /**
     Failable initializer by path. Fails if file contents could not be read as a UTF8 string.
@@ -55,8 +62,7 @@ public final class File {
     public init?(path: String) {
         self.path = path.bridge().absolutePathRepresentation()
         do {
-            contents = try String(contentsOfFile: path, encoding: .utf8)
-            lines = contents.bridge().lines()
+            _contents = try String(contentsOfFile: path, encoding: .utf8)
         } catch {
             fputs("Could not read contents of `\(path)`\n", stderr)
             return nil
@@ -74,8 +80,7 @@ public final class File {
     */
     public init(contents: String) {
         path = nil
-        self.contents = contents
-        lines = contents.bridge().lines()
+        _contents = contents
     }
 
     /// Formats the file.

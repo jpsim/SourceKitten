@@ -8,6 +8,9 @@
   - `SwiftDocs.init(file:dictionary:cursorInfoRequest:)`
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Remove `File.lines:setter`.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
 ##### Enhancements
 
 * Add `SwiftDeclarationAttributeKind` that represents declaration attributes in Swift.  
@@ -39,6 +42,10 @@
 * Only allow U+000A and U+000D as line break tokens.  
   [Marcelo Fabri](https://github.com/marcelofabri)
   [#475](https://github.com/jpsim/SourceKitten/issues/475)
+
+* Fix ThreadSanitizer reports data race warning in SwiftLint.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [#2089](https://github.com/realm/SwiftLint/issues/2089)
 
 ## 0.19.1
 
