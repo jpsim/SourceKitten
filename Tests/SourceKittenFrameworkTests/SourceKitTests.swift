@@ -59,6 +59,7 @@ private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
     })
 }
 
+// swiftlint:disable:next type_body_length
 class SourceKitTests: XCTestCase {
 
     func testStatementKinds() {
@@ -174,6 +175,103 @@ class SourceKitTests: XCTestCase {
         }
     }
 
+    // swiftlint:disable:next function_body_length
+    func testSwiftDeclarationAttributeKind() {
+        var expected: [SwiftDeclarationAttributeKind] = [
+        .ibaction,
+        .iboutlet,
+        .ibdesignable,
+        .ibinspectable,
+        .gkinspectable,
+        .objc,
+        .objcName,
+        .silgenName,
+        .available,
+        .final,
+        .required,
+        .optional,
+        .noreturn,
+        .epxorted,
+        .nsCopying,
+        .nsManaged,
+        .lazy,
+        .lldbDebuggerFunction,
+        .uiApplicationMain,
+        .unsafeNoObjcTaggedPointer,
+        .inline,
+        .semantics,
+        .dynamic,
+        .infix,
+        .prefix,
+        .postfix,
+        .transparent,
+        .requiresStoredProperyInits,
+        .nonobjc,
+        .fixedLayout,
+        .inlineable,
+        .specialize,
+        .objcMembers,
+        .mutating,
+        .nonmutating,
+        .convenience,
+        .override,
+        .silSorted,
+        .weak,
+        .effects,
+        .objcBriged,
+        .nsApplicationMain,
+        .objcNonLazyRealization,
+        .synthesizedProtocol,
+        .testable,
+        .alignment,
+        .rethrows,
+        .swiftNativeObjcRuntimeBase,
+        .indirect,
+        .warnUnqualifiedAccess,
+        .cdecl,
+        .versioned,
+        .discardableResult,
+        .implements,
+        .objcRuntimeName,
+        .staticInitializeObjCMetadata,
+        .restatedObjCConformance
+        ]
+
+        #if (swift(>=4.1) || (swift(>=3.3) && !swift(>=4.0)))
+        expected.append(contentsOf: [
+            .private,
+            .fileprivate,
+            .internal,
+            .public,
+            .open,
+            .setterPrivate,
+            .setterFilePrivate,
+            .setterInternal,
+            .setterPublic,
+            .setterOpen,
+            .implicitlyUnwrappedOptional,
+            .optimize,
+            .consuming
+            ])
+        #else
+        expected.append(contentsOf: [
+            .autoclosure,
+            .noescape
+            ])
+        #endif
+
+        let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
+        let expectedStrings = Set(expected.map { $0.rawValue })
+        XCTAssertEqual(
+            actual,
+            expectedStrings
+        )
+        if actual != expectedStrings {
+            print("the following strings were added: \(actual.subtracting(expectedStrings))")
+            print("the following strings were removed: \(expectedStrings.subtracting(actual))")
+        }
+    }
+
     func testLibraryWrappersAreUpToDate() {
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
         let modules: [(module: String, path: String, linuxPath: String?, spmModule: String)] = [
@@ -230,6 +328,7 @@ extension SourceKitTests {
             ("testStatementKinds", testStatementKinds),
             ("testSyntaxKinds", testSyntaxKinds),
             ("testSwiftDeclarationKind", testSwiftDeclarationKind),
+            ("testSwiftDeclarationAttributeKind", testSwiftDeclarationAttributeKind),
             ("testIndex", testIndex),
             ("testYamlRequest", testYamlRequest)
         ]

@@ -10,6 +10,10 @@
 
 ##### Enhancements
 
+* Add `SwiftDeclarationAttributeKind` that represents declaration attributes in Swift.  
+  [Daniel Metzing](https://github.com/dirtydanee)
+  [#504](https://github.com/jpsim/SourceKitten/issues/504)
+
 * Add `SourceKitObject` that represents `sourcekitd_object_t` in Swift.  
   [Norio Nomura](https://github.com/norio-nomura)
   [#489](https://github.com/jpsim/SourceKitten/issues/489)
