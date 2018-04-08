@@ -1,4 +1,7 @@
-## Master
+## 0.20.0
+
+This is the last release to support Swift 3.2 and Swift 3.3.
+The next release will require Swift 4.0 or higher.
 
 ##### Breaking
 
@@ -13,7 +16,8 @@
 
 ##### Enhancements
 
-* Add `SwiftDeclarationAttributeKind` that represents declaration attributes in Swift.  
+* Add `SwiftDeclarationAttributeKind` that represents declaration attributes in
+  Swift.  
   [Daniel Metzing](https://github.com/dirtydanee)
   [#504](https://github.com/jpsim/SourceKitten/issues/504)
 
@@ -45,7 +49,7 @@
 
 * Fix ThreadSanitizer reports data race warning in SwiftLint.  
   [Norio Nomura](https://github.com/norio-nomura)
-  [#2089](https://github.com/realm/SwiftLint/issues/2089)
+  [realm/SwiftLint#2089](https://github.com/realm/SwiftLint/issues/2089)
 
 ## 0.19.1
 
