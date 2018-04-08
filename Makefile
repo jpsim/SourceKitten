@@ -88,7 +88,7 @@ display_compilation_time:
 
 publish:
 	brew update && brew bump-formula-pr --tag=$(shell git describe --tags) --revision=$(shell git rev-parse HEAD) sourcekitten
-	pod trunk push --verbose --swift-version=4.0
+	pod trunk push --verbose
 
 get_version:
 	@echo $(VERSION_STRING)
