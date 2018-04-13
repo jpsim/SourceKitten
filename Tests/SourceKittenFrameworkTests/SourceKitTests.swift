@@ -177,7 +177,8 @@ class SourceKitTests: XCTestCase {
 
     // swiftlint:disable:next function_body_length
     func testSwiftDeclarationAttributeKind() {
-        var expected: [SwiftDeclarationAttributeKind] = [
+        #if swift(>=4.1)
+        let expected: [SwiftDeclarationAttributeKind] = [
             .ibaction,
             .iboutlet,
             .ibdesignable,
@@ -247,9 +248,7 @@ class SourceKitTests: XCTestCase {
             .setterOpen,
             .implicitlyUnwrappedOptional,
             .optimize,
-            .consuming,
-            .autoclosure,
-            .noescape
+            .consuming
         ]
 
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
@@ -262,6 +261,7 @@ class SourceKitTests: XCTestCase {
             print("the following strings were added: \(actual.subtracting(expectedStrings))")
             print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
+        #endif
     }
 
     func testLibraryWrappersAreUpToDate() {
