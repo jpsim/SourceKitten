@@ -7,7 +7,9 @@
 
 ##### Enhancements
 
-* None.
+* Make all `SwiftDeclarationAttributeKind` cases available no matter
+  which version of Swift was used to compile SourceKitten.  
+  [Marcelo Fabri](https://github.com/marcelofabri)
 
 ##### Bug Fixes
 

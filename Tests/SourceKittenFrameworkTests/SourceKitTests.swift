@@ -177,68 +177,65 @@ class SourceKitTests: XCTestCase {
 
     // swiftlint:disable:next function_body_length
     func testSwiftDeclarationAttributeKind() {
-        var expected: [SwiftDeclarationAttributeKind] = [
-        .ibaction,
-        .iboutlet,
-        .ibdesignable,
-        .ibinspectable,
-        .gkinspectable,
-        .objc,
-        .objcName,
-        .silgenName,
-        .available,
-        .final,
-        .required,
-        .optional,
-        .noreturn,
-        .epxorted,
-        .nsCopying,
-        .nsManaged,
-        .lazy,
-        .lldbDebuggerFunction,
-        .uiApplicationMain,
-        .unsafeNoObjcTaggedPointer,
-        .inline,
-        .semantics,
-        .dynamic,
-        .infix,
-        .prefix,
-        .postfix,
-        .transparent,
-        .requiresStoredProperyInits,
-        .nonobjc,
-        .fixedLayout,
-        .inlineable,
-        .specialize,
-        .objcMembers,
-        .mutating,
-        .nonmutating,
-        .convenience,
-        .override,
-        .silSorted,
-        .weak,
-        .effects,
-        .objcBriged,
-        .nsApplicationMain,
-        .objcNonLazyRealization,
-        .synthesizedProtocol,
-        .testable,
-        .alignment,
-        .rethrows,
-        .swiftNativeObjcRuntimeBase,
-        .indirect,
-        .warnUnqualifiedAccess,
-        .cdecl,
-        .versioned,
-        .discardableResult,
-        .implements,
-        .objcRuntimeName,
-        .staticInitializeObjCMetadata,
-        .restatedObjCConformance
-    ]
-
-#if swift(>=4.1)
-        expected.append(contentsOf: [
+        #if swift(>=4.1)
+        let expected: [SwiftDeclarationAttributeKind] = [
+            .ibaction,
+            .iboutlet,
+            .ibdesignable,
+            .ibinspectable,
+            .gkinspectable,
+            .objc,
+            .objcName,
+            .silgenName,
+            .available,
+            .final,
+            .required,
+            .optional,
+            .noreturn,
+            .epxorted,
+            .nsCopying,
+            .nsManaged,
+            .lazy,
+            .lldbDebuggerFunction,
+            .uiApplicationMain,
+            .unsafeNoObjcTaggedPointer,
+            .inline,
+            .semantics,
+            .dynamic,
+            .infix,
+            .prefix,
+            .postfix,
+            .transparent,
+            .requiresStoredProperyInits,
+            .nonobjc,
+            .fixedLayout,
+            .inlineable,
+            .specialize,
+            .objcMembers,
+            .mutating,
+            .nonmutating,
+            .convenience,
+            .override,
+            .silSorted,
+            .weak,
+            .effects,
+            .objcBriged,
+            .nsApplicationMain,
+            .objcNonLazyRealization,
+            .synthesizedProtocol,
+            .testable,
+            .alignment,
+            .rethrows,
+            .swiftNativeObjcRuntimeBase,
+            .indirect,
+            .warnUnqualifiedAccess,
+            .cdecl,
+            .versioned,
+            .discardableResult,
+            .implements,
+            .objcRuntimeName,
+            .staticInitializeObjCMetadata,
+            .restatedObjCConformance,
             .private,
             .fileprivate,
             .internal,
@@ -252,13 +249,7 @@ class SourceKitTests: XCTestCase {
             .implicitlyUnwrappedOptional,
             .optimize,
             .consuming
-        ])
-#else
-        expected.append(contentsOf: [
-            .autoclosure,
-            .noescape
-        ])
-#endif
+        ]
 
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
         let expectedStrings = Set(expected.map { $0.rawValue })
@@ -270,6 +261,7 @@ class SourceKitTests: XCTestCase {
             print("the following strings were added: \(actual.subtracting(expectedStrings))")
             print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
+        #endif
     }
 
     func testLibraryWrappersAreUpToDate() {
