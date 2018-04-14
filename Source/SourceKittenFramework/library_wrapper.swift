@@ -130,7 +130,7 @@ internal let linuxFindSwiftInstallationLibPath: String? = {
     }
 
     /// .../bin/swift -> .../lib
-    return swiftPath.deleting(lastPathComponents: 2) + "lib"
+    return swiftPath.deleting(lastPathComponents: 2) + "/lib"
 }()
 
 /// Fallback path on Linux if no better option is available.
