@@ -395,11 +395,7 @@ extension String {
             if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
                 let start = index(startIndex, offsetBy: Int(offset))
                 let end = index(start, offsetBy: Int(length))
-#if swift(>=4.0)
                 let functionDeclaration = String(self[start..<end])
-#else
-                let functionDeclaration = self[start..<end]
-#endif
                 if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
                     let adjustedDistance = distance(from: startIndex, to: startOfReturnArrow)
                     let adjustedReturnTypeStartIndex = functionDeclaration.index(functionDeclaration.startIndex,

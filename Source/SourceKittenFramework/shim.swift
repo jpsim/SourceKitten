@@ -6,7 +6,7 @@
 //  Copyright (c) 2018 JP Simard. All rights reserved.
 //
 
-#if !swift(>=4.1) && swift(>=4.0)
+#if !swift(>=4.1)
 
     extension Sequence {
         func compactMap<ElementOfResult>(
