@@ -13,7 +13,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix issue locating `libsourcekitdInProc.so` on some Linux distributions.  
+  [Mike Hovan](https://github.com/mhovan)
+  [#513](https://github.com/jpsim/SourceKitten/issues/513)
 
 ## 0.20.0
 
