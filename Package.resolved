@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/norio-nomura/Clang_C.git",
         "state": {
           "branch": null,
-          "revision": "90a9574276f0fd17f02f58979423c3fd4d73b59e",
-          "version": "1.0.2"
+          "revision": "7b7d3eed8080d14ba39c50e29fa8c7b051bcf969",
+          "version": "1.0.3"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
-          "revision": "22800b0954c89344bb8c87f8ab93378076716fb7",
-          "version": "7.0.3"
+          "revision": "21f4fed2052cea480f5f1d2044d45aa25fdfb988",
+          "version": "7.1.1"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
           "branch": null,
-          "revision": "0ff81f2c665b4381f526bd656f8708dd52a9ea2f",
-          "version": "1.2.0"
+          "revision": "3e3023569c8d4c4a0d000f58db765df53041117f",
+          "version": "1.3.0"
         }
       },
       {
