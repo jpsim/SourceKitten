@@ -90,6 +90,12 @@ publish:
 	brew update && brew bump-formula-pr --tag=$(shell git describe --tags) --revision=$(shell git rev-parse HEAD) sourcekitten
 	pod trunk push --verbose
 
+update_clang_headers:
+	rm -rf Source/SourceKittenFramework/clang-c
+	svn export http://llvm.org/svn/llvm-project/cfe/trunk/include/clang-c
+	mv clang-c Source/SourceKittenFramework
+	sed -i '' "s/^#include \"clang-c\(.*\)\"/#import <SourceKittenFramework\1>/g" Source/SourceKittenFramework/clang-c/*
+
 get_version:
 	@echo $(VERSION_STRING)
 
