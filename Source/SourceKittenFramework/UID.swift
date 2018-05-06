@@ -11,6 +11,7 @@ import SourceKit
 #endif
 
 /// Swift representation of sourcekitd_uid_t
+@dynamicMemberLookup
 public struct UID {
     let uid: sourcekitd_uid_t
     init(_ uid: sourcekitd_uid_t) {
@@ -27,6 +28,10 @@ public struct UID {
 
     var string: String {
         return String(cString: sourcekitd_uid_get_string_ptr(uid)!)
+    }
+
+    public subscript(dynamicMember member: StaticString) -> UID {
+        return .init("\(string).\(member)")
     }
 }
 
@@ -57,3 +62,11 @@ extension UID: SourceKitObjectConvertible {
         return sourcekitd_request_uid_create(uid)
     }
 }
+
+extension UID {
+    public static let key = UID("key")
+    public static let source = UID("source")
+}
+
+public let key = UID.key
+public let source = UID.source

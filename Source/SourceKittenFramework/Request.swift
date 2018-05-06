@@ -171,24 +171,24 @@ public enum Request {
         case let .editorOpen(file):
             if let path = file.path {
                 return [
-                    "key.request": UID("source.request.editor.open"),
-                    "key.name": path,
-                    "key.sourcefile": path
+                    key.request: source.request.editor.open,
+                    key.name: path,
+                    key.sourcefile: path
                 ]
             } else {
                 return [
-                    "key.request": UID("source.request.editor.open"),
-                    "key.name": String(abs(file.contents.hash)),
-                    "key.sourcetext": file.contents
+                    key.request: source.request.editor.open,
+                    key.name: String(abs(file.contents.hash)),
+                    key.sourcetext: file.contents
                 ]
             }
         case let .cursorInfo(file, offset, arguments):
             return [
-                "key.request": UID("source.request.cursorinfo"),
-                "key.name": file,
-                "key.sourcefile": file,
-                "key.offset": offset,
-                "key.compilerargs": arguments
+                key.request: source.request.cursorinfo,
+                key.name: file,
+                key.sourcefile: file,
+                key.offset: offset,
+                key.compilerargs: arguments
             ]
         case let .customRequest(request):
             return request
@@ -196,12 +196,12 @@ public enum Request {
             return .init(sourcekitd_request_create_from_yaml(yaml, nil)!)
         case let .codeCompletionRequest(file, contents, offset, arguments):
             return [
-                "key.request": UID("source.request.codecomplete"),
-                "key.name": file,
-                "key.sourcefile": file,
-                "key.sourcetext": contents,
-                "key.offset": offset,
-                "key.compilerargs": arguments
+                key.request: source.request.codecomplete,
+                key.name: file,
+                key.sourcefile: file,
+                key.sourcetext: contents,
+                key.offset: offset,
+                key.compilerargs: arguments
             ]
         case .interface(let file, let uuid, var arguments):
             if !arguments.contains("-x") {
@@ -211,82 +211,82 @@ public enum Request {
                 arguments.append(contentsOf: ["-isysroot", sdkPath()])
             }
             return [
-                "key.request": UID("source.request.editor.open.interface.header"),
-                "key.name": uuid,
-                "key.filepath": file,
-                "key.compilerargs": [file] + arguments
+                key.request: source.request.editor.open.interface.header,
+                key.name: uuid,
+                key.filepath: file,
+                key.compilerargs: [file] + arguments
             ]
         case let .findUSR(file, usr):
             return [
-                "key.request": UID("source.request.editor.find_usr"),
-                "key.usr": usr,
-                "key.sourcefile": file
+                key.request: source.request.editor.find_usr,
+                key.usr: usr,
+                key.sourcefile: file
             ]
         case let .index(file, arguments):
             return [
-                "key.request": UID("source.request.indexsource"),
-                "key.sourcefile": file,
-                "key.compilerargs": arguments
+                key.request: source.request.indexsource,
+                key.sourcefile: file,
+                key.compilerargs: arguments
             ]
         case let .format(file, line, useTabs, indentWidth):
             return [
-                "key.request": UID("source.request.editor.formattext"),
-                "key.name": file,
-                "key.line": line,
-                "key.editor.format.options": [
-                    "key.editor.format.indentwidth": indentWidth,
-                    "key.editor.format.tabwidth": indentWidth,
-                    "key.editor.format.usetabs": useTabs ? 1 : 0
+                key.request: source.request.editor.formattext,
+                key.name: file,
+                key.line: line,
+                key.editor.format.options: [
+                    key.editor.format.indentwidth: indentWidth,
+                    key.editor.format.tabwidth: indentWidth,
+                    key.editor.format.usetabs: useTabs ? 1 : 0
                 ]
             ]
         case let .replaceText(file, offset, length, sourceText):
             return [
-                "key.request": UID("source.request.editor.replacetext"),
-                "key.name": file,
-                "key.offset": offset,
-                "key.length": length,
-                "key.sourcetext": sourceText
+                key.request: source.request.editor.replacetext,
+                key.name: file,
+                key.offset: offset,
+                key.length: length,
+                key.sourcetext: sourceText
             ]
         case let .docInfo(text, arguments):
             return [
-                "key.request": UID("source.request.docinfo"),
-                "key.name": NSUUID().uuidString,
-                "key.compilerargs": arguments,
-                "key.sourcetext": text
+                key.request: source.request.docinfo,
+                key.name: NSUUID().uuidString,
+                key.compilerargs: arguments,
+                key.sourcetext: text
             ]
         case let .moduleInfo(module, arguments):
             return [
-                "key.request": UID("source.request.docinfo"),
-                "key.name": NSUUID().uuidString,
-                "key.compilerargs": arguments,
-                "key.modulename": module
+                key.request: source.request.docinfo,
+                key.name: NSUUID().uuidString,
+                key.compilerargs: arguments,
+                key.modulename: module
             ]
         case let .syntaxTree(file, byteTree):
             let serializationFormat = byteTree ? "bytetree" : "json"
             if let path = file.path {
                 return [
-                    "key.request": UID("source.request.editor.open"),
-                    "key.name": path,
-                    "key.sourcefile": path,
-                    "key.enablesyntaxmap": 0,
-                    "key.enablesubstructure": 0,
-                    "key.enablesyntaxtree": 1,
-                    "key.syntactic_only": 1,
-                    "key.syntaxtreetransfermode": UID("source.syntaxtree.transfer.full"),
-                    "key.syntax_tree_serialization_format":
+                    key.request: source.request.editor.open,
+                    key.name: path,
+                    key.sourcefile: path,
+                    key.enablesyntaxmap: 0,
+                    key.enablesubstructure: 0,
+                    key.enablesyntaxtree: 1,
+                    key.syntactic_only: 1,
+                    key.syntaxtreetransfermode: source.syntaxtree.transfer.full,
+                    key.syntax_tree_serialization_format:
                         UID("source.syntaxtree.serialization.format.\(serializationFormat)")
                 ]
             } else {
                 return [
-                    "key.request": UID("source.request.editor.open"),
-                    "key.name": String(abs(file.contents.hash)),
-                    "key.sourcetext": file.contents,
-                    "key.enablesyntaxmap": 0,
-                    "key.enablesubstructure": 0,
-                    "key.enablesyntaxtree": 1,
-                    "key.syntactic_only": 1,
-                    "key.syntaxtreetransfermode": UID("source.syntaxtree.transfer.full"),
-                    "key.syntax_tree_serialization_format":
+                    key.request: source.request.editor.open,
+                    key.name: String(abs(file.contents.hash)),
+                    key.sourcetext: file.contents,
+                    key.enablesyntaxmap: 0,
+                    key.enablesubstructure: 0,
+                    key.enablesyntaxtree: 1,
+                    key.syntactic_only: 1,
+                    key.syntaxtreetransfermode: source.syntaxtree.transfer.full,
+                    key.syntax_tree_serialization_format:
                         UID("source.syntaxtree.serialization.format.\(serializationFormat)")
                 ]
             }
@@ -400,10 +400,10 @@ extension Request: CustomStringConvertible {
 
 private func interfaceForModule(_ module: String, compilerArguments: [String]) throws -> [String: SourceKitRepresentable] {
     return try Request.customRequest(request: [
-        "key.request": UID("source.request.editor.open.interface"),
-        "key.name": NSUUID().uuidString,
-        "key.compilerargs": compilerArguments,
-        "key.modulename": "SourceKittenFramework.\(module)"
+        key.request: source.request.editor.open.interface,
+        key.name: NSUUID().uuidString,
+        key.compilerargs: compilerArguments,
+        key.modulename: "SourceKittenFramework.\(module)"
     ]).send()
 }
 
