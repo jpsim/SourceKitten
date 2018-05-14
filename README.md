@@ -142,6 +142,7 @@ environment variable.
   * https://github.com/yonaskolb/Beak
   * https://github.com/zenzz/vs-swifter-server
   * https://github.com/zenzz/zxxswifter-server
+  * https://github.com/scribd/Weaver
 </details>
 
 ## Complete
