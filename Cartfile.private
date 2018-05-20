@@ -1,2 +1,2 @@
-github "Carthage/Commandant" ~> 0.13.0
-github "jspahrsummers/xcconfigs" "master"
+github "Carthage/Commandant" ~> 0.13
+github "jspahrsummers/xcconfigs" ~> 0.12
