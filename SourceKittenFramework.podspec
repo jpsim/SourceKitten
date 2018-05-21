@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
   s.platform            = :osx, '10.9'
   s.source_files        = 'Source/SourceKittenFramework/{*.swift,sourcekitd.h,clang-c/*.h}'
   s.pod_target_xcconfig = { 'APPLICATION_EXTENSION_API_ONLY' => 'YES' }
-  s.dependency            'SWXMLHash', '~> 4.1'
-  s.dependency            'Yams', '~> 0.7.0'
+  s.dependency            'SWXMLHash', '~> 4.7'
+  s.dependency            'Yams', '~> 1.0'
 end

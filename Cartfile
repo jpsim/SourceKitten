@@ -1,2 +1,2 @@
-github "drmohundro/SWXMLHash" ~> 4.5
-github "jpsim/Yams" ~> 0.7
+github "drmohundro/SWXMLHash" ~> 4.7
+github "jpsim/Yams" ~> 1.0
