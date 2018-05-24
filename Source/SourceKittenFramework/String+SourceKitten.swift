@@ -68,6 +68,10 @@ private extension RandomAccessCollection {
 }
 
 extension NSString {
+    private var isASCII: Bool {
+        return canBeConverted(to: String.Encoding.ascii.rawValue)
+    }
+
     public func lineAndCharacter(forCharacterOffset offset: Int) -> (line: Int, character: Int)? {
         let range = NSRange(location: offset, length: 0)
         var numberOfLines = 0, index = 0, lineRangeStart = 0, previousIndex = 0
@@ -91,7 +95,11 @@ extension NSString {
     - returns: UTF16 based offset of string.
     */
     public func location(fromByteOffset byteOffset: Int) -> Int {
-        let lines = bridge().lines()
+        guard !isASCII else {
+            return byteOffset
+        }
+
+        let lines = self.lines()
         if lines.isEmpty {
             return 0
         }
@@ -128,7 +136,11 @@ extension NSString {
     - returns: UTF8 based offset of string.
     */
     public func byteOffset(fromLocation location: Int) -> Int {
-        let lines = bridge().lines()
+        guard !isASCII else {
+            return location
+        }
+
+        let lines = self.lines()
         if lines.isEmpty {
             return 0
         }
@@ -160,7 +172,7 @@ extension NSString {
     public func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
         assert(tabWidth > 0)
 
-        let lines = bridge().lines()
+        let lines = self.lines()
         let index = lines.indexAssumingSorted { line in
             if offset < line.range.location {
                 return .orderedAscending
@@ -240,16 +252,20 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
-        let string = self as String
+        guard !isASCII else {
+            return NSRange(location: start, length: length)
+        }
+
+        let string = bridge()
         let startUTF8Index = string.utf8.index(string.utf8.startIndex, offsetBy: start)
         let endUTF8Index = string.utf8.index(startUTF8Index, offsetBy: length)
-        
+
         let utf16View = string.utf16
         guard let startUTF16Index = startUTF8Index.samePosition(in: utf16View),
             let endUTF16Index = endUTF8Index.samePosition(in: utf16View) else {
                 return nil
         }
-        
+
         let location = utf16View.distance(from: utf16View.startIndex, to: startUTF16Index)
         let length = utf16View.distance(from: startUTF16Index, to: endUTF16Index)
         return NSRange(location: location, length: length)
@@ -265,16 +281,20 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
-        let string = self as String
+        guard !isASCII else {
+            return NSRange(location: start, length: length)
+        }
+
+        let string = bridge()
         let startUTF16Index = string.utf16.index(string.utf16.startIndex, offsetBy: start)
         let endUTF16Index = string.utf16.index(startUTF16Index, offsetBy: length)
-        
+
         let utf8View = string.utf8
         guard let startUTF8Index = startUTF16Index.samePosition(in: utf8View),
             let endUTF8Index = endUTF16Index.samePosition(in: utf8View) else {
                 return nil
         }
-        
+
         let location = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
         let length = utf8View.distance(from: startUTF8Index, to: endUTF8Index)
         return NSRange(location: location, length: length)
