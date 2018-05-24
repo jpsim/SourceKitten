@@ -68,221 +68,19 @@ private extension RandomAccessCollection {
 }
 
 extension NSString {
-    /**
-    CacheContainer caches:
-
-    - UTF16-based NSRange
-    - UTF8-based NSRange
-    - Line
-    */
-    private class CacheContainer {
-        let lines: [Line]
-        let utf8View: String.UTF8View
-
-        init(_ string: NSString) {
-            // Make a copy of the string to avoid holding a circular reference, which would leak
-            // memory.
-            //
-            // If the string is a `Swift.String`, strongly referencing that in `CacheContainer` does
-            // not cause a circular reference, because casting `String` to `NSString` makes a new
-            // `NSString` instance.
-            //
-            // If the string is a native `NSString` instance, a circular reference is created when
-            // assigning `self.utf8View = (string as String).utf8`.
-            //
-            // A reference to `NSString` is held by every cast `String` along with their views and
-            // indices.
-            let string = (string.mutableCopy() as! NSMutableString).bridge()
-            utf8View = string.utf8
-
-            var utf16CountSoFar = 0
-            var bytesSoFar = 0
-            var lines = [Line]()
-            let lineContents = string.components(separatedBy: newlinesCharacterSet)
-            // Be compatible with `NSString.getLineStart(_:end:contentsEnd:forRange:)`
-            let endsWithNewLineCharacter: Bool
-            if let lastChar = string.utf16.last,
-                let lastCharScalar = UnicodeScalar(lastChar) {
-                endsWithNewLineCharacter = newlinesCharacterSet.contains(lastCharScalar)
-            } else {
-                endsWithNewLineCharacter = false
+    public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
+        let range = NSRange(location: offset, length: 0)
+        var numberOfLines = 0, index = 0, lineRangeStart = 0, previousIndex = 0
+        while index < length {
+            numberOfLines += 1
+            if index > range.location {
+                break
             }
-            // if string ends with new line character, no empty line is generated after that.
-            let enumerator = endsWithNewLineCharacter
-                ? AnySequence(lineContents.dropLast().enumerated())
-                : AnySequence(lineContents.enumerated())
-            for (index, content) in enumerator {
-                let index = index + 1
-                let rangeStart = utf16CountSoFar
-                let utf16Count = content.utf16.count
-                utf16CountSoFar += utf16Count
-
-                let byteRangeStart = bytesSoFar
-                let byteCount = content.lengthOfBytes(using: .utf8)
-                bytesSoFar += byteCount
-
-                let newlineLength = index != lineContents.count ? 1 : 0 // FIXME: assumes \n
-
-                let line = Line(
-                    index: index,
-                    content: content,
-                    range: NSRange(location: rangeStart, length: utf16Count + newlineLength),
-                    byteRange: NSRange(location: byteRangeStart, length: byteCount + newlineLength)
-                )
-                lines.append(line)
-
-                utf16CountSoFar += newlineLength
-                bytesSoFar += newlineLength
-            }
-            self.lines = lines
+            lineRangeStart = numberOfLines
+            previousIndex = index
+            index = NSMaxRange(lineRange(for: NSRange(location: index, length: 1)))
         }
-
-        /**
-        Returns UTF16 offset from UTF8 offset.
-
-        - parameter byteOffset: UTF8-based offset of string.
-
-        - returns: UTF16 based offset of string.
-        */
-        func location(fromByteOffset byteOffset: Int) -> Int {
-            if lines.isEmpty {
-                return 0
-            }
-            let index = lines.indexAssumingSorted { line in
-                if byteOffset < line.byteRange.location {
-                    return .orderedAscending
-                } else if byteOffset >= line.byteRange.location + line.byteRange.length {
-                    return .orderedDescending
-                }
-                return .orderedSame
-            }
-            // byteOffset may be out of bounds when sourcekitd points end of string.
-            guard let line = (index.map { lines[$0] } ?? lines.last) else {
-                fatalError()
-            }
-            let diff = byteOffset - line.byteRange.location
-            if diff == 0 {
-                return line.range.location
-            } else if line.byteRange.length == diff {
-                return NSMaxRange(line.range)
-            }
-            let utf8View = line.content.utf8
-            let endUTF16index = utf8View.index(utf8View.startIndex, offsetBy: diff, limitedBy: utf8View.endIndex)!
-                .samePosition(in: line.content.utf16)!
-            let utf16Diff = line.content.utf16.distance(from: line.content.utf16.startIndex, to: endUTF16index)
-            return line.range.location + utf16Diff
-        }
-
-        /**
-        Returns UTF8 offset from UTF16 offset.
-
-        - parameter location: UTF16-based offset of string.
-
-        - returns: UTF8 based offset of string.
-        */
-        func byteOffset(fromLocation location: Int) -> Int {
-            if lines.isEmpty {
-                return 0
-            }
-            let index = lines.indexAssumingSorted { line in
-                if location < line.range.location {
-                    return .orderedAscending
-                } else if location >= line.range.location + line.range.length {
-                    return .orderedDescending
-                }
-                return .orderedSame
-            }
-            // location may be out of bounds when NSRegularExpression points end of string.
-            guard let line = (index.map { lines[$0] } ?? lines.last) else {
-                fatalError()
-            }
-            let diff = location - line.range.location
-            if diff == 0 {
-                return line.byteRange.location
-            } else if line.range.length == diff {
-                return NSMaxRange(line.byteRange)
-            }
-            let utf16View = line.content.utf16
-            let endUTF8index = utf16View.index(utf16View.startIndex, offsetBy: diff, limitedBy: utf16View.endIndex)!
-                .samePosition(in: line.content.utf8)!
-            let byteDiff = line.content.utf8.distance(from: line.content.utf8.startIndex, to: endUTF8index)
-            return line.byteRange.location + byteDiff
-        }
-
-        func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
-            assert(tabWidth > 0)
-
-            let index = lines.indexAssumingSorted { line in
-                if offset < line.range.location {
-                    return .orderedAscending
-                } else if offset >= line.range.location + line.range.length {
-                    return .orderedDescending
-                }
-                return .orderedSame
-            }
-            return index.map {
-                let line = lines[$0]
-
-                let prefixLength = offset - line.range.location
-                let character: Int
-
-                if tabWidth == 1 {
-                    character = prefixLength
-                } else {
-                    character = line.content.prefix(prefixLength).reduce(0) { sum, character in
-                        if character == "\t" {
-                            return sum - (sum % tabWidth) + tabWidth
-                        } else {
-                            return sum + 1
-                        }
-                    }
-                }
-
-                return (line: line.index, character: character + 1)
-            }
-        }
-
-        func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
-            let characterOffset = location(fromByteOffset: offset)
-            return lineAndCharacter(forCharacterOffset: characterOffset, expandingTabsToWidth: tabWidth)
-        }
-    }
-
-    static private var stringCache = [NSString: CacheContainer]()
-    static private var stringCacheLock = NSLock()
-
-    /**
-    CacheContainer instance is stored to instance of NSString as associated object.
-    */
-    private var cacheContainer: CacheContainer {
-        NSString.stringCacheLock.lock()
-        defer { NSString.stringCacheLock.unlock() }
-        if let cache = NSString.stringCache[self] {
-            return cache
-        }
-        let cache = CacheContainer(self)
-        NSString.stringCache[self] = cache
-        return cache
-    }
-
-    /**
-    Returns line number and character for utf16 based offset.
-
-    - parameter offset: utf16 based index.
-    - parameter tabWidth: the width in spaces to expand tabs to.
-    */
-    public func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
-        return cacheContainer.lineAndCharacter(forCharacterOffset: offset, expandingTabsToWidth: tabWidth)
-    }
-
-    /**
-    Returns line number and character for byte offset.
-
-    - parameter offset: byte offset.
-    - parameter tabWidth: the width in spaces to expand tabs to.
-    */
-    public func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
-        return cacheContainer.lineAndCharacter(forByteOffset: offset, expandingTabsToWidth: tabWidth)
+        return (lineRangeStart, range.location - previousIndex + 1)
     }
 
     /**
@@ -312,11 +110,11 @@ extension NSString {
     */
     public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
         if isAbsolutePath { return bridge() }
-        #if os(Linux)
+#if os(Linux)
         return NSURL(fileURLWithPath: NSURL.fileURL(withPathComponents: [rootDirectory, bridge()])!.path).standardizingPath!.path
-        #else
+#else
         return NSString.path(withComponents: [rootDirectory, bridge()]).bridge().standardizingPath
-        #endif
+#endif
     }
 
     /**
@@ -329,13 +127,19 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
-        if self.length == 0 { return nil }
-        let utf16Start = cacheContainer.location(fromByteOffset: start)
-        if length == 0 {
-            return NSRange(location: utf16Start, length: 0)
+        let string = self as String
+        let startUTF8Index = string.utf8.index(string.utf8.startIndex, offsetBy: start)
+        let endUTF8Index = string.utf8.index(startUTF8Index, offsetBy: length)
+        
+        let utf16View = string.utf16
+        guard let startUTF16Index = startUTF8Index.samePosition(in: utf16View),
+            let endUTF16Index = endUTF8Index.samePosition(in: utf16View) else {
+                return nil
         }
-        let utf16End = cacheContainer.location(fromByteOffset: start + length)
-        return NSRange(location: utf16Start, length: utf16End - utf16Start)
+        
+        let location = utf16View.distance(from: utf16View.startIndex, to: startUTF16Index)
+        let length = utf16View.distance(from: startUTF16Index, to: endUTF16Index)
+        return NSRange(location: location, length: length)
     }
 
     /**
@@ -348,34 +152,19 @@ extension NSString {
     - returns: An equivalent `NSRange`.
     */
     public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
-        let string = bridge()
-
-        let utf16View = string.utf16
-        let startUTF16Index = utf16View.index(utf16View.startIndex, offsetBy: start)
-        let endUTF16Index = utf16View.index(startUTF16Index, offsetBy: length)
-
+        let string = self as String
+        let startUTF16Index = string.utf16.index(string.utf16.startIndex, offsetBy: start)
+        let endUTF16Index = string.utf16.index(startUTF16Index, offsetBy: length)
+        
         let utf8View = string.utf8
         guard let startUTF8Index = startUTF16Index.samePosition(in: utf8View),
             let endUTF8Index = endUTF16Index.samePosition(in: utf8View) else {
                 return nil
         }
-
-        // Don't using `CacheContainer` if string is short.
-        // There are two reasons for:
-        // 1. Avoid using associatedObject on NSTaggedPointerString (< 7 bytes) because that does
-        //    not free associatedObject.
-        // 2. Using cache is overkill for short string.
-        let byteOffset: Int
-        if utf16View.count > 50 {
-            byteOffset = cacheContainer.byteOffset(fromLocation: start)
-        } else {
-            byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
-        }
-
-        // `cacheContainer` will hit for below, but that will be calculated from startUTF8Index
-        // in most case.
+        
+        let location = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
         let length = utf8View.distance(from: startUTF8Index, to: endUTF8Index)
-        return NSRange(location: byteOffset, length: length)
+        return NSRange(location: location, length: length)
     }
 
     /**
@@ -438,7 +227,48 @@ extension NSString {
     Returns an array of Lines for each line in the file.
     */
     public func lines() -> [Line] {
-        return cacheContainer.lines
+        let string = bridge()
+        var utf16CountSoFar = 0
+        var bytesSoFar = 0
+        var lines = [Line]()
+        let lineContents = string.components(separatedBy: newlinesCharacterSet)
+        // Be compatible with `NSString.getLineStart(_:end:contentsEnd:forRange:)`
+        let endsWithNewLineCharacter: Bool
+        if let lastChar = string.utf16.last,
+            let lastCharScalar = UnicodeScalar(lastChar) {
+            endsWithNewLineCharacter = newlinesCharacterSet.contains(lastCharScalar)
+        } else {
+            endsWithNewLineCharacter = false
+        }
+        // if string ends with new line character, no empty line is generated after that.
+        let enumerator = endsWithNewLineCharacter
+            ? AnySequence(lineContents.dropLast().enumerated())
+            : AnySequence(lineContents.enumerated())
+        for (index, content) in enumerator {
+            let index = index + 1
+            let rangeStart = utf16CountSoFar
+            let utf16Count = content.utf16.count
+            utf16CountSoFar += utf16Count
+
+            let byteRangeStart = bytesSoFar
+            let byteCount = content.lengthOfBytes(using: .utf8)
+            bytesSoFar += byteCount
+
+            let newlineLength = index != lineContents.count ? 1 : 0 // FIXME: assumes \n
+
+            let line = Line(
+                index: index,
+                content: content,
+                range: NSRange(location: rangeStart, length: utf16Count + newlineLength),
+                byteRange: NSRange(location: byteRangeStart, length: byteCount + newlineLength)
+            )
+            lines.append(line)
+
+            utf16CountSoFar += newlineLength
+            bytesSoFar += newlineLength
+        }
+
+        return lines
     }
 
     /**
