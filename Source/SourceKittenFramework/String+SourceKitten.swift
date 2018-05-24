@@ -68,7 +68,7 @@ private extension RandomAccessCollection {
 }
 
 extension NSString {
-    public func lineAndCharacterForCharacterOffset(offset: Int) -> (line: Int, character: Int)? {
+    public func lineAndCharacter(forCharacterOffset offset: Int) -> (line: Int, character: Int)? {
         let range = NSRange(location: offset, length: 0)
         var numberOfLines = 0, index = 0, lineRangeStart = 0, previousIndex = 0
         while index < length {
@@ -81,6 +81,119 @@ extension NSString {
             index = NSMaxRange(lineRange(for: NSRange(location: index, length: 1)))
         }
         return (lineRangeStart, range.location - previousIndex + 1)
+    }
+
+    /**
+    Returns UTF16 offset from UTF8 offset.
+
+    - parameter byteOffset: UTF8-based offset of string.
+
+    - returns: UTF16 based offset of string.
+    */
+    public func location(fromByteOffset byteOffset: Int) -> Int {
+        let lines = bridge().lines()
+        if lines.isEmpty {
+            return 0
+        }
+        let index = lines.indexAssumingSorted { line in
+            if byteOffset < line.byteRange.location {
+                return .orderedAscending
+            } else if byteOffset >= line.byteRange.location + line.byteRange.length {
+                return .orderedDescending
+            }
+            return .orderedSame
+        }
+        // byteOffset may be out of bounds when sourcekitd points end of string.
+        guard let line = (index.map { lines[$0] } ?? lines.last) else {
+            fatalError()
+        }
+        let diff = byteOffset - line.byteRange.location
+        if diff == 0 {
+            return line.range.location
+        } else if line.byteRange.length == diff {
+            return NSMaxRange(line.range)
+        }
+        let utf8View = line.content.utf8
+        let endUTF16index = utf8View.index(utf8View.startIndex, offsetBy: diff, limitedBy: utf8View.endIndex)!
+            .samePosition(in: line.content.utf16)!
+        let utf16Diff = line.content.utf16.distance(from: line.content.utf16.startIndex, to: endUTF16index)
+        return line.range.location + utf16Diff
+    }
+
+    /**
+    Returns UTF8 offset from UTF16 offset.
+
+    - parameter location: UTF16-based offset of string.
+
+    - returns: UTF8 based offset of string.
+    */
+    public func byteOffset(fromLocation location: Int) -> Int {
+        let lines = bridge().lines()
+        if lines.isEmpty {
+            return 0
+        }
+        let index = lines.indexAssumingSorted { line in
+            if location < line.range.location {
+                return .orderedAscending
+            } else if location >= line.range.location + line.range.length {
+                return .orderedDescending
+            }
+            return .orderedSame
+        }
+        // location may be out of bounds when NSRegularExpression points end of string.
+        guard let line = (index.map { lines[$0] } ?? lines.last) else {
+            fatalError()
+        }
+        let diff = location - line.range.location
+        if diff == 0 {
+            return line.byteRange.location
+        } else if line.range.length == diff {
+            return NSMaxRange(line.byteRange)
+        }
+        let utf16View = line.content.utf16
+        let endUTF8index = utf16View.index(utf16View.startIndex, offsetBy: diff, limitedBy: utf16View.endIndex)!
+            .samePosition(in: line.content.utf8)!
+        let byteDiff = line.content.utf8.distance(from: line.content.utf8.startIndex, to: endUTF8index)
+        return line.byteRange.location + byteDiff
+    }
+
+    public func lineAndCharacter(forCharacterOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
+        assert(tabWidth > 0)
+
+        let lines = bridge().lines()
+        let index = lines.indexAssumingSorted { line in
+            if offset < line.range.location {
+                return .orderedAscending
+            } else if offset >= line.range.location + line.range.length {
+                return .orderedDescending
+            }
+            return .orderedSame
+        }
+        return index.map {
+            let line = lines[$0]
+
+            let prefixLength = offset - line.range.location
+            let character: Int
+
+            if tabWidth == 1 {
+                character = prefixLength
+            } else {
+                character = line.content.prefix(prefixLength).reduce(0) { sum, character in
+                    if character == "\t" {
+                        return sum - (sum % tabWidth) + tabWidth
+                    } else {
+                        return sum + 1
+                    }
+                }
+            }
+
+            return (line: line.index, character: character + 1)
+        }
+    }
+
+    public func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int = 4) -> (line: Int, character: Int)? {
+        let characterOffset = location(fromByteOffset: offset)
+        return lineAndCharacter(forCharacterOffset: characterOffset, expandingTabsToWidth: tabWidth)
     }
 
     /**
