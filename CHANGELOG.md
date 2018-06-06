@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Support building with Swift 4.2. There are still runtime issues to resolve.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ## 0.21.0
 

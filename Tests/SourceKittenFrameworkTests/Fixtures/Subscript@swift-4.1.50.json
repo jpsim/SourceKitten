@@ -1,0 +1,41 @@
+{
+  "Subscript.swift" : {
+    "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+    "key.length" : 134,
+    "key.offset" : 0,
+    "key.substructure" : [
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.bodylength" : 113,
+        "key.bodyoffset" : 19,
+        "key.kind" : "source.lang.swift.decl.struct",
+        "key.length" : 133,
+        "key.name" : "VoidStruct",
+        "key.namelength" : 10,
+        "key.nameoffset" : 7,
+        "key.offset" : 0,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.bodylength" : 46,
+            "key.bodyoffset" : 84,
+            "key.doc.comment" : "Returns or sets Void.",
+            "key.doclength" : 26,
+            "key.docoffset" : 24,
+            "key.kind" : "source.lang.swift.decl.function.subscript",
+            "key.length" : 77,
+            "key.name" : "subscript(_:)",
+            "key.namelength" : 22,
+            "key.nameoffset" : 54,
+            "key.offset" : 54,
+            "key.setter_accessibility" : "source.lang.swift.accessibility.internal",
+            "key.substructure" : [
+
+            ],
+            "key.typename" : "()"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -264,7 +264,7 @@ class SourceKitTests: XCTestCase {
         #endif
     }
 
-    func testLibraryWrappersAreUpToDate() {
+    func testLibraryWrappersAreUpToDate() throws {
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
         let modules: [(module: String, path: String, linuxPath: String?, spmModule: String)] = [
             ("CXString", "libclang.dylib", nil, "Clang_C"),
@@ -274,41 +274,41 @@ class SourceKitTests: XCTestCase {
         ]
         for (module, path, linuxPath, spmModule) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
-            let existingWrapper = try! String(contentsOfFile: wrapperPath)
-            let generatedWrapper = try! libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule,
+            let existingWrapper = try String(contentsOfFile: wrapperPath)
+            let generatedWrapper = try libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule,
                                                            compilerArguments: sourceKittenFrameworkModule.compilerArguments)
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
             if existingWrapper != generatedWrapper && overwrite {
-                try! generatedWrapper.data(using: .utf8)?.write(to: URL(fileURLWithPath: wrapperPath))
+                try generatedWrapper.data(using: .utf8)?.write(to: URL(fileURLWithPath: wrapperPath))
             }
         }
     }
 
-    func testIndex() {
+    func testIndex() throws {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
-        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(try! Request.index(file: file, arguments: arguments).send())) + "\n")
+        let indexJSON = NSMutableString(string: toJSON(toNSDictionary(try Request.index(file: file, arguments: arguments).send())) + "\n")
 
-        func replace(_ pattern: String, withTemplate template: String) {
-            let regex = try! NSRegularExpression(pattern: pattern, options: [])
+        func replace(_ pattern: String, withTemplate template: String) throws {
+            let regex = try NSRegularExpression(pattern: pattern, options: [])
             _ = regex.replaceMatches(in: indexJSON, options: [],
                                      range: NSRange(location: 0, length: indexJSON.length),
                                      withTemplate: template)
         }
 
         // Replace the parts of the output that are dependent on the environment of the test running machine
-        replace("\"key\\.filepath\"[^\\n]*", withTemplate: "\"key\\.filepath\" : \"\",")
-        replace("\"key\\.hash\"[^\\n]*", withTemplate: "\"key\\.hash\" : \"\",")
+        try replace("\"key\\.filepath\"[^\\n]*", withTemplate: "\"key\\.filepath\" : \"\",")
+        try replace("\"key\\.hash\"[^\\n]*", withTemplate: "\"key\\.hash\" : \"\",")
 
         compareJSONString(withFixtureNamed: "BicycleIndex", jsonString: indexJSON.bridge())
     }
 
-    func testYamlRequest() {
+    func testYamlRequest() throws {
         let path = fixturesDirectory + "Subscript.swift"
         let yaml = "key.request: source.request.editor.open\nkey.name: \"\(path)\"\nkey.sourcefile: \"\(path)\""
-        let output = try! Request.yamlRequest(yaml: yaml).send()
-        let expectedStructure = try! Structure(file: File(path: path)!)
+        let output = try Request.yamlRequest(yaml: yaml).send()
+        let expectedStructure = try Structure(file: File(path: path)!)
         let actualStructure = Structure(sourceKitResponse: output)
         XCTAssertEqual(expectedStructure, actualStructure)
     }

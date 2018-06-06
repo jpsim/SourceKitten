@@ -12,26 +12,26 @@ import XCTest
 
 class StructureTests: XCTestCase {
 
-    func testPrintEmptyStructure() {
+    func testPrintEmptyStructure() throws {
         let expected: NSDictionary = [
             "key.offset": 0,
             "key.length": 0,
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.substructure": []
         ]
-        let structure = try! Structure(file: File(contents: ""))
+        let structure = try Structure(file: File(contents: ""))
         XCTAssertEqual(toNSDictionary(structure.dictionary), expected, "should generate expected structure")
     }
 
-    func testGenerateSameStructureFileAndContents() {
-        let fileContents = try! String(contentsOfFile: #file, encoding: .utf8)
-        try! XCTAssertEqual(Structure(file: File(path: #file)!),
+    func testGenerateSameStructureFileAndContents() throws {
+        let fileContents = try String(contentsOfFile: #file, encoding: .utf8)
+        try XCTAssertEqual(Structure(file: File(path: #file)!),
             Structure(file: File(contents: fileContents)),
             "should generate the same structure for a file as raw text")
     }
 
-    func testEnum() {
-        let structure = try! Structure(file: File(contents: "enum MyEnum { case First }"))
+    func testEnum() throws {
+        let structure = try Structure(file: File(contents: "enum MyEnum { case First }"))
         let expectedStructure: NSDictionary = [
             "key.substructure": [
                 [
@@ -73,8 +73,8 @@ class StructureTests: XCTestCase {
         XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
     }
 
-    func testInheritedType() {
-        let structure = try! Structure(file: File(contents: "class Foo: Bar {}"))
+    func testInheritedType() throws {
+        let structure = try Structure(file: File(contents: "class Foo: Bar {}"))
         let expected: NSDictionary = [
             "key.substructure": [
                 [
@@ -107,8 +107,8 @@ class StructureTests: XCTestCase {
         XCTAssertEqual(toNSDictionary(structure.dictionary), expected, "should generate expected structure")
     }
 
-    func testStructurePrintValidJSON() {
-        let structure = try! Structure(file: File(contents: "struct A { func b() {} }"))
+    func testStructurePrintValidJSON() throws {
+        let structure = try Structure(file: File(contents: "struct A { func b() {} }"))
         let expectedStructure: NSDictionary = [
             "key.substructure": [
                 [
@@ -143,7 +143,7 @@ class StructureTests: XCTestCase {
         XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
 
         let jsonData = structure.description.data(using: .utf8)!
-        let jsonDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! [AnyHashable: Any]
+        let jsonDictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as! [AnyHashable: Any]
         XCTAssertEqual(jsonDictionary.bridge(), expectedStructure, "JSON should match expected structure")
     }
 }

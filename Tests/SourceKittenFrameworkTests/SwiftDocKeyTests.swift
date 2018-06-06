@@ -12,8 +12,8 @@ import XCTest
 
 class SwiftDocKeyTests: XCTestCase {
 
-    func testElements() {
-        let structure = try! Structure(file: File(contents: "class Foo: Bar {}"))
+    func testElements() throws {
+        let structure = try Structure(file: File(contents: "class Foo: Bar {}"))
         let substructures = structure.dictionary[SwiftDocKey.substructure.rawValue] as! [[String: SourceKitRepresentable]]
         let elements = (substructures[0][SwiftDocKey.elements.rawValue] as! [[String: SourceKitRepresentable]]).map(toNSDictionary)
         let expected: [NSDictionary] = [
