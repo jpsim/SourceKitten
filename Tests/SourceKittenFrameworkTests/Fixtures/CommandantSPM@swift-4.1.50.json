@@ -685,120 +685,6 @@
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant10OrderedSetV2eeoiySbACyxG_AEtFZ\">== (_: OrderedSet, _: OrderedSet) -&gt; Bool<\/RelatedName>"
           },
           {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation15AffineTransformV2eeoiySbAC_ACtFZ\">== (_: AffineTransform, _: AffineTransform) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8CalendarV2eeoiySbAC_ACtFZ\">== (_: Calendar, _: Calendar) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12CharacterSetV2eeoiySbAC_ACtFZ\">== (_: CharacterSet, _: CharacterSet) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4DataV2eeoiySbAC_ACtFZ\">== (_: Data, _: Data) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4DateV2eeoiySbAC_ACtFZ\">== (_: Date, _: Date) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation14DateComponentsV2eeoiySbAC_ACtFZ\">== (_: DateComponents, _: DateComponents) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12DateIntervalV2eeoiySbAC_ACtFZ\">== (_: DateInterval, _: DateInterval) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:So9NSDecimala10FoundationE2eeoiySbAB_ABtFZ\">== (_: Decimal, _: Decimal) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation9IndexPathV2eeoiySbAC_ACtFZ\">== (_: IndexPath, _: IndexPath) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV0B0V2eeoiySbAE_AEtFZ\">== (_: IndexSet.Index, _: IndexSet.Index) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV9RangeViewV2eeoiySbAE_AEtFZ\">== (_: IndexSet.RangeView, _: IndexSet.RangeView) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV2eeoiySbAC_ACtFZ\">== (_: IndexSet, _: IndexSet) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation6LocaleV2eeoiySbAC_ACtFZ\">== (_: Locale, _: Locale) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation11MeasurementV2eeoiySbACyqd__G_ACyqd_0_GtSo6NSUnitCRbd__AHRbd_0_r0_lFZ\">== &lt;LeftHandSideType, RightHandSideType&gt;(_: Measurement&lt;LeftHandSideType&gt;, _: Measurement&lt;RightHandSideType&gt;) -&gt; Bool where LeftHandSideType : Unit, RightHandSideType : Unit<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12NotificationV2eeoiySbAC_ACtFZ\">== (_: Notification, _: Notification) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation21_BridgedStoredNSErrorPAAE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:So8_NSRangeV10FoundationE2eeoiySbAB_ABtFZ\">== (_: NSRange, _: NSRange) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:SS10FoundationE8EncodingV2eeoiySbAC_ACtFZ\">== (_: String.Encoding, _: String.Encoding) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation20PersonNameComponentsV2eeoiySbAC_ACtFZ\">== (_: PersonNameComponents, _: PersonNameComponents) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8TimeZoneV2eeoiySbAC_ACtFZ\">== (_: TimeZone, _: TimeZone) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation3URLV2eeoiySbAC_ACtFZ\">== (_: URL, _: URL) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation13URLComponentsV2eeoiySbAC_ACtFZ\">== (_: URLComponents, _: URLComponents) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12URLQueryItemV2eeoiySbAC_ACtFZ\">== (_: URLQueryItem, _: URLQueryItem) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation10URLRequestV2eeoiySbAC_ACtFZ\">== (_: URLRequest, _: URLRequest) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4UUIDV2eeoiySbAC_ACtFZ\">== (_: UUID, _: UUID) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:14CoreFoundation9_CFObjectPAAE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:6Darwin0A7BooleanV2eeoiySbAC_ACtFZ\">== (_: DarwinBoolean, _: DarwinBoolean) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A3QoSV2eeoiySbAC_ACtFZ\">== (_: DispatchQoS, _: DispatchQoS) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A4TimeV2eeoiySbAC_ACtFZ\">== (_: DispatchTime, _: DispatchTime) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A8WallTimeV2eeoiySbAC_ACtFZ\">== (_: DispatchWallTime, _: DispatchWallTime) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A12TimeIntervalO2eeoiySbAC_ACtFZ\">== (_: DispatchTimeInterval, _: DispatchTimeInterval) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:10ObjectiveC8SelectorV2eeoiySbAC_ACtFZ\">== (_: Selector, _: Selector) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:So8NSObjectC10ObjectiveCE2eeoiySbAB_ABtFZ\">== (_: NSObject, _: NSObject) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:So17CGAffineTransformV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGAffineTransform, _: CGAffineTransform) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:So7CGPointV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGPoint, _: CGPoint) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:So6CGSizeV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGSize, _: CGSize) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:So8CGVectorV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGVector, _: CGVector) -&gt; Bool<\/RelatedName>"
-          },
-          {
-            "key.annotated_decl" : "<RelatedName usr=\"s:So6CGRectV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGRect, _: CGRect) -&gt; Bool<\/RelatedName>"
-          },
-          {
             "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiySbypXpSg_ABtF\">== (_: Any.Type?, _: Any.Type?) -&gt; Bool<\/RelatedName>"
           },
           {
@@ -992,6 +878,120 @@
           },
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:s8AnyIndexV2eeoiySbAB_ABtFZ\">== (_: AnyIndex, _: AnyIndex) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation15AffineTransformV2eeoiySbAC_ACtFZ\">== (_: AffineTransform, _: AffineTransform) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8CalendarV2eeoiySbAC_ACtFZ\">== (_: Calendar, _: Calendar) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12CharacterSetV2eeoiySbAC_ACtFZ\">== (_: CharacterSet, _: CharacterSet) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4DataV2eeoiySbAC_ACtFZ\">== (_: Data, _: Data) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4DateV2eeoiySbAC_ACtFZ\">== (_: Date, _: Date) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation14DateComponentsV2eeoiySbAC_ACtFZ\">== (_: DateComponents, _: DateComponents) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12DateIntervalV2eeoiySbAC_ACtFZ\">== (_: DateInterval, _: DateInterval) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:So9NSDecimala10FoundationE2eeoiySbAB_ABtFZ\">== (_: Decimal, _: Decimal) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation9IndexPathV2eeoiySbAC_ACtFZ\">== (_: IndexPath, _: IndexPath) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV0B0V2eeoiySbAE_AEtFZ\">== (_: IndexSet.Index, _: IndexSet.Index) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV9RangeViewV2eeoiySbAE_AEtFZ\">== (_: IndexSet.RangeView, _: IndexSet.RangeView) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV2eeoiySbAC_ACtFZ\">== (_: IndexSet, _: IndexSet) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation6LocaleV2eeoiySbAC_ACtFZ\">== (_: Locale, _: Locale) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation11MeasurementV2eeoiySbACyqd__G_ACyqd_0_GtSo6NSUnitCRbd__AHRbd_0_r0_lFZ\">== &lt;LeftHandSideType, RightHandSideType&gt;(_: Measurement&lt;LeftHandSideType&gt;, _: Measurement&lt;RightHandSideType&gt;) -&gt; Bool where LeftHandSideType : Unit, RightHandSideType : Unit<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12NotificationV2eeoiySbAC_ACtFZ\">== (_: Notification, _: Notification) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation21_BridgedStoredNSErrorPAAE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:So8_NSRangeV10FoundationE2eeoiySbAB_ABtFZ\">== (_: NSRange, _: NSRange) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:SS10FoundationE8EncodingV2eeoiySbAC_ACtFZ\">== (_: String.Encoding, _: String.Encoding) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation20PersonNameComponentsV2eeoiySbAC_ACtFZ\">== (_: PersonNameComponents, _: PersonNameComponents) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8TimeZoneV2eeoiySbAC_ACtFZ\">== (_: TimeZone, _: TimeZone) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation3URLV2eeoiySbAC_ACtFZ\">== (_: URL, _: URL) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation13URLComponentsV2eeoiySbAC_ACtFZ\">== (_: URLComponents, _: URLComponents) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12URLQueryItemV2eeoiySbAC_ACtFZ\">== (_: URLQueryItem, _: URLQueryItem) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation10URLRequestV2eeoiySbAC_ACtFZ\">== (_: URLRequest, _: URLRequest) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4UUIDV2eeoiySbAC_ACtFZ\">== (_: UUID, _: UUID) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:14CoreFoundation9_CFObjectPAAE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:6Darwin0A7BooleanV2eeoiySbAC_ACtFZ\">== (_: DarwinBoolean, _: DarwinBoolean) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A3QoSV2eeoiySbAC_ACtFZ\">== (_: DispatchQoS, _: DispatchQoS) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A4TimeV2eeoiySbAC_ACtFZ\">== (_: DispatchTime, _: DispatchTime) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A8WallTimeV2eeoiySbAC_ACtFZ\">== (_: DispatchWallTime, _: DispatchWallTime) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A12TimeIntervalO2eeoiySbAC_ACtFZ\">== (_: DispatchTimeInterval, _: DispatchTimeInterval) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:10ObjectiveC8SelectorV2eeoiySbAC_ACtFZ\">== (_: Selector, _: Selector) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:So8NSObjectC10ObjectiveCE2eeoiySbAB_ABtFZ\">== (_: NSObject, _: NSObject) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:So17CGAffineTransformV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGAffineTransform, _: CGAffineTransform) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:So7CGPointV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGPoint, _: CGPoint) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:So6CGSizeV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGSize, _: CGSize) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:So8CGVectorV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGVector, _: CGVector) -&gt; Bool<\/RelatedName>"
+          },
+          {
+            "key.annotated_decl" : "<RelatedName usr=\"s:So6CGRectV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGRect, _: CGRect) -&gt; Bool<\/RelatedName>"
           },
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:6Result2eeoiySbx_xtAA0A8ProtocolRzs9Equatable5ErrorRpzsAD5ValueRpzlF\">== &lt;T&gt;(_: T, _: T) -&gt; Bool where T : ResultProtocol, T.Error : Equatable, T.Value : Equatable<\/RelatedName>"
@@ -2211,6 +2211,14 @@
             "key.parsed_declaration" : "public static func from(string: String) -> Self?",
             "key.parsed_scope.end" : 37,
             "key.parsed_scope.start" : 35,
+            "key.related_decls" : [
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s16RawRepresentableP10CommandantAC16ArgumentProtocolRzs17FixedWidthInteger0A5ValueABRpzrlE4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; `Self`?<\/RelatedName>"
+              }
+            ],
             "key.substructure" : [
 
             ],
@@ -2310,6 +2318,14 @@
             "key.parsed_declaration" : "public static func from(string: String) -> Self?",
             "key.parsed_scope.end" : 43,
             "key.parsed_scope.start" : 41,
+            "key.related_decls" : [
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s16RawRepresentableP10CommandantAC16ArgumentProtocolRzs06StringE00A5ValueABRpzrlE4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; `Self`?<\/RelatedName>"
+              }
+            ],
             "key.substructure" : [
 
             ],
@@ -7280,120 +7296,6 @@
             "key.parsed_scope.end" : 24,
             "key.parsed_scope.start" : 22,
             "key.related_decls" : [
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation15AffineTransformV2eeoiySbAC_ACtFZ\">== (_: AffineTransform, _: AffineTransform) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8CalendarV2eeoiySbAC_ACtFZ\">== (_: Calendar, _: Calendar) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12CharacterSetV2eeoiySbAC_ACtFZ\">== (_: CharacterSet, _: CharacterSet) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4DataV2eeoiySbAC_ACtFZ\">== (_: Data, _: Data) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4DateV2eeoiySbAC_ACtFZ\">== (_: Date, _: Date) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation14DateComponentsV2eeoiySbAC_ACtFZ\">== (_: DateComponents, _: DateComponents) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12DateIntervalV2eeoiySbAC_ACtFZ\">== (_: DateInterval, _: DateInterval) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So9NSDecimala10FoundationE2eeoiySbAB_ABtFZ\">== (_: Decimal, _: Decimal) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation9IndexPathV2eeoiySbAC_ACtFZ\">== (_: IndexPath, _: IndexPath) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV0B0V2eeoiySbAE_AEtFZ\">== (_: IndexSet.Index, _: IndexSet.Index) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV9RangeViewV2eeoiySbAE_AEtFZ\">== (_: IndexSet.RangeView, _: IndexSet.RangeView) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8IndexSetV2eeoiySbAC_ACtFZ\">== (_: IndexSet, _: IndexSet) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation6LocaleV2eeoiySbAC_ACtFZ\">== (_: Locale, _: Locale) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation11MeasurementV2eeoiySbACyqd__G_ACyqd_0_GtSo6NSUnitCRbd__AHRbd_0_r0_lFZ\">== &lt;LeftHandSideType, RightHandSideType&gt;(_: Measurement&lt;LeftHandSideType&gt;, _: Measurement&lt;RightHandSideType&gt;) -&gt; Bool where LeftHandSideType : Unit, RightHandSideType : Unit<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12NotificationV2eeoiySbAC_ACtFZ\">== (_: Notification, _: Notification) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation21_BridgedStoredNSErrorPAAE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So8_NSRangeV10FoundationE2eeoiySbAB_ABtFZ\">== (_: NSRange, _: NSRange) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SS10FoundationE8EncodingV2eeoiySbAC_ACtFZ\">== (_: String.Encoding, _: String.Encoding) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation20PersonNameComponentsV2eeoiySbAC_ACtFZ\">== (_: PersonNameComponents, _: PersonNameComponents) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation8TimeZoneV2eeoiySbAC_ACtFZ\">== (_: TimeZone, _: TimeZone) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation3URLV2eeoiySbAC_ACtFZ\">== (_: URL, _: URL) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation13URLComponentsV2eeoiySbAC_ACtFZ\">== (_: URLComponents, _: URLComponents) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation12URLQueryItemV2eeoiySbAC_ACtFZ\">== (_: URLQueryItem, _: URLQueryItem) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation10URLRequestV2eeoiySbAC_ACtFZ\">== (_: URLRequest, _: URLRequest) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation4UUIDV2eeoiySbAC_ACtFZ\">== (_: UUID, _: UUID) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:14CoreFoundation9_CFObjectPAAE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:6Darwin0A7BooleanV2eeoiySbAC_ACtFZ\">== (_: DarwinBoolean, _: DarwinBoolean) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A3QoSV2eeoiySbAC_ACtFZ\">== (_: DispatchQoS, _: DispatchQoS) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A4TimeV2eeoiySbAC_ACtFZ\">== (_: DispatchTime, _: DispatchTime) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A8WallTimeV2eeoiySbAC_ACtFZ\">== (_: DispatchWallTime, _: DispatchWallTime) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:8Dispatch0A12TimeIntervalO2eeoiySbAC_ACtFZ\">== (_: DispatchTimeInterval, _: DispatchTimeInterval) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10ObjectiveC8SelectorV2eeoiySbAC_ACtFZ\">== (_: Selector, _: Selector) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So8NSObjectC10ObjectiveCE2eeoiySbAB_ABtFZ\">== (_: NSObject, _: NSObject) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So17CGAffineTransformV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGAffineTransform, _: CGAffineTransform) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So7CGPointV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGPoint, _: CGPoint) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So6CGSizeV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGSize, _: CGSize) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So8CGVectorV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGVector, _: CGVector) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So6CGRectV12CoreGraphicsE2eeoiySbAB_ABtFZ\">== (_: CGRect, _: CGRect) -&gt; Bool<\/RelatedName>"
-              },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiySbypXpSg_ABtF\">== (_: Any.Type?, _: Any.Type?) -&gt; Bool<\/RelatedName>"
               },
