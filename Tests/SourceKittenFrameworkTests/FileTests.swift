@@ -15,10 +15,10 @@ class FileTests: XCTestCase {
         XCTAssert(File(path: "/dev/wtf") == nil)
     }
 
-    func testFormat() {
+    func testFormat() throws {
         let file = File(path: fixturesDirectory + "BicycleUnformatted.swift")
-        let formattedFile = try! file?.format(trimmingTrailingWhitespace: true, useTabs: false, indentWidth: 4)
-        XCTAssertEqual(formattedFile!, try! String(contentsOfFile: fixturesDirectory + "Bicycle.swift", encoding: .utf8))
+        let formattedFile = try file?.format(trimmingTrailingWhitespace: true, useTabs: false, indentWidth: 4)
+        XCTAssertEqual(formattedFile!, try String(contentsOfFile: fixturesDirectory + "Bicycle.swift", encoding: .utf8))
     }
 
     func testLinesRangesWhenUsingLineSeparator() {

@@ -84,9 +84,9 @@ class StringTests: XCTestCase {
                        "absolutePathRepresentation() should return the caller if it's already an absolute path")
     }
 
-    func testIsTokenDocumentable() {
+    func testIsTokenDocumentable() throws {
         let source = "struct A { subscript(key: String) -> Void { return () } }"
-        let actual = try! SyntaxMap(file: File(contents: source)).tokens.filter(source.isTokenDocumentable)
+        let actual = try SyntaxMap(file: File(contents: source)).tokens.filter(source.isTokenDocumentable)
         let expected = [
             SyntaxToken(type: SyntaxKind.identifier.rawValue, offset: 7, length: 1), // `A`
             SyntaxToken(type: SyntaxKind.keyword.rawValue, offset: 11, length: 9),   // `subscript`
@@ -126,21 +126,21 @@ class StringTests: XCTestCase {
         XCTAssertEqual(parsedDecl, expectedDecl, "should preserve declaration alignment")
     }
 
-    func testGenerateDocumentedTokenOffsets() {
+    func testGenerateDocumentedTokenOffsets() throws {
         let fileContents = "/// Comment\nlet global = 0"
-        let syntaxMap = try! SyntaxMap(file: File(contents: fileContents))
+        let syntaxMap = try SyntaxMap(file: File(contents: fileContents))
         XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap), [16], "should generate documented token offsets")
     }
 
-    func testDocumentedTokenOffsetsWithSubscript() {
+    func testDocumentedTokenOffsetsWithSubscript() throws {
         let file = File(path: fixturesDirectory + "Subscript.swift")!
-        let syntaxMap = try! SyntaxMap(file: file)
+        let syntaxMap = try SyntaxMap(file: file)
         XCTAssertEqual(file.contents.documentedTokenOffsets(syntaxMap: syntaxMap), [54], "should generate documented token offsets")
     }
 
-    func testGenerateDocumentedTokenOffsetsEmpty() {
+    func testGenerateDocumentedTokenOffsetsEmpty() throws {
         let fileContents = "// Comment\nlet global = 0"
-        let syntaxMap = try! SyntaxMap(file: File(contents: fileContents))
+        let syntaxMap = try SyntaxMap(file: File(contents: fileContents))
         XCTAssertEqual(fileContents.documentedTokenOffsets(syntaxMap: syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
     }
 

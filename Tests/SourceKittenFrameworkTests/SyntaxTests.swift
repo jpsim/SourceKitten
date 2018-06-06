@@ -30,13 +30,13 @@ private func compareSyntax(file: File, expectedTokens: [TokenWrapper]) {
 
 class SyntaxTests: XCTestCase {
 
-    func testPrintEmptySyntax() {
-        XCTAssertEqual(try! SyntaxMap(file: File(contents: "")).description, "[\n\n]", "should print empty syntax")
+    func testPrintEmptySyntax() throws {
+        XCTAssertEqual(try SyntaxMap(file: File(contents: "")).description, "[\n\n]", "should print empty syntax")
     }
 
-    func testGenerateSameSyntaxMapFileAndContents() {
-        let fileContents = try! String(contentsOfFile: #file, encoding: .utf8)
-        try! XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
+    func testGenerateSameSyntaxMapFileAndContents() throws {
+        let fileContents = try String(contentsOfFile: #file, encoding: .utf8)
+        try XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
             SyntaxMap(file: File(contents: fileContents)),
             "should generate the same syntax map for a file as raw text")
     }
