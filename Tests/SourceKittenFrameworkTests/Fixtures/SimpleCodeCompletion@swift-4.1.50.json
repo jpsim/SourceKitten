@@ -167,7 +167,6 @@
   "associatedUSRs" : "s:Si9hashValueSivp s:s8HashableP9hashValueSivp",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "hashValue",
-  "docBrief" : "The integer’s hash value.",
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "hashValue",
