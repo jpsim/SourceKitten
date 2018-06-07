@@ -23,7 +23,7 @@ aliases:
 
   - &steps-for-linux
     - checkout
-    - run: swift test
+    - run: swift test --parallel
 
 version: 2
 jobs:
