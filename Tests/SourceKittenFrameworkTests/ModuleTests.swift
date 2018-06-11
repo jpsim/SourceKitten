@@ -15,32 +15,12 @@ let projectRoot = #file.bridge()
     .deletingLastPathComponent.bridge()
     .deletingLastPathComponent
 
-let sourcekittenXcodebuildArguments = [
-    "-workspace", "SourceKitten.xcworkspace",
-    "-scheme", "SourceKittenFramework",
-    "-derivedDataPath",
-    URL(fileURLWithPath: NSTemporaryDirectory())
-        .appendingPathComponent("testSourceKittenFrameworkDocsAreValidJSON").path
-]
-
 class ModuleTests: XCTestCase {
 
     func testModuleNilInPathWithNoXcodeProject() {
         let pathWithNoXcodeProject = (#file as NSString).deletingLastPathComponent
         let model = Module(xcodeBuildArguments: [], name: nil, inPath: pathWithNoXcodeProject)
         XCTAssert(model == nil, "model initialization without any Xcode project should fail")
-    }
-
-    func testSourceKittenFrameworkDocsAreValidJSON() {
-        let sourceKittenModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
-        let docsJSON = sourceKittenModule.docs.description
-        XCTAssert(docsJSON.range(of: "error type") == nil)
-        do {
-            let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
-            XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
-        } catch {
-            XCTFail("JSON should be propery parsed")
-        }
     }
 
     func testCommandantDocs() {
@@ -100,7 +80,6 @@ extension ModuleTests {
         return [
             // Disabled on Linux because these tests require Xcode
             // ("testModuleNilInPathWithNoXcodeProject", testModuleNilInPathWithNoXcodeProject),
-            // ("testSourceKittenFrameworkDocsAreValidJSON", testSourceKittenFrameworkDocsAreValidJSON),
             // ("testCommandantDocs", testCommandantDocs),
             ("testCommandantDocsSPM", testCommandantDocsSPM)
         ]
