@@ -143,6 +143,7 @@ environment variable.
   * https://github.com/zenzz/vs-swifter-server
   * https://github.com/zenzz/zxxswifter-server
   * https://github.com/scribd/Weaver
+  * https://github.com/Nonchalant/FactoryProvider
 </details>
 
 ## Complete
