@@ -140,18 +140,18 @@ internal let linuxDefaultLibPath = "/usr/lib"
 ///
 /// `launch-with-toolchain` sets the toolchain path to the
 /// "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable.
-private let xcodeDefaultToolchainOverride = env("XCODE_DEFAULT_TOOLCHAIN_OVERRIDE")
+internal let xcodeDefaultToolchainOverride = env("XCODE_DEFAULT_TOOLCHAIN_OVERRIDE")
 
 /// Returns "TOOLCHAIN_DIR" environment variable
 ///
 /// `Xcode`/`xcodebuild` sets the toolchain path to the
 /// "TOOLCHAIN_DIR" environment variable.
-private let toolchainDir = env("TOOLCHAIN_DIR")
+internal let toolchainDir = env("TOOLCHAIN_DIR")
 
 /// Returns toolchain directory that parsed from result of `xcrun -find swift`
 ///
 /// This is affected by "DEVELOPER_DIR", "TOOLCHAINS" environment variables.
-private let xcrunFindPath: String? = {
+internal let xcrunFindPath: String? = {
     let pathOfXcrun = "/usr/bin/xcrun"
 
     if !FileManager.default.isExecutableFile(atPath: pathOfXcrun) {
@@ -188,13 +188,13 @@ private let xcrunFindPath: String? = {
     return xcrunFindPath
 }()
 
-private let applicationsDir: String? =
+internal let applicationsDir: String? =
     NSSearchPathForDirectoriesInDomains(.applicationDirectory, .systemDomainMask, true).first
 
-private let userApplicationsDir: String? =
+internal let userApplicationsDir: String? =
     NSSearchPathForDirectoriesInDomains(.applicationDirectory, .userDomainMask, true).first
 
-private extension String {
+internal extension String {
     var toolchainDir: String {
         return appending(pathComponent: "Toolchains/XcodeDefault.xctoolchain")
     }

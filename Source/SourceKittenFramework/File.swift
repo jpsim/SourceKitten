@@ -149,6 +149,50 @@ public final class File {
         return substring?.removingCommonLeadingWhitespaceFromLines()
                          .trimmingWhitespaceAndOpeningCurlyBrace()
     }
+    
+    /**
+    Parse the annotated declaration for any usr links. If they are external (i.e. apple ones) include a link to the external documentation.
+     
+     - parameter dictionary: SourceKit dictionary to extract declaration from.
+     
+     - returns: Source declaration if successfully parsed, with any usr links. Example: `public class Test : <USRLINK usr="s:SS" url="https://developer.apple.com/documentation/swift/string">`.
+    */
+    public func parseAnnotatedDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
+        guard let annotated = SwiftDocKey.getAnnotatedDeclaration(dictionary) else {
+            return nil
+        }
+        
+        guard let decl = SWXMLHash.parse(annotated).children.first?.element else {
+            return nil
+        }
+        
+        return recurseAnnotatedXML(decl)
+    }
+    
+    private func recurseAnnotatedXML(_ element: SWXMLHash.XMLElement) -> String {
+        let parsed = element.children.map({ (child) -> String in
+            if let text = child as? TextElement {
+                return text.text
+            }
+            
+            if let xml = child as? SWXMLHash.XMLElement {
+                let content = recurseAnnotatedXML(xml)
+                if let usr = xml.attribute(by: "usr") {
+                    if let url = USRResolver.shared.resolveExternalURL(usr: usr.text) {
+                        return "<USRLINK usr=\"\(usr.text)\" url=\"\(url)\">\(content)</USRLINK>"
+                    } else {
+                        return "<USRLINK usr=\"\(usr.text)\">\(content)</USRLINK>"
+                    }
+                } else {
+                    return content
+                }
+            }
+            
+            return child.description
+        })
+        
+        return parsed.joined(separator: "")
+    }
 
     /**
     Parse line numbers containing the declaration's implementation from SourceKit dictionary.
@@ -209,6 +253,11 @@ public final class File {
         // Parse declaration and add to dictionary
         if let parsedDeclaration = parseDeclaration(dictionary) {
             dictionary[SwiftDocKey.parsedDeclaration.rawValue] = parsedDeclaration
+        }
+        
+        // Parse annotated declaration and add to dictionary
+        if let parsedAnnotatedDeclaration = parseAnnotatedDeclaration(dictionary) {
+            dictionary[SwiftDocKey.parsedAnnotatedDeclaration.rawValue] = parsedAnnotatedDeclaration
         }
 
         // Parse scope range and add to dictionary
@@ -414,7 +463,8 @@ public final class File {
      */
     internal func addDocComments(dictionary: [String: SourceKitRepresentable], finder: SyntaxMap.DocCommentFinder) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
-
+        
+        let t = USRResolver.shared
         // special-case skip 'enumcase': has same offset as child 'enumelement'
         if let kind = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init),
            kind != .enumcase,

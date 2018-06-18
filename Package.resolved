@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "CryptoSwift",
+        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "526d5e91569b30857d8def9ea22ad7265b70d238",
+          "version": "0.9.0"
+        }
+      },
+      {
         "package": "Nimble",
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {

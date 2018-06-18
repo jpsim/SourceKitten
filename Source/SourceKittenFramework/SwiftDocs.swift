@@ -18,7 +18,7 @@ public struct SwiftDocs {
 
     /// Docs information as an [String: SourceKitRepresentable].
     public let docsDictionary: [String: SourceKitRepresentable]
-
+    
     /**
     Create docs for the specified Swift file and compiler arguments.
 
@@ -30,7 +30,8 @@ public struct SwiftDocs {
             self.init(
                 file: file,
                 dictionary: try Request.editorOpen(file: file).send(),
-                cursorInfoRequest: Request.cursorInfoRequest(filePath: file.path, arguments: arguments)
+                cursorInfoRequest: Request.cursorInfoRequest(filePath: file.path, arguments: arguments),
+                arguments: arguments
             )
         } catch let error as Request.Error {
             fputs(error.description, stderr)
@@ -47,7 +48,7 @@ public struct SwiftDocs {
     - parameter dictionary:        editor.open response from SourceKit.
     - parameter cursorInfoRequest: SourceKit dictionary to use to send cursorinfo request.
     */
-    public init(file: File, dictionary: [String: SourceKitRepresentable], cursorInfoRequest: SourceKitObject?) {
+    public init(file: File, dictionary: [String: SourceKitRepresentable], cursorInfoRequest: SourceKitObject?, arguments: [String]) {
         self.file = file
         var dictionary = dictionary
         let syntaxMapData = dictionary.removeValue(forKey: SwiftDocKey.syntaxMap.rawValue) as! [SourceKitRepresentable]
@@ -62,6 +63,7 @@ public struct SwiftDocs {
                 syntaxMap: syntaxMap
             )
         }
+        USRResolver.shared.resolveUSR(code: "Test().test()", compilerArgs: arguments)
         docsDictionary = file.addDocComments(dictionary: dictionary, syntaxMap: syntaxMap)
     }
 }
