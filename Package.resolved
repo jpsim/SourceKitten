@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Clang_C",
-        "repositoryURL": "https://github.com/norio-nomura/Clang_C.git",
-        "state": {
-          "branch": null,
-          "revision": "7b7d3eed8080d14ba39c50e29fa8c7b051bcf969",
-          "version": "1.0.3"
-        }
-      },
-      {
         "package": "Commandant",
         "repositoryURL": "https://github.com/Carthage/Commandant.git",
         "state": {

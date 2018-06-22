@@ -15,7 +15,7 @@
 #ifndef LLVM_CLANG_C_DOCUMENTATION_H
 #define LLVM_CLANG_C_DOCUMENTATION_H
 
-#import <SourceKittenFramework/Index.h>
+#include "Index.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -551,4 +551,3 @@ CINDEX_LINKAGE CXString clang_FullComment_getAsXML(CXComment Comment);
 #endif
 
 #endif /* CLANG_C_DOCUMENTATION_H */
-

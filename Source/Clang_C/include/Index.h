@@ -18,10 +18,10 @@
 
 #include <time.h>
 
-#import <SourceKittenFramework/Platform.h>
-#import <SourceKittenFramework/CXErrorCode.h>
-#import <SourceKittenFramework/CXString.h>
-#import <SourceKittenFramework/BuildSystem.h>
+#include "Platform.h"
+#include "CXErrorCode.h"
+#include "CXString.h"
+#include "BuildSystem.h"
 
 /**
  * \brief The version constants for the libclang API.

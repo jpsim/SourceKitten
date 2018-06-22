@@ -15,8 +15,8 @@
 #ifndef LLVM_CLANG_C_CXCOMPILATIONDATABASE_H
 #define LLVM_CLANG_C_CXCOMPILATIONDATABASE_H
 
-#import <SourceKittenFramework/Platform.h>
-#import <SourceKittenFramework/CXString.h>
+#include "Platform.h"
+#include "CXString.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -173,4 +173,3 @@ clang_CompileCommand_getMappedSourceContent(CXCompileCommand, unsigned I);
 }
 #endif
 #endif
-

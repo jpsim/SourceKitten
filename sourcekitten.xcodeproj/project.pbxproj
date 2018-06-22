@@ -156,7 +156,6 @@
 		6CC1639B202AA3AE0086C459 /* UID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UID.swift; sourceTree = "<group>"; };
 		6CC381621ECACB50000C6F81 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		6CFBD28E201C1E1C000FAD5A /* shim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shim.swift; sourceTree = "<group>"; };
-		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YamlRequestCommand.swift; sourceTree = "<group>"; };
 		CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDocKeyTests.swift; sourceTree = "<group>"; };
 		D0D1211B19E87861005E4BAA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -284,12 +283,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6CD765E220DCAAFE00F96884 /* Clang_C */ = {
+			isa = PBXGroup;
+			children = (
+				E8D4742B1A648ED10011A49C /* include */,
+			);
+			name = Clang_C;
+			path = Source/Clang_C;
+			sourceTree = "<group>";
+		};
 		D0D1210F19E87861005E4BAA = {
 			isa = PBXGroup;
 			children = (
 				6C7F0A841EDB0AAD008EC581 /* Package.swift */,
 				D0D1211919E87861005E4BAA /* Products */,
 				D0D1211A19E87861005E4BAA /* sourcekitten */,
+				6CD765E220DCAAFE00F96884 /* Clang_C */,
 				D0D1216E19E87B05005E4BAA /* SourceKittenFramework */,
 				D0D1217B19E87B05005E4BAA /* SourceKittenFrameworkTests */,
 			);
@@ -399,7 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				E86F588D1C4DC49000426E78 /* sourcekitd.h */,
-				E8D4742B1A648ED10011A49C /* clang-c */,
 				D0D1216F19E87B05005E4BAA /* Supporting Files */,
 				3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */,
 				E8D4743A1A648F290011A49C /* ClangTranslationUnit.swift */,
@@ -487,7 +495,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E8D4742B1A648ED10011A49C /* clang-c */ = {
+		E8D4742B1A648ED10011A49C /* include */ = {
 			isa = PBXGroup;
 			children = (
 				E8D4742C1A648ED10011A49C /* BuildSystem.h */,
@@ -497,9 +505,8 @@
 				E8D474301A648ED10011A49C /* Documentation.h */,
 				E8D474311A648ED10011A49C /* Index.h */,
 				E8D474321A648ED10011A49C /* Platform.h */,
-				6CFC18F01C7F2FB900CD70E1 /* module.modulemap */,
 			);
-			path = "clang-c";
+			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
