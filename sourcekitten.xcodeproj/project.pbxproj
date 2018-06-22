@@ -292,6 +292,23 @@
 			path = Source/Clang_C;
 			sourceTree = "<group>";
 		};
+		6CD765E320DCAE3600F96884 /* SourceKit */ = {
+			isa = PBXGroup;
+			children = (
+				6CD765E420DCAE7100F96884 /* include */,
+			);
+			name = SourceKit;
+			path = Source/SourceKit;
+			sourceTree = "<group>";
+		};
+		6CD765E420DCAE7100F96884 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				E86F588D1C4DC49000426E78 /* sourcekitd.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		D0D1210F19E87861005E4BAA = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +316,7 @@
 				D0D1211919E87861005E4BAA /* Products */,
 				D0D1211A19E87861005E4BAA /* sourcekitten */,
 				6CD765E220DCAAFE00F96884 /* Clang_C */,
+				6CD765E320DCAE3600F96884 /* SourceKit */,
 				D0D1216E19E87B05005E4BAA /* SourceKittenFramework */,
 				D0D1217B19E87B05005E4BAA /* SourceKittenFrameworkTests */,
 			);
@@ -407,7 +425,6 @@
 		D0D1216E19E87B05005E4BAA /* SourceKittenFramework */ = {
 			isa = PBXGroup;
 			children = (
-				E86F588D1C4DC49000426E78 /* sourcekitd.h */,
 				D0D1216F19E87B05005E4BAA /* Supporting Files */,
 				3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */,
 				E8D4743A1A648F290011A49C /* ClangTranslationUnit.swift */,
