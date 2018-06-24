@@ -91,10 +91,12 @@ publish:
 	pod trunk push --verbose
 
 update_clang_headers:
-	rm -rf Source/SourceKittenFramework/clang-c
+	rm -rf Source/Clang_C/include
 	svn export http://llvm.org/svn/llvm-project/cfe/trunk/include/clang-c
-	mv clang-c Source/SourceKittenFramework
-	sed -i '' "s/^#include \"clang-c\(.*\)\"/#import <SourceKittenFramework\1>/g" Source/SourceKittenFramework/clang-c/*
+	mv clang-c Source/Clang_C/include
+	rm Source/Clang_C/include/module.modulemap
+	echo '#include "BuildSystem.h"\n#include "CXCompilationDatabase.h"\n#include "CXErrorCode.h"\n#include "CXString.h"\n#include "Documentation.h"\n#include "Index.h"\n#include "Platform.h"' > Source/Clang_C/include/Clang_C.h
+	sed -i '' "s/^#include \"clang-c\/\(.*\)\"/#include \"\1\"/g" Source/Clang_C/include/*
 
 get_version:
 	@echo $(VERSION_STRING)
