@@ -169,7 +169,7 @@ public enum Request {
             } else {
                 return [
                     "key.request": UID("source.request.editor.open"),
-                    "key.name": String(file.contents.hash),
+                    "key.name": String(abs(file.contents.hash)),
                     "key.sourcetext": file.contents
                 ]
             }
