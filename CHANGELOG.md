@@ -13,6 +13,10 @@
 * Support building with Swift 4.2. There are still runtime issues to resolve.  
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Fix a crash when running with Swift 4.2.  
+  [Norio Nomura](https://github.com/norio-nomura)
+  [SR-7954](https://bugs.swift.org/browse/SR-7954)
+
 ## 0.21.0
 
 ##### Breaking
