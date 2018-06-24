@@ -9,7 +9,7 @@
   "sourcetext" : "addingReportingOverflow(<#T##other: Int##Int#>)",
   "typeName" : "(partialValue: Int, overflow: Bool)"
 }, {
-  "associatedUSRs" : "s:s13BinaryIntegerPsE8advanced2byxSi_tF",
+  "associatedUSRs" : "s:SzsE8advanced2byxSi_tF",
   "context" : "source.codecompletion.context.superclass",
   "descriptionKey" : "advanced(by: Int)",
   "docBrief" : "Returns a value that is offset the specified distance from this value.",
@@ -19,7 +19,7 @@
   "sourcetext" : "advanced(by: <#T##Int#>)",
   "typeName" : "Int"
 }, {
-  "associatedUSRs" : "s:Si8advanced2byS2i_tF s:s10StrideableP8advanced2byx6StrideQz_tF",
+  "associatedUSRs" : "s:Si8advanced2byS2i_tF s:Sx8advanced2byx6StrideQz_tF",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "advanced(by: Int)",
   "docBrief" : "Returns a value that is offset the specified distance from this value.",
@@ -79,7 +79,7 @@
   "sourcetext" : "customPlaygroundQuickLook",
   "typeName" : "PlaygroundQuickLook"
 }, {
-  "associatedUSRs" : "s:s13BinaryIntegerPsE11descriptionSSvp",
+  "associatedUSRs" : "s:SzsE11descriptionSSvp",
   "context" : "source.codecompletion.context.superclass",
   "descriptionKey" : "description",
   "docBrief" : "A textual representation of this value.",
@@ -89,7 +89,7 @@
   "sourcetext" : "description",
   "typeName" : "String"
 }, {
-  "associatedUSRs" : "s:s13BinaryIntegerPsE8distance2toSix_tF",
+  "associatedUSRs" : "s:SzsE8distance2toSix_tF",
   "context" : "source.codecompletion.context.superclass",
   "descriptionKey" : "distance(to: Int)",
   "docBrief" : "Returns the distance from this value to the given value, expressed as a stride.",
@@ -99,7 +99,7 @@
   "sourcetext" : "distance(to: <#T##Int#>)",
   "typeName" : "Int"
 }, {
-  "associatedUSRs" : "s:Si8distance2toS2i_tF s:s10StrideableP8distance2to6StrideQzx_tF",
+  "associatedUSRs" : "s:Si8distance2toS2i_tF s:Sx8distance2to6StrideQzx_tF",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "distance(to: Int)",
   "docBrief" : "Returns the distance from this value to the given value, expressed as a stride.",
@@ -129,7 +129,7 @@
   "sourcetext" : "dividingFullWidth(<#T##dividend: (high: Int, low: Int.Magnitude)##(high: Int, low: Int.Magnitude)#>)",
   "typeName" : "(quotient: Int, remainder: Int)"
 }, {
-  "associatedUSRs" : "s:Si6encode2toys7Encoder_p_tKF s:s9EncodableP6encode2toys7Encoder_p_tKF",
+  "associatedUSRs" : "s:Si6encode2toys7Encoder_p_tKF s:SE6encode2toys7Encoder_p_tKF",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "encode(to: Encoder) throws",
   "docBrief" : "Encodes this value into the given encoder.",
@@ -139,7 +139,7 @@
   "sourcetext" : "encode(to: <#T##Encoder#>)",
   "typeName" : "Void"
 }, {
-  "associatedUSRs" : "s:Si4hash4intoys6HasherVz_tF s:s8HashableP4hash4intoys6HasherVz_tF",
+  "associatedUSRs" : "s:Si4hash4intoys6HasherVz_tF s:SH4hash4intoys6HasherVz_tF",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "hash(into: &Hasher)",
   "docBrief" : "Hashes the essential components of this value by feeding them into the given hasher.",
@@ -149,7 +149,7 @@
   "sourcetext" : "hash(into: &<#T##Hasher#>)",
   "typeName" : "Void"
 }, {
-  "associatedUSRs" : "s:Si9hashValueSivp s:s8HashableP9hashValueSivp",
+  "associatedUSRs" : "s:Si9hashValueSivp s:SH9hashValueSivp",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "hashValue",
   "kind" : "source.lang.swift.decl.var.instance",
@@ -178,7 +178,7 @@
   "sourcetext" : "littleEndian",
   "typeName" : "Int"
 }, {
-  "associatedUSRs" : "s:Si9magnitudeSuvp s:s7NumericP9magnitude9MagnitudeQzvp",
+  "associatedUSRs" : "s:Si9magnitudeSuvp s:Sj9magnitude9MagnitudeQzvp",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "magnitude",
   "docBrief" : "The magnitude of this value.",
@@ -228,7 +228,7 @@
   "sourcetext" : "nonzeroBitCount",
   "typeName" : "Int"
 }, {
-  "associatedUSRs" : "s:s13BinaryIntegerPsE20quotientAndRemainder10dividingByx0C0_x9remaindertx_tF",
+  "associatedUSRs" : "s:SzsE20quotientAndRemainder10dividingByx0A0_x9remaindertx_tF",
   "context" : "source.codecompletion.context.superclass",
   "descriptionKey" : "quotientAndRemainder(dividingBy: Int)",
   "docBrief" : "Returns the quotient and remainder of this value divided by the given value.",
@@ -248,7 +248,7 @@
   "sourcetext" : "remainderReportingOverflow(dividingBy: <#T##Int#>)",
   "typeName" : "(partialValue: Int, overflow: Bool)"
 }, {
-  "associatedUSRs" : "s:Si6signumSiyF s:s13BinaryIntegerP6signumxyF",
+  "associatedUSRs" : "s:Si6signumSiyF s:Sz6signumxyF",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "signum()",
   "docBrief" : "Returns -1 if this value is negative and 1 if it’s positive; otherwise, 0.",
@@ -258,7 +258,7 @@
   "sourcetext" : "signum()",
   "typeName" : "Int"
 }, {
-  "associatedUSRs" : "s:s13BinaryIntegerPsE6signumxyF",
+  "associatedUSRs" : "s:SzsE6signumxyF",
   "context" : "source.codecompletion.context.superclass",
   "descriptionKey" : "signum()",
   "docBrief" : "Returns -1 if this value is negative and 1 if it’s positive; otherwise, 0.",
@@ -278,7 +278,7 @@
   "sourcetext" : "subtractingReportingOverflow(<#T##other: Int##Int#>)",
   "typeName" : "(partialValue: Int, overflow: Bool)"
 }, {
-  "associatedUSRs" : "s:Si20trailingZeroBitCountSivp s:s13BinaryIntegerP20trailingZeroBitCountSivp",
+  "associatedUSRs" : "s:Si20trailingZeroBitCountSivp s:Sz20trailingZeroBitCountSivp",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "trailingZeroBitCount",
   "docBrief" : "The number of trailing zeros in this value’s binary representation.",
@@ -328,7 +328,7 @@
   "sourcetext" : "unsafeSubtracting(<#T##other: Int##Int#>)",
   "typeName" : "Int"
 }, {
-  "associatedUSRs" : "s:Si5wordsSi5WordsVvp s:s13BinaryIntegerP5words5WordsQzvp",
+  "associatedUSRs" : "s:Si5wordsSi5WordsVvp s:Sz5words5WordsQzvp",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "words",
   "docBrief" : "A collection containing the words of this value’s binary representation, in order from the least significant to most significant.",
