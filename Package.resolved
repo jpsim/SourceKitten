@@ -56,6 +56,15 @@
         }
       },
       {
+        "package": "SwiftBacktrace",
+        "repositoryURL": "https://github.com/norio-nomura/SwiftBacktrace",
+        "state": {
+          "branch": "master",
+          "revision": "4540035791ae50f23a1a6be9af0ecaf5140dfad4",
+          "version": null
+        }
+      },
+      {
         "package": "SWXMLHash",
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {

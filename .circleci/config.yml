@@ -23,7 +23,8 @@ aliases:
 
   - &steps-for-linux
     - checkout
-    - run: swift test
+    - run: apt-get update && apt-get install -y libunwind8
+    - run: swift test --parallel
 
 version: 2
 jobs:
