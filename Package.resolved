@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Clang_C",
-        "repositoryURL": "https://github.com/norio-nomura/Clang_C.git",
-        "state": {
-          "branch": null,
-          "revision": "7b7d3eed8080d14ba39c50e29fa8c7b051bcf969",
-          "version": "1.0.3"
-        }
-      },
-      {
         "package": "Commandant",
         "repositoryURL": "https://github.com/Carthage/Commandant.git",
         "state": {
@@ -44,15 +35,6 @@
           "branch": null,
           "revision": "7477584259bfce2560a19e06ad9f71db441fff11",
           "version": "3.2.4"
-        }
-      },
-      {
-        "package": "SourceKit",
-        "repositoryURL": "https://github.com/norio-nomura/SourceKit.git",
-        "state": {
-          "branch": null,
-          "revision": "18eaa67ca44443bbe39646916792b9f0c98dbaa1",
-          "version": "1.0.1"
         }
       },
       {
