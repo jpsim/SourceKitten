@@ -22,7 +22,7 @@ public struct Module {
     public var docs: [SwiftDocs] {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
-        return sourceFiles.sorted().compactMap {
+        var d : [SwiftDocs] = sourceFiles.sorted().compactMap {
             let filename = $0.bridge().lastPathComponent
             if let file = File(path: $0) {
                 fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
@@ -32,6 +32,28 @@ public struct Module {
             fputs("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
             return nil
         }
+        
+        var d2 : [SwiftDocs] = []
+        
+        for var sd in d {
+            USRResolver.shared.register(docs: sd.docsDictionary)
+            sd.parseDocComments()
+            d2.append(sd)
+        }
+        
+        print("USRResolver Tests:")
+        print(USRResolver.shared.findUsingDotNotation(code: "WithEnum.TestEnum"))
+        print(USRResolver.shared.findUsingDotNotation(code: "WithEnum.TestEnum.test"))
+        print(USRResolver.shared.findUsingDotNotation(code: "Test.test"))
+        print(USRResolver.shared.findUsingDotNotation(code: "Test.test"))
+        print(USRResolver.shared.findUsingDotNotation(code: "Test.test2"))
+        print(USRResolver.shared.findUsingDotNotation(code: "Test.test(_:_:_:)"))
+        print(USRResolver.shared.findUsingDotNotation(code: "Test.test(...)"))
+        print(USRResolver.shared.findUsingDotNotation(code: "Test.test2(...)"))
+        print(USRResolver.shared.findUsingDotNotation(code: "Test.test2(_:_:)"))
+
+
+        return d2
     }
 
     public init?(spmName: String) {

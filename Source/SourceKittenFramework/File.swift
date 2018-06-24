@@ -463,8 +463,6 @@ public final class File {
      */
     internal func addDocComments(dictionary: [String: SourceKitRepresentable], finder: SyntaxMap.DocCommentFinder) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
-        
-        let t = USRResolver.shared
         // special-case skip 'enumcase': has same offset as child 'enumelement'
         if let kind = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init),
            kind != .enumcase,
@@ -483,6 +481,33 @@ public final class File {
             }
         }
 
+        return dictionary
+    }
+    
+    internal func parseDocComments(dictionary: [String: SourceKitRepresentable]) -> [String: SourceKitRepresentable] {
+        var dictionary = dictionary
+        
+        if let docComment = dictionary[SwiftDocKey.documentationComment.rawValue] as? String {
+            var result = docComment
+            var start = result.startIndex
+            while var range = result.range(of: "`.*?`", options: .regularExpression, range: start..<result.endIndex) {
+                let code = result[range].replacingOccurrences(of: "`", with: "")
+                if let usr = USRResolver.shared.resolveUSR(code: code) {
+                    let replacement = "`<USRLINK usr=\"\(usr)\">\(code)</USRLINK>`"
+                    result = result.replacingCharacters(in: range, with: replacement)
+                    range = range.lowerBound..<result.index(range.lowerBound, offsetBy: replacement.count)
+                }
+                start = range.lowerBound < range.upperBound ? range.upperBound : result.index(range.lowerBound, offsetBy: 1, limitedBy: result.endIndex) ?? result.endIndex
+            }
+            dictionary[SwiftDocKey.parsedDocumentationComment.rawValue] = result
+        }
+        
+        if let substructure = SwiftDocKey.getSubstructure(dictionary) {
+            dictionary[SwiftDocKey.substructure.rawValue] = substructure.map {
+                parseDocComments(dictionary: $0)
+            }
+        }
+        
         return dictionary
     }
 }

@@ -53,6 +53,8 @@ public enum SwiftDocKey: String {
     case docColumn            = "key.doc.column"
     /// Documentation comment (String).
     case documentationComment = "key.doc.comment"
+    /// Parsed Documentation comment (String).
+    case parsedDocumentationComment = "key.doc.parsed_comment"
     /// Declaration of documented token (String).
     case docDeclaration       = "key.doc.declaration"
     /// Discussion documentation of documented token ([SourceKitRepresentable]).

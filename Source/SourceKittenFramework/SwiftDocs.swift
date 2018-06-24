@@ -17,7 +17,7 @@ public struct SwiftDocs {
     public let file: File
 
     /// Docs information as an [String: SourceKitRepresentable].
-    public let docsDictionary: [String: SourceKitRepresentable]
+    public var docsDictionary: [String: SourceKitRepresentable]
     
     /**
     Create docs for the specified Swift file and compiler arguments.
@@ -63,8 +63,11 @@ public struct SwiftDocs {
                 syntaxMap: syntaxMap
             )
         }
-        USRResolver.shared.resolveUSR(code: "Test().test()", compilerArgs: arguments)
         docsDictionary = file.addDocComments(dictionary: dictionary, syntaxMap: syntaxMap)
+    }
+    
+    public mutating func parseDocComments() {
+        self.docsDictionary = self.file.parseDocComments(dictionary: self.docsDictionary)
     }
 }
 

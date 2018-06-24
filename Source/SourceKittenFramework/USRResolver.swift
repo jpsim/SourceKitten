@@ -22,6 +22,8 @@ class USRResolver {
     
     private var codeUsrCache : [String : String] = [:]
     
+    private var index: [String: NameEntity] = [:]
+    
     private init() {
         self.searchPaths = [
             xcodeDefaultToolchainOverride,
@@ -63,11 +65,17 @@ class USRResolver {
         if let cached = self.codeUsrCache[code] {
             return cached
         }
+        
         if let compilerArgs = compilerArgs {
             if let usr = self.findUsingCursorInfo(code: code, compilerArgs: compilerArgs) {
                 self.codeUsrCache[code] = usr
                 return usr
             }
+        }
+        
+        if let usr = self.findUsingDotNotation(code: code) {
+            self.codeUsrCache[code] = usr
+            return usr
         }
         
         return nil
@@ -92,6 +100,82 @@ class USRResolver {
         }
         
         return nil
+    }
+    
+    public func findUsingDotNotation(code: String) -> String? {
+        let parts = code.split(regex: "(?<!\\.)\\.(?!\\.)")
+        return self.findUsingDotNotation(parts: parts, index: Array(self.index.values))
+    }
+    
+    internal func findUsingDotNotation(parts: [String], index: [NameEntity]) -> String? {
+        var current = parts.first
+        current = NSRegularExpression.escapedPattern(for: current ?? "")
+        current = current?.replacingOccurrences(of: "\\.\\.\\.", with: "[^)]*")
+        current = current?.replacingOccurrences(of: "_:", with: "[^:]*:")
+        print(current)
+        let nextParts = parts.dropFirst()
+        let entities = index.filter { (ent) -> Bool in
+            return ent.name.range(of: current ?? "", options: .regularExpression, range: nil, locale: nil) != nil
+        }
+        
+        if nextParts.count == 0 {
+            if entities.count > 1 {
+                print("WARNING: Found multiple entities for \(current).")
+            }
+            return entities.first?.usr
+        }
+        
+        if entities.count > 0 {
+            let children = entities.flatMap { (ent) -> [NameEntity] in
+                ent.children.map({ (usr) -> NameEntity in
+                    return self.index[usr]!
+                })
+            }
+            
+            return self.findUsingDotNotation(parts: Array(nextParts), index: children)
+        }
+        
+        return nil
+    }
+    
+    public func register(docs: [String: SourceKitRepresentable], parentUSR : String? = nil) {
+        var children : [String] = []
+        // This is the usr of the current structure, being the parent of it's substructures.
+        let parent = docs[SwiftDocKey.usr.rawValue] as? String
+        if let substructures = SwiftDocKey.getSubstructure(docs) {
+            for substructure in substructures {
+                self.register(docs: substructure, parentUSR: parent)
+            }
+            
+            children = self.getChildUSRs(substructures: substructures)
+        }
+        
+        if let name = SwiftDocKey.getName(docs) {
+            //This is actually an entity and not something top level!
+            guard let kind = SwiftDeclarationKind(rawValue: SwiftDocKey.getKind(docs) ?? ""), let usr = docs[SwiftDocKey.usr.rawValue] as? String else {
+                return
+            }
+            
+            let entity = NameEntity(usr: usr, name: name, children: children, parentUSR: parentUSR, kind: kind)
+            self.index[usr] = entity
+        }
+    }
+    
+    internal func getChildUSRs(substructures: [[String: SourceKitRepresentable]]) -> [String] {
+        var children : [String] = []
+        // We save the usrs of all substructures, so we can have a linked list.
+        for substructure in substructures {
+            if let usr = substructure[SwiftDocKey.usr.rawValue] as? String {
+                children.append(usr)
+            } else {
+                // If the child does not have a usr, it might be nested, e.g. like an enum case statement.
+                if let subsub = SwiftDocKey.getSubstructure(substructure) {
+                    children.append(contentsOf: self.getChildUSRs(substructures: subsub))
+                }
+            }
+        }
+        
+        return children
     }
     
     public func resolveExternalURL(usr: String, language: DocumentationSourceLanguage = DocumentationSourceLanguage.swift) -> String? {
@@ -161,5 +245,46 @@ public enum DocumentationSourceLanguage: Int {
         case .javascript:
             return "j"
         }
+    }
+}
+
+public struct NameEntity: Codable {
+    public let usr: String
+    
+    public let name: String
+    
+    public var children: [String] = []
+    
+    public var parentUSR: String? = nil
+    
+    public var kind: SwiftDeclarationKind
+}
+
+extension String {
+    func ranges(of string: String, options: CompareOptions = .literal) -> [Range<Index>] {
+        var result: [Range<Index>] = []
+        var start = startIndex
+        while let range = range(of: string, options: options, range: start..<endIndex) {
+            result.append(range)
+            start = range.lowerBound < range.upperBound ? range.upperBound : index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
+        }
+        return result
+    }
+    
+    func ranges(between string: String, options: CompareOptions = .literal) -> [Range<Index>] {
+        var result: [Range<Index>] = []
+        var start = startIndex
+        while let range = range(of: string, options: options, range: start..<endIndex) {
+            result.append(start..<range.lowerBound)
+            start = range.lowerBound < range.upperBound ? range.upperBound : index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
+        }
+        if start < endIndex {
+            result.append(start..<endIndex)
+        }
+        return result
+    }
+    
+    func split(regex: String) -> [String] {
+        return self.ranges(between: regex, options: .regularExpression).map { String(self[$0]) }
     }
 }

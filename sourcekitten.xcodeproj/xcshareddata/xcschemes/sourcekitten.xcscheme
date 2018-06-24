@@ -79,6 +79,10 @@
             argument = "doc"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--objc TestFrameworkObjc/TestFrameworkObjc.h -- -x objective-c -isysroot &quot;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk&quot; -I &quot;/Users/leonardogalli/Code/jazzy/TestFrameworkObjc&quot; -I &quot;/Users/leonardogalli/Code/jazzy/TestFrameworkObjc/TestFrameworkObjc&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
