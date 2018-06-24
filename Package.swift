@@ -33,9 +33,6 @@ let package = Package(
                 "SourceKit",
                 "SWXMLHash",
                 "Yams",
-            ],
-            exclude: [
-                "sourcekitd.h",
             ]
         ),
         .testTarget(
