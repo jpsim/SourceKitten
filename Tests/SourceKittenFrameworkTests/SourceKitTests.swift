@@ -59,6 +59,14 @@ private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
     })
 }
 
+let sourcekittenXcodebuildArguments = [
+    "-workspace", "SourceKitten.xcworkspace",
+    "-scheme", "SourceKittenFramework",
+    "-derivedDataPath",
+    URL(fileURLWithPath: NSTemporaryDirectory())
+        .appendingPathComponent("testLibraryWrappersAreUpToDate").path
+]
+
 // swiftlint:disable:next type_body_length
 class SourceKitTests: XCTestCase {
 
@@ -266,6 +274,14 @@ class SourceKitTests: XCTestCase {
 
     func testLibraryWrappersAreUpToDate() throws {
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
+        let docsJSON = sourceKittenFrameworkModule.docs.description
+        XCTAssert(docsJSON.range(of: "error type") == nil)
+        do {
+            let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
+            XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
+        } catch {
+            XCTFail("JSON should be propery parsed")
+        }
         let modules: [(module: String, path: String, linuxPath: String?, spmModule: String)] = [
             ("CXString", "libclang.dylib", nil, "Clang_C"),
             ("Documentation", "libclang.dylib", nil, "Clang_C"),
