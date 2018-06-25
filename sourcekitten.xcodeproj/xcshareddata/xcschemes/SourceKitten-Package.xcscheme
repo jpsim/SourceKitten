@@ -14,37 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SourceKitten::SourceKittenFramework"
-               BuildableName = "SourceKittenFramework.framework"
-               BlueprintName = "SourceKittenFramework"
-               ReferencedContainer = "container:sourcekitten.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SourceKitten::sourcekitten"
-               BuildableName = "sourcekitten"
+               BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
+               BuildableName = "sourcekitten.app"
                BlueprintName = "sourcekitten"
-               ReferencedContainer = "container:sourcekitten.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CryptoSwift::CryptoSwift"
-               BuildableName = "CryptoSwift.framework"
-               BlueprintName = "CryptoSwift"
                ReferencedContainer = "container:sourcekitten.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -70,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Result::Result"
-               BuildableName = "Result.framework"
-               BlueprintName = "Result"
+               BlueprintIdentifier = "Commandant::Commandant"
+               BuildableName = "Commandant.framework"
+               BlueprintName = "Commandant"
                ReferencedContainer = "container:sourcekitten.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -112,9 +84,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Commandant::Commandant"
-               BuildableName = "Commandant.framework"
-               BlueprintName = "Commandant"
+               BlueprintIdentifier = "Result::Result"
+               BuildableName = "Result.framework"
+               BlueprintName = "Result"
+               ReferencedContainer = "container:sourcekitten.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D0D1216C19E87B05005E4BAA"
+               BuildableName = "SourceKittenFramework.framework"
+               BlueprintName = "SourceKittenFramework"
                ReferencedContainer = "container:sourcekitten.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -130,7 +116,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SourceKitten::SourceKittenFrameworkTests"
+               BlueprintIdentifier = "D0D1217619E87B05005E4BAA"
                BuildableName = "SourceKittenFrameworkTests.xctest"
                BlueprintName = "SourceKittenFrameworkTests"
                ReferencedContainer = "container:sourcekitten.xcodeproj">
@@ -153,9 +139,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SourceKitten::SourceKittenFramework"
-            BuildableName = "SourceKittenFramework.framework"
-            BlueprintName = "SourceKittenFramework"
+            BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
+            BuildableName = "sourcekitten.app"
+            BlueprintName = "sourcekitten"
             ReferencedContainer = "container:sourcekitten.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -7,7 +7,6 @@
 
 import Foundation
 import SQLite3
-import CryptoSwift
 
 class USRResolver {
     public static let shared = USRResolver()
@@ -53,11 +52,11 @@ class USRResolver {
     
     private func loadDatabase() {
         guard let path = self.searchPaths.first else { return }
-        print("Loading map.db from \(path)")
+        //print("Loading map.db from \(path)")
         if sqlite3_open(path, &db) == SQLITE_OK {
-            print("Successfully opened connection to database at \(path)")
+            //print("Successfully opened connection to database at \(path)")
         } else {
-            print("Unable to open documentation database.")
+            //print("Unable to open documentation database.")
         }
     }
     
@@ -112,7 +111,7 @@ class USRResolver {
         current = NSRegularExpression.escapedPattern(for: current ?? "")
         current = current?.replacingOccurrences(of: "\\.\\.\\.", with: "[^)]*")
         current = current?.replacingOccurrences(of: "_:", with: "[^:]*:")
-        print(current)
+        //print(current)
         let nextParts = parts.dropFirst()
         let entities = index.filter { (ent) -> Bool in
             return ent.name.range(of: current ?? "", options: .regularExpression, range: nil, locale: nil) != nil
@@ -120,7 +119,7 @@ class USRResolver {
         
         if nextParts.count == 0 {
             if entities.count > 1 {
-                print("WARNING: Found multiple entities for \(current).")
+                //print("WARNING: Found multiple entities for \(current).")
             }
             return entities.first?.usr
         }
@@ -192,7 +191,16 @@ class USRResolver {
     }
     
     public func findInAppleDocs(usr: String, language: DocumentationSourceLanguage = DocumentationSourceLanguage.swift) -> String? {
-        guard let hash = usr.bytes.sha1().toBase64() else { return nil }
+        guard var data = usr.data(using: .utf8), let hashBytes = SHA1.hash(from: &data) else { return nil }
+        var hashData = Data.init(count: hashBytes.count*4)
+        for (index, byte) in hashBytes.enumerated() {
+            let bigEndian = byte.bigEndian
+            for i in (0..<4) {
+                hashData[index*4 + i] = UInt8(truncatingIfNeeded: bigEndian >> UInt8(i*8))
+            }
+        }
+        //let hashData = hashBytes.withUnsafeBytes { Data(buffer: ($0.bindMemory(to: Int.self))) }
+        let hash = hashData.base64EncodedString()
         
         // Foundation needs to be special so it has different base64 chars.
         let correctedHash = hash.replacingOccurrences(of: "+", with: "-").replacingOccurrences(of: "/", with: "_")
@@ -219,10 +227,10 @@ class USRResolver {
                 let referencePathCol = sqlite3_column_text(queryStatement, 4)
                 referencePath = String(cString: referencePathCol!)
             } else {
-                print("Query returned no results")
+                //print("Query returned no results")
             }
         } else {
-            print("SELECT statement could not be prepared")
+            //print("SELECT statement could not be prepared")
         }
         
         sqlite3_finalize(queryStatement)

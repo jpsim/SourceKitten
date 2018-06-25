@@ -13,7 +13,6 @@ let package = Package(
         .package(url: "https://github.com/jpsim/Yams.git", from: "1.0.0"),
         .package(url: "https://github.com/norio-nomura/Clang_C.git", from: "1.0.3"),
         .package(url: "https://github.com/norio-nomura/SourceKit.git", from: "1.0.1"),
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "0.9.0"))
     ],
     targets: [
         .target(
@@ -28,7 +27,6 @@ let package = Package(
             dependencies: [
                 "SWXMLHash",
                 "Yams",
-                "CryptoSwift",
             ],
             exclude: [
                 "clang-c",

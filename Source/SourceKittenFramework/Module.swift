@@ -22,6 +22,7 @@ public struct Module {
     public var docs: [SwiftDocs] {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
+        // HACKY AF CURRENTLY!! NEED TO ADD THIS SOMEWHERE ELSE; BUT WHERE?
         var d : [SwiftDocs] = sourceFiles.sorted().compactMap {
             let filename = $0.bridge().lastPathComponent
             if let file = File(path: $0) {
@@ -40,18 +41,6 @@ public struct Module {
             sd.parseDocComments()
             d2.append(sd)
         }
-        
-        print("USRResolver Tests:")
-        print(USRResolver.shared.findUsingDotNotation(code: "WithEnum.TestEnum"))
-        print(USRResolver.shared.findUsingDotNotation(code: "WithEnum.TestEnum.test"))
-        print(USRResolver.shared.findUsingDotNotation(code: "Test.test"))
-        print(USRResolver.shared.findUsingDotNotation(code: "Test.test"))
-        print(USRResolver.shared.findUsingDotNotation(code: "Test.test2"))
-        print(USRResolver.shared.findUsingDotNotation(code: "Test.test(_:_:_:)"))
-        print(USRResolver.shared.findUsingDotNotation(code: "Test.test(...)"))
-        print(USRResolver.shared.findUsingDotNotation(code: "Test.test2(...)"))
-        print(USRResolver.shared.findUsingDotNotation(code: "Test.test2(_:_:)"))
-
 
         return d2
     }
