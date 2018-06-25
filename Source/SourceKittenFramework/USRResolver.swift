@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SQLite3
+import CSQLite
 
 class USRResolver {
     public static let shared = USRResolver()

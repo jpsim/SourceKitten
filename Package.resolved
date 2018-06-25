@@ -15,17 +15,17 @@
         "repositoryURL": "https://github.com/Carthage/Commandant.git",
         "state": {
           "branch": null,
-          "revision": "7f29606ec3a2054a601f0e72f562a104dbc1a11a",
-          "version": "0.13.0"
+          "revision": "066bf9a79c37cf24fe4746ab7a1793b0359d1fe5",
+          "version": "0.14.0"
         }
       },
       {
-        "package": "CryptoSwift",
-        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
+        "package": "CSQLite",
+        "repositoryURL": "https://github.com/groue/CSQLite.git",
         "state": {
           "branch": null,
-          "revision": "526d5e91569b30857d8def9ea22ad7265b70d238",
-          "version": "0.9.0"
+          "revision": "51210b121508dd91dcced13d398269c004b0f1b5",
+          "version": "0.2.0"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
-          "revision": "21f4fed2052cea480f5f1d2044d45aa25fdfb988",
-          "version": "7.1.1"
+          "revision": "8023e3980d91b470ad073d6da843b73f2eeb1844",
+          "version": "7.1.2"
         }
       },
       {

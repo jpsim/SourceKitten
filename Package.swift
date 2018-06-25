@@ -27,11 +27,16 @@ let package = Package(
             dependencies: [
                 "SWXMLHash",
                 "Yams",
+                "CSQLite"
             ],
             exclude: [
                 "clang-c",
                 "sourcekitd.h",
             ]
+        ),
+        .target(
+            name: "CSQLite",
+            dependencies: []
         ),
         .testTarget(
             name: "SourceKittenFrameworkTests",
