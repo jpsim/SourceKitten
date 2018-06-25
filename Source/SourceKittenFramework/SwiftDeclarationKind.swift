@@ -8,7 +8,7 @@
 
 /// Swift declaration kinds.
 /// Found in `strings SourceKitService | grep source.lang.swift.decl.`.
-public enum SwiftDeclarationKind: String {
+public enum SwiftDeclarationKind: String, Codable {
     /// `associatedtype`.
     case `associatedtype` = "source.lang.swift.decl.associatedtype"
     /// `class`.

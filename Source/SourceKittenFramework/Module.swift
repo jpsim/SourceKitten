@@ -22,7 +22,8 @@ public struct Module {
     public var docs: [SwiftDocs] {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
-        return sourceFiles.sorted().compactMap {
+        // HACKY AF CURRENTLY!! NEED TO ADD THIS SOMEWHERE ELSE; BUT WHERE?
+        var d : [SwiftDocs] = sourceFiles.sorted().compactMap {
             let filename = $0.bridge().lastPathComponent
             if let file = File(path: $0) {
                 fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
@@ -32,6 +33,16 @@ public struct Module {
             fputs("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
             return nil
         }
+        
+        var d2 : [SwiftDocs] = []
+        
+        for var sd in d {
+            USRResolver.shared.register(docs: sd.docsDictionary)
+            sd.parseDocComments()
+            d2.append(sd)
+        }
+
+        return d2
     }
 
     public init?(spmName: String) {
