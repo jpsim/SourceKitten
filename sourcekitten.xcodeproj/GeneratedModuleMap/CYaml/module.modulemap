@@ -1,4 +1,0 @@
-module CYaml {
-    umbrella header "/Users/leonardogalli/Code/jazzy/SourceKitten/.build/checkouts/Yams.git-8068124914099325722/Sources/CYaml/include/CYaml.h"
-    export *
-}
