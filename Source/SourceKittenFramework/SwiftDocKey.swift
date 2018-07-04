@@ -49,6 +49,8 @@ public enum SwiftDocKey: String {
 
     // MARK: Custom Keys
 
+    /// Abstract documentation of documented token ([SourceKitRepresentable]).
+    case docAbstract        = "key.doc.abstract"
     /// Column where the token's declaration begins (Int64).
     case docColumn            = "key.doc.column"
     /// Documentation comment (String).
