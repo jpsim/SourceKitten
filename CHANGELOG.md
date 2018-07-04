@@ -6,7 +6,7 @@
 
 ##### Enhancements
 
-* None.
+* Add `SwiftDocKey.docAbstract` and parse in `parseFullXMLDocs(xmlDocs:)`.
 
 ##### Bug Fixes
 
