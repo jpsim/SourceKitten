@@ -320,6 +320,20 @@ extension NSString {
     }
 
     /**
+     Converts a range of byte offsets in `self` to a `Range<String.Index>` suitable for filtering `self` as a
+     `String`.
+
+     - parameter start: Starting byte offset.
+     - parameter length: Length of bytes to include in range.
+
+     - returns: An equivalent `Range<String.Index>`.
+     */
+    public func byteRangeToRange(start: Int, length: Int) -> Range<String.Index>? {
+        guard let nsRange = byteRangeToNSRange(start: start, length: length) else { return nil }
+        return Range(nsRange, in: self.bridge())
+    }
+
+    /**
     Converts a range of byte offsets in `self` to an `NSRange` suitable for filtering `self` as an
     `NSString`.
 
