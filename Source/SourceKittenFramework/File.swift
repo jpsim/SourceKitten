@@ -484,15 +484,17 @@ public final class File {
         return dictionary
     }
     
-    internal func parseDocComments(dictionary: [String: SourceKitRepresentable]) -> [String: SourceKitRepresentable] {
+    internal func parseDocComments(dictionary: [String: SourceKitRepresentable], parentUSR: String? = nil) -> [String: SourceKitRepresentable] {
         var dictionary = dictionary
-        
+        let currentUSR = dictionary[SwiftDocKey.usr.rawValue] as? String ?? ""
+        let kind = SwiftDocKey.getKind(dictionary)
         if let docComment = dictionary[SwiftDocKey.documentationComment.rawValue] as? String {
             var result = docComment
             var start = result.startIndex
             while var range = result.range(of: "`.*?`", options: .regularExpression, range: start..<result.endIndex) {
-                let code = result[range].replacingOccurrences(of: "`", with: "")
-                if let usr = USRResolver.shared.resolveUSR(code: code) {
+                let code = String(result[range]).replacingOccurrences(of: "`", with: "")
+                let context = NameEntity(usr: currentUSR, name: "context", children: [], parentUSR: parentUSR, kind: SwiftDeclarationKind(rawValue: kind ?? "") ?? SwiftDeclarationKind.class)
+                if let usr = USRResolver.shared.resolveUSR(code: code, context: context) {
                     let replacement = "`<USRLINK usr=\"\(usr)\">\(code)</USRLINK>`"
                     result = result.replacingCharacters(in: range, with: replacement)
                     range = range.lowerBound..<result.index(range.lowerBound, offsetBy: replacement.count)
@@ -504,7 +506,7 @@ public final class File {
         
         if let substructure = SwiftDocKey.getSubstructure(dictionary) {
             dictionary[SwiftDocKey.substructure.rawValue] = substructure.map {
-                parseDocComments(dictionary: $0)
+                parseDocComments(dictionary: $0, parentUSR: currentUSR)
             }
         }
         

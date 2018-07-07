@@ -60,20 +60,31 @@ class USRResolver {
         }
     }
     
-    public func resolveUSR(code: String, compilerArgs: [String]? = nil) -> String? {
-        if let cached = self.codeUsrCache[code] {
+    /// Find a usr that best matches a given code snippet and the current context.
+    /// The code snipped and either be full on compilable swift code (`compilerArgs` are required)
+    /// or just a representation of the hirarchy, called "dot notation" (e.g. `Class.function`).
+    /// For a more indepth overview of "dot notation", see `findUsingDotNotation`.
+    ///
+    /// - Parameters:
+    ///   - code: Either a swift code snippet or "dot notation".
+    ///   - context: The context where the code snippet was mentioned. Since this is usually a doc comment, it will include the usr of the doc comment location, the parent usr and all children.
+    ///   - compilerArgs: The args for compiling the code snippet (only useful if it's actual swift code).
+    /// - Returns: Returns a usr when found.
+    public func resolveUSR(code: String, context: NameEntity, compilerArgs: [String]? = nil) -> String? {
+        let cacheKey = code + context.usr + (context.parentUSR ?? "")
+        if let cached = self.codeUsrCache[cacheKey] {
             return cached
         }
         
         if let compilerArgs = compilerArgs {
             if let usr = self.findUsingCursorInfo(code: code, compilerArgs: compilerArgs) {
-                self.codeUsrCache[code] = usr
+                self.codeUsrCache[cacheKey] = usr
                 return usr
             }
         }
         
-        if let usr = self.findUsingDotNotation(code: code) {
-            self.codeUsrCache[code] = usr
+        if let usr = self.findUsingDotNotation(code: code, context: context) {
+            self.codeUsrCache[cacheKey] = usr
             return usr
         }
         
@@ -101,12 +112,90 @@ class USRResolver {
         return nil
     }
     
-    public func findUsingDotNotation(code: String) -> String? {
+    public func findUsingDotNotation(code: String, context: NameEntity) -> String? {
         let parts = code.split(regex: "(?<!\\.)\\.(?!\\.)")
-        return self.findUsingDotNotation(parts: parts, index: Array(self.index.values))
+        let entities = self.findUsingDotNotation(parts: parts, index: Array(self.index.values))
+        
+        if entities.count > 0 {
+            if entities.count == 1 {
+                return entities.first?.usr
+            }
+            
+            // first let's filter by size and take the smallest.
+            let withSize = entities.map { (ent) -> (NameEntity, Int) in
+                return (ent, ent.name.count)
+                }.sorted { (a, b) -> Bool in
+                    a.1 < b.1
+            }
+            
+            let smallest = withSize.first!
+            let allSmall = withSize.filter { (ent) -> Bool in
+                ent.1 == smallest.1
+            }
+            
+            if allSmall.count == 1 {
+                return smallest.0.usr
+            }
+            
+            //If we have multiple entities with the same name, we need to look at the context!
+            let withScore = allSmall.map { (arg) -> (NameEntity, Int) in
+                let (ent, _) = arg
+                //We swap the entity and context and score them again, since context could also be a child of the entity.
+                return (ent, score(ent: ent, context: context) + score(ent: context, context: ent))
+                }.sorted { (a, b) -> Bool in
+                    a.1 > b.1
+            }
+            let highest = withScore.first!
+            let allHighest = withScore.filter { (ent) -> Bool in
+                ent.1 == highest.1
+            }
+            
+            if allHighest.count > 1 {
+                let joined = allHighest.map { (ent) -> String in
+                    return ent.0.name
+                }.joined(separator: ", ")
+                //print("WARNING: Could not uniquely resolve \(code). Found posibilities: \(joined).", stderr)
+            }
+            
+            return allHighest.first?.0.usr
+        }
+        
+        return nil
     }
     
-    internal func findUsingDotNotation(parts: [String], index: [NameEntity]) -> String? {
+    /// Creates a score indicating how likely it is, that we have the correct match for a given context.
+    /// See `resolveUSR(...)` for what is meant by context.
+    ///
+    /// - Parameters:
+    ///   - ent: The entity to score.
+    ///   - context: See `resolveUSR(...)` for what is meant by context.
+    /// - Returns: A score indicating how likely the given entity `ent` is to be the one we want inside `context`.
+    private func score(ent: NameEntity, context: NameEntity) -> Int {
+        var score = 0
+        //If the parent is the same, this is very likely to be correct. However, could still be off, so we use more mesures
+        if ent.parentUSR == context.parentUSR {
+            score += 100
+        }
+        //We might be on a doc comment on a parent (e.g. class doc comment), so the parent is actually the current context.
+        if ent.parentUSR == context.usr {
+            score += 75
+        }
+        
+        for child in ent.children {
+            // We increase the score for any same children, as that further increases the chances of the correct match.
+            if context.children.contains(child) {
+                score += 10
+            }
+            //The entity we found, might be a parent of a parent.
+            if context.parentUSR == child {
+                score += 25
+            }
+        }
+        
+        return score
+    }
+    
+    internal func findUsingDotNotation(parts: [String], index: [NameEntity]) -> [NameEntity] {
         var current = parts.first
         current = NSRegularExpression.escapedPattern(for: current ?? "")
         current = current?.replacingOccurrences(of: "\\.\\.\\.", with: "[^)]*")
@@ -121,7 +210,7 @@ class USRResolver {
             if entities.count > 1 {
                 //print("WARNING: Found multiple entities for \(current).")
             }
-            return entities.first?.usr
+            return entities
         }
         
         if entities.count > 0 {
@@ -134,7 +223,7 @@ class USRResolver {
             return self.findUsingDotNotation(parts: Array(nextParts), index: children)
         }
         
-        return nil
+        return []
     }
     
     public func register(docs: [String: SourceKitRepresentable], parentUSR : String? = nil) {
