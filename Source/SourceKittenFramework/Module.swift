@@ -38,6 +38,9 @@ public struct Module {
         
         for var sd in d {
             USRResolver.shared.register(docs: sd.docsDictionary)
+        }
+        
+        for var sd in d {
             sd.parseDocComments()
             d2.append(sd)
         }
