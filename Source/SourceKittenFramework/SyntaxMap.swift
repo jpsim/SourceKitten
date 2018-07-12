@@ -52,6 +52,11 @@ public struct SyntaxMap: Decodable {
     public init(file: File) throws {
         self.init(sourceKitResponse: try Request.editorOpen(file: file).send())
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        tokens = try container.decode([SyntaxToken].self)
+    }
 }
 
 // MARK: Support for enumerating doc-comment blocks
