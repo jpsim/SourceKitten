@@ -15,6 +15,12 @@ public struct SyntaxToken: Decodable {
     /// Token length.
     public let length: Int
 
+    enum CodingKeys: String, CodingKey {
+        case type = "key.kind"
+        case offset = "key.offset"
+        case length = "key.length"
+    }
+
     /// Dictionary representation of SyntaxToken. Useful for NSJSONSerialization.
     public var dictionaryValue: [String: Any] {
         return ["type": type, "offset": offset, "length": length]
