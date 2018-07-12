@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represents a Swift file's syntax information.
-public struct SyntaxMap {
+public struct SyntaxMap: Decodable {
     /// Array of SyntaxToken's.
     public let tokens: [SyntaxToken]
 

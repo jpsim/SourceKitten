@@ -7,7 +7,7 @@
 //
 
 /// Represents a single Swift syntax token.
-public struct SyntaxToken {
+public struct SyntaxToken: Decodable {
     /// Token type. See SyntaxKind.
     public let type: String
     /// Token offset.
