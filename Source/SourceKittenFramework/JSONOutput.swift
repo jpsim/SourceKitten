@@ -99,6 +99,7 @@ private func toOutputDictionary(_ decl: SourceDeclaration) -> [String: Any] {
     set(.name, decl.name)
     set(.usr, decl.usr)
     set(.parsedDeclaration, decl.declaration)
+    set(.parsedAnnotatedDeclaration, decl.annotatedDeclaration)
     set(.documentationComment, decl.commentBody)
     set(.parsedScopeStart, Int(decl.extent.start.line))
     set(.parsedScopeEnd, Int(decl.extent.end.line))

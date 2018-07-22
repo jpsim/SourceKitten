@@ -38,8 +38,10 @@ public struct SourceDeclaration {
     public let name: String?
     public let usr: String?
     public let declaration: String?
+    public var annotatedDeclaration: String?
     public let documentation: Documentation?
     public let commentBody: String?
+    public let commentBodyExtent: (start: SourceLocation, end: SourceLocation)?
     public var children: [SourceDeclaration]
     public let swiftDeclaration: String?
     public let swiftName: String?
@@ -122,23 +124,69 @@ public struct SourceDeclaration {
 }
 
 extension SourceDeclaration {
-    init?(cursor: CXCursor, compilerArguments: [String]) {
+    init?(cursor: CXCursor, compilerArguments: [String], index: CXIndex? = nil) {
         guard cursor.shouldDocument() else {
             return nil
         }
+        let translation = clang_Cursor_getTranslationUnit(cursor)
+        
         type = cursor.objCKind()
         location = cursor.location()
         extent = cursor.extent()
         name = cursor.name()
         usr = cursor.usr()
         declaration = cursor.declaration()
+        annotatedDeclaration = ""
         documentation = Documentation(comment: cursor.parsedComment())
         commentBody = cursor.commentBody()
+        commentBodyExtent = cursor.commentBodyExtent()
         children = cursor.compactMap({
             SourceDeclaration(cursor: $0, compilerArguments: compilerArguments)
         }).rejectPropertyMethods()
         (swiftDeclaration, swiftName) = cursor.swiftDeclarationAndName(compilerArguments: compilerArguments)
         availability = cursor.platformAvailability()
+        
+        let declarationStart = extent.start
+        var declarationEnd = declarationStart
+        var references = [(NSRange, String)]()
+        cursor.tokensAndCursors() { (tokens, cursors) in
+            for i in 0..<tokens.count {
+                let token = tokens[i]
+                let tCursor = cursors[i]
+                let tokenExtent = clang_getTokenExtent(translation!, token).range()
+                var value = clang_getTokenSpelling(translation!, token).str() ?? ""
+
+                if children.contains(where: { (decl: SourceDeclaration) -> Bool in
+                    decl.extent.start.offset <= tokenExtent.start.offset || (decl.commentBodyExtent?.start.offset ?? 100000) <= tokenExtent.start.offset
+                }) || value == "@end" {
+                    break
+                }
+                
+                let referencedUSR = clang_getCursorReferenced(tCursor).usr()
+                if referencedUSR != usr && tCursor.kind.rawValue >= CXCursor_FirstRef.rawValue && tCursor.kind.rawValue <= CXCursor_LastRef.rawValue {
+                    let range = NSMakeRange(Int(tokenExtent.start.offset - declarationStart.offset), Int(tokenExtent.end.offset - tokenExtent.start.offset))
+                    references.append((range, referencedUSR ?? ""))
+                }
+                
+                declarationEnd = tokenExtent.end
+            }
+        }
+        
+        annotatedDeclaration = try! String(contentsOfFile: extent.start.file, encoding: .utf8)
+        annotatedDeclaration = annotatedDeclaration!.substringWithSourceRange(start: declarationStart, end: declarationEnd)!
+        var rangeOffset = 0
+        print(references)
+        for (range, usr) in references {
+            let updatedRange = NSMakeRange(range.location + rangeOffset, range.length)
+            let newRange = Range.init(updatedRange, in: annotatedDeclaration!)!
+            let value = annotatedDeclaration![newRange]
+            var replacement = "<USRLINK usr=\(usr)>\(value)</USRLINK>"
+            if let link = USRResolver.shared.resolveExternalURL(usr: usr) {
+                replacement = "<USRLINK usr=\(usr) url=\(link)>\(value)</USRLINK>"
+            }
+            rangeOffset += replacement.count - value.count
+            annotatedDeclaration = annotatedDeclaration!.replacingCharacters(in: newRange, with: replacement)
+        }
     }
 }
 

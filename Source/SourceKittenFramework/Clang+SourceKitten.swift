@@ -32,7 +32,7 @@ private func setUUIDString(uidString: String, `for` file: String) {
 }
 
 struct ClangIndex {
-    private let index = clang_createIndex(0, 1)
+    public let index = clang_createIndex(0, 1)
 
     func open(file: String, args: [UnsafePointer<Int8>?]) -> CXTranslationUnit {
         return clang_createTranslationUnitFromSourceFile(index, file, Int32(args.count), args, 0, nil)!
@@ -71,10 +71,7 @@ extension CXCursor {
     }
 
     func extent() -> (start: SourceLocation, end: SourceLocation) {
-        let extent = clang_getCursorExtent(self)
-        let start = SourceLocation(clangLocation: clang_getRangeStart(extent))
-        let end = SourceLocation(clangLocation: clang_getRangeEnd(extent))
-        return (start, end)
+        return clang_getCursorExtent(self).range()
     }
 
     func shouldDocument() -> Bool {
@@ -193,6 +190,30 @@ extension CXCursor {
         }
         return commentBody
     }
+    
+    func commentBodyExtent() -> (start: SourceLocation, end: SourceLocation) {
+        return clang_Cursor_getCommentRange(self).range()
+    }
+    
+    func tokensAndCursors(handle: (([CXToken], [CXCursor]) -> Void)) {
+        guard let translation = clang_Cursor_getTranslationUnit(self) else { return }
+        var token : CXToken = CXToken.init()
+        var numTokens : UInt32 = 0
+        withUnsafeMutablePointer(to: &token) { (pointer) in
+            var p = Optional(pointer)
+            clang_tokenize(translation, clang_getCursorExtent(self), &p, &numTokens)
+            var tokens = Array(UnsafeBufferPointer.init(start: p, count: Int(numTokens)))
+            var cursors = Array.init(repeating: CXCursor.init(), count: Int(numTokens))
+            //let cursorPointer = malloc(MemoryLayout.size(ofValue: CXCursor.self)*Int(numTokens)).assumingMemoryBound(to: CXCursor.self)
+            //var realPointer = UnsafeMutablePointer.init(mutating: (tokens.withUnsafeBufferPointer {return $0}).baseAddress)
+            clang_annotateTokens(translation, &tokens, numTokens, &cursors)
+            //let cursors = Array(UnsafeBufferPointer.init(start: cursorPointer, count: Int(numTokens)))
+            
+            handle(tokens, cursors)
+            
+            clang_disposeTokens(translation, p, numTokens)
+        }
+    }
 
     func swiftDeclarationAndName(compilerArguments: [String]) -> (swiftDeclaration: String?, swiftName: String?) {
         let file = location().file
@@ -283,6 +304,15 @@ extension CXComment {
 
     subscript(idx: UInt32) -> CXComment {
         return clang_Comment_getChild(self, idx)
+    }
+}
+
+extension CXSourceRange {
+    func range() -> (start: SourceLocation, end: SourceLocation) {
+        let start = SourceLocation(clangLocation: clang_getRangeStart(self))
+        let end = SourceLocation(clangLocation: clang_getRangeEnd(self))
+        
+        return (start: start, end: end)
     }
 }
 
