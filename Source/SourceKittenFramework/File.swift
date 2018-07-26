@@ -444,8 +444,7 @@ Returns true if the dictionary represents a source declaration or a mark-style c
 */
 private func isDeclarationOrCommentMark(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
     if let kind = SwiftDocKey.getKind(dictionary) {
-        return kind != SwiftDeclarationKind.varParameter.rawValue &&
-            (kind == SyntaxKind.commentMark.rawValue || SwiftDeclarationKind(rawValue: kind) != nil)
+        return kind == SyntaxKind.commentMark.rawValue || SwiftDeclarationKind(rawValue: kind) != nil
     }
     return false
 }
