@@ -33,7 +33,7 @@ func compareJSONString(withFixtureNamed name: String,
     let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
     // Use if changes are introduced by changes in SourceKitten.
-    let overwrite = false
+    let overwrite = ProcessInfo.processInfo.environment["OVERWRITE_FIXTURES"] != nil ? true : false
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
         return

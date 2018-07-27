@@ -98,6 +98,20 @@ update_clang_headers:
 	echo '#include "BuildSystem.h"\n#include "CXCompilationDatabase.h"\n#include "CXErrorCode.h"\n#include "CXString.h"\n#include "Documentation.h"\n#include "Index.h"\n#include "Platform.h"' > Source/Clang_C/include/Clang_C.h
 	sed -i '' "s/^#include \"clang-c\/\(.*\)\"/#include \"\1\"/g" Source/Clang_C/include/*
 
+update_commandant_fixtures: update_commandant_fixtures_macos update_commandant_fixtures_docker
+
+update_commandant_fixtures_macos:
+	for identifier in org.swift.40320171205a org.swift.41220180531a ; do \
+		swift package reset ; \
+		OVERWRITE_FIXTURES=1 xcrun --toolchain $$identifier swift test --filter Commandant ; \
+	done
+
+update_commandant_fixtures_docker:
+	for image in norionomura/swift:403 norionomura/swift:412 ; do \
+		swift package reset ; \
+		docker run -t -v `pwd`:`pwd` -w `pwd` --rm $$image env OVERWRITE_FIXTURES=1 swift test --filter Commandant ; \
+	done
+
 get_version:
 	@echo $(VERSION_STRING)
 
