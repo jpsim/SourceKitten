@@ -17,6 +17,8 @@ func compareJSONString(withFixtureNamed name: String,
                        line: UInt = #line) {
 #if os(Linux) && !swift(>=4.1)
     let jsonString = String(describing: jsonString).replacingOccurrences(of: rootDirectory, with: "")
+        .replacingOccurrences(of: "/", with: "\\/")
+        .replacingOccurrences(of: "\":", with: "\" :")
     let actualContent = jsonString
 #else
     // Strip out fixtures directory since it's dependent on the test machine's setup
