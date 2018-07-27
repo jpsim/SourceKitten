@@ -107,7 +107,7 @@ update_commandant_fixtures_macos:
 	done
 
 update_commandant_fixtures_docker:
-	for image in norionomura/swift:403 norionomura/swift:412 ; do \
+	for image in norionomura/swift:403 norionomura/swift:412 norionomura/swift:4220180706a ; do \
 		swift package reset ; \
 		docker run -t -v `pwd`:`pwd` -w `pwd` --rm $$image env OVERWRITE_FIXTURES=1 swift test --filter Commandant ; \
 	done
