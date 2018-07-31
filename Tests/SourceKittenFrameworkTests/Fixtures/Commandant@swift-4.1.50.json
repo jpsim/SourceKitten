@@ -948,7 +948,7 @@
         "key.parsed_declaration" : "public final class ArgumentParser",
         "key.parsed_scope.end" : 194,
         "key.parsed_scope.start" : 59,
-        "key.runtime_name" : "_TtC14ArgumentParser14ArgumentParser",
+        "key.runtime_name" : "_TtC4main14ArgumentParser",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.private",
@@ -1466,7 +1466,7 @@
         "key.parsed_declaration" : "public protocol ArgumentProtocol",
         "key.parsed_scope.end" : 16,
         "key.parsed_scope.start" : 10,
-        "key.runtime_name" : "_TtP16ArgumentProtocol16ArgumentProtocol_",
+        "key.runtime_name" : "_TtP4main16ArgumentProtocol_",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2198,7 +2198,7 @@
         "key.parsed_declaration" : "public protocol CommandProtocol",
         "key.parsed_scope.end" : 30,
         "key.parsed_scope.start" : 13,
-        "key.runtime_name" : "_TtP7Command15CommandProtocol_",
+        "key.runtime_name" : "_TtP4main15CommandProtocol_",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -5509,7 +5509,7 @@
         "key.parsed_declaration" : "public protocol OptionsProtocol",
         "key.parsed_scope.end" : 45,
         "key.parsed_scope.start" : 38,
-        "key.runtime_name" : "_TtP6Option15OptionsProtocol_",
+        "key.runtime_name" : "_TtP4main15OptionsProtocol_",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
