@@ -1,19 +1,22 @@
 aliases:
   - &steps-for-xcode
-    - checkout
-    - run: make test|xcpretty -r junit
-    - store_test_results:
-        path: build/reports/
-    - run: echo "ruby-2.3" > ~/.ruby-version
-    - restore_cache:
-        key: 1-gems-{{ checksum "Gemfile.lock" }}
-    - run: bundle check || bundle install --path vendor/bundle
-    - save_cache:
-        key: 1-gems-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
-    - run: curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
-    - run: bundle exec pod lib lint
+    shell: /bin/bash --login -eo pipefail
+    steps:
+      - checkout
+      - run: make bootstrap
+      - run: xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten $XCODE_FLAGS test|xcpretty -r junit
+      - store_test_results:
+          path: build/reports/
+      - run: echo "ruby-2.3" > ~/.ruby-version
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle check || bundle install --path vendor/bundle
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run: curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
+      - run: bundle exec pod lib lint
 
   - &steps-for-swiftpm
     - checkout
@@ -31,8 +34,7 @@ jobs:
   xcode_9:
     macos:
       xcode: "9.0"
-    shell: /bin/bash --login -eo pipefail
-    steps: *steps-for-xcode
+    <<: *steps-for-xcode
 
   swiftpm_4:
     macos:
@@ -47,8 +49,7 @@ jobs:
   xcode_9.1:
     macos:
       xcode: "9.1.0"
-    shell: /bin/bash --login -eo pipefail
-    steps: *steps-for-xcode
+    <<: *steps-for-xcode
 
   swiftpm_4.0.2:
     macos:
@@ -63,8 +64,7 @@ jobs:
   xcode_9.2:
     macos:
       xcode: "9.2.0"
-    shell: /bin/bash --login -eo pipefail
-    steps: *steps-for-xcode
+    <<: *steps-for-xcode
 
   swiftpm_4.0.3:
     macos:
@@ -79,8 +79,7 @@ jobs:
   xcode_9.3:
     macos:
       xcode: "9.3.0"
-    shell: /bin/bash --login -eo pipefail
-    steps: *steps-for-xcode
+    <<: *steps-for-xcode
 
   swiftpm_4.1:
     macos:
@@ -95,8 +94,9 @@ jobs:
   xcode_10.0:
     macos:
       xcode: "10.0.0"
-    shell: /bin/bash --login -eo pipefail
-    steps: *steps-for-xcode
+    environment:
+      XCODE_FLAGS: -parallel-testing-enabled NO
+    <<: *steps-for-xcode
 
   swiftpm_4.2:
     macos:
