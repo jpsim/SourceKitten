@@ -1,13 +1,13 @@
 [{
   "Sources\/Commandant\/Argument.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-    "key.length" : 2979,
+    "key.length" : 3873,
     "key.offset" : 0,
     "key.substructure" : [
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
         "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
-        "key.bodylength" : 704,
+        "key.bodylength" : 1029,
         "key.bodyoffset" : 246,
         "key.doc.column" : 15,
         "key.doc.comment" : "Describes an argument that can be provided on the command line.",
@@ -20,13 +20,13 @@
         "key.filepath" : "Sources\/Commandant\/Argument.swift",
         "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>Argument<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant8ArgumentV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;<\/decl.struct>",
         "key.kind" : "source.lang.swift.decl.struct",
-        "key.length" : 725,
+        "key.length" : 1050,
         "key.name" : "Argument",
         "key.namelength" : 8,
         "key.nameoffset" : 233,
         "key.offset" : 226,
         "key.parsed_declaration" : "public struct Argument<T>",
-        "key.parsed_scope.end" : 32,
+        "key.parsed_scope.end" : 38,
         "key.parsed_scope.start" : 12,
         "key.substructure" : [
           {
@@ -88,43 +88,69 @@
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.annotated_decl" : "<Declaration>public init(defaultValue: <Type usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/Type>? = default, usage: <Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
-            "key.bodylength" : 58,
-            "key.bodyoffset" : 679,
+            "key.annotated_decl" : "<Declaration>public let usageParameter: <Type usr=\"s:SS\">String<\/Type>?<\/Declaration>",
+            "key.doc.column" : 13,
+            "key.doc.comment" : "A human-readable string that describes this argument as a paramater shown\nin the list of possible parameters in help messages (e.g. for \"paths\", the\nuser would see <paths…>).",
+            "key.doc.declaration" : "public let usageParameter: String?",
+            "key.doc.file" : "Sources\/Commandant\/Argument.swift",
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Argument.swift\" line=\"26\" column=\"13\"><Name>usageParameter<\/Name><USR>s:10Commandant8ArgumentV14usageParameterSSSgv<\/USR><Declaration>public let usageParameter: String?<\/Declaration><CommentParts><Abstract><Para>A human-readable string that describes this argument as a paramater shown in the list of possible parameters in help messages (e.g. for “paths”, the user would see &lt;paths…&gt;).<\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.line" : 26,
+            "key.doc.name" : "usageParameter",
+            "key.doc.type" : "Other",
             "key.filepath" : "Sources\/Commandant\/Argument.swift",
-            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>defaultValue<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/ref.generic_type_param>?<\/decl.var.parameter.type> = <syntaxtype.keyword>default<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usage<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.constructor>",
-            "key.kind" : "source.lang.swift.decl.function.method.instance",
-            "key.length" : 104,
-            "key.name" : "init(defaultValue:usage:)",
-            "key.namelength" : 43,
-            "key.nameoffset" : 634,
-            "key.offset" : 634,
-            "key.parsed_declaration" : "public init(defaultValue: T? = nil, usage: String)",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>usageParameter<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct>?<\/decl.var.type><\/decl.var.instance>",
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 27,
+            "key.name" : "usageParameter",
+            "key.namelength" : 14,
+            "key.nameoffset" : 830,
+            "key.offset" : 826,
+            "key.parsed_declaration" : "public let usageParameter: String?",
             "key.parsed_scope.end" : 26,
-            "key.parsed_scope.start" : 23,
+            "key.parsed_scope.start" : 26,
+            "key.typename" : "String?",
+            "key.typeusr" : "_T0SSSgD",
+            "key.usr" : "s:10Commandant8ArgumentV14usageParameterSSSgv"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.annotated_decl" : "<Declaration>public init(defaultValue: <Type usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/Type>? = default, usage: <Type usr=\"s:SS\">String<\/Type>, usageParameter: <Type usr=\"s:SS\">String<\/Type>? = default)<\/Declaration>",
+            "key.bodylength" : 97,
+            "key.bodyoffset" : 939,
+            "key.filepath" : "Sources\/Commandant\/Argument.swift",
+            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>defaultValue<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/ref.generic_type_param>?<\/decl.var.parameter.type> = <syntaxtype.keyword>default<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usage<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usageParameter<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct>?<\/decl.var.parameter.type> = <syntaxtype.keyword>default<\/syntaxtype.keyword><\/decl.var.parameter>)<\/decl.function.constructor>",
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.length" : 174,
+            "key.name" : "init(defaultValue:usage:usageParameter:)",
+            "key.namelength" : 74,
+            "key.nameoffset" : 863,
+            "key.offset" : 863,
+            "key.parsed_declaration" : "public init(defaultValue: T? = nil, usage: String, usageParameter: String? = nil)",
+            "key.parsed_scope.end" : 32,
+            "key.parsed_scope.start" : 28,
             "key.substructure" : [
               
             ],
-            "key.typename" : "<T> (Argument<T>.Type) -> (T?, String) -> Argument<T>",
-            "key.typeusr" : "_T010Commandant8ArgumentVyxGxSg12defaultValue_SS5usagetcD",
-            "key.usr" : "s:10Commandant8ArgumentVACyxGxSg12defaultValue_SS5usagetcfc"
+            "key.typename" : "<T> (Argument<T>.Type) -> (T?, String, String?) -> Argument<T>",
+            "key.typeusr" : "_T010Commandant8ArgumentVyxGxSg12defaultValue_SS5usageSSSg0E9ParametertcD",
+            "key.usr" : "s:10Commandant8ArgumentVACyxGxSg12defaultValue_SS5usageSSSg0E9Parametertcfc"
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.fileprivate",
             "key.annotated_decl" : "<Declaration>fileprivate func invalidUsageError&lt;ClientError&gt;(_ value: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant8ArgumentV17invalidUsageError33_8CAE711C2CD19D07FEBBE5F857AB09FDLLAA0aE0Oyqd__GSSlF06ClientE0L_qd__mfp\">ClientError<\/Type>&gt;<\/Declaration>",
-            "key.bodylength" : 109,
-            "key.bodyoffset" : 839,
+            "key.bodylength" : 135,
+            "key.bodyoffset" : 1138,
             "key.filepath" : "Sources\/Commandant\/Argument.swift",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>fileprivate<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>invalidUsageError<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant8ArgumentV17invalidUsageError33_8CAE711C2CD19D07FEBBE5F857AB09FDLLAA0aE0Oyqd__GSSlF06ClientE0L_qd__mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>value<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant8ArgumentV17invalidUsageError33_8CAE711C2CD19D07FEBBE5F857AB09FDLLAA0aE0Oyqd__GSSlF06ClientE0L_qd__mfp\">ClientError<\/ref.generic_type_param>&gt;<\/decl.function.returntype><\/decl.function.method.instance>",
             "key.kind" : "source.lang.swift.decl.function.method.instance",
-            "key.length" : 196,
+            "key.length" : 222,
             "key.name" : "invalidUsageError(_:)",
             "key.namelength" : 47,
-            "key.nameoffset" : 758,
-            "key.offset" : 753,
+            "key.nameoffset" : 1057,
+            "key.offset" : 1052,
             "key.parsed_declaration" : "fileprivate func invalidUsageError<ClientError>(_ value: String) -> CommandantError<ClientError>",
-            "key.parsed_scope.end" : 31,
-            "key.parsed_scope.start" : 28,
+            "key.parsed_scope.end" : 37,
+            "key.parsed_scope.start" : 34,
             "key.substructure" : [
               
             ],
@@ -138,17 +164,133 @@
         "key.usr" : "s:10Commandant8ArgumentV"
       },
       {
+        "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
+        "key.bodylength" : 251,
+        "key.bodyoffset" : 1298,
+        "key.doc.column" : 15,
+        "key.doc.declaration" : "public struct Argument<T>",
+        "key.doc.file" : "Sources\/Commandant\/Argument.swift",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/Argument.swift\" line=\"12\" column=\"15\"><Name>Argument<\/Name><USR>s:10Commandant8ArgumentV<\/USR><Declaration>public struct Argument&lt;T&gt;<\/Declaration><CommentParts><Abstract><Para>Describes an argument that can be provided on the command line.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.line" : 12,
+        "key.doc.name" : "Argument",
+        "key.doc.type" : "Class",
+        "key.filepath" : "Sources\/Commandant\/Argument.swift",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>Argument<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant8ArgumentV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;<\/decl.struct>",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 272,
+        "key.name" : "Argument",
+        "key.namelength" : 8,
+        "key.nameoffset" : 1288,
+        "key.offset" : 1278,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>internal var usageParameterDescription: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
+            "key.bodylength" : 62,
+            "key.bodyoffset" : 1485,
+            "key.doc.column" : 15,
+            "key.doc.comment" : "A string describing this argument as a parameter in help messages. This falls back\nto `\"\\(self)\"` if `usageParameter` is `nil`",
+            "key.doc.declaration" : "internal var usageParameterDescription: String { get }",
+            "key.doc.file" : "Sources\/Commandant\/Argument.swift",
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Argument.swift\" line=\"43\" column=\"15\"><Name>usageParameterDescription<\/Name><USR>s:10Commandant8ArgumentV25usageParameterDescriptionSSv<\/USR><Declaration>internal var usageParameterDescription: String { get }<\/Declaration><CommentParts><Abstract><Para>A string describing this argument as a parameter in help messages. This falls back to <codeVoice>&quot;\\(self)&quot;<\/codeVoice> if <codeVoice>usageParameter<\/codeVoice> is <codeVoice>nil<\/codeVoice><\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.line" : 43,
+            "key.doc.name" : "usageParameterDescription",
+            "key.doc.type" : "Other",
+            "key.filepath" : "Sources\/Commandant\/Argument.swift",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>usageParameterDescription<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 102,
+            "key.name" : "usageParameterDescription",
+            "key.namelength" : 25,
+            "key.nameoffset" : 1450,
+            "key.offset" : 1446,
+            "key.parsed_declaration" : "internal var usageParameterDescription: String",
+            "key.parsed_scope.end" : 45,
+            "key.parsed_scope.start" : 43,
+            "key.related_decls" : [
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant8ArgumentVAAs8SequenceRzlE25usageParameterDescriptionSSv\">usageParameterDescription<\/RelatedName>"
+              }
+            ],
+            "key.typename" : "String",
+            "key.typeusr" : "_T0SSD",
+            "key.usr" : "s:10Commandant8ArgumentV25usageParameterDescriptionSSv"
+          }
+        ],
+        "key.typename" : "Argument<T>.Type",
+        "key.typeusr" : "_T010Commandant8ArgumentVyxGmD",
+        "key.usr" : "s:10Commandant8ArgumentV"
+      },
+      {
+        "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
+        "key.bodylength" : 254,
+        "key.bodyoffset" : 1590,
+        "key.doc.column" : 15,
+        "key.doc.declaration" : "public struct Argument<T>",
+        "key.doc.file" : "Sources\/Commandant\/Argument.swift",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/Argument.swift\" line=\"12\" column=\"15\"><Name>Argument<\/Name><USR>s:10Commandant8ArgumentV<\/USR><Declaration>public struct Argument&lt;T&gt;<\/Declaration><CommentParts><Abstract><Para>Describes an argument that can be provided on the command line.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.line" : 12,
+        "key.doc.name" : "Argument",
+        "key.doc.type" : "Class",
+        "key.filepath" : "Sources\/Commandant\/Argument.swift",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>Argument<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant8ArgumentV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;<\/decl.struct>",
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 293,
+        "key.name" : "Argument",
+        "key.namelength" : 8,
+        "key.nameoffset" : 1562,
+        "key.offset" : 1552,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.annotated_decl" : "<Declaration>internal var usageParameterDescription: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
+            "key.bodylength" : 65,
+            "key.bodyoffset" : 1777,
+            "key.doc.column" : 15,
+            "key.doc.comment" : "A string describing this argument as a parameter in help messages. This falls back\nto `\"\\(self)\"` if `usageParameter` is `nil`",
+            "key.doc.declaration" : "internal var usageParameterDescription: String { get }",
+            "key.doc.file" : "Sources\/Commandant\/Argument.swift",
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/Argument.swift\" line=\"51\" column=\"15\"><Name>usageParameterDescription<\/Name><USR>s:10Commandant8ArgumentVAAs8SequenceRzlE25usageParameterDescriptionSSv<\/USR><Declaration>internal var usageParameterDescription: String { get }<\/Declaration><CommentParts><Abstract><Para>A string describing this argument as a parameter in help messages. This falls back to <codeVoice>&quot;\\(self)&quot;<\/codeVoice> if <codeVoice>usageParameter<\/codeVoice> is <codeVoice>nil<\/codeVoice><\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.line" : 51,
+            "key.doc.name" : "usageParameterDescription",
+            "key.doc.type" : "Other",
+            "key.filepath" : "Sources\/Commandant\/Argument.swift",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>usageParameterDescription<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.type> { <syntaxtype.keyword>get<\/syntaxtype.keyword> }<\/decl.var.instance>",
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 105,
+            "key.name" : "usageParameterDescription",
+            "key.namelength" : 25,
+            "key.nameoffset" : 1742,
+            "key.offset" : 1738,
+            "key.parsed_declaration" : "internal var usageParameterDescription: String",
+            "key.parsed_scope.end" : 53,
+            "key.parsed_scope.start" : 51,
+            "key.related_decls" : [
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant8ArgumentV25usageParameterDescriptionSSv\">usageParameterDescription<\/RelatedName>"
+              }
+            ],
+            "key.typename" : "String",
+            "key.typeusr" : "_T0SSD",
+            "key.usr" : "s:10Commandant8ArgumentVAAs8SequenceRzlE25usageParameterDescriptionSSv"
+          }
+        ],
+        "key.typename" : "Argument<T>.Type",
+        "key.typeusr" : "_T010Commandant8ArgumentVyxGmD",
+        "key.usr" : "s:10Commandant8ArgumentV"
+      },
+      {
         "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
         "key.length" : 17,
         "key.name" : "MARK: - Operators",
         "key.namelength" : 0,
         "key.nameoffset" : 0,
-        "key.offset" : 956
+        "key.offset" : 1850
       },
       {
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 1979,
-        "key.bodyoffset" : 998,
+        "key.bodyoffset" : 1892,
         "key.doc.column" : 13,
         "key.doc.declaration" : "public enum CommandMode",
         "key.doc.file" : "Sources\/Commandant\/Command.swift",
@@ -162,14 +304,14 @@
         "key.length" : 2003,
         "key.name" : "CommandMode",
         "key.namelength" : 11,
-        "key.nameoffset" : 985,
-        "key.offset" : 975,
+        "key.nameoffset" : 1879,
+        "key.offset" : 1869,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.annotated_decl" : "<Declaration>public static func &lt;|&lt;T, ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, argument: <Type usr=\"s:10Commandant8ArgumentV\">Argument<\/Type>&lt;<Type usr=\"s:10Commandant11CommandModeO2looi6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ1TL_xmfp\">T<\/Type>&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant11CommandModeO2looi6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ1TL_xmfp\">T<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant11CommandModeO2looi6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ06ClientF0L_q_mfp\">ClientError<\/Type>&gt;&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
             "key.bodylength" : 518,
-            "key.bodyoffset" : 1333,
+            "key.bodyoffset" : 2227,
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given argument in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, the argument's `defaultValue` is used.",
             "key.doc.declaration" : "public static func <|<T, ClientError>(mode: CommandMode, argument: Argument<T>) -> Result<T, CommandantError<ClientError>> where T : ArgumentProtocol",
@@ -179,8 +321,8 @@
               }
             ],
             "key.doc.file" : "Sources\/Commandant\/Argument.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Argument.swift\" line=\"41\" column=\"21\"><Name>&lt;|(_:_:)<\/Name><USR>s:10Commandant11CommandModeO2looi6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ<\/USR><Declaration>public static func &lt;|&lt;T, ClientError&gt;(mode: CommandMode, argument: Argument&lt;T&gt;) -&gt; Result&lt;T, CommandantError&lt;ClientError&gt;&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Evaluates the given argument in the given mode.<\/Para><\/Abstract><Discussion><Para>If parsing command line arguments, and no value was specified on the command line, the argument’s <codeVoice>defaultValue<\/codeVoice> is used.<\/Para><\/Discussion><\/CommentParts><\/Function>",
-            "key.doc.line" : 41,
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Argument.swift\" line=\"63\" column=\"21\"><Name>&lt;|(_:_:)<\/Name><USR>s:10Commandant11CommandModeO2looi6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ<\/USR><Declaration>public static func &lt;|&lt;T, ClientError&gt;(mode: CommandMode, argument: Argument&lt;T&gt;) -&gt; Result&lt;T, CommandantError&lt;ClientError&gt;&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Evaluates the given argument in the given mode.<\/Para><\/Abstract><Discussion><Para>If parsing command line arguments, and no value was specified on the command line, the argument’s <codeVoice>defaultValue<\/codeVoice> is used.<\/Para><\/Discussion><\/CommentParts><\/Function>",
+            "key.doc.line" : 63,
             "key.doc.name" : "<|(_:_:)",
             "key.doc.type" : "Function",
             "key.filepath" : "Sources\/Commandant\/Argument.swift",
@@ -189,11 +331,11 @@
             "key.length" : 655,
             "key.name" : "<|(_:_:)",
             "key.namelength" : 79,
-            "key.nameoffset" : 1209,
-            "key.offset" : 1197,
+            "key.nameoffset" : 2103,
+            "key.offset" : 2091,
             "key.parsed_declaration" : "public static func <| <T: ArgumentProtocol, ClientError>(mode: CommandMode, argument: Argument<T>) -> Result<T, CommandantError<ClientError>>",
-            "key.parsed_scope.end" : 61,
-            "key.parsed_scope.start" : 41,
+            "key.parsed_scope.end" : 83,
+            "key.parsed_scope.start" : 63,
             "key.related_decls" : [
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant11CommandModeO2looi6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ\">&lt;|&lt;T, ClientError&gt;(_: CommandMode, _: Argument&lt;[T]&gt;) -&gt; Result&lt;[T], CommandantError&lt;ClientError&gt;&gt; where T : ArgumentProtocol<\/RelatedName>"
@@ -225,10 +367,10 @@
                 "key.kind" : "source.lang.swift.decl.generic_type_param",
                 "key.length" : 1,
                 "key.name" : "T",
-                "key.offset" : 1213,
+                "key.offset" : 2107,
                 "key.parsed_declaration" : "public static func <| <T: ArgumentProtocol, ClientError>(mode: CommandMode, argument: Argument<T>) -> Result<T, CommandantError<ClientError>>",
-                "key.parsed_scope.end" : 41,
-                "key.parsed_scope.start" : 41,
+                "key.parsed_scope.end" : 63,
+                "key.parsed_scope.start" : 63,
                 "key.typename" : "T.Type",
                 "key.typeusr" : "_T0xmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looi6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ1TL_xmfp"
@@ -242,7 +384,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.annotated_decl" : "<Declaration>public static func &lt;|&lt;T, ClientError&gt;(mode: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>, argument: <Type usr=\"s:10Commandant8ArgumentV\">Argument<\/Type>&lt;[<Type usr=\"s:10Commandant11CommandModeO2looi6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ1TL_xmfp\">T<\/Type>]&gt;) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;[<Type usr=\"s:10Commandant11CommandModeO2looi6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ1TL_xmfp\">T<\/Type>], <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant11CommandModeO2looi6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ06ClientF0L_q_mfp\">ClientError<\/Type>&gt;&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
             "key.bodylength" : 778,
-            "key.bodyoffset" : 2197,
+            "key.bodyoffset" : 3091,
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given argument list in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, the argument's `defaultValue` is used.",
             "key.doc.declaration" : "public static func <|<T, ClientError>(mode: CommandMode, argument: Argument<[T]>) -> Result<[T], CommandantError<ClientError>> where T : ArgumentProtocol",
@@ -252,8 +394,8 @@
               }
             ],
             "key.doc.file" : "Sources\/Commandant\/Argument.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Argument.swift\" line=\"67\" column=\"21\"><Name>&lt;|(_:_:)<\/Name><USR>s:10Commandant11CommandModeO2looi6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ<\/USR><Declaration>public static func &lt;|&lt;T, ClientError&gt;(mode: CommandMode, argument: Argument&lt;[T]&gt;) -&gt; Result&lt;[T], CommandantError&lt;ClientError&gt;&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Evaluates the given argument list in the given mode.<\/Para><\/Abstract><Discussion><Para>If parsing command line arguments, and no value was specified on the command line, the argument’s <codeVoice>defaultValue<\/codeVoice> is used.<\/Para><\/Discussion><\/CommentParts><\/Function>",
-            "key.doc.line" : 67,
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Argument.swift\" line=\"89\" column=\"21\"><Name>&lt;|(_:_:)<\/Name><USR>s:10Commandant11CommandModeO2looi6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ<\/USR><Declaration>public static func &lt;|&lt;T, ClientError&gt;(mode: CommandMode, argument: Argument&lt;[T]&gt;) -&gt; Result&lt;[T], CommandantError&lt;ClientError&gt;&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Evaluates the given argument list in the given mode.<\/Para><\/Abstract><Discussion><Para>If parsing command line arguments, and no value was specified on the command line, the argument’s <codeVoice>defaultValue<\/codeVoice> is used.<\/Para><\/Discussion><\/CommentParts><\/Function>",
+            "key.doc.line" : 89,
             "key.doc.name" : "<|(_:_:)",
             "key.doc.type" : "Function",
             "key.filepath" : "Sources\/Commandant\/Argument.swift",
@@ -262,11 +404,11 @@
             "key.length" : 919,
             "key.name" : "<|(_:_:)",
             "key.namelength" : 81,
-            "key.nameoffset" : 2069,
-            "key.offset" : 2057,
+            "key.nameoffset" : 2963,
+            "key.offset" : 2951,
             "key.parsed_declaration" : "public static func <| <T: ArgumentProtocol, ClientError>(mode: CommandMode, argument: Argument<[T]>) -> Result<[T], CommandantError<ClientError>>",
-            "key.parsed_scope.end" : 99,
-            "key.parsed_scope.start" : 67,
+            "key.parsed_scope.end" : 121,
+            "key.parsed_scope.start" : 89,
             "key.related_decls" : [
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant11CommandModeO2looi6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ\">&lt;|&lt;T, ClientError&gt;(_: CommandMode, _: Argument&lt;T&gt;) -&gt; Result&lt;T, CommandantError&lt;ClientError&gt;&gt; where T : ArgumentProtocol<\/RelatedName>"
@@ -298,10 +440,10 @@
                 "key.kind" : "source.lang.swift.decl.generic_type_param",
                 "key.length" : 1,
                 "key.name" : "T",
-                "key.offset" : 2073,
+                "key.offset" : 2967,
                 "key.parsed_declaration" : "public static func <| <T: ArgumentProtocol, ClientError>(mode: CommandMode, argument: Argument<[T]>) -> Result<[T], CommandantError<ClientError>>",
-                "key.parsed_scope.end" : 67,
-                "key.parsed_scope.start" : 67,
+                "key.parsed_scope.end" : 89,
+                "key.parsed_scope.start" : 89,
                 "key.typename" : "T.Type",
                 "key.typeusr" : "_T0xmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looi6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ1TL_xmfp"
@@ -321,7 +463,7 @@
 }, {
   "Sources\/Commandant\/ArgumentParser.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-    "key.length" : 4956,
+    "key.length" : 4981,
     "key.offset" : 0,
     "key.substructure" : [
       {
@@ -475,18 +617,18 @@
         "key.accessibility" : "source.lang.swift.accessibility.private",
         "key.annotated_decl" : "<Declaration>private func ==(lhs: <Type usr=\"s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO\">RawArgument<\/Type>, rhs: <Type usr=\"s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO\">RawArgument<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type><\/Declaration>",
         "key.bodylength" : 239,
-        "key.bodyoffset" : 640,
+        "key.bodyoffset" : 658,
         "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
         "key.fully_annotated_decl" : "<decl.function.operator.infix><syntaxtype.keyword>private<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>==<\/decl.name>(<decl.var.parameter><decl.var.parameter.name>lhs<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO\">RawArgument<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.name>rhs<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.enum usr=\"s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO\">RawArgument<\/ref.enum><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.struct usr=\"s:Sb\">Bool<\/ref.struct><\/decl.function.returntype><\/decl.function.operator.infix>",
         "key.kind" : "source.lang.swift.decl.function.free",
         "key.length" : 293,
         "key.name" : "==(_:_:)",
         "key.namelength" : 38,
-        "key.nameoffset" : 592,
-        "key.offset" : 587,
+        "key.nameoffset" : 610,
+        "key.offset" : 605,
         "key.parsed_declaration" : "private func ==(lhs: RawArgument, rhs: RawArgument) -> Bool",
-        "key.parsed_scope.end" : 39,
-        "key.parsed_scope.start" : 25,
+        "key.parsed_scope.end" : 40,
+        "key.parsed_scope.start" : 26,
         "key.related_decls" : [
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant10OrderedSetV2eeoiSbACyxG_AEtFZ\">==(_: OrderedSet, _: OrderedSet) -&gt; Bool<\/RelatedName>"
@@ -858,10 +1000,10 @@
             "key.annotated_decl" : "<RelatedName usr=\"s:10Foundation6LocaleV2eeoiSbAC_ACtFZ\">==(_: Locale, _: Locale) -&gt; Bool<\/RelatedName>"
           },
           {
-            "key.annotated_decl" : "<RelatedName usr=\"s:6Result2eeoiSbx_xtAA0A8ProtocolRzs9Equatable5ErrorRpzsAD5ValueRpzlF\">==&lt;T&gt;(_: T, _: T) -&gt; Bool where T : ResultProtocol, T.Error : Equatable, T.Value : Equatable<\/RelatedName>"
+            "key.annotated_decl" : "<RelatedName usr=\"s:6Result7NoErrorO2eeoiSbAC_ACtFZ\">==(_: NoError, _: NoError) -&gt; Bool<\/RelatedName>"
           },
           {
-            "key.annotated_decl" : "<RelatedName usr=\"s:6Result7NoErrorO2eeoiSbAC_ACtFZ\">==(_: NoError, _: NoError) -&gt; Bool<\/RelatedName>"
+            "key.annotated_decl" : "<RelatedName usr=\"s:6ResultAAOAAs9EquatableRzsACR_s5ErrorR_r0_lE2eeoiSbAByxq_G_AFtFZ\">==(_: Result&lt;Value, Error&gt;, _: Result&lt;Value, Error&gt;) -&gt; Bool<\/RelatedName>"
           }
         ],
         "key.substructure" : [
@@ -874,7 +1016,7 @@
       {
         "key.annotated_decl" : "<Declaration>private enum RawArgument : <Type usr=\"s:s9EquatableP\">Equatable<\/Type><\/Declaration>",
         "key.bodylength" : 214,
-        "key.bodyoffset" : 930,
+        "key.bodyoffset" : 955,
         "key.doc.column" : 14,
         "key.doc.declaration" : "private enum RawArgument : Equatable",
         "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -886,7 +1028,7 @@
           {
             "key.kind" : "source.lang.swift.structure.elem.typeref",
             "key.length" : 23,
-            "key.offset" : 905
+            "key.offset" : 930
           }
         ],
         "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -900,14 +1042,14 @@
         "key.length" : 263,
         "key.name" : "RawArgument",
         "key.namelength" : 11,
-        "key.nameoffset" : 892,
-        "key.offset" : 882,
+        "key.nameoffset" : 917,
+        "key.offset" : 907,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.fileprivate",
             "key.annotated_decl" : "<Declaration>fileprivate var description: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 173,
-            "key.bodyoffset" : 969,
+            "key.bodyoffset" : 994,
             "key.doc.declaration" : "var description: String { get }",
             "key.doc.discussion" : [
               {
@@ -929,16 +1071,16 @@
             "key.length" : 199,
             "key.name" : "description",
             "key.namelength" : 11,
-            "key.nameoffset" : 948,
-            "key.offset" : 944,
+            "key.nameoffset" : 973,
+            "key.offset" : 969,
             "key.overrides" : [
               {
                 "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSv"
               }
             ],
             "key.parsed_declaration" : "fileprivate var description: String",
-            "key.parsed_scope.end" : 53,
-            "key.parsed_scope.start" : 42,
+            "key.parsed_scope.end" : 55,
+            "key.parsed_scope.start" : 44,
             "key.typename" : "String",
             "key.typeusr" : "_T0SSD",
             "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSv"
@@ -957,13 +1099,13 @@
           }
         ],
         "key.bodylength" : 3713,
-        "key.bodyoffset" : 1241,
+        "key.bodyoffset" : 1266,
         "key.doc.column" : 20,
         "key.doc.comment" : "Destructively parses a list of command-line arguments.",
         "key.doc.declaration" : "public final class ArgumentParser",
         "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"57\" column=\"20\"><Name>ArgumentParser<\/Name><USR>s:10Commandant14ArgumentParserC<\/USR><Declaration>public final class ArgumentParser<\/Declaration><CommentParts><Abstract><Para>Destructively parses a list of command-line arguments.<\/Para><\/Abstract><\/CommentParts><\/Class>",
-        "key.doc.line" : 57,
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"59\" column=\"20\"><Name>ArgumentParser<\/Name><USR>s:10Commandant14ArgumentParserC<\/USR><Declaration>public final class ArgumentParser<\/Declaration><CommentParts><Abstract><Para>Destructively parses a list of command-line arguments.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.line" : 59,
         "key.doc.name" : "ArgumentParser",
         "key.doc.type" : "Class",
         "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -972,11 +1114,11 @@
         "key.length" : 3736,
         "key.name" : "ArgumentParser",
         "key.namelength" : 14,
-        "key.nameoffset" : 1225,
-        "key.offset" : 1219,
+        "key.nameoffset" : 1250,
+        "key.offset" : 1244,
         "key.parsed_declaration" : "public final class ArgumentParser",
-        "key.parsed_scope.end" : 192,
-        "key.parsed_scope.start" : 57,
+        "key.parsed_scope.end" : 194,
+        "key.parsed_scope.start" : 59,
         "key.runtime_name" : "_TtC8__main__14ArgumentParser",
         "key.substructure" : [
           {
@@ -986,8 +1128,8 @@
             "key.doc.comment" : "The remaining arguments to be extracted, in their raw form.",
             "key.doc.declaration" : "private var rawArguments: [Commandant.RawArgument]",
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"59\" column=\"14\"><Name>rawArguments<\/Name><USR>s:10Commandant14ArgumentParserC12rawArguments33_BA859BFBBE9DF3838A11641CB273713ELLSayAA03RawB0AELLOGv<\/USR><Declaration>private var rawArguments: [Commandant.RawArgument]<\/Declaration><CommentParts><Abstract><Para>The remaining arguments to be extracted, in their raw form.<\/Para><\/Abstract><\/CommentParts><\/Other>",
-            "key.doc.line" : 59,
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"61\" column=\"14\"><Name>rawArguments<\/Name><USR>s:10Commandant14ArgumentParserC12rawArguments33_BA859BFBBE9DF3838A11641CB273713ELLSayAA03RawB0AELLOGv<\/USR><Declaration>private var rawArguments: [Commandant.RawArgument]<\/Declaration><CommentParts><Abstract><Para>The remaining arguments to be extracted, in their raw form.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.line" : 61,
             "key.doc.name" : "rawArguments",
             "key.doc.type" : "Other",
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -996,11 +1138,11 @@
             "key.length" : 36,
             "key.name" : "rawArguments",
             "key.namelength" : 12,
-            "key.nameoffset" : 1320,
-            "key.offset" : 1316,
+            "key.nameoffset" : 1345,
+            "key.offset" : 1341,
             "key.parsed_declaration" : "private var rawArguments: [RawArgument] = []",
-            "key.parsed_scope.end" : 59,
-            "key.parsed_scope.start" : 59,
+            "key.parsed_scope.end" : 61,
+            "key.parsed_scope.start" : 61,
             "key.setter_accessibility" : "source.lang.swift.accessibility.private",
             "key.typename" : "[RawArgument]",
             "key.typeusr" : "_T0Say10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
@@ -1010,13 +1152,13 @@
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.annotated_decl" : "<Declaration>public init(_ arguments: [<Type usr=\"s:SS\">String<\/Type>])<\/Declaration>",
             "key.bodylength" : 741,
-            "key.bodyoffset" : 1468,
+            "key.bodyoffset" : 1493,
             "key.doc.column" : 9,
             "key.doc.comment" : "Initializes the generator from a simple list of command-line arguments.",
             "key.doc.declaration" : "public init(_ arguments: [String])",
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"62\" column=\"9\"><Name>init(_:)<\/Name><USR>s:10Commandant14ArgumentParserCACSaySSGcfc<\/USR><Declaration>public init(_ arguments: [String])<\/Declaration><CommentParts><Abstract><Para>Initializes the generator from a simple list of command-line arguments.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-            "key.doc.line" : 62,
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"64\" column=\"9\"><Name>init(_:)<\/Name><USR>s:10Commandant14ArgumentParserCACSaySSGcfc<\/USR><Declaration>public init(_ arguments: [String])<\/Declaration><CommentParts><Abstract><Para>Initializes the generator from a simple list of command-line arguments.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+            "key.doc.line" : 64,
             "key.doc.name" : "init(_:)",
             "key.doc.type" : "Function",
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -1025,11 +1167,11 @@
             "key.length" : 771,
             "key.name" : "init(_:)",
             "key.namelength" : 27,
-            "key.nameoffset" : 1439,
-            "key.offset" : 1439,
+            "key.nameoffset" : 1464,
+            "key.offset" : 1464,
             "key.parsed_declaration" : "public init(_ arguments: [String])",
-            "key.parsed_scope.end" : 87,
-            "key.parsed_scope.start" : 62,
+            "key.parsed_scope.end" : 89,
+            "key.parsed_scope.start" : 64,
             "key.substructure" : [
               
             ],
@@ -1041,13 +1183,13 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal var remainingArguments: [<Type usr=\"s:SS\">String<\/Type>]? { get }<\/Declaration>",
             "key.bodylength" : 76,
-            "key.bodyoffset" : 2295,
+            "key.bodyoffset" : 2320,
             "key.doc.column" : 15,
             "key.doc.comment" : "Returns the remaining arguments.",
             "key.doc.declaration" : "internal var remainingArguments: [String]? { get }",
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"90\" column=\"15\"><Name>remainingArguments<\/Name><USR>s:10Commandant14ArgumentParserC18remainingArgumentsSaySSGSgv<\/USR><Declaration>internal var remainingArguments: [String]? { get }<\/Declaration><CommentParts><Abstract><Para>Returns the remaining arguments.<\/Para><\/Abstract><\/CommentParts><\/Other>",
-            "key.doc.line" : 90,
+            "key.doc.full_as_xml" : "<Other file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"92\" column=\"15\"><Name>remainingArguments<\/Name><USR>s:10Commandant14ArgumentParserC18remainingArgumentsSaySSGSgv<\/USR><Declaration>internal var remainingArguments: [String]? { get }<\/Declaration><CommentParts><Abstract><Para>Returns the remaining arguments.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.line" : 92,
             "key.doc.name" : "remainingArguments",
             "key.doc.type" : "Other",
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -1056,11 +1198,11 @@
             "key.length" : 112,
             "key.name" : "remainingArguments",
             "key.namelength" : 18,
-            "key.nameoffset" : 2264,
-            "key.offset" : 2260,
+            "key.nameoffset" : 2289,
+            "key.offset" : 2285,
             "key.parsed_declaration" : "internal var remainingArguments: [String]?",
-            "key.parsed_scope.end" : 92,
-            "key.parsed_scope.start" : 90,
+            "key.parsed_scope.end" : 94,
+            "key.parsed_scope.start" : 92,
             "key.typename" : "[String]?",
             "key.typeusr" : "_T0SaySSGSgD",
             "key.usr" : "s:10Commandant14ArgumentParserC18remainingArgumentsSaySSGSgv"
@@ -1069,7 +1211,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consumeBoolean(forKey key: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type>?<\/Declaration>",
             "key.bodylength" : 281,
-            "key.bodyoffset" : 2640,
+            "key.bodyoffset" : 2665,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given key was enabled or disabled, or nil if it\nwas not given at all.\n\nIf the key is found, it is then removed from the list of arguments\nremaining to be parsed.",
             "key.doc.declaration" : "internal func consumeBoolean(forKey key: String) -> Bool?",
@@ -1079,8 +1221,8 @@
               }
             ],
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"99\" column=\"16\"><Name>consumeBoolean(forKey:)<\/Name><USR>s:10Commandant14ArgumentParserC14consumeBooleanSbSgSS6forKey_tF<\/USR><Declaration>internal func consumeBoolean(forKey key: String) -&gt; Bool?<\/Declaration><CommentParts><Abstract><Para>Returns whether the given key was enabled or disabled, or nil if it was not given at all.<\/Para><\/Abstract><Discussion><Para>If the key is found, it is then removed from the list of arguments remaining to be parsed.<\/Para><\/Discussion><\/CommentParts><\/Function>",
-            "key.doc.line" : 99,
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"101\" column=\"16\"><Name>consumeBoolean(forKey:)<\/Name><USR>s:10Commandant14ArgumentParserC14consumeBooleanSbSgSS6forKey_tF<\/USR><Declaration>internal func consumeBoolean(forKey key: String) -&gt; Bool?<\/Declaration><CommentParts><Abstract><Para>Returns whether the given key was enabled or disabled, or nil if it was not given at all.<\/Para><\/Abstract><Discussion><Para>If the key is found, it is then removed from the list of arguments remaining to be parsed.<\/Para><\/Discussion><\/CommentParts><\/Function>",
+            "key.doc.line" : 101,
             "key.doc.name" : "consumeBoolean(forKey:)",
             "key.doc.type" : "Function",
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -1089,11 +1231,11 @@
             "key.length" : 332,
             "key.name" : "consumeBoolean(forKey:)",
             "key.namelength" : 34,
-            "key.nameoffset" : 2595,
-            "key.offset" : 2590,
+            "key.nameoffset" : 2620,
+            "key.offset" : 2615,
             "key.parsed_declaration" : "internal func consumeBoolean(forKey key: String) -> Bool?",
-            "key.parsed_scope.end" : 115,
-            "key.parsed_scope.start" : 99,
+            "key.parsed_scope.end" : 117,
+            "key.parsed_scope.start" : 101,
             "key.related_decls" : [
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant14ArgumentParserC14consumeBooleanSbs9CharacterV4flag_tF\">consumeBoolean(flag:)<\/RelatedName>"
@@ -1110,7 +1252,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consumeValue(forKey key: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:6ResultAAO\">Result<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>?, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:6Result7NoErrorO\">NoError<\/Type>&gt;&gt;<\/Declaration>",
             "key.bodylength" : 503,
-            "key.bodyoffset" : 3318,
+            "key.bodyoffset" : 3343,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns the value associated with the given flag, or nil if the flag was\nnot specified. If the key is presented, but no value was given, an error\nis returned.\n\nIf a value is found, the key and the value are both removed from the\nlist of arguments remaining to be parsed.",
             "key.doc.declaration" : "internal func consumeValue(forKey key: String) -> Result<String?, CommandantError<NoError>>",
@@ -1120,8 +1262,8 @@
               }
             ],
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"123\" column=\"16\"><Name>consumeValue(forKey:)<\/Name><USR>s:10Commandant14ArgumentParserC12consumeValue6ResultAEOySSSgAA0A5ErrorOyAE02NoG0OGGSS6forKey_tF<\/USR><Declaration>internal func consumeValue(forKey key: String) -&gt; Result&lt;String?, CommandantError&lt;NoError&gt;&gt;<\/Declaration><CommentParts><Abstract><Para>Returns the value associated with the given flag, or nil if the flag was not specified. If the key is presented, but no value was given, an error is returned.<\/Para><\/Abstract><Discussion><Para>If a value is found, the key and the value are both removed from the list of arguments remaining to be parsed.<\/Para><\/Discussion><\/CommentParts><\/Function>",
-            "key.doc.line" : 123,
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"125\" column=\"16\"><Name>consumeValue(forKey:)<\/Name><USR>s:10Commandant14ArgumentParserC12consumeValue6ResultAEOySSSgAA0A5ErrorOyAE02NoG0OGGSS6forKey_tF<\/USR><Declaration>internal func consumeValue(forKey key: String) -&gt; Result&lt;String?, CommandantError&lt;NoError&gt;&gt;<\/Declaration><CommentParts><Abstract><Para>Returns the value associated with the given flag, or nil if the flag was not specified. If the key is presented, but no value was given, an error is returned.<\/Para><\/Abstract><Discussion><Para>If a value is found, the key and the value are both removed from the list of arguments remaining to be parsed.<\/Para><\/Discussion><\/CommentParts><\/Function>",
+            "key.doc.line" : 125,
             "key.doc.name" : "consumeValue(forKey:)",
             "key.doc.type" : "Function",
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -1130,11 +1272,11 @@
             "key.length" : 588,
             "key.name" : "consumeValue(forKey:)",
             "key.namelength" : 32,
-            "key.nameoffset" : 3239,
-            "key.offset" : 3234,
+            "key.nameoffset" : 3264,
+            "key.offset" : 3259,
             "key.parsed_declaration" : "internal func consumeValue(forKey key: String) -> Result<String?, CommandantError<NoError>>",
-            "key.parsed_scope.end" : 148,
-            "key.parsed_scope.start" : 123,
+            "key.parsed_scope.end" : 150,
+            "key.parsed_scope.start" : 125,
             "key.substructure" : [
               
             ],
@@ -1146,13 +1288,13 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consumePositionalArgument() -&gt; <Type usr=\"s:SS\">String<\/Type>?<\/Declaration>",
             "key.bodylength" : 164,
-            "key.bodyoffset" : 4007,
+            "key.bodyoffset" : 4032,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns the next positional argument that hasn't yet been returned, or\nnil if there are no more positional arguments.",
             "key.doc.declaration" : "internal func consumePositionalArgument() -> String?",
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"152\" column=\"16\"><Name>consumePositionalArgument()<\/Name><USR>s:10Commandant14ArgumentParserC017consumePositionalB0SSSgyF<\/USR><Declaration>internal func consumePositionalArgument() -&gt; String?<\/Declaration><CommentParts><Abstract><Para>Returns the next positional argument that hasn’t yet been returned, or nil if there are no more positional arguments.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-            "key.doc.line" : 152,
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"154\" column=\"16\"><Name>consumePositionalArgument()<\/Name><USR>s:10Commandant14ArgumentParserC017consumePositionalB0SSSgyF<\/USR><Declaration>internal func consumePositionalArgument() -&gt; String?<\/Declaration><CommentParts><Abstract><Para>Returns the next positional argument that hasn’t yet been returned, or nil if there are no more positional arguments.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+            "key.doc.line" : 154,
             "key.doc.name" : "consumePositionalArgument()",
             "key.doc.type" : "Function",
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -1161,11 +1303,11 @@
             "key.length" : 210,
             "key.name" : "consumePositionalArgument()",
             "key.namelength" : 27,
-            "key.nameoffset" : 3967,
-            "key.offset" : 3962,
+            "key.nameoffset" : 3992,
+            "key.offset" : 3987,
             "key.parsed_declaration" : "internal func consumePositionalArgument() -> String?",
-            "key.parsed_scope.end" : 161,
-            "key.parsed_scope.start" : 152,
+            "key.parsed_scope.end" : 163,
+            "key.parsed_scope.start" : 154,
             "key.substructure" : [
               
             ],
@@ -1177,13 +1319,13 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consume(key: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type><\/Declaration>",
             "key.bodylength" : 143,
-            "key.bodyoffset" : 4326,
+            "key.bodyoffset" : 4351,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given key was specified and removes it from the\nlist of arguments remaining.",
             "key.doc.declaration" : "internal func consume(key: String) -> Bool",
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"165\" column=\"16\"><Name>consume(key:)<\/Name><USR>s:10Commandant14ArgumentParserC7consumeSbSS3key_tF<\/USR><Declaration>internal func consume(key: String) -&gt; Bool<\/Declaration><CommentParts><Abstract><Para>Returns whether the given key was specified and removes it from the list of arguments remaining.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-            "key.doc.line" : 165,
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"167\" column=\"16\"><Name>consume(key:)<\/Name><USR>s:10Commandant14ArgumentParserC7consumeSbSS3key_tF<\/USR><Declaration>internal func consume(key: String) -&gt; Bool<\/Declaration><CommentParts><Abstract><Para>Returns whether the given key was specified and removes it from the list of arguments remaining.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+            "key.doc.line" : 167,
             "key.doc.name" : "consume(key:)",
             "key.doc.type" : "Function",
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -1192,11 +1334,11 @@
             "key.length" : 179,
             "key.name" : "consume(key:)",
             "key.namelength" : 20,
-            "key.nameoffset" : 4296,
-            "key.offset" : 4291,
+            "key.nameoffset" : 4321,
+            "key.offset" : 4316,
             "key.parsed_declaration" : "internal func consume(key: String) -> Bool",
-            "key.parsed_scope.end" : 170,
-            "key.parsed_scope.start" : 165,
+            "key.parsed_scope.end" : 172,
+            "key.parsed_scope.start" : 167,
             "key.substructure" : [
               
             ],
@@ -1208,13 +1350,13 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>internal func consumeBoolean(flag: <Type usr=\"s:s9CharacterV\">Character<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type><\/Declaration>",
             "key.bodylength" : 316,
-            "key.bodyoffset" : 4636,
+            "key.bodyoffset" : 4661,
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given flag was specified and removes it from the\nlist of arguments remaining.",
             "key.doc.declaration" : "internal func consumeBoolean(flag: Character) -> Bool",
             "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"174\" column=\"16\"><Name>consumeBoolean(flag:)<\/Name><USR>s:10Commandant14ArgumentParserC14consumeBooleanSbs9CharacterV4flag_tF<\/USR><Declaration>internal func consumeBoolean(flag: Character) -&gt; Bool<\/Declaration><CommentParts><Abstract><Para>Returns whether the given flag was specified and removes it from the list of arguments remaining.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-            "key.doc.line" : 174,
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/ArgumentParser.swift\" line=\"176\" column=\"16\"><Name>consumeBoolean(flag:)<\/Name><USR>s:10Commandant14ArgumentParserC14consumeBooleanSbs9CharacterV4flag_tF<\/USR><Declaration>internal func consumeBoolean(flag: Character) -&gt; Bool<\/Declaration><CommentParts><Abstract><Para>Returns whether the given flag was specified and removes it from the list of arguments remaining.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+            "key.doc.line" : 176,
             "key.doc.name" : "consumeBoolean(flag:)",
             "key.doc.type" : "Function",
             "key.filepath" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -1223,11 +1365,11 @@
             "key.length" : 363,
             "key.name" : "consumeBoolean(flag:)",
             "key.namelength" : 31,
-            "key.nameoffset" : 4595,
-            "key.offset" : 4590,
+            "key.nameoffset" : 4620,
+            "key.offset" : 4615,
             "key.parsed_declaration" : "internal func consumeBoolean(flag: Character) -> Bool",
-            "key.parsed_scope.end" : 191,
-            "key.parsed_scope.start" : 174,
+            "key.parsed_scope.end" : 193,
+            "key.parsed_scope.start" : 176,
             "key.related_decls" : [
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant14ArgumentParserC14consumeBooleanSbSgSS6forKey_tF\">consumeBoolean(forKey:)<\/RelatedName>"
@@ -2692,7 +2834,7 @@
 }, {
   "Sources\/Commandant\/Errors.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-    "key.length" : 5561,
+    "key.length" : 5753,
     "key.offset" : 0,
     "key.substructure" : [
       {
@@ -3118,7 +3260,7 @@
       {
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ argument: <Type usr=\"s:10Commandant8ArgumentV\">Argument<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF1TL_xmfp\">T<\/Type>&gt;) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
-        "key.bodylength" : 282,
+        "key.bodylength" : 378,
         "key.bodyoffset" : 3032,
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the argument.",
@@ -3131,13 +3273,13 @@
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
         "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>informativeUsageError<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF06ClientD0L_q_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>argument<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant8ArgumentV\">Argument<\/ref.struct>&lt;<ref.generic_type_param usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/ref.generic_type_param>&gt;<\/decl.function.returntype> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.free>",
         "key.kind" : "source.lang.swift.decl.function.free",
-        "key.length" : 402,
+        "key.length" : 498,
         "key.name" : "informativeUsageError(_:)",
         "key.namelength" : 80,
         "key.nameoffset" : 2918,
         "key.offset" : 2913,
         "key.parsed_declaration" : "internal func informativeUsageError<T: ArgumentProtocol, ClientError>(_ argument: Argument<T>) -> CommandantError<ClientError>",
-        "key.parsed_scope.end" : 102,
+        "key.parsed_scope.end" : 104,
         "key.parsed_scope.start" : 87,
         "key.related_decls" : [
           {
@@ -3178,27 +3320,27 @@
       {
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ argument: <Type usr=\"s:10Commandant8ArgumentV\">Argument<\/Type>&lt;[<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF1TL_xmfp\">T<\/Type>]&gt;) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
-        "key.bodylength" : 282,
-        "key.bodyoffset" : 3516,
+        "key.bodylength" : 378,
+        "key.bodyoffset" : 3612,
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the argument list.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ argument: Argument<[T]>) -> CommandantError<ClientError> where T : ArgumentProtocol",
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
-        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"105\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ argument: Argument&lt;[T]&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the argument list.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-        "key.doc.line" : 105,
+        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"107\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ argument: Argument&lt;[T]&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the argument list.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+        "key.doc.line" : 107,
         "key.doc.name" : "informativeUsageError(_:)",
         "key.doc.type" : "Function",
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
         "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>informativeUsageError<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF1TL_xmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF06ClientD0L_q_mfp\"><decl.generic_type_param.name>ClientError<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>argument<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:10Commandant8ArgumentV\">Argument<\/ref.struct>&lt;[<ref.generic_type_param usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF1TL_xmfp\">T<\/ref.generic_type_param>]&gt;<\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.enum usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/ref.enum>&lt;<ref.generic_type_param usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/ref.generic_type_param>&gt;<\/decl.function.returntype> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.free>",
         "key.kind" : "source.lang.swift.decl.function.free",
-        "key.length" : 404,
+        "key.length" : 500,
         "key.name" : "informativeUsageError(_:)",
         "key.namelength" : 82,
-        "key.nameoffset" : 3400,
-        "key.offset" : 3395,
+        "key.nameoffset" : 3496,
+        "key.offset" : 3491,
         "key.parsed_declaration" : "internal func informativeUsageError<T: ArgumentProtocol, ClientError>(_ argument: Argument<[T]>) -> CommandantError<ClientError>",
-        "key.parsed_scope.end" : 120,
-        "key.parsed_scope.start" : 105,
+        "key.parsed_scope.end" : 124,
+        "key.parsed_scope.start" : 107,
         "key.related_decls" : [
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant21informativeUsageErrorAA0aD0OyxGSS_SS5usagetlF\">informativeUsageError(_:usage:)<\/RelatedName>"
@@ -3241,19 +3383,19 @@
         "key.name" : "MARK: Option",
         "key.namelength" : 0,
         "key.nameoffset" : 0,
-        "key.offset" : 3804
+        "key.offset" : 3996
       },
       {
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ keyValueExample: <Type usr=\"s:SS\">String<\/Type>, option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GSS_AA6OptionVyxG6optiontr0_lF1TL_xmfp\">T<\/Type>&gt;) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GSS_AA6OptionVyxG6optiontr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt;<\/Declaration>",
         "key.bodylength" : 76,
-        "key.bodyoffset" : 4079,
+        "key.bodyoffset" : 4271,
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option, with the given\nexample of key (and value, if applicable) usage.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ keyValueExample: String, option: Option<T>) -> CommandantError<ClientError>",
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
-        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"126\" column=\"15\"><Name>informativeUsageError(_:option:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GSS_AA6OptionVyxG6optiontr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ keyValueExample: String, option: Option&lt;T&gt;) -&gt; CommandantError&lt;ClientError&gt;<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option, with the given example of key (and value, if applicable) usage.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-        "key.doc.line" : 126,
+        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"130\" column=\"15\"><Name>informativeUsageError(_:option:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GSS_AA6OptionVyxG6optiontr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ keyValueExample: String, option: Option&lt;T&gt;) -&gt; CommandantError&lt;ClientError&gt;<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option, with the given example of key (and value, if applicable) usage.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+        "key.doc.line" : 130,
         "key.doc.name" : "informativeUsageError(_:option:)",
         "key.doc.type" : "Function",
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
@@ -3262,11 +3404,11 @@
         "key.length" : 199,
         "key.name" : "informativeUsageError(_:option:)",
         "key.namelength" : 83,
-        "key.nameoffset" : 3962,
-        "key.offset" : 3957,
+        "key.nameoffset" : 4154,
+        "key.offset" : 4149,
         "key.parsed_declaration" : "internal func informativeUsageError<T, ClientError>(_ keyValueExample: String, option: Option<T>) -> CommandantError<ClientError>",
-        "key.parsed_scope.end" : 128,
-        "key.parsed_scope.start" : 126,
+        "key.parsed_scope.end" : 132,
+        "key.parsed_scope.start" : 130,
         "key.related_decls" : [
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant21informativeUsageErrorAA0aD0OyxGSS_SS5usagetlF\">informativeUsageError(_:usage:)<\/RelatedName>"
@@ -3307,13 +3449,13 @@
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVyxGAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>&gt;) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVyxGAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.bodylength" : 89,
-        "key.bodyoffset" : 4344,
+        "key.bodyoffset" : 4536,
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ option: Option<T>) -> CommandantError<ClientError> where T : ArgumentProtocol",
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
-        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"131\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVyxGAA16ArgumentProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: Option&lt;T&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-        "key.doc.line" : 131,
+        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"135\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVyxGAA16ArgumentProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: Option&lt;T&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+        "key.doc.line" : 135,
         "key.doc.name" : "informativeUsageError(_:)",
         "key.doc.type" : "Function",
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
@@ -3322,11 +3464,11 @@
         "key.length" : 205,
         "key.name" : "informativeUsageError(_:)",
         "key.namelength" : 76,
-        "key.nameoffset" : 4234,
-        "key.offset" : 4229,
+        "key.nameoffset" : 4426,
+        "key.offset" : 4421,
         "key.parsed_declaration" : "internal func informativeUsageError<T: ArgumentProtocol, ClientError>(_ option: Option<T>) -> CommandantError<ClientError>",
-        "key.parsed_scope.end" : 133,
-        "key.parsed_scope.start" : 131,
+        "key.parsed_scope.end" : 137,
+        "key.parsed_scope.start" : 135,
         "key.related_decls" : [
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant21informativeUsageErrorAA0aD0OyxGSS_SS5usagetlF\">informativeUsageError(_:usage:)<\/RelatedName>"
@@ -3367,13 +3509,13 @@
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVyxSgGAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>?&gt;) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVyxSgGAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.bodylength" : 78,
-        "key.bodyoffset" : 4623,
+        "key.bodyoffset" : 4815,
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ option: Option<T?>) -> CommandantError<ClientError> where T : ArgumentProtocol",
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
-        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"136\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVyxSgGAA16ArgumentProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: Option&lt;T?&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-        "key.doc.line" : 136,
+        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"140\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVyxSgGAA16ArgumentProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: Option&lt;T?&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+        "key.doc.line" : 140,
         "key.doc.name" : "informativeUsageError(_:)",
         "key.doc.type" : "Function",
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
@@ -3382,11 +3524,11 @@
         "key.length" : 195,
         "key.name" : "informativeUsageError(_:)",
         "key.namelength" : 77,
-        "key.nameoffset" : 4512,
-        "key.offset" : 4507,
+        "key.nameoffset" : 4704,
+        "key.offset" : 4699,
         "key.parsed_declaration" : "internal func informativeUsageError<T: ArgumentProtocol, ClientError>(_ option: Option<T?>) -> CommandantError<ClientError>",
-        "key.parsed_scope.end" : 138,
-        "key.parsed_scope.start" : 136,
+        "key.parsed_scope.end" : 142,
+        "key.parsed_scope.start" : 140,
         "key.related_decls" : [
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant21informativeUsageErrorAA0aD0OyxGSS_SS5usagetlF\">informativeUsageError(_:usage:)<\/RelatedName>"
@@ -3427,13 +3569,13 @@
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;[<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVySayxGGAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>]&gt;) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVySayxGGAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.bodylength" : 91,
-        "key.bodyoffset" : 4892,
+        "key.bodyoffset" : 5084,
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ option: Option<[T]>) -> CommandantError<ClientError> where T : ArgumentProtocol",
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
-        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"141\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVySayxGGAA16ArgumentProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: Option&lt;[T]&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-        "key.doc.line" : 141,
+        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"145\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVySayxGGAA16ArgumentProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: Option&lt;[T]&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+        "key.doc.line" : 145,
         "key.doc.name" : "informativeUsageError(_:)",
         "key.doc.type" : "Function",
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
@@ -3442,11 +3584,11 @@
         "key.length" : 209,
         "key.name" : "informativeUsageError(_:)",
         "key.namelength" : 78,
-        "key.nameoffset" : 4780,
-        "key.offset" : 4775,
+        "key.nameoffset" : 4972,
+        "key.offset" : 4967,
         "key.parsed_declaration" : "internal func informativeUsageError<T: ArgumentProtocol, ClientError>(_ option: Option<[T]>) -> CommandantError<ClientError>",
-        "key.parsed_scope.end" : 143,
-        "key.parsed_scope.start" : 141,
+        "key.parsed_scope.end" : 147,
+        "key.parsed_scope.start" : 145,
         "key.related_decls" : [
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant21informativeUsageErrorAA0aD0OyxGSS_SS5usagetlF\">informativeUsageError(_:usage:)<\/RelatedName>"
@@ -3487,13 +3629,13 @@
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;[<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVySayxGSgGAA16ArgumentProtocolRzr0_lF1TL_xmfp\">T<\/Type>]?&gt;) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVySayxGSgGAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp\">ClientError<\/Type>&gt; where T : <Type usr=\"s:10Commandant16ArgumentProtocolP\">ArgumentProtocol<\/Type><\/Declaration>",
         "key.bodylength" : 78,
-        "key.bodyoffset" : 5175,
+        "key.bodyoffset" : 5367,
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ option: Option<[T]?>) -> CommandantError<ClientError> where T : ArgumentProtocol",
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
-        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"146\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVySayxGSgGAA16ArgumentProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: Option&lt;[T]?&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-        "key.doc.line" : 146,
+        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"150\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0Oyq_GAA6OptionVySayxGSgGAA16ArgumentProtocolRzr0_lF<\/USR><Declaration>internal func informativeUsageError&lt;T, ClientError&gt;(_ option: Option&lt;[T]?&gt;) -&gt; CommandantError&lt;ClientError&gt; where T : ArgumentProtocol<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+        "key.doc.line" : 150,
         "key.doc.name" : "informativeUsageError(_:)",
         "key.doc.type" : "Function",
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
@@ -3502,11 +3644,11 @@
         "key.length" : 197,
         "key.name" : "informativeUsageError(_:)",
         "key.namelength" : 79,
-        "key.nameoffset" : 5062,
-        "key.offset" : 5057,
+        "key.nameoffset" : 5254,
+        "key.offset" : 5249,
         "key.parsed_declaration" : "internal func informativeUsageError<T: ArgumentProtocol, ClientError>(_ option: Option<[T]?>) -> CommandantError<ClientError>",
-        "key.parsed_scope.end" : 148,
-        "key.parsed_scope.start" : 146,
+        "key.parsed_scope.end" : 152,
+        "key.parsed_scope.start" : 150,
         "key.related_decls" : [
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant21informativeUsageErrorAA0aD0OyxGSS_SS5usagetlF\">informativeUsageError(_:usage:)<\/RelatedName>"
@@ -3547,13 +3689,13 @@
         "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal func informativeUsageError&lt;ClientError&gt;(_ option: <Type usr=\"s:10Commandant6OptionV\">Option<\/Type>&lt;<Type usr=\"s:Sb\">Bool<\/Type>&gt;) -&gt; <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant21informativeUsageErrorAA0aD0OyxGAA6OptionVySbGlF06ClientD0L_xmfp\">ClientError<\/Type>&gt;<\/Declaration>",
         "key.bodylength" : 121,
-        "key.bodyoffset" : 5438,
+        "key.bodyoffset" : 5630,
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the given boolean option.",
         "key.doc.declaration" : "internal func informativeUsageError<ClientError>(_ option: Option<Bool>) -> CommandantError<ClientError>",
         "key.doc.file" : "Sources\/Commandant\/Errors.swift",
-        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"151\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0OyxGAA6OptionVySbGlF<\/USR><Declaration>internal func informativeUsageError&lt;ClientError&gt;(_ option: Option&lt;Bool&gt;) -&gt; CommandantError&lt;ClientError&gt;<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the given boolean option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
-        "key.doc.line" : 151,
+        "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/Errors.swift\" line=\"155\" column=\"15\"><Name>informativeUsageError(_:)<\/Name><USR>s:10Commandant21informativeUsageErrorAA0aD0OyxGAA6OptionVySbGlF<\/USR><Declaration>internal func informativeUsageError&lt;ClientError&gt;(_ option: Option&lt;Bool&gt;) -&gt; CommandantError&lt;ClientError&gt;<\/Declaration><CommentParts><Abstract><Para>Constructs an error that describes how to use the given boolean option.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+        "key.doc.line" : 155,
         "key.doc.name" : "informativeUsageError(_:)",
         "key.doc.type" : "Function",
         "key.filepath" : "Sources\/Commandant\/Errors.swift",
@@ -3562,11 +3704,11 @@
         "key.length" : 219,
         "key.name" : "informativeUsageError(_:)",
         "key.namelength" : 58,
-        "key.nameoffset" : 5346,
-        "key.offset" : 5341,
+        "key.nameoffset" : 5538,
+        "key.offset" : 5533,
         "key.parsed_declaration" : "internal func informativeUsageError<ClientError>(_ option: Option<Bool>) -> CommandantError<ClientError>",
-        "key.parsed_scope.end" : 154,
-        "key.parsed_scope.start" : 151,
+        "key.parsed_scope.end" : 158,
+        "key.parsed_scope.start" : 155,
         "key.related_decls" : [
           {
             "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant21informativeUsageErrorAA0aD0OyxGSS_SS5usagetlF\">informativeUsageError(_:usage:)<\/RelatedName>"
@@ -4855,31 +4997,43 @@
 }, {
   "Sources\/Commandant\/OrderedSet.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
-    "key.length" : 921,
+    "key.length" : 946,
     "key.offset" : 0,
     "key.substructure" : [
       {
         "key.accessibility" : "source.lang.swift.accessibility.internal",
-        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
+        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; : <Type usr=\"s:s9EquatableP\">Equatable<\/Type> where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
         "key.bodylength" : 343,
-        "key.bodyoffset" : 71,
+        "key.bodyoffset" : 82,
         "key.doc.column" : 17,
         "key.doc.comment" : "A poor man's ordered set.",
-        "key.doc.declaration" : "internal struct OrderedSet<T> where T : Hashable",
+        "key.doc.declaration" : "internal struct OrderedSet<T> : Equatable where T : Hashable",
         "key.doc.file" : "Sources\/Commandant\/OrderedSet.swift",
-        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; : Equatable where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
         "key.doc.line" : 2,
         "key.doc.name" : "OrderedSet",
         "key.doc.type" : "Class",
+        "key.elements" : [
+          {
+            "key.kind" : "source.lang.swift.structure.elem.typeref",
+            "key.length" : 9,
+            "key.offset" : 71
+          }
+        ],
         "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
-        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; : <ref.protocol usr=\"s:s9EquatableP\">Equatable<\/ref.protocol> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
+        "key.inheritedtypes" : [
+          {
+            "key.name" : "Equatable"
+          }
+        ],
         "key.kind" : "source.lang.swift.decl.struct",
-        "key.length" : 376,
+        "key.length" : 387,
         "key.name" : "OrderedSet",
         "key.namelength" : 10,
         "key.nameoffset" : 46,
         "key.offset" : 39,
-        "key.parsed_declaration" : "internal struct OrderedSet<T: Hashable>",
+        "key.parsed_declaration" : "internal struct OrderedSet<T: Hashable>: Equatable",
         "key.parsed_scope.end" : 19,
         "key.parsed_scope.start" : 2,
         "key.substructure" : [
@@ -4892,8 +5046,8 @@
             "key.length" : 20,
             "key.name" : "values",
             "key.namelength" : 6,
-            "key.nameoffset" : 89,
-            "key.offset" : 85,
+            "key.nameoffset" : 100,
+            "key.offset" : 96,
             "key.parsed_declaration" : "fileprivate var values: [T] = []",
             "key.parsed_scope.end" : 3,
             "key.parsed_scope.start" : 3,
@@ -4906,15 +5060,15 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>init&lt;S&gt;(_ sequence: <Type usr=\"s:10Commandant10OrderedSetVACyxGqd__c7ElementQyd__Rszs8SequenceRd__lufc1SL_qd__mfp\">S<\/Type>) where T == S.Element, S : <Type usr=\"s:s8SequenceP\">Sequence<\/Type><\/Declaration>",
             "key.bodylength" : 74,
-            "key.bodyoffset" : 163,
+            "key.bodyoffset" : 174,
             "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
             "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>init<\/syntaxtype.keyword>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetVACyxGqd__c7ElementQyd__Rszs8SequenceRd__lufc1SL_qd__mfp\"><decl.generic_type_param.name>S<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt;(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>sequence<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant10OrderedSetVACyxGqd__c7ElementQyd__Rszs8SequenceRd__lufc1SL_qd__mfp\">S<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T == S.Element<\/decl.generic_type_requirement>, <decl.generic_type_requirement>S : <ref.protocol usr=\"s:s8SequenceP\">Sequence<\/ref.protocol><\/decl.generic_type_requirement><\/decl.function.constructor>",
             "key.kind" : "source.lang.swift.decl.function.method.instance",
             "key.length" : 130,
             "key.name" : "init(_:)",
             "key.namelength" : 32,
-            "key.nameoffset" : 108,
-            "key.offset" : 108,
+            "key.nameoffset" : 119,
+            "key.offset" : 119,
             "key.parsed_declaration" : "init<S: Sequence>(_ sequence: S) where S.Element == T",
             "key.parsed_scope.end" : 9,
             "key.parsed_scope.start" : 5,
@@ -4937,15 +5091,15 @@
               }
             ],
             "key.bodylength" : 110,
-            "key.bodyoffset" : 302,
+            "key.bodyoffset" : 313,
             "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
             "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.attribute.builtin><syntaxtype.attribute.name>@discardableResult<\/syntaxtype.attribute.name><\/syntaxtype.attribute.builtin> <syntaxtype.keyword>mutating<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>remove<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>member<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/ref.generic_type_param>?<\/decl.function.returntype><\/decl.function.method.instance>",
             "key.kind" : "source.lang.swift.decl.function.method.instance",
             "key.length" : 143,
             "key.name" : "remove(_:)",
             "key.namelength" : 19,
-            "key.nameoffset" : 275,
-            "key.offset" : 270,
+            "key.nameoffset" : 286,
+            "key.offset" : 281,
             "key.parsed_declaration" : "mutating func remove(_ member: T) -> T?",
             "key.parsed_scope.end" : 18,
             "key.parsed_scope.start" : 12,
@@ -4962,42 +5116,30 @@
         "key.usr" : "s:10Commandant10OrderedSetV"
       },
       {
-        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
+        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; : <Type usr=\"s:s9EquatableP\">Equatable<\/Type> where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
         "key.bodylength" : 101,
-        "key.bodyoffset" : 450,
+        "key.bodyoffset" : 468,
         "key.doc.column" : 17,
-        "key.doc.declaration" : "internal struct OrderedSet<T> where T : Hashable",
+        "key.doc.declaration" : "internal struct OrderedSet<T> : Equatable where T : Hashable",
         "key.doc.file" : "Sources\/Commandant\/OrderedSet.swift",
-        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; : Equatable where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
         "key.doc.line" : 2,
         "key.doc.name" : "OrderedSet",
         "key.doc.type" : "Class",
-        "key.elements" : [
-          {
-            "key.kind" : "source.lang.swift.structure.elem.typeref",
-            "key.length" : 9,
-            "key.offset" : 439
-          }
-        ],
         "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
-        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
-        "key.inheritedtypes" : [
-          {
-            "key.name" : "Equatable"
-          }
-        ],
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; : <ref.protocol usr=\"s:s9EquatableP\">Equatable<\/ref.protocol> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
         "key.kind" : "source.lang.swift.decl.extension",
-        "key.length" : 135,
+        "key.length" : 124,
         "key.name" : "OrderedSet",
         "key.namelength" : 10,
-        "key.nameoffset" : 427,
-        "key.offset" : 417,
+        "key.nameoffset" : 456,
+        "key.offset" : 446,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>static func ==(lhs: <Type usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/Type>, rhs: <Type usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/Type>) -&gt; <Type usr=\"s:Sb\">Bool<\/Type><\/Declaration>",
             "key.bodylength" : 36,
-            "key.bodyoffset" : 513,
+            "key.bodyoffset" : 531,
             "key.doc.declaration" : "static func ==(lhs: Self, rhs: Self) -> Bool",
             "key.doc.discussion" : [
               {
@@ -5031,16 +5173,16 @@
             "key.length" : 98,
             "key.name" : "==(_:_:)",
             "key.namelength" : 39,
-            "key.nameoffset" : 464,
-            "key.offset" : 452,
+            "key.nameoffset" : 482,
+            "key.offset" : 470,
             "key.overrides" : [
               {
                 "key.usr" : "s:s9EquatableP2eeoiSbx_xtFZ"
               }
             ],
             "key.parsed_declaration" : "static func == (_ lhs: OrderedSet, rhs: OrderedSet) -> Bool",
-            "key.parsed_scope.end" : 24,
-            "key.parsed_scope.start" : 22,
+            "key.parsed_scope.end" : 25,
+            "key.parsed_scope.start" : 23,
             "key.related_decls" : [
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiSbs15ContiguousArrayVyxG_ADts9EquatableRzlF\">==&lt;Element&gt;(_: ContiguousArray&lt;Element&gt;, _: ContiguousArray&lt;Element&gt;) -&gt; Bool where Element : Equatable<\/RelatedName>"
@@ -5257,13 +5399,13 @@
         "key.usr" : "s:10Commandant10OrderedSetV"
       },
       {
-        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
+        "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; : <Type usr=\"s:s9EquatableP\">Equatable<\/Type> where T : <Type usr=\"s:s8HashableP\">Hashable<\/Type><\/Declaration>",
         "key.bodylength" : 331,
-        "key.bodyoffset" : 588,
+        "key.bodyoffset" : 613,
         "key.doc.column" : 17,
-        "key.doc.declaration" : "internal struct OrderedSet<T> where T : Hashable",
+        "key.doc.declaration" : "internal struct OrderedSet<T> : Equatable where T : Hashable",
         "key.doc.file" : "Sources\/Commandant\/OrderedSet.swift",
-        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
+        "key.doc.full_as_xml" : "<Class file=\"Sources\/Commandant\/OrderedSet.swift\" line=\"2\" column=\"17\"><Name>OrderedSet<\/Name><USR>s:10Commandant10OrderedSetV<\/USR><Declaration>internal struct OrderedSet&lt;T&gt; : Equatable where T : Hashable<\/Declaration><CommentParts><Abstract><Para>A poor man’s ordered set.<\/Para><\/Abstract><\/CommentParts><\/Class>",
         "key.doc.line" : 2,
         "key.doc.name" : "OrderedSet",
         "key.doc.type" : "Class",
@@ -5271,11 +5413,11 @@
           {
             "key.kind" : "source.lang.swift.structure.elem.typeref",
             "key.length" : 10,
-            "key.offset" : 576
+            "key.offset" : 601
           }
         ],
         "key.filepath" : "Sources\/Commandant\/OrderedSet.swift",
-        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>internal<\/syntaxtype.keyword> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>OrderedSet<\/decl.name>&lt;<decl.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\"><decl.generic_type_param.name>T<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; : <ref.protocol usr=\"s:s9EquatableP\">Equatable<\/ref.protocol> <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>T : <ref.protocol usr=\"s:s8HashableP\">Hashable<\/ref.protocol><\/decl.generic_type_requirement><\/decl.struct>",
         "key.inheritedtypes" : [
           {
             "key.name" : "Collection"
@@ -5285,14 +5427,14 @@
         "key.length" : 366,
         "key.name" : "OrderedSet",
         "key.namelength" : 10,
-        "key.nameoffset" : 564,
-        "key.offset" : 554,
+        "key.nameoffset" : 589,
+        "key.offset" : 579,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>var count: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 24,
-            "key.bodyoffset" : 669,
+            "key.bodyoffset" : 694,
             "key.doc.declaration" : "var count: Self.IndexDistance { get }",
             "key.doc.discussion" : [
               {
@@ -5311,16 +5453,16 @@
             "key.length" : 41,
             "key.name" : "count",
             "key.namelength" : 5,
-            "key.nameoffset" : 657,
-            "key.offset" : 653,
+            "key.nameoffset" : 682,
+            "key.offset" : 678,
             "key.overrides" : [
               {
                 "key.usr" : "s:s10CollectionP5count13IndexDistanceQzv"
               }
             ],
             "key.parsed_declaration" : "var count: Int",
-            "key.parsed_scope.end" : 34,
-            "key.parsed_scope.start" : 32,
+            "key.parsed_scope.end" : 36,
+            "key.parsed_scope.start" : 34,
             "key.typename" : "Int",
             "key.typeusr" : "_T0SiD",
             "key.usr" : "s:s10CollectionP5count13IndexDistanceQzv"
@@ -5329,7 +5471,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>var isEmpty: <Type usr=\"s:Sb\">Bool<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 26,
-            "key.bodyoffset" : 716,
+            "key.bodyoffset" : 741,
             "key.doc.declaration" : "var isEmpty: Bool { get }",
             "key.doc.discussion" : [
               {
@@ -5351,16 +5493,16 @@
             "key.length" : 46,
             "key.name" : "isEmpty",
             "key.namelength" : 7,
-            "key.nameoffset" : 701,
-            "key.offset" : 697,
+            "key.nameoffset" : 726,
+            "key.offset" : 722,
             "key.overrides" : [
               {
                 "key.usr" : "s:s10CollectionP7isEmptySbv"
               }
             ],
             "key.parsed_declaration" : "var isEmpty: Bool",
-            "key.parsed_scope.end" : 38,
-            "key.parsed_scope.start" : 36,
+            "key.parsed_scope.end" : 40,
+            "key.parsed_scope.start" : 38,
             "key.typename" : "Bool",
             "key.typeusr" : "_T0SbD",
             "key.usr" : "s:s10CollectionP7isEmptySbv"
@@ -5369,7 +5511,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>var startIndex: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 29,
-            "key.bodyoffset" : 767,
+            "key.bodyoffset" : 792,
             "key.doc.declaration" : "var startIndex: Self.Index { get }",
             "key.doc.discussion" : [
               {
@@ -5385,16 +5527,16 @@
             "key.length" : 51,
             "key.name" : "startIndex",
             "key.namelength" : 10,
-            "key.nameoffset" : 750,
-            "key.offset" : 746,
+            "key.nameoffset" : 775,
+            "key.offset" : 771,
             "key.overrides" : [
               {
                 "key.usr" : "s:s14_IndexableBaseP10startIndex0D0Qzv"
               }
             ],
             "key.parsed_declaration" : "var startIndex: Int",
-            "key.parsed_scope.end" : 42,
-            "key.parsed_scope.start" : 40,
+            "key.parsed_scope.end" : 44,
+            "key.parsed_scope.start" : 42,
             "key.typename" : "Int",
             "key.typeusr" : "_T0SiD",
             "key.usr" : "s:s14_IndexableBaseP10startIndex0D0Qzv"
@@ -5403,7 +5545,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>var endIndex: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 27,
-            "key.bodyoffset" : 819,
+            "key.bodyoffset" : 844,
             "key.doc.declaration" : "var endIndex: Self.Index { get }",
             "key.doc.discussion" : [
               {
@@ -5425,16 +5567,16 @@
             "key.length" : 47,
             "key.name" : "endIndex",
             "key.namelength" : 8,
-            "key.nameoffset" : 804,
-            "key.offset" : 800,
+            "key.nameoffset" : 829,
+            "key.offset" : 825,
             "key.overrides" : [
               {
                 "key.usr" : "s:s14_IndexableBaseP8endIndex0D0Qzv"
               }
             ],
             "key.parsed_declaration" : "var endIndex: Int",
-            "key.parsed_scope.end" : 46,
-            "key.parsed_scope.start" : 44,
+            "key.parsed_scope.end" : 48,
+            "key.parsed_scope.start" : 46,
             "key.typename" : "Int",
             "key.typeusr" : "_T0SiD",
             "key.usr" : "s:s14_IndexableBaseP8endIndex0D0Qzv"
@@ -5443,7 +5585,7 @@
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>func index(after i: <Type usr=\"s:Si\">Int<\/Type>) -&gt; <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
             "key.bodylength" : 34,
-            "key.bodyoffset" : 883,
+            "key.bodyoffset" : 908,
             "key.doc.declaration" : "func index(after i: Self.Index) -> Self.Index",
             "key.doc.discussion" : [
               {
@@ -5474,16 +5616,16 @@
             "key.length" : 68,
             "key.name" : "index(after:)",
             "key.namelength" : 19,
-            "key.nameoffset" : 855,
-            "key.offset" : 850,
+            "key.nameoffset" : 880,
+            "key.offset" : 875,
             "key.overrides" : [
               {
                 "key.usr" : "s:s14_IndexableBaseP5index5IndexQzAE5after_tF"
               }
             ],
             "key.parsed_declaration" : "func index(after i: Int) -> Int",
-            "key.parsed_scope.end" : 50,
-            "key.parsed_scope.start" : 48,
+            "key.parsed_scope.end" : 52,
+            "key.parsed_scope.start" : 50,
             "key.substructure" : [
               
             ],

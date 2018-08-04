@@ -17,6 +17,8 @@ func compareJSONString(withFixtureNamed name: String,
                        line: UInt = #line) {
 #if os(Linux) && !swift(>=4.1)
     let jsonString = String(describing: jsonString).replacingOccurrences(of: rootDirectory, with: "")
+        .replacingOccurrences(of: "/", with: "\\/")
+        .replacingOccurrences(of: "\":", with: "\" :")
     let actualContent = jsonString
 #else
     // Strip out fixtures directory since it's dependent on the test machine's setup
@@ -33,7 +35,7 @@ func compareJSONString(withFixtureNamed name: String,
     let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
     // Use if changes are introduced by changes in SourceKitten.
-    let overwrite = false
+    let overwrite = ProcessInfo.processInfo.environment["OVERWRITE_FIXTURES"] != nil ? true : false
     if overwrite && actualContent != expectedFile.contents {
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: expectedFile.path!), options: [])
         return
