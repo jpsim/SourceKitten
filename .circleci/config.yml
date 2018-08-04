@@ -4,9 +4,10 @@ aliases:
     steps:
       - checkout
       - run: make bootstrap
-      - run: xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten $XCODE_FLAGS test|xcpretty -r junit
+      - run: xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten build-for-testing|xcpretty -r junit
       - store_test_results:
           path: build/reports/
+      - run: xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten $XCODE_FLAGS_FOR_TEST test-without-building
       - run: echo "ruby-2.3" > ~/.ruby-version
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
@@ -95,7 +96,7 @@ jobs:
     macos:
       xcode: "10.0.0"
     environment:
-      XCODE_FLAGS: -parallel-testing-enabled NO
+      XCODE_FLAGS_FOR_TEST: -parallel-testing-enabled NO
     <<: *steps-for-xcode
 
   swiftpm_4.2:
