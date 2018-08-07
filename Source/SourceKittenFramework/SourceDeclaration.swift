@@ -41,6 +41,7 @@ public struct SourceDeclaration {
     public let documentation: Documentation?
     public let commentBody: String?
     public var children: [SourceDeclaration]
+    public let annotations: [String]
     public let swiftDeclaration: String?
     public let swiftName: String?
     public let availability: ClangAvailability?
@@ -139,6 +140,13 @@ extension SourceDeclaration {
         }).rejectPropertyMethods()
         (swiftDeclaration, swiftName) = cursor.swiftDeclarationAndName(compilerArguments: compilerArguments)
         availability = cursor.platformAvailability()
+
+        annotations = cursor.compactMap({
+            if $0.kind == CXCursor_AnnotateAttr {
+                return clang_getCursorSpelling($0).str()!
+            }
+            return nil
+        })
     }
 }
 
