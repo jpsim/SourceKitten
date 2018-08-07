@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Add support for annotations.  
+  [Jeff Verkoeyen](https://github.com/jverkoey)
 
 ##### Bug Fixes
 
