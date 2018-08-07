@@ -6,7 +6,7 @@
 
 ##### Enhancements
 
-* Add support for annotations.  
+* Add support for C-language annotations (e.g. `__attribute__((annotate("This is an annotation")))`).  
   [Jeff Verkoeyen](https://github.com/jverkoey)
 
 ##### Bug Fixes
