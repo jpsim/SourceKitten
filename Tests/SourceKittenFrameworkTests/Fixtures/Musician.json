@@ -16,7 +16,7 @@
           "key.kind" : "sourcekitten.source.lang.objc.decl.class",
           "key.name" : "JAZMusician",
           "key.parsed_declaration" : "@interface JAZMusician : NSObject",
-          "key.parsed_scope.end" : 45,
+          "key.parsed_scope.end" : 51,
           "key.parsed_scope.start" : 12,
           "key.substructure" : [
             {
@@ -52,6 +52,9 @@
             {
               "key.always_deprecated" : false,
               "key.always_unavailable" : false,
+              "key.annotations" : [
+                "This API will eventually be deprecated in favor of fullName."
+              ],
               "key.deprecation_message" : "",
               "key.doc.column" : 43,
               "key.doc.comment" : "The name of the musician. i.e. \"John Coltrane\"",
@@ -73,17 +76,37 @@
               "key.always_deprecated" : false,
               "key.always_unavailable" : false,
               "key.deprecation_message" : "",
+              "key.doc.column" : 43,
+              "key.doc.comment" : "The full name of the musician. i.e. \"John Coltrane\"",
+              "key.doc.file" : "Musician.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : 28,
+              "key.filepath" : "Musician.h",
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.name" : "fullName",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSString *fullName;",
+              "key.parsed_scope.end" : 28,
+              "key.parsed_scope.start" : 28,
+              "key.swift_declaration" : "var fullName: String! { get }",
+              "key.swift_name" : "fullName",
+              "key.unavailable_message" : "",
+              "key.usr" : "c:objc(cs)JAZMusician(py)fullName"
+            },
+            {
+              "key.always_deprecated" : false,
+              "key.always_unavailable" : false,
+              "key.deprecation_message" : "",
               "key.doc.column" : 44,
               "key.doc.comment" : "The year the musician was born. i.e. 1926",
               "key.doc.file" : "Musician.h",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : 27,
+              "key.doc.line" : 33,
               "key.filepath" : "Musician.h",
               "key.kind" : "sourcekitten.source.lang.objc.decl.property",
               "key.name" : "birthyear",
               "key.parsed_declaration" : "@property (readonly, nonatomic) NSUInteger birthyear;",
-              "key.parsed_scope.end" : 27,
-              "key.parsed_scope.start" : 27,
+              "key.parsed_scope.end" : 33,
+              "key.parsed_scope.start" : 33,
               "key.swift_declaration" : "var year: UInt { get }",
               "key.swift_name" : "year",
               "key.unavailable_message" : "",
@@ -92,12 +115,12 @@
             {
               "key.doc.column" : 1,
               "key.doc.file" : "Musician.h",
-              "key.doc.line" : 29,
+              "key.doc.line" : 35,
               "key.filepath" : "Musician.h",
               "key.kind" : "sourcekitten.source.lang.objc.mark",
               "key.name" : "Initializers-hyphenated",
-              "key.parsed_scope.end" : 29,
-              "key.parsed_scope.start" : 29
+              "key.parsed_scope.end" : 35,
+              "key.parsed_scope.start" : 35
             },
             {
               "key.always_deprecated" : false,
@@ -107,7 +130,7 @@
               "key.doc.comment" : "Initialize a JAZMusician.\nDon't forget to have a name and a birthyear.\n\n- warning: Jazz can be addicting.\nPlease be careful out there.\n\n- parameter: name      The name of the musician.\n- parameter: birthyear The year the musician was born.\n\n- returns:          An initialized JAZMusician instance.",
               "key.doc.file" : "Musician.h",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : 43,
+              "key.doc.line" : 49,
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -138,8 +161,8 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.name" : "-initWithName:birthyear:",
               "key.parsed_declaration" : "- (instancetype)initWithName:(NSString *)name birthyear:(NSUInteger)birthyear;",
-              "key.parsed_scope.end" : 43,
-              "key.parsed_scope.start" : 43,
+              "key.parsed_scope.end" : 49,
+              "key.parsed_scope.start" : 49,
               "key.swift_declaration" : "init!(name: String!, year birthyear: UInt)",
               "key.swift_name" : "init(name:year:)",
               "key.unavailable_message" : "",
