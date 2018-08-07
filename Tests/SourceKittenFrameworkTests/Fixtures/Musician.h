@@ -19,7 +19,13 @@
 /**
  The name of the musician. i.e. "John Coltrane"
  */
-@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *name
+    __attribute__((annotate("This API will eventually be deprecated in favor of fullName.")));
+
+/**
+ The full name of the musician. i.e. "John Coltrane"
+ */
+@property (nonatomic, readonly) NSString *fullName;
 
 /**
  The year the musician was born. i.e. 1926
