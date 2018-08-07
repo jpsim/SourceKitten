@@ -143,15 +143,11 @@ extension SourceDeclaration {
 
         let annotations: [String] = cursor.compactMap({
             if $0.kind == CXCursor_AnnotateAttr {
-                return clang_getCursorSpelling($0).str()!
+                return clang_getCursorSpelling($0).str()
             }
             return nil
         })
-        if annotations.count > 0 {
-            self.annotations = annotations
-        } else {
-            self.annotations = nil
-        }
+        self.annotations = annotations.isEmpty ? nil : annotations
     }
 }
 
