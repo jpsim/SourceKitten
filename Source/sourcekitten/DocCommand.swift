@@ -111,7 +111,7 @@ struct DocCommand: CommandProtocol {
     }
 
     func runFinUnusedDeclarations() -> Result<(), SourceKittenError> {
-        let logPath = "/Users/jsimard/Projects/Lyft-iOS/build.noindex/Build/Intermediates.noindex/XCBuildData/6654a23a6ba306fae1d55daa7088d259-manifest.xcbuild"
+        let logPath = "/Users/jsimard/Projects/Lyft-iOS/build.noindex/Build/Intermediates.noindex/XCBuildData/41d805b15de8aa15450a1e38287fab2e-manifest.xcbuild"
         guard let data = FileManager.default.contents(atPath: logPath) else {
             fatalError("couldn't read log file at path '\(logPath)'")
         }
@@ -131,9 +131,7 @@ struct DocCommand: CommandProtocol {
             let file = File(path: path)!
             return file.allCursorInfo(compilerArguments: log[path]!)
         }
-        let allDeclarations = allCursorInfo.flatMap { allCursorInfo in
-            return File.declarationUSRs(allCursorInfo: allCursorInfo, acls: ["internal", "private", "fileprivate"])
-        }
+        let allDeclarations = allCursorInfo.flatMap(File.declarationUSRs)
         let allReferences = allCursorInfo.flatMap(File.allRefUSRs)
         let unusedDeclarations = Set(allDeclarations.map({$0.0})).subtracting(allReferences)
         for cursorInfo in allDeclarations where unusedDeclarations.contains(cursorInfo.0) {
@@ -209,10 +207,10 @@ extension File {
         }
     }
 
-    fileprivate static func declarationUSRs(allCursorInfo: [[String: SourceKitRepresentable]],
-                                            acls: [String]) -> [(String, String)] {
+    fileprivate static func declarationUSRs(allCursorInfo: [[String: SourceKitRepresentable]])
+        -> [(String, String)]
+    {
         var usrs = [(String, String)]()
-        let fullACLs = acls.map { "source.lang.swift.accessibility.\($0)" }
         for cursorInfo in allCursorInfo {
             if let usr = cursorInfo["key.usr"] as? String,
                 let kind = cursorInfo["key.kind"] as? String,
@@ -222,9 +220,7 @@ extension File {
                 // Skip `deinit` methods since those are never invoked directly anyway.
                 kind != "source.lang.swift.decl.function.destructor",
                 // Skip enum cases since those are listed as 'internal' even when they're public
-                kind != "source.lang.swift.decl.enumelement",
-                let accessibility = cursorInfo["key.accessibility"] as? String,
-                fullACLs.contains(accessibility) {
+                kind != "source.lang.swift.decl.enumelement" {
                 // Skip declarations marked as @IBOutlet, @IBAction or @IBInspectable
                 // since those might not be referenced in code, but only in Interface Builder
                 if let annotatedDecl = cursorInfo["key.annotated_decl"] as? String,
