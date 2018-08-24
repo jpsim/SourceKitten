@@ -11,6 +11,7 @@ import Dispatch
 import Foundation
 import Result
 import SourceKittenFramework
+import Yams
 
 private extension Array {
     func parallelForEach(block: @escaping (Int, Element) -> Void) {
@@ -24,7 +25,7 @@ private extension Array {
     }
 
     func parallelFlatMap<T>(transform: @escaping ((Element) -> T?)) -> [T] {
-        return parallelMap(transform: transform).flatMap { $0 }
+        return parallelMap(transform: transform).compactMap { $0 }
     }
 
     func parallelMap<T>(transform: @escaping ((Element) -> T)) -> [T] {
@@ -41,6 +42,36 @@ private extension Array {
         }
         return result.sorted { $0.0 < $1.0 }.map { $0.1 }
     }
+}
+
+func filterBadArgs(_ args: [String]) -> [String] {
+    let filteredArguments = args[4...]
+        .filter { $0 != "-incremental" }
+        .filter { $0 != "-parseable-output" }
+        .filter { $0 != "-output-file-map" }
+        .filter { !$0.hasSuffix("OutputFileMap.json") }
+    return Array(filteredArguments)
+}
+
+func parseXCBuildLog(_ data: Data) -> [String: [String]] {
+    let str = String(data: data, encoding: .utf8)!
+    let yaml = try! Yams.load(yaml: str) as! [String: Any]
+    let commands = yaml["commands"] as! [String: Any]
+    var fileToArgs = [String: [String]]()
+    for (key, value) in commands where key.contains("com.apple.xcode.tools.swift.compiler") {
+        let valueDictionary = value as! [String: Any]
+        let inputs = valueDictionary["inputs"] as! [String]
+        let args = valueDictionary["args"] as! [String]
+        let filteredArgs = filterBadArgs(args)
+        assert(filteredArgs.first!.hasSuffix("swiftc"))
+        for input in inputs {
+            if input.hasSuffix(".swift") {
+                fileToArgs[input] = filteredArgs
+            }
+        }
+    }
+
+    return fileToArgs
 }
 
 struct DocCommand: CommandProtocol {
@@ -76,66 +107,37 @@ struct DocCommand: CommandProtocol {
     }
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
-        let args = options.arguments
-        if !options.spmModule.isEmpty {
-            return runSPMModule(moduleName: options.spmModule)
-        } else if options.objc {
-            return runObjC(options: options, args: args)
-        } else if options.singleFile {
-            return runSwiftSingleFile(args: args)
-        }
-        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
-        return runSwiftModule(moduleName: moduleName, args: args)
+        return runFinUnusedDeclarations()
     }
 
-    func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
-        let schemes = [
-//            "API",
-//            "CoreAPI-iOS",
-//            "LocationFeedbackNotification",
-            "Lyft",
-//            "LyftAnalytics",
-//            "LyftKit-iOS",
-//            "LyftNetworking-iOS",
-//            "LyftUI",
-//            "Models",
-//            "RideUpdateNotification",
-//            "Siri",
-//            "SiriUI"
-        ]
-        for scheme in schemes {
-            autoreleasepool {
-                print("Building \(scheme)")
-                let moduleName = String(scheme.split(separator: "-")[0])
-                let args = ["-workspace", "Lyft.xcworkspace", "-scheme", scheme]
-                if let module = Module(xcodeBuildArguments: args, name: moduleName) {
-                    // Find `internal`, `private` or `fileprivate` declarations that aren't used within that module
-                    // FIXME: declarations used in string interpolation not counted
-                    // e.g. in SuggestedStopPresenter.swift (557)
-                    var fileIndex = 1
-                    let files = module.sourceFiles
-                    let allCursorInfo = files.parallelMap { file -> [[String: SourceKitRepresentable]] in
-                        DispatchQueue.main.async {
-                            let progress = "(\(fileIndex)/\(files.count))"
-                            fileIndex += 1
-                            print("getting all cursor info in '\(file)' \(progress)")
-                        }
-                        let file = File(path: file)!
-                        return file.allCursorInfo(compilerArguments: module.compilerArguments)
-                    }
-                    let allDeclarations = allCursorInfo.flatMap { allCursorInfo in
-                        return File.declarationUSRs(allCursorInfo: allCursorInfo, acls: ["internal", "private", "fileprivate"])
-                    }
-                    let allReferences = allCursorInfo.flatMap { allCursorInfo in
-                        return File.allRefUSRs(allCursorInfo: allCursorInfo)
-                    }
-                    let unusedDeclarations = Set(allDeclarations.map({$0.0})).subtracting(allReferences)
-                    print("Unused declarations in \(moduleName):")
-                    for cursorInfo in allDeclarations where unusedDeclarations.contains(cursorInfo.0) {
-                        print(cursorInfo.1)
-                    }
-                }
+    func runFinUnusedDeclarations() -> Result<(), SourceKittenError> {
+        let logPath = "/Users/jsimard/Projects/Lyft-iOS/build.noindex/Build/Intermediates.noindex/XCBuildData/6654a23a6ba306fae1d55daa7088d259-manifest.xcbuild"
+        guard let data = FileManager.default.contents(atPath: logPath) else {
+            fatalError("couldn't read log file at path '\(logPath)'")
+        }
+
+        let log = parseXCBuildLog(data)
+        // Find `internal`, `private` or `fileprivate` declarations that aren't used within that module
+        // FIXME: declarations used in string interpolation not counted
+        // e.g. in SuggestedStopPresenter.swift (557)
+        var fileIndex = 1
+        let files = Array(log.keys)
+        let allCursorInfo = files.parallelMap { path -> [[String: SourceKitRepresentable]] in
+            DispatchQueue.main.async {
+                let progress = "(\(fileIndex)/\(files.count))"
+                fileIndex += 1
+                print("getting all cursor info in '\(path)' \(progress)")
             }
+            let file = File(path: path)!
+            return file.allCursorInfo(compilerArguments: log[path]!)
+        }
+        let allDeclarations = allCursorInfo.flatMap { allCursorInfo in
+            return File.declarationUSRs(allCursorInfo: allCursorInfo, acls: ["internal", "private", "fileprivate"])
+        }
+        let allReferences = allCursorInfo.flatMap(File.allRefUSRs)
+        let unusedDeclarations = Set(allDeclarations.map({$0.0})).subtracting(allReferences)
+        for cursorInfo in allDeclarations where unusedDeclarations.contains(cursorInfo.0) {
+            print(cursorInfo.1)
         }
         return .success(())
     }
@@ -194,11 +196,11 @@ private let syntaxTypesToSkip = [
 
 extension File {
     fileprivate func allCursorInfo(compilerArguments: [String]) -> [[String: SourceKitRepresentable]] {
-        let editorOpen = Request.editorOpen(file: self).send()
+        let editorOpen = try! Request.editorOpen(file: self).send()
         let syntaxMap = SyntaxMap(sourceKitResponse: editorOpen)
-        return syntaxMap.tokens.flatMap { token in
-            var cursorInfo = Request.cursorInfo(file: path!, offset: Int64(token.offset),
-                                                arguments: compilerArguments).send()
+        return syntaxMap.tokens.compactMap { token in
+            var cursorInfo = try! Request.cursorInfo(file: path!, offset: Int64(token.offset),
+                                                     arguments: compilerArguments).send()
             if let acl = File.aclAtOffset(Int64(token.offset), editorOpen: editorOpen) {
                 cursorInfo["key.accessibility"] = acl
             }
@@ -274,11 +276,11 @@ extension File {
     }
 
     fileprivate func allUSRs(compilerArguments: [String]) -> [String] {
-        let syntaxMap = SyntaxMap(sourceKitResponse: Request.editorOpen(file: self).send())
+        let syntaxMap = SyntaxMap(sourceKitResponse: try! Request.editorOpen(file: self).send())
         var usrs = [String]()
         for token in syntaxMap.tokens where !syntaxTypesToSkip.contains(token.type) {
-            let cursorInfo = Request.cursorInfo(file: path!, offset: Int64(token.offset),
-                                                arguments: compilerArguments).send()
+            let cursorInfo = try! Request.cursorInfo(file: path!, offset: Int64(token.offset),
+                                                     arguments: compilerArguments).send()
             if let usr = cursorInfo["key.usr"] as? String {
                 print(toJSON(cursorInfo))
                 usrs.append(usr)
@@ -288,7 +290,7 @@ extension File {
     }
 
     fileprivate func unusedImports(compilerArguments: [String]) -> [String] {
-        let syntaxMap = SyntaxMap(sourceKitResponse: Request.editorOpen(file: self).send())
+        let syntaxMap = SyntaxMap(sourceKitResponse: try! Request.editorOpen(file: self).send())
         var imports = [String]()
         var usrs = [String]()
         var nextIsModuleImport = false
@@ -303,8 +305,8 @@ extension File {
             if syntaxTypesToSkip.contains(token.type) {
                 continue
             }
-            let cursorInfo = Request.cursorInfo(file: path!, offset: Int64(token.offset),
-                                                arguments: compilerArguments).send()
+            let cursorInfo = try! Request.cursorInfo(file: path!, offset: Int64(token.offset),
+                                                     arguments: compilerArguments).send()
             if nextIsModuleImport {
                 if let importedModule = cursorInfo["key.modulename"] as? String,
                     cursorInfo["key.kind"] as? String == "source.lang.swift.ref.module" {
