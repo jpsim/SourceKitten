@@ -27,21 +27,13 @@ internal func runXcodeBuild(arguments: [String], inPath path: String) -> String?
     let pipe = Pipe()
     task.standardOutput = pipe
     task.standardError = pipe
-    let fileHandle = pipe.fileHandleForReading
-    defer {
-        fileHandle.closeFile()
-        fileHandle.readabilityHandler = nil
-    }
-
-//    fileHandle.readabilityHandler = { file in
-//        if let output = String(data: file.availableData, encoding: .utf8) {
-//            print(output, terminator: "")
-//        }
-//    }
 
     task.launch()
 
-    return String(data: fileHandle.readDataToEndOfFile(), encoding: .utf8)
+    let file = pipe.fileHandleForReading
+    defer { file.closeFile() }
+
+    return String(data: file.readDataToEndOfFile(), encoding: .utf8)
 }
 
 /**

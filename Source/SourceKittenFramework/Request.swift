@@ -180,7 +180,6 @@ public enum Request {
                 "key.sourcefile": file,
                 "key.offset": offset,
                 "key.compilerargs": arguments
-                sourcekitd_uid_get_from_cstr("key.toolchains"): sourcekitd_request_array_create(&toolchains, toolchains.count)
             ]
         case .customRequest(let request):
             return request

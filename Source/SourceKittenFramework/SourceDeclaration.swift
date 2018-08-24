@@ -153,7 +153,7 @@ extension SourceDeclaration {
 
 extension Sequence where Iterator.Element == SourceDeclaration {
     /// Removes implicitly generated property getters & setters
-    fileprivate func rejectPropertyMethods() -> [SourceDeclaration] {
+    func rejectPropertyMethods() -> [SourceDeclaration] {
         let propertyGetterSetterUSRs = filter {
             $0.type == .property
         }.flatMap {
