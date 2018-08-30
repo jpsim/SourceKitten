@@ -23,7 +23,7 @@ aliases:
     - checkout
     - run: git submodule update --init --recursive
     - run: swift test
-    - run: brew install swiftlint && swiftlint lint --strict
+    - run: HOMEBREW_NO_AUTO_UPDATE=1 brew install https://raw.github.com/Homebrew/homebrew-core/master/Formula/swiftlint.rb && swiftlint lint --strict
 
   - &steps-for-linux
     - checkout
