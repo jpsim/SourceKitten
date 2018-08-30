@@ -13,6 +13,10 @@
 * Improve support for building & running with Swift 4.2.  
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Add new values for `SwiftDeclarationAttributeKind` and `SyntaxKind` with
+  Swift 4.2.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * None.

@@ -96,11 +96,8 @@ class SourceKitTests: XCTestCase {
     }
 
     func testSyntaxKinds() {
-    #if swift(>=4.1.50)
-        // FIXME
-        print("\(#function) is failing with Swift(>=4.1.50)")
-    #elseif swift(>=4.1)
-        let expected: [SyntaxKind] = [
+#if swift(>=4.1)
+        var expected: [SyntaxKind] = [
             .argument,
             .attributeBuiltin,
             .attributeID,
@@ -121,6 +118,14 @@ class SourceKitTests: XCTestCase {
             .stringInterpolationAnchor,
             .typeidentifier
         ]
+
+#if swift(>=4.1.50)
+        expected.append(.poundDirectiveKeyword)
+#else
+        // silence `let` warning
+        expected.append(contentsOf: [])
+#endif
+
         let actual = sourcekitStrings(startingWith: "source.lang.swift.syntaxtype.")
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
@@ -131,7 +136,7 @@ class SourceKitTests: XCTestCase {
             print("the following strings were added: \(actual.subtracting(expectedStrings))")
             print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
-    #endif
+#endif
     }
 
     // swiftlint:disable:next function_body_length
@@ -190,11 +195,8 @@ class SourceKitTests: XCTestCase {
 
     // swiftlint:disable:next function_body_length
     func testSwiftDeclarationAttributeKind() {
-    #if swift(>=4.1.50)
-        // FIXME
-        print("\(#function) is failing with Swift(>=4.1.50)")
-    #elseif swift(>=4.1)
-        let expected: [SwiftDeclarationAttributeKind] = [
+#if swift(>=4.1)
+        var expected: [SwiftDeclarationAttributeKind] = [
             .ibaction,
             .iboutlet,
             .ibdesignable,
@@ -262,10 +264,34 @@ class SourceKitTests: XCTestCase {
             .setterInternal,
             .setterPublic,
             .setterOpen,
-            .implicitlyUnwrappedOptional,
             .optimize,
-            .consuming
+            .consuming,
+            .implicitlyUnwrappedOptional
         ]
+
+#if swift(>=4.1.50)
+        let removed: [SwiftDeclarationAttributeKind] = [
+            .objcNonLazyRealization,
+            .inlineable,
+            .versioned
+        ]
+
+        expected.removeAll(where: removed.contains)
+
+        expected.append(contentsOf: [
+            .underscoredObjcNonLazyRealization,
+            .clangImporterSynthesizedType,
+            .forbidSerializingReference,
+            .usableFromInline,
+            .weakLinked,
+            .inlinable,
+            .dynamicMemberLookup,
+            .frozen
+        ])
+#else
+        // silence `let` warning
+        expected.append(contentsOf: [])
+#endif
 
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
         let expectedStrings = Set(expected.map { $0.rawValue })
@@ -277,7 +303,7 @@ class SourceKitTests: XCTestCase {
             print("the following strings were added: \(actual.subtracting(expectedStrings))")
             print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
-    #endif
+#endif
     }
 
     func testLibraryWrappersAreUpToDate() throws {
