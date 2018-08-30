@@ -6,8 +6,12 @@
 
 ##### Enhancements
 
-* Add support for C-language annotations (e.g. `__attribute__((annotate("This is an annotation")))`).  
+* Add support for C-language annotations
+  (e.g. `__attribute__((annotate("This is an annotation")))`).  
   [Jeff Verkoeyen](https://github.com/jverkoey)
+
+* Improve support for building & running with Swift 4.2.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
 
