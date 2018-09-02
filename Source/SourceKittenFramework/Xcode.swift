@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Yams
 
 internal enum XcodeBuild {
     /**
@@ -19,6 +20,7 @@ internal enum XcodeBuild {
     */
     internal static func cleanBuild(arguments: [String], inPath path: String) -> String? {
         let arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
+        fputs("Running xcodebuild\n", stderr)
         return run(arguments: arguments, inPath: path)
     }
 
@@ -31,8 +33,6 @@ internal enum XcodeBuild {
     - returns: `xcodebuild`'s STDERR+STDOUT output combined.
     */
     internal static func run(arguments: [String], inPath path: String) -> String? {
-        fputs("Running xcodebuild\n", stderr)
-
         let task = Process()
         task.launchPath = "/usr/bin/xcodebuild"
         task.currentDirectoryPath = path
@@ -190,4 +190,79 @@ public func sdkPath() -> String {
     file.closeFile()
     return sdkPath?.replacingOccurrences(of: "\n", with: "") ?? ""
 #endif
+}
+
+let regexForProjectTempRoot = try! NSRegularExpression(pattern: "PROJECT_TEMP_ROOT\\s*=\\s*(.+)$", options: .anchorsMatchLines)
+
+/**
+Parse `PROJECT_TEMP_ROOT` from `xcodebuild -showBuildSettings` output
+
+- parameter xcodebuildOutput: Output of `xcodebuild -showBuildSettings` to be parsed for `PROJECT_TEMP_ROOT`.
+
+- returns: PROJECT_TEMP_ROOT
+*/
+internal func parseProjectTempRoot(xcodebuildOutput output: String) -> String? {
+    let range = NSRange(output.startIndex..<output.endIndex, in: output)
+    guard let match = regexForProjectTempRoot.firstMatch(in: output, range: range),
+        let rangeOfProjectTempRoot = Range(match.range(at: 1), in: output)
+        else {
+            return nil
+    }
+    return String(output[rangeOfProjectTempRoot])
+}
+
+/**
+Extracts compilerArguments by parsing `${PROJECT_TEMP_ROOT}/XCBuildData/ *-manifest.xcbuild`
+as `llbuild` manifest file used by New Build System.
+```
+${PROJECT_TEMP_ROOT}
+├── XCBuildData
+│   ├── 0a834e06ba44b3930a452b71c1425ef7-desc.xcbuild
+│   ├── 0a834e06ba44b3930a452b71c1425ef7-manifest.xcbuild
+│   ├── 0f0e5da56188a83852ce7539aad77821-desc.xcbuild
+│   ├── 0f0e5da56188a83852ce7539aad77821-manifest.xcbuild
+```
+
+- parameter projectTempRoot:   Path.
+- parameter moduleName:        Name of the Module for which to extract compiler arguments.
+
+- returns: Compiler arguments, filtered for suitable use by SourceKit.
+*/
+internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String) -> [String]? {
+    let xcbuildDataURL = URL(fileURLWithPath: projectTempRoot).appendingPathComponent("XCBuildData")
+
+    do {
+        // Find manifests in `PROJECT_TEMP_ROOT`
+        let fileURLs = try FileManager.default.contentsOfDirectory(at: xcbuildDataURL, includingPropertiesForKeys: [.fileSizeKey])
+        let manifestURLs = try fileURLs.filter { $0.path.hasSuffix("-manifest.xcbuild") }
+            .map { (url: $0, size: try $0.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) }
+            .sorted { $0.size < $1.size }
+            .map { $0.url }
+        let result = manifestURLs.lazy.compactMap { manifestURL -> [String]? in
+            guard let contents = try? String(contentsOf: manifestURL),
+                let yaml = try? Yams.compose(yaml: contents),
+                let commands = yaml?["commands"]?.mapping?.values else {
+                    return nil
+            }
+            for command in commands where command["description"]?.string?.hasSuffix("com.apple.xcode.tools.swift.compiler") ?? false {
+                if let args = command["args"]?.sequence,
+                    let index = args.index(of: "-module-name"),
+                    args[args.index(after: index)].string == moduleName {
+                    let fullArgs = args.compactMap { $0.string }
+                    if let separatorIndex = fullArgs.index(of: "--") {
+                        return Array(fullArgs.suffix(from: fullArgs.index(after: separatorIndex)))
+                    }
+                    return fullArgs
+                }
+            }
+            return nil
+        }.first.map { filter(arguments: $0) }
+
+        if result != nil {
+            fputs("Assuming New Build System is used.\n", stderr)
+        }
+        return result
+    } catch {
+        return nil
+    }
 }
