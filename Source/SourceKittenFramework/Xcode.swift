@@ -8,32 +8,47 @@
 
 import Foundation
 
-/**
-Run `xcodebuild clean build` along with any passed in build arguments.
+internal enum XcodeBuild {
+    /**
+    Run `xcodebuild clean build` along with any passed in build arguments.
 
-- parameter arguments: Arguments to pass to `xcodebuild`.
-- parameter path:      Path to run `xcodebuild` from.
+    - parameter arguments: Arguments to pass to `xcodebuild`.
+    - parameter path:      Path to run `xcodebuild` from.
 
-- returns: `xcodebuild`'s STDERR+STDOUT output combined.
-*/
-internal func runXcodeBuild(arguments: [String], inPath path: String) -> String? {
-    fputs("Running xcodebuild\n", stderr)
+    - returns: `xcodebuild`'s STDERR+STDOUT output combined.
+    */
+    internal static func cleanBuild(arguments: [String], inPath path: String) -> String? {
+        let arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
+        return run(arguments: arguments, inPath: path)
+    }
 
-    let task = Process()
-    task.launchPath = "/usr/bin/xcodebuild"
-    task.currentDirectoryPath = path
-    task.arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
+    /**
+    Run `xcodebuild` along with any passed in build arguments.
 
-    let pipe = Pipe()
-    task.standardOutput = pipe
-    task.standardError = pipe
+    - parameter arguments: Arguments to pass to `xcodebuild`.
+    - parameter path:      Path to run `xcodebuild` from.
 
-    task.launch()
+    - returns: `xcodebuild`'s STDERR+STDOUT output combined.
+    */
+    internal static func run(arguments: [String], inPath path: String) -> String? {
+        fputs("Running xcodebuild\n", stderr)
 
-    let file = pipe.fileHandleForReading
-    defer { file.closeFile() }
+        let task = Process()
+        task.launchPath = "/usr/bin/xcodebuild"
+        task.currentDirectoryPath = path
+        task.arguments = arguments
 
-    return String(data: file.readDataToEndOfFile(), encoding: .utf8)
+        let pipe = Pipe()
+        task.standardOutput = pipe
+        task.standardError = pipe
+
+        task.launch()
+
+        let file = pipe.fileHandleForReading
+        defer { file.closeFile() }
+
+        return String(data: file.readDataToEndOfFile(), encoding: .utf8)
+    }
 }
 
 /**
