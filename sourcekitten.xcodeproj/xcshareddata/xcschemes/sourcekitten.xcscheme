@@ -85,6 +85,11 @@
             value = "${TOOLCHAINS}"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "XCODE_VERSION_MINOR"
+            value = "${XCODE_VERSION_MINOR}"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
