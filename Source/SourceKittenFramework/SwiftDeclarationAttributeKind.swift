@@ -6,8 +6,6 @@
 //  Copyright © 2018 SourceKitten. All rights reserved.
 //
 
-import Foundation
-
 /// Swift declaration attribute kinds.
 /// Found in `strings SourceKitService | grep source.decl.attribute.`.
 public enum SwiftDeclarationAttributeKind: String {
