@@ -6,7 +6,6 @@
 //
 
 import Commandant
-import Foundation
 import Result
 import SourceKittenFramework
 
