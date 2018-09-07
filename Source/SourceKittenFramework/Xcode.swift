@@ -228,7 +228,7 @@ ${PROJECT_TEMP_ROOT}
 
 - returns: Compiler arguments, filtered for suitable use by SourceKit.
 */
-internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String) -> [String]? {
+internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String? = nil) -> [String]? {
     let xcbuildDataURL = URL(fileURLWithPath: projectTempRoot).appendingPathComponent("XCBuildData")
 
     do {
@@ -247,7 +247,7 @@ internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String
             for command in commands where command["description"]?.string?.hasSuffix("com.apple.xcode.tools.swift.compiler") ?? false {
                 if let args = command["args"]?.sequence,
                     let index = args.index(of: "-module-name"),
-                    args[args.index(after: index)].string == moduleName {
+                    moduleName != nil ? args[args.index(after: index)].string == moduleName : true {
                     let fullArgs = args.compactMap { $0.string }
                     if let separatorIndex = fullArgs.index(of: "--") {
                         return Array(fullArgs.suffix(from: fullArgs.index(after: separatorIndex)))
