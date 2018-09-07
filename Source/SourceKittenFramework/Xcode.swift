@@ -127,7 +127,7 @@ Parses the compiler arguments needed to compile the `language` files.
 
 - returns: Compiler arguments, filtered for suitable use by SourceKit if `.Swift` or Clang if `.ObjC`.
 */
-internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Language, moduleName: String?) -> [String]? {
+internal func parseCompilerArguments(xcodebuildOutput: String, language: Language, moduleName: String?) -> [String]? {
     let pattern: String
     if language == .objc {
         pattern = "/usr/bin/clang.*"
@@ -137,15 +137,15 @@ internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Langu
         pattern = "/usr/bin/swiftc.*"
     }
     let regex = try! NSRegularExpression(pattern: pattern, options: []) // Safe to force try
-    let range = NSRange(location: 0, length: xcodebuildOutput.length)
+    let range = NSRange(xcodebuildOutput.startIndex..<xcodebuildOutput.endIndex, in: xcodebuildOutput)
 
-    guard let regexMatch = regex.firstMatch(in: xcodebuildOutput.bridge(), options: [], range: range) else {
-        return nil
+    guard let regexMatch = regex.firstMatch(in: xcodebuildOutput, range: range),
+        let matchRange = Range(regexMatch.range, in: xcodebuildOutput) else {
+            return nil
     }
 
     let escapedSpacePlaceholder = "\u{0}"
-    let args = filter(arguments: xcodebuildOutput
-        .substring(with: regexMatch.range)
+    let args = filter(arguments: String(xcodebuildOutput[matchRange])
         .replacingOccurrences(of: "\\ ", with: escapedSpacePlaceholder)
         .components(separatedBy: " "))
 
