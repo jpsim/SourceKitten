@@ -7,33 +7,48 @@
 //
 
 import Foundation
+import Yams
 
-/**
-Run `xcodebuild clean build` along with any passed in build arguments.
+internal enum XcodeBuild {
+    /**
+    Run `xcodebuild clean build` along with any passed in build arguments.
 
-- parameter arguments: Arguments to pass to `xcodebuild`.
-- parameter path:      Path to run `xcodebuild` from.
+    - parameter arguments: Arguments to pass to `xcodebuild`.
+    - parameter path:      Path to run `xcodebuild` from.
 
-- returns: `xcodebuild`'s STDERR+STDOUT output combined.
-*/
-internal func runXcodeBuild(arguments: [String], inPath path: String) -> String? {
-    fputs("Running xcodebuild\n", stderr)
+    - returns: `xcodebuild`'s STDERR+STDOUT output combined.
+    */
+    internal static func cleanBuild(arguments: [String], inPath path: String) -> String? {
+        let arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
+        fputs("Running xcodebuild\n", stderr)
+        return run(arguments: arguments, inPath: path)
+    }
 
-    let task = Process()
-    task.launchPath = "/usr/bin/xcodebuild"
-    task.currentDirectoryPath = path
-    task.arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
+    /**
+    Run `xcodebuild` along with any passed in build arguments.
 
-    let pipe = Pipe()
-    task.standardOutput = pipe
-    task.standardError = pipe
+    - parameter arguments: Arguments to pass to `xcodebuild`.
+    - parameter path:      Path to run `xcodebuild` from.
 
-    task.launch()
+    - returns: `xcodebuild`'s STDERR+STDOUT output combined.
+    */
+    internal static func run(arguments: [String], inPath path: String) -> String? {
+        let task = Process()
+        task.launchPath = "/usr/bin/xcodebuild"
+        task.currentDirectoryPath = path
+        task.arguments = arguments
 
-    let file = pipe.fileHandleForReading
-    defer { file.closeFile() }
+        let pipe = Pipe()
+        task.standardOutput = pipe
+        task.standardError = pipe
 
-    return String(data: file.readDataToEndOfFile(), encoding: .utf8)
+        task.launch()
+
+        let file = pipe.fileHandleForReading
+        defer { file.closeFile() }
+
+        return String(data: file.readDataToEndOfFile(), encoding: .utf8)
+    }
 }
 
 /**
@@ -112,7 +127,7 @@ Parses the compiler arguments needed to compile the `language` files.
 
 - returns: Compiler arguments, filtered for suitable use by SourceKit if `.Swift` or Clang if `.ObjC`.
 */
-internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Language, moduleName: String?) -> [String]? {
+internal func parseCompilerArguments(xcodebuildOutput: String, language: Language, moduleName: String?) -> [String]? {
     let pattern: String
     if language == .objc {
         pattern = "/usr/bin/clang.*"
@@ -122,15 +137,15 @@ internal func parseCompilerArguments(xcodebuildOutput: NSString, language: Langu
         pattern = "/usr/bin/swiftc.*"
     }
     let regex = try! NSRegularExpression(pattern: pattern, options: []) // Safe to force try
-    let range = NSRange(location: 0, length: xcodebuildOutput.length)
+    let range = NSRange(xcodebuildOutput.startIndex..<xcodebuildOutput.endIndex, in: xcodebuildOutput)
 
-    guard let regexMatch = regex.firstMatch(in: xcodebuildOutput.bridge(), options: [], range: range) else {
-        return nil
+    guard let regexMatch = regex.firstMatch(in: xcodebuildOutput, range: range),
+        let matchRange = Range(regexMatch.range, in: xcodebuildOutput) else {
+            return nil
     }
 
     let escapedSpacePlaceholder = "\u{0}"
-    let args = filter(arguments: xcodebuildOutput
-        .substring(with: regexMatch.range)
+    let args = filter(arguments: String(xcodebuildOutput[matchRange])
         .replacingOccurrences(of: "\\ ", with: escapedSpacePlaceholder)
         .components(separatedBy: " "))
 
@@ -175,4 +190,79 @@ public func sdkPath() -> String {
     file.closeFile()
     return sdkPath?.replacingOccurrences(of: "\n", with: "") ?? ""
 #endif
+}
+
+let regexForProjectTempRoot = try! NSRegularExpression(pattern: "PROJECT_TEMP_ROOT\\s*=\\s*(.+)$", options: .anchorsMatchLines)
+
+/**
+Parse `PROJECT_TEMP_ROOT` from `xcodebuild -showBuildSettings` output
+
+- parameter xcodebuildOutput: Output of `xcodebuild -showBuildSettings` to be parsed for `PROJECT_TEMP_ROOT`.
+
+- returns: PROJECT_TEMP_ROOT
+*/
+internal func parseProjectTempRoot(xcodebuildOutput output: String) -> String? {
+    let range = NSRange(output.startIndex..<output.endIndex, in: output)
+    guard let match = regexForProjectTempRoot.firstMatch(in: output, range: range),
+        let rangeOfProjectTempRoot = Range(match.range(at: 1), in: output)
+        else {
+            return nil
+    }
+    return String(output[rangeOfProjectTempRoot])
+}
+
+/**
+Extracts compilerArguments by parsing `${PROJECT_TEMP_ROOT}/XCBuildData/ *-manifest.xcbuild`
+as `llbuild` manifest file used by New Build System.
+```
+${PROJECT_TEMP_ROOT}
+├── XCBuildData
+│   ├── 0a834e06ba44b3930a452b71c1425ef7-desc.xcbuild
+│   ├── 0a834e06ba44b3930a452b71c1425ef7-manifest.xcbuild
+│   ├── 0f0e5da56188a83852ce7539aad77821-desc.xcbuild
+│   ├── 0f0e5da56188a83852ce7539aad77821-manifest.xcbuild
+```
+
+- parameter projectTempRoot:   Path.
+- parameter moduleName:        Name of the Module for which to extract compiler arguments.
+
+- returns: Compiler arguments, filtered for suitable use by SourceKit.
+*/
+internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String? = nil) -> [String]? {
+    let xcbuildDataURL = URL(fileURLWithPath: projectTempRoot).appendingPathComponent("XCBuildData")
+
+    do {
+        // Find manifests in `PROJECT_TEMP_ROOT`
+        let fileURLs = try FileManager.default.contentsOfDirectory(at: xcbuildDataURL, includingPropertiesForKeys: [.fileSizeKey])
+        let manifestURLs = try fileURLs.filter { $0.path.hasSuffix("-manifest.xcbuild") }
+            .map { (url: $0, size: try $0.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) }
+            .sorted { $0.size < $1.size }
+            .map { $0.url }
+        let result = manifestURLs.lazy.compactMap { manifestURL -> [String]? in
+            guard let contents = try? String(contentsOf: manifestURL),
+                let yaml = try? Yams.compose(yaml: contents),
+                let commands = yaml?["commands"]?.mapping?.values else {
+                    return nil
+            }
+            for command in commands where command["description"]?.string?.hasSuffix("com.apple.xcode.tools.swift.compiler") ?? false {
+                if let args = command["args"]?.sequence,
+                    let index = args.index(of: "-module-name"),
+                    moduleName != nil ? args[args.index(after: index)].string == moduleName : true {
+                    let fullArgs = args.compactMap { $0.string }
+                    if let separatorIndex = fullArgs.index(of: "--") {
+                        return Array(fullArgs.suffix(from: fullArgs.index(after: separatorIndex)))
+                    }
+                    return fullArgs
+                }
+            }
+            return nil
+        }.first.map { filter(arguments: $0) }
+
+        if result != nil {
+            fputs("Assuming New Build System is used.\n", stderr)
+        }
+        return result
+    } catch {
+        return nil
+    }
 }

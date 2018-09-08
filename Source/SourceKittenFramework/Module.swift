@@ -72,9 +72,27 @@ public struct Module {
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
     public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
-        let xcodeBuildOutput = runXcodeBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
-        guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput.bridge(), language: .swift,
-                                                     moduleName: name ?? moduleName(fromArguments: xcodeBuildArguments)) else {
+        let name = name ?? moduleName(fromArguments: xcodeBuildArguments)
+        // Executing normal build
+        fputs("Running xcodebuild\n", stderr)
+        if let output = XcodeBuild.run(arguments: xcodeBuildArguments, inPath: path),
+            let arguments = parseCompilerArguments(xcodebuildOutput: output, language: .swift, moduleName: name),
+            let moduleName = moduleName(fromArguments: arguments) {
+            self.init(name: moduleName, compilerArguments: arguments)
+            return
+        }
+        // Check New Build System is used
+        fputs("Checking xcodebuild -showBuildSettings\n", stderr)
+        if let output = XcodeBuild.run(arguments: xcodeBuildArguments + ["-showBuildSettings"], inPath: path),
+            let projectTempRoot = parseProjectTempRoot(xcodebuildOutput: output),
+            let arguments = checkNewBuildSystem(in: projectTempRoot, moduleName: name),
+            let moduleName = moduleName(fromArguments: arguments) {
+            self.init(name: moduleName, compilerArguments: arguments)
+            return
+        }
+        // Executing `clean build` is a fallback.
+        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
+        guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .swift, moduleName: name) else {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
             fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
             let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")

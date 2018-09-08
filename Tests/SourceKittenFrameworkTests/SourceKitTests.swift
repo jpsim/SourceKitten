@@ -61,11 +61,13 @@ private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
 
 let sourcekittenXcodebuildArguments = [
     "-workspace", "SourceKitten.xcworkspace",
-    "-scheme", "SourceKittenFramework",
-    "-derivedDataPath",
-    URL(fileURLWithPath: NSTemporaryDirectory())
-        .appendingPathComponent("testLibraryWrappersAreUpToDate").path
-]
+    "-scheme", "sourcekitten"
+] + { () -> [String] in
+    return ProcessInfo.processInfo.environment["XCODE_VERSION_MINOR"].map { $0 >= "1000" } ?? false ? [] : [
+        "-derivedDataPath",
+        URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("testLibraryWrappersAreUpToDate").path
+    ]
+}()
 
 // swiftlint:disable:next type_body_length
 class SourceKitTests: XCTestCase {
@@ -307,7 +309,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testLibraryWrappersAreUpToDate() throws {
-        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: nil, inPath: projectRoot)!
+        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: "SourceKittenFramework", inPath: projectRoot)!
         let docsJSON = sourceKittenFrameworkModule.docs.description
         XCTAssert(docsJSON.range(of: "error type") == nil)
         do {

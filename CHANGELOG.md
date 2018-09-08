@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* If New Build System is enabled on Xcode, the `doc` command does not need to
+  use the `clean` action on `xcodebuild`.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Bug Fixes
 
