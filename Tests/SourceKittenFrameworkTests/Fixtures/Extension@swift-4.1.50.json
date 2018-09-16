@@ -30,7 +30,7 @@
         "key.parsed_declaration" : "class Base",
         "key.parsed_scope.end" : 14,
         "key.parsed_scope.start" : 2,
-        "key.runtime_name" : "_TtC9Extension4Base",
+        "key.runtime_name" : "_TtC4main4Base",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
@@ -253,7 +253,7 @@
         "key.parsed_declaration" : "class 🐽",
         "key.parsed_scope.end" : 34,
         "key.parsed_scope.start" : 31,
-        "key.runtime_name" : "_TtC9Extension4🐽",
+        "key.runtime_name" : "_TtC4main4🐽",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",

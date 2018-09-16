@@ -69,7 +69,7 @@
         "key.parsed_declaration" : "public class Bicycle",
         "key.parsed_scope.end" : 93,
         "key.parsed_scope.start" : 8,
-        "key.runtime_name" : "_TtC7Bicycle7Bicycle",
+        "key.runtime_name" : "_TtC4main7Bicycle",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
