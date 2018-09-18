@@ -8,6 +8,13 @@
 
 import Foundation
 
+public protocol SourceKittenXPCService: class {
+    func xcRun(arguments: [String]) -> String?
+    func xcodeBuild(arguments: [String], inPath path: String) -> String?
+}
+
+public weak var sourceKittenXPCService: SourceKittenXPCService?
+
 struct DynamicLinkLibrary {
     let path: String
     let handle: UnsafeMutableRawPointer
@@ -152,22 +159,31 @@ private let toolchainDir = env("TOOLCHAIN_DIR")
 ///
 /// This is affected by "DEVELOPER_DIR", "TOOLCHAINS" environment variables.
 private let xcrunFindPath: String? = {
-    let pathOfXcrun = "/usr/bin/xcrun"
+    let arguments = ["-find", "swift"]
 
-    if !FileManager.default.isExecutableFile(atPath: pathOfXcrun) {
-        return nil
+    var xcRunOutput: String?
+    if let service = sourceKittenXPCService {
+        xcRunOutput = service.xcRun(arguments: arguments)
+    } else {
+        let pathOfXcrun = "/usr/bin/xcrun"
+
+        if !FileManager.default.isExecutableFile(atPath: pathOfXcrun) {
+            return nil
+        }
+
+        let task = Process()
+        task.launchPath = pathOfXcrun
+        task.arguments = arguments
+
+        let pipe = Pipe()
+        task.standardOutput = pipe
+        task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
+
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        xcRunOutput = String(data: data, encoding: .utf8)
     }
 
-    let task = Process()
-    task.launchPath = pathOfXcrun
-    task.arguments = ["-find", "swift"]
-
-    let pipe = Pipe()
-    task.standardOutput = pipe
-    task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
-
-    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    guard let output = String(data: data, encoding: .utf8) else {
+    guard let output = xcRunOutput else {
         return nil
     }
 
