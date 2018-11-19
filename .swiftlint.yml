@@ -2,8 +2,8 @@ included:
   - Source
   - Tests
 excluded:
-  - Tests/SourceKittenFrameworkTests/Fixtures
   - Source/SourceKittenFramework/library_wrapper_*.swift
+  - Tests/SourceKittenFrameworkTests/Fixtures
 opt_in_rules:
   - array_init
   - attributes
@@ -38,7 +38,7 @@ disabled_rules:
   - force_cast
   - force_try
   - identifier_name
-  - todo
   - switch_case_on_newline
+  - todo
 
 line_length: 160
