@@ -159,7 +159,7 @@ public enum Request {
 
     fileprivate var sourcekitObject: SourceKitObject {
         switch self {
-        case .editorOpen(let file):
+        case let .editorOpen(file):
             if let path = file.path {
                 return [
                     "key.request": UID("source.request.editor.open"),
@@ -173,7 +173,7 @@ public enum Request {
                     "key.sourcetext": file.contents
                 ]
             }
-        case .cursorInfo(let file, let offset, let arguments):
+        case let .cursorInfo(file, offset, arguments):
             return [
                 "key.request": UID("source.request.cursorinfo"),
                 "key.name": file,
@@ -181,11 +181,11 @@ public enum Request {
                 "key.offset": offset,
                 "key.compilerargs": arguments
             ]
-        case .customRequest(let request):
+        case let .customRequest(request):
             return request
-        case .yamlRequest(let yaml):
+        case let .yamlRequest(yaml):
             return .init(sourcekitd_request_create_from_yaml(yaml, nil)!)
-        case .codeCompletionRequest(let file, let contents, let offset, let arguments):
+        case let .codeCompletionRequest(file, contents, offset, arguments):
             return [
                 "key.request": UID("source.request.codecomplete"),
                 "key.name": file,
@@ -207,19 +207,19 @@ public enum Request {
                 "key.filepath": file,
                 "key.compilerargs": [file] + arguments
             ]
-        case .findUSR(let file, let usr):
+        case let .findUSR(file, usr):
             return [
                 "key.request": UID("source.request.editor.find_usr"),
                 "key.usr": usr,
                 "key.sourcefile": file
             ]
-        case .index(let file, let arguments):
+        case let .index(file, arguments):
             return [
                 "key.request": UID("source.request.indexsource"),
                 "key.sourcefile": file,
                 "key.compilerargs": arguments
             ]
-        case .format(let file, let line, let useTabs, let indentWidth):
+        case let .format(file, line, useTabs, indentWidth):
             return [
                 "key.request": UID("source.request.editor.formattext"),
                 "key.name": file,
@@ -230,7 +230,7 @@ public enum Request {
                     "key.editor.format.usetabs": useTabs ? 1 : 0
                 ]
             ]
-        case .replaceText(let file, let offset, let length, let sourceText):
+        case let .replaceText(file, offset, length, sourceText):
             return [
                 "key.request": UID("source.request.editor.replacetext"),
                 "key.name": file,
@@ -238,14 +238,14 @@ public enum Request {
                 "key.length": length,
                 "key.sourcetext": sourceText
             ]
-        case .docInfo(let text, let arguments):
+        case let .docInfo(text, arguments):
             return [
                 "key.request": UID("source.request.docinfo"),
                 "key.name": NSUUID().uuidString,
                 "key.compilerargs": arguments,
                 "key.sourcetext": text
             ]
-        case .moduleInfo(let module, let arguments):
+        case let .moduleInfo(module, arguments):
             return [
                 "key.request": UID("source.request.docinfo"),
                 "key.name": NSUUID().uuidString,
@@ -321,11 +321,11 @@ public enum Request {
 
         private func getDescription() -> String? {
             switch self {
-            case .connectionInterrupted(let string): return string
-            case .invalid(let string): return string
-            case .failed(let string): return string
-            case .cancelled(let string): return string
-            case .unknown(let string): return string
+            case let .connectionInterrupted(string): return string
+            case let .invalid(string): return string
+            case let .failed(string): return string
+            case let .cancelled(string): return string
+            case let .unknown(string): return string
             }
         }
 

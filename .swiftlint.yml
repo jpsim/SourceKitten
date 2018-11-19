@@ -3,24 +3,37 @@ included:
   - Tests
 excluded:
   - Tests/SourceKittenFrameworkTests/Fixtures
-  - Source/SourceKittenFramework/library_wrapper_CXString.swift
-  - Source/SourceKittenFramework/library_wrapper_Documentation.swift
-  - Source/SourceKittenFramework/library_wrapper_Index.swift
-  - Source/SourceKittenFramework/library_wrapper_sourcekitd.swift
+  - Source/SourceKittenFramework/library_wrapper_*.swift
 opt_in_rules:
+  - array_init
   - attributes
   - closure_end_indentation
   - closure_spacing
+  - collection_alignment
+  - contains_over_first_not_nil
+  - discouraged_optional_boolean
   - empty_count
   - explicit_init
   - first_where
+  - identical_operands
+  - joined_default_parameter
+  - legacy_random
+  - literal_expression_end_indentation
+  - lower_acl_than_parent
+  - modifier_order
   - number_separator
   - operator_usage_whitespace
   - overridden_super_call
+  - pattern_matching_keywords
   - private_outlet
   - prohibited_super_call
   - redundant_nil_coalescing
+  - redundant_type_annotation
+  - sorted_first_last
   - sorted_imports
+  - toggle_bool
+  - unneeded_parentheses_in_closure_argument
+  - yoda_condition
 disabled_rules:
   - force_cast
   - force_try
