@@ -10,50 +10,50 @@ import Foundation
 
 extension Array {
     public func bridge() -> NSArray {
-#if os(Linux)
-        return NSArray(array: self)
-#else
+#if _runtime(_ObjC) || swift(>=4.1.50)
         return self as NSArray
+#else
+        return NSArray(array: self)
 #endif
     }
 }
 
 extension CharacterSet {
     public func bridge() -> NSCharacterSet {
-#if os(Linux)
-        return _bridgeToObjectiveC()
-#else
+#if _runtime(_ObjC) || swift(>=4.1.50)
         return self as NSCharacterSet
+#else
+        return _bridgeToObjectiveC()
 #endif
     }
 }
 
 extension Dictionary {
     public func bridge() -> NSDictionary {
-#if os(Linux)
-        return NSDictionary(dictionary: self)
-#else
+#if _runtime(_ObjC) || swift(>=4.1.50)
         return self as NSDictionary
+#else
+        return NSDictionary(dictionary: self)
 #endif
     }
 }
 
 extension NSString {
     public func bridge() -> String {
-#if os(Linux)
-        return _bridgeToSwift()
-#else
+#if _runtime(_ObjC) || swift(>=4.1.50)
         return self as String
+#else
+        return _bridgeToSwift()
 #endif
     }
 }
 
 extension String {
     public func bridge() -> NSString {
-#if os(Linux)
-        return NSString(string: self)
-#else
+#if _runtime(_ObjC) || swift(>=4.1.50)
         return self as NSString
+#else
+        return NSString(string: self)
 #endif
     }
 }

@@ -80,7 +80,10 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:`pwd` -w `pwd` --rm norionomura/swift:40 swift test
+	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm norionomura/swift:42 swift test --parallel
+
+docker_htop:
+	docker run -it --rm --pid=container:sourcekitten terencewestphal/htop || reset
 
 # http://irace.me/swift-profiling/
 display_compilation_time:
