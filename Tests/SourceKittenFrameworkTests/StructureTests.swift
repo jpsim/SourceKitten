@@ -94,13 +94,7 @@ class StructureTests: XCTestCase {
                             "key.length": 3
                         ]
                     ],
-                    "key.runtime_name": {
-#if swift(>=4.1.50)
-                        return "_TtC4main3Foo"
-#else
-                        return "_TtC8__main__3Foo"
-#endif
-                    }(),
+                    "key.runtime_name": "_TtC4main3Foo",
                     "key.inheritedtypes": [
                         ["key.name": "Bar"]
                     ]
