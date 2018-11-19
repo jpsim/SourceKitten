@@ -8,7 +8,7 @@ aliases:
       - store_test_results:
           path: build/reports/
       - run: xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten $XCODE_FLAGS_FOR_TEST test-without-building
-      - run: echo "ruby-2.3" > ~/.ruby-version
+      - run: echo "ruby-2.4" > ~/.ruby-version
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run: bundle check --path vendor/bundle || bundle install --path vendor/bundle
@@ -36,12 +36,12 @@ jobs:
     environment:
       XCODE_FLAGS_FOR_TEST: -parallel-testing-enabled NO
     macos:
-      xcode: "10.0.0"
+      xcode: "10.1.0"
     <<: *configurations-for-xcode
 
   swiftpm_4.2:
     macos:
-      xcode: "10.0.0"
+      xcode: "10.1.0"
     steps: *steps-for-swiftpm
 
   xcode_9.4:
@@ -97,7 +97,7 @@ jobs:
   # linux jobs
   linux_swift_4.2:
     docker:
-      - image: norionomura/swift:4220180730a
+      - image: norionomura/swift:42
     steps: *steps-for-linux
 
   linux_swift_4.1.3:
