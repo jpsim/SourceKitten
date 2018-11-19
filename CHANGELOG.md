@@ -10,6 +10,9 @@
   use the `clean` action on `xcodebuild`.  
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Use 'as' bridging on Linux when using Swift 4.2.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * None.
