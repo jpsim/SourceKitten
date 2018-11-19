@@ -98,8 +98,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testSyntaxKinds() {
-#if swift(>=4.1)
-        var expected: [SyntaxKind] = [
+        let expected: [SyntaxKind] = [
             .argument,
             .attributeBuiltin,
             .attributeID,
@@ -118,15 +117,9 @@ class SourceKitTests: XCTestCase {
             .placeholder,
             .string,
             .stringInterpolationAnchor,
-            .typeidentifier
+            .typeidentifier,
+            .poundDirectiveKeyword
         ]
-
-#if swift(>=4.1.50)
-        expected.append(.poundDirectiveKeyword)
-#else
-        // silence `let` warning
-        expected.append(contentsOf: [])
-#endif
 
         let actual = sourcekitStrings(startingWith: "source.lang.swift.syntaxtype.")
         let expectedStrings = Set(expected.map { $0.rawValue })
@@ -138,7 +131,6 @@ class SourceKitTests: XCTestCase {
             print("the following strings were added: \(actual.subtracting(expectedStrings))")
             print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
-#endif
     }
 
     // swiftlint:disable:next function_body_length
@@ -197,8 +189,7 @@ class SourceKitTests: XCTestCase {
 
     // swiftlint:disable:next function_body_length
     func testSwiftDeclarationAttributeKind() {
-#if swift(>=4.1)
-        var expected: [SwiftDeclarationAttributeKind] = [
+        let expected: [SwiftDeclarationAttributeKind] = [
             .ibaction,
             .iboutlet,
             .ibdesignable,
@@ -229,7 +220,6 @@ class SourceKitTests: XCTestCase {
             .requiresStoredProperyInits,
             .nonobjc,
             .fixedLayout,
-            .inlineable,
             .specialize,
             .objcMembers,
             .mutating,
@@ -241,7 +231,6 @@ class SourceKitTests: XCTestCase {
             .effects,
             .objcBriged,
             .nsApplicationMain,
-            .objcNonLazyRealization,
             .synthesizedProtocol,
             .testable,
             .alignment,
@@ -250,7 +239,6 @@ class SourceKitTests: XCTestCase {
             .indirect,
             .warnUnqualifiedAccess,
             .cdecl,
-            .versioned,
             .discardableResult,
             .implements,
             .objcRuntimeName,
@@ -268,19 +256,7 @@ class SourceKitTests: XCTestCase {
             .setterOpen,
             .optimize,
             .consuming,
-            .implicitlyUnwrappedOptional
-        ]
-
-#if swift(>=4.1.50)
-        let removed: [SwiftDeclarationAttributeKind] = [
-            .objcNonLazyRealization,
-            .inlineable,
-            .versioned
-        ]
-
-        expected.removeAll(where: removed.contains)
-
-        expected.append(contentsOf: [
+            .implicitlyUnwrappedOptional,
             .underscoredObjcNonLazyRealization,
             .clangImporterSynthesizedType,
             .forbidSerializingReference,
@@ -289,11 +265,7 @@ class SourceKitTests: XCTestCase {
             .inlinable,
             .dynamicMemberLookup,
             .frozen
-        ])
-#else
-        // silence `let` warning
-        expected.append(contentsOf: [])
-#endif
+        ]
 
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
         let expectedStrings = Set(expected.map { $0.rawValue })
@@ -305,7 +277,6 @@ class SourceKitTests: XCTestCase {
             print("the following strings were added: \(actual.subtracting(expectedStrings))")
             print("the following strings were removed: \(expectedStrings.subtracting(actual))")
         }
-#endif
     }
 
     func testLibraryWrappersAreUpToDate() throws {
