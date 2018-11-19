@@ -248,8 +248,8 @@ extension NSString {
         }
     }
 
-    static private var stringCache = [NSString: CacheContainer]()
-    static private var stringCacheLock = NSLock()
+    private static var stringCache = [NSString: CacheContainer]()
+    private static var stringCacheLock = NSLock()
 
     /**
     CacheContainer instance is stored to instance of NSString as associated object.
