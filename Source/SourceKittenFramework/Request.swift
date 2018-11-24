@@ -156,6 +156,8 @@ public enum Request {
     case docInfo(text: String, arguments: [String])
     /// A documentation request for the given module.
     case moduleInfo(module: String, arguments: [String])
+    /// Gets the JSON-serialized representation of the file's SwiftSyntax tree.
+    case syntaxTree(file: File)
 
     fileprivate var sourcekitObject: SourceKitObject {
         switch self {
@@ -252,6 +254,28 @@ public enum Request {
                 "key.compilerargs": arguments,
                 "key.modulename": module
             ]
+        case let .syntaxTree(file):
+            if let path = file.path {
+                return [
+                    "key.request": UID("source.request.editor.open"),
+                    "key.name": path,
+                    "key.sourcefile": path,
+                    "key.enablesyntaxmap": 0,
+                    "key.enablesubstructure": 0,
+                    "key.enablesyntaxtree": 1,
+                    "key.syntactic_only": 1
+                ]
+            } else {
+                return [
+                    "key.request": UID("source.request.editor.open"),
+                    "key.name": String(abs(file.contents.hash)),
+                    "key.sourcetext": file.contents,
+                    "key.enablesyntaxmap": 0,
+                    "key.enablesubstructure": 0,
+                    "key.enablesyntaxtree": 1,
+                    "key.syntactic_only": 1
+                ]
+            }
         }
     }
 

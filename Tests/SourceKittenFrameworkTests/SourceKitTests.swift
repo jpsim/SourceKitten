@@ -335,6 +335,18 @@ class SourceKitTests: XCTestCase {
         let actualStructure = Structure(sourceKitResponse: output)
         XCTAssertEqual(expectedStructure, actualStructure)
     }
+
+    func testSyntaxTree() throws {
+        let file = File(path: "\(fixturesDirectory)Bicycle.swift")!
+        let request = Request.syntaxTree(file: file)
+        let response = try request.send()
+        guard let syntaxJSON = response["key.serialized_syntax_tree"] as? String else {
+            XCTFail("Could not get serialized syntax tree")
+            return
+        }
+
+        compareJSONString(withFixtureNamed: "BicycleSyntax", jsonString: syntaxJSON)
+    }
 }
 
 extension SourceKitTests {
@@ -345,7 +357,8 @@ extension SourceKitTests {
             ("testSwiftDeclarationKind", testSwiftDeclarationKind),
             ("testSwiftDeclarationAttributeKind", testSwiftDeclarationAttributeKind),
             ("testIndex", testIndex),
-            ("testYamlRequest", testYamlRequest)
+            ("testYamlRequest", testYamlRequest),
+            ("testSyntaxTree", testSyntaxTree)
         ]
     }
 }
