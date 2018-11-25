@@ -338,7 +338,7 @@ class SourceKitTests: XCTestCase {
 
     func testSyntaxTree() throws {
         let file = File(path: "\(fixturesDirectory)Bicycle.swift")!
-        let request = Request.syntaxTree(file: file)
+        let request = Request.syntaxTree(file: file, byteTree: false)
         let response = try request.send()
         guard let syntaxJSON = response["key.serialized_syntax_tree"] as? String else {
             XCTFail("Could not get serialized syntax tree")
