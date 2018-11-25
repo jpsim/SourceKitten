@@ -269,8 +269,8 @@ public enum Request {
                     "key.enablesubstructure": 0,
                     "key.enablesyntaxtree": 1,
                     "key.syntactic_only": 1,
-                    "key.syntaxtreetransfermode": "source.syntaxtree.transfer.full",
-                    "key.syntax_tree_serialization_format": "source.syntaxtree.serialization.format.bytetree"
+                    "key.syntaxtreetransfermode": UID("source.syntaxtree.transfer.full"),
+                    "key.syntax_tree_serialization_format": UID("source.syntaxtree.serialization.format.bytetree")
                 ]
             } else {
                 return [
@@ -281,8 +281,8 @@ public enum Request {
                     "key.enablesubstructure": 0,
                     "key.enablesyntaxtree": 1,
                     "key.syntactic_only": 1,
-                    "key.syntaxtreetransfermode": "source.syntaxtree.transfer.full",
-                    "key.syntax_tree_serialization_format": "source.syntaxtree.serialization.format.bytetree"
+                    "key.syntaxtreetransfermode": UID("source.syntaxtree.transfer.full"),
+                    "key.syntax_tree_serialization_format": UID("source.syntaxtree.serialization.format.bytetree")
                 ]
             }
         }
