@@ -23,6 +23,7 @@ extension Dictionary: SourceKitRepresentable {}
 extension String: SourceKitRepresentable {}
 extension Int64: SourceKitRepresentable {}
 extension Bool: SourceKitRepresentable {}
+extension Data: SourceKitRepresentable {}
 
 extension SourceKitRepresentable {
     public func isEqualTo(_ rhs: SourceKitRepresentable) -> Bool {
@@ -92,6 +93,10 @@ private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKit
         return String(sourceKitUID: sourcekitd_variant_uid_get_value(sourcekitObject)!)
     case SOURCEKITD_VARIANT_TYPE_NULL:
         return nil
+    case SOURCEKITD_VARIANT_TYPE_DATA:
+        return sourcekitd_variant_data_get_ptr(sourcekitObject).map { ptr in
+            return Data(bytes: ptr, count: sourcekitd_variant_data_get_size(sourcekitObject))
+        }
     default:
         fatalError("Should never happen because we've checked all SourceKitRepresentable types")
     }
