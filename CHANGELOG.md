@@ -7,7 +7,9 @@
 
 ##### Enhancements
 
-* None.
+* Add `Request.syntaxTree` to get a serialized representation of the file's
+  SwiftSyntax tree.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Bug Fixes
 

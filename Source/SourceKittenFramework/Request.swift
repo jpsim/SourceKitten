@@ -162,8 +162,9 @@ public enum Request {
     case docInfo(text: String, arguments: [String])
     /// A documentation request for the given module.
     case moduleInfo(module: String, arguments: [String])
-    /// Gets the JSON-serialized representation of the file's SwiftSyntax tree.
-    case syntaxTree(file: File)
+    /// Gets the serialized representation of the file's SwiftSyntax tree. JSON string if `byteTree` is false,
+    /// binary data otherwise.
+    case syntaxTree(file: File, byteTree: Bool)
 
     fileprivate var sourcekitObject: SourceKitObject {
         switch self {
@@ -260,7 +261,8 @@ public enum Request {
                 "key.compilerargs": arguments,
                 "key.modulename": module
             ]
-        case let .syntaxTree(file):
+        case let .syntaxTree(file, byteTree):
+            let serializationFormat = byteTree ? "bytetree" : "json"
             if let path = file.path {
                 return [
                     "key.request": UID("source.request.editor.open"),
@@ -269,7 +271,10 @@ public enum Request {
                     "key.enablesyntaxmap": 0,
                     "key.enablesubstructure": 0,
                     "key.enablesyntaxtree": 1,
-                    "key.syntactic_only": 1
+                    "key.syntactic_only": 1,
+                    "key.syntaxtreetransfermode": UID("source.syntaxtree.transfer.full"),
+                    "key.syntax_tree_serialization_format":
+                        UID("source.syntaxtree.serialization.format.\(serializationFormat)")
                 ]
             } else {
                 return [
@@ -279,7 +284,10 @@ public enum Request {
                     "key.enablesyntaxmap": 0,
                     "key.enablesubstructure": 0,
                     "key.enablesyntaxtree": 1,
-                    "key.syntactic_only": 1
+                    "key.syntactic_only": 1,
+                    "key.syntaxtreetransfermode": UID("source.syntaxtree.transfer.full"),
+                    "key.syntax_tree_serialization_format":
+                        UID("source.syntaxtree.serialization.format.\(serializationFormat)")
                 ]
             }
         }
