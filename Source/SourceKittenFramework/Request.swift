@@ -57,6 +57,7 @@ extension SourceKitRepresentable {
     }
 }
 
+// swiftlint:disable:next cyclomatic_complexity
 private func fromSourceKit(_ sourcekitObject: sourcekitd_variant_t) -> SourceKitRepresentable? {
     switch sourcekitd_variant_get_type(sourcekitObject) {
     case SOURCEKITD_VARIANT_TYPE_ARRAY:
