@@ -81,11 +81,6 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "SOURCEKIT_LOGGING"
-            value = "3"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
             key = "TOOLCHAINS"
             value = "${TOOLCHAINS}"
             isEnabled = "YES">
