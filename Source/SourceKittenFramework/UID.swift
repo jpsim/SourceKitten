@@ -13,13 +13,19 @@ import SourceKit
 /// Swift representation of sourcekitd_uid_t
 @dynamicMemberLookup
 public struct UID {
-    let uid: sourcekitd_uid_t
+    enum Box {
+        case string(String)
+        case uid(sourcekitd_uid_t)
+    }
+
+    let box: Box
+
     init(_ uid: sourcekitd_uid_t) {
-        self.uid = uid
+        box = .uid(uid)
     }
 
     public init(_ string: String) {
-        self.init(sourcekitd_uid_get_from_cstr(string)!)
+        box = .string(string)
     }
 
     public init<T>(_ rawRepresentable: T) where T: RawRepresentable, T.RawValue == String {
@@ -27,11 +33,25 @@ public struct UID {
     }
 
     var string: String {
-        return String(cString: sourcekitd_uid_get_string_ptr(uid)!)
+        switch box {
+        case .string(let string):
+            return string
+        case .uid(let uid):
+            return String(cString: sourcekitd_uid_get_string_ptr(uid)!)
+        }
     }
 
     public subscript(dynamicMember member: StaticString) -> UID {
         return .init("\(string).\(member)")
+    }
+
+    var uid: sourcekitd_uid_t {
+        switch box {
+        case .string(let string):
+            return sourcekitd_uid_get_from_cstr(string)!
+        case .uid(let uid):
+            return uid
+        }
     }
 }
 
