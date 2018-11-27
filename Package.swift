@@ -9,7 +9,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Carthage/Commandant.git", from: "0.15.0"),
-        .package(url: "https://github.com/drmohundro/SWXMLHash.git", from: "4.7.1"),
+        .package(url: "https://github.com/drmohundro/SWXMLHash.git", from: "4.7.5"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "1.0.1"),
     ],
     targets: [
