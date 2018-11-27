@@ -174,6 +174,26 @@ class StringTests: XCTestCase {
         XCTAssertEqual(string.bridge().lineAndCharacter(forByteOffset: 17), (1, 18))
     }
 
+    func testByteRangeToNSRange() {
+        let string = """
+            enum Foo {
+                case one
+                case two
+            }
+
+            func bar(foo: Foo) -> String {
+                let some = "ru_RU"
+                switch foo {
+                case .one:
+                    return "\\(some) один"
+                default:
+                    return "\\(some) два"
+                }
+            }
+            """
+        XCTAssertEqual(string.bridge().byteRangeToNSRange(start: 115, length: 42), NSRange(location: 115, length: 38))
+    }
+
     func testLineAndCharacterForCharacterOffset() {
         let string = "" +
         "func foo() {\n" + //     12+1 characters, start=0
@@ -230,6 +250,7 @@ extension StringTests {
             ("testSubstringLinesWithByteRange", testSubstringLinesWithByteRange),
             ("testLineRangeWithByteRange", testLineRangeWithByteRange),
             ("testLineAndCharacterForByteOffset", testLineAndCharacterForByteOffset),
+            ("testByteRangeToNSRange", testByteRangeToNSRange),
             ("testLineAndCharacterForCharacterOffset", testLineAndCharacterForCharacterOffset)
         ]
     }
