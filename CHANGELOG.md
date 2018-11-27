@@ -13,7 +13,10 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix crash in `NSString.location(fromByteOffset:)` when using unicode
+  characters.  
+  [JP Simard](https://github.com/jpsim)
+  [realm/SwiftLint#2276](https://github.com/realm/SwiftLint/issues/2276)
 
 ## 0.21.3
 
