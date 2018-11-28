@@ -22,9 +22,9 @@ class DocInfoTests: XCTestCase {
     }
 
     func testModuleInfoRequest() throws {
-#if swift(>=4.1.50)
+#if swift(>=4.2)
         // FIXME
-        print("\(#function) is failing with Swift(>=4.1.50)")
+        print("\(#function) is failing with Swift(>=4.2)")
 #else
         let swiftFile = fixturesDirectory + "DocInfo.swift"
         let info = toNSDictionary(
