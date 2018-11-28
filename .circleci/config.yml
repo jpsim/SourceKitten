@@ -47,7 +47,7 @@ jobs:
   # linux jobs
   linux_swift_4.2:
     docker:
-      - image: norionomura/swift:42
+      - image: norionomura/swift:421
     steps: *steps-for-linux
 
 workflows:
