@@ -1,0 +1,99 @@
+resources:
+  containers:
+  - container: '4.2.0'
+    image: norionomura/swiftlint:swift-4.2.0
+  - container: '4.2.1'
+    image: norionomura/swiftlint:swift-4.2.1
+  - container: 'jazzy'
+    image: norionomura/jazzy:0.9.4_swift-4.2.1
+
+trigger:
+- master
+
+jobs:
+- job: linux
+  pool:
+    vmImage: 'Ubuntu 16.04'
+  strategy:
+    maxParallel: 10
+    matrix:
+      swift420:
+        containerResource: '4.2.0'
+      swift421:
+        containerResource: '4.2.1'
+  container: $[ variables['containerResource'] ]
+  steps:
+    - script: swift test --parallel
+      displayName: swift test
+    - script: |
+        set -o pipefail
+        mkdir -p build/reports/
+        swiftlint lint --reporter junit > build/reports/swiftlint.xml
+      displayName: swiftlint
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: JUnit
+        testResultsFiles: build/reports/**
+
+- job: macOS
+  pool:
+    vmImage: 'macOS 10.13'
+  strategy:
+    maxParallel: 10
+    matrix:
+      xcode10:
+        XCODE_APP: 'Xcode_10'
+        XCODE_FLAGS_FOR_TEST: -parallel-testing-enabled NO
+      xcode101:
+        XCODE_APP: 'Xcode_10.1'
+        XCODE_FLAGS_FOR_TEST: -parallel-testing-enabled NO
+  steps:
+    - script: |
+        sudo xcode-select -s /Applications/$XCODE_APP.app
+        echo "##vso[task.setvariable variable=XCODE_FLAGS]-scheme sourcekitten $XCODE_FLAGS_FOR_TEST"
+      displayName: xcode-select & set XCODE_FLAGS
+    - script: >
+        set -o pipefail &&
+        xcodebuild $XCODE_FLAGS test |
+        xcpretty -r junit -o build/reports/xcodebuild-macos.xml
+      displayName: tests on macOS
+      condition: succeededOrFailed()
+    - script: >
+        set -o pipefail &&
+        swift test --parallel
+      displayName: swift test
+      condition: succeededOrFailed()
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: JUnit
+        testResultsFiles: build/reports/**
+      condition: succeededOrFailed()
+
+- job: CocoaPods
+  pool:
+    vmImage: 'macOS 10.13'
+  steps:
+    - script: sudo xcode-select -s /Applications/Xcode_10.1.app
+      displayName: xcode-select
+    - script: bundle install --path vendor/bundle
+      displayName: bundle install
+    - script: bundle exec pod lib lint
+      displayName: pod lib lint
+
+- job: jazzy
+  pool:
+    vmImage: 'Ubuntu 16.04'
+  container: 'jazzy'
+  steps:
+    - script: bundle install --path vendor/bundle
+      displayName: bundle install
+    - script: swift build
+      displayName: swift build
+    - script: sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
+      displayName: Generate documentation json
+    - script: bundle exec jazzy --clean --sourcekitten-sourcefile SourceKittenFramework.json
+      displayName: Run jazzy
+    - task: PublishPipelineArtifact@0
+      inputs:
+        artifactName: 'API Docs'
+        targetPath: 'docs'
