@@ -4,7 +4,7 @@ An adorable little framework and command line tool for interacting with [SourceK
 
 SourceKitten links and communicates with `sourcekitd.framework` to parse the Swift AST, extract comment docs for Swift or Objective-C projects, get syntax data for a Swift file and lots more!
 
-[![CircleCI](https://circleci.com/gh/jpsim/SourceKitten.svg?style=svg)](https://circleci.com/gh/jpsim/SourceKitten)
+[![Azure Pipelines](https://dev.azure.com/jpsim/SourceKitten/_apis/build/status/jpsim.SourceKitten)](https://dev.azure.com/jpsim/SourceKitten/_build/latest?definitionId=3)
 
 ## Installation
 
