@@ -11,7 +11,7 @@ import SourceKit
 #endif
 
 /// Swift representation of sourcekitd_uid_t
-public struct UID {
+public struct UID: Hashable {
     let uid: sourcekitd_uid_t
     init(_ uid: sourcekitd_uid_t) {
         self.uid = uid
@@ -39,16 +39,6 @@ extension UID: CustomStringConvertible {
 extension UID: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
         self.init(value)
-    }
-}
-
-extension UID: Hashable {
-    public var hashValue: Int {
-        return uid.hashValue
-    }
-
-    public static func == (lhs: UID, rhs: UID) -> Bool {
-        return lhs.uid == rhs.uid
     }
 }
 
