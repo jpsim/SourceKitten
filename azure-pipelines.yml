@@ -48,6 +48,8 @@ jobs:
         XCODE_APP: 'Xcode_10.1'
         XCODE_FLAGS_FOR_TEST: -parallel-testing-enabled NO
   steps:
+    - checkout: self
+      submodules: true
     - script: |
         sudo xcode-select -s /Applications/$XCODE_APP.app
         echo "##vso[task.setvariable variable=XCODE_FLAGS]-scheme sourcekitten $XCODE_FLAGS_FOR_TEST"
