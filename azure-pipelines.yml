@@ -4,8 +4,6 @@ resources:
     image: norionomura/swiftlint:swift-4.2.0
   - container: '4.2.1'
     image: norionomura/swiftlint:swift-4.2.1
-  - container: 'jazzy'
-    image: norionomura/jazzy:0.9.4_swift-4.2.1
 
 trigger:
 - master
@@ -79,16 +77,19 @@ jobs:
     - script: bundle exec pod lib lint
       displayName: pod lib lint
 
-- job: jazzy
+- job: Jazzy
   pool:
-    vmImage: 'Ubuntu 16.04'
-  container: 'jazzy'
+    vmImage: 'macOS 10.13'
   steps:
+    - script: sudo xcode-select -s /Applications/Xcode_10.1.app
+      displayName: xcode-select
     - script: swift build
       displayName: swift build
     - script: sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
       displayName: Generate documentation json
-    - script: jazzy --clean --sourcekitten-sourcefile SourceKittenFramework.json
+    - script: bundle install --path vendor/bundle
+      displayName: bundle install
+    - script: bundle exec jazzy --clean --sourcekitten-sourcefile SourceKittenFramework.json
       displayName: Run jazzy
     - task: PublishPipelineArtifact@0
       inputs:
