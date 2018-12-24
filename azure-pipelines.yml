@@ -52,7 +52,7 @@ jobs:
       submodules: true
     - script: |
         sudo xcode-select -s /Applications/$XCODE_APP.app
-        echo "##vso[task.setvariable variable=XCODE_FLAGS]-scheme sourcekitten $XCODE_FLAGS_FOR_TEST"
+        echo "##vso[task.setvariable variable=XCODE_FLAGS]-workspace SourceKitten.xcworkspace -scheme sourcekitten $XCODE_FLAGS_FOR_TEST"
       displayName: xcode-select & set XCODE_FLAGS
     - script: >
         set -o pipefail &&
