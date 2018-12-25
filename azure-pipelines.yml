@@ -1,0 +1,99 @@
+resources:
+  containers:
+  - container: '4.2.0'
+    image: norionomura/swiftlint:swift-4.2.0
+  - container: '4.2.1'
+    image: norionomura/swiftlint:swift-4.2.1
+
+trigger:
+- master
+
+jobs:
+- job: linux
+  pool:
+    vmImage: 'Ubuntu 16.04'
+  strategy:
+    maxParallel: 10
+    matrix:
+      swift420:
+        containerResource: '4.2.0'
+      swift421:
+        containerResource: '4.2.1'
+  container: $[ variables['containerResource'] ]
+  steps:
+    - script: swift test --parallel
+      displayName: swift test
+    - script: |
+        set -o pipefail
+        mkdir -p build/reports/
+        swiftlint lint --strict --reporter junit > build/reports/swiftlint.xml
+      displayName: swiftlint
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: JUnit
+        testResultsFiles: build/reports/**
+        failOnStandardError: 'true'
+
+- job: macOS
+  pool:
+    vmImage: 'macOS 10.13'
+  strategy:
+    maxParallel: 10
+    matrix:
+      xcode10:
+        XCODE_APP: 'Xcode_10'
+      xcode101:
+        XCODE_APP: 'Xcode_10.1'
+  steps:
+    - script: git submodule update --init --recursive
+      displayName: Update git submodules
+    - script: |
+        sudo xcode-select -s /Applications/$XCODE_APP.app
+      displayName: xcode-select
+    - script: >
+        set -o pipefail &&
+        xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten -parallel-testing-enabled NO test |
+        xcpretty -r junit -o build/reports/xcodebuild-macos.xml
+      displayName: xcodebuild test
+      condition: succeededOrFailed()
+    - script: >
+        set -o pipefail &&
+        swift test --parallel
+      displayName: swift test
+      condition: succeededOrFailed()
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: JUnit
+        testResultsFiles: build/reports/**
+        failOnStandardError: 'true'
+      condition: succeededOrFailed()
+
+- job: CocoaPods
+  pool:
+    vmImage: 'macOS 10.13'
+  steps:
+    - script: sudo xcode-select -s /Applications/Xcode_10.1.app
+      displayName: xcode-select
+    - script: bundle install --path vendor/bundle
+      displayName: bundle install
+    - script: bundle exec pod lib lint
+      displayName: pod lib lint
+
+- job: Jazzy
+  pool:
+    vmImage: 'macOS 10.13'
+  steps:
+    - script: sudo xcode-select -s /Applications/Xcode_10.1.app
+      displayName: xcode-select
+    - script: swift build
+      displayName: swift build
+    - script: swift run sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
+      displayName: Generate documentation json
+    - script: bundle install --path vendor/bundle
+      displayName: bundle install
+    - script: bundle exec jazzy --clean --sourcekitten-sourcefile SourceKittenFramework.json
+      displayName: Run jazzy
+    - task: PublishPipelineArtifact@0
+      inputs:
+        artifactName: 'API Docs'
+        targetPath: 'docs'
