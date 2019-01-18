@@ -1,10 +1,3 @@
-resources:
-  containers:
-  - container: '4.2.0'
-    image: norionomura/swiftlint:swift-4.2.0
-  - container: '4.2.1'
-    image: norionomura/swiftlint:swift-4.2.1
-
 trigger:
 - master
 
@@ -16,10 +9,10 @@ jobs:
     maxParallel: 10
     matrix:
       swift420:
-        containerResource: '4.2.0'
+        containerImage: norionomura/swiftlint:swift-4.2.0
       swift421:
-        containerResource: '4.2.1'
-  container: $[ variables['containerResource'] ]
+        containerImage: norionomura/swiftlint:swift-4.2.1
+  container: $[ variables['containerImage'] ]
   steps:
     - script: swift test --parallel
       displayName: swift test
@@ -41,15 +34,14 @@ jobs:
     maxParallel: 10
     matrix:
       xcode10:
-        XCODE_APP: 'Xcode_10'
+        DEVELOPER_DIR: /Applications/Xcode_10.app
       xcode101:
-        XCODE_APP: 'Xcode_10.1'
+        DEVELOPER_DIR: /Applications/Xcode_10.1.app
   steps:
     - script: git submodule update --init --recursive
       displayName: Update git submodules
-    - script: |
-        sudo xcode-select -s /Applications/$XCODE_APP.app
-      displayName: xcode-select
+    - script: xcodebuild -version
+      displayName: xcodebuild -version
     - script: >
         set -o pipefail &&
         xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten -parallel-testing-enabled NO test |
@@ -71,9 +63,11 @@ jobs:
 - job: CocoaPods
   pool:
     vmImage: 'macOS 10.13'
+  variables:
+    DEVELOPER_DIR: /Applications/Xcode_10.1.app
   steps:
-    - script: sudo xcode-select -s /Applications/Xcode_10.1.app
-      displayName: xcode-select
+    - script: bundle update --bundler
+      displayName: Update bundler
     - script: bundle install --path vendor/bundle
       displayName: bundle install
     - script: bundle exec pod lib lint
@@ -82,13 +76,15 @@ jobs:
 - job: Jazzy
   pool:
     vmImage: 'macOS 10.13'
+  variables:
+    DEVELOPER_DIR: /Applications/Xcode_10.1.app
   steps:
-    - script: sudo xcode-select -s /Applications/Xcode_10.1.app
-      displayName: xcode-select
     - script: swift build
       displayName: swift build
     - script: swift run sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
       displayName: Generate documentation json
+    - script: bundle update --bundler
+      displayName: Update bundler
     - script: bundle install --path vendor/bundle
       displayName: bundle install
     - script: bundle exec jazzy --clean --sourcekitten-sourcefile SourceKittenFramework.json
