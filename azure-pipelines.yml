@@ -66,6 +66,8 @@ jobs:
   variables:
     DEVELOPER_DIR: /Applications/Xcode_10.1.app
   steps:
+    - script: bundle update --bundler
+      displayName: Update bundler
     - script: bundle install --path vendor/bundle
       displayName: bundle install
     - script: bundle exec pod lib lint
@@ -81,6 +83,8 @@ jobs:
       displayName: swift build
     - script: swift run sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
       displayName: Generate documentation json
+    - script: bundle update --bundler
+      displayName: Update bundler
     - script: bundle install --path vendor/bundle
       displayName: bundle install
     - script: bundle exec jazzy --clean --sourcekitten-sourcefile SourceKittenFramework.json
