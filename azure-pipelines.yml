@@ -1,10 +1,3 @@
-resources:
-  containers:
-  - container: '4.2.0'
-    image: norionomura/swiftlint:swift-4.2.0
-  - container: '4.2.1'
-    image: norionomura/swiftlint:swift-4.2.1
-
 trigger:
 - master
 
@@ -16,10 +9,10 @@ jobs:
     maxParallel: 10
     matrix:
       swift420:
-        containerResource: '4.2.0'
+        containerImage: norionomura/swiftlint:swift-4.2.0
       swift421:
-        containerResource: '4.2.1'
-  container: $[ variables['containerResource'] ]
+        containerImage: norionomura/swiftlint:swift-4.2.1
+  container: $[ variables['containerImage'] ]
   steps:
     - script: swift test --parallel
       displayName: swift test
