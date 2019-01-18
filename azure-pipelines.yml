@@ -34,15 +34,14 @@ jobs:
     maxParallel: 10
     matrix:
       xcode10:
-        XCODE_APP: 'Xcode_10'
+        DEVELOPER_DIR: /Applications/Xcode_10.app
       xcode101:
-        XCODE_APP: 'Xcode_10.1'
+        DEVELOPER_DIR: /Applications/Xcode_10.1.app
   steps:
     - script: git submodule update --init --recursive
       displayName: Update git submodules
-    - script: |
-        sudo xcode-select -s /Applications/$XCODE_APP.app
-      displayName: xcode-select
+    - script: xcodebuild -version
+      displayName: xcodebuild -version
     - script: >
         set -o pipefail &&
         xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten -parallel-testing-enabled NO test |
@@ -64,9 +63,9 @@ jobs:
 - job: CocoaPods
   pool:
     vmImage: 'macOS 10.13'
+  variables:
+    DEVELOPER_DIR: /Applications/Xcode_10.1.app
   steps:
-    - script: sudo xcode-select -s /Applications/Xcode_10.1.app
-      displayName: xcode-select
     - script: bundle install --path vendor/bundle
       displayName: bundle install
     - script: bundle exec pod lib lint
@@ -75,9 +74,9 @@ jobs:
 - job: Jazzy
   pool:
     vmImage: 'macOS 10.13'
+  variables:
+    DEVELOPER_DIR: /Applications/Xcode_10.1.app
   steps:
-    - script: sudo xcode-select -s /Applications/Xcode_10.1.app
-      displayName: xcode-select
     - script: swift build
       displayName: swift build
     - script: swift run sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
