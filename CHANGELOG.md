@@ -10,7 +10,10 @@
 
 ##### Bug Fixes
 
-* None.
+* “.swift”-suffixed directory in xcodebuild arguments no longer detected as
+  Swift file.  
+  [Minh Nguyễn](https://github.com/1ec5)
+  [#574](https://github.com/jpsim/SourceKitten/issues/574)
 
 ## 0.22.0
 

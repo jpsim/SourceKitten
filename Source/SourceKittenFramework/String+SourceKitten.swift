@@ -466,7 +466,9 @@ extension NSString {
 
 extension String {
     internal var isFile: Bool {
-        return FileManager.default.fileExists(atPath: self)
+        var isDirectory: ObjCBool = false
+        let exists = FileManager.default.fileExists(atPath: self, isDirectory: &isDirectory)
+        return exists && !isDirectory.boolValue
     }
 
     internal func capitalizingFirstLetter() -> String {
