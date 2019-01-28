@@ -53,7 +53,7 @@ struct Loader {
     let searchPaths: [String]
 
     func load(path: String) -> DynamicLinkLibrary {
-        let fullPaths = searchPaths.map { $0.appending(pathComponent: path) }.filter { $0.isFile }
+        let fullPaths = searchPaths.map { $0.appending(pathComponent: path) }.filter { $0.isFileOrDirectory }
 
         // try all fullPaths that contains target file,
         // then try loading with simple path that depends resolving to DYLD
