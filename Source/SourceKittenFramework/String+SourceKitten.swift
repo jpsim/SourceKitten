@@ -465,10 +465,6 @@ extension NSString {
 }
 
 extension String {
-    internal var isFileOrDirectory: Bool {
-        return FileManager.default.fileExists(atPath: self)
-    }
-
     internal var isFile: Bool {
         var isDirectory: ObjCBool = false
         let exists = FileManager.default.fileExists(atPath: self, isDirectory: &isDirectory)

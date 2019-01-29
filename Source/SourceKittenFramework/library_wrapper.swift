@@ -42,7 +42,7 @@ let toolchainLoader = Loader(searchPaths: [
     userApplicationsDir?.xcodeDeveloperDir.toolchainDir,
     userApplicationsDir?.xcodeBetaDeveloperDir.toolchainDir
 ].compactMap { path in
-    if let fullPath = path?.usrLibDir, fullPath.isFile {
+    if let fullPath = path?.usrLibDir, FileManager.default.fileExists(atPath: fullPath) {
         return fullPath
     }
     return nil
@@ -53,7 +53,7 @@ struct Loader {
     let searchPaths: [String]
 
     func load(path: String) -> DynamicLinkLibrary {
-        let fullPaths = searchPaths.map { $0.appending(pathComponent: path) }.filter { $0.isFileOrDirectory }
+        let fullPaths = searchPaths.map { $0.appending(pathComponent: path) }.filter { $0.isFile }
 
         // try all fullPaths that contains target file,
         // then try loading with simple path that depends resolving to DYLD
