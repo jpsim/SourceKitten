@@ -42,7 +42,7 @@ let toolchainLoader = Loader(searchPaths: [
     userApplicationsDir?.xcodeDeveloperDir.toolchainDir,
     userApplicationsDir?.xcodeBetaDeveloperDir.toolchainDir
 ].compactMap { path in
-    if let fullPath = path?.usrLibDir, fullPath.isFile {
+    if let fullPath = path?.usrLibDir, FileManager.default.fileExists(atPath: fullPath) {
         return fullPath
     }
     return nil
