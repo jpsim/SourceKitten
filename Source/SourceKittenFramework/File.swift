@@ -148,6 +148,9 @@ public final class File {
         let substring: String?
         if let end = SwiftDocKey.getBodyOffset(dictionary) {
             substring = stringView.substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
+        } else if let length = SwiftDocKey.getLength(dictionary),
+            SwiftVersion.current >= .fiveDotOne {
+            substring = stringView.substringStartingLinesWithByteRange(start: start, length: Int(length))
         } else {
             substring = stringView.substringLinesWithByteRange(start: start, length: 0)
         }
