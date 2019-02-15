@@ -15,6 +15,10 @@
   [Minh Nguyễn](https://github.com/1ec5)
   [#574](https://github.com/jpsim/SourceKitten/issues/574)
 
+* Pathnames containing shell-escaped characters in xcodebuild arguments no
+  longer prevent documentation generation.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 ## 0.22.0
 
 ##### Breaking

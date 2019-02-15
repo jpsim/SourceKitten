@@ -147,6 +147,7 @@ internal func parseCompilerArguments(xcodebuildOutput: String, language: Languag
     let escapedSpacePlaceholder = "\u{0}"
     let args = filter(arguments: String(xcodebuildOutput[matchRange])
         .replacingOccurrences(of: "\\ ", with: escapedSpacePlaceholder)
+        .unescaped
         .components(separatedBy: " "))
 
     // Remove first argument (swiftc/clang) and re-add spaces in arguments
