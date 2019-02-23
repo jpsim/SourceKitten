@@ -29,6 +29,13 @@ class ModuleTests: XCTestCase {
         let commandantModule = Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath)!
         compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs, rootDirectory: commandantPath)
     }
+
+    func testCommandantResultDocs() {
+        let commandantPath = projectRoot + "/Carthage/Checkouts/Commandant/"
+        let arguments = ["-workspace", "Commandant.xcworkspace", "-scheme", "Result-tvOS", "test"]
+        let commandantModule = Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath)!
+        compareJSONString(withFixtureNamed: "CommandantResultTVOS", jsonString: commandantModule.docs, rootDirectory: commandantPath)
+    }
 }
 
 #if SWIFT_PACKAGE

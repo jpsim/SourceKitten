@@ -72,7 +72,13 @@ public struct Module {
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
     public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
-        let name = name ?? moduleName(fromArguments: xcodeBuildArguments)
+        let buildSettings = XcodeBuild.showBuildSettings(arguments: xcodeBuildArguments, inPath: path)
+
+        let name = name
+            // Check for user-defined "SWIFT_MODULE_NAME", otherwise use "PRODUCT_MODULE_NAME".
+            ?? buildSettings?.firstBuildSettingValue { $0.swiftModuleName ?? $0.productModuleName }
+            ?? moduleName(fromArguments: xcodeBuildArguments)
+
         // Executing normal build
         fputs("Running xcodebuild\n", stderr)
         if let output = XcodeBuild.run(arguments: xcodeBuildArguments, inPath: path),
@@ -83,8 +89,7 @@ public struct Module {
         }
         // Check New Build System is used
         fputs("Checking xcodebuild -showBuildSettings\n", stderr)
-        if let output = XcodeBuild.run(arguments: xcodeBuildArguments + ["-showBuildSettings"], inPath: path),
-            let projectTempRoot = parseProjectTempRoot(xcodebuildOutput: output),
+        if let projectTempRoot = buildSettings?.firstBuildSettingValue(for: { $0.projectTempRoot }),
             let arguments = checkNewBuildSystem(in: projectTempRoot, moduleName: name),
             let moduleName = moduleName(fromArguments: arguments) {
             self.init(name: moduleName, compilerArguments: arguments)
