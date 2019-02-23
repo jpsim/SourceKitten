@@ -74,7 +74,12 @@ internal enum XcodeBuild {
             else { return nil }
 
         let decoder = JSONDecoder()
+
+        #if os(Linux) && !swift(>=4.2.1)
+        // Handled in `XcodeBuildSetting`.
+        #else
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        #endif
         return try? decoder.decode([XcodeBuildSetting].self, from: data)
     }
 }
