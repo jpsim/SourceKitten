@@ -28,9 +28,9 @@ struct XcodeBuildSetting: Codable {
         action = try container.decode(String.self, forKey: .action)
 
         var decodedKeybuildSettings: [String: String] = [:]
-        try container.decode([String: String].self, forKey: .buildSettings).forEach({ (key, value) in
+        try container.decode([String: String].self, forKey: .buildSettings).forEach { key, value in
             decodedKeybuildSettings[XcodeBuildSetting._convertFromSnakeCase(key)] = value
-        })
+        }
         buildSettings = decodedKeybuildSettings
 
         target = try container.decode(String.self, forKey: .target)
@@ -70,7 +70,7 @@ struct XcodeBuildSetting: Codable {
         let trailingUnderscoreRange = stringKey.index(after: lastNonUnderscore)..<stringKey.endIndex
 
         var components = stringKey[keyRange].split(separator: "_")
-        let joinedString : String
+        let joinedString: String
         if components.count == 1 {
             // No underscores in key, leave the word as is - maybe already camel cased
             joinedString = String(stringKey[keyRange])
@@ -79,13 +79,13 @@ struct XcodeBuildSetting: Codable {
         }
 
         // Do a cheap isEmpty check before creating and appending potentially empty strings
-        let result : String
-        if (leadingUnderscoreRange.isEmpty && trailingUnderscoreRange.isEmpty) {
+        let result: String
+        if leadingUnderscoreRange.isEmpty && trailingUnderscoreRange.isEmpty {
             result = joinedString
-        } else if (!leadingUnderscoreRange.isEmpty && !trailingUnderscoreRange.isEmpty) {
+        } else if !leadingUnderscoreRange.isEmpty && !trailingUnderscoreRange.isEmpty {
             // Both leading and trailing underscores
             result = String(stringKey[leadingUnderscoreRange]) + joinedString + String(stringKey[trailingUnderscoreRange])
-        } else if (!leadingUnderscoreRange.isEmpty) {
+        } else if !leadingUnderscoreRange.isEmpty {
             // Just leading
             result = String(stringKey[leadingUnderscoreRange]) + joinedString
         } else {
