@@ -33,11 +33,23 @@ internal enum XcodeBuild {
 
     - parameter arguments:           Arguments to pass to `xcodebuild`.
     - parameter path:                Path to run `xcodebuild` from.
-    - parameter pipingStandardError: Whether to pipe the standard error output. The default value is `true`.
 
-    - returns: `xcodebuild`'s STDOUT output and, optionally, both STDERR+STDOUT output combined.
+    - returns: `xcodebuild`'s STDERR+STDOUT output combined.
     */
-    internal static func run(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> String? {
+    internal static func run(arguments: [String], inPath path: String) -> String? {
+        return String(data: launch(arguments: arguments, inPath: path, pipingStandardError: true), encoding: .utf8)
+    }
+
+    /**
+     Launch `xcodebuild` along with any passed in build arguments.
+
+     - parameter arguments:           Arguments to pass to `xcodebuild`.
+     - parameter path:                Path to run `xcodebuild` from.
+     - parameter pipingStandardError: Whether to pipe the standard error output. The default value is `true`.
+
+     - returns: `xcodebuild`'s STDOUT output and, optionally, both STDERR+STDOUT output combined.
+     */
+    internal static func launch(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> Data {
         let task = Process()
         task.launchPath = "/usr/bin/xcodebuild"
         task.currentDirectoryPath = path
@@ -55,7 +67,7 @@ internal enum XcodeBuild {
         let file = pipe.fileHandleForReading
         defer { file.closeFile() }
 
-        return String(data: file.readDataToEndOfFile(), encoding: .utf8)
+        return file.readDataToEndOfFile()
     }
 
     /**
@@ -69,9 +81,7 @@ internal enum XcodeBuild {
     internal static func showBuildSettings(arguments xcodeBuildArguments: [String],
                                            inPath: String) -> [XcodeBuildSetting]? {
         let arguments = xcodeBuildArguments + ["-showBuildSettings", "-json"]
-        guard let output = XcodeBuild.run(arguments: arguments, inPath: inPath, pipingStandardError: false),
-            let data = output.data(using: .utf8)
-            else { return nil }
+        let outputData = XcodeBuild.launch(arguments: arguments, inPath: inPath, pipingStandardError: false)
 
         let decoder = JSONDecoder()
 
@@ -80,7 +90,7 @@ internal enum XcodeBuild {
         #else
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         #endif
-        return try? decoder.decode([XcodeBuildSetting].self, from: data)
+        return try? decoder.decode([XcodeBuildSetting].self, from: outputData)
     }
 }
 
