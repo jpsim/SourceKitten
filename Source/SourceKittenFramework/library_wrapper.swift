@@ -79,6 +79,9 @@ private func runCommand(_ path: String, _ args: String...) -> String? {
 
     let pipe = Pipe()
     process.standardOutput = pipe
+    // FileHandle.nullDevice does not work here, as it consists of an invalid file descriptor,
+    // causing process.launch() to abort with an EBADF.
+    process.standardError = FileHandle(forWritingAtPath: "/dev/null")!
     process.launch()
 
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
