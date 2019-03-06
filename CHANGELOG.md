@@ -19,6 +19,10 @@
   longer prevent documentation generation.  
   [John Fairhurst](https://github.com/johnfairh)
 
+* `swiftc` no longer passed as a compiler argument when using `doc` and
+  the new build system.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 ## 0.22.0
 
 ##### Breaking
