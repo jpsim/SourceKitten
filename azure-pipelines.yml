@@ -12,6 +12,10 @@ jobs:
         containerImage: norionomura/swiftlint:swift-4.2.0
       swift421:
         containerImage: norionomura/swiftlint:swift-4.2.1
+      swift422:
+        containerImage: norionomura/swiftlint:swift-4.2.2
+      swift423:
+        containerImage: norionomura/swiftlint:swift-4.2.3
   container: $[ variables['containerImage'] ]
   steps:
     - script: swift test --parallel
