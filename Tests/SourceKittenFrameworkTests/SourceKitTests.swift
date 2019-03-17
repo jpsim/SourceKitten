@@ -133,50 +133,17 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    // swiftlint:disable:next function_body_length
     func testSwiftDeclarationKind() {
-        let expected: [SwiftDeclarationKind] = [
-            .associatedtype,
-            .class,
-            .enum,
-            .enumcase,
-            .enumelement,
-            .extension,
-            .extensionClass,
-            .extensionEnum,
-            .extensionProtocol,
-            .extensionStruct,
-            .functionAccessorAddress,
-            .functionAccessorDidset,
-            .functionAccessorGetter,
-            .functionAccessorMutableaddress,
-            .functionAccessorSetter,
-            .functionAccessorWillset,
-            .functionConstructor,
-            .functionDestructor,
-            .functionFree,
-            .functionMethodClass,
-            .functionMethodInstance,
-            .functionMethodStatic,
-            .functionOperatorInfix,
-            .functionOperatorPostfix,
-            .functionOperatorPrefix,
-            .functionSubscript,
-            .genericTypeParam,
-            .module,
-            .precedenceGroup,
-            .protocol,
-            .struct,
-            .typealias,
-            .varClass,
-            .varGlobal,
-            .varInstance,
-            .varLocal,
-            .varParameter,
-            .varStatic
-        ]
+        let expected = SwiftDeclarationKind.allCases
         let actual = sourcekitStrings(startingWith: "source.lang.swift.decl.")
-        let expectedStrings = Set(expected.map { $0.rawValue })
+        var expectedStrings = Set(expected.map { $0.rawValue })
+    #if swift(>=2.2)
+        expectedStrings.remove(SwiftDeclarationKind.functionOperator.rawValue)
+    #endif
+    #if !compiler(>=5.0)
+        expectedStrings.remove(SwiftDeclarationKind.functionAccessorModify.rawValue)
+        expectedStrings.remove(SwiftDeclarationKind.functionAccessorRead.rawValue)
+    #endif
         XCTAssertEqual(
             actual,
             expectedStrings
