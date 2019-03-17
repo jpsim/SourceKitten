@@ -191,7 +191,7 @@ class StringTests: XCTestCase {
                 }
             }
             """
-        XCTAssertEqual(string.bridge().byteRangeToNSRange(start: 115, length: 42), NSRange(location: 115, length: 38))
+        XCTAssertEqual(string.bridge().byteRangeToNSRange(start: 115, length: 41), NSRange(location: 115, length: 38))
     }
 
     func testLineAndCharacterForCharacterOffset() {
