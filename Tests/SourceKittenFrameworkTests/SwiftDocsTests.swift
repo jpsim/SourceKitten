@@ -70,7 +70,11 @@ private func versionedExpectedFilename(for name: String) -> String {
     #if swift(>=4.2.1)
         let versions = ["swift-4.2.1", "swift-4.2"]
     #elseif swift(>=4.2)
-        let versions = ["swift-4.2"]
+        #if compiler(>=5.0)
+            let versions = ["swift-5.0", "swift-4.2.1", "swift-4.2"]
+        #else
+            let versions = ["swift-4.2"]
+        #endif
     #else
         fatalError("Swift 4.2 or later is required!")
     #endif
@@ -122,7 +126,11 @@ private let buildingSwiftVersion: String = {
     #if swift(>=4.2.1)
         return "swift-4.2.1"
     #elseif swift(>=4.2)
-        return "swift-4.2"
+        #if compiler(>=5.0)
+            return "swift-5.0"
+        #else
+            return "swift-4.2"
+        #endif
     #else
         fatalError("Swift 4.2 or later is required!")
     #endif
