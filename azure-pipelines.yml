@@ -16,6 +16,8 @@ jobs:
         containerImage: norionomura/swiftlint:swift-4.2.2
       swift423:
         containerImage: norionomura/swiftlint:swift-4.2.3
+      swift50:
+        containerImage: norionomura/swift:swift-5.0-branch
   container: $[ variables['containerImage'] ]
   steps:
     - script: swift test --parallel
@@ -25,6 +27,7 @@ jobs:
         mkdir -p build/reports/
         swiftlint lint --strict --reporter junit > build/reports/swiftlint.xml
       displayName: swiftlint
+      condition: contains(variables['containerImage'], 'swiftlint')
     - task: PublishTestResults@2
       inputs:
         testRunner: JUnit
