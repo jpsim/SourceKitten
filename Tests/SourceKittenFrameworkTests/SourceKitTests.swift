@@ -69,7 +69,6 @@ let sourcekittenXcodebuildArguments = [
     ]
 }()
 
-// swiftlint:disable:next type_body_length
 class SourceKitTests: XCTestCase {
 
     func testStatementKinds() {
@@ -154,87 +153,34 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    // swiftlint:disable:next function_body_length
     func testSwiftDeclarationAttributeKind() {
-        let expected: [SwiftDeclarationAttributeKind] = [
-            .ibaction,
-            .iboutlet,
-            .ibdesignable,
-            .ibinspectable,
-            .gkinspectable,
-            .objc,
-            .objcName,
-            .silgenName,
-            .available,
-            .final,
-            .required,
-            .optional,
-            .noreturn,
-            .epxorted,
-            .nsCopying,
-            .nsManaged,
-            .lazy,
-            .lldbDebuggerFunction,
-            .uiApplicationMain,
-            .unsafeNoObjcTaggedPointer,
-            .inline,
-            .semantics,
-            .dynamic,
-            .infix,
-            .prefix,
-            .postfix,
-            .transparent,
-            .requiresStoredProperyInits,
-            .nonobjc,
-            .fixedLayout,
-            .specialize,
-            .objcMembers,
-            .mutating,
-            .nonmutating,
-            .convenience,
-            .override,
-            .silSorted,
-            .weak,
-            .effects,
-            .objcBriged,
-            .nsApplicationMain,
-            .synthesizedProtocol,
-            .testable,
-            .alignment,
-            .rethrows,
-            .swiftNativeObjcRuntimeBase,
-            .indirect,
-            .warnUnqualifiedAccess,
-            .cdecl,
-            .discardableResult,
-            .implements,
-            .objcRuntimeName,
-            .staticInitializeObjCMetadata,
-            .restatedObjCConformance,
-            .private,
-            .fileprivate,
-            .internal,
-            .public,
-            .open,
-            .setterPrivate,
-            .setterFilePrivate,
-            .setterInternal,
-            .setterPublic,
-            .setterOpen,
-            .optimize,
-            .consuming,
-            .implicitlyUnwrappedOptional,
-            .underscoredObjcNonLazyRealization,
-            .clangImporterSynthesizedType,
-            .forbidSerializingReference,
-            .usableFromInline,
-            .weakLinked,
-            .inlinable,
-            .dynamicMemberLookup,
-            .frozen
-        ]
-
+        var expected = Set(SwiftDeclarationAttributeKind.allCases)
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
+
+    #if compiler(>=5.0)
+        // removed on Swift 5.0
+        expected.subtract([.silStored, .effects])
+    #if !canImport(Darwin)
+        // added on Swift 5.0 for Darwin
+        expected.subtract([
+            .__raw_doc_comment, .__setter_access, ._hasInitialValue, ._hasStorage, ._show_in_interface, .gkInspectable,
+            .ibAction, .ibOutlet
+        ])
+    #endif
+    #else
+        // added on Swift 5.0
+        expected.subtract([
+            .__raw_doc_comment, .__setter_access, ._borrowed, ._dynamicReplacement, ._effects, ._hasInitialValue,
+            ._hasStorage, ._nonoverride, ._private, ._show_in_interface, .dynamicCallable, .gkInspectable, .ibAction,
+            .ibOutlet
+        ])
+    #endif
+
+        // removed on Swift 4.2
+        expected.subtract([.objcNonLazyRealization, .inlineable, .versioned])
+        // removed o nSwift 4.1
+        expected.subtract([.autoclosure, .noescape])
+
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
