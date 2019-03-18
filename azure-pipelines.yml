@@ -33,6 +33,7 @@ jobs:
         testRunner: JUnit
         testResultsFiles: build/reports/**
         failOnStandardError: 'true'
+      condition: failed()
 
 - job: macOS
   pool:
