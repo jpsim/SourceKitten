@@ -54,9 +54,7 @@ private let sourcekitStrings: [String] = {
 }()
 
 private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
-    return Set(sourcekitStrings.filter { string in
-        return string.range(of: pattern)?.lowerBound == string.startIndex
-    })
+    return Set(sourcekitStrings.filter { $0.hasPrefix(pattern) })
 }
 
 let sourcekittenXcodebuildArguments = [
