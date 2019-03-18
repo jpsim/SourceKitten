@@ -133,16 +133,16 @@ class SourceKitTests: XCTestCase {
     }
 
     func testSwiftDeclarationKind() {
-        let expected = SwiftDeclarationKind.allCases
+        var expected = Set(SwiftDeclarationKind.allCases)
         let actual = sourcekitStrings(startingWith: "source.lang.swift.decl.")
-        var expectedStrings = Set(expected.map { $0.rawValue })
     #if swift(>=2.2)
-        expectedStrings.remove(SwiftDeclarationKind.functionOperator.rawValue)
+        expected.remove(.functionOperator)
     #endif
     #if !compiler(>=5.0)
-        expectedStrings.remove(SwiftDeclarationKind.functionAccessorModify.rawValue)
-        expectedStrings.remove(SwiftDeclarationKind.functionAccessorRead.rawValue)
+        expected.remove(.functionAccessorModify)
+        expected.remove(.functionAccessorRead)
     #endif
+        let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
             expectedStrings
