@@ -12,13 +12,30 @@ import XCTest
 
 private func run(executable: String, arguments: [String]) -> String? {
     let task = Process()
-    task.launchPath = executable
     task.arguments = arguments
 
     let pipe = Pipe()
     task.standardOutput = pipe
 
-    task.launch()
+    do {
+    #if canImport(Darwin)
+        if #available(macOS 10.13, *) {
+            task.executableURL = URL(fileURLWithPath: executable)
+            try task.run()
+        } else {
+            task.launchPath = executable
+            task.launch()
+        }
+    #elseif compiler(>=5)
+        task.executableURL = URL(fileURLWithPath: executable)
+        try task.run()
+    #else
+        task.launchPath = executable
+        task.launch()
+    #endif
+    } catch {
+        return nil
+    }
 
     let file = pipe.fileHandleForReading
     let output = String(data: file.readDataToEndOfFile(), encoding: .utf8)
