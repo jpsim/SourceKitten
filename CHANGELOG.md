@@ -15,6 +15,10 @@
   [Minh Nguyễn](https://github.com/1ec5)
   [#574](https://github.com/jpsim/SourceKitten/issues/574)
 
+* Fix `xcodebuild clean` path for new build system and Xcode 10.2.  
+  [John Fairhurst](https://github.com/johnfairh)
+  [realm/jazzy#1057](https://github.com/realm/jazzy/issues/1057)
+
 * Pathnames containing shell-escaped characters in xcodebuild arguments no
   longer prevent documentation generation.  
   [John Fairhurst](https://github.com/johnfairh)
