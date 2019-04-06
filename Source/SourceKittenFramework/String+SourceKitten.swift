@@ -657,4 +657,18 @@ extension String {
         }
         return Int64(utf8.distance(from: utf8.startIndex, to: utf8pos))
     }
+
+    /// A version of the string with backslash escapes removed.
+    public var unescaped: String {
+        struct UnescapingSequence: Sequence, IteratorProtocol {
+            var iterator: IndexingIterator<String>
+
+            mutating func next() -> Character? {
+                guard let char = iterator.next() else { return nil }
+                guard char == "\\" else { return char }
+                return iterator.next()
+            }
+        }
+        return String(UnescapingSequence(iterator: makeIterator()))
+    }
 }
