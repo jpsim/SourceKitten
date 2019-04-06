@@ -6,7 +6,11 @@
 
 ##### Enhancements
 
-* None.
+* Introduce `XcodeBuildSetting` for interacting with project build settings.  
+  [Chris Zielinski](https://github.com/chriszielinski)
+
+* Improve module name inference for `Module`.  
+  [Chris Zielinski](https://github.com/chriszielinski)
 
 ##### Bug Fixes
 

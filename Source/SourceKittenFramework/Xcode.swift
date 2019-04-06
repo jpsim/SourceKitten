@@ -37,6 +37,19 @@ internal enum XcodeBuild {
     - returns: `xcodebuild`'s STDERR+STDOUT output combined.
     */
     internal static func run(arguments: [String], inPath path: String) -> String? {
+        return String(data: launch(arguments: arguments, inPath: path, pipingStandardError: true), encoding: .utf8)
+    }
+
+    /**
+     Launch `xcodebuild` along with any passed in build arguments.
+
+     - parameter arguments:           Arguments to pass to `xcodebuild`.
+     - parameter path:                Path to run `xcodebuild` from.
+     - parameter pipingStandardError: Whether to pipe the standard error output. The default value is `true`.
+
+     - returns: `xcodebuild`'s STDOUT output and, optionally, both STDERR+STDOUT output combined.
+     */
+    internal static func launch(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> Data {
         let task = Process()
         task.launchPath = "/usr/bin/xcodebuild"
         task.currentDirectoryPath = path
@@ -44,21 +57,47 @@ internal enum XcodeBuild {
 
         let pipe = Pipe()
         task.standardOutput = pipe
-        task.standardError = pipe
+
+        if pipingStandardError {
+            task.standardError = pipe
+        }
 
         task.launch()
 
         let file = pipe.fileHandleForReading
         defer { file.closeFile() }
 
-        return String(data: file.readDataToEndOfFile(), encoding: .utf8)
+        return file.readDataToEndOfFile()
+    }
+
+    /**
+     Runs `xcodebuild -showBuildSettings` along with any passed in build arguments.
+
+     - parameter arguments: Arguments to pass to `xcodebuild`.
+     - parameter path:      Path to run `xcodebuild` from.
+
+     - returns: An array of `XcodeBuildSetting`s.
+     */
+    internal static func showBuildSettings(arguments xcodeBuildArguments: [String],
+                                           inPath: String) -> [XcodeBuildSetting]? {
+        let arguments = xcodeBuildArguments + ["-showBuildSettings", "-json"]
+        let outputData = XcodeBuild.launch(arguments: arguments, inPath: inPath, pipingStandardError: false)
+
+        let decoder = JSONDecoder()
+
+#if os(Linux) && !swift(>=4.2.1)
+        // Handled in `XcodeBuildSetting`.
+#else
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+#endif
+        return try? decoder.decode([XcodeBuildSetting].self, from: outputData)
     }
 }
 
 /**
 Parses likely module name from compiler or `xcodebuild` arguments.
 
-Will the following values, in this priority: module name, target name, scheme name.
+Will use the following values, in this priority: module name, target name, scheme name.
 
 - parameter arguments: Compiler or `xcodebuild` arguments to parse.
 
@@ -195,25 +234,6 @@ public func sdkPath() -> String {
     file.closeFile()
     return sdkPath?.replacingOccurrences(of: "\n", with: "") ?? ""
 #endif
-}
-
-let regexForProjectTempRoot = try! NSRegularExpression(pattern: "PROJECT_TEMP_ROOT\\s*=\\s*(.+)$", options: .anchorsMatchLines)
-
-/**
-Parse `PROJECT_TEMP_ROOT` from `xcodebuild -showBuildSettings` output
-
-- parameter xcodebuildOutput: Output of `xcodebuild -showBuildSettings` to be parsed for `PROJECT_TEMP_ROOT`.
-
-- returns: PROJECT_TEMP_ROOT
-*/
-internal func parseProjectTempRoot(xcodebuildOutput output: String) -> String? {
-    let range = NSRange(output.startIndex..<output.endIndex, in: output)
-    guard let match = regexForProjectTempRoot.firstMatch(in: output, range: range),
-        let rangeOfProjectTempRoot = Range(match.range(at: 1), in: output)
-        else {
-            return nil
-    }
-    return String(output[rangeOfProjectTempRoot])
 }
 
 /**
