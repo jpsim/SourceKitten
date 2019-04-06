@@ -19,7 +19,11 @@ internal enum XcodeBuild {
     - returns: `xcodebuild`'s STDERR+STDOUT output combined.
     */
     internal static func cleanBuild(arguments: [String], inPath path: String) -> String? {
-        let arguments = arguments + ["clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO"]
+        let arguments = arguments + ["clean",
+                                     "build",
+                                     "CODE_SIGN_IDENTITY=",
+                                     "CODE_SIGNING_REQUIRED=NO",
+                                     "CODE_SIGNING_ALLOWED=NO"]
         fputs("Running xcodebuild\n", stderr)
         return run(arguments: arguments, inPath: path)
     }
