@@ -250,9 +250,7 @@ internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String
                     let index = args.index(of: "-module-name"),
                     moduleName != nil ? args[args.index(after: index)].string == moduleName : true {
                     let fullArgs = args.compactMap { $0.string }
-                    let swiftCIndex = fullArgs.index(of: "--").flatMap {
-                        fullArgs.index(after: $0)
-                    } ?? fullArgs.startIndex
+                    let swiftCIndex = fullArgs.index(of: "--").flatMap(fullArgs.index(after:)) ?? fullArgs.startIndex
                     return Array(fullArgs.suffix(from: fullArgs.index(after: swiftCIndex)))
                 }
             }
