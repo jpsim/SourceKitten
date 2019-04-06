@@ -6,7 +6,7 @@ func singleLineCommentedFunc() {
 /**
   Multiple line
   commented function.
-**/
+ */
 func multiLineCommentedFunc() {
 }
 
