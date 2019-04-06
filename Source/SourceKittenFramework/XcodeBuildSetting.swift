@@ -22,7 +22,11 @@ struct XcodeBuildSetting: Codable {
     /// The target name.
     let target: String
 
-    #if os(Linux) && !swift(>=4.2.1)
+    subscript(dynamicMember member: String) -> String? {
+        return buildSettings[member]
+    }
+
+#if os(Linux) && !swift(>=4.2.1)
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         action = try container.decode(String.self, forKey: .action)
@@ -35,13 +39,7 @@ struct XcodeBuildSetting: Codable {
 
         target = try container.decode(String.self, forKey: .target)
     }
-    #endif
 
-    subscript(dynamicMember member: String) -> String? {
-        return buildSettings[member]
-    }
-
-    #if os(Linux) && !swift(>=4.2.1)
     /// This method is part of the Swift.org open source project
     /// https://github.com/apple/swift-corelibs-foundation/blob/489984ce5c03890a5d9d51e10298bb7582c26178/Foundation/JSONEncoder.swift#L1014
     ///
@@ -94,29 +92,6 @@ struct XcodeBuildSetting: Codable {
         }
         return result
     }
-    #endif
-
-}
-
-extension Array where Element == XcodeBuildSetting {
-
-    /// Iterates through the `XcodeBuildSetting`s and returns the first value returned by the getter closure.
-    ///
-    /// For example, if we want the value of the first `XcodeBuildSetting` with a `"PROJECT_TEMP_ROOT"` value:
-    ///
-    ///     let buildSettings: [XcodeBuildSetting] = ...
-    ///     let projectTempRoot = buildSettings.firstBuildSettingValue { $0.projectTempRoot }
-    ///
-    /// - Parameter getterClosure: A closure that returns a dynamic member.
-    /// - Returns: The first value returned by the getter closure.
-    func firstBuildSettingValue(for getterClosure: (XcodeBuildSetting) -> String?) -> String? {
-        for buildSetting in self {
-            if let value = getterClosure(buildSetting) {
-                return value
-            }
-        }
-
-        return nil
-    }
+#endif
 
 }

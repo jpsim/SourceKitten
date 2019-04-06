@@ -137,3 +137,20 @@ extension Module: CustomStringConvertible {
         return "Module(name: \(name), compilerArguments: \(compilerArguments), sourceFiles: \(sourceFiles))"
     }
 }
+
+// MARK: XcodeBuildSetting Conveniences
+
+private extension Collection where Element == XcodeBuildSetting {
+    /// Iterates through the `XcodeBuildSetting`s and returns the first value returned by the getter closure.
+    ///
+    /// For example, if we want the value of the first `XcodeBuildSetting` with a `"PROJECT_TEMP_ROOT"` value:
+    ///
+    ///     let buildSettings: [XcodeBuildSetting] = ...
+    ///     let projectTempRoot = buildSettings.firstBuildSettingValue { $0.projectTempRoot }
+    ///
+    /// - Parameter getterClosure: A closure that returns a dynamic member.
+    /// - Returns: The first value returned by the getter closure.
+    func firstBuildSettingValue(for getterClosure: (XcodeBuildSetting) -> String?) -> String? {
+        return lazy.compactMap(getterClosure).first
+    }
+}

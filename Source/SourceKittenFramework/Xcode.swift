@@ -31,8 +31,8 @@ internal enum XcodeBuild {
     /**
     Run `xcodebuild` along with any passed in build arguments.
 
-    - parameter arguments:           Arguments to pass to `xcodebuild`.
-    - parameter path:                Path to run `xcodebuild` from.
+    - parameter arguments: Arguments to pass to `xcodebuild`.
+    - parameter path:      Path to run `xcodebuild` from.
 
     - returns: `xcodebuild`'s STDERR+STDOUT output combined.
     */
@@ -85,11 +85,11 @@ internal enum XcodeBuild {
 
         let decoder = JSONDecoder()
 
-        #if os(Linux) && !swift(>=4.2.1)
+#if os(Linux) && !swift(>=4.2.1)
         // Handled in `XcodeBuildSetting`.
-        #else
+#else
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        #endif
+#endif
         return try? decoder.decode([XcodeBuildSetting].self, from: outputData)
     }
 }
