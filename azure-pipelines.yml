@@ -78,6 +78,8 @@ jobs:
       displayName: Update bundler
     - script: bundle install --path vendor/bundle
       displayName: bundle install
+    - script: bundle exec pod repo update
+      displayName: pod repo update
     - script: bundle exec pod lib lint
       displayName: pod lib lint
 
