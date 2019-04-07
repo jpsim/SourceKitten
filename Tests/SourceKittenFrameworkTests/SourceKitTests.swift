@@ -173,17 +173,17 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
 
     #if compiler(>=5.0)
-        // removed on Swift 5.0
+        // removed in Swift 5.0
         expected.subtract([.silStored, .effects])
     #if !canImport(Darwin)
-        // added on Swift 5.0 for Darwin
+        // added in Swift 5.0 for Darwin
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._hasInitialValue, ._hasStorage, ._show_in_interface, .gkInspectable,
             .ibAction, .ibOutlet
         ])
     #endif
     #else
-        // added on Swift 5.0
+        // added in Swift 5.0
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._borrowed, ._dynamicReplacement, ._effects, ._hasInitialValue,
             ._hasStorage, ._nonoverride, ._private, ._show_in_interface, .dynamicCallable, .gkInspectable, .ibAction,
@@ -191,9 +191,9 @@ class SourceKitTests: XCTestCase {
         ])
     #endif
 
-        // removed on Swift 4.2
+        // removed in Swift 4.2
         expected.subtract([.objcNonLazyRealization, .inlineable, .versioned])
-        // removed o nSwift 4.1
+        // removed in Swift 4.1
         expected.subtract([.autoclosure, .noescape])
 
         let expectedStrings = Set(expected.map { $0.rawValue })
