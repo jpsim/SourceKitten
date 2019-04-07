@@ -103,15 +103,7 @@ internal enum XcodeBuild {
                                            inPath: String) -> [XcodeBuildSetting]? {
         let arguments = xcodeBuildArguments + ["-showBuildSettings", "-json"]
         let outputData = XcodeBuild.launch(arguments: arguments, inPath: inPath, pipingStandardError: false)
-
-        let decoder = JSONDecoder()
-
-#if os(Linux) && !swift(>=4.2.1)
-        // Handled in `XcodeBuildSetting`.
-#else
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-#endif
-        return try? decoder.decode([XcodeBuildSetting].self, from: outputData)
+        return try? JSONDecoder().decode([XcodeBuildSetting].self, from: outputData)
     }
 }
 
