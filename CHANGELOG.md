@@ -31,6 +31,10 @@
   the new build system.  
   [John Fairhurst](https://github.com/johnfairh)
 
+* Don't document `deinit` destructors.  
+  [JP Simard](https://github.com/jpsim)
+  [realm/SwiftLint#2690](https://github.com/realm/SwiftLint/issues/2690)
+
 ## 0.22.0
 
 ##### Breaking

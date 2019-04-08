@@ -518,13 +518,12 @@ extension String {
 
     - `subscript`
     - `init`
-    - `deinit`
 
     - parameter token: Token to process.
     */
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
         if token.type == SyntaxKind.keyword.rawValue {
-            let keywordFunctions = ["subscript", "init", "deinit"]
+            let keywordFunctions = ["subscript", "init"]
             return bridge().substringWithByteRange(start: token.offset, length: token.length)
                 .map(keywordFunctions.contains) ?? false
         }
