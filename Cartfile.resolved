@@ -1,4 +1,4 @@
-github "Carthage/Commandant" "9a2af477c653b1180ca9a008bbc8c4cebec8b765"
+github "Carthage/Commandant" "0.16.0"
 github "antitypical/Result" "4.1.0"
 github "drmohundro/SWXMLHash" "4.8.0"
 github "jpsim/Yams" "2.0.0"
