@@ -12,6 +12,11 @@
 * Improve module name inference for `Module`.  
   [Chris Zielinski](https://github.com/chriszielinski)
 
+* Add Swift 5 support. Add new `SwiftDeclarationAttributeKind` and
+  `SwiftDeclarationKind` members and make those enums conform to
+  `CaseIterable`.  
+  [Norio Nomura](https://github.com/norio-nomura)
+
 ##### Bug Fixes
 
 * “.swift”-suffixed directory in xcodebuild arguments no longer detected as
