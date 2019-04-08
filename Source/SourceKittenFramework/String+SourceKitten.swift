@@ -661,7 +661,7 @@ extension String {
     /// A version of the string with backslash escapes removed.
     public var unescaped: String {
         struct UnescapingSequence: Sequence, IteratorProtocol {
-            var iterator: IndexingIterator<String>
+            var iterator: String.Iterator
 
             mutating func next() -> Character? {
                 guard let char = iterator.next() else { return nil }

@@ -12,13 +12,30 @@ import XCTest
 
 private func run(executable: String, arguments: [String]) -> String? {
     let task = Process()
-    task.launchPath = executable
     task.arguments = arguments
 
     let pipe = Pipe()
     task.standardOutput = pipe
 
-    task.launch()
+    do {
+    #if canImport(Darwin)
+        if #available(macOS 10.13, *) {
+            task.executableURL = URL(fileURLWithPath: executable)
+            try task.run()
+        } else {
+            task.launchPath = executable
+            task.launch()
+        }
+    #elseif compiler(>=5)
+        task.executableURL = URL(fileURLWithPath: executable)
+        try task.run()
+    #else
+        task.launchPath = executable
+        task.launch()
+    #endif
+    } catch {
+        return nil
+    }
 
     let file = pipe.fileHandleForReading
     let output = String(data: file.readDataToEndOfFile(), encoding: .utf8)
@@ -54,9 +71,7 @@ private let sourcekitStrings: [String] = {
 }()
 
 private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
-    return Set(sourcekitStrings.filter { string in
-        return string.range(of: pattern)?.lowerBound == string.startIndex
-    })
+    return Set(sourcekitStrings.filter { $0.hasPrefix(pattern) })
 }
 
 let sourcekittenXcodebuildArguments = [
@@ -69,7 +84,6 @@ let sourcekittenXcodebuildArguments = [
     ]
 }()
 
-// swiftlint:disable:next type_body_length
 class SourceKitTests: XCTestCase {
 
     func testStatementKinds() {
@@ -133,49 +147,16 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    // swiftlint:disable:next function_body_length
     func testSwiftDeclarationKind() {
-        let expected: [SwiftDeclarationKind] = [
-            .associatedtype,
-            .class,
-            .enum,
-            .enumcase,
-            .enumelement,
-            .extension,
-            .extensionClass,
-            .extensionEnum,
-            .extensionProtocol,
-            .extensionStruct,
-            .functionAccessorAddress,
-            .functionAccessorDidset,
-            .functionAccessorGetter,
-            .functionAccessorMutableaddress,
-            .functionAccessorSetter,
-            .functionAccessorWillset,
-            .functionConstructor,
-            .functionDestructor,
-            .functionFree,
-            .functionMethodClass,
-            .functionMethodInstance,
-            .functionMethodStatic,
-            .functionOperatorInfix,
-            .functionOperatorPostfix,
-            .functionOperatorPrefix,
-            .functionSubscript,
-            .genericTypeParam,
-            .module,
-            .precedenceGroup,
-            .protocol,
-            .struct,
-            .typealias,
-            .varClass,
-            .varGlobal,
-            .varInstance,
-            .varLocal,
-            .varParameter,
-            .varStatic
-        ]
+        var expected = Set(SwiftDeclarationKind.allCases)
         let actual = sourcekitStrings(startingWith: "source.lang.swift.decl.")
+    #if swift(>=2.2)
+        expected.remove(.functionOperator)
+    #endif
+    #if !compiler(>=5.0)
+        expected.remove(.functionAccessorModify)
+        expected.remove(.functionAccessorRead)
+    #endif
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
@@ -187,87 +168,38 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    // swiftlint:disable:next function_body_length
     func testSwiftDeclarationAttributeKind() {
-        let expected: [SwiftDeclarationAttributeKind] = [
-            .ibaction,
-            .iboutlet,
-            .ibdesignable,
-            .ibinspectable,
-            .gkinspectable,
-            .objc,
-            .objcName,
-            .silgenName,
-            .available,
-            .final,
-            .required,
-            .optional,
-            .noreturn,
-            .epxorted,
-            .nsCopying,
-            .nsManaged,
-            .lazy,
-            .lldbDebuggerFunction,
-            .uiApplicationMain,
-            .unsafeNoObjcTaggedPointer,
-            .inline,
-            .semantics,
-            .dynamic,
-            .infix,
-            .prefix,
-            .postfix,
-            .transparent,
-            .requiresStoredProperyInits,
-            .nonobjc,
-            .fixedLayout,
-            .specialize,
-            .objcMembers,
-            .mutating,
-            .nonmutating,
-            .convenience,
-            .override,
-            .silSorted,
-            .weak,
-            .effects,
-            .objcBriged,
-            .nsApplicationMain,
-            .synthesizedProtocol,
-            .testable,
-            .alignment,
-            .rethrows,
-            .swiftNativeObjcRuntimeBase,
-            .indirect,
-            .warnUnqualifiedAccess,
-            .cdecl,
-            .discardableResult,
-            .implements,
-            .objcRuntimeName,
-            .staticInitializeObjCMetadata,
-            .restatedObjCConformance,
-            .private,
-            .fileprivate,
-            .internal,
-            .public,
-            .open,
-            .setterPrivate,
-            .setterFilePrivate,
-            .setterInternal,
-            .setterPublic,
-            .setterOpen,
-            .optimize,
-            .consuming,
-            .implicitlyUnwrappedOptional,
-            .underscoredObjcNonLazyRealization,
-            .clangImporterSynthesizedType,
-            .forbidSerializingReference,
-            .usableFromInline,
-            .weakLinked,
-            .inlinable,
-            .dynamicMemberLookup,
-            .frozen
+        var expected = Set(SwiftDeclarationAttributeKind.allCases)
+        let attributesFoundInSwift5ButWeIgnore = [
+            "source.decl.attribute.GKInspectable",
+            "source.decl.attribute.IBAction",
+            "source.decl.attribute.IBOutlet"
         ]
-
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
+            .subtracting(attributesFoundInSwift5ButWeIgnore)
+
+    #if compiler(>=5.0)
+        // removed in Swift 5.0
+        expected.subtract([.silStored, .effects])
+    #if !canImport(Darwin)
+        // added in Swift 5.0 for Darwin
+        expected.subtract([
+            .__raw_doc_comment, .__setter_access, ._hasInitialValue, ._hasStorage, ._show_in_interface
+        ])
+    #endif
+    #else
+        // added in Swift 5.0
+        expected.subtract([
+            .__raw_doc_comment, .__setter_access, ._borrowed, ._dynamicReplacement, ._effects, ._hasInitialValue,
+            ._hasStorage, ._nonoverride, ._private, ._show_in_interface, .dynamicCallable
+        ])
+    #endif
+
+        // removed in Swift 4.2
+        expected.subtract([.objcNonLazyRealization, .inlineable, .versioned])
+        // removed in Swift 4.1
+        expected.subtract([.autoclosure, .noescape])
+
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,

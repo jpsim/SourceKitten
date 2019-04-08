@@ -87,7 +87,7 @@
               }
             ],
             "key.typename" : "Error",
-            "key.typeusr" : "$Ss5Error_pD",
+            "key.typeusr" : "$ss5Error_pD",
             "key.usr" : "s:6Result8AnyErrorV5errors0C0_pvp"
           },
           {
@@ -117,15 +117,16 @@
 
             ],
             "key.typename" : "(AnyError.Type) -> (Error) -> AnyError",
-            "key.typeusr" : "$Sy6Result8AnyErrorVs0C0_pcD",
+            "key.typeusr" : "$sy6Result8AnyErrorVs0C0_pcD",
             "key.usr" : "s:6Result8AnyErrorVyACs0C0_pcfc"
           }
         ],
         "key.typename" : "AnyError.Type",
-        "key.typeusr" : "$S6Result8AnyErrorVmD",
+        "key.typeusr" : "$s6Result8AnyErrorVmD",
         "key.usr" : "s:6Result8AnyErrorV"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct AnyError : Swift.<Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 88,
         "key.bodyoffset" : 407,
@@ -194,15 +195,16 @@
 
             ],
             "key.typename" : "(AnyError.Type) -> (Error) -> AnyError",
-            "key.typeusr" : "$S4from6Result8AnyErrorVs0D0_p_tcD",
+            "key.typeusr" : "$s4from6Result8AnyErrorVs0D0_p_tcD",
             "key.usr" : "s:6Result8AnyErrorV5error4fromACs0C0_p_tFZ"
           }
         ],
         "key.typename" : "AnyError.Type",
-        "key.typeusr" : "$S6Result8AnyErrorVmD",
+        "key.typeusr" : "$s6Result8AnyErrorVmD",
         "key.usr" : "s:6Result8AnyErrorV"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct AnyError : Swift.<Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 73,
         "key.bodyoffset" : 543,
@@ -278,15 +280,16 @@
             "key.parsed_scope.end" : 27,
             "key.parsed_scope.start" : 25,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSvp"
           }
         ],
         "key.typename" : "AnyError.Type",
-        "key.typeusr" : "$S6Result8AnyErrorVmD",
+        "key.typeusr" : "$s6Result8AnyErrorVmD",
         "key.usr" : "s:6Result8AnyErrorV"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct AnyError : Swift.<Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 360,
         "key.bodyoffset" : 655,
@@ -351,7 +354,7 @@
             "key.parsed_scope.end" : 33,
             "key.parsed_scope.start" : 31,
             "key.typename" : "String?",
-            "key.typeusr" : "$SSSSgD",
+            "key.typeusr" : "$sSSSgD",
             "key.usr" : "s:10Foundation14LocalizedErrorP16errorDescriptionSSSgvp"
           },
           {
@@ -387,7 +390,7 @@
             "key.parsed_scope.end" : 37,
             "key.parsed_scope.start" : 35,
             "key.typename" : "String?",
-            "key.typeusr" : "$SSSSgD",
+            "key.typeusr" : "$sSSSgD",
             "key.usr" : "s:10Foundation14LocalizedErrorP13failureReasonSSSgvp"
           },
           {
@@ -423,7 +426,7 @@
             "key.parsed_scope.end" : 41,
             "key.parsed_scope.start" : 39,
             "key.typename" : "String?",
-            "key.typeusr" : "$SSSSgD",
+            "key.typeusr" : "$sSSSgD",
             "key.usr" : "s:10Foundation14LocalizedErrorP10helpAnchorSSSgvp"
           },
           {
@@ -459,12 +462,12 @@
             "key.parsed_scope.end" : 45,
             "key.parsed_scope.start" : 43,
             "key.typename" : "String?",
-            "key.typeusr" : "$SSSSgD",
+            "key.typeusr" : "$sSSSgD",
             "key.usr" : "s:10Foundation14LocalizedErrorP18recoverySuggestionSSSgvp"
           }
         ],
         "key.typename" : "AnyError.Type",
-        "key.typeusr" : "$S6Result8AnyErrorVmD",
+        "key.typeusr" : "$s6Result8AnyErrorVmD",
         "key.usr" : "s:6Result8AnyErrorV"
       }
     ]
@@ -618,28 +621,22 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiySbx_q_q0_q1_q2_q3_t_x_q_q0_q1_q2_q3_ttSQRzSQR_SQR0_SQR1_SQR2_SQR3_r4_lF\">== &lt;A, B, C, D, E, F&gt;(_: (A, B, C, D, E, F), _: (A, B, C, D, E, F)) -&gt; Bool where A : Equatable, B : Equatable, C : Equatable, D : Equatable, E : Equatable, F : Equatable<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s15ContiguousArrayVsSQRzlE2eeoiySbAByxG_ADtFZ\">== (_: ContiguousArray&lt;ContiguousArray&lt;Element&gt;.Element&gt;, _: ContiguousArray&lt;ContiguousArray&lt;Element&gt;.Element&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:SasSQRzlE2eeoiySbSayxG_ABtFZ\">== (_: Array&lt;Element&gt;, _: Array&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s10ArraySliceVsSQRzlE2eeoiySbAByxG_ADtFZ\">== (_: ArraySlice&lt;ArraySlice&lt;Element&gt;.Element&gt;, _: ArraySlice&lt;ArraySlice&lt;Element&gt;.Element&gt;) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SasSQRzlE2eeoiySbSayxG_ABtFZ\">== (_: Array&lt;Array&lt;Element&gt;.Element&gt;, _: Array&lt;Array&lt;Element&gt;.Element&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s10ArraySliceVsSQRzlE2eeoiySbAByxG_ADtFZ\">== (_: ArraySlice&lt;Element&gt;, _: ArraySlice&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:Sb2eeoiyS2b_SbtFZ\">== (_: Bool, _: Bool) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SA2eeoiySbSAyxG_ABtFZ\">== (_: AutoreleasingUnsafeMutablePointer&lt;Pointee&gt;, _: AutoreleasingUnsafeMutablePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
-              },
-              {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SJ2eeoiySbSJ_SJtFZ\">== (_: Character, _: Character) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SJ17UnicodeScalarViewV5IndexV2eeoiySbAD_ADtFZ\">== (_: Character.UnicodeScalarView.Index, _: Character.UnicodeScalarView.Index) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s17CodingUserInfoKeyV2eeoiySbAB_ABtFZ\">== (_: CodingUserInfoKey, _: CodingUserInfoKey) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s17CodingUserInfoKeyV2eeoiySbAB_ABtFZ\">== (_: CodingUserInfoKey, _: CodingUserInfoKey) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s15ContiguousArrayVsSQRzlE2eeoiySbAByxG_ADtFZ\">== (_: ContiguousArray&lt;Element&gt;, _: ContiguousArray&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SNsSxRzSZ6StrideRpzrlE5IndexO2eeoiySbADyx_G_AFtFZ\">== (_: ClosedRange&lt;Bound&gt;.Index, _: ClosedRange&lt;Bound&gt;.Index) -&gt; Bool<\/RelatedName>"
@@ -660,19 +657,22 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:SD5IndexV2eeoiySbAByxq__G_ADtFZ\">== (_: Dictionary&lt;Key, Value&gt;.Index, _: Dictionary&lt;Key, Value&gt;.Index) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s23LazyDropWhileCollectionV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: LazyDropWhileCollection&lt;Base&gt;.Index, _: LazyDropWhileCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
-              },
-              {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s15EmptyCollectionV2eeoiySbAByxG_ADtFZ\">== (_: EmptyCollection&lt;Element&gt;, _: EmptyCollection&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SQ2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s17FlattenCollectionV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: FlattenCollection&lt;Base&gt;.Index, _: FlattenCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s15FlattenSequenceVsSlRzSl7ElementRpzrlE5IndexV2eeoiySbAFyx_G_AHtFZ\">== (_: FlattenCollection&lt;Base&gt;.Index, _: FlattenCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s17FloatingPointSignO2eeoiySbAB_ABtFZ\">== (_: FloatingPointSign, _: FloatingPointSign) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s27FloatingPointClassificationO2eeoiySbAB_ABtFZ\">== (_: FloatingPointClassification, _: FloatingPointClassification) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s25FloatingPointRoundingRuleO2eeoiySbAB_ABtFZ\">== (_: FloatingPointRoundingRule, _: FloatingPointRoundingRule) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SFsE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
@@ -735,10 +735,19 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:Sq2eeoiySbs26_OptionalNilComparisonTypeV_xSgtFZ\">== (_: _OptionalNilComparisonType, _: Wrapped?) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s25LazyPrefixWhileCollectionV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: LazyPrefixWhileCollection&lt;Base&gt;.Index, _: LazyPrefixWhileCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s8_PointerPsE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:Sn2eeoiySbSnyxG_ABtFZ\">== (_: Range&lt;Range&lt;Bound&gt;.Bound&gt;, _: Range&lt;Range&lt;Bound&gt;.Bound&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s5NeverO2eeoiySbAB_ABtFZ\">== (_: Never, _: Never) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s23LazyPrefixWhileSequenceVsSlRzrlE5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: LazyPrefixWhileCollection&lt;Base&gt;.Index, _: LazyPrefixWhileCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:Sn2eeoiySbSnyxG_ABtFZ\">== (_: Range&lt;Bound&gt;, _: Range&lt;Bound&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s6ResultOsSQRzSQR_rlE2eeoiySbAByxq_G_ADtFZ\">== (_: Result&lt;Success, Failure&gt;, _: Result&lt;Success, Failure&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s18ReversedCollectionV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: ReversedCollection&lt;Base&gt;.Index, _: ReversedCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
@@ -753,7 +762,7 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:SxsE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SysE2eeoiySbx_qd__tSyRd__lFZ\">== &lt;S&gt;(_: Self, _: S) -&gt; Bool where S : StringProtocol<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:SysE2eeoiySbx_qd__tSyRd__lFZ\">== &lt;RHS&gt;(_: Self, _: RHS) -&gt; Bool where RHS : StringProtocol<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SS2eeoiySbSS_SStFZ\">== (_: String, _: String) -&gt; Bool<\/RelatedName>"
@@ -762,43 +771,46 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:SS5IndexV2eeoiySbAB_ABtFZ\">== (_: String.Index, _: String.Index) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s11_UIntBufferV5IndexV2eeoiySbADyxq__G_AFtFZ\">== (_: _UIntBuffer&lt;Storage, Element&gt;.Index, _: _UIntBuffer&lt;Storage, Element&gt;.Index) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s11_UIntBufferV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: _UIntBuffer&lt;Element&gt;.Index, _: _UIntBuffer&lt;Element&gt;.Index) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:Sp2eeoiySbSpyxG_ABtFZ\">== (_: UnsafeMutablePointer&lt;Pointee&gt;, _: UnsafeMutablePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO15GeneralCategoryO2eeoiySbAD_ADtFZ\">== (_: Unicode.GeneralCategory, _: Unicode.GeneralCategory) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SP2eeoiySbSPyxG_ABtFZ\">== (_: UnsafePointer&lt;Pointee&gt;, _: UnsafePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO23CanonicalCombiningClassV2eeoiySbAD_ADtFZ\">== (_: Unicode.CanonicalCombiningClass, _: Unicode.CanonicalCombiningClass) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:Sv2eeoiySbSv_SvtFZ\">== (_: UnsafeMutableRawPointer, _: UnsafeMutableRawPointer) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO11NumericTypeO2eeoiySbAD_ADtFZ\">== (_: Unicode.NumericType, _: Unicode.NumericType) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SV2eeoiySbSV_SVtFZ\">== (_: UnsafeRawPointer, _: UnsafeRawPointer) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO5UTF32O2eeoiySbAD_ADtFZ\">== (_: Unicode.UTF32, _: Unicode.UTF32) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s21UnicodeDecodingResultO2eeoiySbAB_ABtFZ\">== (_: UnicodeDecodingResult, _: UnicodeDecodingResult) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s16_ValidUTF8BufferV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: _ValidUTF8Buffer&lt;Storage&gt;.Index, _: _ValidUTF8Buffer&lt;Storage&gt;.Index) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So30_SwiftNSOperatingSystemVersionasE2eeoiySbAB_ABtFZ\">== (_: _SwiftNSOperatingSystemVersion, _: _SwiftNSOperatingSystemVersion) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s16_ValidUTF8BufferV5IndexV2eeoiySbAD_ADtFZ\">== (_: _ValidUTF8Buffer.Index, _: _ValidUTF8Buffer.Index) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s8AnyIndexV2eeoiySbAB_ABtFZ\">== (_: AnyIndex, _: AnyIndex) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s6MirrorV12DisplayStyleO2eeoiySbAD_ADtFZ\">== (_: Mirror.DisplayStyle, _: Mirror.DisplayStyle) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s4SIMDPsE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
               }
             ],
             "key.substructure" : [
 
             ],
             "key.typename" : "(NoError.Type) -> (NoError, NoError) -> Bool",
-            "key.typeusr" : "$SySb6Result7NoErrorO_ACtcD",
+            "key.typeusr" : "$sySb6Result7NoErrorO_ACtcD",
             "key.usr" : "s:SQ2eeoiySbx_xtFZ"
           }
         ],
         "key.typename" : "NoError.Type",
-        "key.typeusr" : "$S6Result7NoErrorOmD",
+        "key.typeusr" : "$s6Result7NoErrorOmD",
         "key.usr" : "s:6Result7NoErrorO"
       }
     ]
@@ -884,13 +896,8 @@
             "key.parsed_declaration" : "public enum Result<Value, Error: Swift.Error>: ResultProtocol, CustomStringConvertible, CustomDebugStringConvertible",
             "key.parsed_scope.end" : 4,
             "key.parsed_scope.start" : 4,
-            "key.related_decls" : [
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:6ResultAAO5Valuea\">Value<\/RelatedName>"
-              }
-            ],
             "key.typename" : "Value.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:6ResultAAO5Valuexmfp"
           },
           {
@@ -918,13 +925,8 @@
             "key.parsed_declaration" : "public enum Result<Value, Error: Swift.Error>: ResultProtocol, CustomStringConvertible, CustomDebugStringConvertible",
             "key.parsed_scope.end" : 4,
             "key.parsed_scope.start" : 4,
-            "key.related_decls" : [
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:6ResultAAO5Errora\">Error<\/RelatedName>"
-              }
-            ],
             "key.typename" : "Error.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:6ResultAAO5Errorq_mfp"
           },
           {
@@ -935,7 +937,7 @@
             "key.offset" : 277,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.internal",
+                "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case success(<Type usr=\"s:6ResultAAO5Valuexmfp\">Value<\/Type>)<\/Declaration>",
                 "key.filepath" : "Carthage\/Checkouts\/Result\/Result\/Result.swift",
                 "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>success<\/decl.name>(<decl.var.parameter><decl.var.parameter.type><ref.generic_type_param usr=\"s:6ResultAAO5Valuexmfp\">Value<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.enumelement>",
@@ -949,7 +951,7 @@
                 "key.parsed_scope.end" : 5,
                 "key.parsed_scope.start" : 5,
                 "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (Value) -> Result<Value, Error>",
-                "key.typeusr" : "$Sy6ResultAAOyxq_GxcACmcs5ErrorR_r0_luD",
+                "key.typeusr" : "$sy6ResultAAOyxq_GxcACmcs5ErrorR_r0_luD",
                 "key.usr" : "s:6ResultAAO7successyAByxq_GxcADms5ErrorR_r0_lF"
               }
             ]
@@ -962,7 +964,7 @@
             "key.offset" : 298,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.internal",
+                "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case failure(<Type usr=\"s:6ResultAAO5Errorq_mfp\">Error<\/Type>)<\/Declaration>",
                 "key.filepath" : "Carthage\/Checkouts\/Result\/Result\/Result.swift",
                 "key.fully_annotated_decl" : "<decl.enumelement><syntaxtype.keyword>case<\/syntaxtype.keyword> <decl.name>failure<\/decl.name>(<decl.var.parameter><decl.var.parameter.type><ref.generic_type_param usr=\"s:6ResultAAO5Errorq_mfp\">Error<\/ref.generic_type_param><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.enumelement>",
@@ -976,7 +978,7 @@
                 "key.parsed_scope.end" : 6,
                 "key.parsed_scope.start" : 6,
                 "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (Error) -> Result<Value, Error>",
-                "key.typeusr" : "$Sy6ResultAAOyxq_Gq_cACmcs5ErrorR_r0_luD",
+                "key.typeusr" : "$sy6ResultAAOyxq_Gq_cACmcs5ErrorR_r0_luD",
                 "key.usr" : "s:6ResultAAO7failureyAByxq_Gq_cADms5ErrorR_r0_lF"
               }
             ]
@@ -1018,7 +1020,7 @@
             "key.parsed_scope.end" : 13,
             "key.parsed_scope.start" : 13,
             "key.typename" : "Value.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:6ResultAAO7Successa"
           },
           {
@@ -1058,7 +1060,7 @@
             "key.parsed_scope.end" : 19,
             "key.parsed_scope.start" : 19,
             "key.typename" : "Error.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:6ResultAAO7Failurea"
           },
           {
@@ -1134,7 +1136,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (Value) -> Result<Value, Error>",
-            "key.typeusr" : "$S5value6ResultABOyxq_Gx_tcD",
+            "key.typeusr" : "$s5value6ResultABOyxq_Gx_tcD",
             "key.usr" : "s:6ResultAAO5valueAByxq_Gx_tcfc"
           },
           {
@@ -1202,7 +1204,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (Error) -> Result<Value, Error>",
-            "key.typeusr" : "$S5error6ResultABOyxq_Gq__tcD",
+            "key.typeusr" : "$s5error6ResultABOyxq_Gq__tcD",
             "key.usr" : "s:6ResultAAO5errorAByxq_Gq__tcfc"
           },
           {
@@ -1265,7 +1267,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (Value?, @autoclosure () -> Error) -> Result<Value, Error>",
-            "key.typeusr" : "$S_8failWith6ResultABOyxq_GxSg_q_yXKtcD",
+            "key.typeusr" : "$s_8failWith6ResultABOyxq_GxSg_q_yXKtcD",
             "key.usr" : "s:6ResultAAO_8failWithAByxq_GxSg_q_yXKtcfc"
           },
           {
@@ -1328,7 +1330,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (@autoclosure () throws -> Value) -> Result<Value, Error>",
-            "key.typeusr" : "$Sy6ResultAAOyxq_GxyKXKcD",
+            "key.typeusr" : "$sy6ResultAAOyxq_GxyKXKcD",
             "key.usr" : "s:6ResultAAOyAByxq_GxyKXKcfc"
           },
           {
@@ -1396,7 +1398,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (() throws -> Value) -> Result<Value, Error>",
-            "key.typeusr" : "$S7attempt6ResultABOyxq_GxyKXE_tcD",
+            "key.typeusr" : "$s7attempt6ResultABOyxq_GxyKXE_tcD",
             "key.usr" : "s:6ResultAAO7attemptAByxq_GxyKXE_tcfc"
           },
           {
@@ -1479,16 +1481,16 @@
                     "key.annotated_decl" : "<RelatedName usr=\"s:6ResultAAO5error_8function4file4lineSo7NSErrorCSSSg_S2SSitFZ\">error(_:function:file:line:)<\/RelatedName>"
                   },
                   {
-                    "key.annotated_decl" : "<RelatedName usr=\"s:6ResultAAO5errorq_Sgvp\">error<\/RelatedName>"
+                    "key.annotated_decl" : "<RelatedName usr=\"\">error<\/RelatedName>"
                   }
                 ],
                 "key.typename" : "Error",
-                "key.typeusr" : "$Ss5Error_pD",
+                "key.typeusr" : "$ss5Error_pD",
                 "key.usr" : "s:6ResultAAO8catchingAByxq_GxyKXE_tcfc5errorL_s5Error_pvp"
               }
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (() throws -> Value) -> Result<Value, Error>",
-            "key.typeusr" : "$S8catching6ResultABOyxq_GxyKXE_tcD",
+            "key.typeusr" : "$s8catching6ResultABOyxq_GxyKXE_tcD",
             "key.usr" : "s:6ResultAAO8catchingAByxq_GxyKXE_tcfc"
           },
           {
@@ -1541,7 +1543,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>) -> () throws -> Value",
-            "key.typeusr" : "$SxyKcD",
+            "key.typeusr" : "$sxyKcD",
             "key.usr" : "s:6ResultAAO13dematerializexyKF"
           },
           {
@@ -1586,7 +1588,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>) -> () throws -> Value",
-            "key.typeusr" : "$SxyKcD",
+            "key.typeusr" : "$sxyKcD",
             "key.usr" : "s:6ResultAAO3getxyKF"
           },
           {
@@ -1642,12 +1644,12 @@
                 "key.parsed_scope.end" : 90,
                 "key.parsed_scope.start" : 90,
                 "key.typename" : "Result.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:6ResultAAO8analysis9ifSuccess0C7Failureqd__qd__xXE_qd__q_XEtlFAAL_qd__mfp"
               }
             ],
             "key.typename" : "<Value, Error, Result where Error : Error> (Result<Value, Error>) -> ((Value) -> Result, (Error) -> Result) -> Result",
-            "key.typeusr" : "$S9ifSuccess0A7Failureqd__qd__xXE_qd__q_XEtcluD",
+            "key.typeusr" : "$s9ifSuccess0A7Failureqd__qd__xXE_qd__q_XEtcluD",
             "key.usr" : "s:6ResultAAO8analysis9ifSuccess0C7Failureqd__qd__xXE_qd__q_XEtlF"
           },
           {
@@ -1692,7 +1694,7 @@
             "key.parsed_scope.end" : 102,
             "key.parsed_scope.start" : 102,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:6ResultAAO11errorDomainSSvpZ"
           },
           {
@@ -1729,7 +1731,7 @@
             "key.parsed_scope.end" : 105,
             "key.parsed_scope.start" : 105,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:6ResultAAO11functionKeySSvpZ"
           },
           {
@@ -1766,7 +1768,7 @@
             "key.parsed_scope.end" : 108,
             "key.parsed_scope.start" : 108,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:6ResultAAO7fileKeySSvpZ"
           },
           {
@@ -1803,12 +1805,12 @@
             "key.parsed_scope.end" : 111,
             "key.parsed_scope.start" : 111,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:6ResultAAO7lineKeySSvpZ"
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.annotated_decl" : "<Declaration>public static func error(_ message: <Type usr=\"s:SS\">String<\/Type>? = default, function: <Type usr=\"s:SS\">String<\/Type> = #function, file: <Type usr=\"s:SS\">String<\/Type> = #file, line: <Type usr=\"s:Si\">Int<\/Type> = #line) -&gt; <Type usr=\"c:objc(cs)NSError\">NSError<\/Type><\/Declaration>",
+            "key.annotated_decl" : "<Declaration>public static func error(_ message: <Type usr=\"s:SS\">String<\/Type>? = nil, function: <Type usr=\"s:SS\">String<\/Type> = #function, file: <Type usr=\"s:SS\">String<\/Type> = #file, line: <Type usr=\"s:Si\">Int<\/Type> = #line) -&gt; <Type usr=\"c:objc(cs)NSError\">NSError<\/Type><\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.public",
@@ -1820,16 +1822,16 @@
             "key.bodyoffset" : 4272,
             "key.doc.column" : 21,
             "key.doc.comment" : "Constructs an error.",
-            "key.doc.declaration" : "public static func error(_ message: String? = default, function: String = #function, file: String = #file, line: Int = #line) -> NSError",
+            "key.doc.declaration" : "public static func error(_ message: String? = nil, function: String = #function, file: String = #file, line: Int = #line) -> NSError",
             "key.doc.file" : "Carthage\/Checkouts\/Result\/Result\/Result.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Carthage\/Checkouts\/Result\/Result\/Result.swift\" line=\"114\" column=\"21\"><Name>error(_:function:file:line:)<\/Name><USR>s:6ResultAAO5error_8function4file4lineSo7NSErrorCSSSg_S2SSitFZ<\/USR><Declaration>public static func error(_ message: String? = default, function: String = #function, file: String = #file, line: Int = #line) -&gt; NSError<\/Declaration><CommentParts><Abstract><Para>Constructs an error.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+            "key.doc.full_as_xml" : "<Function file=\"Carthage\/Checkouts\/Result\/Result\/Result.swift\" line=\"114\" column=\"21\"><Name>error(_:function:file:line:)<\/Name><USR>s:6ResultAAO5error_8function4file4lineSo7NSErrorCSSSg_S2SSitFZ<\/USR><Declaration>public static func error(_ message: String? = nil, function: String = #function, file: String = #file, line: Int = #line) -&gt; NSError<\/Declaration><CommentParts><Abstract><Para>Constructs an error.<\/Para><\/Abstract><\/CommentParts><\/Function>",
             "key.doc.line" : 114,
             "key.doc.name" : "error(_:function:file:line:)",
             "key.doc.type" : "Function",
             "key.doclength" : 25,
             "key.docoffset" : 4112,
             "key.filepath" : "Carthage\/Checkouts\/Result\/Result\/Result.swift",
-            "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>error<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>message<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct>?<\/decl.var.parameter.type> = <syntaxtype.keyword>default<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>function<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type> = <syntaxtype.keyword>#function<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>file<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type> = <syntaxtype.keyword>#file<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>line<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.parameter.type> = <syntaxtype.keyword>#line<\/syntaxtype.keyword><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.class usr=\"c:objc(cs)NSError\">NSError<\/ref.class><\/decl.function.returntype><\/decl.function.method.static>",
+            "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>error<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>_<\/decl.var.parameter.argument_label> <decl.var.parameter.name>message<\/decl.var.parameter.name>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct>?<\/decl.var.parameter.type> = nil<\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>function<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type> = <syntaxtype.keyword>#function<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>file<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type> = <syntaxtype.keyword>#file<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>line<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.parameter.type> = <syntaxtype.keyword>#line<\/syntaxtype.keyword><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.class usr=\"c:objc(cs)NSError\">NSError<\/ref.class><\/decl.function.returntype><\/decl.function.method.static>",
             "key.kind" : "source.lang.swift.decl.function.method.static",
             "key.length" : 381,
             "key.name" : "error(_:function:file:line:)",
@@ -1841,7 +1843,7 @@
             "key.parsed_scope.start" : 114,
             "key.related_decls" : [
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:6ResultAAO5errorq_Sgvp\">error<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"\">error<\/RelatedName>"
               }
             ],
             "key.substructure" : [
@@ -1859,12 +1861,12 @@
                 "key.parsed_scope.end" : 115,
                 "key.parsed_scope.start" : 115,
                 "key.typename" : "[String : Any]",
-                "key.typeusr" : "$SSDySSypGD",
+                "key.typeusr" : "$sSDySSypGD",
                 "key.usr" : "s:6ResultAAO5error_8function4file4lineSo7NSErrorCSSSg_S2SSitFZ8userInfoL_SDySSypGvp"
               }
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (String?, String, String, Int) -> NSError",
-            "key.typeusr" : "$S_8function4file4lineSo7NSErrorCSSSg_S2SSitcD",
+            "key.typeusr" : "$s_8function4file4lineSo7NSErrorCSSSg_S2SSitcD",
             "key.usr" : "s:6ResultAAO5error_8function4file4lineSo7NSErrorCSSSg_S2SSitFZ"
           },
           {
@@ -1919,7 +1921,7 @@
             "key.parsed_scope.end" : 136,
             "key.parsed_scope.start" : 131,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSvp"
           },
           {
@@ -1974,7 +1976,7 @@
             "key.parsed_scope.end" : 143,
             "key.parsed_scope.start" : 141,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:s28CustomDebugStringConvertibleP16debugDescriptionSSvp"
           },
           {
@@ -2014,15 +2016,16 @@
             "key.parsed_scope.end" : 148,
             "key.parsed_scope.start" : 146,
             "key.typename" : "Result<Value, Error>",
-            "key.typeusr" : "$S6ResultAAOyxq_GD",
+            "key.typeusr" : "$s6ResultAAOyxq_GD",
             "key.usr" : "s:6ResultAAO6resultAByxq_Gvp"
           }
         ],
         "key.typename" : "Result<Value, Error>.Type",
-        "key.typeusr" : "$S6ResultAAOyxq_GmD",
+        "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum Result&lt;Value, Error&gt; : <Type usr=\"s:6Result0A8ProtocolP\">ResultProtocol<\/Type>, <Type usr=\"s:s23CustomStringConvertibleP\">CustomStringConvertible<\/Type>, <Type usr=\"s:s28CustomDebugStringConvertibleP\">CustomDebugStringConvertible<\/Type> where Error : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 410,
         "key.bodyoffset" : 4978,
@@ -2102,7 +2105,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error == AnyError> (Result<Value, Error>.Type) -> (@autoclosure () throws -> Value) -> Result<Value, Error>",
-            "key.typeusr" : "$Sy6ResultAAOyxAA8AnyErrorVGxyKXKcD",
+            "key.typeusr" : "$sy6ResultAAOyxAA8AnyErrorVGxyKXKcD",
             "key.usr" : "s:6ResultAAOA2A8AnyErrorVRs_rlEyAByxADGxyKXKcfc"
           },
           {
@@ -2165,12 +2168,12 @@
 
             ],
             "key.typename" : "<Value, Error where Error == AnyError> (Result<Value, Error>.Type) -> (() throws -> Value) -> Result<Value, Error>",
-            "key.typeusr" : "$S7attempt6ResultABOyxAB8AnyErrorVGxyKXE_tcD",
+            "key.typeusr" : "$s7attempt6ResultABOyxAB8AnyErrorVGxyKXE_tcD",
             "key.usr" : "s:6ResultAAOA2A8AnyErrorVRs_rlE7attemptAByxADGxyKXE_tcfc"
           }
         ],
         "key.typename" : "Result<Value, Error>.Type",
-        "key.typeusr" : "$S6ResultAAOyxq_GmD",
+        "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
       },
       {
@@ -2229,12 +2232,12 @@
             "key.parsed_scope.end" : 170,
             "key.parsed_scope.start" : 170,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:6Result11materializeyA2AOyxAA8AnyErrorVGxyKXElF1TL_xmfp"
           }
         ],
         "key.typename" : "<T> (() throws -> T) -> Result<T, AnyError>",
-        "key.typeusr" : "$Sy6ResultAAOyxAA8AnyErrorVGxyKXEcluD",
+        "key.typeusr" : "$sy6ResultAAOyxAA8AnyErrorVGxyKXEcluD",
         "key.usr" : "s:6Result11materializeyA2AOyxAA8AnyErrorVGxyKXElF"
       },
       {
@@ -2285,12 +2288,12 @@
             "key.parsed_scope.end" : 175,
             "key.parsed_scope.start" : 175,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:6Result11materializeyA2AOyxAA8AnyErrorVGxyKXKlF1TL_xmfp"
           }
         ],
         "key.typename" : "<T> (@autoclosure () throws -> T) -> Result<T, AnyError>",
-        "key.typeusr" : "$Sy6ResultAAOyxAA8AnyErrorVGxyKXKcluD",
+        "key.typeusr" : "$sy6ResultAAOyxAA8AnyErrorVGxyKXKcluD",
         "key.usr" : "s:6Result11materializeyA2AOyxAA8AnyErrorVGxyKXKlF"
       },
       {
@@ -2302,6 +2305,7 @@
         "key.offset" : 5772
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>class NSError : <Type usr=\"c:objc(cs)NSObject\">NSObject<\/Type>, <Type usr=\"c:objc(pl)NSCopying\">NSCopying<\/Type>, <Type usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/Type><\/Declaration>",
         "key.bodylength" : 166,
         "key.bodyoffset" : 5848,
@@ -2400,22 +2404,22 @@
                     "key.parsed_scope.end" : 183,
                     "key.parsed_scope.start" : 183,
                     "key.typename" : "T.Type",
-                    "key.typeusr" : "$SxmD",
+                    "key.typeusr" : "$sxmD",
                     "key.usr" : "s:So7NSErrorC6ResultE5error4fromABXDs5Error_p_tFZ4castL_yxsAF_pABRbzlF1TL_xmfp"
                   }
                 ],
                 "key.typename" : "<T where T : NSError> (Error) -> T",
-                "key.typeusr" : "$Syxs5Error_pcSo7NSErrorCRbzluD",
+                "key.typeusr" : "$syxs5Error_pcSo7NSErrorCRbzluD",
                 "key.usr" : "s:So7NSErrorC6ResultE5error4fromABXDs5Error_p_tFZ4castL_yxsAF_pABRbzlF"
               }
             ],
             "key.typename" : "(NSError.Type) -> (Error) -> Self",
-            "key.typeusr" : "$S4fromSo7NSErrorCXDs5Error_p_tcD",
+            "key.typeusr" : "$s4fromSo7NSErrorCXDs5Error_p_tcD",
             "key.usr" : "s:So7NSErrorC6ResultE5error4fromABXDs5Error_p_tFZ"
           }
         ],
         "key.typename" : "NSError.Type",
-        "key.typeusr" : "$SSo7NSErrorCmD",
+        "key.typeusr" : "$sSo7NSErrorCmD",
         "key.usr" : "c:objc(cs)NSError"
       },
       {
@@ -2463,8 +2467,8 @@
             "key.parsed_scope.end" : 194,
             "key.parsed_scope.start" : 194,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
-            "key.usr" : "s:6Result11materializeyA2AOyxSo7NSErrorCAEs5Error10Foundationg_GxyKXElF1TL_xmfp"
+            "key.typeusr" : "$sxmD",
+            "key.usr" : "s:6Result11materializeyA2AOyxSo7NSErrorCGxyKXElF1TL_xmfp"
           }
         ],
         "key.typename" : "Result<T, NSError>"
@@ -2506,8 +2510,8 @@
             "key.parsed_scope.end" : 199,
             "key.parsed_scope.start" : 199,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
-            "key.usr" : "s:6Result11materializeyA2AOyxSo7NSErrorCAEs5Error10Foundationg_GxyKXKlF1TL_xmfp"
+            "key.typeusr" : "$sxmD",
+            "key.usr" : "s:6Result11materializeyA2AOyxSo7NSErrorCGxyKXKlF1TL_xmfp"
           }
         ],
         "key.typename" : "Result<T, NSError>"
@@ -2552,8 +2556,8 @@
             "key.parsed_scope.end" : 211,
             "key.parsed_scope.start" : 211,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
-            "key.usr" : "s:6Result3try_4file4lineAb2AOyxSo7NSErrorCAGs5Error10Foundationg_GSS_SSSixSgSAyAGSgGSgXEtlF1TL_xmfp"
+            "key.typeusr" : "$sxmD",
+            "key.usr" : "s:6Result3try_4file4lineAb2AOyxSo7NSErrorCGSS_SSSixSgSAyAGSgGSgXEtlF1TL_xmfp"
           }
         ],
         "key.typename" : "Result<T, NSError>"
@@ -2654,7 +2658,7 @@
             "key.parsed_scope.end" : 5,
             "key.parsed_scope.start" : 5,
             "key.typename" : "Self.Value.Type",
-            "key.typeusr" : "$S5Value6Result0B8ProtocolPQzmD",
+            "key.typeusr" : "$s5Value6Result0B8ProtocolPQzmD",
             "key.usr" : "s:6Result0A8ProtocolP5ValueQa"
           },
           {
@@ -2672,7 +2676,7 @@
             "key.parsed_scope.end" : 6,
             "key.parsed_scope.start" : 6,
             "key.typename" : "Self.Error.Type",
-            "key.typeusr" : "$S5Error6Result0B8ProtocolPQzmD",
+            "key.typeusr" : "$s5Error6Result0B8ProtocolPQzmD",
             "key.usr" : "s:6Result0A8ProtocolP5ErrorQa"
           },
           {
@@ -2698,7 +2702,7 @@
 
             ],
             "key.typename" : "<Self where Self : ResultProtocol> (Self.Type) -> (Self.Value) -> Self",
-            "key.typeusr" : "$S5valuex5ValueQz_tcD",
+            "key.typeusr" : "$s5valuex5ValueQz_tcD",
             "key.usr" : "s:6Result0A8ProtocolP5valuex5ValueQz_tcfc"
           },
           {
@@ -2724,7 +2728,7 @@
 
             ],
             "key.typename" : "<Self where Self : ResultProtocol> (Self.Type) -> (Self.Error) -> Self",
-            "key.typeusr" : "$S5errorx5ErrorQz_tcD",
+            "key.typeusr" : "$s5errorx5ErrorQz_tcD",
             "key.usr" : "s:6Result0A8ProtocolP5errorx5ErrorQz_tcfc"
           },
           {
@@ -2744,15 +2748,16 @@
             "key.parsed_scope.end" : 11,
             "key.parsed_scope.start" : 11,
             "key.typename" : "Result<Self.Value, Self.Error>",
-            "key.typeusr" : "$S6ResultAAOy5ValueAA0A8ProtocolPQz5ErrorAEQzGD",
+            "key.typeusr" : "$s6ResultAAOy5ValueAA0A8ProtocolPQz5ErrorAEQzGD",
             "key.usr" : "s:6Result0A8ProtocolP6resultA2AOy5ValueQz5ErrorQzGvp"
           }
         ],
         "key.typename" : "ResultProtocol.Protocol",
-        "key.typeusr" : "$S6Result0A8Protocol_pmD",
+        "key.typeusr" : "$s6Result0A8Protocol_pmD",
         "key.usr" : "s:6Result0A8ProtocolP"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum Result&lt;Value, Error&gt; : <Type usr=\"s:6Result0A8ProtocolP\">ResultProtocol<\/Type>, <Type usr=\"s:s23CustomStringConvertibleP\">CustomStringConvertible<\/Type>, <Type usr=\"s:s28CustomDebugStringConvertibleP\">CustomDebugStringConvertible<\/Type> where Error : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 2247,
         "key.bodyoffset" : 325,
@@ -2806,7 +2811,7 @@
             "key.parsed_scope.end" : 21,
             "key.parsed_scope.start" : 16,
             "key.typename" : "Value?",
-            "key.typeusr" : "$SxSgD",
+            "key.typeusr" : "$sxSgD",
             "key.usr" : "s:6ResultAAO5valuexSgvp"
           },
           {
@@ -2848,7 +2853,7 @@
               }
             ],
             "key.typename" : "Error?",
-            "key.typeusr" : "$Sq_SgD",
+            "key.typeusr" : "$sq_SgD",
             "key.usr" : "s:6ResultAAO5errorq_Sgvp"
           },
           {
@@ -2899,12 +2904,12 @@
                 "key.parsed_scope.end" : 32,
                 "key.parsed_scope.start" : 32,
                 "key.typename" : "U.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:6ResultAAO3mapyAByqd__q_Gqd__xXElF1UL_qd__mfp"
               }
             ],
             "key.typename" : "<Value, Error, U where Error : Error> (Result<Value, Error>) -> ((Value) -> U) -> Result<U, Error>",
-            "key.typeusr" : "$Sy6ResultAAOyqd__q_Gqd__xXEcluD",
+            "key.typeusr" : "$sy6ResultAAOyqd__q_Gqd__xXEcluD",
             "key.usr" : "s:6ResultAAO3mapyAByqd__q_Gqd__xXElF"
           },
           {
@@ -2955,12 +2960,12 @@
                 "key.parsed_scope.end" : 37,
                 "key.parsed_scope.start" : 37,
                 "key.typename" : "U.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:6ResultAAO7flatMapyAByqd__q_GADxXElF1UL_qd__mfp"
               }
             ],
             "key.typename" : "<Value, Error, U where Error : Error> (Result<Value, Error>) -> ((Value) -> Result<U, Error>) -> Result<U, Error>",
-            "key.typeusr" : "$Sy6ResultAAOyqd__q_GACxXEcluD",
+            "key.typeusr" : "$sy6ResultAAOyqd__q_GACxXEcluD",
             "key.usr" : "s:6ResultAAO7flatMapyAByqd__q_GADxXElF"
           },
           {
@@ -3011,12 +3016,12 @@
                 "key.parsed_scope.end" : 46,
                 "key.parsed_scope.start" : 46,
                 "key.typename" : "U.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:6ResultAAO6fanoutyAByx_qd__tq_GAByqd__q_GyXKlF1UL_qd__mfp"
               }
             ],
             "key.typename" : "<Value, Error, U where Error : Error> (Result<Value, Error>) -> (@autoclosure () -> Result<U, Error>) -> Result<(Value, U), Error>",
-            "key.typeusr" : "$Sy6ResultAAOyx_qd__tq_GAByqd__q_GyXKcluD",
+            "key.typeusr" : "$sy6ResultAAOyx_qd__tq_GAByqd__q_GyXKcluD",
             "key.usr" : "s:6ResultAAO6fanoutyAByx_qd__tq_GAByqd__q_GyXKlF"
           },
           {
@@ -3067,12 +3072,12 @@
                 "key.parsed_scope.end" : 51,
                 "key.parsed_scope.start" : 51,
                 "key.typename" : "Error2.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:6ResultAAO8mapErroryAByxqd__Gqd__q_XEs0C0Rd__lF6Error2L_qd__mfp"
               }
             ],
             "key.typename" : "<Value, Error, Error2 where Error : Error, Error2 : Error> (Result<Value, Error>) -> ((Error) -> Error2) -> Result<Value, Error2>",
-            "key.typeusr" : "$Sy6ResultAAOyxqd__Gqd__q_XEcs5ErrorRd__luD",
+            "key.typeusr" : "$sy6ResultAAOyxqd__Gqd__q_XEcs5ErrorRd__luD",
             "key.usr" : "s:6ResultAAO8mapErroryAByxqd__Gqd__q_XEs0C0Rd__lF"
           },
           {
@@ -3123,12 +3128,12 @@
                 "key.parsed_scope.end" : 56,
                 "key.parsed_scope.start" : 56,
                 "key.typename" : "Error2.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:6ResultAAO12flatMapErroryAByxqd__GADq_XEs0D0Rd__lF6Error2L_qd__mfp"
               }
             ],
             "key.typename" : "<Value, Error, Error2 where Error : Error, Error2 : Error> (Result<Value, Error>) -> ((Error) -> Result<Value, Error2>) -> Result<Value, Error2>",
-            "key.typeusr" : "$Sy6ResultAAOyxqd__GACq_XEcs5ErrorRd__luD",
+            "key.typeusr" : "$sy6ResultAAOyxqd__GACq_XEcs5ErrorRd__luD",
             "key.usr" : "s:6ResultAAO12flatMapErroryAByxqd__GADq_XEs0D0Rd__lF"
           },
           {
@@ -3179,7 +3184,7 @@
                 "key.parsed_scope.end" : 64,
                 "key.parsed_scope.start" : 64,
                 "key.typename" : "U.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:6ResultAAO5bimap7success7failureAByqd__qd_0_Gqd__xXE_qd_0_q_XEts5ErrorRd_0_r0_lF1UL_qd__mfp"
               },
               {
@@ -3196,20 +3201,21 @@
                 "key.parsed_scope.end" : 64,
                 "key.parsed_scope.start" : 64,
                 "key.typename" : "Error2.Type",
-                "key.typeusr" : "$Sqd_0_mD",
+                "key.typeusr" : "$sqd_0_mD",
                 "key.usr" : "s:6ResultAAO5bimap7success7failureAByqd__qd_0_Gqd__xXE_qd_0_q_XEts5ErrorRd_0_r0_lF6Error2L_qd_0_mfp"
               }
             ],
             "key.typename" : "<Value, Error, U, Error2 where Error : Error, Error2 : Error> (Result<Value, Error>) -> ((Value) -> U, (Error) -> Error2) -> Result<U, Error2>",
-            "key.typeusr" : "$S7success7failure6ResultACOyqd__qd_0_Gqd__xXE_qd_0_q_XEtcs5ErrorRd_0_r0_luD",
+            "key.typeusr" : "$s7success7failure6ResultACOyqd__qd_0_Gqd__xXE_qd_0_q_XEtcs5ErrorRd_0_r0_luD",
             "key.usr" : "s:6ResultAAO5bimap7success7failureAByqd__qd_0_Gqd__xXE_qd_0_q_XEts5ErrorRd_0_r0_lF"
           }
         ],
         "key.typename" : "Result<Value, Error>.Type",
-        "key.typeusr" : "$S6ResultAAOyxq_GmD",
+        "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum Result&lt;Value, Error&gt; : <Type usr=\"s:6Result0A8ProtocolP\">ResultProtocol<\/Type>, <Type usr=\"s:s23CustomStringConvertibleP\">CustomStringConvertible<\/Type>, <Type usr=\"s:s28CustomDebugStringConvertibleP\">CustomDebugStringConvertible<\/Type> where Error : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 529,
         "key.bodyoffset" : 2593,
@@ -3279,7 +3285,7 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>) -> (@autoclosure () -> Value) -> Value",
-            "key.typeusr" : "$SyxxyXKcD",
+            "key.typeusr" : "$syxxyXKcD",
             "key.usr" : "s:6ResultAAO7recoveryxxyXKF"
           },
           {
@@ -3324,12 +3330,12 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>) -> (@autoclosure () -> Result<Value, Error>) -> Result<Value, Error>",
-            "key.typeusr" : "$S4with6ResultABOyxq_GADyXK_tcD",
+            "key.typeusr" : "$s4with6ResultABOyxq_GADyXK_tcD",
             "key.usr" : "s:6ResultAAO7recover4withAByxq_GAEyXK_tF"
           }
         ],
         "key.typename" : "Result<Value, Error>.Type",
-        "key.typeusr" : "$S6ResultAAOyxq_GmD",
+        "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
       },
       {
@@ -3397,15 +3403,16 @@
 
             ],
             "key.typename" : "<Self where Self : ErrorConvertible> (Self.Type) -> (Error) -> Self",
-            "key.typeusr" : "$S4fromxs5Error_p_tcD",
+            "key.typeusr" : "$s4fromxs5Error_p_tcD",
             "key.usr" : "s:6Result16ErrorConvertibleP5error4fromxs0B0_p_tFZ"
           }
         ],
         "key.typename" : "ErrorConvertible.Protocol",
-        "key.typeusr" : "$S6Result16ErrorConvertible_pmD",
+        "key.typeusr" : "$s6Result16ErrorConvertible_pmD",
         "key.usr" : "s:6Result16ErrorConvertibleP"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum Result&lt;Value, Error&gt; : <Type usr=\"s:6Result0A8ProtocolP\">ResultProtocol<\/Type>, <Type usr=\"s:s23CustomStringConvertibleP\">CustomStringConvertible<\/Type>, <Type usr=\"s:s28CustomDebugStringConvertibleP\">CustomDebugStringConvertible<\/Type> where Error : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 479,
         "key.bodyoffset" : 3364,
@@ -3473,17 +3480,17 @@
                 "key.parsed_scope.end" : 98,
                 "key.parsed_scope.start" : 98,
                 "key.typename" : "U.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:6ResultAAOA2A16ErrorConvertibleR_rlE6tryMapyAByqd__q_Gqd__xKXElF1UL_qd__mfp"
               }
             ],
             "key.typename" : "<Value, Error, U where Error : ErrorConvertible> (Result<Value, Error>) -> ((Value) throws -> U) -> Result<U, Error>",
-            "key.typeusr" : "$Sy6ResultAAOyqd__q_Gqd__xKXEcluD",
+            "key.typeusr" : "$sy6ResultAAOyqd__q_Gqd__xKXEcluD",
             "key.usr" : "s:6ResultAAOA2A16ErrorConvertibleR_rlE6tryMapyAByqd__q_Gqd__xKXElF"
           }
         ],
         "key.typename" : "Result<Value, Error>.Type",
-        "key.typeusr" : "$S6ResultAAOyxq_GmD",
+        "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
       },
       {
@@ -3495,6 +3502,7 @@
         "key.offset" : 3849
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum Result&lt;Value, Error&gt; : <Type usr=\"s:6Result0A8ProtocolP\">ResultProtocol<\/Type>, <Type usr=\"s:s23CustomStringConvertibleP\">CustomStringConvertible<\/Type>, <Type usr=\"s:s28CustomDebugStringConvertibleP\">CustomDebugStringConvertible<\/Type> where Error : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 440,
         "key.bodyoffset" : 3945,
@@ -3581,28 +3589,22 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:s2eeoiySbx_q_q0_q1_q2_q3_t_x_q_q0_q1_q2_q3_ttSQRzSQR_SQR0_SQR1_SQR2_SQR3_r4_lF\">== &lt;A, B, C, D, E, F&gt;(_: (A, B, C, D, E, F), _: (A, B, C, D, E, F)) -&gt; Bool where A : Equatable, B : Equatable, C : Equatable, D : Equatable, E : Equatable, F : Equatable<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s15ContiguousArrayVsSQRzlE2eeoiySbAByxG_ADtFZ\">== (_: ContiguousArray&lt;ContiguousArray&lt;Element&gt;.Element&gt;, _: ContiguousArray&lt;ContiguousArray&lt;Element&gt;.Element&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:SasSQRzlE2eeoiySbSayxG_ABtFZ\">== (_: Array&lt;Element&gt;, _: Array&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s10ArraySliceVsSQRzlE2eeoiySbAByxG_ADtFZ\">== (_: ArraySlice&lt;ArraySlice&lt;Element&gt;.Element&gt;, _: ArraySlice&lt;ArraySlice&lt;Element&gt;.Element&gt;) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SasSQRzlE2eeoiySbSayxG_ABtFZ\">== (_: Array&lt;Array&lt;Element&gt;.Element&gt;, _: Array&lt;Array&lt;Element&gt;.Element&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s10ArraySliceVsSQRzlE2eeoiySbAByxG_ADtFZ\">== (_: ArraySlice&lt;Element&gt;, _: ArraySlice&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:Sb2eeoiyS2b_SbtFZ\">== (_: Bool, _: Bool) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SA2eeoiySbSAyxG_ABtFZ\">== (_: AutoreleasingUnsafeMutablePointer&lt;Pointee&gt;, _: AutoreleasingUnsafeMutablePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
-              },
-              {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SJ2eeoiySbSJ_SJtFZ\">== (_: Character, _: Character) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SJ17UnicodeScalarViewV5IndexV2eeoiySbAD_ADtFZ\">== (_: Character.UnicodeScalarView.Index, _: Character.UnicodeScalarView.Index) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s17CodingUserInfoKeyV2eeoiySbAB_ABtFZ\">== (_: CodingUserInfoKey, _: CodingUserInfoKey) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s17CodingUserInfoKeyV2eeoiySbAB_ABtFZ\">== (_: CodingUserInfoKey, _: CodingUserInfoKey) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s15ContiguousArrayVsSQRzlE2eeoiySbAByxG_ADtFZ\">== (_: ContiguousArray&lt;Element&gt;, _: ContiguousArray&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SNsSxRzSZ6StrideRpzrlE5IndexO2eeoiySbADyx_G_AFtFZ\">== (_: ClosedRange&lt;Bound&gt;.Index, _: ClosedRange&lt;Bound&gt;.Index) -&gt; Bool<\/RelatedName>"
@@ -3623,19 +3625,22 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:SD5IndexV2eeoiySbAByxq__G_ADtFZ\">== (_: Dictionary&lt;Key, Value&gt;.Index, _: Dictionary&lt;Key, Value&gt;.Index) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s23LazyDropWhileCollectionV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: LazyDropWhileCollection&lt;Base&gt;.Index, _: LazyDropWhileCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
-              },
-              {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s15EmptyCollectionV2eeoiySbAByxG_ADtFZ\">== (_: EmptyCollection&lt;Element&gt;, _: EmptyCollection&lt;Element&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SQ2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s17FlattenCollectionV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: FlattenCollection&lt;Base&gt;.Index, _: FlattenCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s15FlattenSequenceVsSlRzSl7ElementRpzrlE5IndexV2eeoiySbAFyx_G_AHtFZ\">== (_: FlattenCollection&lt;Base&gt;.Index, _: FlattenCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s17FloatingPointSignO2eeoiySbAB_ABtFZ\">== (_: FloatingPointSign, _: FloatingPointSign) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s27FloatingPointClassificationO2eeoiySbAB_ABtFZ\">== (_: FloatingPointClassification, _: FloatingPointClassification) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s25FloatingPointRoundingRuleO2eeoiySbAB_ABtFZ\">== (_: FloatingPointRoundingRule, _: FloatingPointRoundingRule) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SFsE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
@@ -3698,10 +3703,19 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:Sq2eeoiySbs26_OptionalNilComparisonTypeV_xSgtFZ\">== (_: _OptionalNilComparisonType, _: Wrapped?) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s25LazyPrefixWhileCollectionV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: LazyPrefixWhileCollection&lt;Base&gt;.Index, _: LazyPrefixWhileCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s8_PointerPsE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:Sn2eeoiySbSnyxG_ABtFZ\">== (_: Range&lt;Range&lt;Bound&gt;.Bound&gt;, _: Range&lt;Range&lt;Bound&gt;.Bound&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s5NeverO2eeoiySbAB_ABtFZ\">== (_: Never, _: Never) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s23LazyPrefixWhileSequenceVsSlRzrlE5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: LazyPrefixWhileCollection&lt;Base&gt;.Index, _: LazyPrefixWhileCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:Sn2eeoiySbSnyxG_ABtFZ\">== (_: Range&lt;Bound&gt;, _: Range&lt;Bound&gt;) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s6ResultOsSQRzSQR_rlE2eeoiySbAByxq_G_ADtFZ\">== (_: Result&lt;Success, Failure&gt;, _: Result&lt;Success, Failure&gt;) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s18ReversedCollectionV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: ReversedCollection&lt;Base&gt;.Index, _: ReversedCollection&lt;Base&gt;.Index) -&gt; Bool<\/RelatedName>"
@@ -3716,7 +3730,7 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:SxsE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SysE2eeoiySbx_qd__tSyRd__lFZ\">== &lt;S&gt;(_: Self, _: S) -&gt; Bool where S : StringProtocol<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:SysE2eeoiySbx_qd__tSyRd__lFZ\">== &lt;RHS&gt;(_: Self, _: RHS) -&gt; Bool where RHS : StringProtocol<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SS2eeoiySbSS_SStFZ\">== (_: String, _: String) -&gt; Bool<\/RelatedName>"
@@ -3725,31 +3739,34 @@
                 "key.annotated_decl" : "<RelatedName usr=\"s:SS5IndexV2eeoiySbAB_ABtFZ\">== (_: String.Index, _: String.Index) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s11_UIntBufferV5IndexV2eeoiySbADyxq__G_AFtFZ\">== (_: _UIntBuffer&lt;Storage, Element&gt;.Index, _: _UIntBuffer&lt;Storage, Element&gt;.Index) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s11_UIntBufferV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: _UIntBuffer&lt;Element&gt;.Index, _: _UIntBuffer&lt;Element&gt;.Index) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:Sp2eeoiySbSpyxG_ABtFZ\">== (_: UnsafeMutablePointer&lt;Pointee&gt;, _: UnsafeMutablePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO15GeneralCategoryO2eeoiySbAD_ADtFZ\">== (_: Unicode.GeneralCategory, _: Unicode.GeneralCategory) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SP2eeoiySbSPyxG_ABtFZ\">== (_: UnsafePointer&lt;Pointee&gt;, _: UnsafePointer&lt;Pointee&gt;) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO23CanonicalCombiningClassV2eeoiySbAD_ADtFZ\">== (_: Unicode.CanonicalCombiningClass, _: Unicode.CanonicalCombiningClass) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:Sv2eeoiySbSv_SvtFZ\">== (_: UnsafeMutableRawPointer, _: UnsafeMutableRawPointer) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO11NumericTypeO2eeoiySbAD_ADtFZ\">== (_: Unicode.NumericType, _: Unicode.NumericType) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SV2eeoiySbSV_SVtFZ\">== (_: UnsafeRawPointer, _: UnsafeRawPointer) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s7UnicodeO5UTF32O2eeoiySbAD_ADtFZ\">== (_: Unicode.UTF32, _: Unicode.UTF32) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s21UnicodeDecodingResultO2eeoiySbAB_ABtFZ\">== (_: UnicodeDecodingResult, _: UnicodeDecodingResult) -&gt; Bool<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:s16_ValidUTF8BufferV5IndexV2eeoiySbADyx_G_AFtFZ\">== (_: _ValidUTF8Buffer&lt;Storage&gt;.Index, _: _ValidUTF8Buffer&lt;Storage&gt;.Index) -&gt; Bool<\/RelatedName>"
-              },
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:So30_SwiftNSOperatingSystemVersionasE2eeoiySbAB_ABtFZ\">== (_: _SwiftNSOperatingSystemVersion, _: _SwiftNSOperatingSystemVersion) -&gt; Bool<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:s16_ValidUTF8BufferV5IndexV2eeoiySbAD_ADtFZ\">== (_: _ValidUTF8Buffer.Index, _: _ValidUTF8Buffer.Index) -&gt; Bool<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:s8AnyIndexV2eeoiySbAB_ABtFZ\">== (_: AnyIndex, _: AnyIndex) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s6MirrorV12DisplayStyleO2eeoiySbAD_ADtFZ\">== (_: Mirror.DisplayStyle, _: Mirror.DisplayStyle) -&gt; Bool<\/RelatedName>"
+              },
+              {
+                "key.annotated_decl" : "<RelatedName usr=\"s:s4SIMDPsE2eeoiySbx_xtFZ\">== (_: Self, _: Self) -&gt; Bool<\/RelatedName>"
               }
             ],
             "key.substructure" : [
@@ -3766,20 +3783,21 @@
                 "key.parsed_scope.end" : 116,
                 "key.parsed_scope.start" : 116,
                 "key.typename" : "Result<Value, Error>",
-                "key.typeusr" : "$S6ResultAAOyxq_GD",
+                "key.typeusr" : "$s6ResultAAOyxq_GD",
                 "key.usr" : "s:6ResultAAOAASQRzSQR_rlE2eeoiySbAByxq_G_ADtFZ4leftL_ADvp"
               }
             ],
             "key.typename" : "<Value, Error where Value : Equatable, Error : Equatable, Error : Error> (Result<Value, Error>.Type) -> (Result<Value, Error>, Result<Value, Error>) -> Bool",
-            "key.typeusr" : "$SySb6ResultAAOyxq_G_ACtcD",
+            "key.typeusr" : "$sySb6ResultAAOyxq_G_ACtcD",
             "key.usr" : "s:6ResultAAOAASQRzSQR_rlE2eeoiySbAByxq_G_ADtFZ"
           }
         ],
         "key.typename" : "Result<Value, Error>.Type",
-        "key.typeusr" : "$S6ResultAAOyxq_GmD",
+        "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum Result&lt;Value, Error&gt; : <Type usr=\"s:6Result0A8ProtocolP\">ResultProtocol<\/Type>, <Type usr=\"s:s23CustomStringConvertibleP\">CustomStringConvertible<\/Type>, <Type usr=\"s:s28CustomDebugStringConvertibleP\">CustomDebugStringConvertible<\/Type> where Error : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 1,
         "key.bodyoffset" : 4494,
@@ -3811,15 +3829,53 @@
         "key.nameoffset" : 4416,
         "key.offset" : 4406,
         "key.typename" : "Result<Value, Error>.Type",
-        "key.typeusr" : "$S6ResultAAOyxq_GmD",
+        "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.bodylength" : 251,
+        "key.bodyoffset" : 4581,
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 329,
+        "key.name" : "Result",
+        "key.namelength" : 6,
+        "key.nameoffset" : 4514,
+        "key.offset" : 4504,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.public",
+                "key.length" : 6,
+                "key.offset" : 4711
+              }
+            ],
+            "key.bodylength" : 30,
+            "key.bodyoffset" : 4799,
+            "key.doc.comment" : "Returns `true` if `left` and `right` represent different cases, or if they represent the same case but different values.",
+            "key.doclength" : 125,
+            "key.docoffset" : 4584,
+            "key.kind" : "source.lang.swift.decl.function.method.static",
+            "key.length" : 112,
+            "key.name" : "!=(_:_:)",
+            "key.namelength" : 59,
+            "key.nameoffset" : 4730,
+            "key.offset" : 4718,
+            "key.substructure" : [
+
+            ],
+            "key.typename" : "Bool"
+          }
+        ]
+      },
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum Result&lt;Value, Error&gt; : <Type usr=\"s:6Result0A8ProtocolP\">ResultProtocol<\/Type>, <Type usr=\"s:s23CustomStringConvertibleP\">CustomStringConvertible<\/Type>, <Type usr=\"s:s28CustomDebugStringConvertibleP\">CustomDebugStringConvertible<\/Type> where Error : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 471,
         "key.bodyoffset" : 4860,
         "key.doc.column" : 13,
-        "key.doc.comment" : "Returns `true` if `left` and `right` represent different cases, or if they represent the same case but different values.",
         "key.doc.declaration" : "public enum Result<Value, Error> : ResultProtocol, CustomStringConvertible, CustomDebugStringConvertible where Error : Error",
         "key.doc.file" : "Carthage\/Checkouts\/Result\/Result\/Result.swift",
         "key.doc.full_as_xml" : "<Other file=\"Carthage\/Checkouts\/Result\/Result\/Result.swift\" line=\"4\" column=\"13\"><Name>Result<\/Name><USR>s:6ResultAAO<\/USR><Declaration>public enum Result&lt;Value, Error&gt; : ResultProtocol, CustomStringConvertible, CustomDebugStringConvertible where Error : Error<\/Declaration><CommentParts><Abstract><Para>An enum representing either a failure with an explanatory error, or a success with a result value.<\/Para><\/Abstract><\/CommentParts><\/Other>",
@@ -3893,12 +3949,12 @@
                 "key.parsed_scope.end" : 139,
                 "key.parsed_scope.start" : 139,
                 "key.typename" : "Result<Value, Error>",
-                "key.typeusr" : "$S6ResultAAOyxq_GD",
+                "key.typeusr" : "$s6ResultAAOyxq_GD",
                 "key.usr" : "s:6ResultAAO2qqoiyxAByxq_G_xyXKtFZ4leftL_ADvp"
               }
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (Result<Value, Error>, @autoclosure () -> Value) -> Value",
-            "key.typeusr" : "$Syx6ResultAAOyxq_G_xyXKtcD",
+            "key.typeusr" : "$syx6ResultAAOyxq_G_xyXKtcD",
             "key.usr" : "s:6ResultAAO2qqoiyxAByxq_G_xyXKtFZ"
           },
           {
@@ -3949,12 +4005,12 @@
 
             ],
             "key.typename" : "<Value, Error where Error : Error> (Result<Value, Error>.Type) -> (Result<Value, Error>, @autoclosure () -> Result<Value, Error>) -> Result<Value, Error>",
-            "key.typeusr" : "$Sy6ResultAAOyxq_GAC_ACyXKtcD",
+            "key.typeusr" : "$sy6ResultAAOyxq_GAC_ACyXKtcD",
             "key.usr" : "s:6ResultAAO2qqoiyAByxq_GAD_ADyXKtFZ"
           }
         ],
         "key.typename" : "Result<Value, Error>.Type",
-        "key.typeusr" : "$S6ResultAAOyxq_GmD",
+        "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
       },
       {

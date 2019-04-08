@@ -144,7 +144,7 @@
       "key.usr" : "s:4main23singleLineCommentedFuncyyF"
     },
     {
-      "key.doc.full_as_xml" : "<Function file=\"&lt;input&gt;\" line=\"10\" column=\"6\"><Name>multiLineCommentedFunc()<\/Name><USR>s:4main22multiLineCommentedFuncyyF<\/USR><Declaration>func multiLineCommentedFunc()<\/Declaration><CommentParts><Abstract><Para>Multiple line commented function.<\/Para><\/Abstract><Discussion><List-Bullet><Item><\/Item><\/List-Bullet><\/Discussion><\/CommentParts><\/Function>",
+      "key.doc.full_as_xml" : "<Function file=\"&lt;input&gt;\" line=\"10\" column=\"6\"><Name>multiLineCommentedFunc()<\/Name><USR>s:4main22multiLineCommentedFuncyyF<\/USR><Declaration>func multiLineCommentedFunc()<\/Declaration><CommentParts><Abstract><Para>Multiple line commented function.<\/Para><\/Abstract><\/CommentParts><\/Function>",
       "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>multiLineCommentedFunc<\/decl.name>()<\/decl.function.free>",
       "key.kind" : "source.lang.swift.decl.function.free",
       "key.length" : 32,

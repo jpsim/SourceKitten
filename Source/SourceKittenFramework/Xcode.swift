@@ -51,8 +51,7 @@ internal enum XcodeBuild {
      */
     internal static func launch(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> Data {
         let task = Process()
-        task.launchPath = "/usr/bin/xcodebuild"
-        task.currentDirectoryPath = path
+        let pathOfXcodebuild = "/usr/bin/xcodebuild"
         task.arguments = arguments
 
         let pipe = Pipe()
@@ -62,7 +61,29 @@ internal enum XcodeBuild {
             task.standardError = pipe
         }
 
-        task.launch()
+        do {
+        #if canImport(Darwin)
+            if #available(macOS 10.13, *) {
+                task.executableURL = URL(fileURLWithPath: pathOfXcodebuild)
+                task.currentDirectoryURL = URL(fileURLWithPath: path)
+                try task.run()
+            } else {
+                task.launchPath = pathOfXcodebuild
+                task.currentDirectoryPath = path
+                task.launch()
+            }
+        #elseif compiler(>=5)
+            task.executableURL = URL(fileURLWithPath: pathOfXcodebuild)
+            task.currentDirectoryURL = URL(fileURLWithPath: path)
+            try task.run()
+        #else
+            task.launchPath = pathOfXcodebuild
+            task.currentDirectoryPath = path
+            task.launch()
+        #endif
+        } catch {
+            return Data()
+        }
 
         let file = pipe.fileHandleForReading
         defer { file.closeFile() }
@@ -82,15 +103,7 @@ internal enum XcodeBuild {
                                            inPath: String) -> [XcodeBuildSetting]? {
         let arguments = xcodeBuildArguments + ["-showBuildSettings", "-json"]
         let outputData = XcodeBuild.launch(arguments: arguments, inPath: inPath, pipingStandardError: false)
-
-        let decoder = JSONDecoder()
-
-#if os(Linux) && !swift(>=4.2.1)
-        // Handled in `XcodeBuildSetting`.
-#else
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-#endif
-        return try? decoder.decode([XcodeBuildSetting].self, from: outputData)
+        return try? JSONDecoder().decode([XcodeBuildSetting].self, from: outputData)
     }
 }
 
@@ -221,13 +234,31 @@ public func sdkPath() -> String {
     return ""
 #else
     let task = Process()
-    task.launchPath = "/usr/bin/xcrun"
+    let pathOfXcrun = "/usr/bin/xcrun"
     task.arguments = ["--show-sdk-path", "--sdk", "macosx"]
 
     let pipe = Pipe()
     task.standardOutput = pipe
 
-    task.launch()
+    do {
+    #if canImport(Darwin)
+        if #available(macOS 10.13, *) {
+            task.executableURL = URL(fileURLWithPath: pathOfXcrun)
+            try task.run()
+        } else {
+            task.launchPath = pathOfXcrun
+            task.launch()
+        }
+    #elseif compiler(>=5)
+        task.executableURL = URL(fileURLWithPath: pathOfXcrun)
+        try task.run()
+    #else
+        task.launchPath = pathOfXcrun
+        task.launch()
+    #endif
+    } catch {
+        return ""
+    }
 
     let file = pipe.fileHandleForReading
     let sdkPath = String(data: file.readDataToEndOfFile(), encoding: .utf8)

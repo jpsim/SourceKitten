@@ -52,7 +52,7 @@
             "key.parsed_scope.end" : 12,
             "key.parsed_scope.start" : 12,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant8ArgumentV1Txmfp"
           },
           {
@@ -92,7 +92,7 @@
             "key.parsed_scope.end" : 17,
             "key.parsed_scope.start" : 17,
             "key.typename" : "T?",
-            "key.typeusr" : "$SxSgD",
+            "key.typeusr" : "$sxSgD",
             "key.usr" : "s:10Commandant8ArgumentV12defaultValuexSgvp"
           },
           {
@@ -127,7 +127,7 @@
             "key.parsed_scope.end" : 21,
             "key.parsed_scope.start" : 21,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant8ArgumentV5usageSSvp"
           },
           {
@@ -162,12 +162,12 @@
             "key.parsed_scope.end" : 26,
             "key.parsed_scope.start" : 26,
             "key.typename" : "String?",
-            "key.typeusr" : "$SSSSgD",
+            "key.typeusr" : "$sSSSgD",
             "key.usr" : "s:10Commandant8ArgumentV14usageParameterSSSgvp"
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.annotated_decl" : "<Declaration>public init(defaultValue: <Type usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/Type>? = default, usage: <Type usr=\"s:SS\">String<\/Type>, usageParameter: <Type usr=\"s:SS\">String<\/Type>? = default)<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>public init(defaultValue: <Type usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/Type>? = nil, usage: <Type usr=\"s:SS\">String<\/Type>, usageParameter: <Type usr=\"s:SS\">String<\/Type>? = nil)<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.public",
@@ -178,7 +178,7 @@
             "key.bodylength" : 97,
             "key.bodyoffset" : 939,
             "key.filepath" : "Sources\/Commandant\/Argument.swift",
-            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>defaultValue<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/ref.generic_type_param>?<\/decl.var.parameter.type> = <syntaxtype.keyword>default<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usage<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usageParameter<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct>?<\/decl.var.parameter.type> = <syntaxtype.keyword>default<\/syntaxtype.keyword><\/decl.var.parameter>)<\/decl.function.constructor>",
+            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>defaultValue<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.generic_type_param usr=\"s:10Commandant8ArgumentV1Txmfp\">T<\/ref.generic_type_param>?<\/decl.var.parameter.type> = nil<\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usage<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usageParameter<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct>?<\/decl.var.parameter.type> = nil<\/decl.var.parameter>)<\/decl.function.constructor>",
             "key.kind" : "source.lang.swift.decl.function.method.instance",
             "key.length" : 174,
             "key.name" : "init(defaultValue:usage:usageParameter:)",
@@ -189,10 +189,10 @@
             "key.parsed_scope.end" : 32,
             "key.parsed_scope.start" : 28,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<T> (Argument<T>.Type) -> (T?, String, String?) -> Argument<T>",
-            "key.typeusr" : "$S12defaultValue5usage0C9Parameter10Commandant8ArgumentVyxGxSg_S2SSgtcD",
+            "key.typeusr" : "$s12defaultValue5usage0C9Parameter10Commandant8ArgumentVyxGxSg_S2SSgtcD",
             "key.usr" : "s:10Commandant8ArgumentV12defaultValue5usage0E9ParameterACyxGxSg_S2SSgtcfc"
           },
           {
@@ -233,7 +233,7 @@
                 "key.parsed_scope.end" : 34,
                 "key.parsed_scope.start" : 34,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:10Commandant8ArgumentV17invalidUsageError33_8CAE711C2CD19D07FEBBE5F857AB09FDLLyAA0aE0Oyqd__GSSlF06ClientE0L_qd__mfp"
               },
               {
@@ -250,20 +250,21 @@
                 "key.parsed_scope.end" : 35,
                 "key.parsed_scope.start" : 35,
                 "key.typename" : "String",
-                "key.typeusr" : "$SSSD",
+                "key.typeusr" : "$sSSD",
                 "key.usr" : "s:10Commandant8ArgumentV17invalidUsageError33_8CAE711C2CD19D07FEBBE5F857AB09FDLLyAA0aE0Oyqd__GSSlF11descriptionL_SSvp"
               }
             ],
             "key.typename" : "<T, ClientError> (Argument<T>) -> (String) -> CommandantError<ClientError>",
-            "key.typeusr" : "$Sy10Commandant0A5ErrorOyqd__GSScluD",
+            "key.typeusr" : "$sy10Commandant0A5ErrorOyqd__GSScluD",
             "key.usr" : "s:10Commandant8ArgumentV17invalidUsageError33_8CAE711C2CD19D07FEBBE5F857AB09FDLLyAA0aE0Oyqd__GSSlF"
           }
         ],
         "key.typename" : "Argument<T>.Type",
-        "key.typeusr" : "$S10Commandant8ArgumentVyxGmD",
+        "key.typeusr" : "$s10Commandant8ArgumentVyxGmD",
         "key.usr" : "s:10Commandant8ArgumentV"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 251,
         "key.bodyoffset" : 1298,
@@ -322,15 +323,16 @@
               }
             ],
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant8ArgumentV25usageParameterDescriptionSSvp"
           }
         ],
         "key.typename" : "Argument<T>.Type",
-        "key.typeusr" : "$S10Commandant8ArgumentVyxGmD",
+        "key.typeusr" : "$s10Commandant8ArgumentVyxGmD",
         "key.usr" : "s:10Commandant8ArgumentV"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 254,
         "key.bodyoffset" : 1590,
@@ -389,12 +391,12 @@
               }
             ],
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant8ArgumentVAASTRzlE25usageParameterDescriptionSSvp"
           }
         ],
         "key.typename" : "Argument<T>.Type",
-        "key.typeusr" : "$S10Commandant8ArgumentVyxGmD",
+        "key.typeusr" : "$s10Commandant8ArgumentVyxGmD",
         "key.usr" : "s:10Commandant8ArgumentV"
       },
       {
@@ -406,6 +408,7 @@
         "key.offset" : 1850
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 1979,
         "key.bodyoffset" : 1892,
@@ -513,7 +516,7 @@
                 "key.parsed_scope.end" : 63,
                 "key.parsed_scope.start" : 63,
                 "key.typename" : "T.Type",
-                "key.typeusr" : "$SxmD",
+                "key.typeusr" : "$sxmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ1TL_xmfp"
               },
               {
@@ -530,12 +533,12 @@
                 "key.parsed_scope.end" : 63,
                 "key.parsed_scope.start" : 63,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$Sq_mD",
+                "key.typeusr" : "$sq_mD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ06ClientF0L_q_mfp"
               }
             ],
             "key.typename" : "<T, ClientError where T : ArgumentProtocol> (CommandMode.Type) -> (CommandMode, Argument<T>) -> Result<T, CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOyx10Commandant0B5ErrorOyq_GGAC11CommandModeO_AC8ArgumentVyxGtcAC0F8ProtocolRzr0_luD",
+            "key.typeusr" : "$sy6ResultAAOyx10Commandant0B5ErrorOyq_GGAC11CommandModeO_AC8ArgumentVyxGtcAC0F8ProtocolRzr0_luD",
             "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxAA0A5ErrorOyq_GGAC_AA8ArgumentVyxGtAA0G8ProtocolRzr0_lFZ"
           },
           {
@@ -626,7 +629,7 @@
                 "key.parsed_scope.end" : 89,
                 "key.parsed_scope.start" : 89,
                 "key.typename" : "T.Type",
-                "key.typeusr" : "$SxmD",
+                "key.typeusr" : "$sxmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ1TL_xmfp"
               },
               {
@@ -643,17 +646,17 @@
                 "key.parsed_scope.end" : 89,
                 "key.parsed_scope.start" : 89,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$Sq_mD",
+                "key.typeusr" : "$sq_mD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ06ClientF0L_q_mfp"
               }
             ],
             "key.typename" : "<T, ClientError where T : ArgumentProtocol> (CommandMode.Type) -> (CommandMode, Argument<[T]>) -> Result<[T], CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOySayxG10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD8ArgumentVyACGtcAD0F8ProtocolRzr0_luD",
+            "key.typeusr" : "$sy6ResultAAOySayxG10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD8ArgumentVyACGtcAD0F8ProtocolRzr0_luD",
             "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA8ArgumentVyAGGtAA0G8ProtocolRzr0_lFZ"
           }
         ],
         "key.typename" : "CommandMode.Type",
-        "key.typeusr" : "$S10Commandant11CommandModeOmD",
+        "key.typeusr" : "$s10Commandant11CommandModeOmD",
         "key.usr" : "s:10Commandant11CommandModeO"
       }
     ]
@@ -718,7 +721,7 @@
             "key.offset" : 355,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.private",
+                "key.accessibility" : "source.lang.swift.accessibility.internal",
                 "key.annotated_decl" : "<Declaration>case key(<Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
                 "key.doc.column" : 7,
                 "key.doc.comment" : "A key corresponding to an option (e.g., `verbose` for `--verbose`).",
@@ -742,7 +745,7 @@
                 "key.parsed_scope.end" : 15,
                 "key.parsed_scope.start" : 15,
                 "key.typename" : "(RawArgument.Type) -> (String) -> RawArgument",
-                "key.typeusr" : "$Sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOSScADmcD",
+                "key.typeusr" : "$sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOSScADmcD",
                 "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO3keyyADSScADmF"
               }
             ]
@@ -755,7 +758,7 @@
             "key.offset" : 462,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.private",
+                "key.accessibility" : "source.lang.swift.accessibility.internal",
                 "key.annotated_decl" : "<Declaration>case value(<Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
                 "key.doc.column" : 7,
                 "key.doc.comment" : "A value, either associated with an option or passed as a positional\nargument.",
@@ -779,7 +782,7 @@
                 "key.parsed_scope.end" : 19,
                 "key.parsed_scope.start" : 19,
                 "key.typename" : "(RawArgument.Type) -> (String) -> RawArgument",
-                "key.typeusr" : "$Sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOSScADmcD",
+                "key.typeusr" : "$sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOSScADmcD",
                 "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO5valueyADSScADmF"
               }
             ]
@@ -792,7 +795,7 @@
             "key.offset" : 543,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.private",
+                "key.accessibility" : "source.lang.swift.accessibility.internal",
                 "key.annotated_decl" : "<Declaration>case flag(<Type usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/Type>&lt;<Type usr=\"s:SJ\">Character<\/Type>&gt;)<\/Declaration>",
                 "key.doc.column" : 7,
                 "key.doc.comment" : "One or more flag arguments (e.g 'r' and 'f' for `-rf`)",
@@ -816,17 +819,18 @@
                 "key.parsed_scope.end" : 22,
                 "key.parsed_scope.start" : 22,
                 "key.typename" : "(RawArgument.Type) -> (OrderedSet<Character>) -> RawArgument",
-                "key.typeusr" : "$Sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOAA10OrderedSetVySJGcADmcD",
+                "key.typeusr" : "$sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOAA10OrderedSetVySJGcADmcD",
                 "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO4flagyAdA10OrderedSetVySJGcADmF"
               }
             ]
           }
         ],
         "key.typename" : "RawArgument.Type",
-        "key.typeusr" : "$S10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOmD",
+        "key.typeusr" : "$s10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOmD",
         "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>private enum RawArgument : <Type usr=\"s:SQ\">Equatable<\/Type><\/Declaration>",
         "key.bodylength" : 214,
         "key.bodyoffset" : 627,
@@ -902,12 +906,12 @@
             "key.parsed_scope.end" : 37,
             "key.parsed_scope.start" : 26,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSvp"
           }
         ],
         "key.typename" : "RawArgument.Type",
-        "key.typeusr" : "$S10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOmD",
+        "key.typeusr" : "$s10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOmD",
         "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO"
       },
       {
@@ -983,7 +987,7 @@
             "key.parsed_scope.start" : 43,
             "key.setter_accessibility" : "source.lang.swift.accessibility.private",
             "key.typename" : "[RawArgument]",
-            "key.typeusr" : "$SSay10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
+            "key.typeusr" : "$sSay10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
             "key.usr" : "s:10Commandant14ArgumentParserC12rawArguments33_BA859BFBBE9DF3838A11641CB273713ELLSayAA03RawB0AELLOGvp"
           },
           {
@@ -1034,7 +1038,7 @@
                 "key.parsed_scope.end" : 48,
                 "key.parsed_scope.start" : 48,
                 "key.typename" : "[ArraySlice<String>]",
-                "key.typeusr" : "$SSays10ArraySliceVySSGGD",
+                "key.typeusr" : "$sSays10ArraySliceVySSGGD",
                 "key.usr" : "s:10Commandant14ArgumentParserCyACSaySSGcfc6paramsL_Says10ArraySliceVySSGGvp"
               },
               {
@@ -1051,12 +1055,12 @@
                 "key.parsed_scope.end" : 51,
                 "key.parsed_scope.start" : 51,
                 "key.typename" : "ArraySlice<String>",
-                "key.typeusr" : "$Ss10ArraySliceVySSGD",
+                "key.typeusr" : "$ss10ArraySliceVySSGD",
                 "key.usr" : "s:10Commandant14ArgumentParserCyACSaySSGcfc7optionsL_s10ArraySliceVySSGvp"
               }
             ],
             "key.typename" : "(ArgumentParser.Type) -> ([String]) -> ArgumentParser",
-            "key.typeusr" : "$Sy10Commandant14ArgumentParserCSaySSGcD",
+            "key.typeusr" : "$sy10Commandant14ArgumentParserCSaySSGcD",
             "key.usr" : "s:10Commandant14ArgumentParserCyACSaySSGcfc"
           },
           {
@@ -1093,7 +1097,7 @@
             "key.parsed_scope.end" : 76,
             "key.parsed_scope.start" : 74,
             "key.typename" : "[String]?",
-            "key.typeusr" : "$SSaySSGSgD",
+            "key.typeusr" : "$sSaySSGSgD",
             "key.usr" : "s:10Commandant14ArgumentParserC18remainingArgumentsSaySSGSgvp"
           },
           {
@@ -1154,7 +1158,7 @@
                 "key.parsed_scope.end" : 84,
                 "key.parsed_scope.start" : 84,
                 "key.typename" : "[RawArgument]",
-                "key.typeusr" : "$SSay10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
+                "key.typeusr" : "$sSay10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
                 "key.usr" : "s:10Commandant14ArgumentParserC14consumeBoolean6forKeySbSgSS_tF12oldArgumentsL_SayAA03RawB033_BA859BFBBE9DF3838A11641CB273713ELLOGvp"
               },
               {
@@ -1171,12 +1175,12 @@
                 "key.parsed_scope.end" : 87,
                 "key.parsed_scope.start" : 87,
                 "key.typename" : "Bool?",
-                "key.typeusr" : "$SSbSgD",
+                "key.typeusr" : "$sSbSgD",
                 "key.usr" : "s:10Commandant14ArgumentParserC14consumeBoolean6forKeySbSgSS_tF6resultL_AFvp"
               }
             ],
             "key.typename" : "(ArgumentParser) -> (String) -> Bool?",
-            "key.typeusr" : "$S6forKeySbSgSS_tcD",
+            "key.typeusr" : "$s6forKeySbSgSS_tcD",
             "key.usr" : "s:10Commandant14ArgumentParserC14consumeBoolean6forKeySbSgSS_tF"
           },
           {
@@ -1232,7 +1236,7 @@
                 "key.parsed_scope.end" : 108,
                 "key.parsed_scope.start" : 108,
                 "key.typename" : "[RawArgument]",
-                "key.typeusr" : "$SSay10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
+                "key.typeusr" : "$sSay10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
                 "key.usr" : "s:10Commandant14ArgumentParserC12consumeValue6forKey6ResultAFOySSSgAA0A5ErrorOyAF02NoI0OGGSS_tF12oldArgumentsL_SayAA03RawB033_BA859BFBBE9DF3838A11641CB273713ELLOGvp"
               },
               {
@@ -1249,7 +1253,7 @@
                 "key.parsed_scope.end" : 111,
                 "key.parsed_scope.start" : 111,
                 "key.typename" : "String?",
-                "key.typeusr" : "$SSSSgD",
+                "key.typeusr" : "$sSSSgD",
                 "key.usr" : "s:10Commandant14ArgumentParserC12consumeValue6forKey6ResultAFOySSSgAA0A5ErrorOyAF02NoI0OGGSS_tF05foundE0L_AHvp"
               },
               {
@@ -1271,12 +1275,12 @@
                   }
                 ],
                 "key.typename" : "Int",
-                "key.typeusr" : "$SSiD",
+                "key.typeusr" : "$sSiD",
                 "key.usr" : "s:10Commandant14ArgumentParserC12consumeValue6forKey6ResultAFOySSSgAA0A5ErrorOyAF02NoI0OGGSS_tF5indexL_Sivp"
               }
             ],
             "key.typename" : "(ArgumentParser) -> (String) -> Result<String?, CommandantError<NoError>>",
-            "key.typeusr" : "$S6forKey6ResultABOySSSg10Commandant0D5ErrorOyAB02NoE0OGGSS_tcD",
+            "key.typeusr" : "$s6forKey6ResultABOySSSg10Commandant0D5ErrorOyAB02NoE0OGGSS_tcD",
             "key.usr" : "s:10Commandant14ArgumentParserC12consumeValue6forKey6ResultAFOySSSgAA0A5ErrorOyAF02NoI0OGGSS_tF"
           },
           {
@@ -1313,10 +1317,10 @@
             "key.parsed_scope.end" : 145,
             "key.parsed_scope.start" : 136,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "(ArgumentParser) -> () -> String?",
-            "key.typeusr" : "$SSSSgycD",
+            "key.typeusr" : "$sSSSgycD",
             "key.usr" : "s:10Commandant14ArgumentParserC017consumePositionalB0SSSgyF"
           },
           {
@@ -1367,12 +1371,12 @@
                 "key.parsed_scope.end" : 150,
                 "key.parsed_scope.start" : 150,
                 "key.typename" : "[RawArgument]",
-                "key.typeusr" : "$SSay10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
+                "key.typeusr" : "$sSay10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOGD",
                 "key.usr" : "s:10Commandant14ArgumentParserC7consume3keySbSS_tF12oldArgumentsL_SayAA03RawB033_BA859BFBBE9DF3838A11641CB273713ELLOGvp"
               }
             ],
             "key.typename" : "(ArgumentParser) -> (String) -> Bool",
-            "key.typeusr" : "$S3keySbSS_tcD",
+            "key.typeusr" : "$s3keySbSS_tcD",
             "key.usr" : "s:10Commandant14ArgumentParserC7consume3keySbSS_tF"
           },
           {
@@ -1414,15 +1418,15 @@
               }
             ],
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "(ArgumentParser) -> (Character) -> Bool",
-            "key.typeusr" : "$S4flagSbSJ_tcD",
+            "key.typeusr" : "$s4flagSbSJ_tcD",
             "key.usr" : "s:10Commandant14ArgumentParserC14consumeBoolean4flagSbSJ_tF"
           }
         ],
         "key.typename" : "ArgumentParser.Type",
-        "key.typeusr" : "$S10Commandant14ArgumentParserCmD",
+        "key.typeusr" : "$s10Commandant14ArgumentParserCmD",
         "key.usr" : "s:10Commandant14ArgumentParserC"
       }
     ]
@@ -1495,7 +1499,7 @@
             "key.parsed_scope.end" : 12,
             "key.parsed_scope.start" : 12,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant16ArgumentProtocolP4nameSSvpZ"
           },
           {
@@ -1523,18 +1527,19 @@
             "key.parsed_scope.end" : 15,
             "key.parsed_scope.start" : 15,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<Self where Self : ArgumentProtocol> (Self.Type) -> (String) -> Self?",
-            "key.typeusr" : "$S6stringxSgSS_tcD",
+            "key.typeusr" : "$s6stringxSgSS_tcD",
             "key.usr" : "s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ"
           }
         ],
         "key.typename" : "ArgumentProtocol.Protocol",
-        "key.typeusr" : "$S10Commandant16ArgumentProtocol_pmD",
+        "key.typeusr" : "$s10Commandant16ArgumentProtocol_pmD",
         "key.usr" : "s:10Commandant16ArgumentProtocolP"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>struct Int : <Type usr=\"s:s17FixedWidthIntegerP\">FixedWidthInteger<\/Type>, <Type usr=\"s:SZ\">SignedInteger<\/Type><\/Declaration>",
         "key.bodylength" : 113,
         "key.bodyoffset" : 478,
@@ -1605,7 +1610,7 @@
             "key.parsed_scope.end" : 19,
             "key.parsed_scope.start" : 19,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant16ArgumentProtocolP4nameSSvpZ"
           },
           {
@@ -1645,18 +1650,19 @@
             "key.parsed_scope.end" : 23,
             "key.parsed_scope.start" : 21,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "(Int.Type) -> (String) -> Int?",
-            "key.typeusr" : "$S6stringSiSgSS_tcD",
+            "key.typeusr" : "$s6stringSiSgSS_tcD",
             "key.usr" : "s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ"
           }
         ],
         "key.typename" : "Int.Type",
-        "key.typeusr" : "$SSimD",
+        "key.typeusr" : "$sSimD",
         "key.usr" : "s:Si"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>struct String<\/Declaration>",
         "key.bodylength" : 110,
         "key.bodyoffset" : 630,
@@ -1892,7 +1898,7 @@
             "key.parsed_scope.end" : 27,
             "key.parsed_scope.start" : 27,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant16ArgumentProtocolP4nameSSvpZ"
           },
           {
@@ -1932,18 +1938,19 @@
             "key.parsed_scope.end" : 31,
             "key.parsed_scope.start" : 29,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "(String.Type) -> (String) -> String?",
-            "key.typeusr" : "$S6stringSSSgSS_tcD",
+            "key.typeusr" : "$s6stringSSSgSS_tcD",
             "key.usr" : "s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ"
           }
         ],
         "key.typename" : "String.Type",
-        "key.typeusr" : "$SSSmD",
+        "key.typeusr" : "$sSSmD",
         "key.usr" : "s:SS"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>protocol RawRepresentable<\/Declaration>",
         "key.bodylength" : 112,
         "key.bodyoffset" : 826,
@@ -2032,25 +2039,26 @@
             "key.parsed_scope.start" : 35,
             "key.related_decls" : [
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SY10CommandantAA16ArgumentProtocolRzs17FixedWidthInteger8RawValueSYRpzrlE4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; `Self`?<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; `Self`?<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:SY10CommandantAA16ArgumentProtocolRzs17FixedWidthInteger8RawValueSYRpzrlE4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
               }
             ],
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<Self where Self : ArgumentProtocol, Self : RawRepresentable, Self.RawValue : StringProtocol> (Self.Type) -> (String) -> Self?",
-            "key.typeusr" : "$S6stringxSgSS_tcD",
+            "key.typeusr" : "$s6stringxSgSS_tcD",
             "key.usr" : "s:SY10CommandantAA16ArgumentProtocolRzSy8RawValueSYRpzrlE4from6stringxSgSS_tFZ"
           }
         ],
         "key.typename" : "RawRepresentable.Protocol",
-        "key.typeusr" : "$SSY_pmD",
+        "key.typeusr" : "$sSY_pmD",
         "key.usr" : "s:SY"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>protocol RawRepresentable<\/Declaration>",
         "key.bodylength" : 112,
         "key.bodyoffset" : 1027,
@@ -2139,22 +2147,22 @@
             "key.parsed_scope.start" : 41,
             "key.related_decls" : [
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:SY10CommandantAA16ArgumentProtocolRzSy8RawValueSYRpzrlE4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; `Self`?<\/RelatedName>"
               },
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; `Self`?<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:SY10CommandantAA16ArgumentProtocolRzSy8RawValueSYRpzrlE4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
               }
             ],
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<Self where Self : ArgumentProtocol, Self : RawRepresentable, Self.RawValue : FixedWidthInteger> (Self.Type) -> (String) -> Self?",
-            "key.typeusr" : "$S6stringxSgSS_tcD",
+            "key.typeusr" : "$s6stringxSgSS_tcD",
             "key.usr" : "s:SY10CommandantAA16ArgumentProtocolRzs17FixedWidthInteger8RawValueSYRpzrlE4from6stringxSgSS_tFZ"
           }
         ],
         "key.typename" : "RawRepresentable.Protocol",
-        "key.typeusr" : "$SSY_pmD",
+        "key.typeusr" : "$sSY_pmD",
         "key.usr" : "s:SY"
       }
     ]
@@ -2225,7 +2233,7 @@
             "key.parsed_scope.end" : 16,
             "key.parsed_scope.start" : 16,
             "key.typename" : "Self.Options.Type",
-            "key.typeusr" : "$S7Options10Commandant15CommandProtocolPQzmD",
+            "key.typeusr" : "$s7Options10Commandant15CommandProtocolPQzmD",
             "key.usr" : "s:10Commandant15CommandProtocolP7OptionsQa"
           },
           {
@@ -2243,7 +2251,7 @@
             "key.parsed_scope.end" : 18,
             "key.parsed_scope.start" : 18,
             "key.typename" : "Self.ClientError.Type",
-            "key.typeusr" : "$S11ClientError10Commandant15CommandProtocolPQzmD",
+            "key.typeusr" : "$s11ClientError10Commandant15CommandProtocolPQzmD",
             "key.usr" : "s:10Commandant15CommandProtocolP11ClientErrorQa"
           },
           {
@@ -2273,7 +2281,7 @@
             "key.parsed_scope.end" : 22,
             "key.parsed_scope.start" : 22,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant15CommandProtocolP4verbSSvp"
           },
           {
@@ -2303,7 +2311,7 @@
             "key.parsed_scope.end" : 26,
             "key.parsed_scope.start" : 26,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant15CommandProtocolP8functionSSvp"
           },
           {
@@ -2331,15 +2339,15 @@
             "key.parsed_scope.end" : 29,
             "key.parsed_scope.start" : 29,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<Self where Self : CommandProtocol> (Self) -> (Self.Options) -> Result<(), Self.ClientError>",
-            "key.typeusr" : "$Sy6ResultAAOyyt11ClientErrorQzG7OptionsQzcD",
+            "key.typeusr" : "$sy6ResultAAOyyt11ClientErrorQzG7OptionsQzcD",
             "key.usr" : "s:10Commandant15CommandProtocolP3runy6ResultAEOyyt11ClientErrorQzG7OptionsQzF"
           }
         ],
         "key.typename" : "CommandProtocol.Protocol",
-        "key.typeusr" : "$S10Commandant15CommandProtocol_pmD",
+        "key.typeusr" : "$s10Commandant15CommandProtocol_pmD",
         "key.usr" : "s:10Commandant15CommandProtocolP"
       },
       {
@@ -2402,7 +2410,7 @@
             "key.parsed_scope.end" : 33,
             "key.parsed_scope.start" : 33,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant14CommandWrapperV11ClientErrorxmfp"
           },
           {
@@ -2427,7 +2435,7 @@
             "key.parsed_scope.end" : 34,
             "key.parsed_scope.start" : 34,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant14CommandWrapperV4verbSSvp"
           },
           {
@@ -2452,7 +2460,7 @@
             "key.parsed_scope.end" : 35,
             "key.parsed_scope.start" : 35,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant14CommandWrapperV8functionSSvp"
           },
           {
@@ -2477,7 +2485,7 @@
             "key.parsed_scope.end" : 37,
             "key.parsed_scope.start" : 37,
             "key.typename" : "(ArgumentParser) -> Result<(), CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOyyt10Commandant0B5ErrorOyxGGAC14ArgumentParserCcD",
+            "key.typeusr" : "$sy6ResultAAOyyt10Commandant0B5ErrorOyxGGAC14ArgumentParserCcD",
             "key.usr" : "s:10Commandant14CommandWrapperV3runy6ResultAEOyytAA0A5ErrorOyxGGAA14ArgumentParserCcvp"
           },
           {
@@ -2502,7 +2510,7 @@
             "key.parsed_scope.end" : 39,
             "key.parsed_scope.start" : 39,
             "key.typename" : "() -> CommandantError<ClientError>?",
-            "key.typeusr" : "$S10Commandant0A5ErrorOyxGSgycD",
+            "key.typeusr" : "$s10Commandant0A5ErrorOyxGSgycD",
             "key.usr" : "s:10Commandant14CommandWrapperV5usageAA0A5ErrorOyxGSgycvp"
           },
           {
@@ -2565,17 +2573,17 @@
                 "key.parsed_scope.end" : 42,
                 "key.parsed_scope.start" : 42,
                 "key.typename" : "C.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:10Commandant14CommandWrapperVyACyxGqd__c11ClientErrorQyd__RszAA0B8ProtocolRd__lu33_1DD6990CD6DFDE28F713A55F8EE2B70ELlfc1CL_qd__mfp"
               }
             ],
             "key.typename" : "<ClientError, C where ClientError == C.ClientError, C : CommandProtocol> (CommandWrapper<ClientError>.Type) -> (C) -> CommandWrapper<ClientError>",
-            "key.typeusr" : "$Sy10Commandant14CommandWrapperVyxGqd__c11ClientErrorQyd__RszAA0B8ProtocolRd__luD",
+            "key.typeusr" : "$sy10Commandant14CommandWrapperVyxGqd__c11ClientErrorQyd__RszAA0B8ProtocolRd__luD",
             "key.usr" : "s:10Commandant14CommandWrapperVyACyxGqd__c11ClientErrorQyd__RszAA0B8ProtocolRd__lu33_1DD6990CD6DFDE28F713A55F8EE2B70ELlfc"
           }
         ],
         "key.typename" : "CommandWrapper<ClientError>.Type",
-        "key.typeusr" : "$S10Commandant14CommandWrapperVyxGmD",
+        "key.typeusr" : "$s10Commandant14CommandWrapperVyxGmD",
         "key.usr" : "s:10Commandant14CommandWrapperV"
       },
       {
@@ -2620,7 +2628,7 @@
             "key.offset" : 1969,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.internal",
+                "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case arguments(<Type usr=\"s:10Commandant14ArgumentParserC\">ArgumentParser<\/Type>)<\/Declaration>",
                 "key.doc.column" : 7,
                 "key.doc.comment" : "Options should be parsed from the given command-line arguments.",
@@ -2644,7 +2652,7 @@
                 "key.parsed_scope.end" : 71,
                 "key.parsed_scope.start" : 71,
                 "key.typename" : "(CommandMode.Type) -> (ArgumentParser) -> CommandMode",
-                "key.typeusr" : "$Sy10Commandant11CommandModeOAA14ArgumentParserCcACmcD",
+                "key.typeusr" : "$sy10Commandant11CommandModeOAA14ArgumentParserCcACmcD",
                 "key.usr" : "s:10Commandant11CommandModeO9argumentsyAcA14ArgumentParserCcACmF"
               }
             ]
@@ -2657,7 +2665,7 @@
             "key.offset" : 2103,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.internal",
+                "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case usage<\/Declaration>",
                 "key.doc.column" : 7,
                 "key.doc.comment" : "Each option should record its usage information in an error, for\npresentation to the user.",
@@ -2681,14 +2689,14 @@
                 "key.parsed_scope.end" : 75,
                 "key.parsed_scope.start" : 75,
                 "key.typename" : "(CommandMode.Type) -> CommandMode",
-                "key.typeusr" : "$Sy10Commandant11CommandModeOACmcD",
+                "key.typeusr" : "$sy10Commandant11CommandModeOACmcD",
                 "key.usr" : "s:10Commandant11CommandModeO5usageyA2CmF"
               }
             ]
           }
         ],
         "key.typename" : "CommandMode.Type",
-        "key.typeusr" : "$S10Commandant11CommandModeOmD",
+        "key.typeusr" : "$s10Commandant11CommandModeOmD",
         "key.usr" : "s:10Commandant11CommandModeO"
       },
       {
@@ -2756,7 +2764,7 @@
             "key.parsed_scope.end" : 79,
             "key.parsed_scope.start" : 79,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant15CommandRegistryC11ClientErrorxmfp"
           },
           {
@@ -2782,7 +2790,7 @@
             "key.parsed_scope.start" : 80,
             "key.setter_accessibility" : "source.lang.swift.accessibility.private",
             "key.typename" : "[String : CommandWrapper<ClientError>]",
-            "key.typeusr" : "$SSDySS10Commandant14CommandWrapperVyxGGD",
+            "key.typeusr" : "$sSDySS10Commandant14CommandWrapperVyxGGD",
             "key.usr" : "s:10Commandant15CommandRegistryC14commandsByVerb33_1DD6990CD6DFDE28F713A55F8EE2B70ELLSDySSAA0B7WrapperVyxGGvp"
           },
           {
@@ -2819,7 +2827,7 @@
             "key.parsed_scope.end" : 85,
             "key.parsed_scope.start" : 83,
             "key.typename" : "[CommandWrapper<ClientError>]",
-            "key.typeusr" : "$SSay10Commandant14CommandWrapperVyxGGD",
+            "key.typeusr" : "$sSay10Commandant14CommandWrapperVyxGGD",
             "key.usr" : "s:10Commandant15CommandRegistryC8commandsSayAA0B7WrapperVyxGGvp"
           },
           {
@@ -2846,7 +2854,7 @@
             "key.parsed_scope.end" : 87,
             "key.parsed_scope.start" : 87,
             "key.typename" : "<ClientError where ClientError : Error> (CommandRegistry<ClientError>.Type) -> () -> CommandRegistry<ClientError>",
-            "key.typeusr" : "$S10Commandant15CommandRegistryCyxGycD",
+            "key.typeusr" : "$s10Commandant15CommandRegistryCyxGycD",
             "key.usr" : "s:10Commandant15CommandRegistryCACyxGycfc"
           },
           {
@@ -2919,12 +2927,12 @@
                 "key.parsed_scope.end" : 94,
                 "key.parsed_scope.start" : 94,
                 "key.typename" : "C.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:10Commandant15CommandRegistryC8registeryACyxGqd__d_t11ClientErrorQyd__RszAA0B8ProtocolRd__lF1CL_qd__mfp"
               }
             ],
             "key.typename" : "<ClientError, C where ClientError == C.ClientError, C : CommandProtocol> (CommandRegistry<ClientError>) -> (C...) -> CommandRegistry<ClientError>",
-            "key.typeusr" : "$Sy10Commandant15CommandRegistryCyxGqd__d_tc11ClientErrorQyd__RszAA0B8ProtocolRd__luD",
+            "key.typeusr" : "$sy10Commandant15CommandRegistryCyxGqd__d_tc11ClientErrorQyd__RszAA0B8ProtocolRd__luD",
             "key.usr" : "s:10Commandant15CommandRegistryC8registeryACyxGqd__d_t11ClientErrorQyd__RszAA0B8ProtocolRd__lF"
           },
           {
@@ -2966,10 +2974,10 @@
             "key.parsed_scope.end" : 110,
             "key.parsed_scope.start" : 108,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<ClientError where ClientError : Error> (CommandRegistry<ClientError>) -> (String, [String]) -> Result<(), CommandantError<ClientError>>?",
-            "key.typeusr" : "$S7command9arguments6ResultACOyyt10Commandant0D5ErrorOyxGGSgSS_SaySSGtcD",
+            "key.typeusr" : "$s7command9arguments6ResultACOyyt10Commandant0D5ErrorOyxGGSgSS_SaySSGtcD",
             "key.usr" : "s:10Commandant15CommandRegistryC3run7command9arguments6ResultAGOyytAA0A5ErrorOyxGGSgSS_SaySSGtF"
           },
           {
@@ -3006,18 +3014,19 @@
             "key.parsed_scope.end" : 116,
             "key.parsed_scope.start" : 114,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<ClientError where ClientError : Error> (String) -> CommandWrapper<ClientError>?",
-            "key.typeusr" : "$Sy10Commandant14CommandWrapperVyxGSgSScD",
+            "key.typeusr" : "$sy10Commandant14CommandWrapperVyxGSgSScD",
             "key.usr" : "s:10Commandant15CommandRegistryCyAA0B7WrapperVyxGSgSScip"
           }
         ],
         "key.typename" : "CommandRegistry<ClientError>.Type",
-        "key.typeusr" : "$S10Commandant15CommandRegistryCyxGmD",
+        "key.typeusr" : "$s10Commandant15CommandRegistryCyxGmD",
         "key.usr" : "s:10Commandant15CommandRegistryC"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public final class CommandRegistry&lt;ClientError&gt; where ClientError : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 4074,
         "key.bodyoffset" : 3460,
@@ -3090,10 +3099,10 @@
               }
             ],
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<ClientError where ClientError : Error> (CommandRegistry<ClientError>) -> (String, (ClientError) -> ()) -> Never",
-            "key.typeusr" : "$S11defaultVerb12errorHandlers5NeverOSS_yxXEtcD",
+            "key.typeusr" : "$s11defaultVerb12errorHandlers5NeverOSS_yxXEtcD",
             "key.usr" : "s:10Commandant15CommandRegistryC4main11defaultVerb12errorHandlers5NeverOSS_yxXEtF"
           },
           {
@@ -3163,7 +3172,7 @@
                 "key.parsed_scope.end" : 161,
                 "key.parsed_scope.start" : 161,
                 "key.typename" : "[String]",
-                "key.typeusr" : "$SSaySSGD",
+                "key.typeusr" : "$sSaySSGD",
                 "key.usr" : "s:10Commandant15CommandRegistryC4main9arguments11defaultVerb12errorHandlers5NeverOSaySSG_SSyxXEtFAEL0_AJvp"
               },
               {
@@ -3180,7 +3189,7 @@
                 "key.parsed_scope.end" : 164,
                 "key.parsed_scope.start" : 164,
                 "key.typename" : "String",
-                "key.typeusr" : "$SSSD",
+                "key.typeusr" : "$sSSD",
                 "key.usr" : "s:10Commandant15CommandRegistryC4main9arguments11defaultVerb12errorHandlers5NeverOSaySSG_SSyxXEtF14executableNameL_SSvp"
               },
               {
@@ -3197,12 +3206,12 @@
                 "key.parsed_scope.end" : 167,
                 "key.parsed_scope.start" : 167,
                 "key.typename" : "String",
-                "key.typeusr" : "$SSSD",
+                "key.typeusr" : "$sSSD",
                 "key.usr" : "s:10Commandant15CommandRegistryC4main9arguments11defaultVerb12errorHandlers5NeverOSaySSG_SSyxXEtF4verbL_SSvp"
               }
             ],
             "key.typename" : "<ClientError where ClientError : Error> (CommandRegistry<ClientError>) -> ([String], String, (ClientError) -> ()) -> Never",
-            "key.typeusr" : "$S9arguments11defaultVerb12errorHandlers5NeverOSaySSG_SSyxXEtcD",
+            "key.typeusr" : "$s9arguments11defaultVerb12errorHandlers5NeverOSaySSG_SSyxXEtcD",
             "key.usr" : "s:10Commandant15CommandRegistryC4main9arguments11defaultVerb12errorHandlers5NeverOSaySSG_SSyxXEtF"
           },
           {
@@ -3258,7 +3267,7 @@
                 "key.parsed_scope.end" : 204,
                 "key.parsed_scope.start" : 204,
                 "key.typename" : "String",
-                "key.typeusr" : "$SSSD",
+                "key.typeusr" : "$sSSD",
                 "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10subcommandL_SSvp"
               },
               {
@@ -3279,9 +3288,9 @@
                 "key.parsed_scope.start" : 206,
                 "key.substructure" : [
                   {
-                    "key.annotated_decl" : "<Declaration>let task: <Type usr=\"c:objc(cs)NSTask\">Process<\/Type><\/Declaration>",
+                    "key.annotated_decl" : "<Declaration>let task: <Type usr=\"s:10Foundation7ProcessC\">Process<\/Type><\/Declaration>",
                     "key.filepath" : "Sources\/Commandant\/Command.swift",
-                    "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>task<\/decl.name>: <decl.var.type><ref.class usr=\"c:objc(cs)NSTask\">Process<\/ref.class><\/decl.var.type><\/decl.var.local>",
+                    "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>task<\/decl.name>: <decl.var.type><ref.class usr=\"s:10Foundation7ProcessC\">Process<\/ref.class><\/decl.var.type><\/decl.var.local>",
                     "key.kind" : "source.lang.swift.decl.var.local",
                     "key.length" : 20,
                     "key.name" : "task",
@@ -3292,13 +3301,13 @@
                     "key.parsed_scope.end" : 207,
                     "key.parsed_scope.start" : 207,
                     "key.typename" : "Process",
-                    "key.typeusr" : "$SSo6NSTaskCD",
-                    "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF4taskL_So6NSTaskCvp"
+                    "key.typeusr" : "$s10Foundation7ProcessCD",
+                    "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF4taskL_10Foundation7ProcessCvp"
                   },
                   {
-                    "key.annotated_decl" : "<Declaration>let nserror: <Type usr=\"c:objc(cs)NSError\">NSError<\/Type><\/Declaration>",
+                    "key.annotated_decl" : "<Declaration>let nserror: <Type usr=\"s:10Foundation7NSErrorC\">NSError<\/Type><\/Declaration>",
                     "key.filepath" : "Sources\/Commandant\/Command.swift",
-                    "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>nserror<\/decl.name>: <decl.var.type><ref.class usr=\"c:objc(cs)NSError\">NSError<\/ref.class><\/decl.var.type><\/decl.var.local>",
+                    "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>nserror<\/decl.name>: <decl.var.type><ref.class usr=\"s:10Foundation7NSErrorC\">NSError<\/ref.class><\/decl.var.type><\/decl.var.local>",
                     "key.kind" : "source.lang.swift.decl.var.local",
                     "key.length" : 7,
                     "key.name" : "nserror",
@@ -3309,22 +3318,22 @@
                     "key.parsed_scope.end" : 226,
                     "key.parsed_scope.start" : 226,
                     "key.typename" : "NSError",
-                    "key.typeusr" : "$SSo7NSErrorCD",
-                    "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF7nserrorL_So7NSErrorCvp"
+                    "key.typeusr" : "$s10Foundation7NSErrorCD",
+                    "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF7nserrorL_10Foundation7NSErrorCvp"
                   }
                 ],
                 "key.typename" : "<ClientError where ClientError : Error> (String, arguments: [String]) -> Int32",
-                "key.typeusr" : "$S_9argumentss5Int32VSS_SaySSGtcs5ErrorRzluD",
+                "key.typeusr" : "$s_9argumentss5Int32VSS_SaySSGtcs5ErrorRzluD",
                 "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF"
               }
             ],
             "key.typename" : "<ClientError where ClientError : Error> (CommandRegistry<ClientError>) -> (String, String, [String]) -> Int32?",
-            "key.typeusr" : "$S_4verb9argumentss5Int32VSgSS_SSSaySSGtcD",
+            "key.typeusr" : "$s_4verb9argumentss5Int32VSgSS_SSSaySSGtcD",
             "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF"
           }
         ],
         "key.typename" : "CommandRegistry<ClientError>.Type",
-        "key.typeusr" : "$S10Commandant15CommandRegistryCyxGmD",
+        "key.typeusr" : "$s10Commandant15CommandRegistryCyxGmD",
         "key.usr" : "s:10Commandant15CommandRegistryC"
       }
     ]
@@ -3400,7 +3409,7 @@
             "key.parsed_scope.end" : 16,
             "key.parsed_scope.start" : 16,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant0A5ErrorO06ClientB0xmfp"
           },
           {
@@ -3411,7 +3420,7 @@
             "key.offset" : 425,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.internal",
+                "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case usageError(description: <Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
                 "key.doc.column" : 7,
                 "key.doc.comment" : "An option was used incorrectly.",
@@ -3435,7 +3444,7 @@
                 "key.parsed_scope.end" : 18,
                 "key.parsed_scope.start" : 18,
                 "key.typename" : "<ClientError> (CommandantError<ClientError>.Type) -> (String) -> CommandantError<ClientError>",
-                "key.typeusr" : "$Sy10Commandant0A5ErrorOyxGSS_tcADmcluD",
+                "key.typeusr" : "$sy10Commandant0A5ErrorOyxGSS_tcADmcluD",
                 "key.usr" : "s:10Commandant0A5ErrorO05usageB0yACyxGSS_tcAEmlF"
               }
             ]
@@ -3448,7 +3457,7 @@
             "key.offset" : 512,
             "key.substructure" : [
               {
-                "key.accessibility" : "source.lang.swift.accessibility.internal",
+                "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case commandError(<Type usr=\"s:10Commandant0A5ErrorO06ClientB0xmfp\">ClientError<\/Type>)<\/Declaration>",
                 "key.doc.column" : 7,
                 "key.doc.comment" : "An error occurred while running a command.",
@@ -3472,17 +3481,18 @@
                 "key.parsed_scope.end" : 21,
                 "key.parsed_scope.start" : 21,
                 "key.typename" : "<ClientError> (CommandantError<ClientError>.Type) -> (ClientError) -> CommandantError<ClientError>",
-                "key.typeusr" : "$Sy10Commandant0A5ErrorOyxGxcADmcluD",
+                "key.typeusr" : "$sy10Commandant0A5ErrorOyxGxcADmcluD",
                 "key.usr" : "s:10Commandant0A5ErrorO07commandB0yACyxGxcAEmlF"
               }
             ]
           }
         ],
         "key.typename" : "CommandantError<ClientError>.Type",
-        "key.typeusr" : "$S10Commandant0A5ErrorOyxGmD",
+        "key.typeusr" : "$s10Commandant0A5ErrorOyxGmD",
         "key.usr" : "s:10Commandant0A5ErrorO"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum CommandantError&lt;ClientError&gt; : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 187,
         "key.bodyoffset" : 598,
@@ -3563,12 +3573,12 @@
             "key.parsed_scope.end" : 33,
             "key.parsed_scope.start" : 25,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSvp"
           }
         ],
         "key.typename" : "CommandantError<ClientError>.Type",
-        "key.typeusr" : "$S10Commandant0A5ErrorOyxGmD",
+        "key.typeusr" : "$s10Commandant0A5ErrorOyxGmD",
         "key.usr" : "s:10Commandant0A5ErrorO"
       },
       {
@@ -3619,7 +3629,7 @@
             "key.parsed_scope.end" : 38,
             "key.parsed_scope.start" : 38,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant20missingArgumentErroryAA0aD0OyxGSSlF06ClientD0L_xmfp"
           },
           {
@@ -3636,12 +3646,12 @@
             "key.parsed_scope.end" : 39,
             "key.parsed_scope.start" : 39,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant20missingArgumentErroryAA0aD0OyxGSSlF11descriptionL_SSvp"
           }
         ],
         "key.typename" : "<ClientError> (String) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyxGSScluD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyxGSScluD",
         "key.usr" : "s:10Commandant20missingArgumentErroryAA0aD0OyxGSSlF"
       },
       {
@@ -3721,7 +3731,7 @@
             "key.parsed_scope.end" : 45,
             "key.parsed_scope.start" : 45,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageError_5usageAA0aD0OyxGSS_SStlF06ClientD0L_xmfp"
           },
           {
@@ -3738,12 +3748,12 @@
             "key.parsed_scope.end" : 46,
             "key.parsed_scope.start" : 46,
             "key.typename" : "[String]",
-            "key.typeusr" : "$SSaySSGD",
+            "key.typeusr" : "$sSaySSGD",
             "key.usr" : "s:10Commandant21informativeUsageError_5usageAA0aD0OyxGSS_SStlF5linesL_SaySSGvp"
           }
         ],
         "key.typename" : "<ClientError> (String, usage: String) -> CommandantError<ClientError>",
-        "key.typeusr" : "$S_5usage10Commandant0B5ErrorOyxGSS_SStcluD",
+        "key.typeusr" : "$s_5usage10Commandant0B5ErrorOyxGSS_SStcluD",
         "key.usr" : "s:10Commandant21informativeUsageError_5usageAA0aD0OyxGSS_SStlF"
       },
       {
@@ -3794,12 +3804,12 @@
             "key.parsed_scope.end" : 55,
             "key.parsed_scope.start" : 55,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant18combineUsageErrorsyAA0A5ErrorOyxGAE_AEtlF06ClientE0L_xmfp"
           }
         ],
         "key.typename" : "<ClientError> (CommandantError<ClientError>, CommandantError<ClientError>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyxGAD_ADtcluD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyxGAD_ADtcluD",
         "key.usr" : "s:10Commandant18combineUsageErrorsyAA0A5ErrorOyxGAE_AEtlF"
       },
       {
@@ -3850,12 +3860,12 @@
             "key.parsed_scope.end" : 70,
             "key.parsed_scope.start" : 70,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant26unrecognizedArgumentsErroryAA0aD0OyxGSaySSGlF06ClientD0L_xmfp"
           }
         ],
         "key.typename" : "<ClientError> ([String]) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyxGSaySSGcluD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyxGSaySSGcluD",
         "key.usr" : "s:10Commandant26unrecognizedArgumentsErroryAA0aD0OyxGSaySSGlF"
       },
       {
@@ -3943,7 +3953,7 @@
             "key.parsed_scope.end" : 78,
             "key.parsed_scope.start" : 78,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageError_8argumentAA0aD0Oyq_GSS_AA8ArgumentVyxGtr0_lF1TL_xmfp"
           },
           {
@@ -3960,12 +3970,12 @@
             "key.parsed_scope.end" : 78,
             "key.parsed_scope.start" : 78,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant21informativeUsageError_8argumentAA0aD0Oyq_GSS_AA8ArgumentVyxGtr0_lF06ClientD0L_q_mfp"
           }
         ],
         "key.typename" : "<T, ClientError> (String, argument: Argument<T>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$S_8argument10Commandant0B5ErrorOyq_GSS_AB8ArgumentVyxGtcr0_luD",
+        "key.typeusr" : "$s_8argument10Commandant0B5ErrorOyq_GSS_AB8ArgumentVyxGtcr0_luD",
         "key.usr" : "s:10Commandant21informativeUsageError_8argumentAA0aD0Oyq_GSS_AA8ArgumentVyxGtr0_lF"
       },
       {
@@ -4057,7 +4067,7 @@
             "key.parsed_scope.end" : 87,
             "key.parsed_scope.start" : 87,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF1TL_xmfp"
           },
           {
@@ -4074,7 +4084,7 @@
             "key.parsed_scope.end" : 87,
             "key.parsed_scope.start" : 87,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF06ClientD0L_q_mfp"
           },
           {
@@ -4091,7 +4101,7 @@
             "key.parsed_scope.end" : 88,
             "key.parsed_scope.start" : 88,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF7exampleL_SSvp"
           },
           {
@@ -4108,12 +4118,12 @@
             "key.parsed_scope.end" : 90,
             "key.parsed_scope.start" : 90,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF12valueExampleL_SSvp"
           }
         ],
         "key.typename" : "<T, ClientError where T : ArgumentProtocol> (Argument<T>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyq_GAA8ArgumentVyxGcAA0C8ProtocolRzr0_luD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyq_GAA8ArgumentVyxGcAA0C8ProtocolRzr0_luD",
         "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVyxGAA0E8ProtocolRzr0_lF"
       },
       {
@@ -4205,7 +4215,7 @@
             "key.parsed_scope.end" : 107,
             "key.parsed_scope.start" : 107,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF1TL_xmfp"
           },
           {
@@ -4222,7 +4232,7 @@
             "key.parsed_scope.end" : 107,
             "key.parsed_scope.start" : 107,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF06ClientD0L_q_mfp"
           },
           {
@@ -4239,7 +4249,7 @@
             "key.parsed_scope.end" : 108,
             "key.parsed_scope.start" : 108,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF7exampleL_SSvp"
           },
           {
@@ -4256,12 +4266,12 @@
             "key.parsed_scope.end" : 110,
             "key.parsed_scope.start" : 110,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF12valueExampleL_SSvp"
           }
         ],
         "key.typename" : "<T, ClientError where T : ArgumentProtocol> (Argument<[T]>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyq_GAA8ArgumentVySayxGGcAA0C8ProtocolRzr0_luD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyq_GAA8ArgumentVySayxGGcAA0C8ProtocolRzr0_luD",
         "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA8ArgumentVySayxGGAA0E8ProtocolRzr0_lF"
       },
       {
@@ -4349,7 +4359,7 @@
             "key.parsed_scope.end" : 130,
             "key.parsed_scope.start" : 130,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageError_6optionAA0aD0Oyq_GSS_AA6OptionVyxGtr0_lF1TL_xmfp"
           },
           {
@@ -4366,12 +4376,12 @@
             "key.parsed_scope.end" : 130,
             "key.parsed_scope.start" : 130,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant21informativeUsageError_6optionAA0aD0Oyq_GSS_AA6OptionVyxGtr0_lF06ClientD0L_q_mfp"
           }
         ],
         "key.typename" : "<T, ClientError> (String, option: Option<T>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$S_6option10Commandant0B5ErrorOyq_GSS_AB6OptionVyxGtcr0_luD",
+        "key.typeusr" : "$s_6option10Commandant0B5ErrorOyq_GSS_AB6OptionVyxGtcr0_luD",
         "key.usr" : "s:10Commandant21informativeUsageError_6optionAA0aD0Oyq_GSS_AA6OptionVyxGtr0_lF"
       },
       {
@@ -4463,7 +4473,7 @@
             "key.parsed_scope.end" : 135,
             "key.parsed_scope.start" : 135,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVyxGAA16ArgumentProtocolRzr0_lF1TL_xmfp"
           },
           {
@@ -4480,12 +4490,12 @@
             "key.parsed_scope.end" : 135,
             "key.parsed_scope.start" : 135,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVyxGAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp"
           }
         ],
         "key.typename" : "<T, ClientError where T : ArgumentProtocol> (Option<T>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyq_GAA6OptionVyxGcAA16ArgumentProtocolRzr0_luD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyq_GAA6OptionVyxGcAA16ArgumentProtocolRzr0_luD",
         "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVyxGAA16ArgumentProtocolRzr0_lF"
       },
       {
@@ -4577,7 +4587,7 @@
             "key.parsed_scope.end" : 140,
             "key.parsed_scope.start" : 140,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVyxSgGAA16ArgumentProtocolRzr0_lF1TL_xmfp"
           },
           {
@@ -4594,12 +4604,12 @@
             "key.parsed_scope.end" : 140,
             "key.parsed_scope.start" : 140,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVyxSgGAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp"
           }
         ],
         "key.typename" : "<T, ClientError where T : ArgumentProtocol> (Option<T?>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyq_GAA6OptionVyxSgGcAA16ArgumentProtocolRzr0_luD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyq_GAA6OptionVyxSgGcAA16ArgumentProtocolRzr0_luD",
         "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVyxSgGAA16ArgumentProtocolRzr0_lF"
       },
       {
@@ -4691,7 +4701,7 @@
             "key.parsed_scope.end" : 145,
             "key.parsed_scope.start" : 145,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVySayxGGAA16ArgumentProtocolRzr0_lF1TL_xmfp"
           },
           {
@@ -4708,12 +4718,12 @@
             "key.parsed_scope.end" : 145,
             "key.parsed_scope.start" : 145,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVySayxGGAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp"
           }
         ],
         "key.typename" : "<T, ClientError where T : ArgumentProtocol> (Option<[T]>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyq_GAA6OptionVySayxGGcAA16ArgumentProtocolRzr0_luD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyq_GAA6OptionVySayxGGcAA16ArgumentProtocolRzr0_luD",
         "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVySayxGGAA16ArgumentProtocolRzr0_lF"
       },
       {
@@ -4805,7 +4815,7 @@
             "key.parsed_scope.end" : 150,
             "key.parsed_scope.start" : 150,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVySayxGSgGAA16ArgumentProtocolRzr0_lF1TL_xmfp"
           },
           {
@@ -4822,12 +4832,12 @@
             "key.parsed_scope.end" : 150,
             "key.parsed_scope.start" : 150,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVySayxGSgGAA16ArgumentProtocolRzr0_lF06ClientD0L_q_mfp"
           }
         ],
         "key.typename" : "<T, ClientError where T : ArgumentProtocol> (Option<[T]?>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyq_GAA6OptionVySayxGSgGcAA16ArgumentProtocolRzr0_luD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyq_GAA6OptionVySayxGSgGcAA16ArgumentProtocolRzr0_luD",
         "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0Oyq_GAA6OptionVySayxGSgGAA16ArgumentProtocolRzr0_lF"
       },
       {
@@ -4907,7 +4917,7 @@
             "key.parsed_scope.end" : 155,
             "key.parsed_scope.start" : 155,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0OyxGAA6OptionVySbGlF06ClientD0L_xmfp"
           },
           {
@@ -4924,12 +4934,12 @@
             "key.parsed_scope.end" : 156,
             "key.parsed_scope.start" : 156,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0OyxGAA6OptionVySbGlF3keyL_SSvp"
           }
         ],
         "key.typename" : "<ClientError> (Option<Bool>) -> CommandantError<ClientError>",
-        "key.typeusr" : "$Sy10Commandant0A5ErrorOyxGAA6OptionVySbGcluD",
+        "key.typeusr" : "$sy10Commandant0A5ErrorOyxGAA6OptionVySbGcluD",
         "key.usr" : "s:10Commandant21informativeUsageErroryAA0aD0OyxGAA6OptionVySbGlF"
       }
     ]
@@ -5019,13 +5029,8 @@
             "key.parsed_declaration" : "public struct HelpCommand<ClientError: Error>: CommandProtocol",
             "key.parsed_scope.end" : 21,
             "key.parsed_scope.start" : 21,
-            "key.related_decls" : [
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant11HelpCommandV11ClientErrora\">ClientError<\/RelatedName>"
-              }
-            ],
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant11HelpCommandV11ClientErrorxmfp"
           },
           {
@@ -5062,7 +5067,7 @@
             "key.parsed_scope.end" : 22,
             "key.parsed_scope.start" : 22,
             "key.typename" : "HelpOptions<ClientError>.Type",
-            "key.typeusr" : "$S10Commandant11HelpOptionsVyxGmD",
+            "key.typeusr" : "$s10Commandant11HelpOptionsVyxGmD",
             "key.usr" : "s:10Commandant15CommandProtocolP7OptionsQa"
           },
           {
@@ -5099,7 +5104,7 @@
             "key.parsed_scope.end" : 24,
             "key.parsed_scope.start" : 24,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant15CommandProtocolP4verbSSvp"
           },
           {
@@ -5136,7 +5141,7 @@
             "key.parsed_scope.end" : 25,
             "key.parsed_scope.start" : 25,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant15CommandProtocolP8functionSSvp"
           },
           {
@@ -5161,12 +5166,12 @@
             "key.parsed_scope.end" : 27,
             "key.parsed_scope.start" : 27,
             "key.typename" : "CommandRegistry<ClientError>",
-            "key.typeusr" : "$S10Commandant15CommandRegistryCyxGD",
+            "key.typeusr" : "$s10Commandant15CommandRegistryCyxGD",
             "key.usr" : "s:10Commandant11HelpCommandV8registry33_38F61CE0DF9D73793CEDF5D1C3140331LLAA0C8RegistryCyxGvp"
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.annotated_decl" : "<Declaration>public init(registry: <Type usr=\"s:10Commandant15CommandRegistryC\">CommandRegistry<\/Type>&lt;<Type usr=\"s:10Commandant11HelpCommandV11ClientErrorxmfp\">ClientError<\/Type>&gt;, function: <Type usr=\"s:SS\">String<\/Type>? = default)<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>public init(registry: <Type usr=\"s:10Commandant15CommandRegistryC\">CommandRegistry<\/Type>&lt;<Type usr=\"s:10Commandant11HelpCommandV11ClientErrorxmfp\">ClientError<\/Type>&gt;, function: <Type usr=\"s:SS\">String<\/Type>? = nil)<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.public",
@@ -5178,16 +5183,16 @@
             "key.bodyoffset" : 945,
             "key.doc.column" : 9,
             "key.doc.comment" : "Initializes the command to provide help from the given registry of\ncommands.",
-            "key.doc.declaration" : "public init(registry: CommandRegistry<ClientError>, function: String? = default)",
+            "key.doc.declaration" : "public init(registry: CommandRegistry<ClientError>, function: String? = nil)",
             "key.doc.file" : "Sources\/Commandant\/HelpCommand.swift",
-            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/HelpCommand.swift\" line=\"31\" column=\"9\"><Name>init(registry:function:)<\/Name><USR>s:10Commandant11HelpCommandV8registry8functionACyxGAA0C8RegistryCyxG_SSSgtcfc<\/USR><Declaration>public init(registry: CommandRegistry&lt;ClientError&gt;, function: String? = default)<\/Declaration><CommentParts><Abstract><Para>Initializes the command to provide help from the given registry of commands.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+            "key.doc.full_as_xml" : "<Function file=\"Sources\/Commandant\/HelpCommand.swift\" line=\"31\" column=\"9\"><Name>init(registry:function:)<\/Name><USR>s:10Commandant11HelpCommandV8registry8functionACyxGAA0C8RegistryCyxG_SSSgtcfc<\/USR><Declaration>public init(registry: CommandRegistry&lt;ClientError&gt;, function: String? = nil)<\/Declaration><CommentParts><Abstract><Para>Initializes the command to provide help from the given registry of commands.<\/Para><\/Abstract><\/CommentParts><\/Function>",
             "key.doc.line" : 31,
             "key.doc.name" : "init(registry:function:)",
             "key.doc.type" : "Function",
             "key.doclength" : 86,
             "key.docoffset" : 780,
             "key.filepath" : "Sources\/Commandant\/HelpCommand.swift",
-            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>registry<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.class usr=\"s:10Commandant15CommandRegistryC\">CommandRegistry<\/ref.class>&lt;<ref.generic_type_param usr=\"s:10Commandant11HelpCommandV11ClientErrorxmfp\">ClientError<\/ref.generic_type_param>&gt;<\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>function<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct>?<\/decl.var.parameter.type> = <syntaxtype.keyword>default<\/syntaxtype.keyword><\/decl.var.parameter>)<\/decl.function.constructor>",
+            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>registry<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.class usr=\"s:10Commandant15CommandRegistryC\">CommandRegistry<\/ref.class>&lt;<ref.generic_type_param usr=\"s:10Commandant11HelpCommandV11ClientErrorxmfp\">ClientError<\/ref.generic_type_param>&gt;<\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>function<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct>?<\/decl.var.parameter.type> = nil<\/decl.var.parameter>)<\/decl.function.constructor>",
             "key.kind" : "source.lang.swift.decl.function.method.instance",
             "key.length" : 174,
             "key.name" : "init(registry:function:)",
@@ -5198,10 +5203,10 @@
             "key.parsed_scope.end" : 34,
             "key.parsed_scope.start" : 31,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<ClientError where ClientError : Error> (HelpCommand<ClientError>.Type) -> (CommandRegistry<ClientError>, String?) -> HelpCommand<ClientError>",
-            "key.typeusr" : "$S8registry8function10Commandant11HelpCommandVyxGAC0E8RegistryCyxG_SSSgtcD",
+            "key.typeusr" : "$s8registry8function10Commandant11HelpCommandVyxGAC0E8RegistryCyxG_SSSgtcD",
             "key.usr" : "s:10Commandant11HelpCommandV8registry8functionACyxGAA0C8RegistryCyxG_SSSgtcfc"
           },
           {
@@ -5254,17 +5259,17 @@
                 "key.parsed_scope.end" : 51,
                 "key.parsed_scope.start" : 51,
                 "key.typename" : "Int",
-                "key.typeusr" : "$SSiD",
+                "key.typeusr" : "$sSiD",
                 "key.usr" : "s:10Commandant11HelpCommandV3runy6ResultAEOyytxGAA0B7OptionsVyxGF13maxVerbLengthL_Sivp"
               }
             ],
             "key.typename" : "<ClientError where ClientError : Error> (HelpCommand<ClientError>) -> (HelpOptions<ClientError>) -> Result<(), ClientError>",
-            "key.typeusr" : "$Sy6ResultAAOyytxG10Commandant11HelpOptionsVyxGcD",
+            "key.typeusr" : "$sy6ResultAAOyytxG10Commandant11HelpOptionsVyxGcD",
             "key.usr" : "s:10Commandant15CommandProtocolP3runy6ResultAEOyyt11ClientErrorQzG7OptionsQzF"
           }
         ],
         "key.typename" : "HelpCommand<ClientError>.Type",
-        "key.typeusr" : "$S10Commandant11HelpCommandVyxGmD",
+        "key.typeusr" : "$s10Commandant11HelpCommandVyxGmD",
         "key.usr" : "s:10Commandant11HelpCommandV"
       },
       {
@@ -5328,13 +5333,8 @@
             "key.parsed_declaration" : "public struct HelpOptions<ClientError: Error>: OptionsProtocol",
             "key.parsed_scope.end" : 62,
             "key.parsed_scope.start" : 62,
-            "key.related_decls" : [
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant11HelpOptionsV11ClientErrora\">ClientError<\/RelatedName>"
-              }
-            ],
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant11HelpOptionsV11ClientErrorxmfp"
           },
           {
@@ -5359,7 +5359,7 @@
             "key.parsed_scope.end" : 63,
             "key.parsed_scope.start" : 63,
             "key.typename" : "String?",
-            "key.typeusr" : "$SSSSgD",
+            "key.typeusr" : "$sSSSgD",
             "key.usr" : "s:10Commandant11HelpOptionsV4verb33_38F61CE0DF9D73793CEDF5D1C3140331LLSSSgvp"
           },
           {
@@ -5386,10 +5386,10 @@
             "key.parsed_scope.end" : 67,
             "key.parsed_scope.start" : 65,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<ClientError where ClientError : Error> (HelpOptions<ClientError>.Type) -> (String?) -> HelpOptions<ClientError>",
-            "key.typeusr" : "$S4verb10Commandant11HelpOptionsVyxGSSSg_tcD",
+            "key.typeusr" : "$s4verb10Commandant11HelpOptionsVyxGSSSg_tcD",
             "key.usr" : "s:10Commandant11HelpOptionsV4verbACyxGSSSg_tc33_38F61CE0DF9D73793CEDF5D1C3140331Llfc"
           },
           {
@@ -5416,10 +5416,10 @@
             "key.parsed_scope.end" : 71,
             "key.parsed_scope.start" : 69,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<ClientError where ClientError : Error> (HelpOptions<ClientError>.Type) -> (String) -> HelpOptions<ClientError>",
-            "key.typeusr" : "$Sy10Commandant11HelpOptionsVyxGSScD",
+            "key.typeusr" : "$sy10Commandant11HelpOptionsVyxGSScD",
             "key.usr" : "s:10Commandant11HelpOptionsV6create33_38F61CE0DF9D73793CEDF5D1C3140331LLyACyxGSSFZ"
           },
           {
@@ -5463,15 +5463,15 @@
             "key.parsed_scope.end" : 76,
             "key.parsed_scope.start" : 73,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<ClientError where ClientError : Error> (HelpOptions<ClientError>.Type) -> (CommandMode) -> Result<HelpOptions<ClientError>, CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOy10Commandant11HelpOptionsVyxGAC0B5ErrorOyxGGAC11CommandModeOcD",
+            "key.typeusr" : "$sy6ResultAAOy10Commandant11HelpOptionsVyxGAC0B5ErrorOyxGGAC11CommandModeOcD",
             "key.usr" : "s:10Commandant15OptionsProtocolP8evaluatey6ResultAEOyxAA0A5ErrorOy06ClientF0QzGGAA11CommandModeOFZ"
           }
         ],
         "key.typename" : "HelpOptions<ClientError>.Type",
-        "key.typeusr" : "$S10Commandant11HelpOptionsVyxGmD",
+        "key.typeusr" : "$s10Commandant11HelpOptionsVyxGmD",
         "key.usr" : "s:10Commandant11HelpOptionsV"
       }
     ]
@@ -5543,7 +5543,7 @@
             "key.parsed_scope.end" : 39,
             "key.parsed_scope.start" : 39,
             "key.typename" : "Self.ClientError.Type",
-            "key.typeusr" : "$S11ClientError10Commandant15OptionsProtocolPQzmD",
+            "key.typeusr" : "$s11ClientError10Commandant15OptionsProtocolPQzmD",
             "key.usr" : "s:10Commandant15OptionsProtocolP11ClientErrorQa"
           },
           {
@@ -5576,15 +5576,15 @@
             "key.parsed_scope.end" : 44,
             "key.parsed_scope.start" : 44,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<Self where Self : OptionsProtocol> (Self.Type) -> (CommandMode) -> Result<Self, CommandantError<Self.ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOyx10Commandant0B5ErrorOy06ClientC0QzGGAC11CommandModeOcD",
+            "key.typeusr" : "$sy6ResultAAOyx10Commandant0B5ErrorOy06ClientC0QzGGAC11CommandModeOcD",
             "key.usr" : "s:10Commandant15OptionsProtocolP8evaluatey6ResultAEOyxAA0A5ErrorOy06ClientF0QzGGAA11CommandModeOFZ"
           }
         ],
         "key.typename" : "OptionsProtocol.Protocol",
-        "key.typeusr" : "$S10Commandant15OptionsProtocol_pmD",
+        "key.typeusr" : "$s10Commandant15OptionsProtocol_pmD",
         "key.usr" : "s:10Commandant15OptionsProtocolP"
       },
       {
@@ -5658,13 +5658,8 @@
             "key.parsed_declaration" : "public struct NoOptions<ClientError: Error>: OptionsProtocol",
             "key.parsed_scope.end" : 48,
             "key.parsed_scope.start" : 48,
-            "key.related_decls" : [
-              {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant9NoOptionsV11ClientErrora\">ClientError<\/RelatedName>"
-              }
-            ],
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant9NoOptionsV11ClientErrorxmfp"
           },
           {
@@ -5691,7 +5686,7 @@
             "key.parsed_scope.end" : 49,
             "key.parsed_scope.start" : 49,
             "key.typename" : "<ClientError where ClientError : Error> (NoOptions<ClientError>.Type) -> () -> NoOptions<ClientError>",
-            "key.typeusr" : "$S10Commandant9NoOptionsVyxGycD",
+            "key.typeusr" : "$s10Commandant9NoOptionsVyxGycD",
             "key.usr" : "s:10Commandant9NoOptionsVACyxGycfc"
           },
           {
@@ -5735,15 +5730,15 @@
             "key.parsed_scope.end" : 53,
             "key.parsed_scope.start" : 51,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<ClientError where ClientError : Error> (NoOptions<ClientError>.Type) -> (CommandMode) -> Result<NoOptions<ClientError>, CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOy10Commandant9NoOptionsVyxGAC0B5ErrorOyxGGAC11CommandModeOcD",
+            "key.typeusr" : "$sy6ResultAAOy10Commandant9NoOptionsVyxGAC0B5ErrorOyxGGAC11CommandModeOcD",
             "key.usr" : "s:10Commandant15OptionsProtocolP8evaluatey6ResultAEOyxAA0A5ErrorOy06ClientF0QzGGAA11CommandModeOFZ"
           }
         ],
         "key.typename" : "NoOptions<ClientError>.Type",
-        "key.typeusr" : "$S10Commandant9NoOptionsVyxGmD",
+        "key.typeusr" : "$s10Commandant9NoOptionsVyxGmD",
         "key.usr" : "s:10Commandant9NoOptionsV"
       },
       {
@@ -5794,7 +5789,7 @@
             "key.parsed_scope.end" : 57,
             "key.parsed_scope.start" : 57,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant6OptionV1Txmfp"
           },
           {
@@ -5829,7 +5824,7 @@
             "key.parsed_scope.end" : 60,
             "key.parsed_scope.start" : 60,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant6OptionV3keySSvp"
           },
           {
@@ -5864,7 +5859,7 @@
             "key.parsed_scope.end" : 64,
             "key.parsed_scope.start" : 64,
             "key.typename" : "T",
-            "key.typeusr" : "$SxD",
+            "key.typeusr" : "$sxD",
             "key.usr" : "s:10Commandant6OptionV12defaultValuexvp"
           },
           {
@@ -5904,7 +5899,7 @@
             "key.parsed_scope.end" : 72,
             "key.parsed_scope.start" : 72,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant6OptionV5usageSSvp"
           },
           {
@@ -5931,18 +5926,19 @@
             "key.parsed_scope.end" : 78,
             "key.parsed_scope.start" : 74,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<T> (Option<T>.Type) -> (String, T, String) -> Option<T>",
-            "key.typeusr" : "$S3key12defaultValue5usage10Commandant6OptionVyxGSS_xSStcD",
+            "key.typeusr" : "$s3key12defaultValue5usage10Commandant6OptionVyxGSS_xSStcD",
             "key.usr" : "s:10Commandant6OptionV3key12defaultValue5usageACyxGSS_xSStcfc"
           }
         ],
         "key.typename" : "Option<T>.Type",
-        "key.typeusr" : "$S10Commandant6OptionVyxGmD",
+        "key.typeusr" : "$s10Commandant6OptionVyxGmD",
         "key.usr" : "s:10Commandant6OptionV"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct Option&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 58,
         "key.bodyoffset" : 2859,
@@ -6018,12 +6014,12 @@
             "key.parsed_scope.end" : 84,
             "key.parsed_scope.start" : 82,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSvp"
           }
         ],
         "key.typename" : "Option<T>.Type",
-        "key.typeusr" : "$S10Commandant6OptionVyxGmD",
+        "key.typeusr" : "$s10Commandant6OptionVyxGmD",
         "key.usr" : "s:10Commandant6OptionV"
       },
       {
@@ -6092,7 +6088,7 @@
             "key.parsed_scope.end" : 123,
             "key.parsed_scope.start" : 123,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant3lmgoiy6ResultACOyq_AA0A5ErrorOyq0_GGq_xXE_ADyxAGGtr1_lF1TL_xmfp"
           },
           {
@@ -6109,7 +6105,7 @@
             "key.parsed_scope.end" : 123,
             "key.parsed_scope.start" : 123,
             "key.typename" : "U.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant3lmgoiy6ResultACOyq_AA0A5ErrorOyq0_GGq_xXE_ADyxAGGtr1_lF1UL_q_mfp"
           },
           {
@@ -6126,12 +6122,12 @@
             "key.parsed_scope.end" : 123,
             "key.parsed_scope.start" : 123,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq0_mD",
+            "key.typeusr" : "$sq0_mD",
             "key.usr" : "s:10Commandant3lmgoiy6ResultACOyq_AA0A5ErrorOyq0_GGq_xXE_ADyxAGGtr1_lF06ClientD0L_q0_mfp"
           }
         ],
         "key.typename" : "<T, U, ClientError> ((T) -> U, Result<T, CommandantError<ClientError>>) -> Result<U, CommandantError<ClientError>>",
-        "key.typeusr" : "$Sy6ResultAAOyq_10Commandant0B5ErrorOyq0_GGq_xXE_AByxAFGtcr1_luD",
+        "key.typeusr" : "$sy6ResultAAOyq_10Commandant0B5ErrorOyq0_GGq_xXE_AByxAFGtcr1_luD",
         "key.usr" : "s:10Commandant3lmgoiy6ResultACOyq_AA0A5ErrorOyq0_GGq_xXE_ADyxAGGtr1_lF"
       },
       {
@@ -6192,7 +6188,7 @@
             "key.parsed_scope.end" : 131,
             "key.parsed_scope.start" : 131,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant3lmgoiy6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1TL_xmfp"
           },
           {
@@ -6209,7 +6205,7 @@
             "key.parsed_scope.end" : 131,
             "key.parsed_scope.start" : 131,
             "key.typename" : "U.Type",
-            "key.typeusr" : "$Sq_mD",
+            "key.typeusr" : "$sq_mD",
             "key.usr" : "s:10Commandant3lmgoiy6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF1UL_q_mfp"
           },
           {
@@ -6226,15 +6222,16 @@
             "key.parsed_scope.end" : 131,
             "key.parsed_scope.start" : 131,
             "key.typename" : "ClientError.Type",
-            "key.typeusr" : "$Sq0_mD",
+            "key.typeusr" : "$sq0_mD",
             "key.usr" : "s:10Commandant3lmgoiy6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF06ClientD0L_q0_mfp"
           }
         ],
         "key.typename" : "<T, U, ClientError> (Result<((T) -> U), CommandantError<ClientError>>, Result<T, CommandantError<ClientError>>) -> Result<U, CommandantError<ClientError>>",
-        "key.typeusr" : "$Sy6ResultAAOyq_10Commandant0B5ErrorOyq0_GGAByq_xcAFG_AByxAFGtcr1_luD",
+        "key.typeusr" : "$sy6ResultAAOyq_10Commandant0B5ErrorOyq0_GGAByq_xcAFG_AByxAFGtcr1_luD",
         "key.usr" : "s:10Commandant3lmgoiy6ResultACOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 4309,
         "key.bodyoffset" : 5364,
@@ -6342,7 +6339,7 @@
                 "key.parsed_scope.end" : 153,
                 "key.parsed_scope.start" : 153,
                 "key.typename" : "T.Type",
-                "key.typeusr" : "$SxmD",
+                "key.typeusr" : "$sxmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxAA0A5ErrorOyq_GGAC_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lFZ1TL_xmfp"
               },
               {
@@ -6359,7 +6356,7 @@
                 "key.parsed_scope.end" : 153,
                 "key.parsed_scope.start" : 153,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$Sq_mD",
+                "key.typeusr" : "$sq_mD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxAA0A5ErrorOyq_GGAC_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lFZ06ClientF0L_q_mfp"
               },
               {
@@ -6376,12 +6373,12 @@
                 "key.parsed_scope.end" : 154,
                 "key.parsed_scope.start" : 154,
                 "key.typename" : "Option<T?>",
-                "key.typeusr" : "$S10Commandant6OptionVyxSgGD",
+                "key.typeusr" : "$s10Commandant6OptionVyxSgGD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxAA0A5ErrorOyq_GGAC_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lFZ7wrappedL_ALyxSgGvp"
               }
             ],
             "key.typename" : "<T, ClientError where T : ArgumentProtocol> (CommandMode.Type) -> (CommandMode, Option<T>) -> Result<T, CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOyx10Commandant0B5ErrorOyq_GGAC11CommandModeO_AC6OptionVyxGtcAC16ArgumentProtocolRzr0_luD",
+            "key.typeusr" : "$sy6ResultAAOyx10Commandant0B5ErrorOyq_GGAC11CommandModeO_AC6OptionVyxGtcAC16ArgumentProtocolRzr0_luD",
             "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxAA0A5ErrorOyq_GGAC_AA6OptionVyxGtAA16ArgumentProtocolRzr0_lFZ"
           },
           {
@@ -6472,7 +6469,7 @@
                 "key.parsed_scope.end" : 164,
                 "key.parsed_scope.start" : 164,
                 "key.typename" : "T.Type",
-                "key.typeusr" : "$SxmD",
+                "key.typeusr" : "$sxmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxSgAA0A5ErrorOyq_GGAC_AA6OptionVyAGGtAA16ArgumentProtocolRzr0_lFZ1TL_xmfp"
               },
               {
@@ -6489,7 +6486,7 @@
                 "key.parsed_scope.end" : 164,
                 "key.parsed_scope.start" : 164,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$Sq_mD",
+                "key.typeusr" : "$sq_mD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxSgAA0A5ErrorOyq_GGAC_AA6OptionVyAGGtAA16ArgumentProtocolRzr0_lFZ06ClientF0L_q_mfp"
               },
               {
@@ -6506,12 +6503,12 @@
                 "key.parsed_scope.end" : 165,
                 "key.parsed_scope.start" : 165,
                 "key.typename" : "String",
-                "key.typeusr" : "$SSSD",
+                "key.typeusr" : "$sSSD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxSgAA0A5ErrorOyq_GGAC_AA6OptionVyAGGtAA16ArgumentProtocolRzr0_lFZ3keyL_SSvp"
               }
             ],
             "key.typename" : "<T, ClientError where T : ArgumentProtocol> (CommandMode.Type) -> (CommandMode, Option<T?>) -> Result<T?, CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOyxSg10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD6OptionVyACGtcAD16ArgumentProtocolRzr0_luD",
+            "key.typeusr" : "$sy6ResultAAOyxSg10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD6OptionVyACGtcAD16ArgumentProtocolRzr0_luD",
             "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOyxSgAA0A5ErrorOyq_GGAC_AA6OptionVyAGGtAA16ArgumentProtocolRzr0_lFZ"
           },
           {
@@ -6602,7 +6599,7 @@
                 "key.parsed_scope.end" : 203,
                 "key.parsed_scope.start" : 203,
                 "key.typename" : "T.Type",
-                "key.typeusr" : "$SxmD",
+                "key.typeusr" : "$sxmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA6OptionVyAGGtAA16ArgumentProtocolRzr0_lFZ1TL_xmfp"
               },
               {
@@ -6619,7 +6616,7 @@
                 "key.parsed_scope.end" : 203,
                 "key.parsed_scope.start" : 203,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$Sq_mD",
+                "key.typeusr" : "$sq_mD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA6OptionVyAGGtAA16ArgumentProtocolRzr0_lFZ06ClientF0L_q_mfp"
               },
               {
@@ -6636,12 +6633,12 @@
                 "key.parsed_scope.end" : 204,
                 "key.parsed_scope.start" : 204,
                 "key.typename" : "Option<[T]?>",
-                "key.typeusr" : "$S10Commandant6OptionVySayxGSgGD",
+                "key.typeusr" : "$s10Commandant6OptionVySayxGSgGD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA6OptionVyAGGtAA16ArgumentProtocolRzr0_lFZ7wrappedL_AMyAGSgGvp"
               }
             ],
             "key.typename" : "<T, ClientError where T : ArgumentProtocol> (CommandMode.Type) -> (CommandMode, Option<[T]>) -> Result<[T], CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOySayxG10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD6OptionVyACGtcAD16ArgumentProtocolRzr0_luD",
+            "key.typeusr" : "$sy6ResultAAOySayxG10Commandant0B5ErrorOyq_GGAD11CommandModeO_AD6OptionVyACGtcAD16ArgumentProtocolRzr0_luD",
             "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGAA0A5ErrorOyq_GGAC_AA6OptionVyAGGtAA16ArgumentProtocolRzr0_lFZ"
           },
           {
@@ -6732,7 +6729,7 @@
                 "key.parsed_scope.end" : 214,
                 "key.parsed_scope.start" : 214,
                 "key.typename" : "T.Type",
-                "key.typeusr" : "$SxmD",
+                "key.typeusr" : "$sxmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGSgAA0A5ErrorOyq_GGAC_AA6OptionVyAHGtAA16ArgumentProtocolRzr0_lFZ1TL_xmfp"
               },
               {
@@ -6749,7 +6746,7 @@
                 "key.parsed_scope.end" : 214,
                 "key.parsed_scope.start" : 214,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$Sq_mD",
+                "key.typeusr" : "$sq_mD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGSgAA0A5ErrorOyq_GGAC_AA6OptionVyAHGtAA16ArgumentProtocolRzr0_lFZ06ClientF0L_q_mfp"
               },
               {
@@ -6766,12 +6763,12 @@
                 "key.parsed_scope.end" : 215,
                 "key.parsed_scope.start" : 215,
                 "key.typename" : "String",
-                "key.typeusr" : "$SSSD",
+                "key.typeusr" : "$sSSD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGSgAA0A5ErrorOyq_GGAC_AA6OptionVyAHGtAA16ArgumentProtocolRzr0_lFZ3keyL_SSvp"
               }
             ],
             "key.typename" : "<T, ClientError where T : ArgumentProtocol> (CommandMode.Type) -> (CommandMode, Option<[T]?>) -> Result<[T]?, CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOySayxGSg10Commandant0B5ErrorOyq_GGAE11CommandModeO_AE6OptionVyADGtcAE16ArgumentProtocolRzr0_luD",
+            "key.typeusr" : "$sy6ResultAAOySayxGSg10Commandant0B5ErrorOyq_GGAE11CommandModeO_AE6OptionVyADGtcAE16ArgumentProtocolRzr0_luD",
             "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySayxGSgAA0A5ErrorOyq_GGAC_AA6OptionVyAHGtAA16ArgumentProtocolRzr0_lFZ"
           },
           {
@@ -6850,17 +6847,17 @@
                 "key.parsed_scope.end" : 261,
                 "key.parsed_scope.start" : 261,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$SxmD",
+                "key.typeusr" : "$sxmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySbAA0A5ErrorOyxGGAC_AA6OptionVySbGtlFZ06ClientF0L_xmfp"
               }
             ],
             "key.typename" : "<ClientError> (CommandMode.Type) -> (CommandMode, Option<Bool>) -> Result<Bool, CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOySb10Commandant0B5ErrorOyxGGAC11CommandModeO_AC6OptionVySbGtcluD",
+            "key.typeusr" : "$sy6ResultAAOySb10Commandant0B5ErrorOyxGGAC11CommandModeO_AC6OptionVySbGtcluD",
             "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySbAA0A5ErrorOyxGGAC_AA6OptionVySbGtlFZ"
           }
         ],
         "key.typename" : "CommandMode.Type",
-        "key.typeusr" : "$S10Commandant11CommandModeOmD",
+        "key.typeusr" : "$s10Commandant11CommandModeOmD",
         "key.usr" : "s:10Commandant11CommandModeO"
       }
     ]
@@ -6943,7 +6940,7 @@
             "key.parsed_scope.end" : 2,
             "key.parsed_scope.start" : 2,
             "key.typename" : "T.Type",
-            "key.typeusr" : "$SxmD",
+            "key.typeusr" : "$sxmD",
             "key.usr" : "s:10Commandant10OrderedSetV1Txmfp"
           },
           {
@@ -6969,7 +6966,7 @@
             "key.parsed_scope.start" : 3,
             "key.setter_accessibility" : "source.lang.swift.accessibility.fileprivate",
             "key.typename" : "[T]",
-            "key.typeusr" : "$SSayxGD",
+            "key.typeusr" : "$sSayxGD",
             "key.usr" : "s:10Commandant10OrderedSetV6values33_E700A43BE27995F7283A44882E2B4A42LLSayxGvp"
           },
           {
@@ -7015,12 +7012,12 @@
                 "key.parsed_scope.end" : 5,
                 "key.parsed_scope.start" : 5,
                 "key.typename" : "S.Type",
-                "key.typeusr" : "$Sqd__mD",
+                "key.typeusr" : "$sqd__mD",
                 "key.usr" : "s:10Commandant10OrderedSetVyACyxGqd__c7ElementQyd__RszSTRd__lufc1SL_qd__mfp"
               }
             ],
             "key.typename" : "<T, S where T : Hashable, T == S.Element, S : Sequence> (OrderedSet<T>.Type) -> (S) -> OrderedSet<T>",
-            "key.typeusr" : "$Sy10Commandant10OrderedSetVyxGqd__c7ElementQyd__RszSTRd__luD",
+            "key.typeusr" : "$sy10Commandant10OrderedSetVyxGqd__c7ElementQyd__RszSTRd__luD",
             "key.usr" : "s:10Commandant10OrderedSetVyACyxGqd__c7ElementQyd__RszSTRd__lufc"
           },
           {
@@ -7052,18 +7049,19 @@
             "key.parsed_scope.end" : 18,
             "key.parsed_scope.start" : 12,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<T where T : Hashable> (inout OrderedSet<T>) -> (T) -> T?",
-            "key.typeusr" : "$SyxSgxcD",
+            "key.typeusr" : "$syxSgxcD",
             "key.usr" : "s:10Commandant10OrderedSetV6removeyxSgxF"
           }
         ],
         "key.typename" : "OrderedSet<T>.Type",
-        "key.typeusr" : "$S10Commandant10OrderedSetVyxGmD",
+        "key.typeusr" : "$s10Commandant10OrderedSetVyxGmD",
         "key.usr" : "s:10Commandant10OrderedSetV"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; : <Type usr=\"s:SQ\">Equatable<\/Type> where T : <Type usr=\"s:SH\">Hashable<\/Type><\/Declaration>",
         "key.bodylength" : 331,
         "key.bodyoffset" : 467,
@@ -7145,10 +7143,10 @@
             "key.parsed_scope.end" : 24,
             "key.parsed_scope.start" : 22,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<T where T : Hashable> (Int) -> T",
-            "key.typeusr" : "$SyxSicD",
+            "key.typeusr" : "$syxSicD",
             "key.usr" : "s:Sly7ElementQz5IndexQzcip"
           },
           {
@@ -7185,7 +7183,7 @@
             "key.parsed_scope.end" : 28,
             "key.parsed_scope.start" : 26,
             "key.typename" : "Int",
-            "key.typeusr" : "$SSiD",
+            "key.typeusr" : "$sSiD",
             "key.usr" : "s:Sl5countSivp"
           },
           {
@@ -7225,7 +7223,7 @@
             "key.parsed_scope.end" : 32,
             "key.parsed_scope.start" : 30,
             "key.typename" : "Bool",
-            "key.typeusr" : "$SSbD",
+            "key.typeusr" : "$sSbD",
             "key.usr" : "s:Sl7isEmptySbvp"
           },
           {
@@ -7259,7 +7257,7 @@
             "key.parsed_scope.end" : 36,
             "key.parsed_scope.start" : 34,
             "key.typename" : "Int",
-            "key.typeusr" : "$SSiD",
+            "key.typeusr" : "$sSiD",
             "key.usr" : "s:Sl10startIndex0B0Qzvp"
           },
           {
@@ -7299,7 +7297,7 @@
             "key.parsed_scope.end" : 40,
             "key.parsed_scope.start" : 38,
             "key.typename" : "Int",
-            "key.typeusr" : "$SSiD",
+            "key.typeusr" : "$sSiD",
             "key.usr" : "s:Sl8endIndex0B0Qzvp"
           },
           {
@@ -7348,15 +7346,15 @@
             "key.parsed_scope.end" : 44,
             "key.parsed_scope.start" : 42,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "<T where T : Hashable> (OrderedSet<T>) -> (Int) -> Int",
-            "key.typeusr" : "$S5afterS2i_tcD",
+            "key.typeusr" : "$s5afterS2i_tcD",
             "key.usr" : "s:Sl5index5after5IndexQzAD_tF"
           }
         ],
         "key.typename" : "OrderedSet<T>.Type",
-        "key.typeusr" : "$S10Commandant10OrderedSetVyxGmD",
+        "key.typeusr" : "$s10Commandant10OrderedSetVyxGmD",
         "key.usr" : "s:10Commandant10OrderedSetV"
       }
     ]
@@ -7438,7 +7436,7 @@
             "key.parsed_scope.end" : 18,
             "key.parsed_scope.start" : 18,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant6SwitchV3keySSvp"
           },
           {
@@ -7478,7 +7476,7 @@
             "key.parsed_scope.end" : 25,
             "key.parsed_scope.start" : 25,
             "key.typename" : "Character?",
-            "key.typeusr" : "$SSJSgD",
+            "key.typeusr" : "$sSJSgD",
             "key.usr" : "s:10Commandant6SwitchV4flagSJSgvp"
           },
           {
@@ -7513,12 +7511,12 @@
             "key.parsed_scope.end" : 29,
             "key.parsed_scope.start" : 29,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant6SwitchV5usageSSvp"
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.annotated_decl" : "<Declaration>public init(flag: <Type usr=\"s:SJ\">Character<\/Type>? = default, key: <Type usr=\"s:SS\">String<\/Type>, usage: <Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>public init(flag: <Type usr=\"s:SJ\">Character<\/Type>? = nil, key: <Type usr=\"s:SS\">String<\/Type>, usage: <Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.public",
@@ -7529,7 +7527,7 @@
             "key.bodylength" : 59,
             "key.bodyoffset" : 1075,
             "key.filepath" : "Sources\/Commandant\/Switch.swift",
-            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>flag<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SJ\">Character<\/ref.struct>?<\/decl.var.parameter.type> = <syntaxtype.keyword>default<\/syntaxtype.keyword><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>key<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usage<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.constructor>",
+            "key.fully_annotated_decl" : "<decl.function.constructor><syntaxtype.keyword>public<\/syntaxtype.keyword> <syntaxtype.keyword>init<\/syntaxtype.keyword>(<decl.var.parameter><decl.var.parameter.argument_label>flag<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SJ\">Character<\/ref.struct>?<\/decl.var.parameter.type> = nil<\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>key<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>, <decl.var.parameter><decl.var.parameter.argument_label>usage<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>)<\/decl.function.constructor>",
             "key.kind" : "source.lang.swift.decl.function.method.instance",
             "key.length" : 118,
             "key.name" : "init(flag:key:usage:)",
@@ -7540,18 +7538,19 @@
             "key.parsed_scope.end" : 35,
             "key.parsed_scope.start" : 31,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "(Switch.Type) -> (Character?, String, String) -> Switch",
-            "key.typeusr" : "$S4flag3key5usage10Commandant6SwitchVSJSg_S2StcD",
+            "key.typeusr" : "$s4flag3key5usage10Commandant6SwitchVSJSg_S2StcD",
             "key.usr" : "s:10Commandant6SwitchV4flag3key5usageACSJSg_S2Stcfc"
           }
         ],
         "key.typename" : "Switch.Type",
-        "key.typeusr" : "$S10Commandant6SwitchVmD",
+        "key.typeusr" : "$s10Commandant6SwitchVmD",
         "key.usr" : "s:10Commandant6SwitchV"
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct Switch<\/Declaration>",
         "key.bodylength" : 140,
         "key.bodyoffset" : 1182,
@@ -7632,7 +7631,7 @@
             "key.parsed_scope.end" : 45,
             "key.parsed_scope.start" : 39,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:s23CustomStringConvertibleP11descriptionSSvp"
           },
           {
@@ -7649,12 +7648,12 @@
             "key.parsed_scope.end" : 40,
             "key.parsed_scope.start" : 40,
             "key.typename" : "String",
-            "key.typeusr" : "$SSSD",
+            "key.typeusr" : "$sSSD",
             "key.usr" : "s:10Commandant6SwitchV11descriptionSSvg7optionsL_SSvp"
           }
         ],
         "key.typename" : "Switch.Type",
-        "key.typeusr" : "$S10Commandant6SwitchVmD",
+        "key.typeusr" : "$s10Commandant6SwitchVmD",
         "key.usr" : "s:10Commandant6SwitchV"
       },
       {
@@ -7666,6 +7665,7 @@
         "key.offset" : 1328
       },
       {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 650,
         "key.bodyoffset" : 1370,
@@ -7761,17 +7761,17 @@
                 "key.parsed_scope.end" : 55,
                 "key.parsed_scope.start" : 55,
                 "key.typename" : "ClientError.Type",
-                "key.typeusr" : "$SxmD",
+                "key.typeusr" : "$sxmD",
                 "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySbAA0A5ErrorOyxGGAC_AA6SwitchVtlFZ06ClientF0L_xmfp"
               }
             ],
             "key.typename" : "<ClientError> (CommandMode.Type) -> (CommandMode, Switch) -> Result<Bool, CommandantError<ClientError>>",
-            "key.typeusr" : "$Sy6ResultAAOySb10Commandant0B5ErrorOyxGGAC11CommandModeO_AC6SwitchVtcluD",
+            "key.typeusr" : "$sy6ResultAAOySb10Commandant0B5ErrorOyxGGAC11CommandModeO_AC6SwitchVtcluD",
             "key.usr" : "s:10Commandant11CommandModeO2looiy6ResultAEOySbAA0A5ErrorOyxGGAC_AA6SwitchVtlFZ"
           }
         ],
         "key.typename" : "CommandMode.Type",
-        "key.typeusr" : "$S10Commandant11CommandModeOmD",
+        "key.typeusr" : "$s10Commandant11CommandModeOmD",
         "key.usr" : "s:10Commandant11CommandModeO"
       }
     ]

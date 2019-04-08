@@ -34,7 +34,7 @@ func compareJSONString(withFixtureNamed name: String,
     }
 
     // Use if changes are introduced by the new Swift version.
-    let appendFixturesForNewSwiftVersion = false
+    let appendFixturesForNewSwiftVersion = ProcessInfo.processInfo.environment["APPEND_FIXTURES"] != nil ? true : false
     if appendFixturesForNewSwiftVersion && actualContent != expectedFile.contents,
         var path = expectedFile.path, let index = path.index(of: "@"),
         !path.hasSuffix("@\(buildingSwiftVersion).json") {
@@ -70,7 +70,11 @@ private func versionedExpectedFilename(for name: String) -> String {
     #if swift(>=4.2.1)
         let versions = ["swift-4.2.1", "swift-4.2"]
     #elseif swift(>=4.2)
-        let versions = ["swift-4.2"]
+        #if compiler(>=5.0)
+            let versions = ["swift-5.0", "swift-4.2.1", "swift-4.2"]
+        #else
+            let versions = ["swift-4.2"]
+        #endif
     #else
         fatalError("Swift 4.2 or later is required!")
     #endif
@@ -99,15 +103,36 @@ private func diff(original: String, modified: String) -> String {
         try modified.data(using: .utf8)?.write(to: url.appendingPathComponent("modified.json"))
 
         let task = Process()
-        task.launchPath = "/usr/bin/env"
-        task.currentDirectoryPath = url.path
+        let pathToEnv = "/usr/bin/env"
         task.arguments = ["git", "diff", "original.json", "modified.json"]
 
         let pipe = Pipe()
         task.standardOutput = pipe
         task.standardError = pipe
 
-        task.launch()
+        do {
+        #if canImport(Darwin)
+            if #available(macOS 10.13, *) {
+                task.executableURL = URL(fileURLWithPath: pathToEnv)
+                task.currentDirectoryURL = url
+                try task.run()
+            } else {
+                task.launchPath = pathToEnv
+                task.currentDirectoryPath = url.path
+                task.launch()
+            }
+        #elseif compiler(>=5)
+            task.executableURL = URL(fileURLWithPath: pathToEnv)
+            task.currentDirectoryURL = url
+            try task.run()
+        #else
+            task.launchPath = pathToEnv
+            task.currentDirectoryPath = url.path
+            task.launch()
+        #endif
+        } catch {
+            return ""
+        }
 
         let file = pipe.fileHandleForReading
         defer { file.closeFile() }
@@ -122,7 +147,11 @@ private let buildingSwiftVersion: String = {
     #if swift(>=4.2.1)
         return "swift-4.2.1"
     #elseif swift(>=4.2)
-        return "swift-4.2"
+        #if compiler(>=5.0)
+            return "swift-5.0"
+        #else
+            return "swift-4.2"
+        #endif
     #else
         fatalError("Swift 4.2 or later is required!")
     #endif

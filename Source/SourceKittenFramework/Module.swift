@@ -76,7 +76,7 @@ public struct Module {
 
         let name = name
             // Check for user-defined "SWIFT_MODULE_NAME", otherwise use "PRODUCT_MODULE_NAME".
-            ?? buildSettings?.firstBuildSettingValue { $0.swiftModuleName ?? $0.productModuleName }
+            ?? buildSettings?.firstBuildSettingValue { $0.SWIFT_MODULE_NAME ?? $0.PRODUCT_MODULE_NAME }
             ?? moduleName(fromArguments: xcodeBuildArguments)
 
         // Executing normal build
@@ -89,7 +89,7 @@ public struct Module {
         }
         // Check New Build System is used
         fputs("Checking xcodebuild -showBuildSettings\n", stderr)
-        if let projectTempRoot = buildSettings?.firstBuildSettingValue(for: { $0.projectTempRoot }),
+        if let projectTempRoot = buildSettings?.firstBuildSettingValue(for: { $0.PROJECT_TEMP_ROOT }),
             let arguments = checkNewBuildSystem(in: projectTempRoot, moduleName: name),
             let moduleName = moduleName(fromArguments: arguments) {
             self.init(name: moduleName, compilerArguments: arguments)
