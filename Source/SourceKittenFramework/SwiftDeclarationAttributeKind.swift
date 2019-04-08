@@ -108,8 +108,4 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case _private = "source.decl.attribute._private"
     case _show_in_interface = "source.decl.attribute._show_in_interface"
     case dynamicCallable = "source.decl.attribute.dynamicCallable"
-    // lower case variants are already exists
-    case gkInspectable = "source.decl.attribute.GKInspectable"
-    case ibAction = "source.decl.attribute.IBAction"
-    case ibOutlet = "source.decl.attribute.IBOutlet"
 }

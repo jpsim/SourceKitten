@@ -170,7 +170,13 @@ class SourceKitTests: XCTestCase {
 
     func testSwiftDeclarationAttributeKind() {
         var expected = Set(SwiftDeclarationAttributeKind.allCases)
+        let attributesFoundInSwift5ButWeIgnore = [
+            "source.decl.attribute.GKInspectable",
+            "source.decl.attribute.IBAction",
+            "source.decl.attribute.IBOutlet"
+        ]
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
+            .subtracting(attributesFoundInSwift5ButWeIgnore)
 
     #if compiler(>=5.0)
         // removed in Swift 5.0
@@ -178,16 +184,14 @@ class SourceKitTests: XCTestCase {
     #if !canImport(Darwin)
         // added in Swift 5.0 for Darwin
         expected.subtract([
-            .__raw_doc_comment, .__setter_access, ._hasInitialValue, ._hasStorage, ._show_in_interface, .gkInspectable,
-            .ibAction, .ibOutlet
+            .__raw_doc_comment, .__setter_access, ._hasInitialValue, ._hasStorage, ._show_in_interface
         ])
     #endif
     #else
         // added in Swift 5.0
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._borrowed, ._dynamicReplacement, ._effects, ._hasInitialValue,
-            ._hasStorage, ._nonoverride, ._private, ._show_in_interface, .dynamicCallable, .gkInspectable, .ibAction,
-            .ibOutlet
+            ._hasStorage, ._nonoverride, ._private, ._show_in_interface, .dynamicCallable
         ])
     #endif
 
