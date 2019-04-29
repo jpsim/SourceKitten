@@ -118,7 +118,7 @@ Will use the following values, in this priority: module name, target name, schem
 */
 internal func moduleName(fromArguments arguments: [String]) -> String? {
     for flag in ["-module-name", "-target", "-scheme"] {
-        if let flagIndex = arguments.index(of: flag), flagIndex + 1 < arguments.count {
+        if let flagIndex = arguments.firstIndex(of: flag), flagIndex + 1 < arguments.count {
             return arguments[flagIndex + 1]
         }
     }
@@ -134,7 +134,7 @@ Partially filters compiler arguments from `xcodebuild` to something that SourceK
           more flags to remove in `.1`.
 */
 private func partiallyFilter(arguments args: [String]) -> ([String], Bool) {
-    guard let indexOfFlagToRemove = args.index(of: "-output-file-map") else {
+    guard let indexOfFlagToRemove = args.firstIndex(of: "-output-file-map") else {
         return (args, false)
     }
     var args = args
@@ -302,10 +302,10 @@ internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String
             }
             for command in commands where command["description"]?.string?.hasSuffix("com.apple.xcode.tools.swift.compiler") ?? false {
                 if let args = command["args"]?.sequence,
-                    let index = args.index(of: "-module-name"),
+                    let index = args.firstIndex(of: "-module-name"),
                     moduleName != nil ? args[args.index(after: index)].string == moduleName : true {
                     let fullArgs = args.compactMap { $0.string }
-                    let swiftCIndex = fullArgs.index(of: "--").flatMap(fullArgs.index(after:)) ?? fullArgs.startIndex
+                    let swiftCIndex = fullArgs.firstIndex(of: "--").flatMap(fullArgs.index(after:)) ?? fullArgs.startIndex
                     return Array(fullArgs.suffix(from: fullArgs.index(after: swiftCIndex)))
                 }
             }
