@@ -37,7 +37,7 @@ jobs:
 
 - job: macOS
   pool:
-    vmImage: 'macOS 10.13'
+    vmImage: 'macOS 10.14'
   strategy:
     maxParallel: 10
     matrix:
@@ -45,6 +45,8 @@ jobs:
         DEVELOPER_DIR: /Applications/Xcode_10.app
       xcode101:
         DEVELOPER_DIR: /Applications/Xcode_10.1.app
+      xcode102:
+        DEVELOPER_DIR: /Applications/Xcode_10.2.app
   steps:
     - script: git submodule update --init --recursive
       displayName: Update git submodules
@@ -70,12 +72,10 @@ jobs:
 
 - job: CocoaPods
   pool:
-    vmImage: 'macOS 10.13'
+    vmImage: 'macOS 10.14'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_10.1.app
+    DEVELOPER_DIR: /Applications/Xcode_10.2.app
   steps:
-    - script: bundle update --bundler
-      displayName: Update bundler
     - script: bundle install --path vendor/bundle
       displayName: bundle install
     - script: bundle exec pod repo update
@@ -85,16 +85,14 @@ jobs:
 
 - job: Jazzy
   pool:
-    vmImage: 'macOS 10.13'
+    vmImage: 'macOS 10.14'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_10.1.app
+    DEVELOPER_DIR: /Applications/Xcode_10.2.app
   steps:
     - script: swift build
       displayName: swift build
     - script: swift run sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
       displayName: Generate documentation json
-    - script: bundle update --bundler
-      displayName: Update bundler
     - script: bundle install --path vendor/bundle
       displayName: bundle install
     - script: bundle exec jazzy --clean --sourcekitten-sourcefile SourceKittenFramework.json
