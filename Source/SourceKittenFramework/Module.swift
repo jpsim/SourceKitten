@@ -37,7 +37,7 @@ public struct Module {
     public init?(spmName: String) {
         let yamlPath = ".build/debug.yaml"
         guard let yaml = try? Yams.compose(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)),
-            let commands = yaml?["commands"]?.mapping?.values else {
+            let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
             fatalError("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.")
         }
         guard let moduleCommand = commands.first(where: { $0["module-name"]?.string == spmName }) else {

@@ -297,7 +297,7 @@ internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String
         let result = manifestURLs.lazy.compactMap { manifestURL -> [String]? in
             guard let contents = try? String(contentsOf: manifestURL),
                 let yaml = try? Yams.compose(yaml: contents),
-                let commands = yaml?["commands"]?.mapping?.values else {
+                let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
                     return nil
             }
             for command in commands where command["description"]?.string?.hasSuffix("com.apple.xcode.tools.swift.compiler") ?? false {
