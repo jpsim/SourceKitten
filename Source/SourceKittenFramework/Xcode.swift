@@ -296,10 +296,20 @@ internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String
             .map { $0.url }
         let result = manifestURLs.lazy.compactMap { manifestURL -> [String]? in
             guard let contents = try? String(contentsOf: manifestURL),
-                let yaml = try? Yams.compose(yaml: contents),
-                let commands = yaml?["commands"]?.mapping?.values else {
+                let yaml = try? Yams.compose(yaml: contents) else {
                     return nil
             }
+
+#if swift(>=5.0)
+            let commandValues = yaml["commands"]?.mapping?.values
+#else
+            let commandValues = yaml?["commands"]?.mapping?.values
+#endif
+
+            guard let commands = commandValues else {
+                return nil
+            }
+
             for command in commands where command["description"]?.string?.hasSuffix("com.apple.xcode.tools.swift.compiler") ?? false {
                 if let args = command["args"]?.sequence,
                     let index = args.index(of: "-module-name"),
