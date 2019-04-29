@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix warnings or errors when compiling in Swift 5 language mode.  
+  [Yi Wang](https://github.com/neakor)
+  [JP Simard](https://github.com/jpsim)
 
 ## 0.23.0
 
