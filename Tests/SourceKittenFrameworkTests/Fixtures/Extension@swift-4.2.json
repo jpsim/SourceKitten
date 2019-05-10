@@ -147,6 +147,9 @@
         "key.namelength" : 4,
         "key.nameoffset" : 208,
         "key.offset" : 198,
+        "key.parsed_declaration" : "extension Base",
+        "key.parsed_scope.end" : 24,
+        "key.parsed_scope.start" : 16,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
@@ -233,6 +236,9 @@
         "key.namelength" : 11,
         "key.nameoffset" : 423,
         "key.offset" : 413,
+        "key.parsed_declaration" : "extension Base.Nested",
+        "key.parsed_scope.end" : 29,
+        "key.parsed_scope.start" : 28,
         "key.typename" : "Base.Nested.Type",
         "key.typeusr" : "$S9Extension4BaseC6NestedCmD",
         "key.usr" : "s:9Extension4BaseC6NestedC"
@@ -292,6 +298,9 @@
         "key.namelength" : 9,
         "key.nameoffset" : 490,
         "key.offset" : 480,
+        "key.parsed_declaration" : "extension 🐽.🐧",
+        "key.parsed_scope.end" : 37,
+        "key.parsed_scope.start" : 36,
         "key.typename" : "🐽.🐧.Type",
         "key.typeusr" : "$S9Extension004ipIhC004voIhVmD",
         "key.usr" : "s:9Extension004ipIhC004voIhV"
