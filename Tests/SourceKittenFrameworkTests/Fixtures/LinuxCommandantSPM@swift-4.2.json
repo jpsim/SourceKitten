@@ -282,6 +282,9 @@
         "key.namelength" : 8,
         "key.nameoffset" : 1288,
         "key.offset" : 1278,
+        "key.parsed_declaration" : "extension Argument",
+        "key.parsed_scope.end" : 46,
+        "key.parsed_scope.start" : 40,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
@@ -349,6 +352,9 @@
         "key.namelength" : 8,
         "key.nameoffset" : 1562,
         "key.offset" : 1552,
+        "key.parsed_declaration" : "extension Argument where T: Sequence",
+        "key.parsed_scope.end" : 54,
+        "key.parsed_scope.start" : 48,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
@@ -424,6 +430,9 @@
         "key.namelength" : 11,
         "key.nameoffset" : 1879,
         "key.offset" : 1869,
+        "key.parsed_declaration" : "extension CommandMode",
+        "key.parsed_scope.end" : 122,
+        "key.parsed_scope.start" : 58,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -857,6 +866,9 @@
         "key.namelength" : 11,
         "key.nameoffset" : 589,
         "key.offset" : 579,
+        "key.parsed_declaration" : "extension RawArgument: CustomStringConvertible",
+        "key.parsed_scope.end" : 38,
+        "key.parsed_scope.start" : 25,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.fileprivate",
@@ -1569,6 +1581,9 @@
         "key.namelength" : 3,
         "key.nameoffset" : 455,
         "key.offset" : 445,
+        "key.parsed_declaration" : "extension Int: ArgumentProtocol",
+        "key.parsed_scope.end" : 24,
+        "key.parsed_scope.start" : 18,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -1856,6 +1871,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 604,
         "key.offset" : 594,
+        "key.parsed_declaration" : "extension String: ArgumentProtocol",
+        "key.parsed_scope.end" : 32,
+        "key.parsed_scope.start" : 26,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2005,6 +2023,9 @@
         "key.namelength" : 16,
         "key.nameoffset" : 753,
         "key.offset" : 743,
+        "key.parsed_declaration" : "extension RawRepresentable where RawValue: StringProtocol, Self: ArgumentProtocol",
+        "key.parsed_scope.end" : 38,
+        "key.parsed_scope.start" : 34,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2112,6 +2133,9 @@
         "key.namelength" : 16,
         "key.nameoffset" : 951,
         "key.offset" : 941,
+        "key.parsed_declaration" : "extension RawRepresentable where RawValue: FixedWidthInteger, Self: ArgumentProtocol",
+        "key.parsed_scope.end" : 44,
+        "key.parsed_scope.start" : 40,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -3036,6 +3060,9 @@
         "key.namelength" : 15,
         "key.nameoffset" : 3443,
         "key.offset" : 3433,
+        "key.parsed_declaration" : "extension CommandRegistry",
+        "key.parsed_scope.end" : 242,
+        "key.parsed_scope.start" : 119,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -3518,6 +3545,9 @@
         "key.namelength" : 15,
         "key.nameoffset" : 556,
         "key.offset" : 546,
+        "key.parsed_declaration" : "extension CommandantError: CustomStringConvertible",
+        "key.parsed_scope.end" : 34,
+        "key.parsed_scope.start" : 24,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -5973,6 +6003,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 2826,
         "key.offset" : 2816,
+        "key.parsed_declaration" : "extension Option: CustomStringConvertible",
+        "key.parsed_scope.end" : 85,
+        "key.parsed_scope.start" : 81,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -6253,6 +6286,9 @@
         "key.namelength" : 11,
         "key.nameoffset" : 5351,
         "key.offset" : 5341,
+        "key.parsed_declaration" : "extension CommandMode",
+        "key.parsed_scope.end" : 274,
+        "key.parsed_scope.start" : 148,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -7094,6 +7130,9 @@
         "key.namelength" : 10,
         "key.nameoffset" : 443,
         "key.offset" : 433,
+        "key.parsed_declaration" : "extension OrderedSet: Collection",
+        "key.parsed_scope.end" : 45,
+        "key.parsed_scope.start" : 21,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
@@ -7587,6 +7626,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 1149,
         "key.offset" : 1139,
+        "key.parsed_declaration" : "extension Switch: CustomStringConvertible",
+        "key.parsed_scope.end" : 46,
+        "key.parsed_scope.start" : 38,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -7684,6 +7726,9 @@
         "key.namelength" : 11,
         "key.nameoffset" : 1357,
         "key.offset" : 1347,
+        "key.parsed_declaration" : "extension CommandMode",
+        "key.parsed_scope.end" : 69,
+        "key.parsed_scope.start" : 50,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",

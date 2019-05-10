@@ -157,6 +157,9 @@
         "key.namelength" : 8,
         "key.nameoffset" : 379,
         "key.offset" : 369,
+        "key.parsed_declaration" : "extension AnyError: ErrorConvertible",
+        "key.parsed_scope.end" : 22,
+        "key.parsed_scope.start" : 18,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -235,6 +238,9 @@
         "key.namelength" : 8,
         "key.nameoffset" : 508,
         "key.offset" : 498,
+        "key.parsed_declaration" : "extension AnyError: CustomStringConvertible",
+        "key.parsed_scope.end" : 28,
+        "key.parsed_scope.start" : 24,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -320,6 +326,9 @@
         "key.namelength" : 8,
         "key.nameoffset" : 629,
         "key.offset" : 619,
+        "key.parsed_declaration" : "extension AnyError: LocalizedError",
+        "key.parsed_scope.end" : 46,
+        "key.parsed_scope.start" : 30,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2044,6 +2053,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 4937,
         "key.offset" : 4927,
+        "key.parsed_declaration" : "extension Result where Result.Failure == AnyError",
+        "key.parsed_scope.end" : 165,
+        "key.parsed_scope.start" : 151,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2331,6 +2343,9 @@
         "key.namelength" : 7,
         "key.nameoffset" : 5821,
         "key.offset" : 5811,
+        "key.parsed_declaration" : "extension NSError: ErrorConvertible",
+        "key.parsed_scope.end" : 189,
+        "key.parsed_scope.start" : 181,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2776,6 +2791,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 317,
         "key.offset" : 307,
+        "key.parsed_declaration" : "extension Result",
+        "key.parsed_scope.end" : 70,
+        "key.parsed_scope.start" : 14,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -3234,6 +3252,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 2585,
         "key.offset" : 2575,
+        "key.parsed_declaration" : "extension Result",
+        "key.parsed_scope.end" : 88,
+        "key.parsed_scope.start" : 72,
         "key.substructure" : [
           {
             "key.kind" : "source.lang.swift.syntaxtype.comment.mark",
@@ -3431,6 +3452,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 3317,
         "key.offset" : 3307,
+        "key.parsed_declaration" : "extension Result where Result.Failure: ErrorConvertible",
+        "key.parsed_scope.end" : 110,
+        "key.parsed_scope.start" : 95,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -3521,6 +3545,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 3878,
         "key.offset" : 3868,
+        "key.parsed_declaration" : "extension Result where Result.Success: Equatable, Result.Failure: Equatable",
+        "key.parsed_scope.end" : 124,
+        "key.parsed_scope.start" : 114,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -3828,6 +3855,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 4416,
         "key.offset" : 4406,
+        "key.parsed_declaration" : "extension Result: Equatable where Result.Success: Equatable, Result.Failure: Equatable",
+        "key.parsed_scope.end" : 127,
+        "key.parsed_scope.start" : 127,
         "key.typename" : "Result<Value, Error>.Type",
         "key.typeusr" : "$s6ResultAAOyxq_GmD",
         "key.usr" : "s:6ResultAAO"
@@ -3890,6 +3920,9 @@
         "key.namelength" : 6,
         "key.nameoffset" : 4852,
         "key.offset" : 4842,
+        "key.parsed_declaration" : "extension Result",
+        "key.parsed_scope.end" : 147,
+        "key.parsed_scope.start" : 137,
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",

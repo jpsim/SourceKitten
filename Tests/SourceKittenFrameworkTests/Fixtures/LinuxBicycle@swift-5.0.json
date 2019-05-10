@@ -32,6 +32,9 @@
         "key.namelength" : 8,
         "key.nameoffset" : 151,
         "key.offset" : 141,
+        "key.parsed_declaration" : "public extension NSString",
+        "key.parsed_scope.end" : 5,
+        "key.parsed_scope.start" : 5,
         "key.typename" : "NSString.Type",
         "key.typeusr" : "$s10Foundation8NSStringCmD",
         "key.usr" : "s:10Foundation8NSStringC"

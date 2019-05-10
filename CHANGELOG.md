@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Add parsed extension declarations to Swift docs.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ##### Bug Fixes
 
