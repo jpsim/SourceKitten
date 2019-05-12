@@ -9,6 +9,9 @@
 * Add parsed extension declarations to Swift docs.  
   [John Fairhurst](https://github.com/johnfairh)
 
+* Make `File` conform to `Equatable` and `Hashable`.  
+  [Elliott Williams](https://github.com/elliottwilliams)
+
 ##### Bug Fixes
 
 * None.
