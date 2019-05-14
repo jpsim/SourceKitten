@@ -1,0 +1,13 @@
+{
+  "key.annotated_decl" : "<Declaration>func multiLineCommentedFunc()<\/Declaration>",
+  "key.doc.full_as_xml" : "<Function file=\"DocInfo.swift\" line=\"10\" column=\"6\"><Name>multiLineCommentedFunc()<\/Name><USR>s:7DocInfo22multiLineCommentedFuncyyF<\/USR><Declaration>func multiLineCommentedFunc()<\/Declaration><CommentParts><Abstract><Para>Multiple line commented function.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+  "key.filepath" : "DocInfo.swift",
+  "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>multiLineCommentedFunc<\/decl.name>()<\/decl.function.free>",
+  "key.kind" : "source.lang.swift.decl.function.free",
+  "key.length" : 24,
+  "key.name" : "multiLineCommentedFunc()",
+  "key.offset" : 123,
+  "key.typename" : "() -> ()",
+  "key.typeusr" : "$syycD",
+  "key.usr" : "s:7DocInfo22multiLineCommentedFuncyyF"
+}
