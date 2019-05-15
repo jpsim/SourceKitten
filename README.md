@@ -73,7 +73,7 @@ environment variable.
 * [Sourcery](https://github.com/krzysztofzablocki/Sourcery):
   Meta-programming for Swift, stop writing boilerplate code.
 * [SwiftyMocky](https://github.com/MakeAWishFoundation/SwiftyMocky):
-  Framework for mock genertion.
+  Framework for mock generation.
 * [SourceKittenDaemon](https://github.com/terhechte/SourceKittenDaemon):
   Swift Auto Completions for any Text Editor.
 * [SourceDocs](https://github.com/eneko/SourceDocs):
