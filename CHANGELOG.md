@@ -2,7 +2,8 @@
 
 ##### Breaking
 
-* None.
+* Change `Module.init?(spmName:)` to `Module.init?(spmName:inPath:)`.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ##### Enhancements
 
@@ -10,7 +11,10 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix `testCommandantDocsSPM` failed on using Swift Package in Xcode 11, because
+  Xcode 11 does not use `SRCROOT` as current directory on executing tests in
+  `Package.swift`.  
+  [Norio Nomura](https://github.com/norio-nomura)
 
 ## 0.23.2
 
