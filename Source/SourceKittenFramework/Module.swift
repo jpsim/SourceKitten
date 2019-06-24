@@ -34,8 +34,8 @@ public struct Module {
         }
     }
 
-    public init?(spmName: String) {
-        let yamlPath = ".build/debug.yaml"
+    public init?(spmName: String, inPath path: String = FileManager.default.currentDirectoryPath) {
+        let yamlPath = URL(fileURLWithPath: path).appendingPathComponent(".build/debug.yaml").path
         guard let yaml = try? Yams.compose(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)),
             let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
             fatalError("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.")
