@@ -16,6 +16,11 @@
   `Package.swift`.  
   [Norio Nomura](https://github.com/norio-nomura)
 
+* Fix crash in `NSString.location(fromByteOffset:)` when run on strings
+  containing raw string literals in Swift 5.0 or later.  
+  [JP Simard](https://github.com/jpsim)
+  [realm/SwiftLint#2793](https://github.com/realm/SwiftLint/issues/2793)
+
 ## 0.23.2
 
 ##### Breaking
