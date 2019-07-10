@@ -145,7 +145,7 @@ extension NSString {
         - returns: UTF16 based offset of string.
         */
         func location(fromByteOffset byteOffset: Int) -> Int {
-            if lines.isEmpty {
+            guard let lastLine = lines.last else {
                 return 0
             }
             let index = lines.indexAssumingSorted { line in
@@ -157,13 +157,11 @@ extension NSString {
                 return .orderedSame
             }
             // byteOffset may be out of bounds when sourcekitd points end of string.
-            guard let line = (index.map { lines[$0] } ?? lines.last) else {
-                fatalError()
-            }
+            let line = index.map { lines[$0] } ?? lastLine
             let diff = byteOffset - line.byteRange.location
             if diff == 0 {
                 return line.range.location
-            } else if line.byteRange.length == diff {
+            } else if line.byteRange.length <= diff {
                 return NSMaxRange(line.range)
             }
             let utf8View = line.content.utf8
