@@ -7,6 +7,7 @@ private let path = "libsourcekitdInProc.so"
 private let path = "sourcekitd.framework/Versions/A/sourcekitd"
 #endif
 private let library = toolchainLoader.load(path: path)
+// swiftlint:disable unused_declaration - We don't care if some of these are unused.
 internal let sourcekitd_initialize: @convention(c) () -> () = library.load(symbol: "sourcekitd_initialize")
 internal let sourcekitd_shutdown: @convention(c) () -> () = library.load(symbol: "sourcekitd_shutdown")
 internal let sourcekitd_set_interrupted_connection_handler: @convention(c) (@escaping sourcekitd_interrupted_connection_handler_t) -> () = library.load(symbol: "sourcekitd_set_interrupted_connection_handler")

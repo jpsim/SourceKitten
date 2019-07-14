@@ -237,17 +237,6 @@ public enum SwiftDocKey: String {
     }
 
     /**
-    Get file path string from dictionary.
-
-    - parameter dictionary: Dictionary to get value from.
-
-    - returns: File path string if successful.
-    */
-    internal static func getFilePath(_ dictionary: [String: SourceKitRepresentable]) -> String? {
-        return get(.filePath, dictionary)
-    }
-
-    /**
     Get full xml docs string from dictionary.
 
     - parameter dictionary: Dictionary to get value from.
