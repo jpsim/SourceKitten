@@ -203,7 +203,7 @@ public enum Request {
         case let .customRequest(request):
             return request
         case let .yamlRequest(yaml):
-            return .init(sourcekitd_request_create_from_yaml(yaml, nil)!)
+            return SourceKitObject(yaml: yaml)
         case let .codeCompletionRequest(file, contents, offset, arguments):
             return [
                 "key.request": UID("source.request.codecomplete"),
@@ -342,7 +342,7 @@ public enum Request {
     */
     public func send() throws -> [String: SourceKitRepresentable] {
         initializeSourceKitFailable
-        let response = sourcekitd_send_request_sync(sourcekitObject.sourcekitdObject!)
+        let response = sourcekitObject.sendSync()
         defer { sourcekitd_response_dispose(response!) }
         if sourcekitd_response_is_error(response!) {
             let error = Request.Error(response: response!)
