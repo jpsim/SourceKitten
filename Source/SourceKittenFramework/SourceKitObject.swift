@@ -63,10 +63,10 @@ extension UID: SourceKitObjectConvertible {
 /// Swift representation of sourcekitd_object_t
 public final class SourceKitObject {
     fileprivate let sourcekitdObject: sourcekitd_object_t
-    
+
     /// Other SourceKitObjects whose lifetime is tied to this one (ex: array elements, dictionary values)
     private let children: [SourceKitObject?]
-    
+
     init(yaml: String) {
         self.sourcekitdObject = sourcekitd_request_create_from_yaml(yaml, nil)!
         self.children = []
@@ -76,7 +76,7 @@ public final class SourceKitObject {
         self.sourcekitdObject = sourcekitdObject
         self.children = children
     }
-    
+
     deinit {
         sourcekitd_request_release(sourcekitdObject)
     }
@@ -100,7 +100,7 @@ public final class SourceKitObject {
     public func updateValue<T>(_ value: SourceKitObjectConvertible, forKey key: T) where T: RawRepresentable, T.RawValue == String {
         updateValue(value, forKey: UID(key.rawValue))
     }
-    
+
     /// Swift wrapper for sourcekitd_send_request_sync
     /// Must call sourcekitd_response_dispose on the resulting object.
     func sendSync() -> sourcekitd_response_t? {
