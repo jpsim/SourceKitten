@@ -5,6 +5,16 @@
 * Change `Module.init?(spmName:)` to `Module.init?(spmName:inPath:)`.  
   [Norio Nomura](https://github.com/norio-nomura)
 
+* `SourceKitObjectConvertible` now has `SourceKitObject` parameter requirement
+  instead of `sourcekitd_object_t`. SourceKitObject isn't publicly
+  initializable (this helps memory management).  
+  [Colton Schlosser](https://github.com/cltnschlosser)
+
+* `Dictionary` and `Array` now conditionally conform to
+  `SourceKitObjectConvertible`, instead of crashing when using
+  unexpected types.  
+  [Colton Schlosser](https://github.com/cltnschlosser)
+
 ##### Enhancements
 
 * None.
@@ -15,6 +25,10 @@
   Xcode 11 does not use `SRCROOT` as current directory on executing tests in
   `Package.swift`.  
   [Norio Nomura](https://github.com/norio-nomura)
+
+* Release memory created for sourcekitd requests.  
+  [Colton Schlosser](https://github.com/cltnschlosser)
+  [realm/SwiftLint#2812](https://github.com/realm/SwiftLint/issues/2812)
 
 ## 0.23.2
 
