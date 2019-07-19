@@ -28,7 +28,7 @@ extension Array: SourceKitObjectConvertible where Element: SourceKitObjectConver
 extension Dictionary: SourceKitObjectConvertible where Key: UIDRepresentable, Value: SourceKitObjectConvertible {
     public var sourceKitObject: SourceKitObject? {
         let keys: [sourcekitd_uid_t?] = self.keys.map { $0.uid.sourcekitdUID }
-        let children = values.map { $0.sourceKitObject }
+        let children = self.values.map { $0.sourceKitObject }
         let values = children.map { $0?.sourcekitdObject }
         return sourcekitd_request_dictionary_create(keys, values, count).map { SourceKitObject($0, children: children) }
     }
