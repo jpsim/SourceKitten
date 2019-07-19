@@ -65,7 +65,7 @@ public final class SourceKitObject {
     fileprivate let sourcekitdObject: sourcekitd_object_t
 
     /// Other SourceKitObjects whose lifetime is tied to this one (ex: array elements, dictionary values)
-    private let children: [SourceKitObject?]
+    private var children: [SourceKitObject?]
 
     init(yaml: String) {
         self.sourcekitdObject = sourcekitd_request_create_from_yaml(yaml, nil)!
@@ -90,7 +90,9 @@ public final class SourceKitObject {
     ///     value replaces the existing associated value. If key isn't already a key of the dictionary
     public func updateValue(_ value: SourceKitObjectConvertible, forKey key: UID) {
         precondition(value.sourceKitObject != nil)
-        sourcekitd_request_dictionary_set_value(sourcekitdObject, key.sourcekitdUID, value.sourceKitObject!.sourcekitdObject)
+        let sourceKitObject = value.sourceKitObject
+        children.append(sourceKitObject)
+        sourcekitd_request_dictionary_set_value(sourcekitdObject, key.sourcekitdUID, sourceKitObject!.sourcekitdObject)
     }
 
     public func updateValue(_ value: SourceKitObjectConvertible, forKey key: String) {
