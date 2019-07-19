@@ -6,11 +6,11 @@
   [Norio Nomura](https://github.com/norio-nomura)
 
 * `SourceKitObjectConvertible` now has `SourceKitObject` parameter requirement
-  instead of `sourcekitd_object_t`. SourceKitObject isn't publically
+  instead of `sourcekitd_object_t`. SourceKitObject isn't publicly
   initializable (this helps memory management).  
   [Colton Schlosser](https://github.com/cltnschlosser)
 
-* `Dictionary` and `Array` now has conditional conformance on
+* `Dictionary` and `Array` now conditionally conform to
   `SourceKitObjectConvertible`, instead of crashing when using
   unexpected types.  
   [Colton Schlosser](https://github.com/cltnschlosser)
