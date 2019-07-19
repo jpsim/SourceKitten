@@ -28,6 +28,7 @@
 
 * Release memory created for sourcekitd requests.  
   [Colton Schlosser](https://github.com/cltnschlosser)
+  [realm/SwiftLint#2812](https://github.com/realm/SwiftLint/issues/2812)
 
 ## 0.23.2
 
