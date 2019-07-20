@@ -8,9 +8,10 @@
 
 import Foundation
 
+// MARK: - Shared Types & Functions
+
 struct DynamicLinkLibrary {
-    let path: String
-    let handle: UnsafeMutableRawPointer
+    fileprivate let handle: UnsafeMutableRawPointer
 
     func load<T>(symbol: String) -> T {
         if let sym = dlsym(handle, symbol) {
@@ -20,34 +21,6 @@ struct DynamicLinkLibrary {
         fatalError("Finding symbol \(symbol) failed: \(errorString ?? "unknown error")")
     }
 }
-
-#if os(Linux)
-let toolchainLoader = Loader(searchPaths: [
-    linuxSourceKitLibPath,
-    linuxFindSwiftenvActiveLibPath,
-    linuxFindSwiftInstallationLibPath,
-    linuxDefaultLibPath
-].compactMap({ $0 }))
-#else
-let toolchainLoader = Loader(searchPaths: [
-    xcodeDefaultToolchainOverride,
-    toolchainDir,
-    xcrunFindPath,
-    /*
-    These search paths are used when `xcode-select -p` points to
-    "Command Line Tools OS X for Xcode", but Xcode.app exists.
-    */
-    applicationsDir?.xcodeDeveloperDir.toolchainDir,
-    applicationsDir?.xcodeBetaDeveloperDir.toolchainDir,
-    userApplicationsDir?.xcodeDeveloperDir.toolchainDir,
-    userApplicationsDir?.xcodeBetaDeveloperDir.toolchainDir
-].compactMap { path in
-    if let fullPath = path?.usrLibDir, FileManager.default.fileExists(atPath: fullPath) {
-        return fullPath
-    }
-    return nil
-})
-#endif
 
 struct Loader {
     let searchPaths: [String]
@@ -59,7 +32,7 @@ struct Loader {
         // then try loading with simple path that depends resolving to DYLD
         for fullPath in fullPaths + [path] {
             if let handle = dlopen(fullPath, RTLD_LAZY) {
-                return DynamicLinkLibrary(path: path, handle: handle)
+                return DynamicLinkLibrary(handle: handle)
             }
         }
 
@@ -70,6 +43,22 @@ struct Loader {
 private func env(_ name: String) -> String? {
     return ProcessInfo.processInfo.environment[name]
 }
+
+private extension String {
+    func appending(pathComponent: String) -> String {
+        return URL(fileURLWithPath: self).appendingPathComponent(pathComponent).path
+    }
+
+    func deleting(lastPathComponents numberOfPathComponents: Int) -> String {
+        return (0..<numberOfPathComponents)
+            .reduce(URL(fileURLWithPath: self)) { url, _ in url.deletingLastPathComponent() }
+            .path
+    }
+}
+
+#if os(Linux)
+
+// MARK: - Linux
 
 /// Run a process at the given (absolute) path, capture output, return outupt.
 private func runCommand(_ path: String, _ args: String...) -> String? {
@@ -82,21 +71,13 @@ private func runCommand(_ path: String, _ args: String...) -> String? {
     // causing process.launch() to abort with an EBADF.
     process.standardError = FileHandle(forWritingAtPath: "/dev/null")!
     do {
-    #if canImport(Darwin)
-        if #available(macOS 10.13, *) {
-            process.executableURL = URL(fileURLWithPath: path)
-            try process.run()
-        } else {
-            process.launchPath = path
-            process.launch()
-        }
-    #elseif compiler(>=5)
+#if compiler(>=5)
         process.executableURL = URL(fileURLWithPath: path)
         try process.run()
-    #else
+#else
         process.launchPath = path
         process.launch()
-    #endif
+#endif
     } catch {
         return nil
     }
@@ -156,6 +137,36 @@ internal let linuxFindSwiftInstallationLibPath: String? = {
 /// Fallback path on Linux if no better option is available.
 internal let linuxDefaultLibPath = "/usr/lib"
 
+let toolchainLoader = Loader(searchPaths: [
+    linuxSourceKitLibPath,
+    linuxFindSwiftenvActiveLibPath,
+    linuxFindSwiftInstallationLibPath,
+    linuxDefaultLibPath
+].compactMap({ $0 }))
+
+#else
+
+// MARK: - Darwin
+
+let toolchainLoader = Loader(searchPaths: [
+    xcodeDefaultToolchainOverride,
+    toolchainDir,
+    xcrunFindPath,
+    /*
+    These search paths are used when `xcode-select -p` points to
+    "Command Line Tools OS X for Xcode", but Xcode.app exists.
+    */
+    applicationsDir?.xcodeDeveloperDir.toolchainDir,
+    applicationsDir?.xcodeBetaDeveloperDir.toolchainDir,
+    userApplicationsDir?.xcodeDeveloperDir.toolchainDir,
+    userApplicationsDir?.xcodeBetaDeveloperDir.toolchainDir
+].compactMap { path in
+    if let fullPath = path?.usrLibDir, FileManager.default.fileExists(atPath: fullPath) {
+        return fullPath
+    }
+    return nil
+})
+
 /// Returns "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable
 ///
 /// `launch-with-toolchain` sets the toolchain path to the
@@ -184,7 +195,6 @@ private let xcrunFindPath: String? = {
     let pipe = Pipe()
     task.standardOutput = pipe
     do {
-    #if canImport(Darwin)
         if #available(macOS 10.13, *) {
             task.executableURL = URL(fileURLWithPath: pathOfXcrun)
             try task.run()
@@ -192,13 +202,6 @@ private let xcrunFindPath: String? = {
             task.launchPath = pathOfXcrun
             task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
         }
-    #elseif compiler(>=5)
-        task.executableURL = URL(fileURLWithPath: pathOfXcrun)
-        try task.run()
-    #else
-        task.launchPath = pathOfXcrun
-        task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
-    #endif
     } catch {
         return nil
     }
@@ -225,11 +228,13 @@ private let xcrunFindPath: String? = {
     return xcrunFindPath
 }()
 
-private let applicationsDir: String? =
-    NSSearchPathForDirectoriesInDomains(.applicationDirectory, .systemDomainMask, true).first
+private func appDir(mask: FileManager.SearchPathDomainMask) -> String? {
+    return NSSearchPathForDirectoriesInDomains(.applicationDirectory, mask, true).first
+}
 
-private let userApplicationsDir: String? =
-    NSSearchPathForDirectoriesInDomains(.applicationDirectory, .userDomainMask, true).first
+private let applicationsDir = appDir(mask: .systemDomainMask)
+
+private let userApplicationsDir = appDir(mask: .userDomainMask)
 
 private extension String {
     var toolchainDir: String {
@@ -247,16 +252,5 @@ private extension String {
     var usrLibDir: String {
         return appending(pathComponent: "/usr/lib")
     }
-
-    func appending(pathComponent: String) -> String {
-        return URL(fileURLWithPath: self).appendingPathComponent(pathComponent).path
-    }
-
-    func deleting(lastPathComponents numberOfPathComponents: Int) -> String {
-        var url = URL(fileURLWithPath: self)
-        for _ in 0..<numberOfPathComponents {
-            url = url.deletingLastPathComponent()
-        }
-        return url.path
-    }
 }
+#endif

@@ -478,6 +478,7 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxP
     } else {
         library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
     }
+    let swiftlintDisableComment = "// swiftlint:disable unused_declaration - We don't care if some of these are unused.\n"
     let startPlatformCheck: String
     let endPlatformCheck: String
     if linuxPath == nil {
@@ -487,5 +488,5 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxP
         startPlatformCheck = ""
         endPlatformCheck = "\n"
     }
-    return startPlatformCheck + spmImport + library + freeFunctions.joined(separator: "\n") + endPlatformCheck
+    return startPlatformCheck + spmImport + library + swiftlintDisableComment + freeFunctions.joined(separator: "\n") + endPlatformCheck
 }
