@@ -17,7 +17,8 @@
 
 ##### Enhancements
 
-* None.
+* Add `cursorInfoUSR` case to the `Request`.  
+  [Timofey Solonin](https://github.com/biboran)
 
 ##### Bug Fixes
 
@@ -43,9 +44,6 @@
 
 * Make `File` conform to `Equatable` and `Hashable`.  
   [Elliott Williams](https://github.com/elliottwilliams)
-
-* Add `cursorInfoUSR` case to the `Request`.  
-  [Timofey Solonin](https://github.com/biboran)
 
 ##### Bug Fixes
 
