@@ -16,6 +16,8 @@
 		3DEF4C591DBF9C2D00B3B54A /* DocInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF4C581DBF9C2D00B3B54A /* DocInfoTests.swift */; };
 		3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */; };
 		3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56EACF1BAB251C006433D0 /* JSONOutput.swift */; };
+		557592AF22E542CA0028FED4 /* CursorInfo+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557592AE22E542CA0028FED4 /* CursorInfo+Parsing.swift */; };
+		557592B322E548BC0028FED4 /* CursorInfoParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557592B022E545280028FED4 /* CursorInfoParsingTests.swift */; };
 		55DB6A9722DEABD100666C6A /* UIDRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DB6A9622DEABD000666C6A /* UIDRepresentable.swift */; };
 		6C4CF5761C78B47F008532C5 /* library_wrapper_sourcekitd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF5721C78B47F008532C5 /* library_wrapper_sourcekitd.swift */; };
 		6C4CF5771C78B47F008532C5 /* library_wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4CF5741C78B47F008532C5 /* library_wrapper.swift */; };
@@ -148,6 +150,8 @@
 		3F56EACF1BAB251C006433D0 /* JSONOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONOutput.swift; sourceTree = "<group>"; };
 		5499CA961A2394B700783309 /* Components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Components.plist; sourceTree = "<group>"; };
 		5499CA971A2394B700783309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		557592AE22E542CA0028FED4 /* CursorInfo+Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CursorInfo+Parsing.swift"; sourceTree = "<group>"; };
+		557592B022E545280028FED4 /* CursorInfoParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorInfoParsingTests.swift; sourceTree = "<group>"; };
 		55DB6A9622DEABD000666C6A /* UIDRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDRepresentable.swift; sourceTree = "<group>"; };
 		6C4981EB1FE33F4500633AC8 /* Mac-XCTest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Mac-XCTest.xcconfig"; sourceTree = "<group>"; };
 		6C4CF5721C78B47F008532C5 /* library_wrapper_sourcekitd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = library_wrapper_sourcekitd.swift; sourceTree = "<group>"; };
@@ -435,6 +439,7 @@
 				3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */,
 				E8D4743A1A648F290011A49C /* ClangTranslationUnit.swift */,
 				E8EE34BE1B9A502F00947605 /* CodeCompletionItem.swift */,
+				557592AE22E542CA0028FED4 /* CursorInfo+Parsing.swift */,
 				E852418E1A5F4FB3007099FB /* Dictionary+Merge.swift */,
 				E806D2921BE058D600D1BE41 /* Documentation.swift */,
 				E84763691A5A0651000EAE22 /* File.swift */,
@@ -496,6 +501,7 @@
 				E801EA111DB8604100AD28E6 /* LinuxMain.swift */,
 				E8AB1A2F1A64A21400452012 /* ClangTranslationUnitTests.swift */,
 				E845EFEB1B9941AA00CFA57B /* CodeCompletionTests.swift */,
+				557592B022E545280028FED4 /* CursorInfoParsingTests.swift */,
 				3DEF4C581DBF9C2D00B3B54A /* DocInfoTests.swift */,
 				E805A0491B560FCA00EA654A /* FileTests.swift */,
 				E8241CA21A5E01840047687E /* ModuleTests.swift */,
@@ -725,6 +731,7 @@
 				6C4CF5771C78B47F008532C5 /* library_wrapper.swift in Sources */,
 				3F56EAD01BAB251C006433D0 /* JSONOutput.swift in Sources */,
 				8F935B342288C05A00971070 /* File+Hashable.swift in Sources */,
+				557592AF22E542CA0028FED4 /* CursorInfo+Parsing.swift in Sources */,
 				E8A18A3B1A58971D000362B7 /* Language.swift in Sources */,
 				E806D28F1BE058B100D1BE41 /* Text.swift in Sources */,
 				6CC1639C202AA3AF0086C459 /* SourceKitObject.swift in Sources */,
@@ -757,6 +764,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				557592B322E548BC0028FED4 /* CursorInfoParsingTests.swift in Sources */,
 				BCF9238E228AD94E0008C684 /* CursorInfoUSRTests.swift in Sources */,
 				E8AB1A301A64A21400452012 /* ClangTranslationUnitTests.swift in Sources */,
 				E845EFEC1B9941AA00CFA57B /* CodeCompletionTests.swift in Sources */,
