@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix crash with misplaced documentation comment.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ## 0.24.0
 
