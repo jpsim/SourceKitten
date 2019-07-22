@@ -20,6 +20,11 @@
 * Add `cursorInfoUSR` case to the `Request`.  
   [Timofey Solonin](https://github.com/biboran)
 
+* Add a `Dictionary<String, SourceKitRepresentable>.referencedUSRs`
+  computed property to retrieve referenced USRs from a SourceKit cursor info
+  response.  
+  [Colton Schlosser](https://github.com/cltnschlosser)
+
 ##### Bug Fixes
 
 * Fix `testCommandantDocsSPM` failed on using Swift Package in Xcode 11, because
