@@ -19,7 +19,7 @@ final class CursorInfoParsingTests: XCTestCase {
 
         XCTAssertEqual(cursorInfo.referencedUSRs, [])
     }
-    
+
     func testSingleReferencedUSR() {
         let cursorInfo: [String: SourceKitRepresentable] = [
             "key.usr": "s:4main5limitL_Sivp",
