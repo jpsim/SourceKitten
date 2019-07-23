@@ -195,6 +195,14 @@ class SwiftDocsTests: XCTestCase {
         XCTAssertEqual(toNSDictionary(parsedPreSwift32), expected)
         XCTAssertEqual(toNSDictionary(parsedSwift32), expected)
     }
+
+    // #606 - create docs without crashing
+    func testParseExternalReference() {
+        let firstPath = fixturesDirectory + "ExternalRef1.swift"
+        let secondPath = fixturesDirectory + "ExternalRef2.swift"
+        let docs = SwiftDocs(file: File(path: firstPath)!, arguments: [firstPath, secondPath])!
+        XCTAssertFalse(docs.docsDictionary.isEmpty)
+    }
 }
 
 extension SwiftDocsTests {
@@ -203,7 +211,8 @@ extension SwiftDocsTests {
             ("testSubscript", testSubscript),
             ("testBicycle", testBicycle),
             ("testExtension", testExtension),
-            ("testParseFullXMLDocs", testParseFullXMLDocs)
+            ("testParseFullXMLDocs", testParseFullXMLDocs),
+            ("testParseExternalReference", testParseExternalReference)
         ]
     }
 }

@@ -244,9 +244,9 @@ public final class File {
         let offsetMap = makeOffsetMap(documentedTokenOffsets: documentedTokenOffsets, dictionary: dictionary)
         for offset in offsetMap.keys.reversed() { // Do this in reverse to insert the doc at the correct offset
             if let rawResponse = Request.send(cursorInfoRequest: cursorInfoRequest, atOffset: Int64(offset)),
-               case let response = process(dictionary: rawResponse, cursorInfoRequest: nil, syntaxMap: syntaxMap),
-               let kind = SwiftDocKey.getKind(response),
+               let kind = SwiftDocKey.getKind(rawResponse),
                SwiftDeclarationKind(rawValue: kind) != nil,
+               case let response = process(dictionary: rawResponse, cursorInfoRequest: nil, syntaxMap: syntaxMap),
                let parentOffset = offsetMap[offset].flatMap({ Int64($0) }),
                let inserted = insert(doc: response, parent: dictionary, offset: parentOffset) {
                dictionary = inserted
