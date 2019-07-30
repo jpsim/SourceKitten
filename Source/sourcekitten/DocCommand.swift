@@ -15,28 +15,39 @@ struct DocCommand: CommandProtocol {
     let function = "Print Swift or Objective-C docs as JSON"
 
     struct Options: OptionsProtocol {
-        let spmModule: String
         let singleFile: Bool
         let moduleName: String
+        let spm: Bool
         let objc: Bool
         let arguments: [String]
 
-        static func create(spmModule: String) -> (_ singleFile: Bool) -> (_ moduleName: String) -> (_ objc: Bool) -> (_ arguments: [String]) -> Options {
-            return { singleFile in { moduleName in { objc in { arguments in
-                self.init(spmModule: spmModule, singleFile: singleFile, moduleName: moduleName, objc: objc, arguments: arguments)
-            }}}}
+        static func create(singleFile: Bool) ->
+            (_ moduleName: String) ->
+            (_ spm: Bool) ->
+            (_ objc: Bool) ->
+            (_ spmModule: String) ->
+            (_ arguments: [String]) -> Options {
+            return { moduleName in { spm in { objc in { spmModule in { arguments in
+                self.init(singleFile: singleFile,
+                          moduleName: moduleName.isEmpty ? spmModule : moduleName,
+                          spm: spm || !spmModule.isEmpty,
+                          objc: objc,
+                          arguments: arguments)
+                }}}}}
         }
 
         static func evaluate(_ mode: CommandMode) -> Result<Options, CommandantError<SourceKittenError>> {
             return create
-                <*> mode <| Option(key: "spm-module", defaultValue: "",
-                                   usage: "document a Swift Package Manager module")
                 <*> mode <| Option(key: "single-file", defaultValue: false,
                                    usage: "only document one file")
                 <*> mode <| Option(key: "module-name", defaultValue: "",
-                                   usage: "name of module to document (can't be used with `--single-file` or `--objc`)")
+                                   usage: "name of Swift module to document (can't be used with `--single-file`)")
+                <*> mode <| Option(key: "spm", defaultValue: false,
+                                   usage: "document a Swift Package Manager module")
                 <*> mode <| Option(key: "objc", defaultValue: false,
-                                   usage: "document Objective-C headers")
+                                   usage: "document Objective-C headers instead of Swift code")
+                <*> mode <| Option(key: "spm-module", defaultValue: "",
+                                   usage: "equivalent to --spm --module-name (string)")
                 <*> mode <| Argument(defaultValue: [],
                                      usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
         }
@@ -44,18 +55,18 @@ struct DocCommand: CommandProtocol {
 
     func run(_ options: Options) -> Result<(), SourceKittenError> {
         let args = options.arguments
-        if !options.spmModule.isEmpty {
-            return runSPMModule(moduleName: options.spmModule)
+        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
+        if options.spm {
+            return runSPMModule(moduleName: moduleName)
         } else if options.objc {
             return runObjC(options: options, args: args)
         } else if options.singleFile {
             return runSwiftSingleFile(args: args)
         }
-        let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
         return runSwiftModule(moduleName: moduleName, args: args)
     }
 
-    func runSPMModule(moduleName: String) -> Result<(), SourceKittenError> {
+    func runSPMModule(moduleName: String?) -> Result<(), SourceKittenError> {
         if let docs = Module(spmName: moduleName)?.docs {
             print(docs)
             return .success(())

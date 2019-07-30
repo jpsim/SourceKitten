@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Add `--spm` option to guess the name of a Swift Package Manager module
+  for documentation generation.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ##### Bug Fixes
 
