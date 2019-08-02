@@ -10,39 +10,6 @@ import Foundation
 @testable import SourceKittenFramework
 import XCTest
 
-private func run(executable: String, arguments: [String]) -> String? {
-    let task = Process()
-    task.arguments = arguments
-
-    let pipe = Pipe()
-    task.standardOutput = pipe
-
-    do {
-    #if canImport(Darwin)
-        if #available(macOS 10.13, *) {
-            task.executableURL = URL(fileURLWithPath: executable)
-            try task.run()
-        } else {
-            task.launchPath = executable
-            task.launch()
-        }
-    #elseif compiler(>=5)
-        task.executableURL = URL(fileURLWithPath: executable)
-        try task.run()
-    #else
-        task.launchPath = executable
-        task.launch()
-    #endif
-    } catch {
-        return nil
-    }
-
-    let file = pipe.fileHandleForReading
-    let output = String(data: file.readDataToEndOfFile(), encoding: .utf8)
-    file.closeFile()
-    return output
-}
-
 private let sourcekitStrings: [String] = {
     #if os(Linux)
     let searchPaths = [
@@ -61,12 +28,12 @@ private let sourcekitStrings: [String] = {
         fatalError("Could not find or load libsourcekitdInProc.so")
     }()
     #else
-    let sourceKitPath = run(executable: "/usr/bin/xcrun", arguments: ["-f", "swiftc"])!.bridge()
+    let sourceKitPath = Exec.run("/usr/bin/xcrun", "-f", "swiftc").string!.bridge()
         .deletingLastPathComponent.bridge()
         .deletingLastPathComponent.bridge()
         .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
     #endif
-    let strings = run(executable: "/usr/bin/strings", arguments: [sourceKitPath])
+    let strings = Exec.run("/usr/bin/strings", sourceKitPath).string
     return strings!.components(separatedBy: "\n")
 }()
 

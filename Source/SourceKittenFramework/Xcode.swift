@@ -50,45 +50,10 @@ internal enum XcodeBuild {
      - returns: `xcodebuild`'s STDOUT output and, optionally, both STDERR+STDOUT output combined.
      */
     internal static func launch(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> Data {
-        let task = Process()
-        let pathOfXcodebuild = "/usr/bin/xcodebuild"
-        task.arguments = arguments
-
-        let pipe = Pipe()
-        task.standardOutput = pipe
-
-        if pipingStandardError {
-            task.standardError = pipe
-        }
-
-        do {
-        #if canImport(Darwin)
-            if #available(macOS 10.13, *) {
-                task.executableURL = URL(fileURLWithPath: pathOfXcodebuild)
-                task.currentDirectoryURL = URL(fileURLWithPath: path)
-                try task.run()
-            } else {
-                task.launchPath = pathOfXcodebuild
-                task.currentDirectoryPath = path
-                task.launch()
-            }
-        #elseif compiler(>=5)
-            task.executableURL = URL(fileURLWithPath: pathOfXcodebuild)
-            task.currentDirectoryURL = URL(fileURLWithPath: path)
-            try task.run()
-        #else
-            task.launchPath = pathOfXcodebuild
-            task.currentDirectoryPath = path
-            task.launch()
-        #endif
-        } catch {
-            return Data()
-        }
-
-        let file = pipe.fileHandleForReading
-        defer { file.closeFile() }
-
-        return file.readDataToEndOfFile()
+        return Exec.run("/usr/bin/xcodebuild",
+                        arguments,
+                        currentDirectory: path,
+                        stderr: pipingStandardError ? .merge : .inherit).data
     }
 
     /**
@@ -233,37 +198,8 @@ public func sdkPath() -> String {
     // xcrun does not exist on Linux
     return ""
 #else
-    let task = Process()
-    let pathOfXcrun = "/usr/bin/xcrun"
-    task.arguments = ["--show-sdk-path", "--sdk", "macosx"]
-
-    let pipe = Pipe()
-    task.standardOutput = pipe
-
-    do {
-    #if canImport(Darwin)
-        if #available(macOS 10.13, *) {
-            task.executableURL = URL(fileURLWithPath: pathOfXcrun)
-            try task.run()
-        } else {
-            task.launchPath = pathOfXcrun
-            task.launch()
-        }
-    #elseif compiler(>=5)
-        task.executableURL = URL(fileURLWithPath: pathOfXcrun)
-        try task.run()
-    #else
-        task.launchPath = pathOfXcrun
-        task.launch()
-    #endif
-    } catch {
-        return ""
-    }
-
-    let file = pipe.fileHandleForReading
-    let sdkPath = String(data: file.readDataToEndOfFile(), encoding: .utf8)
-    file.closeFile()
-    return sdkPath?.replacingOccurrences(of: "\n", with: "") ?? ""
+    return Exec.run("/usr/bin/xcrun", "--show-sdk-path", "--sdk", "macosx").string?
+        .replacingOccurrences(of: "\n", with: "") ?? ""
 #endif
 }
 

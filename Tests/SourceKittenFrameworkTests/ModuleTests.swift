@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SourceKittenFramework
+@testable import SourceKittenFramework
 import XCTest
 
 let projectRoot = #file.bridge()
@@ -46,50 +46,17 @@ let commandantPathForSPM: String? = {
         var dependencies: [Package]
     }
 
-    let task = Process()
-    let path = "/usr/bin/env"
-    task.arguments = ["swift", "package", "show-dependencies", "--format", "json"]
-
-    let pipe = Pipe()
-    task.standardOutput = pipe
-
-    do {
-    #if canImport(Darwin)
-        if #available(macOS 10.13, *) {
-            task.executableURL = URL(fileURLWithPath: path)
-            task.currentDirectoryURL = URL(fileURLWithPath: projectRoot)
-            try task.run()
-        } else {
-            task.launchPath = path
-            task.currentDirectoryPath = projectRoot
-            task.launch()
-        }
-    #elseif compiler(>=5)
-        task.executableURL = URL(fileURLWithPath: path)
-        task.currentDirectoryURL = URL(fileURLWithPath: projectRoot)
-        try task.run()
-    #else
-        task.launchPath = path
-        task.currentDirectoryPath = projectRoot
-        task.launch()
-    #endif
-    } catch {
-        return nil
-    }
-    task.waitUntilExit()
-
-    let file = pipe.fileHandleForReading
-    let data = file.readDataToEndOfFile()
-    file.closeFile()
-    guard task.terminationStatus == 0 else {
-        print("`\(task.arguments?.joined(separator: " ") ?? "")` returns error: \(task.terminationStatus)")
+    let arguments = ["swift", "package", "show-dependencies", "--format", "json"]
+    let result = Exec.run("/usr/bin/env", arguments)
+    guard result.terminationStatus == 0 else {
+        print("`\(arguments.joined(separator: " "))` returns error: \(result.terminationStatus)")
         return nil
     }
     do {
-        let package = try JSONDecoder().decode(Package.self, from: data)
+        let package = try JSONDecoder().decode(Package.self, from: result.data)
         return (package.dependencies.first(where: { $0.name == "Commandant" })?.path).map { $0 + "/" }
     } catch {
-        print("failed to decode output of `\(task.arguments?.joined(separator: " ") ?? "")`: \(error)")
+        print("failed to decode output of `\(arguments.joined(separator: " "))`: \(error)")
         return nil
     }
 }()
