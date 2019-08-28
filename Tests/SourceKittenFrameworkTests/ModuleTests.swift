@@ -104,12 +104,18 @@ extension ModuleTests {
         compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs, rootDirectory: commandantPath)
     }
 
+    func testSpmDefaultModule() {
+        let skModule = Module(spmName: nil, inPath: projectRoot)!
+        XCTAssertEqual("SourceKittenFramework", skModule.name)
+    }
+
     static var allTests: [(String, (ModuleTests) -> () throws -> Void)] {
         return [
             // Disabled on Linux because these tests require Xcode
             // ("testModuleNilInPathWithNoXcodeProject", testModuleNilInPathWithNoXcodeProject),
             // ("testCommandantDocs", testCommandantDocs),
-            ("testCommandantDocsSPM", testCommandantDocsSPM)
+            ("testCommandantDocsSPM", testCommandantDocsSPM),
+            ("testSpmDefaultModule", testSpmDefaultModule)
         ]
     }
 }

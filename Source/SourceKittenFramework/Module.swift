@@ -34,27 +34,47 @@ public struct Module {
         }
     }
 
-    public init?(spmName: String, inPath path: String = FileManager.default.currentDirectoryPath) {
+    /**
+     Failable initializer to create a Module from a Swift Package Manager build record.
+
+     - parameter spmName: Module name.  Will use some non-Test module that is part of the
+                          package if `nil`.
+     - parameter path:    Path of the directory containing the SPM `.build` directory.
+                          Uses the current directory by default.
+     */
+    public init?(spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
         let yamlPath = URL(fileURLWithPath: path).appendingPathComponent(".build/debug.yaml").path
         guard let yaml = try? Yams.compose(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)),
             let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
             fatalError("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.")
         }
-        guard let moduleCommand = commands.first(where: { $0["module-name"]?.string == spmName }) else {
-            fputs("Could not find SPM module '\(spmName)'. Here are the modules available:\n", stderr)
+
+        func matchModuleName(node: Node) -> Bool {
+            guard let nodeModuleName = node["module-name"]?.string else { return false }
+            if let spmName = spmName {
+                return nodeModuleName == spmName
+            }
+            let inputs = node["inputs"]?.array(of: String.self) ?? []
+            return inputs.allSatisfy({ !$0.contains(".build/checkouts/") }) && !nodeModuleName.hasSuffix("Tests")
+        }
+
+        guard let moduleCommand = commands.first(where: matchModuleName) else {
+            fputs("Could not find SPM module '\(spmName ?? "(any)")'. Here are the modules available:\n", stderr)
             let availableModules = commands.compactMap({ $0["module-name"]?.string })
             fputs("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n", stderr)
             return nil
         }
+
         guard let imports = moduleCommand["import-paths"]?.array(of: String.self),
               let otherArguments = moduleCommand["other-args"]?.array(of: String.self),
-              let sources = moduleCommand["sources"]?.array(of: String.self) else {
+              let sources = moduleCommand["sources"]?.array(of: String.self),
+              let moduleName = moduleCommand["module-name"]!.string else {
                 fatalError("SPM build manifest does not match expected format.")
         }
-        name = spmName
+        name = moduleName
         compilerArguments = {
             var arguments = sources
-            arguments.append(contentsOf: ["-module-name", spmName])
+            arguments.append(contentsOf: ["-module-name", moduleName])
             arguments.append(contentsOf: otherArguments)
             arguments.append(contentsOf: ["-I"])
             arguments.append(contentsOf: imports)
