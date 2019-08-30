@@ -10,6 +10,9 @@
   for documentation generation.  
   [John Fairhurst](https://github.com/johnfairh)
 
+* Support doc generation for modules built with Xcode 11.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 ##### Bug Fixes
 
 * Fix crash with misplaced documentation comment.  

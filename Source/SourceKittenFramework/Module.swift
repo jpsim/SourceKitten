@@ -140,8 +140,8 @@ public struct Module {
     */
     public init(name: String, compilerArguments: [String]) {
         self.name = name
-        self.compilerArguments = compilerArguments
-        sourceFiles = compilerArguments.filter({
+        self.compilerArguments = compilerArguments.expandingResponseFiles
+        sourceFiles = self.compilerArguments.filter({
             $0.bridge().isSwiftFile() && $0.isFile
         }).map {
             return URL(fileURLWithPath: $0).resolvingSymlinksInPath().path
