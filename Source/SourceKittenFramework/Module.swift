@@ -37,6 +37,8 @@ public struct Module {
     /**
      Failable initializer to create a Module from a Swift Package Manager build record.
 
+     Use this initializer when the package has already been built and the `.build` directory exists.
+
      - parameter spmName: Module name.  Will use some non-Test module that is part of the
                           package if `nil`.
      - parameter path:    Path of the directory containing the SPM `.build` directory.
@@ -46,7 +48,8 @@ public struct Module {
         let yamlPath = URL(fileURLWithPath: path).appendingPathComponent(".build/debug.yaml").path
         guard let yaml = try? Yams.compose(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)),
             let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
-            fatalError("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.")
+            fputs("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.", stderr)
+            return nil
         }
 
         func matchModuleName(node: Node) -> Bool {
@@ -69,7 +72,8 @@ public struct Module {
               let otherArguments = moduleCommand["other-args"]?.array(of: String.self),
               let sources = moduleCommand["sources"]?.array(of: String.self),
               let moduleName = moduleCommand["module-name"]!.string else {
-                fatalError("SPM build manifest does not match expected format.")
+                fputs("SPM build manifest '\(yamlPath)` does not match expected format.", stderr)
+                return nil
         }
         name = moduleName
         compilerArguments = {
@@ -81,6 +85,30 @@ public struct Module {
             return arguments
         }()
         sourceFiles = sources
+    }
+
+    /**
+     Failable initializer to create a Module by building a Swift Package Manager project.
+
+     Use this initializer if the package has not been built or may have changed since last built.
+
+     - parameter spmArguments: Additional arguments to pass to `swift build`
+     - parameter spmName: Module name.  Will use some non-Test module that is part of the
+                          package if `nil`.
+     - parameter path:    Path of the directory containing the `Package.swift` file.
+                          Uses the current directory by default.
+     */
+    public init?(spmArguments: [String], spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+        fputs("Running swift build\n", stderr)
+        let buildResults = Exec.run("/usr/bin/env", ["swift", "build"] + spmArguments, currentDirectory: path, stderr: .merge)
+        guard buildResults.terminationStatus == 0 else {
+            let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("swift-build-\(UUID().uuidString).log")
+            try! buildResults.data.write(to: file)
+            fputs("Build failed, saved `swift build` log file: \(file.path)\n", stderr)
+            return nil
+        }
+
+        self.init(spmName: spmName, inPath: path)
     }
 
     /**

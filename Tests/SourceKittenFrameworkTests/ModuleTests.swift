@@ -67,7 +67,7 @@ extension ModuleTests {
             XCTFail("Can't find Commandant")
             return
         }
-        let commandantModule = Module(spmName: "Commandant", inPath: projectRoot)!
+        let commandantModule = Module(spmArguments: [], spmName: "Commandant", inPath: projectRoot)!
         compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs, rootDirectory: commandantPath)
     }
 
