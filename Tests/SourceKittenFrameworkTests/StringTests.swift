@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SourceKittenFramework
+@testable import SourceKittenFramework
 import XCTest
 
 class StringTests: XCTestCase {
@@ -228,6 +228,15 @@ class StringTests: XCTestCase {
         // no crash on bad input
         XCTAssertEqual("ab\\".unescaped, "ab")
     }
+
+    func testResponseFiles() throws {
+        let responseContents = "3 4\n5\n"
+        let responseUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(UUID().uuidString).rsp")
+        try responseContents.data(using: .utf8)?.write(to: responseUrl)
+        let xcodeArgs = ["1", "2", "@\(responseUrl.path)", "6"]
+        let expandedArgs = xcodeArgs.expandingResponseFiles
+        XCTAssertEqual("1,2,3 4,5,6", expandedArgs.joined(separator: ","))
+    }
 }
 
 typealias LineRangeType = (start: Int, end: Int)
@@ -265,7 +274,8 @@ extension StringTests {
             ("testLineAndCharacterForByteOffset", testLineAndCharacterForByteOffset),
             ("testByteRangeToNSRange", testByteRangeToNSRange),
             ("testLineAndCharacterForCharacterOffset", testLineAndCharacterForCharacterOffset),
-            ("testUnescaping", testUnescaping)
+            ("testUnescaping", testUnescaping),
+            ("testResponseFiles", testResponseFiles)
         ]
     }
 }
