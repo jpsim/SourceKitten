@@ -103,7 +103,7 @@ public struct Module {
         let buildResults = Exec.run("/usr/bin/env", ["swift", "build"] + spmArguments, currentDirectory: path, stderr: .merge)
         guard buildResults.terminationStatus == 0 else {
             let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("swift-build-\(UUID().uuidString).log")
-            try! buildResults.data.write(to: file)
+            _ = try? buildResults.data.write(to: file)
             fputs("Build failed, saved `swift build` log file: \(file.path)\n", stderr)
             return nil
         }
@@ -149,7 +149,7 @@ public struct Module {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
             fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
             let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
-            try! xcodeBuildOutput.data(using: .utf8)?.write(to: file)
+            _ = try? xcodeBuildOutput.data(using: .utf8)?.write(to: file)
             fputs("Saved `xcodebuild` log file: \(file.path)\n", stderr)
             return nil
         }

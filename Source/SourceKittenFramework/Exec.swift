@@ -82,7 +82,7 @@ enum Exec {
         }
 
         do {
-        #if canImport(Darwin)
+#if canImport(Darwin)
             if #available(macOS 10.13, *) {
                 process.executableURL = URL(fileURLWithPath: command)
                 process.currentDirectoryURL = URL(fileURLWithPath: currentDirectory)
@@ -92,15 +92,15 @@ enum Exec {
                 process.currentDirectoryPath = currentDirectory
                 process.launch()
             }
-        #elseif compiler(>=5)
+#elseif compiler(>=5)
             process.executableURL = URL(fileURLWithPath: command)
             process.currentDirectoryURL = URL(fileURLWithPath: currentDirectory)
             try process.run()
-        #else
+#else
             process.launchPath = command
             process.currentDirectoryPath = currentDirectory
             process.launch()
-        #endif
+#endif
         } catch {
             return Results(terminationStatus: -1, data: Data())
         }
