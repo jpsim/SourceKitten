@@ -198,8 +198,7 @@ public func sdkPath() -> String {
     // xcrun does not exist on Linux
     return ""
 #else
-    return Exec.run("/usr/bin/xcrun", "--show-sdk-path", "--sdk", "macosx").string?
-        .replacingOccurrences(of: "\n", with: "") ?? ""
+    return Exec.run("/usr/bin/xcrun", "--show-sdk-path", "--sdk", "macosx").string ?? ""
 #endif
 }
 
