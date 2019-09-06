@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SourceKittenFramework
+@testable import SourceKittenFramework
 import XCTest
 
 func compareJSONString(withFixtureNamed name: String,
@@ -102,42 +102,8 @@ private func diff(original: String, modified: String) -> String {
         try original.data(using: .utf8)?.write(to: url.appendingPathComponent("original.json"))
         try modified.data(using: .utf8)?.write(to: url.appendingPathComponent("modified.json"))
 
-        let task = Process()
-        let pathToEnv = "/usr/bin/env"
-        task.arguments = ["git", "diff", "original.json", "modified.json"]
-
-        let pipe = Pipe()
-        task.standardOutput = pipe
-        task.standardError = pipe
-
-        do {
-        #if canImport(Darwin)
-            if #available(macOS 10.13, *) {
-                task.executableURL = URL(fileURLWithPath: pathToEnv)
-                task.currentDirectoryURL = url
-                try task.run()
-            } else {
-                task.launchPath = pathToEnv
-                task.currentDirectoryPath = url.path
-                task.launch()
-            }
-        #elseif compiler(>=5)
-            task.executableURL = URL(fileURLWithPath: pathToEnv)
-            task.currentDirectoryURL = url
-            try task.run()
-        #else
-            task.launchPath = pathToEnv
-            task.currentDirectoryPath = url.path
-            task.launch()
-        #endif
-        } catch {
-            return ""
-        }
-
-        let file = pipe.fileHandleForReading
-        defer { file.closeFile() }
-
-        return String(data: file.readDataToEndOfFile(), encoding: .utf8) ?? ""
+        return Exec.run("/usr/bin/env", "git", "diff", "original.json", "modified.json",
+                        currentDirectory: url.path).string ?? ""
     } catch {
         return "\(error)"
     }

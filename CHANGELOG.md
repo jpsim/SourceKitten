@@ -13,6 +13,10 @@
 * Support doc generation for modules built with Xcode 11.  
   [John Fairhurst](https://github.com/johnfairh)
 
+* Add `Module.init?(spmArguments:spmName:inPath)` and use in `doc` commmand
+  to ensure Swift Package Manager module documentation is up to date.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 ##### Bug Fixes
 
 * Fix crash with misplaced documentation comment.  

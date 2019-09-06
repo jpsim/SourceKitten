@@ -60,51 +60,16 @@ private extension String {
 
 // MARK: - Linux
 
-/// Run a process at the given (absolute) path, capture output, return outupt.
-private func runCommand(_ path: String, _ args: String...) -> String? {
-    let process = Process()
-    process.arguments = args
-
-    let pipe = Pipe()
-    process.standardOutput = pipe
-    // FileHandle.nullDevice does not work here, as it consists of an invalid file descriptor,
-    // causing process.launch() to abort with an EBADF.
-    process.standardError = FileHandle(forWritingAtPath: "/dev/null")!
-    do {
-#if compiler(>=5)
-        process.executableURL = URL(fileURLWithPath: path)
-        try process.run()
-#else
-        process.launchPath = path
-        process.launch()
-#endif
-    } catch {
-        return nil
-    }
-
-    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    process.waitUntilExit()
-    guard let encoded = String(data: data, encoding: String.Encoding.utf8) else {
-        return nil
-    }
-
-    let trimmed = encoded.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    if trimmed.isEmpty {
-        return nil
-    }
-    return trimmed
-}
-
 /// Returns "LINUX_SOURCEKIT_LIB_PATH" environment variable.
 internal let linuxSourceKitLibPath = env("LINUX_SOURCEKIT_LIB_PATH")
 
 /// If available, uses `swiftenv` to determine the user's active Swift root.
 internal let linuxFindSwiftenvActiveLibPath: String? = {
-    guard let swiftenvPath = runCommand("/usr/bin/which", "swiftenv") else {
+    guard let swiftenvPath = Exec.run("/usr/bin/which", "swiftenv").string else {
         return nil
     }
 
-    guard let swiftenvRoot = runCommand(swiftenvPath, "prefix") else {
+    guard let swiftenvRoot = Exec.run(swiftenvPath, "prefix").string else {
         return nil
     }
 
@@ -114,7 +79,7 @@ internal let linuxFindSwiftenvActiveLibPath: String? = {
 /// Attempts to discover the location of libsourcekitdInProc.so by looking at
 /// the `swift` binary on the path.
 internal let linuxFindSwiftInstallationLibPath: String? = {
-    guard let swiftPath = runCommand("/usr/bin/which", "swift") else {
+    guard let swiftPath = Exec.run("/usr/bin/which", "swift").string else {
         return nil
     }
 
@@ -189,25 +154,7 @@ private let xcrunFindPath: String? = {
         return nil
     }
 
-    let task = Process()
-    task.arguments = ["-find", "swift"]
-
-    let pipe = Pipe()
-    task.standardOutput = pipe
-    do {
-        if #available(macOS 10.13, *) {
-            task.executableURL = URL(fileURLWithPath: pathOfXcrun)
-            try task.run()
-        } else {
-            task.launchPath = pathOfXcrun
-            task.launch() // if xcode-select does not exist, crash with `NSInvalidArgumentException`.
-        }
-    } catch {
-        return nil
-    }
-
-    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    guard let output = String(data: data, encoding: .utf8) else {
+    guard let output = Exec.run(pathOfXcrun, "-find", "swift").string else {
         return nil
     }
 

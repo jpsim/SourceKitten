@@ -49,7 +49,7 @@ struct DocCommand: CommandProtocol {
                 <*> mode <| Option(key: "spm-module", defaultValue: "",
                                    usage: "equivalent to --spm --module-name (string)")
                 <*> mode <| Argument(defaultValue: [],
-                                     usage: "Arguments list that passed to xcodebuild. If `-` prefixed argument exists, place ` -- ` before that.")
+                                     usage: "Arguments passed to `xcodebuild` or `swift build`. If `-` prefixed argument exists, place ` -- ` before that.")
         }
     }
 
@@ -57,7 +57,7 @@ struct DocCommand: CommandProtocol {
         let args = options.arguments
         let moduleName: String? = options.moduleName.isEmpty ? nil : options.moduleName
         if options.spm {
-            return runSPMModule(moduleName: moduleName)
+            return runSPMModule(moduleName: moduleName, args: args)
         } else if options.objc {
             return runObjC(options: options, args: args)
         } else if options.singleFile {
@@ -66,8 +66,8 @@ struct DocCommand: CommandProtocol {
         return runSwiftModule(moduleName: moduleName, args: args)
     }
 
-    func runSPMModule(moduleName: String?) -> Result<(), SourceKittenError> {
-        if let docs = Module(spmName: moduleName)?.docs {
+    func runSPMModule(moduleName: String?, args: [String]) -> Result<(), SourceKittenError> {
+        if let docs = Module(spmArguments: args, spmName: moduleName)?.docs {
             print(docs)
             return .success(())
         }
