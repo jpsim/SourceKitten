@@ -79,28 +79,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testSyntaxKinds() {
-        let expected: [SyntaxKind] = [
-            .argument,
-            .attributeBuiltin,
-            .attributeID,
-            .buildconfigID,
-            .buildconfigKeyword,
-            .comment,
-            .commentMark,
-            .commentURL,
-            .docComment,
-            .docCommentField,
-            .identifier,
-            .keyword,
-            .number,
-            .objectLiteral,
-            .parameter,
-            .placeholder,
-            .string,
-            .stringInterpolationAnchor,
-            .typeidentifier,
-            .poundDirectiveKeyword
-        ]
+        let expected = SyntaxKind.allCases
 
         let actual = sourcekitStrings(startingWith: "source.lang.swift.syntaxtype.")
         let expectedStrings = Set(expected.map { $0.rawValue })
@@ -162,6 +141,17 @@ class SourceKitTests: XCTestCase {
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._borrowed, ._dynamicReplacement, ._effects, ._hasInitialValue,
             ._hasStorage, ._nonoverride, ._private, ._show_in_interface, .dynamicCallable
+        ])
+    #endif
+
+    #if compiler(>=5.1)
+        // removed in Swift 5.1
+        expected.subtract([.noreturn, ._frozen])
+    #else
+        // added in Swift 5.1
+        expected.subtract([
+            .frozen, ._projectedValueProperty, ._alwaysEmitIntoClient, ._implementationOnly, .ibsegueaction, ._custom,
+            ._disfavoredOverload, .propertyWrapper, .IBSegueAction, ._functionBuilder
         ])
     #endif
 
