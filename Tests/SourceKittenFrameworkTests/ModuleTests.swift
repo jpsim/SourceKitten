@@ -47,7 +47,7 @@ let commandantPathForSPM: String? = {
     }
 
     let arguments = ["swift", "package", "show-dependencies", "--format", "json"]
-    let result = Exec.run("/usr/bin/env", arguments)
+    let result = Exec.run("/usr/bin/env", arguments, currentDirectory: projectRoot)
     guard result.terminationStatus == 0 else {
         print("`\(arguments.joined(separator: " "))` returns error: \(result.terminationStatus)")
         return nil
