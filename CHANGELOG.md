@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix Swift response files for paths including special characters.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ## 0.25.0
 
