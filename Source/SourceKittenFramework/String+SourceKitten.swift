@@ -684,6 +684,7 @@ extension Array where Element == String {
             return (try? String(contentsOf: URL(fileURLWithPath: responseFile))).flatMap {
                 $0.trimmingCharacters(in: .newlines)
                   .components(separatedBy: "\n")
+                  .map { $0.unescaped }
                   .expandingResponseFiles
             } ?? [arg]
         }

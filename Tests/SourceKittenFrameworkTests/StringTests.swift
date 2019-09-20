@@ -230,12 +230,12 @@ class StringTests: XCTestCase {
     }
 
     func testResponseFiles() throws {
-        let responseContents = "3 4\n5\n"
+        let responseContents = "3 4\n5\n6\\\\7\n8\\ 9\n"
         let responseUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(UUID().uuidString).rsp")
         try responseContents.data(using: .utf8)?.write(to: responseUrl)
-        let xcodeArgs = ["1", "2", "@\(responseUrl.path)", "6"]
+        let xcodeArgs = ["1", "2", "@\(responseUrl.path)", "e"]
         let expandedArgs = xcodeArgs.expandingResponseFiles
-        XCTAssertEqual("1,2,3 4,5,6", expandedArgs.joined(separator: ","))
+        XCTAssertEqual("1,2,3 4,5,6\\7,8 9,e", expandedArgs.joined(separator: ","))
     }
 }
 
