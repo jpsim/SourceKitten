@@ -1,5 +1,7 @@
 ## Master
 
+* Fix build using Swift 5.1. Update SWXMLHash to 5.0.1
+
 ##### Breaking
 
 * None.
