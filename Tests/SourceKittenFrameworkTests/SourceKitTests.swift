@@ -122,7 +122,8 @@ class SourceKitTests: XCTestCase {
         let attributesFoundInSwift5ButWeIgnore = [
             "source.decl.attribute.GKInspectable",
             "source.decl.attribute.IBAction",
-            "source.decl.attribute.IBOutlet"
+            "source.decl.attribute.IBOutlet",
+            "source.decl.attribute.IBSegueAction"
         ]
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
