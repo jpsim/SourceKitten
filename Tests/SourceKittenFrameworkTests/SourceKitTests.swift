@@ -11,7 +11,7 @@ import Foundation
 import XCTest
 
 private let sourcekitStrings: [String] = {
-    #if os(Linux)
+#if os(Linux)
     let searchPaths = [
         linuxSourceKitLibPath,
         linuxFindSwiftenvActiveLibPath,
@@ -27,12 +27,12 @@ private let sourcekitStrings: [String] = {
         }
         fatalError("Could not find or load libsourcekitdInProc.so")
     }()
-    #else
+#else
     let sourceKitPath = Exec.run("/usr/bin/xcrun", "-f", "swiftc").string!.bridge()
         .deletingLastPathComponent.bridge()
         .deletingLastPathComponent.bridge()
         .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
-    #endif
+#endif
     let strings = Exec.run("/usr/bin/strings", sourceKitPath).string
     return strings!.components(separatedBy: "\n")
 }()
@@ -122,39 +122,44 @@ class SourceKitTests: XCTestCase {
         let attributesFoundInSwift5ButWeIgnore = [
             "source.decl.attribute.GKInspectable",
             "source.decl.attribute.IBAction",
-            "source.decl.attribute.IBOutlet",
-            "source.decl.attribute.IBSegueAction"
+            "source.decl.attribute.IBOutlet"
         ]
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
-    #if compiler(>=5.0)
+#if compiler(>=5.0)
         // removed in Swift 5.0
         expected.subtract([.silStored, .effects])
-    #if !canImport(Darwin)
+#if !canImport(Darwin)
         // added in Swift 5.0 for Darwin
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._hasInitialValue, ._hasStorage, ._show_in_interface
         ])
-    #endif
-    #else
+#endif
+#else
         // added in Swift 5.0
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._borrowed, ._dynamicReplacement, ._effects, ._hasInitialValue,
             ._hasStorage, ._nonoverride, ._private, ._show_in_interface, .dynamicCallable
         ])
-    #endif
+#endif
 
-    #if compiler(>=5.1)
+#if compiler(>=5.1)
         // removed in Swift 5.1
         expected.subtract([.noreturn, ._frozen])
-    #else
+#if !canImport(Darwin)
+        // added in Swift 5.1 for Darwin
+        expected.subtract([
+            .IBSegueAction
+        ])
+#endif
+#else
         // added in Swift 5.1
         expected.subtract([
             .frozen, ._projectedValueProperty, ._alwaysEmitIntoClient, ._implementationOnly, .ibsegueaction, ._custom,
             ._disfavoredOverload, .propertyWrapper, .IBSegueAction, ._functionBuilder
         ])
-    #endif
+#endif
 
         // removed in Swift 4.2
         expected.subtract([.objcNonLazyRealization, .inlineable, .versioned])
