@@ -172,6 +172,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testLibraryWrappersAreUpToDate() throws {
+#if compiler(>=5.1)
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: "SourceKittenFramework", inPath: projectRoot)!
         let docsJSON = sourceKittenFrameworkModule.docs.description
         XCTAssert(docsJSON.range(of: "error type") == nil)
@@ -198,6 +199,7 @@ class SourceKitTests: XCTestCase {
                 try generatedWrapper.data(using: .utf8)?.write(to: URL(fileURLWithPath: wrapperPath))
             }
         }
+#endif
     }
 
     func testIndex() throws {
