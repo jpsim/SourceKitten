@@ -24,7 +24,7 @@ class DocInfoTests: XCTestCase {
 extension DocInfoTests {
     static var allTests: [(String, (DocInfoTests) -> () throws -> Void)] {
         return [
-            ("testDocInfoRequest", testDocInfoRequest),
+            ("testDocInfoRequest", testDocInfoRequest)
         ]
     }
 }
