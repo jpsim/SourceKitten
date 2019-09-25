@@ -37,7 +37,7 @@ jobs:
       xcode102:
         DEVELOPER_DIR: /Applications/Xcode_10.2.app
       xcode103:
-        DEVELOPER_DIR: /Applications/Xcode_11.app
+        DEVELOPER_DIR: /Applications/Xcode_10.3.app
       xcode11:
         DEVELOPER_DIR: /Applications/Xcode_11.app
   steps:
