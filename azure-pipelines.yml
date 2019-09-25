@@ -10,6 +10,8 @@ jobs:
     matrix:
       swift50:
         containerImage: norionomura/swiftlint:swift-5.0
+      swift51:
+        containerImage: norionomura/swiftlint:swift-5.1
   container: $[ variables['containerImage'] ]
   steps:
     - script: swift test --parallel
@@ -35,7 +37,7 @@ jobs:
       xcode102:
         DEVELOPER_DIR: /Applications/Xcode_10.2.app
       xcode103:
-        DEVELOPER_DIR: /Applications/Xcode_10.3.app
+        DEVELOPER_DIR: /Applications/Xcode_11.app
       xcode11:
         DEVELOPER_DIR: /Applications/Xcode_11.app
   steps:
@@ -65,7 +67,7 @@ jobs:
   pool:
     vmImage: 'macOS 10.14'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_10.3.app
+    DEVELOPER_DIR: /Applications/Xcode_11.app
   steps:
     - script: bundle install --path vendor/bundle
       displayName: bundle install
@@ -78,7 +80,7 @@ jobs:
   pool:
     vmImage: 'macOS 10.14'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_10.3.app
+    DEVELOPER_DIR: /Applications/Xcode_11.app
   steps:
     - script: swift build
       displayName: swift build
