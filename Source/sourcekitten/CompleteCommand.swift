@@ -55,7 +55,7 @@ struct CompleteCommand: CommandProtocol {
         var args: [String]
         if options.spmModule.isEmpty {
             args = ["-c", path] + options.compilerargs
-            if args.index(of: "-sdk") == nil {
+            if args.firstIndex(of: "-sdk") == nil {
                 args.append(contentsOf: ["-sdk", sdkPath()])
             }
         } else {

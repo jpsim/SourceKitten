@@ -36,7 +36,7 @@ func compareJSONString(withFixtureNamed name: String,
     // Use if changes are introduced by the new Swift version.
     let appendFixturesForNewSwiftVersion = ProcessInfo.processInfo.environment["APPEND_FIXTURES"] != nil ? true : false
     if appendFixturesForNewSwiftVersion && actualContent != expectedFile.contents,
-        var path = expectedFile.path, let index = path.index(of: "@"),
+        var path = expectedFile.path, let index = path.firstIndex(of: "@"),
         !path.hasSuffix("@\(buildingSwiftVersion).json") {
         path.replaceSubrange(index..<path.endIndex, with: "@\(buildingSwiftVersion).json")
         _ = try? actualContent.data(using: .utf8)?.write(to: URL(fileURLWithPath: path), options: [])
