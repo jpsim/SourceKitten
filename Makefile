@@ -113,7 +113,7 @@ update_commandant_fixtures_macos:
 	done
 
 update_commandant_fixtures_docker:
-	for image in swift:5.0 norionomura/swift:swift-5.1-branch; do \
+	for image in swift:5.0 swift:5.1; do \
 		swift package reset ; \
 		docker run -t -v `pwd`:`pwd` -w `pwd` --rm $$image env OVERWRITE_FIXTURES=1 swift test --filter Commandant ; \
 	done

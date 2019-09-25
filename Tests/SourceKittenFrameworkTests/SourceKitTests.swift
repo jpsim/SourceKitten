@@ -11,7 +11,7 @@ import Foundation
 import XCTest
 
 private let sourcekitStrings: [String] = {
-    #if os(Linux)
+#if os(Linux)
     let searchPaths = [
         linuxSourceKitLibPath,
         linuxFindSwiftenvActiveLibPath,
@@ -27,12 +27,12 @@ private let sourcekitStrings: [String] = {
         }
         fatalError("Could not find or load libsourcekitdInProc.so")
     }()
-    #else
+#else
     let sourceKitPath = Exec.run("/usr/bin/xcrun", "-f", "swiftc").string!.bridge()
         .deletingLastPathComponent.bridge()
         .deletingLastPathComponent.bridge()
         .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
-    #endif
+#endif
     let strings = Exec.run("/usr/bin/strings", sourceKitPath).string
     return strings!.components(separatedBy: "\n")
 }()
@@ -79,28 +79,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testSyntaxKinds() {
-        let expected: [SyntaxKind] = [
-            .argument,
-            .attributeBuiltin,
-            .attributeID,
-            .buildconfigID,
-            .buildconfigKeyword,
-            .comment,
-            .commentMark,
-            .commentURL,
-            .docComment,
-            .docCommentField,
-            .identifier,
-            .keyword,
-            .number,
-            .objectLiteral,
-            .parameter,
-            .placeholder,
-            .string,
-            .stringInterpolationAnchor,
-            .typeidentifier,
-            .poundDirectiveKeyword
-        ]
+        let expected = SyntaxKind.allCases
 
         let actual = sourcekitStrings(startingWith: "source.lang.swift.syntaxtype.")
         let expectedStrings = Set(expected.map { $0.rawValue })
@@ -117,13 +96,16 @@ class SourceKitTests: XCTestCase {
     func testSwiftDeclarationKind() {
         var expected = Set(SwiftDeclarationKind.allCases)
         let actual = sourcekitStrings(startingWith: "source.lang.swift.decl.")
-    #if swift(>=2.2)
+#if swift(>=2.2)
         expected.remove(.functionOperator)
-    #endif
-    #if !compiler(>=5.0)
+#endif
+#if !compiler(>=5.0)
         expected.remove(.functionAccessorModify)
         expected.remove(.functionAccessorRead)
-    #endif
+#endif
+#if !compiler(>=5.1)
+        expected.remove(.opaqueType)
+#endif
         let expectedStrings = Set(expected.map { $0.rawValue })
         XCTAssertEqual(
             actual,
@@ -145,22 +127,39 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
-    #if compiler(>=5.0)
+#if compiler(>=5.0)
         // removed in Swift 5.0
         expected.subtract([.silStored, .effects])
-    #if !canImport(Darwin)
+#if !canImport(Darwin)
         // added in Swift 5.0 for Darwin
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._hasInitialValue, ._hasStorage, ._show_in_interface
         ])
-    #endif
-    #else
+#endif
+#else
         // added in Swift 5.0
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._borrowed, ._dynamicReplacement, ._effects, ._hasInitialValue,
             ._hasStorage, ._nonoverride, ._private, ._show_in_interface, .dynamicCallable
         ])
-    #endif
+#endif
+
+#if compiler(>=5.1)
+        // removed in Swift 5.1
+        expected.subtract([.noreturn, ._frozen])
+#if !canImport(Darwin)
+        // added in Swift 5.1 for Darwin
+        expected.subtract([
+            .IBSegueAction
+        ])
+#endif
+#else
+        // added in Swift 5.1
+        expected.subtract([
+            .frozen, ._projectedValueProperty, ._alwaysEmitIntoClient, ._implementationOnly, .ibsegueaction, ._custom,
+            ._disfavoredOverload, .propertyWrapper, .IBSegueAction, ._functionBuilder
+        ])
+#endif
 
         // removed in Swift 4.2
         expected.subtract([.objcNonLazyRealization, .inlineable, .versioned])
@@ -179,6 +178,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testLibraryWrappersAreUpToDate() throws {
+#if compiler(>=5.1)
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: "SourceKittenFramework", inPath: projectRoot)!
         let docsJSON = sourceKittenFrameworkModule.docs.description
         XCTAssert(docsJSON.range(of: "error type") == nil)
@@ -205,6 +205,7 @@ class SourceKitTests: XCTestCase {
                 try generatedWrapper.data(using: .utf8)?.write(to: URL(fileURLWithPath: wrapperPath))
             }
         }
+#endif
     }
 
     func testIndex() throws {

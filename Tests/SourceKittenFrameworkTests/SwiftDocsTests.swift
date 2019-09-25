@@ -67,15 +67,22 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
 }
 
 private func versionedExpectedFilename(for name: String) -> String {
+#if compiler(>=5.1)
+    let versions = ["swift-5.1", "swift-5.0"]
+#else
+    let versions = ["swift-5.0"]
+#endif
 #if os(Linux)
     let platforms = ["Linux", ""]
 #else
     let platforms = [""]
 #endif
     for platform in platforms {
-        let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(buildingSwiftVersion).json"
-        if FileManager.default.fileExists(atPath: versionedFilename) {
-            return versionedFilename
+        for version in versions {
+            let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(version).json"
+            if FileManager.default.fileExists(atPath: versionedFilename) {
+                return versionedFilename
+            }
         }
     }
     return "\(fixturesDirectory)\(name).json"

@@ -10,6 +10,16 @@
 * Support building SourceKitten with Swift 5.1.  
   [Pedro Larroy](https://github.com/larroy)
 
+* Add new libclang types introduced between 0.49 and 0.59.  
+  [JP Simard](https://github.com/jpsim)
+
+* Add new `SwiftDeclarationAttributeKind` and `SwiftDeclarationKind` members
+  introduced in Swift 5.1.  
+  [JP Simard](https://github.com/jpsim)
+
+* `SyntaxKind` now conforms to `CaseIterable`.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * Fix Swift response files for paths including special characters.  

@@ -1,0 +1,375 @@
+{
+  "Bicycle.swift" : {
+    "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+    "key.length" : 2472,
+    "key.offset" : 0,
+    "key.substructure" : [
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.public",
+        "key.attributes" : [
+          {
+            "key.attribute" : "source.decl.attribute.public",
+            "key.length" : 6,
+            "key.offset" : 134
+          },
+          {
+            "key.attribute" : "source.decl.attribute.available",
+            "key.length" : 88,
+            "key.offset" : 45
+          }
+        ],
+        "key.bodylength" : 0,
+        "key.bodyoffset" : 161,
+        "key.doc.comment" : "Deprecated extension.",
+        "key.doclength" : 26,
+        "key.docoffset" : 19,
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 21,
+        "key.name" : "NSString",
+        "key.namelength" : 8,
+        "key.nameoffset" : 151,
+        "key.offset" : 141
+      },
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.public",
+        "key.attributes" : [
+          {
+            "key.attribute" : "source.decl.attribute.public",
+            "key.length" : 6,
+            "key.offset" : 226
+          }
+        ],
+        "key.bodylength" : 2222,
+        "key.bodyoffset" : 248,
+        "key.doc.comment" : "🚲 A two-wheeled, human-powered mode of transportation.",
+        "key.doclength" : 62,
+        "key.docoffset" : 164,
+        "key.kind" : "source.lang.swift.decl.class",
+        "key.length" : 2238,
+        "key.name" : "Bicycle",
+        "key.namelength" : 7,
+        "key.nameoffset" : 239,
+        "key.offset" : 233,
+        "key.runtime_name" : "_TtC4main7Bicycle",
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.public",
+                "key.length" : 6,
+                "key.offset" : 473
+              }
+            ],
+            "key.bodylength" : 49,
+            "key.bodyoffset" : 492,
+            "key.doc.comment" : "Frame and construction style.\n\n- Road: For streets or trails.\n- Touring: For long journeys.\n- Cruiser: For casual trips around town.\n- Hybrid: For general-purpose transportation.",
+            "key.doclength" : 215,
+            "key.docoffset" : 253,
+            "key.kind" : "source.lang.swift.decl.enum",
+            "key.length" : 62,
+            "key.name" : "Style",
+            "key.namelength" : 5,
+            "key.nameoffset" : 485,
+            "key.offset" : 480,
+            "key.substructure" : [
+              {
+                "key.kind" : "source.lang.swift.decl.enumcase",
+                "key.length" : 35,
+                "key.namelength" : 0,
+                "key.nameoffset" : 0,
+                "key.offset" : 501,
+                "key.substructure" : [
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.public",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 4,
+                    "key.name" : "Road",
+                    "key.namelength" : 4,
+                    "key.nameoffset" : 506,
+                    "key.offset" : 506
+                  },
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.public",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 7,
+                    "key.name" : "Touring",
+                    "key.namelength" : 7,
+                    "key.nameoffset" : 512,
+                    "key.offset" : 512
+                  },
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.public",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 7,
+                    "key.name" : "Cruiser",
+                    "key.namelength" : 7,
+                    "key.nameoffset" : 521,
+                    "key.offset" : 521
+                  },
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.public",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 6,
+                    "key.name" : "Hybrid",
+                    "key.namelength" : 6,
+                    "key.nameoffset" : 530,
+                    "key.offset" : 530
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.public",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.public",
+                "key.length" : 6,
+                "key.offset" : 712
+              }
+            ],
+            "key.bodylength" : 60,
+            "key.bodyoffset" : 733,
+            "key.doc.comment" : "Mechanism for converting pedal power into motion.\n\n- Fixed: A single, fixed gear.\n- Freewheel: A variable-speed, disengageable gear.",
+            "key.doclength" : 159,
+            "key.docoffset" : 548,
+            "key.kind" : "source.lang.swift.decl.enum",
+            "key.length" : 75,
+            "key.name" : "Gearing",
+            "key.namelength" : 7,
+            "key.nameoffset" : 724,
+            "key.offset" : 719,
+            "key.substructure" : [
+              {
+                "key.kind" : "source.lang.swift.decl.enumcase",
+                "key.length" : 10,
+                "key.namelength" : 0,
+                "key.nameoffset" : 0,
+                "key.offset" : 742,
+                "key.substructure" : [
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.public",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 5,
+                    "key.name" : "Fixed",
+                    "key.namelength" : 5,
+                    "key.nameoffset" : 747,
+                    "key.offset" : 747
+                  }
+                ]
+              },
+              {
+                "key.kind" : "source.lang.swift.decl.enumcase",
+                "key.length" : 27,
+                "key.namelength" : 0,
+                "key.nameoffset" : 0,
+                "key.offset" : 761,
+                "key.substructure" : [
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.public",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 22,
+                    "key.name" : "Freewheel(speeds:)",
+                    "key.namelength" : 22,
+                    "key.nameoffset" : 766,
+                    "key.offset" : 766
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.bodylength" : 47,
+            "key.bodyoffset" : 1009,
+            "key.doc.comment" : "Hardware used for steering.\n\n- Riser: A casual handlebar.\n- Café: An upright handlebar.\n- Drop: A classic handlebar.\n- Bullhorn: A powerful handlebar.",
+            "key.doclength" : 188,
+            "key.docoffset" : 800,
+            "key.kind" : "source.lang.swift.decl.enum",
+            "key.length" : 64,
+            "key.name" : "Handlebar",
+            "key.namelength" : 9,
+            "key.nameoffset" : 998,
+            "key.offset" : 993,
+            "key.substructure" : [
+              {
+                "key.kind" : "source.lang.swift.decl.enumcase",
+                "key.length" : 33,
+                "key.namelength" : 0,
+                "key.nameoffset" : 0,
+                "key.offset" : 1018,
+                "key.substructure" : [
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.internal",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 5,
+                    "key.name" : "Riser",
+                    "key.namelength" : 5,
+                    "key.nameoffset" : 1023,
+                    "key.offset" : 1023
+                  },
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.internal",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 5,
+                    "key.name" : "Café",
+                    "key.namelength" : 5,
+                    "key.nameoffset" : 1030,
+                    "key.offset" : 1030
+                  },
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.internal",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 4,
+                    "key.name" : "Drop",
+                    "key.namelength" : 4,
+                    "key.nameoffset" : 1037,
+                    "key.offset" : 1037
+                  },
+                  {
+                    "key.accessibility" : "source.lang.swift.accessibility.internal",
+                    "key.kind" : "source.lang.swift.decl.enumelement",
+                    "key.length" : 8,
+                    "key.name" : "Bullhorn",
+                    "key.namelength" : 8,
+                    "key.nameoffset" : 1043,
+                    "key.offset" : 1043
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.doc.comment" : "The style of the bicycle.",
+            "key.doclength" : 30,
+            "key.docoffset" : 1063,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 16,
+            "key.name" : "style",
+            "key.namelength" : 5,
+            "key.nameoffset" : 1101,
+            "key.offset" : 1097,
+            "key.typename" : "Style"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.doc.comment" : "The gearing of the bicycle.",
+            "key.doclength" : 32,
+            "key.docoffset" : 1119,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 20,
+            "key.name" : "gearing",
+            "key.namelength" : 7,
+            "key.nameoffset" : 1159,
+            "key.offset" : 1155,
+            "key.typename" : "Gearing"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.doc.comment" : "The handlebar of the bicycle.",
+            "key.doclength" : 34,
+            "key.docoffset" : 1181,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 24,
+            "key.name" : "handlebar",
+            "key.namelength" : 9,
+            "key.nameoffset" : 1223,
+            "key.offset" : 1219,
+            "key.typename" : "Handlebar"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.doc.comment" : "The size of the frame, in centimeters.",
+            "key.doclength" : 43,
+            "key.docoffset" : 1249,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 18,
+            "key.name" : "frameSize",
+            "key.namelength" : 9,
+            "key.nameoffset" : 1300,
+            "key.offset" : 1296,
+            "key.typename" : "Int"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.setter_access.private",
+                "key.length" : 12,
+                "key.offset" : 1374
+              }
+            ],
+            "key.doc.comment" : "The number of trips travelled by the bicycle.",
+            "key.doclength" : 50,
+            "key.docoffset" : 1320,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 22,
+            "key.name" : "numberOfTrips",
+            "key.namelength" : 13,
+            "key.nameoffset" : 1391,
+            "key.offset" : 1387,
+            "key.setter_accessibility" : "source.lang.swift.accessibility.private",
+            "key.typename" : "Int"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.attributes" : [
+              {
+                "key.attribute" : "source.decl.attribute.setter_access.private",
+                "key.length" : 12,
+                "key.offset" : 1479
+              }
+            ],
+            "key.doc.comment" : "The total distance travelled by the bicycle, in meters.",
+            "key.doclength" : 60,
+            "key.docoffset" : 1415,
+            "key.kind" : "source.lang.swift.decl.var.instance",
+            "key.length" : 29,
+            "key.name" : "distanceTravelled",
+            "key.namelength" : 17,
+            "key.nameoffset" : 1496,
+            "key.offset" : 1492,
+            "key.setter_accessibility" : "source.lang.swift.accessibility.private",
+            "key.typename" : "Double"
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.bodylength" : 192,
+            "key.bodyoffset" : 2010,
+            "key.doc.comment" : "Initializes a new bicycle with the provided parts and specifications.\n\n- parameter style: The style of the bicycle\n- parameter gearing: The gearing of the bicycle\n- parameter handlebar: The handlebar of the bicycle\n- parameter centimeters: The frame size of the bicycle, in centimeters\n\n- returns: A beautiful, brand-new, custom built just for you.",
+            "key.doclength" : 390,
+            "key.docoffset" : 1527,
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.length" : 281,
+            "key.name" : "init(style:gearing:handlebar:frameSize:)",
+            "key.namelength" : 86,
+            "key.nameoffset" : 1922,
+            "key.offset" : 1922,
+            "key.substructure" : [
+
+            ]
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.bodylength" : 112,
+            "key.bodyoffset" : 2356,
+            "key.doc.comment" : "Take a bike out for a spin.\n\n- parameter meters: The distance to travel in meters.",
+            "key.doclength" : 104,
+            "key.docoffset" : 2209,
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.length" : 151,
+            "key.name" : "travel(distance:)",
+            "key.namelength" : 31,
+            "key.nameoffset" : 2323,
+            "key.offset" : 2318,
+            "key.substructure" : [
+
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

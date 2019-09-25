@@ -1,0 +1,158 @@
+{
+  "Extension.swift" : {
+    "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
+    "key.length" : 504,
+    "key.offset" : 0,
+    "key.substructure" : [
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.bodylength" : 166,
+        "key.bodyoffset" : 29,
+        "key.doc.comment" : "Doc for Base",
+        "key.doclength" : 17,
+        "key.docoffset" : 0,
+        "key.kind" : "source.lang.swift.decl.class",
+        "key.length" : 179,
+        "key.name" : "Base",
+        "key.namelength" : 4,
+        "key.nameoffset" : 23,
+        "key.offset" : 17,
+        "key.runtime_name" : "_TtC4main4Base",
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.doc.comment" : "Doc for Base.Index",
+            "key.doclength" : 23,
+            "key.docoffset" : 35,
+            "key.kind" : "source.lang.swift.decl.typealias",
+            "key.length" : 21,
+            "key.name" : "Index",
+            "key.namelength" : 5,
+            "key.nameoffset" : 72,
+            "key.offset" : 62
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.bodylength" : 5,
+            "key.bodyoffset" : 134,
+            "key.doc.comment" : "Doc for Base.f",
+            "key.doclength" : 19,
+            "key.docoffset" : 89,
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.length" : 28,
+            "key.name" : "f(index:)",
+            "key.namelength" : 15,
+            "key.nameoffset" : 117,
+            "key.offset" : 112,
+            "key.substructure" : [
+
+            ]
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.bodylength" : 5,
+            "key.bodyoffset" : 188,
+            "key.doc.comment" : "Doc for Base.Nested",
+            "key.doclength" : 24,
+            "key.docoffset" : 146,
+            "key.kind" : "source.lang.swift.decl.class",
+            "key.length" : 20,
+            "key.name" : "Nested",
+            "key.namelength" : 6,
+            "key.nameoffset" : 180,
+            "key.offset" : 174
+          }
+        ]
+      },
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.bodylength" : 155,
+        "key.bodyoffset" : 214,
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 172,
+        "key.name" : "Base",
+        "key.namelength" : 4,
+        "key.nameoffset" : 208,
+        "key.offset" : 198,
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.doc.comment" : "Doc for Base.ExtendedIndex",
+            "key.doclength" : 31,
+            "key.docoffset" : 220,
+            "key.kind" : "source.lang.swift.decl.typealias",
+            "key.length" : 32,
+            "key.name" : "ExtendedIndex",
+            "key.namelength" : 13,
+            "key.nameoffset" : 265,
+            "key.offset" : 255
+          },
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.bodylength" : 5,
+            "key.bodyoffset" : 362,
+            "key.doc.comment" : "Doc for Base.extendedF",
+            "key.doclength" : 27,
+            "key.docoffset" : 293,
+            "key.kind" : "source.lang.swift.decl.function.method.instance",
+            "key.length" : 44,
+            "key.name" : "extendedF(index:)",
+            "key.namelength" : 31,
+            "key.nameoffset" : 329,
+            "key.offset" : 324,
+            "key.substructure" : [
+
+            ]
+          }
+        ]
+      },
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.bodylength" : 1,
+        "key.bodyoffset" : 436,
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 25,
+        "key.name" : "Base.Nested",
+        "key.namelength" : 11,
+        "key.nameoffset" : 423,
+        "key.offset" : 413
+      },
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.bodylength" : 25,
+        "key.bodyoffset" : 452,
+        "key.kind" : "source.lang.swift.decl.class",
+        "key.length" : 38,
+        "key.name" : "🐽",
+        "key.namelength" : 4,
+        "key.nameoffset" : 446,
+        "key.offset" : 440,
+        "key.runtime_name" : "_TtC4main4🐽",
+        "key.substructure" : [
+          {
+            "key.accessibility" : "source.lang.swift.accessibility.internal",
+            "key.bodylength" : 5,
+            "key.bodyoffset" : 470,
+            "key.kind" : "source.lang.swift.decl.struct",
+            "key.length" : 19,
+            "key.name" : "🐧",
+            "key.namelength" : 4,
+            "key.nameoffset" : 464,
+            "key.offset" : 457
+          }
+        ]
+      },
+      {
+        "key.accessibility" : "source.lang.swift.accessibility.internal",
+        "key.bodylength" : 1,
+        "key.bodyoffset" : 501,
+        "key.kind" : "source.lang.swift.decl.extension",
+        "key.length" : 23,
+        "key.name" : "🐽.🐧",
+        "key.namelength" : 9,
+        "key.nameoffset" : 490,
+        "key.offset" : 480
+      }
+    ]
+  }
+}
