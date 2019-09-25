@@ -67,28 +67,15 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
 }
 
 private func versionedExpectedFilename(for name: String) -> String {
-    #if swift(>=4.2.1)
-        let versions = ["swift-4.2.1", "swift-4.2"]
-    #elseif swift(>=4.2)
-        #if compiler(>=5.0)
-            let versions = ["swift-5.0", "swift-4.2.1", "swift-4.2"]
-        #else
-            let versions = ["swift-4.2"]
-        #endif
-    #else
-        fatalError("Swift 4.2 or later is required!")
-    #endif
-    #if os(Linux)
-        let platforms = ["Linux", ""]
-    #else
-        let platforms = [""]
-    #endif
+#if os(Linux)
+    let platforms = ["Linux", ""]
+#else
+    let platforms = [""]
+#endif
     for platform in platforms {
-        for version in versions {
-            let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(version).json"
-            if FileManager.default.fileExists(atPath: versionedFilename) {
-                return versionedFilename
-            }
+        let versionedFilename = "\(fixturesDirectory)\(platform)\(name)@\(buildingSwiftVersion).json"
+        if FileManager.default.fileExists(atPath: versionedFilename) {
+            return versionedFilename
         }
     }
     return "\(fixturesDirectory)\(name).json"
@@ -110,17 +97,11 @@ private func diff(original: String, modified: String) -> String {
 }
 
 private let buildingSwiftVersion: String = {
-    #if swift(>=4.2.1)
-        return "swift-4.2.1"
-    #elseif swift(>=4.2)
-        #if compiler(>=5.0)
-            return "swift-5.0"
-        #else
-            return "swift-4.2"
-        #endif
-    #else
-        fatalError("Swift 4.2 or later is required!")
-    #endif
+#if compiler(>=5.1)
+    return "swift-5.1"
+#else
+    return "swift-5.0"
+#endif
 }()
 
 class SwiftDocsTests: XCTestCase {
