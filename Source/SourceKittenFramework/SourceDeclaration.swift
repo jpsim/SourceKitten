@@ -47,7 +47,7 @@ public struct SourceDeclaration {
     public let availability: ClangAvailability?
 
     /// Range
-    public var range: NSRange {
+    public var range: ByteRange {
         return extent.start.range(toEnd: extent.end)
     }
 

@@ -20,7 +20,7 @@ public struct Line {
     /// UTF16 based range in entire String. Equivalent to Range<UTF16Index>
     public let range: NSRange
     /// Byte based range in entire String. Equivalent to Range<UTF8Index>
-    public let byteRange: NSRange
+    public let byteRange: ByteRange
 }
 
 /**
@@ -127,7 +127,7 @@ extension NSString {
                     index: index,
                     content: content,
                     range: NSRange(location: rangeStart, length: utf16Count + newlineLength),
-                    byteRange: NSRange(location: byteRangeStart, length: byteCount + newlineLength)
+                    byteRange: ByteRange(location: ByteOffset(byteRangeStart), length: byteCount + newlineLength)
                 )
                 lines.append(line)
 
@@ -144,7 +144,7 @@ extension NSString {
 
         - returns: UTF16 based offset of string.
         */
-        func location(fromByteOffset byteOffset: Int) -> Int {
+        func location(fromByteOffset byteOffset: ByteOffset) -> Int {
             if lines.isEmpty {
                 return 0
             }
@@ -161,13 +161,13 @@ extension NSString {
                 fatalError()
             }
             let diff = byteOffset - line.byteRange.location
-            if diff == 0 {
+            if diff == .zero {
                 return line.range.location
-            } else if line.byteRange.length == diff {
+            } else if line.byteRange.length == diff.value {
                 return NSMaxRange(line.range)
             }
             let utf8View = line.content.utf8
-            let endUTF8Index = utf8View.index(utf8View.startIndex, offsetBy: diff, limitedBy: utf8View.endIndex)!
+            let endUTF8Index = utf8View.index(utf8View.startIndex, offsetBy: diff.value, limitedBy: utf8View.endIndex)!
             let utf16Diff = line.content.utf16.distance(from: line.content.utf16.startIndex, to: endUTF8Index)
             return line.range.location + utf16Diff
         }
@@ -179,9 +179,9 @@ extension NSString {
 
         - returns: UTF8 based offset of string.
         */
-        func byteOffset(fromLocation location: Int) -> Int {
+        func byteOffset(fromLocation location: Int) -> ByteOffset {
             if lines.isEmpty {
-                return 0
+                return .zero
             }
             let index = lines.indexAssumingSorted { line in
                 if location < line.range.location {
@@ -199,7 +199,7 @@ extension NSString {
             if diff == 0 {
                 return line.byteRange.location
             } else if line.range.length == diff {
-                return NSMaxRange(line.byteRange)
+                return line.byteRange.maxRange
             }
             let utf16View = line.content.utf16
             let endUTF8index = utf16View.index(utf16View.startIndex, offsetBy: diff, limitedBy: utf16View.endIndex)!
@@ -241,7 +241,7 @@ extension NSString {
             }
         }
 
-        func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
+        func lineAndCharacter(forByteOffset offset: ByteOffset, expandingTabsToWidth tabWidth: Int) -> (line: Int, character: Int)? {
             let characterOffset = location(fromByteOffset: offset)
             return lineAndCharacter(forCharacterOffset: characterOffset, expandingTabsToWidth: tabWidth)
         }
@@ -280,7 +280,7 @@ extension NSString {
     - parameter offset: byte offset.
     - parameter tabWidth: the width in spaces to expand tabs to.
     */
-    public func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
+    public func lineAndCharacter(forByteOffset offset: ByteOffset, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
         return cacheContainer.lineAndCharacter(forByteOffset: offset, expandingTabsToWidth: tabWidth)
     }
 
@@ -327,7 +327,7 @@ extension NSString {
 
     - returns: An equivalent `NSRange`.
     */
-    public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
+    public func byteRangeToNSRange(start: ByteOffset, length: Int) -> NSRange? {
         if self.length == 0 { return nil }
         let utf16Start = cacheContainer.location(fromByteOffset: start)
         if length == 0 {
@@ -346,7 +346,7 @@ extension NSString {
 
     - returns: An equivalent `NSRange`.
     */
-    public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
+    public func NSRangeToByteRange(start: Int, length: Int) -> ByteRange? {
         let string = bridge()
 
         let utf16View = string.utf16
@@ -364,17 +364,17 @@ extension NSString {
         // 1. Avoid using associatedObject on NSTaggedPointerString (< 7 bytes) because that does
         //    not free associatedObject.
         // 2. Using cache is overkill for short string.
-        let byteOffset: Int
+        let byteOffset: ByteOffset
         if utf16View.count > 50 {
             byteOffset = cacheContainer.byteOffset(fromLocation: start)
         } else {
-            byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
+            byteOffset = ByteOffset(utf8View.distance(from: utf8View.startIndex, to: startUTF8Index))
         }
 
         // `cacheContainer` will hit for below, but that will be calculated from startUTF8Index
         // in most case.
         let length = utf8View.distance(from: startUTF8Index, to: endUTF8Index)
-        return NSRange(location: byteOffset, length: length)
+        return ByteRange(location: byteOffset, length: length)
     }
 
     /**
@@ -383,7 +383,7 @@ extension NSString {
     - parameter start: Starting byte offset.
     - parameter length: Length of bytes to include in range.
     */
-    public func substringWithByteRange(start: Int, length: Int) -> String? {
+    public func substringWithByteRange(start: ByteOffset, length: Int) -> String? {
         return byteRangeToNSRange(start: start, length: length).map(substring)
     }
 
@@ -394,7 +394,7 @@ extension NSString {
     - parameter start: Starting byte offset.
     - parameter length: Length of bytes to include in range.
     */
-    public func substringLinesWithByteRange(start: Int, length: Int) -> String? {
+    public func substringLinesWithByteRange(start: ByteOffset, length: Int) -> String? {
         return byteRangeToNSRange(start: start, length: length).map { range in
             var lineStart = 0, lineEnd = 0
             getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: range)
@@ -402,7 +402,7 @@ extension NSString {
         }
     }
 
-    public func substringStartingLinesWithByteRange(start: Int, length: Int) -> String? {
+    public func substringStartingLinesWithByteRange(start: ByteOffset, length: Int) -> String? {
         return byteRangeToNSRange(start: start, length: length).map { range in
             var lineStart = 0, lineEnd = 0
             getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: range)
@@ -416,7 +416,7 @@ extension NSString {
     - parameter start: Starting byte offset.
     - parameter length: Length of bytes to include in range.
     */
-    public func lineRangeWithByteRange(start: Int, length: Int) -> (start: Int, end: Int)? {
+    public func lineRangeWithByteRange(start: ByteOffset, length: Int) -> (start: Int, end: Int)? {
         return byteRangeToNSRange(start: start, length: length).flatMap { range in
             var numberOfLines = 0, index = 0, lineRangeStart = 0
             while index < self.length {
@@ -459,7 +459,7 @@ extension NSString {
     Returns a substring from a start and end SourceLocation.
     */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
-        return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
+        return substringWithByteRange(start: start.byteOffset, length: Int(end.offset - start.offset))
     }
 #endif
 }
@@ -504,7 +504,7 @@ extension String {
             }
             let location = SourceLocation(file: filename,
                 line: UInt32((self as NSString).lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
-                column: 1, offset: UInt32(markByteRange.location))
+                column: 1, offset: UInt32(markByteRange.location.value))
             return SourceDeclaration(type: .mark, location: location, extent: (location, location), name: markString,
                                      usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [],
                                      annotations: nil, swiftDeclaration: nil, swiftName: nil, availability: nil)
@@ -525,7 +525,7 @@ extension String {
     public func isTokenDocumentable(token: SyntaxToken) -> Bool {
         if token.type == SyntaxKind.keyword.rawValue {
             let keywordFunctions = ["subscript", "init", "deinit"]
-            return bridge().substringWithByteRange(start: token.offset, length: token.length)
+            return bridge().substringWithByteRange(start: ByteOffset(token.offset), length: token.length)
                 .map(keywordFunctions.contains) ?? false
         }
         return token.type == SyntaxKind.identifier.rawValue

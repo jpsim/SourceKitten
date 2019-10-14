@@ -19,8 +19,11 @@ public struct SourceLocation {
     public let column: UInt32
     public let offset: UInt32
 
-    public func range(toEnd end: SourceLocation) -> NSRange {
-        return NSRange(location: Int(offset), length: Int(end.offset - offset))
+    public var byteOffset: ByteOffset {
+        return ByteOffset(Int(offset))
+    }
+    public func range(toEnd end: SourceLocation) -> ByteRange {
+        return ByteRange(location: byteOffset, length: Int(end.offset - offset))
     }
 }
 

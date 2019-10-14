@@ -111,9 +111,9 @@ public final class File {
             guard newText != line.content else { continue }
 
             _ = try Request.replaceText(file: path,
-                                    offset: Int64(line.byteRange.location + offset),
-                                    length: Int64(line.byteRange.length - 1),
-                                    sourceText: newText).send()
+                                        offset: Int64(line.byteRange.location.value + offset),
+                                        length: Int64(line.byteRange.length - 1),
+                                        sourceText: newText).send()
             let oldLength = line.byteRange.length
             let newLength = newText.lengthOfBytes(using: .utf8)
             offset += 1 + newLength - oldLength
@@ -137,12 +137,12 @@ public final class File {
     */
     public func parseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         guard shouldParseDeclaration(dictionary),
-            let start = SwiftDocKey.getOffset(dictionary).map({ Int($0) }) else {
+            let start = SwiftDocKey.getOffset(dictionary).map({ ByteOffset(Int($0)) }) else {
             return nil
         }
         let substring: String?
         if let end = SwiftDocKey.getBodyOffset(dictionary) {
-            substring = contents.bridge().substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
+            substring = contents.bridge().substringStartingLinesWithByteRange(start: start, length: Int(end) - start.value)
         } else {
             substring = contents.bridge().substringLinesWithByteRange(start: start, length: 0)
         }
@@ -162,14 +162,14 @@ public final class File {
             return nil
         }
         return SwiftDocKey.getOffset(dictionary).flatMap { start in
-            let start = Int(start)
+            let start = ByteOffset(Int(start))
             let end = SwiftDocKey.getBodyOffset(dictionary).flatMap { bodyOffset in
                 return SwiftDocKey.getBodyLength(dictionary).map { bodyLength in
-                    return Int(bodyOffset + bodyLength)
+                    return ByteOffset(Int(bodyOffset + bodyLength))
                 }
             } ?? start
             let length = end - start
-            return contents.bridge().lineRangeWithByteRange(start: start, length: length)
+            return contents.bridge().lineRangeWithByteRange(start: start, length: length.value)
         }
     }
 
@@ -410,7 +410,7 @@ public final class File {
            let commentRange = finder.getRangeForDeclaration(atOffset: Int(offset)),
            case let start = commentRange.lowerBound,
            case let end = commentRange.upperBound,
-           let nsRange = contents.bridge().byteRangeToNSRange(start: start, length: end - start),
+           let nsRange = contents.bridge().byteRangeToNSRange(start: ByteOffset(start), length: end - start),
            let commentBody = contents.commentBody(range: nsRange) {
            dictionary[SwiftDocKey.documentationComment.rawValue] = commentBody
         }
