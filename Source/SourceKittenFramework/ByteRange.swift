@@ -50,19 +50,19 @@ extension ByteOffset: Comparable {
 }
 
 public extension ByteOffset {
-    static func +(lhs: ByteOffset, rhs: ByteOffset) -> ByteOffset {
+    static func + (lhs: ByteOffset, rhs: ByteOffset) -> ByteOffset {
         return ByteOffset(lhs.value + rhs.value)
     }
 
-    static func +(lhs: ByteOffset, rhs: Int) -> ByteOffset {
+    static func + (lhs: ByteOffset, rhs: Int) -> ByteOffset {
         return ByteOffset(lhs.value + rhs)
     }
 
-    static func -(lhs: ByteOffset, rhs: ByteOffset) -> ByteOffset {
+    static func - (lhs: ByteOffset, rhs: ByteOffset) -> ByteOffset {
         return ByteOffset(lhs.value - rhs.value)
     }
 
-    static func -(lhs: ByteOffset, rhs: Int) -> ByteOffset {
+    static func - (lhs: ByteOffset, rhs: Int) -> ByteOffset {
         return ByteOffset(lhs.value - rhs)
     }
 
