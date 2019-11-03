@@ -2,7 +2,7 @@
 //  ByteOffset.swift
 //  SourceKitten
 //
-//  Created by JP Simard on 2019-11-02.
+//  Created by Paul Taykalo on 2019-11-02.
 //  Copyright (c) 2019 SourceKitten. All rights reserved.
 //
 
