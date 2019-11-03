@@ -199,7 +199,7 @@ extension NSString {
             if diff == 0 {
                 return line.byteRange.location
             } else if line.range.length == diff {
-                return line.byteRange.maxRange
+                return line.byteRange.upperBound
             }
             let utf16View = line.content.utf16
             let endUTF8index = utf16View.index(utf16View.startIndex, offsetBy: diff, limitedBy: utf16View.endIndex)!
