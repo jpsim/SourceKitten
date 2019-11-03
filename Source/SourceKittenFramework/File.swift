@@ -142,9 +142,9 @@ public final class File {
         }
         let substring: String?
         if let end = SwiftDocKey.getBodyOffset(dictionary) {
-            substring = contents.bridge().substringStartingLinesWithByteRange(start: start, length: Int(end) - start.value)
+            substring = contents.bridge().substringStartingLinesWithByteRange(ByteRange(location: start, length: Int(end) - start.value))
         } else {
-            substring = contents.bridge().substringLinesWithByteRange(start: start, length: 0)
+            substring = contents.bridge().substringLinesWithByteRange(ByteRange(location: start, length: 0))
         }
         return substring?.removingCommonLeadingWhitespaceFromLines()
                          .trimmingWhitespaceAndOpeningCurlyBrace()
@@ -168,8 +168,8 @@ public final class File {
                     return ByteOffset(Int(bodyOffset + bodyLength))
                 }
             } ?? start
-            let length = end - start
-            return contents.bridge().lineRangeWithByteRange(start: start, length: length.value)
+            let byteRange = ByteRange(location: start, length: (end - start).value)
+            return contents.bridge().lineRangeWithByteRange(byteRange)
         }
     }
 
@@ -410,7 +410,9 @@ public final class File {
            let commentRange = finder.getRangeForDeclaration(atOffset: Int(offset)),
            case let start = commentRange.lowerBound,
            case let end = commentRange.upperBound,
-           let nsRange = contents.bridge().byteRangeToNSRange(start: ByteOffset(start), length: end - start),
+           let nsRange = contents.bridge().byteRangeToNSRange(
+               ByteRange(location: ByteOffset(start), length: end - start)
+           ),
            let commentBody = contents.commentBody(range: nsRange) {
            dictionary[SwiftDocKey.documentationComment.rawValue] = commentBody
         }

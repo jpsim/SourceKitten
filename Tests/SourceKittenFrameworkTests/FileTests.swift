@@ -24,7 +24,7 @@ class FileTests: XCTestCase {
     func testLinesRangesWhenUsingLineSeparator() {
         let file = File(contents: "// There're two U+2028 invisible characters after the colon:\u{2028}\u{2028}\nclass X {}")
         XCTAssertEqual(file.lines.count, 2)
-        XCTAssertEqual(file.lines.last?.byteRange, ByteRange(location: ByteOffset(67), length: 10))
+        XCTAssertEqual(file.lines.last?.byteRange, ByteRange(location: 67, length: 10))
     }
 }
 

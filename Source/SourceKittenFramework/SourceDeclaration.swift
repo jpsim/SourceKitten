@@ -19,11 +19,12 @@ public func insertMarks(declarations: [SourceDeclaration], limit: NSRange? = nil
         fatalError("can't extract marks without a file.")
     }
     let currentMarks = file.contents.pragmaMarks(filename: path, excludeRanges: declarations.map({
-        file.contents.byteRangeToNSRange(start: $0.range.location, length: $0.range.length) ?? NSRange()
+        file.contents.byteRangeToNSRange(ByteRange(location: $0.range.location, length: $0.range.length))
+            ?? NSRange()
     }), limit: limit)
     let newDeclarations: [SourceDeclaration] = declarations.map { declaration in
         var varDeclaration = declaration
-        let range = file.contents.byteRangeToNSRange(start: declaration.range.location, length: declaration.range.length)
+        let range = file.contents.byteRangeToNSRange(declaration.range)
         varDeclaration.children = insertMarks(declarations: declaration.children, limit: range)
         return varDeclaration
     }

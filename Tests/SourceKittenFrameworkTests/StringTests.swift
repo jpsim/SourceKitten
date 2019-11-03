@@ -146,32 +146,32 @@ class StringTests: XCTestCase {
 
     func testSubstringWithByteRange() {
         let string = "👨‍👩‍👧‍👧123"
-        XCTAssertEqual(string.bridge().substringWithByteRange(start: ByteOffset(0), length: 25)!, "👨‍👩‍👧‍👧")
-        XCTAssertEqual(string.bridge().substringWithByteRange(start: ByteOffset(25), length: 1)!, "1")
+        XCTAssertEqual(string.bridge().substringWithByteRange(ByteRange(location: 0, length: 25))!, "👨‍👩‍👧‍👧")
+        XCTAssertEqual(string.bridge().substringWithByteRange(ByteRange(location: 25, length: 1))!, "1")
     }
 
     func testSubstringLinesWithByteRange() {
         let string = "👨‍👩‍👧‍👧\n123"
-        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: ByteOffset(0), length: 0)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: ByteOffset(0), length: 25)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: ByteOffset(0), length: 26)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: ByteOffset(0), length: 27)!, string)
-        XCTAssertEqual(string.bridge().substringLinesWithByteRange(start: ByteOffset(27), length: 0)!, "123")
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(ByteRange(location: 0, length: 0))!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(ByteRange(location: 0, length: 25))!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(ByteRange(location: 0, length: 26))!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(ByteRange(location: 0, length: 27))!, string)
+        XCTAssertEqual(string.bridge().substringLinesWithByteRange(ByteRange(location: 27, length: 0))!, "123")
     }
 
     func testLineRangeWithByteRange() {
-        XCTAssert("".bridge().lineRangeWithByteRange(start: ByteOffset(0), length: 0) == nil)
+        XCTAssert("".bridge().lineRangeWithByteRange(ByteRange(location: 0, length: 0)) == nil)
         let string = "👨‍👩‍👧‍👧\n123"
-        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: ByteOffset(0), length: 0), (1, 1))
-        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: ByteOffset(0), length: 25), (1, 1))
-        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: ByteOffset(0), length: 26), (1, 2))
-        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: ByteOffset(0), length: 27), (1, 2))
-        XCTAssertEqual(string.bridge().lineRangeWithByteRange(start: ByteOffset(27), length: 0), (2, 2))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(ByteRange(location: 0, length: 0)), (1, 1))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(ByteRange(location: 0, length: 25)), (1, 1))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(ByteRange(location: 0, length: 26)), (1, 2))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(ByteRange(location: 0, length: 27)), (1, 2))
+        XCTAssertEqual(string.bridge().lineRangeWithByteRange(ByteRange(location: 27, length: 0)), (2, 2))
     }
 
     func testLineAndCharacterForByteOffset() {
         let string = "public typealias 🔳 = QRCode"
-        XCTAssertEqual(string.bridge().lineAndCharacter(forByteOffset: ByteOffset(17)), (1, 18))
+        XCTAssertEqual(string.bridge().lineAndCharacter(forByteOffset: 17), (1, 18))
     }
 
     func testByteRangeToNSRange() {
@@ -191,7 +191,7 @@ class StringTests: XCTestCase {
                 }
             }
             """
-        XCTAssertEqual(string.bridge().byteRangeToNSRange(start: ByteOffset(115), length: 41), NSRange(location: 115, length: 38))
+        XCTAssertEqual(string.bridge().byteRangeToNSRange(ByteRange(location: 115, length: 41)), NSRange(location: 115, length: 38))
     }
 
     func testLineAndCharacterForCharacterOffset() {

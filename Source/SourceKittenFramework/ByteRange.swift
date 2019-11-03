@@ -25,6 +25,6 @@ public struct ByteRange: Equatable {
 
     /// The range's upper bound.
     var upperBound: ByteOffset {
-        return location + length
+        return ByteOffset(location.value + length)
     }
 }

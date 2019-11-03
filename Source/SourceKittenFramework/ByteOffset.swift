@@ -55,21 +55,3 @@ extension ByteOffset: AdditiveArithmetic {
         lhs.value += rhs.value
     }
 }
-
-public extension ByteOffset {
-    /// Adds an integer value to a byte offset.
-    ///
-    /// - parameter lhs: Byte offset.
-    /// - parameter rhs: Value to add.
-    static func + (lhs: ByteOffset, rhs: Int) -> ByteOffset {
-        return ByteOffset(lhs.value + rhs)
-    }
-
-    /// Subtracts an integer value from a byte offset.
-    ///
-    /// - parameter lhs: Byte offset.
-    /// - parameter rhs: Value to subtract.
-    static func - (lhs: ByteOffset, rhs: Int) -> ByteOffset {
-        return ByteOffset(lhs.value - rhs)
-    }
-}
