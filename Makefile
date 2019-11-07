@@ -83,7 +83,7 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.0 swift test --parallel
+	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.1 swift test --parallel
 
 docker_htop:
 	docker run -it --rm --pid=container:sourcekitten terencewestphal/htop || reset

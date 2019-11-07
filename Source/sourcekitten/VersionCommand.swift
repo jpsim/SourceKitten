@@ -7,7 +7,6 @@
 //
 
 import Commandant
-import Result
 import SourceKittenFramework
 
 struct VersionCommand: CommandProtocol {

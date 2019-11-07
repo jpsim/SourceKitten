@@ -6,7 +6,6 @@
 //
 
 import Commandant
-import Result
 import SourceKittenFramework
 
 struct ModuleInfoCommand: CommandProtocol {
