@@ -8,7 +8,6 @@
 
 import Commandant
 import Foundation
-import Result
 import SourceKittenFramework
 
 struct CompleteCommand: CommandProtocol {
@@ -55,7 +54,7 @@ struct CompleteCommand: CommandProtocol {
         var args: [String]
         if options.spmModule.isEmpty {
             args = ["-c", path] + options.compilerargs
-            if args.firstIndex(of: "-sdk") == nil {
+            if args.contains("-sdk") {
                 args.append(contentsOf: ["-sdk", sdkPath()])
             }
         } else {
