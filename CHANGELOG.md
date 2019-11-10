@@ -10,7 +10,8 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix crash when SourceKit returns out of bounds string byte offsets.  
+  [JP Simard](https://github.com/jpsim)
 
 ## 0.27.0
 
