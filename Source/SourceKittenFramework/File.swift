@@ -33,26 +33,31 @@ public final class File {
         set {
             _contentsQueue.sync {
                 _contents = newValue
-                _linesQueue.sync {
-                    _lines = nil
+                _stringViewQueue.sync {
+                    _stringView = nil
                 }
             }
         }
     }
-    /// File lines.
-    public var lines: [Line] {
-        _linesQueue.sync {
-            if _lines == nil {
-                _lines = contents.bridge().lines()
+
+    public var stringView: StringView {
+        _stringViewQueue.sync {
+            if _stringView == nil {
+                _stringView = StringView(contents)
             }
         }
-        return _lines!
+        return _stringView!
+    }
+
+    public var lines: [Line] {
+        return stringView.lines
     }
 
     private var _contents: String?
     private var _lines: [Line]?
+    private var _stringView: StringView?
     private let _contentsQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.contents")
-    private let _linesQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.lines")
+    private let _stringViewQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.stringView")
 
     /**
     Failable initializer by path. Fails if file contents could not be read as a UTF8 string.
@@ -142,9 +147,9 @@ public final class File {
         }
         let substring: String?
         if let end = SwiftDocKey.getBodyOffset(dictionary) {
-            substring = contents.bridge().substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
+            substring = stringView.substringStartingLinesWithByteRange(start: start, length: Int(end) - start)
         } else {
-            substring = contents.bridge().substringLinesWithByteRange(start: start, length: 0)
+            substring = stringView.substringLinesWithByteRange(start: start, length: 0)
         }
         return substring?.removingCommonLeadingWhitespaceFromLines()
                          .trimmingWhitespaceAndOpeningCurlyBrace()
@@ -169,7 +174,7 @@ public final class File {
                 }
             } ?? start
             let length = end - start
-            return contents.bridge().lineRangeWithByteRange(start: start, length: length)
+            return stringView.lineRangeWithByteRange(start: start, length: length)
         }
     }
 
@@ -410,8 +415,8 @@ public final class File {
            let commentRange = finder.getRangeForDeclaration(atOffset: Int(offset)),
            case let start = commentRange.lowerBound,
            case let end = commentRange.upperBound,
-           let nsRange = contents.bridge().byteRangeToNSRange(start: start, length: end - start),
-           let commentBody = contents.commentBody(range: nsRange) {
+           let nsRange = stringView.byteRangeToNSRange(start: start, length: end - start),
+            let commentBody = contents.commentBody(range: nsRange) {
            dictionary[SwiftDocKey.documentationComment.rawValue] = commentBody
         }
 
