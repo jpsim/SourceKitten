@@ -416,7 +416,7 @@ public final class File {
            case let start = commentRange.lowerBound,
            case let end = commentRange.upperBound,
            let nsRange = stringView.byteRangeToNSRange(start: start, length: end - start),
-            let commentBody = contents.commentBody(range: nsRange) {
+           let commentBody = contents.commentBody(range: nsRange) {
            dictionary[SwiftDocKey.documentationComment.rawValue] = commentBody
         }
 

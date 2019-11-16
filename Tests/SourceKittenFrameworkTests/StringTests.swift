@@ -142,7 +142,9 @@ class StringTests: XCTestCase {
     func testGenerateDocumentedTokenOffsetsEmpty() throws {
         let fileContents = "// Comment\nlet global = 0"
         let syntaxMap = try SyntaxMap(file: File(contents: fileContents))
-        XCTAssertEqual(fileContents.stringView().documentedTokenOffsets(syntaxMap: syntaxMap).count, 0, "shouldn't detect any documented token offsets when there are none")
+        XCTAssertEqual(fileContents.stringView().documentedTokenOffsets(syntaxMap: syntaxMap).count,
+                       0,
+                       "shouldn't detect any documented token offsets when there are none")
     }
 
     func testSubstringWithByteRange() {
@@ -288,4 +290,3 @@ private extension String {
     }
 
 }
-

@@ -17,7 +17,6 @@ private let commentLinePrefixCharacterSet: CharacterSet = {
     return characterSet
 }()
 
-
 // swiftlint:disable:next line_length
 // https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html#//apple_ref/swift/grammar/line-break
 private let newlinesCharacterSet = CharacterSet(charactersIn: "\u{000A}\u{000D}")
@@ -204,7 +203,27 @@ extension Array where Element == String {
                     .components(separatedBy: "\n")
                     .map { $0.unescaped }
                     .expandingResponseFiles
-                } ?? [arg]
+            } ?? [arg]
         }
     }
+}
+
+extension String {
+
+    /// Returns a copy of the string by trimming whitespace and the opening curly brace (`{`).
+    internal func trimmingWhitespaceAndOpeningCurlyBrace() -> String? {
+        var unwantedSet = CharacterSet.whitespacesAndNewlines
+        unwantedSet.insert(charactersIn: "{")
+        return trimmingCharacters(in: unwantedSet)
+    }
+
+    /// Returns the byte offset of the section of the string following the last dot ".", or 0 if no dots.
+    internal func byteOffsetOfInnerTypeName() -> Int64 {
+        guard let range = range(of: ".", options: .backwards),
+            let utf8pos = index(after: range.lowerBound).samePosition(in: utf8) else {
+                return 0
+        }
+        return Int64(utf8.distance(from: utf8.startIndex, to: utf8pos))
+    }
+
 }

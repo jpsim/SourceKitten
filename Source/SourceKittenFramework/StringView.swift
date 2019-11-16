@@ -51,7 +51,6 @@ private let newlinesCharacterSet = CharacterSet(charactersIn: "\u{000A}\u{000D}"
 /// ByteRange to NSRange and NSRange to ByteRange operations
 public struct StringView {
 
-
     /// Reference to the NSString of represented string
     public let nsString: NSString
 
@@ -149,7 +148,6 @@ public struct StringView {
     public func substringWithByteRange(start: Int, length: Int) -> String? {
         return byteRangeToNSRange(start: start, length: length).map(nsString.substring)
     }
-
 
     /// Returns a substictg, started at UTF-16 location
     /// - Parameter location: UTF-16 location
@@ -369,107 +367,5 @@ public struct StringView {
             return (line: line.index, character: character + 1)
         }
     }
-
-}
-
-public extension StringView {
-
-    /**
-     Returns whether or not the `token` can be documented. Either because it is a
-     `SyntaxKind.Identifier` or because it is a function treated as a `SyntaxKind.Keyword`:
-
-     - `subscript`
-     - `init`
-     - `deinit`
-
-     - parameter token: Token to process.
-     */
-    func isTokenDocumentable(token: SyntaxToken) -> Bool {
-        if token.type == SyntaxKind.keyword.rawValue {
-            let keywordFunctions = ["subscript", "init", "deinit"]
-            return substringWithByteRange(start: token.offset, length: token.length)
-                .map(keywordFunctions.contains) ?? false
-        }
-        return token.type == SyntaxKind.identifier.rawValue
-    }
-
-    #if !os(Linux)
-    /// Returns the `#pragma mark`s in the string.
-    /// Just the content; no leading dashes or leading `#pragma mark`.
-    func pragmaMarks(filename: String, excludeRanges: [NSRange], limit: NSRange?) -> [SourceDeclaration] {
-        let regex = try! NSRegularExpression(pattern: "(#pragma\\smark|@name)[ -]*([^\\n]+)", options: []) // Safe to force try
-        let range: NSRange
-        if let limit = limit {
-            range = NSRange(location: limit.location, length: min(utf16View.count - limit.location, limit.length))
-        } else {
-            range = NSRange(location: 0, length: utf16View.count)
-        }
-        let matches = regex.matches(in: string, options: [], range: range)
-
-        return matches.compactMap { match in
-            let markRange = match.range(at: 2)
-            for excludedRange in excludeRanges {
-                if NSIntersectionRange(excludedRange, markRange).length > 0 {
-                    return nil
-                }
-            }
-            let markString = nsString.substring(with: markRange).trimmingCharacters(in: .whitespaces)
-            if markString.isEmpty {
-                return nil
-            }
-            guard let markByteRange = self.NSRangeToByteRange(start: markRange.location, length: markRange.length) else {
-                return nil
-            }
-            let location = SourceLocation(file: filename,
-                                          line: UInt32(lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
-                                          column: 1, offset: UInt32(markByteRange.location))
-            return SourceDeclaration(type: .mark, location: location, extent: (location, location), name: markString,
-                                     usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [],
-                                     annotations: nil, swiftDeclaration: nil, swiftName: nil, availability: nil)
-        }
-    }
-    #endif
-
-    /**
-     Find integer offsets of documented Swift tokens in self.
-
-     - parameter syntaxMap: Syntax Map returned from SourceKit editor.open request.
-
-     - returns: Array of documented token offsets.
-     */
-    func documentedTokenOffsets(syntaxMap: SyntaxMap) -> [Int] {
-        let documentableOffsets = syntaxMap.tokens.filter(isTokenDocumentable).map {
-            $0.offset
-        }
-
-        let regex = try! NSRegularExpression(pattern: "(///.*\\n|\\*/\\n)", options: []) // Safe to force try
-        let range = NSRange(location: 0, length: string.utf16.count)
-        let matches = regex.matches(in: string, options: [], range: range)
-
-        return matches.compactMap { match in
-            documentableOffsets.first { $0 >= match.range.location }
-        }
-    }
-}
-
-
-extension String {
-
-    /// Returns a copy of the string by trimming whitespace and the opening curly brace (`{`).
-    internal func trimmingWhitespaceAndOpeningCurlyBrace() -> String? {
-        var unwantedSet = CharacterSet.whitespacesAndNewlines
-        unwantedSet.insert(charactersIn: "{")
-        return trimmingCharacters(in: unwantedSet)
-    }
-
-    /// Returns the byte offset of the section of the string following the last dot ".", or 0 if no dots.
-    internal func byteOffsetOfInnerTypeName() -> Int64 {
-        guard let range = range(of: ".", options: .backwards),
-            let utf8pos = index(after: range.lowerBound).samePosition(in: utf8) else {
-                return 0
-        }
-        return Int64(utf8.distance(from: utf8.startIndex, to: utf8pos))
-    }
-
 
 }
