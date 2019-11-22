@@ -48,6 +48,10 @@ class ClangTranslationUnitTests: XCTestCase {
     func testRealmObjectiveCDocs() {
         compare(clangFixture: "Realm/Realm")
     }
+
+    func testCodeFormattingObjectiveCDocs() {
+        compare(clangFixture: "CodeFormatting")
+    }
 }
 
 #endif

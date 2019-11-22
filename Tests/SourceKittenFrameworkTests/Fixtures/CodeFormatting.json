@@ -1,0 +1,111 @@
+[
+  {
+    "CodeFormatting.h" : {
+      "key.diagnostic_stage" : "",
+      "key.substructure" : [
+        {
+          "key.always_deprecated" : false,
+          "key.always_unavailable" : false,
+          "key.deprecation_message" : "",
+          "key.doc.column" : 12,
+          "key.doc.comment" : "Tests for miscellaneous code formatting options in header docs.",
+          "key.doc.file" : "CodeFormatting.h",
+          "key.doc.full_as_xml" : "",
+          "key.doc.line" : 6,
+          "key.filepath" : "CodeFormatting.h",
+          "key.kind" : "sourcekitten.source.lang.objc.decl.class",
+          "key.name" : "CodeFormatting",
+          "key.parsed_declaration" : "@interface CodeFormatting : NSObject",
+          "key.parsed_scope.end" : 36,
+          "key.parsed_scope.start" : 6,
+          "key.substructure" : [
+            {
+              "key.always_deprecated" : false,
+              "key.always_unavailable" : false,
+              "key.deprecation_message" : "",
+              "key.doc.column" : 9,
+              "key.doc.comment" : "Basic `CodeFormatting` usage, in the middle of a sentence.",
+              "key.doc.file" : "CodeFormatting.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : 11,
+              "key.filepath" : "CodeFormatting.h",
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.name" : "-codeWordBasic",
+              "key.parsed_declaration" : "- (void)codeWordBasic;",
+              "key.parsed_scope.end" : 11,
+              "key.parsed_scope.start" : 11,
+              "key.swift_declaration" : "func codeWordBasic()",
+              "key.swift_name" : "codeWordBasic()",
+              "key.unavailable_message" : "",
+              "key.usr" : "c:objc(cs)CodeFormatting(im)codeWordBasic"
+            },
+            {
+              "key.always_deprecated" : false,
+              "key.always_unavailable" : false,
+              "key.deprecation_message" : "",
+              "key.doc.column" : 9,
+              "key.doc.comment" : "Tests what happens with code word at the end of a line: `CodeFormatting`",
+              "key.doc.file" : "CodeFormatting.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : 16,
+              "key.filepath" : "CodeFormatting.h",
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.name" : "-codeWordEndOfLine",
+              "key.parsed_declaration" : "- (void)codeWordEndOfLine;",
+              "key.parsed_scope.end" : 16,
+              "key.parsed_scope.start" : 16,
+              "key.swift_declaration" : "func codeWordEndOfLine()",
+              "key.swift_name" : "codeWordEndOfLine()",
+              "key.unavailable_message" : "",
+              "key.usr" : "c:objc(cs)CodeFormatting(im)codeWordEndOfLine"
+            },
+            {
+              "key.always_deprecated" : false,
+              "key.always_unavailable" : false,
+              "key.deprecation_message" : "",
+              "key.doc.column" : 9,
+              "key.doc.comment" : "Tests a basic code block:\n\n```\n-[CodeFormatting codeBlockBasic]\n```",
+              "key.doc.file" : "CodeFormatting.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : 25,
+              "key.filepath" : "CodeFormatting.h",
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.name" : "-codeBlockBasic",
+              "key.parsed_declaration" : "- (void)codeBlockBasic;",
+              "key.parsed_scope.end" : 25,
+              "key.parsed_scope.start" : 25,
+              "key.swift_declaration" : "func codeBlockBasic()",
+              "key.swift_name" : "codeBlockBasic()",
+              "key.unavailable_message" : "",
+              "key.usr" : "c:objc(cs)CodeFormatting(im)codeBlockBasic"
+            },
+            {
+              "key.always_deprecated" : false,
+              "key.always_unavailable" : false,
+              "key.deprecation_message" : "",
+              "key.doc.column" : 9,
+              "key.doc.comment" : "Tests an inline ```-[CodeFormatting codeBlockBasic]``` code block.\n\nPer Xcode's behavior when formatting Obj-C doc comments, this doesn't actually result in\nthe code block being _displayed_ inline, but writing it as inline is potentially common enough\nto justify testing the results of this format.",
+              "key.doc.file" : "CodeFormatting.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : 34,
+              "key.filepath" : "CodeFormatting.h",
+              "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
+              "key.name" : "-codeBlockInline",
+              "key.parsed_declaration" : "- (void)codeBlockInline;",
+              "key.parsed_scope.end" : 34,
+              "key.parsed_scope.start" : 34,
+              "key.swift_declaration" : "func codeBlockInline()",
+              "key.swift_name" : "codeBlockInline()",
+              "key.unavailable_message" : "",
+              "key.usr" : "c:objc(cs)CodeFormatting(im)codeBlockInline"
+            }
+          ],
+          "key.swift_declaration" : "class CodeFormatting : NSObject",
+          "key.swift_name" : "CodeFormatting",
+          "key.unavailable_message" : "",
+          "key.usr" : "c:objc(cs)CodeFormatting"
+        }
+      ]
+    }
+  }
+]
