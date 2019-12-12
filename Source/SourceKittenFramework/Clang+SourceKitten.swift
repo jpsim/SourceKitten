@@ -263,7 +263,8 @@ extension CXComment {
                 let inlineCommand = child.commandName().map { "@" + $0 }
                 return paragraphString + (inlineCommand ?? "")
             }
-            fatalError("not text: \(child.kind())")
+            // Inline child content like `CXComment_HTMLStartTag` can be ignored b/c subsequent children will contain the html.
+            return paragraphString
         }
         return [.para(paragraphString.removingCommonLeadingWhitespaceFromLines(), kindString)]
     }
