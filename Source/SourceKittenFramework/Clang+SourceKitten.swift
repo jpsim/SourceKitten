@@ -185,12 +185,19 @@ extension CXCursor {
             "@return ": "- returns: ",
             "@warning ": "- warning: ",
             "@see ": "- see: ",
-            "@note ": "- note: "
+            "@note ": "- note: ",
+            "@code": "```",
+            "@endcode": "```"
         ]
+
         var commentBody = rawComment?.commentBody()
         for (original, replacement) in replacements {
             commentBody = commentBody?.replacingOccurrences(of: original, with: replacement)
         }
+
+    // Replace "@c word" with "`word`"
+    commentBody = commentBody?.replacingOccurrences(of: "@c\\s+(\\S+)", with: "`$1`", options: .regularExpression)
+
         return commentBody
     }
 
