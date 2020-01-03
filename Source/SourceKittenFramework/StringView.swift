@@ -1,17 +1,5 @@
 import Foundation
 
-/// Representation of line in String
-public struct Line {
-    /// origin = 0
-    public let index: Int
-    /// Content
-    public let content: String
-    /// UTF16 based range in entire String. Equivalent to Range<UTF16Index>
-    public let range: NSRange
-    /// Byte based range in entire String. Equivalent to Range<UTF8Index>
-    public let byteRange: NSRange
-}
-
 private extension RandomAccessCollection {
     /// Binary search assuming the collection is already sorted.
     ///
@@ -47,7 +35,7 @@ private extension RandomAccessCollection {
 // https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html#//apple_ref/swift/grammar/line-break
 private let newlinesCharacterSet = CharacterSet(charactersIn: "\u{000A}\u{000D}")
 
-/// Strucutre that precalculates lines for the specified string and then uses this information for
+/// Structure that precalculates lines for the specified string and then uses this information for
 /// ByteRange to NSRange and NSRange to ByteRange operations
 public struct StringView {
 
@@ -57,7 +45,7 @@ public struct StringView {
     /// Full range of nsString
     public let range: NSRange
 
-    /// Reference to the String of the represented strin
+    /// Reference to the String of the represented string
     public let string: String
 
     /// All lines of the original string
@@ -124,20 +112,19 @@ public struct StringView {
         self.lines = lines
     }
 
-    /// Returns substring in with UTF-16 range specified
-    /// - Parameter range: UTF16 Range
+    /// Returns substring in with UTF-16 range specified.
+    ///
+    /// - parameter range: UTF16 range.
     public func substring(with range: NSRange) -> String {
         return nsString.substring(with: range)
     }
 
-    #if !os(Linux)
     /**
      Returns a substring from a start and end SourceLocation.
      */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
         return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
     }
-    #endif
 
     /**
      Returns a substring with the provided byte range.
@@ -149,8 +136,9 @@ public struct StringView {
         return byteRangeToNSRange(start: start, length: length).map(nsString.substring)
     }
 
-    /// Returns a substictg, started at UTF-16 location
-    /// - Parameter location: UTF-16 location
+    /// Returns a substictg, started at UTF-16 location.
+    ///
+    /// - parameter location: UTF-16 location.
     func substring(from location: Int) -> String {
         return nsString.substring(from: location)
     }
@@ -228,21 +216,8 @@ public struct StringView {
                 return nil
         }
 
-        // TODO: Use cache?
-        // Don't using `CacheContainer` if string is short.
-        // There are reason for it:
-        // 1. Using cache is overkill for short string.
-        let byteOffset: Int
-        if utf16View.count > 50 {
-            byteOffset = self.byteOffset(fromLocation: start)
-        } else {
-            byteOffset = utf8View.distance(from: utf8View.startIndex, to: startUTF8Index)
-        }
-
-        // `cacheContainer` will hit for below, but that will be calculated from startUTF8Index
-        // in most case.
         let length = utf8View.distance(from: startUTF8Index, to: endUTF8Index)
-        return NSRange(location: byteOffset, length: length)
+        return NSRange(location: self.byteOffset(fromLocation: start), length: length)
     }
 
     public func NSRangeToByteRange(_ range: NSRange) -> NSRange? {

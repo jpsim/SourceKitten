@@ -1,7 +1,6 @@
 import Foundation
 
 public extension StringView {
-
     /**
      Returns whether or not the `token` can be documented. Either because it is a
      `SyntaxKind.Identifier` or because it is a function treated as a `SyntaxKind.Keyword`:
@@ -21,7 +20,7 @@ public extension StringView {
         return token.type == SyntaxKind.identifier.rawValue
     }
 
-    #if !os(Linux)
+#if !os(Linux)
     /// Returns the `#pragma mark`s in the string.
     /// Just the content; no leading dashes or leading `#pragma mark`.
     func pragmaMarks(filename: String, excludeRanges: [NSRange], limit: NSRange?) -> [SourceDeclaration] {
@@ -56,7 +55,7 @@ public extension StringView {
                                      annotations: nil, swiftDeclaration: nil, swiftName: nil, availability: nil)
         }
     }
-    #endif
+#endif
 
     /**
      Find integer offsets of documented Swift tokens in self.
