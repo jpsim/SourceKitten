@@ -195,8 +195,8 @@ extension CXCursor {
             commentBody = commentBody?.replacingOccurrences(of: original, with: replacement)
         }
 
-    // Replace "@c word" with "`word`"
-    commentBody = commentBody?.replacingOccurrences(of: "@c\\s+(\\S+)", with: "`$1`", options: .regularExpression)
+        // Replace "@c word" with "`word`"
+        commentBody = commentBody?.replacingOccurrences(of: "@c\\s+(\\S+)", with: "`$1`", options: .regularExpression)
 
         return commentBody
     }

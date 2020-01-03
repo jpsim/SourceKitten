@@ -11,6 +11,11 @@
   [#409](https://github.com/jpsim/SourceKitten/issues/409)
   [realm/jazzy#976](https://github.com/realm/jazzy/issues/976)
 
+* Support code formatting in ObjC doc comments with `@c`, `@code` and
+  `@endcode`.  
+  [Bryce Pauken](https://github.com/brycepauken)
+  [#631](https://github.com/jpsim/SourceKitten/issues/631)
+
 ##### Bug Fixes
 
 * Fix crash when SourceKit returns out of bounds string byte offsets.  
