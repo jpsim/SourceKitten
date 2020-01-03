@@ -119,12 +119,16 @@ public struct StringView {
         return nsString.substring(with: range)
     }
 
+#if !os(Linux)
+
     /**
      Returns a substring from a start and end SourceLocation.
      */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
         return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
     }
+
+#endif
 
     /**
      Returns a substring with the provided byte range.
