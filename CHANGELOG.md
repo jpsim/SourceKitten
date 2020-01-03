@@ -6,7 +6,10 @@
 
 ##### Enhancements
 
-* None.
+* Allow inline html tags in ObjC doc comments.  
+  [Chris Williams](https://github.com/ultramiraculous)
+  [#409](https://github.com/jpsim/SourceKitten/issues/409)
+  [realm/jazzy#976](https://github.com/realm/jazzy/issues/976)
 
 ##### Bug Fixes
 
