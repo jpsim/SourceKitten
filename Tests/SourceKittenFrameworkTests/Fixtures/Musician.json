@@ -16,7 +16,7 @@
           "key.kind" : "sourcekitten.source.lang.objc.decl.class",
           "key.name" : "JAZMusician",
           "key.parsed_declaration" : "@interface JAZMusician : NSObject",
-          "key.parsed_scope.end" : 51,
+          "key.parsed_scope.end" : 62,
           "key.parsed_scope.start" : 12,
           "key.substructure" : [
             {
@@ -113,14 +113,54 @@
               "key.usr" : "c:objc(cs)JAZMusician(py)birthyear"
             },
             {
+              "key.always_deprecated" : false,
+              "key.always_unavailable" : false,
+              "key.deprecation_message" : "",
+              "key.doc.column" : 40,
+              "key.doc.comment" : "<a href=\"https:\/\/artist.music\/list\">Link to an musician's fan page.<\/a>",
+              "key.doc.file" : "Musician.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : 38,
+              "key.filepath" : "Musician.h",
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.name" : "musicianURL",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSURL *musicianURL;",
+              "key.parsed_scope.end" : 38,
+              "key.parsed_scope.start" : 38,
+              "key.swift_declaration" : "var musicianURL: URL! { get }",
+              "key.swift_name" : "musicianURL",
+              "key.unavailable_message" : "",
+              "key.usr" : "c:objc(cs)JAZMusician(py)musicianURL"
+            },
+            {
+              "key.always_deprecated" : false,
+              "key.always_unavailable" : false,
+              "key.deprecation_message" : "",
+              "key.doc.column" : 40,
+              "key.doc.comment" : "Direct link to a musician's <b>band<\/b> page.",
+              "key.doc.file" : "Musician.h",
+              "key.doc.full_as_xml" : "",
+              "key.doc.line" : 43,
+              "key.filepath" : "Musician.h",
+              "key.kind" : "sourcekitten.source.lang.objc.decl.property",
+              "key.name" : "musicianBand",
+              "key.parsed_declaration" : "@property (readonly, nonatomic) NSURL *musicianBand;",
+              "key.parsed_scope.end" : 43,
+              "key.parsed_scope.start" : 43,
+              "key.swift_declaration" : "var musicianBand: URL! { get }",
+              "key.swift_name" : "musicianBand",
+              "key.unavailable_message" : "",
+              "key.usr" : "c:objc(cs)JAZMusician(py)musicianBand"
+            },
+            {
               "key.doc.column" : 1,
               "key.doc.file" : "Musician.h",
-              "key.doc.line" : 35,
+              "key.doc.line" : 46,
               "key.filepath" : "Musician.h",
               "key.kind" : "sourcekitten.source.lang.objc.mark",
               "key.name" : "Initializers-hyphenated",
-              "key.parsed_scope.end" : 35,
-              "key.parsed_scope.start" : 35
+              "key.parsed_scope.end" : 46,
+              "key.parsed_scope.start" : 46
             },
             {
               "key.always_deprecated" : false,
@@ -130,7 +170,7 @@
               "key.doc.comment" : "Initialize a JAZMusician.\nDon't forget to have a name and a birthyear.\n\n- warning: Jazz can be addicting.\nPlease be careful out there.\n\n- parameter: name      The name of the musician.\n- parameter: birthyear The year the musician was born.\n\n- returns:          An initialized JAZMusician instance.",
               "key.doc.file" : "Musician.h",
               "key.doc.full_as_xml" : "",
-              "key.doc.line" : 49,
+              "key.doc.line" : 60,
               "key.doc.parameters" : [
                 {
                   "discussion" : [
@@ -161,8 +201,8 @@
               "key.kind" : "sourcekitten.source.lang.objc.decl.method.instance",
               "key.name" : "-initWithName:birthyear:",
               "key.parsed_declaration" : "- (instancetype)initWithName:(NSString *)name birthyear:(NSUInteger)birthyear;",
-              "key.parsed_scope.end" : 49,
-              "key.parsed_scope.start" : 49,
+              "key.parsed_scope.end" : 60,
+              "key.parsed_scope.start" : 60,
               "key.swift_declaration" : "init!(name: String!, year birthyear: UInt)",
               "key.swift_name" : "init(name:year:)",
               "key.unavailable_message" : "",

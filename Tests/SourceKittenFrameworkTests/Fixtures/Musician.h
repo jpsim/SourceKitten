@@ -32,6 +32,17 @@
  */
 @property (nonatomic, readonly) NSUInteger birthyear NS_SWIFT_NAME(year);
 
+/**
+ <a href="https://artist.music/list">Link to an musician's fan page.</a>
+*/
+@property (nonatomic, readonly) NSURL *musicianURL;
+
+/**
+ Direct link to a musician's <b>band</b> page.
+*/
+@property (nonatomic, readonly) NSURL *musicianBand;
+
+
 #pragma mark - Initializers-hyphenated
 
 /**
