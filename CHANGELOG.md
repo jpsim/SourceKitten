@@ -2,7 +2,9 @@
 
 ##### Breaking
 
-* None.
+* Replace many of the public extensions on String, and its internal
+  caching mechanism `CacheContainer`, with a new `StringView` type.  
+  [Paul Taykalo](https://github.com/PaulTaykalo)
 
 ##### Enhancements
 

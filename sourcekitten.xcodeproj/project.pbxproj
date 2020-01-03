@@ -32,6 +32,7 @@
 		6CCFCE8C1CFECFF1003239EB /* Yams.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8F935B342288C05A00971070 /* File+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F935B332288C05A00971070 /* File+Hashable.swift */; };
+		8FB50D0623BFF035004F0F2B /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB50D0523BFF035004F0F2B /* Line.swift */; };
 		BCF9238E228AD94E0008C684 /* CursorInfoUSRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9238D228AD94E0008C684 /* CursorInfoUSRTests.swift */; };
 		C236E84B1DFF5120003807D2 /* YamlRequestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */; };
 		CDB51F33203E2899007563AE /* SwiftDocKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */; };
@@ -41,6 +42,8 @@
 		D0DB09A419EA354200234B16 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB09A319EA354200234B16 /* SyntaxTests.swift */; };
 		D0E7B65319E9C6AD00EDBA4D /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; };
 		D0E7B65619E9C76900EDBA4D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1211B19E87861005E4BAA /* main.swift */; };
+		E4F7AC9E2380A5C00018D335 /* StringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7AC9C2380A5C00018D335 /* StringView.swift */; };
+		E4F7AC9F2380A5C00018D335 /* StringView+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7AC9D2380A5C00018D335 /* StringView+SourceKitten.swift */; };
 		E805A0481B55CBAF00EA654A /* SourceKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805A0471B55CBAF00EA654A /* SourceKitTests.swift */; };
 		E805A04A1B560FCA00EA654A /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805A0491B560FCA00EA654A /* FileTests.swift */; };
 		E80678051CF2749300AFC816 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80678041CF2749300AFC816 /* Yams.framework */; };
@@ -164,6 +167,7 @@
 		6CC1639B202AA3AE0086C459 /* UID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UID.swift; sourceTree = "<group>"; };
 		6CC381621ECACB50000C6F81 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8F935B332288C05A00971070 /* File+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Hashable.swift"; sourceTree = "<group>"; };
+		8FB50D0523BFF035004F0F2B /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		BCF9238D228AD94E0008C684 /* CursorInfoUSRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorInfoUSRTests.swift; sourceTree = "<group>"; };
 		C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YamlRequestCommand.swift; sourceTree = "<group>"; };
 		CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDocKeyTests.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 		D0D1217D19E87B05005E4BAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0DB09A319EA354200234B16 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0E7B63219E9C64500EDBA4D /* sourcekitten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sourcekitten.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4F7AC9C2380A5C00018D335 /* StringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringView.swift; sourceTree = "<group>"; };
+		E4F7AC9D2380A5C00018D335 /* StringView+SourceKitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StringView+SourceKitten.swift"; sourceTree = "<group>"; };
 		E801EA111DB8604100AD28E6 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = SOURCE_ROOT; };
 		E805A0471B55CBAF00EA654A /* SourceKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceKitTests.swift; sourceTree = "<group>"; };
 		E805A0491B560FCA00EA654A /* FileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
@@ -438,6 +444,7 @@
 				557592AE22E542CA0028FED4 /* CursorInfo+Parsing.swift */,
 				E852418E1A5F4FB3007099FB /* Dictionary+Merge.swift */,
 				E806D2921BE058D600D1BE41 /* Documentation.swift */,
+				0225685622F2E06E0068A7AC /* Exec.swift */,
 				E84763691A5A0651000EAE22 /* File.swift */,
 				8F935B332288C05A00971070 /* File+Hashable.swift */,
 				3F56EACF1BAB251C006433D0 /* JSONOutput.swift */,
@@ -447,6 +454,7 @@
 				6C4CF6471C79802A008532C5 /* library_wrapper_Index.swift */,
 				6C4CF5721C78B47F008532C5 /* library_wrapper_sourcekitd.swift */,
 				6C4CF5741C78B47F008532C5 /* library_wrapper.swift */,
+				8FB50D0523BFF035004F0F2B /* Line.swift */,
 				E82882531DAEEDD1002E0564 /* LinuxCompatibility.swift */,
 				E8241CA41A5E01A10047687E /* Module.swift */,
 				E877D9261B5693E70095BB2B /* ObjCDeclarationKind.swift */,
@@ -459,6 +467,8 @@
 				E806D28C1BE0589B00D1BE41 /* SourceLocation.swift */,
 				2ED279151C61E2A100084460 /* StatementKind.swift */,
 				E8AE53C61A5B5FCA0092D24A /* String+SourceKitten.swift */,
+				E4F7AC9C2380A5C00018D335 /* StringView.swift */,
+				E4F7AC9D2380A5C00018D335 /* StringView+SourceKitten.swift */,
 				E834740E1A593B5B00532B9A /* Structure.swift */,
 				182F384F20753FAD0054F063 /* SwiftDeclarationAttributeKind.swift */,
 				E89291A81A5B800300D91568 /* SwiftDeclarationKind.swift */,
@@ -473,7 +483,6 @@
 				6CC381621ECACB50000C6F81 /* Version.swift */,
 				E8A9B88F1B56CB5500CD17D4 /* Xcode.swift */,
 				141E31562221C9870037E200 /* XcodeBuildSetting.swift */,
-				0225685622F2E06E0068A7AC /* Exec.swift */,
 			);
 			name = SourceKittenFramework;
 			path = Source/SourceKittenFramework;
@@ -719,11 +728,14 @@
 				E806D2931BE058D600D1BE41 /* Documentation.swift in Sources */,
 				6CC1639D202AA3AF0086C459 /* UID.swift in Sources */,
 				3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */,
+				E4F7AC9E2380A5C00018D335 /* StringView.swift in Sources */,
 				2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */,
 				6C4CF6551C798086008532C5 /* library_wrapper_Documentation.swift in Sources */,
 				E8D4743B1A648F290011A49C /* ClangTranslationUnit.swift in Sources */,
+				8FB50D0623BFF035004F0F2B /* Line.swift in Sources */,
 				E8EE34BF1B9A502F00947605 /* CodeCompletionItem.swift in Sources */,
 				E852418F1A5F4FB3007099FB /* Dictionary+Merge.swift in Sources */,
+				E4F7AC9F2380A5C00018D335 /* StringView+SourceKitten.swift in Sources */,
 				6CC381641ECACB6F000C6F81 /* Version.swift in Sources */,
 				E847636A1A5A0651000EAE22 /* File.swift in Sources */,
 				6C4CF5771C78B47F008532C5 /* library_wrapper.swift in Sources */,
