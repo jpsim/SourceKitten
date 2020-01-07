@@ -19,7 +19,7 @@ class CursorInfoUSRTests: XCTestCase {
         let info = toNSDictionary(
             try Request.cursorInfoUSR(
                 file: path,
-                usr: "s:7DocInfo22multiLineCommentedFuncyyF",
+                usr: "s:7DocInfo16DocumentedStructV",
                 arguments: ["-sdk", sdkPath(), path],
                 cancelOnSubsequentRequest: false
             ).send()
