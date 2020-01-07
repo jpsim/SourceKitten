@@ -1,3 +1,6 @@
+# Available Xcode versions can be found here:
+# https://github.com/Microsoft/azure-pipelines-image-generation/blob/master/images/macos/macos-10.14-Readme.md#xcode
+
 trigger:
 - master
 
@@ -41,6 +44,8 @@ jobs:
         DEVELOPER_DIR: /Applications/Xcode_10.3.app
       xcode11:
         DEVELOPER_DIR: /Applications/Xcode_11.app
+      xcode113:
+        DEVELOPER_DIR: /Applications/Xcode_11.3.app
   steps:
     - script: git submodule update --init --recursive
       displayName: Update git submodules
@@ -68,7 +73,7 @@ jobs:
   pool:
     vmImage: 'macOS 10.14'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_11.app
+    DEVELOPER_DIR: /Applications/Xcode_11.3.app
   steps:
     - script: bundle install --path vendor/bundle
       displayName: bundle install
@@ -81,7 +86,7 @@ jobs:
   pool:
     vmImage: 'macOS 10.14'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_11.app
+    DEVELOPER_DIR: /Applications/Xcode_11.3.app
   steps:
     - script: swift build
       displayName: swift build
