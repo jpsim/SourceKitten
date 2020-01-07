@@ -62,7 +62,7 @@ func compareJSONString(withFixtureNamed name: String,
 
 private func compareDocs(withFixtureNamed name: String, file: StaticString = #file, line: UInt = #line) {
     let swiftFilePath = fixturesDirectory + name + ".swift"
-    let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", swiftFilePath])!
+    let docs = SwiftDocs(file: File(path: swiftFilePath)!, arguments: ["-j4", "-sdk", sdkPath(), swiftFilePath])!
     compareJSONString(withFixtureNamed: name, jsonString: docs, file: file, line: line)
 }
 
@@ -154,7 +154,7 @@ class SwiftDocsTests: XCTestCase {
     func testParseExternalReference() {
         let firstPath = fixturesDirectory + "ExternalRef1.swift"
         let secondPath = fixturesDirectory + "ExternalRef2.swift"
-        let docs = SwiftDocs(file: File(path: firstPath)!, arguments: [firstPath, secondPath])!
+        let docs = SwiftDocs(file: File(path: firstPath)!, arguments: ["-sdk", sdkPath(), firstPath, secondPath])!
         XCTAssertFalse(docs.docsDictionary.isEmpty)
     }
 }

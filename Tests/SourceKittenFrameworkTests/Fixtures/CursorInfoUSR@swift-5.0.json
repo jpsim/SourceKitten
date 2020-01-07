@@ -1,13 +1,13 @@
 {
-  "key.annotated_decl" : "<Declaration>func multiLineCommentedFunc()<\/Declaration>",
-  "key.doc.full_as_xml" : "<Function file=\"DocInfo.swift\" line=\"10\" column=\"6\"><Name>multiLineCommentedFunc()<\/Name><USR>s:7DocInfo22multiLineCommentedFuncyyF<\/USR><Declaration>func multiLineCommentedFunc()<\/Declaration><CommentParts><Abstract><Para>Multiple line commented function.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+  "key.annotated_decl" : "<Declaration>struct DocumentedStruct<\/Declaration>",
+  "key.doc.full_as_xml" : "<Class file=\"DocInfo.swift\" line=\"28\" column=\"8\"><Name>DocumentedStruct<\/Name><USR>s:7DocInfo16DocumentedStructV<\/USR><Declaration>struct DocumentedStruct<\/Declaration><CommentParts><Abstract><Para>A documented struct<\/Para><\/Abstract><\/CommentParts><\/Class>",
   "key.filepath" : "DocInfo.swift",
-  "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>multiLineCommentedFunc<\/decl.name>()<\/decl.function.free>",
-  "key.kind" : "source.lang.swift.decl.function.free",
-  "key.length" : 24,
-  "key.name" : "multiLineCommentedFunc()",
-  "key.offset" : 123,
-  "key.typename" : "() -> ()",
-  "key.typeusr" : "$syycD",
-  "key.usr" : "s:7DocInfo22multiLineCommentedFuncyyF"
+  "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>DocumentedStruct<\/decl.name><\/decl.struct>",
+  "key.kind" : "source.lang.swift.decl.struct",
+  "key.length" : 16,
+  "key.name" : "DocumentedStruct",
+  "key.offset" : 416,
+  "key.typename" : "DocumentedStruct.Type",
+  "key.typeusr" : "$s7DocInfo16DocumentedStructVmD",
+  "key.usr" : "s:7DocInfo16DocumentedStructV"
 }

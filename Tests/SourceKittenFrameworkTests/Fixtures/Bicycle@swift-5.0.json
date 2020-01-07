@@ -6,6 +6,7 @@
     "key.substructure" : [
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
+        "key.annotated_decl" : "<Declaration>class NSString : <Type usr=\"c:objc(cs)NSObject\">NSObject<\/Type>, <Type usr=\"c:objc(pl)NSCopying\">NSCopying<\/Type>, <Type usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/Type>, <Type usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/Type><\/Declaration>",
         "key.attributes" : [
           {
             "key.attribute" : "source.decl.attribute.public",
@@ -23,12 +24,22 @@
         "key.doc.comment" : "Deprecated extension.",
         "key.doclength" : 26,
         "key.docoffset" : 19,
+        "key.filepath" : "",
+        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>NSString<\/decl.name> : <ref.class usr=\"c:objc(cs)NSObject\">NSObject<\/ref.class>, <ref.protocol usr=\"c:objc(pl)NSCopying\">NSCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/ref.protocol><\/decl.class>",
+        "key.is_system" : true,
         "key.kind" : "source.lang.swift.decl.extension",
         "key.length" : 21,
+        "key.modulename" : "Foundation.NSString",
         "key.name" : "NSString",
         "key.namelength" : 8,
         "key.nameoffset" : 151,
-        "key.offset" : 141
+        "key.offset" : 141,
+        "key.parsed_declaration" : "public extension NSString",
+        "key.parsed_scope.end" : 5,
+        "key.parsed_scope.start" : 5,
+        "key.typename" : "NSString.Type",
+        "key.typeusr" : "$sSo8NSStringCmD",
+        "key.usr" : "c:objc(cs)NSString"
       },
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
