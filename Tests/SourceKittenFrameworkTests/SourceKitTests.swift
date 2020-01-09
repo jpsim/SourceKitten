@@ -247,6 +247,15 @@ class SourceKitTests: XCTestCase {
 
         compareJSONString(withFixtureNamed: "BicycleSyntax", jsonString: syntaxJSON)
     }
+
+    func testCompilerVersion() {
+#if compiler(>=5.1)
+        XCTAssertTrue(SwiftVersion.current >= SwiftVersion.fiveDotOne)
+#else
+        XCTAssertTrue(SwiftVersion.current < SwiftVersion.fiveDotOne)
+        XCTAssertTrue(SwiftVersion.current == SwiftVersion.beforeFiveDotOne)
+#endif
+    }
 }
 
 extension SourceKitTests {
@@ -258,7 +267,8 @@ extension SourceKitTests {
             ("testSwiftDeclarationAttributeKind", testSwiftDeclarationAttributeKind),
             ("testIndex", testIndex),
             ("testYamlRequest", testYamlRequest),
-            ("testSyntaxTree", testSyntaxTree)
+            ("testSyntaxTree", testSyntaxTree),
+            ("testCompilerVersion", testCompilerVersion)
         ]
     }
 }

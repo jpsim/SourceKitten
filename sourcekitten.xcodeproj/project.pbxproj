@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0225685722F2E06E0068A7AC /* Exec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0225685622F2E06E0068A7AC /* Exec.swift */; };
+		02472DEE23C790F1004E0AEC /* SwiftVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02472DEC23C78D93004E0AEC /* SwiftVersion.swift */; };
 		141E31572221C9870037E200 /* XcodeBuildSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141E31562221C9870037E200 /* XcodeBuildSetting.swift */; };
 		182F385020753FAD0054F063 /* SwiftDeclarationAttributeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182F384F20753FAD0054F063 /* SwiftDeclarationAttributeKind.swift */; };
 		2C55B3331BEB3CAB002E8C6B /* Commandant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; };
@@ -143,6 +144,7 @@
 
 /* Begin PBXFileReference section */
 		0225685622F2E06E0068A7AC /* Exec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exec.swift; sourceTree = "<group>"; };
+		02472DEC23C78D93004E0AEC /* SwiftVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftVersion.swift; sourceTree = "<group>"; };
 		141E31562221C9870037E200 /* XcodeBuildSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeBuildSetting.swift; sourceTree = "<group>"; };
 		182F384F20753FAD0054F063 /* SwiftDeclarationAttributeKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDeclarationAttributeKind.swift; sourceTree = "<group>"; };
 		2ED279151C61E2A100084460 /* StatementKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatementKind.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				6CC1639B202AA3AE0086C459 /* UID.swift */,
 				55DB6A9622DEABD000666C6A /* UIDRepresentable.swift */,
 				6CC381621ECACB50000C6F81 /* Version.swift */,
+				02472DEC23C78D93004E0AEC /* SwiftVersion.swift */,
 				E8A9B88F1B56CB5500CD17D4 /* Xcode.swift */,
 				141E31562221C9870037E200 /* XcodeBuildSetting.swift */,
 			);
@@ -756,6 +759,7 @@
 				E8A9B8921B56D1B100CD17D4 /* SourceDeclaration.swift in Sources */,
 				E806D28D1BE0589B00D1BE41 /* SourceLocation.swift in Sources */,
 				E8AE53C71A5B5FCA0092D24A /* String+SourceKitten.swift in Sources */,
+				02472DEE23C790F1004E0AEC /* SwiftVersion.swift in Sources */,
 				E834740F1A593B5B00532B9A /* Structure.swift in Sources */,
 				E89291A91A5B800300D91568 /* SwiftDeclarationKind.swift in Sources */,
 				182F385020753FAD0054F063 /* SwiftDeclarationAttributeKind.swift in Sources */,
