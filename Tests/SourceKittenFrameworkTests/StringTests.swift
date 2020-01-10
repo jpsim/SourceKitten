@@ -127,6 +127,33 @@ class StringTests: XCTestCase {
         XCTAssertEqual(parsedDecl, expectedDecl, "should preserve declaration alignment")
     }
 
+    func testParseUnbodiedMultiLineDeclaration() {
+        let dict: [String: SourceKitRepresentable] = [
+            "key.kind": "source.lang.swift.decl.function.method.instance",
+            "key.offset": Int64(17),
+            "key.length": Int64(33),
+            "key.annotated_decl": "",
+            "key.typename": "(Int, Int) -> ()"
+        ]
+        let contents = """
+                       protocol P {
+                           func f(a: Int,
+                                  b: Int)
+                       }
+                       """
+        let file = File(contents: contents)
+        let parsedDecl = file.parseDeclaration(dict)!
+#if compiler(>=5.1)
+        let expectedDecl = """
+                           func f(a: Int,
+                                  b: Int)
+                           """
+#else
+        let expectedDecl = "func f(a: Int,"
+#endif
+        XCTAssertEqual(parsedDecl, expectedDecl, "should extract the declaration")
+    }
+
     func testGenerateDocumentedTokenOffsets() throws {
         let fileContents = "/// Comment\nlet global = 0"
         let syntaxMap = try SyntaxMap(file: File(contents: fileContents))
@@ -268,6 +295,7 @@ extension StringTests {
             ("testIsTokenDocumentable", testIsTokenDocumentable),
             ("testParseDeclaration", testParseDeclaration),
             ("testParseMultiLineDeclaration", testParseMultiLineDeclaration),
+            ("testParseUnbodiedMultiLineDeclaration", testParseUnbodiedMultiLineDeclaration),
             ("testGenerateDocumentedTokenOffsets", testGenerateDocumentedTokenOffsets),
             ("testDocumentedTokenOffsetsWithSubscript", testDocumentedTokenOffsetsWithSubscript),
             ("testGenerateDocumentedTokenOffsetsEmpty", testGenerateDocumentedTokenOffsetsEmpty),

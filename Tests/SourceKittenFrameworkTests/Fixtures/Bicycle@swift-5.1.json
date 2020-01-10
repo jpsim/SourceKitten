@@ -6,7 +6,7 @@
     "key.substructure" : [
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
-        "key.annotated_decl" : "<Declaration>class NSString : <Type usr=\"s:10Foundation8NSObjectC\">NSObject<\/Type>, <Type usr=\"s:10Foundation9NSCopyingP\">NSCopying<\/Type>, <Type usr=\"s:10Foundation16NSMutableCopyingP\">NSMutableCopying<\/Type>, <Type usr=\"s:10Foundation14NSSecureCodingP\">NSSecureCoding<\/Type>, <Type usr=\"s:10Foundation8NSCodingP\">NSCoding<\/Type><\/Declaration>",
+        "key.annotated_decl" : "<Declaration>class NSString : <Type usr=\"c:objc(cs)NSObject\">NSObject<\/Type>, <Type usr=\"c:objc(pl)NSCopying\">NSCopying<\/Type>, <Type usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/Type>, <Type usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/Type><\/Declaration>",
         "key.attributes" : [
           {
             "key.attribute" : "source.decl.attribute.public",
@@ -24,11 +24,12 @@
         "key.doc.comment" : "Deprecated extension.",
         "key.doclength" : 26,
         "key.docoffset" : 19,
-        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>NSString<\/decl.name> : <ref.class usr=\"s:10Foundation8NSObjectC\">NSObject<\/ref.class>, <ref.protocol usr=\"s:10Foundation9NSCopyingP\">NSCopying<\/ref.protocol>, <ref.protocol usr=\"s:10Foundation16NSMutableCopyingP\">NSMutableCopying<\/ref.protocol>, <ref.protocol usr=\"s:10Foundation14NSSecureCodingP\">NSSecureCoding<\/ref.protocol>, <ref.protocol usr=\"s:10Foundation8NSCodingP\">NSCoding<\/ref.protocol><\/decl.class>",
+        "key.filepath" : "",
+        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>NSString<\/decl.name> : <ref.class usr=\"c:objc(cs)NSObject\">NSObject<\/ref.class>, <ref.protocol usr=\"c:objc(pl)NSCopying\">NSCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/ref.protocol><\/decl.class>",
         "key.is_system" : true,
         "key.kind" : "source.lang.swift.decl.extension",
         "key.length" : 21,
-        "key.modulename" : "Foundation",
+        "key.modulename" : "Foundation.NSString",
         "key.name" : "NSString",
         "key.namelength" : 8,
         "key.nameoffset" : 151,
@@ -37,8 +38,8 @@
         "key.parsed_scope.end" : 5,
         "key.parsed_scope.start" : 5,
         "key.typename" : "NSString.Type",
-        "key.typeusr" : "$s10Foundation8NSStringCmD",
-        "key.usr" : "s:10Foundation8NSStringC"
+        "key.typeusr" : "$sSo8NSStringCmD",
+        "key.usr" : "c:objc(cs)NSString"
       },
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -666,7 +667,7 @@
             "key.parsed_scope.end" : 80,
             "key.parsed_scope.start" : 72,
             "key.substructure" : [
-              
+
             ],
             "key.typename" : "(Bicycle.Type) -> (Bicycle.Style, Bicycle.Gearing, Bicycle.Handlebar, Int) -> Bicycle",
             "key.typeusr" : "$s5style7gearing9handlebar9frameSize7BicycleAECAF5StyleO_AF7GearingOAF9HandlebarOSitcD",
@@ -709,7 +710,7 @@
             "key.parsed_scope.end" : 92,
             "key.parsed_scope.start" : 87,
             "key.substructure" : [
-              
+
             ],
             "key.typename" : "(Bicycle) -> (Double) -> ()",
             "key.typeusr" : "$s8distanceySd_tcD",

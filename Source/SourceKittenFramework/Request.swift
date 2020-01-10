@@ -167,6 +167,8 @@ public enum Request {
     /// Gets the serialized representation of the file's SwiftSyntax tree. JSON string if `byteTree` is false,
     /// binary data otherwise.
     case syntaxTree(file: File, byteTree: Bool)
+    /// Get the version triple of the compiler that SourceKit is using
+    case compilerVersion
 
     fileprivate var sourcekitObject: SourceKitObject {
         switch self {
@@ -300,6 +302,8 @@ public enum Request {
                         UID("source.syntaxtree.serialization.format.\(serializationFormat)")
                 ]
             }
+        case .compilerVersion:
+            return [ "key.request": UID("source.request.compiler_version") ]
         }
     }
 

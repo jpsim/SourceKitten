@@ -10,7 +10,10 @@
 
 ##### Bug Fixes
 
-* None.
+* Improve `key.parsed_declaration` in Swift 5.1+ for declarations on
+  multiple lines without a body.  
+  [John Fairhurst](https://github.com/johnfairh)
+  [#633](https://github.com/jpsim/SourceKitten/issues/633)
 
 ## 0.28.0
 
