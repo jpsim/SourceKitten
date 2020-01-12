@@ -151,7 +151,7 @@ public final class File {
             substring = stringView.substringStartingLinesWithByteRange(range)
         } else if let length = SwiftDocKey.getLength(dictionary),
             SwiftVersion.current >= .fiveDotOne {
-            let range =  ByteRange(location: start, length: length)
+            let range = ByteRange(location: start, length: length)
             substring = stringView.substringStartingLinesWithByteRange(range)
         } else {
             substring = stringView.substringLinesWithByteRange(ByteRange(location: start, length: 0))
@@ -345,7 +345,8 @@ public final class File {
 
     - returns: Parent with doc inserted if successful.
     */
-    private func insert(doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable], offset: ByteCount) -> [String: SourceKitRepresentable]? {
+    private func insert(doc: [String: SourceKitRepresentable], parent: [String: SourceKitRepresentable],
+                        offset: ByteCount) -> [String: SourceKitRepresentable]? {
         var parent = parent
         if shouldInsert(parent: parent, offset: offset) {
             var substructure = SwiftDocKey.getSubstructure(parent)!
