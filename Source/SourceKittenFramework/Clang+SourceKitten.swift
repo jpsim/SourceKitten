@@ -220,13 +220,11 @@ extension CXCursor {
 
         guard let usr = usr(),
             let findUSR = try? Request.findUSR(file: swiftUUID, usr: usr).send(),
-            let usrOffset = findUSR[SwiftDocKey.offset.rawValue] as? Int64 else {
+            let usrOffset = SwiftDocKey.getOffset(findUSR) else {
                 return (nil, nil)
         }
 
-        let cursorInfoRequest = Request.cursorInfo(file: swiftUUID, offset: ByteOffset(usrOffset),
-                                                   arguments: compilerArguments)
-        guard let cursorInfo = try? cursorInfoRequest.send() else {
+        guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send() else {
             return (nil, nil)
         }
 

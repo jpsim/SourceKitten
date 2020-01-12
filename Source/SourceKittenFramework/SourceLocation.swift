@@ -20,7 +20,7 @@ public struct SourceLocation: Comparable {
     public let offset: UInt32
 
     public func range(toEnd end: SourceLocation) -> ByteRange {
-        return ByteRange(location: ByteOffset(Int(offset)), length: Int(end.offset - offset))
+        return ByteRange(location: ByteCount(Int(offset)), length: ByteCount(Int(end.offset - offset)))
     }
 
     /// A [strict total order](http://en.wikipedia.org/wiki/Total_order#Strict_total_order)

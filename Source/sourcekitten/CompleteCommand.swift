@@ -65,7 +65,7 @@ struct CompleteCommand: CommandProtocol {
         }
 
         let request = Request.codeCompletionRequest(file: path, contents: contents,
-                                                    offset: ByteOffset(options.offset),
+                                                    offset: ByteCount(options.offset),
                                                     arguments: args)
         do {
             print(CodeCompletionItem.parse(response: try request.send()))

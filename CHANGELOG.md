@@ -7,6 +7,7 @@
   This will minimize the risk of accidentally using a byte-based offset
   in character-based contexts.  
   [Paul Taykalo](https://github.com/PaulTaykalo)
+  [JP Simard](https://github.com/jpsim)
 
 ##### Enhancements
 

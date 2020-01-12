@@ -7,7 +7,7 @@
 //
 
 /// Type that maps potentially documented declaration offsets to its closest parent offset.
-public typealias OffsetMap = [ByteOffset: Int]
+public typealias OffsetMap = [ByteCount: ByteCount]
 
 /// File methods to generate and manipulate OffsetMap's.
 extension File {
@@ -23,13 +23,13 @@ extension File {
     - returns: OffsetMap containing offset locations at which there are declarations that likely
                have documentation comments, but haven't been documented by SourceKitten yet.
     */
-    public func makeOffsetMap(documentedTokenOffsets: [ByteOffset], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
+    public func makeOffsetMap(documentedTokenOffsets: [ByteCount], dictionary: [String: SourceKitRepresentable]) -> OffsetMap {
         var offsetMap = OffsetMap()
         for offset in documentedTokenOffsets {
             offsetMap[offset] = 0
         }
         offsetMap = mapOffsets(dictionary, offsetMap: offsetMap)
-        let alreadyDocumentedOffsets = offsetMap.filter({ $0.0.value == $0.1 }).map { $0.0 }
+        let alreadyDocumentedOffsets = offsetMap.filter({ $0.0 == $0.1 }).map { $0.0 }
         for alreadyDocumentedOffset in alreadyDocumentedOffsets {
             offsetMap.removeValue(forKey: alreadyDocumentedOffset)
         }
@@ -51,10 +51,9 @@ extension File {
         if let rangeStart = SwiftDocKey.getNameOffset(dictionary),
            let rangeLength = SwiftDocKey.getNameLength(dictionary) {
             let bodyLength = SwiftDocKey.getBodyLength(dictionary) ?? 0
-            let rangeMax = Int(rangeStart + rangeLength + bodyLength)
-            let rangeStart = Int(rangeStart)
+            let rangeMax = rangeStart + rangeLength + bodyLength
             let offsetsInRange = offsetMap.keys.filter {
-                $0.value >= rangeStart && $0.value <= rangeMax
+                $0 >= rangeStart && $0 <= rangeMax
             }
             for offset in offsetsInRange {
                 offsetMap[offset] = rangeStart

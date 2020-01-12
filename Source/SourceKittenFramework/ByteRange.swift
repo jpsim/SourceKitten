@@ -8,30 +8,30 @@
 
 import Foundation
 
-/// Structure that represents a string range in bytes
+/// Structure that represents a string range in bytes.
 public struct ByteRange: Equatable {
     /// The starting location of the range.
-    public let location: ByteOffset
+    public let location: ByteCount
 
     /// The length of the range.
-    public let length: Int
+    public let length: ByteCount
 
     /// Creates a byte range from a location and a length.
     ///
     /// - parameter location: The starting location of the range.
     /// - parameter length:   The length of the range.
-    public init(location: ByteOffset, length: Int) {
+    public init(location: ByteCount, length: ByteCount) {
         self.location = location
         self.length = length
     }
 
     /// The range's upper bound.
-    var upperBound: ByteOffset {
-        return ByteOffset(location.value + length)
+    var upperBound: ByteCount {
+        return location + length
     }
 
     /// The range's lower bound.
-    var lowerBound: ByteOffset {
+    var lowerBound: ByteCount {
         return location
     }
 }

@@ -28,7 +28,8 @@ public struct SyntaxMap {
     public init(data: [SourceKitRepresentable]) {
         tokens = data.map { item in
             let dict = item as! [String: SourceKitRepresentable]
-            return SyntaxToken(type: dict["key.kind"] as! String, offset: ByteOffset(dict["key.offset"] as! Int64), length: Int(dict["key.length"] as! Int64))
+            return SyntaxToken(type: dict["key.kind"] as! String, offset: ByteCount(dict["key.offset"] as! Int64),
+                               length: ByteCount(dict["key.length"] as! Int64))
         }
     }
 
@@ -69,7 +70,7 @@ extension SyntaxMap {
         return docCommentBlocks.compactMap { ranges in
             ranges.first.flatMap { first in
                 ranges.last.flatMap { last -> ByteRange? in
-                    ByteRange(location: first.offset, length: last.offset.value + last.length - first.offset.value)
+                    ByteRange(location: first.offset, length: last.offset + last.length - first.offset)
                 }
             }
         }
@@ -85,7 +86,7 @@ extension SyntaxMap {
         /// Remaining doc comments that have not been assigned or skipped
         private var ranges: [ByteRange]
         /// The most recent file offset requested
-        private var previousOffset: ByteOffset?
+        private var previousOffset: ByteCount?
 
         /// Create a new doc comment finder from a `SyntaxMap`.
         internal init(syntaxMap: SyntaxMap) {
@@ -94,7 +95,7 @@ extension SyntaxMap {
         }
 
         /// Get the byte range of the declaration's doc comment, or nil if none.
-        internal func getRangeForDeclaration(atOffset offset: ByteOffset) -> ByteRange? {
+        internal func getRangeForDeclaration(atOffset offset: ByteCount) -> ByteRange? {
             if let previousOffset = previousOffset {
                 guard offset > previousOffset else { return nil }
             }

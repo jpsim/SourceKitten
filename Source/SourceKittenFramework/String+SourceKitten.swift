@@ -209,7 +209,6 @@ extension Array where Element == String {
 }
 
 extension String {
-
     /// Returns a copy of the string by trimming whitespace and the opening curly brace (`{`).
     internal func trimmingWhitespaceAndOpeningCurlyBrace() -> String? {
         var unwantedSet = CharacterSet.whitespacesAndNewlines
@@ -218,12 +217,9 @@ extension String {
     }
 
     /// Returns the byte offset of the section of the string following the last dot ".", or 0 if no dots.
-    internal func byteOffsetOfInnerTypeName() -> Int64 {
-        guard let range = range(of: ".", options: .backwards),
-            let utf8pos = index(after: range.lowerBound).samePosition(in: utf8) else {
-                return 0
-        }
-        return Int64(utf8.distance(from: utf8.startIndex, to: utf8pos))
+    internal func byteOffsetOfInnerTypeName() -> ByteCount {
+        return range(of: ".", options: .backwards).map { range in
+            return ByteCount(self[...range.lowerBound].lengthOfBytes(using: .utf8))
+        } ?? 0
     }
-
 }

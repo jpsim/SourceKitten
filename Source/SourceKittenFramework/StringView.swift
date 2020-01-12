@@ -71,7 +71,7 @@ public struct StringView {
         utf16View = string.utf16
 
         var utf16CountSoFar = 0
-        var bytesSoFar = 0
+        var bytesSoFar: ByteCount = 0
         var lines = [Line]()
         let lineContents = string.components(separatedBy: newlinesCharacterSet)
         // Be compatible with `NSString.getLineStart(_:end:contentsEnd:forRange:)`
@@ -93,7 +93,7 @@ public struct StringView {
             utf16CountSoFar += utf16Count
 
             let byteRangeStart = bytesSoFar
-            let byteCount = content.lengthOfBytes(using: .utf8)
+            let byteCount = ByteCount(content.lengthOfBytes(using: .utf8))
             bytesSoFar += byteCount
 
             let newlineLength = index != lineContents.count ? 1 : 0 // FIXME: assumes \n
@@ -102,12 +102,12 @@ public struct StringView {
                 index: index,
                 content: content,
                 range: NSRange(location: rangeStart, length: utf16Count + newlineLength),
-                byteRange: ByteRange(location: ByteOffset(byteRangeStart), length: byteCount + newlineLength)
+                byteRange: ByteRange(location: byteRangeStart, length: byteCount + ByteCount(newlineLength))
             )
             lines.append(line)
 
             utf16CountSoFar += newlineLength
-            bytesSoFar += newlineLength
+            bytesSoFar += ByteCount(newlineLength)
         }
         self.lines = lines
     }
@@ -125,7 +125,9 @@ public struct StringView {
      Returns a substring from a start and end SourceLocation.
      */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
-        return substringWithByteRange(ByteRange(location: ByteOffset(Int(start.offset)), length: Int(end.offset - start.offset)))
+        let byteRange = ByteRange(location: ByteCount(Int(start.offset)),
+                                  length: ByteCount(Int(end.offset - start.offset)))
+        return substringWithByteRange(byteRange)
     }
 
 #endif
@@ -173,7 +175,7 @@ public struct StringView {
 
      - returns: UTF8 based offset of string.
      */
-    public func byteOffset(fromLocation location: Int) -> ByteOffset {
+    public func byteOffset(fromLocation location: Int) -> ByteCount {
         if lines.isEmpty {
             return 0
         }
@@ -199,7 +201,7 @@ public struct StringView {
         let endUTF8index = utf16View.index(utf16View.startIndex, offsetBy: diff, limitedBy: utf16View.endIndex)!
             .samePosition(in: line.content.utf8)!
         let byteDiff = line.content.utf8.distance(from: line.content.utf8.startIndex, to: endUTF8index)
-        return ByteOffset(line.byteRange.location.value + byteDiff)
+        return ByteCount(line.byteRange.location.value + byteDiff)
     }
 
     /**
@@ -221,7 +223,7 @@ public struct StringView {
         }
 
         let length = utf8View.distance(from: startUTF8Index, to: endUTF8Index)
-        return ByteRange(location: byteOffset(fromLocation: start), length: length)
+        return ByteRange(location: byteOffset(fromLocation: start), length: ByteCount(length))
     }
 
     public func NSRangeToByteRange(_ range: NSRange) -> ByteRange? {
@@ -235,7 +237,7 @@ public struct StringView {
 
      - returns: UTF16 based offset of string.
      */
-    public func location(fromByteOffset byteOffset: ByteOffset) -> Int {
+    public func location(fromByteOffset byteOffset: ByteCount) -> Int {
         if lines.isEmpty {
             return 0
         }
@@ -254,7 +256,7 @@ public struct StringView {
         let diff = byteOffset - line.byteRange.location
         if diff == 0 {
             return line.range.location
-        } else if ByteOffset(line.byteRange.length) == diff {
+        } else if line.byteRange.length == diff {
             return NSMaxRange(line.range)
         }
         let utf8View = line.content.utf8
@@ -309,7 +311,7 @@ public struct StringView {
         }
     }
 
-    public func lineAndCharacter(forByteOffset offset: ByteOffset, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
+    public func lineAndCharacter(forByteOffset offset: ByteCount, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
         let characterOffset = location(fromByteOffset: offset)
         return lineAndCharacter(forCharacterOffset: characterOffset, expandingTabsToWidth: tabWidth)
     }

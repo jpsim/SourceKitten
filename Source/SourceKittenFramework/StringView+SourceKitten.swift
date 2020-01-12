@@ -64,7 +64,7 @@ public extension StringView {
 
      - returns: Array of documented token offsets.
      */
-    func documentedTokenOffsets(syntaxMap: SyntaxMap) -> [ByteOffset] {
+    func documentedTokenOffsets(syntaxMap: SyntaxMap) -> [ByteCount] {
         let documentableOffsets = syntaxMap.tokens.filter(isTokenDocumentable).map {
             $0.offset
         }
