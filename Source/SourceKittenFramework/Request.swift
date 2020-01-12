@@ -140,7 +140,7 @@ public enum Request {
     /// An `editor.open` request for the given File.
     case editorOpen(file: File)
     /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
-    case cursorInfo(file: String, offset: Int64, arguments: [String])
+    case cursorInfo(file: String, offset: ByteCount, arguments: [String])
     /// A `cursorinfo` request for a USR in the given file, using the `arguments` given.
     case cursorInfoUSR(file: String, usr: String, arguments: [String], cancelOnSubsequentRequest: Bool)
     /// A custom request by passing in the `SourceKitObject` directly.
@@ -149,7 +149,7 @@ public enum Request {
     case yamlRequest(yaml: String)
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
-    case codeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
+    case codeCompletionRequest(file: String, contents: String, offset: ByteCount, arguments: [String])
     /// ObjC Swift Interface
     case interface(file: String, uuid: String, arguments: [String])
     /// Find USR
@@ -159,7 +159,7 @@ public enum Request {
     /// Format
     case format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
     /// ReplaceText
-    case replaceText(file: String, offset: Int64, length: Int64, sourceText: String)
+    case replaceText(file: String, range: ByteRange, sourceText: String)
     /// A documentation request for the given source text.
     case docInfo(text: String, arguments: [String])
     /// A documentation request for the given module.
@@ -191,7 +191,7 @@ public enum Request {
                 "key.request": UID("source.request.cursorinfo"),
                 "key.name": file,
                 "key.sourcefile": file,
-                "key.offset": offset,
+                "key.offset": Int64(offset.value),
                 "key.compilerargs": arguments
             ]
         case let .cursorInfoUSR(file, usr, arguments, cancelOnSubsequentRequest):
@@ -212,7 +212,7 @@ public enum Request {
                 "key.name": file,
                 "key.sourcefile": file,
                 "key.sourcetext": contents,
-                "key.offset": offset,
+                "key.offset": Int64(offset.value),
                 "key.compilerargs": arguments
             ]
         case .interface(let file, let uuid, var arguments):
@@ -251,12 +251,12 @@ public enum Request {
                     "key.editor.format.usetabs": useTabs ? 1 : 0
                 ]
             ]
-        case let .replaceText(file, offset, length, sourceText):
+        case let .replaceText(file, range, sourceText):
             return [
                 "key.request": UID("source.request.editor.replacetext"),
                 "key.name": file,
-                "key.offset": offset,
-                "key.length": length,
+                "key.offset": Int64(range.location.value),
+                "key.length": Int64(range.length.value),
                 "key.sourcetext": sourceText
             ]
         case let .docInfo(text, arguments):
@@ -325,16 +325,16 @@ public enum Request {
     /**
     Send a Request.CursorInfo by updating its offset. Returns SourceKit response if successful.
 
-    - parameter cursorInfoRequest: sourcekitd_object_t representation of Request.CursorInfo
+    - parameter cursorInfoRequest: `SourceKitObject` representation of Request.CursorInfo
     - parameter offset:            Offset to update request.
 
     - returns: SourceKit response if successful.
     */
-    internal static func send(cursorInfoRequest: SourceKitObject, atOffset offset: Int64) -> [String: SourceKitRepresentable]? {
+    internal static func send(cursorInfoRequest: SourceKitObject, atOffset offset: ByteCount) -> [String: SourceKitRepresentable]? {
         if offset == 0 {
             return nil
         }
-        cursorInfoRequest.updateValue(offset, forKey: SwiftDocKey.offset)
+        cursorInfoRequest.updateValue(Int64(offset.value), forKey: SwiftDocKey.offset)
         return try? Request.customRequest(request: cursorInfoRequest).send()
     }
 
@@ -445,10 +445,9 @@ extension String {
             } ?? []
             var returnTypes = [String]()
             if let offset = SwiftDocKey.getOffset(function), let length = SwiftDocKey.getLength(function) {
-                let start = index(startIndex, offsetBy: Int(offset))
-                let end = index(start, offsetBy: Int(length))
-                let functionDeclaration = String(self[start..<end])
-                if let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
+                let stringView = StringView(self)
+                if let functionDeclaration = stringView.substringWithByteRange(ByteRange(location: offset, length: length)),
+                    let startOfReturnArrow = functionDeclaration.range(of: "->", options: .backwards)?.lowerBound {
                     let adjustedDistance = distance(from: startIndex, to: startOfReturnArrow)
                     let adjustedReturnTypeStartIndex = functionDeclaration.index(functionDeclaration.startIndex,
                                                                                  offsetBy: adjustedDistance + 3)

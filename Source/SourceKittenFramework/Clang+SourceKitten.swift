@@ -220,7 +220,7 @@ extension CXCursor {
 
         guard let usr = usr(),
             let findUSR = try? Request.findUSR(file: swiftUUID, usr: usr).send(),
-            let usrOffset = findUSR[SwiftDocKey.offset.rawValue] as? Int64 else {
+            let usrOffset = SwiftDocKey.getOffset(findUSR) else {
                 return (nil, nil)
         }
 

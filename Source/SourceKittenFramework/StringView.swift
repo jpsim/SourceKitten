@@ -71,7 +71,7 @@ public struct StringView {
         utf16View = string.utf16
 
         var utf16CountSoFar = 0
-        var bytesSoFar = 0
+        var bytesSoFar: ByteCount = 0
         var lines = [Line]()
         let lineContents = string.components(separatedBy: newlinesCharacterSet)
         // Be compatible with `NSString.getLineStart(_:end:contentsEnd:forRange:)`
@@ -93,7 +93,7 @@ public struct StringView {
             utf16CountSoFar += utf16Count
 
             let byteRangeStart = bytesSoFar
-            let byteCount = content.lengthOfBytes(using: .utf8)
+            let byteCount = ByteCount(content.lengthOfBytes(using: .utf8))
             bytesSoFar += byteCount
 
             let newlineLength = index != lineContents.count ? 1 : 0 // FIXME: assumes \n
@@ -102,12 +102,12 @@ public struct StringView {
                 index: index,
                 content: content,
                 range: NSRange(location: rangeStart, length: utf16Count + newlineLength),
-                byteRange: NSRange(location: byteRangeStart, length: byteCount + newlineLength)
+                byteRange: ByteRange(location: byteRangeStart, length: byteCount + ByteCount(newlineLength))
             )
             lines.append(line)
 
             utf16CountSoFar += newlineLength
-            bytesSoFar += newlineLength
+            bytesSoFar += ByteCount(newlineLength)
         }
         self.lines = lines
     }
@@ -125,7 +125,9 @@ public struct StringView {
      Returns a substring from a start and end SourceLocation.
      */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
-        return substringWithByteRange(start: Int(start.offset), length: Int(end.offset - start.offset))
+        let byteRange = ByteRange(location: ByteCount(Int(start.offset)),
+                                  length: ByteCount(Int(end.offset - start.offset)))
+        return substringWithByteRange(byteRange)
     }
 
 #endif
@@ -136,8 +138,8 @@ public struct StringView {
      - parameter start: Starting byte offset.
      - parameter length: Length of bytes to include in range.
      */
-    public func substringWithByteRange(start: Int, length: Int) -> String? {
-        return byteRangeToNSRange(start: start, length: length).map(nsString.substring)
+    public func substringWithByteRange(_ byteRange: ByteRange) -> String? {
+        return byteRangeToNSRange(byteRange).map(nsString.substring)
     }
 
     /// Returns a substictg, started at UTF-16 location.
@@ -156,13 +158,13 @@ public struct StringView {
 
      - returns: An equivalent `NSRange`.
      */
-    public func byteRangeToNSRange(start: Int, length: Int) -> NSRange? {
+    public func byteRangeToNSRange(_ byteRange: ByteRange) -> NSRange? {
         guard !string.isEmpty else { return nil }
-        let utf16Start = location(fromByteOffset: start)
-        if length == 0 {
+        let utf16Start = location(fromByteOffset: byteRange.location)
+        if byteRange.length == 0 {
             return NSRange(location: utf16Start, length: 0)
         }
-        let utf16End = location(fromByteOffset: start + length)
+        let utf16End = location(fromByteOffset: byteRange.upperBound)
         return NSRange(location: utf16Start, length: utf16End - utf16Start)
     }
 
@@ -173,7 +175,7 @@ public struct StringView {
 
      - returns: UTF8 based offset of string.
      */
-    public func byteOffset(fromLocation location: Int) -> Int {
+    public func byteOffset(fromLocation location: Int) -> ByteCount {
         if lines.isEmpty {
             return 0
         }
@@ -193,13 +195,13 @@ public struct StringView {
         if diff == 0 {
             return line.byteRange.location
         } else if line.range.length == diff {
-            return NSMaxRange(line.byteRange)
+            return line.byteRange.upperBound
         }
         let utf16View = line.content.utf16
         let endUTF8index = utf16View.index(utf16View.startIndex, offsetBy: diff, limitedBy: utf16View.endIndex)!
             .samePosition(in: line.content.utf8)!
         let byteDiff = line.content.utf8.distance(from: line.content.utf8.startIndex, to: endUTF8index)
-        return line.byteRange.location + byteDiff
+        return ByteCount(line.byteRange.location.value + byteDiff)
     }
 
     /**
@@ -211,7 +213,7 @@ public struct StringView {
 
     - returns: An equivalent `NSRange`.
     */
-    public func NSRangeToByteRange(start: Int, length: Int) -> NSRange? {
+    public func NSRangeToByteRange(start: Int, length: Int) -> ByteRange? {
         let startUTF16Index = utf16View.index(utf16View.startIndex, offsetBy: start)
         let endUTF16Index = utf16View.index(startUTF16Index, offsetBy: length)
 
@@ -221,10 +223,10 @@ public struct StringView {
         }
 
         let length = utf8View.distance(from: startUTF8Index, to: endUTF8Index)
-        return NSRange(location: self.byteOffset(fromLocation: start), length: length)
+        return ByteRange(location: byteOffset(fromLocation: start), length: ByteCount(length))
     }
 
-    public func NSRangeToByteRange(_ range: NSRange) -> NSRange? {
+    public func NSRangeToByteRange(_ range: NSRange) -> ByteRange? {
         return NSRangeToByteRange(start: range.location, length: range.length)
     }
 
@@ -235,14 +237,14 @@ public struct StringView {
 
      - returns: UTF16 based offset of string.
      */
-    public func location(fromByteOffset byteOffset: Int) -> Int {
+    public func location(fromByteOffset byteOffset: ByteCount) -> Int {
         if lines.isEmpty {
             return 0
         }
         let index = lines.indexAssumingSorted { line in
             if byteOffset < line.byteRange.location {
                 return .orderedAscending
-            } else if byteOffset >= line.byteRange.location + line.byteRange.length {
+            } else if byteOffset >= line.byteRange.upperBound {
                 return .orderedDescending
             }
             return .orderedSame
@@ -258,13 +260,13 @@ public struct StringView {
             return NSMaxRange(line.range)
         }
         let utf8View = line.content.utf8
-        let endUTF8Index = utf8View.index(utf8View.startIndex, offsetBy: diff, limitedBy: utf8View.endIndex) ?? utf8View.endIndex
+        let endUTF8Index = utf8View.index(utf8View.startIndex, offsetBy: diff.value, limitedBy: utf8View.endIndex) ?? utf8View.endIndex
         let utf16Diff = line.content.utf16.distance(from: line.content.utf16.startIndex, to: endUTF8Index)
         return line.range.location + utf16Diff
     }
 
-    public func substringStartingLinesWithByteRange(start: Int, length: Int) -> String? {
-        return byteRangeToNSRange(start: start, length: length).map { range in
+    public func substringStartingLinesWithByteRange(_ byteRange: ByteRange) -> String? {
+        return byteRangeToNSRange(byteRange).map { range in
             var lineStart = 0, lineEnd = 0
             nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: range)
             return nsString.substring(with: NSRange(location: lineStart, length: NSMaxRange(range) - lineStart))
@@ -278,8 +280,8 @@ public struct StringView {
      - parameter start: Starting byte offset.
      - parameter length: Length of bytes to include in range.
      */
-    public func substringLinesWithByteRange(start: Int, length: Int) -> String? {
-        return byteRangeToNSRange(start: start, length: length).map { range in
+    public func substringLinesWithByteRange(_ byteRange: ByteRange) -> String? {
+        return byteRangeToNSRange(byteRange).map { range in
             var lineStart = 0, lineEnd = 0
             nsString.getLineStart(&lineStart, end: &lineEnd, contentsEnd: nil, for: range)
             return nsString.substring(with: NSRange(location: lineStart, length: lineEnd - lineStart))
@@ -292,8 +294,8 @@ public struct StringView {
      - parameter start: Starting byte offset.
      - parameter length: Length of bytes to include in range.
      */
-    public func lineRangeWithByteRange(start: Int, length: Int) -> (start: Int, end: Int)? {
-        return byteRangeToNSRange(start: start, length: length).flatMap { range in
+    public func lineRangeWithByteRange(_ byteRange: ByteRange) -> (start: Int, end: Int)? {
+        return byteRangeToNSRange(byteRange).flatMap { range in
             var numberOfLines = 0, index = 0, lineRangeStart = 0
             while index < nsString.length {
                 numberOfLines += 1
@@ -309,7 +311,7 @@ public struct StringView {
         }
     }
 
-    public func lineAndCharacter(forByteOffset offset: Int, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
+    public func lineAndCharacter(forByteOffset offset: ByteCount, expandingTabsToWidth tabWidth: Int = 1) -> (line: Int, character: Int)? {
         let characterOffset = location(fromByteOffset: offset)
         return lineAndCharacter(forCharacterOffset: characterOffset, expandingTabsToWidth: tabWidth)
     }

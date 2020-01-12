@@ -43,6 +43,8 @@
 		D0DB09A419EA354200234B16 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB09A319EA354200234B16 /* SyntaxTests.swift */; };
 		D0E7B65319E9C6AD00EDBA4D /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D1216D19E87B05005E4BAA /* SourceKittenFramework.framework */; };
 		D0E7B65619E9C76900EDBA4D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1211B19E87861005E4BAA /* main.swift */; };
+		E49BD46423CA5E9F00F7F258 /* ByteRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49BD46323CA5E9F00F7F258 /* ByteRange.swift */; };
+		E49BD46623CB124600F7F258 /* ByteCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49BD46523CB124600F7F258 /* ByteCount.swift */; };
 		E4F7AC9E2380A5C00018D335 /* StringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7AC9C2380A5C00018D335 /* StringView.swift */; };
 		E4F7AC9F2380A5C00018D335 /* StringView+SourceKitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7AC9D2380A5C00018D335 /* StringView+SourceKitten.swift */; };
 		E805A0481B55CBAF00EA654A /* SourceKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805A0471B55CBAF00EA654A /* SourceKitTests.swift */; };
@@ -198,6 +200,8 @@
 		D0D1217D19E87B05005E4BAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0DB09A319EA354200234B16 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; usesTabs = 0; };
 		D0E7B63219E9C64500EDBA4D /* sourcekitten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sourcekitten.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E49BD46323CA5E9F00F7F258 /* ByteRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteRange.swift; sourceTree = "<group>"; };
+		E49BD46523CB124600F7F258 /* ByteCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteCount.swift; sourceTree = "<group>"; };
 		E4F7AC9C2380A5C00018D335 /* StringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringView.swift; sourceTree = "<group>"; };
 		E4F7AC9D2380A5C00018D335 /* StringView+SourceKitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StringView+SourceKitten.swift"; sourceTree = "<group>"; };
 		E801EA111DB8604100AD28E6 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = SOURCE_ROOT; };
@@ -440,6 +444,8 @@
 			isa = PBXGroup;
 			children = (
 				D0D1216F19E87B05005E4BAA /* Supporting Files */,
+				E49BD46523CB124600F7F258 /* ByteCount.swift */,
+				E49BD46323CA5E9F00F7F258 /* ByteRange.swift */,
 				3F0CBB401BAAFF160015BBA8 /* Clang+SourceKitten.swift */,
 				E8D4743A1A648F290011A49C /* ClangTranslationUnit.swift */,
 				E8EE34BE1B9A502F00947605 /* CodeCompletionItem.swift */,
@@ -733,6 +739,7 @@
 				3F0CBB411BAAFF160015BBA8 /* Clang+SourceKitten.swift in Sources */,
 				E4F7AC9E2380A5C00018D335 /* StringView.swift in Sources */,
 				2E8FF7101C6268C100F280F0 /* StatementKind.swift in Sources */,
+				E49BD46623CB124600F7F258 /* ByteCount.swift in Sources */,
 				6C4CF6551C798086008532C5 /* library_wrapper_Documentation.swift in Sources */,
 				E8D4743B1A648F290011A49C /* ClangTranslationUnit.swift in Sources */,
 				8FB50D0623BFF035004F0F2B /* Line.swift in Sources */,
@@ -763,6 +770,7 @@
 				E834740F1A593B5B00532B9A /* Structure.swift in Sources */,
 				E89291A91A5B800300D91568 /* SwiftDeclarationKind.swift in Sources */,
 				182F385020753FAD0054F063 /* SwiftDeclarationAttributeKind.swift in Sources */,
+				E49BD46423CA5E9F00F7F258 /* ByteRange.swift in Sources */,
 				E89291A71A5B7FF800D91568 /* SwiftDocKey.swift in Sources */,
 				E8A18A3F1A592246000362B7 /* SwiftDocs.swift in Sources */,
 				E80F23691A5CB01A00FD2352 /* SyntaxKind.swift in Sources */,
