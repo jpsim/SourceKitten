@@ -30,9 +30,8 @@ public struct ByteRange: Equatable {
         return ByteOffset(location.value + length)
     }
 
-    /// The range's upper bound.
+    /// The range's lower bound.
     var lowerBound: ByteOffset {
         return location
     }
-
 }

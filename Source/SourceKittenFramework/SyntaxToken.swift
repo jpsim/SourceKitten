@@ -33,7 +33,6 @@ public struct SyntaxToken {
         self.length = length
     }
 
-
     /// Byte range of this token
     public var range: ByteRange {
         return ByteRange(location: offset, length: length)

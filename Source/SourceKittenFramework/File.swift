@@ -142,17 +142,17 @@ public final class File {
     */
     public func parseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> String? {
         guard shouldParseDeclaration(dictionary),
-            let start = SwiftDocKey.getOffset(dictionary).map({ ByteOffset(Int($0)) }) else {
+            let start = SwiftDocKey.getOffset(dictionary).map(ByteOffset.init) else {
             return nil
         }
         let substring: String?
-        if let end = SwiftDocKey.getBodyOffset(dictionary).map({ ByteOffset($0 )}) {
+        if let end = SwiftDocKey.getBodyOffset(dictionary).map(ByteOffset.init) {
             substring = stringView.substringStartingLinesWithByteRange(ByteRange(location: start, length: (end - start).value))
         } else if let length = SwiftDocKey.getLength(dictionary),
             SwiftVersion.current >= .fiveDotOne {
             substring = stringView.substringStartingLinesWithByteRange(ByteRange(location: start, length: Int(length)))
         } else {
-            substring = stringView.substringLinesWithByteRange(ByteRange(location: start,length: 0))
+            substring = stringView.substringLinesWithByteRange(ByteRange(location: start, length: 0))
         }
         return substring?.removingCommonLeadingWhitespaceFromLines()
                          .trimmingWhitespaceAndOpeningCurlyBrace()
@@ -170,10 +170,10 @@ public final class File {
             return nil
         }
         return SwiftDocKey.getOffset(dictionary).flatMap { start in
-            let start = ByteOffset(Int(start))
+            let start = ByteOffset(start)
             let end = SwiftDocKey.getBodyOffset(dictionary).flatMap { bodyOffset in
                 return SwiftDocKey.getBodyLength(dictionary).map { bodyLength in
-                    return ByteOffset(Int(bodyOffset + bodyLength))
+                    return ByteOffset(bodyOffset + bodyLength)
                 }
             } ?? start
             let length = (end - start).value
@@ -415,7 +415,7 @@ public final class File {
         if let kind = SwiftDocKey.getKind(dictionary).flatMap(SwiftDeclarationKind.init),
            kind != .enumcase,
            let offset = SwiftDocKey.getBestOffset(dictionary),
-           let commentRange = finder.getRangeForDeclaration(atOffset: ByteOffset(Int(offset))),
+           let commentRange = finder.getRangeForDeclaration(atOffset: ByteOffset(offset)),
            case let start = commentRange.lowerBound,
            case let end = commentRange.upperBound,
            let nsRange = stringView.byteRangeToNSRange(ByteRange(location: start, length: (end - start).value)),

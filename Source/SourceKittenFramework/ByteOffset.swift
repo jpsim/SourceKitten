@@ -3,11 +3,11 @@
 //  SourceKitten
 //
 //  Created by Paul Taykalo on 2019-11-02.
-//  Copyright (c) 2019 SourceKitten. All rights reserved.
+//  Copyright © 2019 SourceKitten. All rights reserved.
 //
 
 /// Wrapper over a string offset to represent offset in bytes.
-public struct ByteOffset: ExpressibleByIntegerLiteral {
+public struct ByteOffset: ExpressibleByIntegerLiteral, Hashable {
     /// The byte value as an integer.
     var value: Int
 
@@ -31,18 +31,6 @@ public struct ByteOffset: ExpressibleByIntegerLiteral {
     public init(_ value: Int64) {
         self.value = Int(value)
     }
-
-}
-
-extension ByteOffset: Hashable {
-    public static func == (lhs: ByteOffset, rhs: ByteOffset) -> Bool {
-        return lhs.value == rhs.value
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(value)
-    }
-
 }
 
 extension ByteOffset: CustomStringConvertible {
