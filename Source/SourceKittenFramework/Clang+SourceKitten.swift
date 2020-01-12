@@ -224,7 +224,9 @@ extension CXCursor {
                 return (nil, nil)
         }
 
-        guard let cursorInfo = try? Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send() else {
+        let cursorInfoRequest = Request.cursorInfo(file: swiftUUID, offset: ByteOffset(usrOffset),
+                                                   arguments: compilerArguments)
+        guard let cursorInfo = try? cursorInfoRequest.send() else {
             return (nil, nil)
         }
 

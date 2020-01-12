@@ -116,7 +116,7 @@ public final class File {
             guard newText != line.content else { continue }
 
             _ = try Request.replaceText(file: path,
-                                        offset: Int64(line.byteRange.location.value + offset),
+                                        offset: ByteOffset(line.byteRange.location.value + offset),
                                         length: Int64(line.byteRange.length - 1),
                                         sourceText: newText).send()
             let oldLength = line.byteRange.length

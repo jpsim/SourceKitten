@@ -140,7 +140,7 @@ public enum Request {
     /// An `editor.open` request for the given File.
     case editorOpen(file: File)
     /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
-    case cursorInfo(file: String, offset: Int64, arguments: [String])
+    case cursorInfo(file: String, offset: ByteOffset, arguments: [String])
     /// A `cursorinfo` request for a USR in the given file, using the `arguments` given.
     case cursorInfoUSR(file: String, usr: String, arguments: [String], cancelOnSubsequentRequest: Bool)
     /// A custom request by passing in the `SourceKitObject` directly.
@@ -149,7 +149,7 @@ public enum Request {
     case yamlRequest(yaml: String)
     /// A `codecomplete` request by passing in the file name, contents, offset
     /// for which to generate code completion options and array of compiler arguments.
-    case codeCompletionRequest(file: String, contents: String, offset: Int64, arguments: [String])
+    case codeCompletionRequest(file: String, contents: String, offset: ByteOffset, arguments: [String])
     /// ObjC Swift Interface
     case interface(file: String, uuid: String, arguments: [String])
     /// Find USR
@@ -159,7 +159,7 @@ public enum Request {
     /// Format
     case format(file: String, line: Int64, useTabs: Bool, indentWidth: Int64)
     /// ReplaceText
-    case replaceText(file: String, offset: Int64, length: Int64, sourceText: String)
+    case replaceText(file: String, offset: ByteOffset, length: Int64, sourceText: String)
     /// A documentation request for the given source text.
     case docInfo(text: String, arguments: [String])
     /// A documentation request for the given module.
@@ -191,7 +191,7 @@ public enum Request {
                 "key.request": UID("source.request.cursorinfo"),
                 "key.name": file,
                 "key.sourcefile": file,
-                "key.offset": offset,
+                "key.offset": Int64(offset.value),
                 "key.compilerargs": arguments
             ]
         case let .cursorInfoUSR(file, usr, arguments, cancelOnSubsequentRequest):
@@ -212,7 +212,7 @@ public enum Request {
                 "key.name": file,
                 "key.sourcefile": file,
                 "key.sourcetext": contents,
-                "key.offset": offset,
+                "key.offset": Int64(offset.value),
                 "key.compilerargs": arguments
             ]
         case .interface(let file, let uuid, var arguments):
@@ -255,7 +255,7 @@ public enum Request {
             return [
                 "key.request": UID("source.request.editor.replacetext"),
                 "key.name": file,
-                "key.offset": offset,
+                "key.offset": Int64(offset.value),
                 "key.length": length,
                 "key.sourcetext": sourceText
             ]
