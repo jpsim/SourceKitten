@@ -14,7 +14,7 @@ public extension StringView {
     func isTokenDocumentable(token: SyntaxToken) -> Bool {
         if token.type == SyntaxKind.keyword.rawValue {
             let keywordFunctions = ["subscript", "init", "deinit"]
-            return substringWithByteRange(start: token.offset, length: token.length)
+            return substringWithByteRange(token.range)
                 .map(keywordFunctions.contains) ?? false
         }
         return token.type == SyntaxKind.identifier.rawValue
@@ -48,8 +48,8 @@ public extension StringView {
                 return nil
             }
             let location = SourceLocation(file: filename,
-                                          line: UInt32(lineRangeWithByteRange(start: markByteRange.location, length: 0)!.start),
-                                          column: 1, offset: UInt32(markByteRange.location))
+                                          line: UInt32(lineRangeWithByteRange(ByteRange(location: markByteRange.location, length: 0))!.start),
+                                          column: 1, offset: UInt32(markByteRange.location.value))
             return SourceDeclaration(type: .mark, location: location, extent: (location, location), name: markString,
                                      usr: nil, declaration: nil, documentation: nil, commentBody: nil, children: [],
                                      annotations: nil, swiftDeclaration: nil, swiftName: nil, availability: nil)
@@ -64,7 +64,7 @@ public extension StringView {
 
      - returns: Array of documented token offsets.
      */
-    func documentedTokenOffsets(syntaxMap: SyntaxMap) -> [Int] {
+    func documentedTokenOffsets(syntaxMap: SyntaxMap) -> [ByteOffset] {
         let documentableOffsets = syntaxMap.tokens.filter(isTokenDocumentable).map {
             $0.offset
         }
@@ -74,7 +74,10 @@ public extension StringView {
         let matches = regex.matches(in: string, options: [], range: range)
 
         return matches.compactMap { match in
-            documentableOffsets.first { $0 >= match.range.location }
+            return NSRangeToByteRange(match.range)
+        }
+        .compactMap { byteRange in
+            documentableOffsets.first { $0 >= byteRange.location }
         }
     }
 }

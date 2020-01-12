@@ -10,7 +10,7 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-private typealias TokenWrapper = (kind: SyntaxKind, offset: Int, length: Int)
+private typealias TokenWrapper = (kind: SyntaxKind, offset: ByteOffset, length: Int)
 
 private func compareSyntax(file: File, expectedTokens: [TokenWrapper]) {
     let expectedSyntaxMap = SyntaxMap(tokens: expectedTokens.map { tokenWrapper in

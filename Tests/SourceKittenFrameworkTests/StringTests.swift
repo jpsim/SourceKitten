@@ -176,27 +176,27 @@ class StringTests: XCTestCase {
 
     func testSubstringWithByteRange() {
         let string = "👨‍👩‍👧‍👧123"
-        XCTAssertEqual(string.stringView().substringWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧")
-        XCTAssertEqual(string.stringView().substringWithByteRange(start: 25, length: 1)!, "1")
+        XCTAssertEqual(string.stringView().substringWithByteRange(ByteRange(location: 0, length: 25))!, "👨‍👩‍👧‍👧")
+        XCTAssertEqual(string.stringView().substringWithByteRange(ByteRange(location: 25, length: 1))!, "1")
     }
 
     func testSubstringLinesWithByteRange() {
         let string = "👨‍👩‍👧‍👧\n123"
-        XCTAssertEqual(string.stringView().substringLinesWithByteRange(start: 0, length: 0)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.stringView().substringLinesWithByteRange(start: 0, length: 25)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.stringView().substringLinesWithByteRange(start: 0, length: 26)!, "👨‍👩‍👧‍👧\n")
-        XCTAssertEqual(string.stringView().substringLinesWithByteRange(start: 0, length: 27)!, string)
-        XCTAssertEqual(string.stringView().substringLinesWithByteRange(start: 27, length: 0)!, "123")
+        XCTAssertEqual(string.stringView().substringLinesWithByteRange(ByteRange(location: 0, length: 0))!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.stringView().substringLinesWithByteRange(ByteRange(location: 0, length: 25))!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.stringView().substringLinesWithByteRange(ByteRange(location: 0, length: 26))!, "👨‍👩‍👧‍👧\n")
+        XCTAssertEqual(string.stringView().substringLinesWithByteRange(ByteRange(location: 0, length: 27))!, string)
+        XCTAssertEqual(string.stringView().substringLinesWithByteRange(ByteRange(location: 27, length: 0))!, "123")
     }
 
     func testLineRangeWithByteRange() {
-        XCTAssert("".stringView().lineRangeWithByteRange(start: 0, length: 0) == nil)
+        XCTAssert("".stringView().lineRangeWithByteRange(ByteRange(location: 0, length: 0)) == nil)
         let string = "👨‍👩‍👧‍👧\n123"
-        XCTAssertEqual(string.stringView().lineRangeWithByteRange(start: 0, length: 0), (1, 1))
-        XCTAssertEqual(string.stringView().lineRangeWithByteRange(start: 0, length: 25), (1, 1))
-        XCTAssertEqual(string.stringView().lineRangeWithByteRange(start: 0, length: 26), (1, 2))
-        XCTAssertEqual(string.stringView().lineRangeWithByteRange(start: 0, length: 27), (1, 2))
-        XCTAssertEqual(string.stringView().lineRangeWithByteRange(start: 27, length: 0), (2, 2))
+        XCTAssertEqual(string.stringView().lineRangeWithByteRange(ByteRange(location: 0, length: 0)), (1, 1))
+        XCTAssertEqual(string.stringView().lineRangeWithByteRange(ByteRange(location: 0, length: 25)), (1, 1))
+        XCTAssertEqual(string.stringView().lineRangeWithByteRange(ByteRange(location: 0, length: 26)), (1, 2))
+        XCTAssertEqual(string.stringView().lineRangeWithByteRange(ByteRange(location: 0, length: 27)), (1, 2))
+        XCTAssertEqual(string.stringView().lineRangeWithByteRange(ByteRange(location: 27, length: 0)), (2, 2))
     }
 
     func testLineAndCharacterForByteOffset() {
@@ -221,7 +221,7 @@ class StringTests: XCTestCase {
                 }
             }
             """
-        XCTAssertEqual(string.stringView().byteRangeToNSRange(start: 115, length: 41), NSRange(location: 115, length: 38))
+        XCTAssertEqual(string.stringView().byteRangeToNSRange(ByteRange(location: 115, length: 41)), NSRange(location: 115, length: 38))
     }
 
     func testLineAndCharacterForCharacterOffset() {
