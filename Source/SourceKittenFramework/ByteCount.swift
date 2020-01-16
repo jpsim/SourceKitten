@@ -10,7 +10,7 @@
 /// two locations in a string.
 public struct ByteCount: ExpressibleByIntegerLiteral, Hashable {
     /// The byte value as an integer.
-    var value: Int
+    public var value: Int
 
     /// Create a byte count by its integer value.
     ///
