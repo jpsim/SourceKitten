@@ -3,6 +3,7 @@ import XCTest
 
 XCTMain([
     // testCase(ClangTranslationUnitTests.allTests),
+    testCase(ByteRangeTests.allTests),
     testCase(CodeCompletionTests.allTests),
     testCase(CursorInfoParsingTests.allTests),
     testCase(DocInfoTests.allTests),

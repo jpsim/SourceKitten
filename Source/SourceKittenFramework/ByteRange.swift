@@ -26,12 +26,34 @@ public struct ByteRange: Equatable {
     }
 
     /// The range's upper bound.
-    var upperBound: ByteCount {
+    public var upperBound: ByteCount {
         return location + length
     }
 
     /// The range's lower bound.
-    var lowerBound: ByteCount {
+    public var lowerBound: ByteCount {
         return location
     }
+
+    public func contains(_ value: ByteCount) -> Bool {
+        return location <= value && upperBound > value
+    }
+
+    public func intersects(_ otherRange: ByteRange) -> Bool {
+        return contains(otherRange.lowerBound) ||
+            contains(otherRange.upperBound - 1) ||
+            otherRange.contains(lowerBound) ||
+            otherRange.contains(upperBound - 1)
+    }
+
+    public func intersects(_ ranges: [ByteRange]) -> Bool {
+        return ranges.contains { intersects($0) }
+    }
+
+    public func union(with otherRange: ByteRange) -> ByteRange {
+        let maxUpperBound = max(upperBound, otherRange.upperBound)
+        let minLocation = min(location, otherRange.location)
+        return ByteRange(location: minLocation, length: maxUpperBound - minLocation)
+    }
+
 }
