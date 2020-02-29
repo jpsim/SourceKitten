@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Stop the program immediately if the `xcodebuild` command fails.  
+  [John Fairhurst](https://github.com/johnfairh)
+  [#643](https://github.com/jpsim/SourceKitten/issues/643)
 
 ## 0.29.0
 
