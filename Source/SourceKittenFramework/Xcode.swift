@@ -37,7 +37,7 @@ internal enum XcodeBuild {
     - returns: `xcodebuild`'s STDERR+STDOUT output combined.
     */
     internal static func run(arguments: [String], inPath path: String) -> String? {
-        return String(data: launch(arguments: arguments, inPath: path, pipingStandardError: true), encoding: .utf8)
+        return launch(arguments: arguments, inPath: path, pipingStandardError: true).string
     }
 
     /**
@@ -47,13 +47,13 @@ internal enum XcodeBuild {
      - parameter path:                Path to run `xcodebuild` from.
      - parameter pipingStandardError: Whether to pipe the standard error output. The default value is `true`.
 
-     - returns: `xcodebuild`'s STDOUT output and, optionally, both STDERR+STDOUT output combined.
+     - returns: `Exec.Result` containing `xcodebuild`'s exit status, STDOUT output and, optionally, both STDERR+STDOUT output combined.
      */
-    internal static func launch(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> Data {
+    internal static func launch(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> Exec.Results {
         return Exec.run("/usr/bin/xcodebuild",
                         arguments,
                         currentDirectory: path,
-                        stderr: pipingStandardError ? .merge : .inherit).data
+                        stderr: pipingStandardError ? .merge : .inherit)
     }
 
     /**
@@ -67,8 +67,8 @@ internal enum XcodeBuild {
     internal static func showBuildSettings(arguments xcodeBuildArguments: [String],
                                            inPath: String) -> [XcodeBuildSetting]? {
         let arguments = xcodeBuildArguments + ["-showBuildSettings", "-json"]
-        let outputData = XcodeBuild.launch(arguments: arguments, inPath: inPath, pipingStandardError: false)
-        return try? JSONDecoder().decode([XcodeBuildSetting].self, from: outputData)
+        let results = XcodeBuild.launch(arguments: arguments, inPath: inPath, pipingStandardError: false)
+        return try? JSONDecoder().decode([XcodeBuildSetting].self, from: results.data)
     }
 }
 

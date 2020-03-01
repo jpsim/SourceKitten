@@ -48,7 +48,7 @@ public struct Module {
         let yamlPath = URL(fileURLWithPath: path).appendingPathComponent(".build/debug.yaml").path
         guard let yaml = try? Yams.compose(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)),
             let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
-            fputs("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.", stderr)
+            fputs("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.\n", stderr)
             return nil
         }
 
@@ -72,7 +72,7 @@ public struct Module {
               let otherArguments = moduleCommand["other-args"]?.array(of: String.self),
               let sources = moduleCommand["sources"]?.array(of: String.self),
               let moduleName = moduleCommand["module-name"]!.string else {
-                fputs("SPM build manifest '\(yamlPath)` does not match expected format.", stderr)
+                fputs("SPM build manifest '\(yamlPath)` does not match expected format.\n", stderr)
                 return nil
         }
         name = moduleName
@@ -129,7 +129,16 @@ public struct Module {
 
         // Executing normal build
         fputs("Running xcodebuild\n", stderr)
-        if let output = XcodeBuild.run(arguments: xcodeBuildArguments, inPath: path),
+        let results = XcodeBuild.launch(arguments: xcodeBuildArguments, inPath: path)
+        if results.terminationStatus != 0 {
+            fputs("Could not successfully run `xcodebuild`.\n", stderr)
+            fputs("Please check the build arguments.\n", stderr)
+            let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
+            _ = try? results.data.write(to: file)
+            fputs("Saved `xcodebuild` log file: \(file.path)\n", stderr)
+            return nil
+        }
+        if let output = results.string,
             let arguments = parseCompilerArguments(xcodebuildOutput: output, language: .swift, moduleName: name),
             let moduleName = moduleName(fromArguments: arguments) {
             self.init(name: moduleName, compilerArguments: arguments)
