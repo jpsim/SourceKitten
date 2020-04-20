@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Update Yams to 3.0.0.  
+  [Keith Smiley](https://github.com/keith)
 
 ##### Bug Fixes
 
