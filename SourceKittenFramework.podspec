@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.swift_versions      = ['5.0', '5.1']
   s.pod_target_xcconfig = { 'APPLICATION_EXTENSION_API_ONLY' => 'YES' }
   s.dependency            'SWXMLHash', '~> 5.0.1'
-  s.dependency            'Yams', '~> 2.0'
+  s.dependency            'Yams', '~> 3.0'
 end
