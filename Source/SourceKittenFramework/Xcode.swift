@@ -11,33 +11,32 @@ import Yams
 
 internal enum XcodeBuild {
     /**
-    Run `xcodebuild clean build` along with any passed in build arguments.
+    Run `xcodebuild clean build` bypassing signing, along with any passed in build arguments.
 
     - parameter arguments: Arguments to pass to `xcodebuild`.
     - parameter path:      Path to run `xcodebuild` from.
 
-    - returns: `xcodebuild`'s STDERR+STDOUT output combined.
+    - returns: results including `xcodebuild`'s STDERR+STDOUT output combined.
     */
-    internal static func cleanBuild(arguments: [String], inPath path: String) -> String? {
-        let arguments = arguments + ["clean",
-                                     "build",
-                                     "CODE_SIGN_IDENTITY=",
-                                     "CODE_SIGNING_REQUIRED=NO",
-                                     "CODE_SIGNING_ALLOWED=NO"]
-        fputs("Running xcodebuild\n", stderr)
-        return run(arguments: arguments, inPath: path)
+    internal static func cleanBuild(arguments: [String], inPath path: String) -> Exec.Results {
+        let arguments = arguments + ["clean", "build"]
+        return build(arguments: arguments, inPath: path)
     }
 
     /**
-    Run `xcodebuild` along with any passed in build arguments.
+    Run `xcodebuild` bypassing signing, along with any passed in build arguments.
 
     - parameter arguments: Arguments to pass to `xcodebuild`.
     - parameter path:      Path to run `xcodebuild` from.
 
-    - returns: `xcodebuild`'s STDERR+STDOUT output combined.
+    - returns: results including `xcodebuild`'s STDERR+STDOUT output combined.
     */
-    internal static func run(arguments: [String], inPath path: String) -> String? {
-        return launch(arguments: arguments, inPath: path, pipingStandardError: true).string
+    internal static func build(arguments: [String], inPath path: String) -> Exec.Results {
+        let arguments = arguments + ["CODE_SIGN_IDENTITY=",
+                                     "CODE_SIGNING_REQUIRED=NO",
+                                     "CODE_SIGNING_ALLOWED=NO"]
+        fputs("Running xcodebuild\n", stderr)
+        return launch(arguments: arguments, inPath: path, pipingStandardError: true)
     }
 
     /**
@@ -49,7 +48,7 @@ internal enum XcodeBuild {
 
      - returns: `Exec.Result` containing `xcodebuild`'s exit status, STDOUT output and, optionally, both STDERR+STDOUT output combined.
      */
-    internal static func launch(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> Exec.Results {
+    private static func launch(arguments: [String], inPath path: String, pipingStandardError: Bool = true) -> Exec.Results {
         return Exec.run("/usr/bin/xcodebuild",
                         arguments,
                         currentDirectory: path,

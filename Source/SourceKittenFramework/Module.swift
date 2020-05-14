@@ -128,8 +128,7 @@ public struct Module {
             ?? moduleName(fromArguments: xcodeBuildArguments)
 
         // Executing normal build
-        fputs("Running xcodebuild\n", stderr)
-        let results = XcodeBuild.launch(arguments: xcodeBuildArguments, inPath: path)
+        let results = XcodeBuild.build(arguments: xcodeBuildArguments, inPath: path)
         if results.terminationStatus != 0 {
             fputs("Could not successfully run `xcodebuild`.\n", stderr)
             fputs("Please check the build arguments.\n", stderr)
@@ -153,7 +152,7 @@ public struct Module {
             return
         }
         // Executing `clean build` is a fallback.
-        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments, inPath: path) ?? ""
+        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments, inPath: path).string ?? ""
         guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .swift, moduleName: name) else {
             fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
             fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
