@@ -34,6 +34,7 @@
 		6CCFCE8E1CFED000003239EB /* Commandant.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E8EBAA5D1A5D374B002F1B8E /* Commandant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8F935B342288C05A00971070 /* File+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F935B332288C05A00971070 /* File+Hashable.swift */; };
 		8FB50D0623BFF035004F0F2B /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB50D0523BFF035004F0F2B /* Line.swift */; };
+		9C57920B2480C60800ADCD37 /* SwiftDocMarkupDelimiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C57920A2480C60800ADCD37 /* SwiftDocMarkupDelimiterTests.swift */; };
 		BCF9238E228AD94E0008C684 /* CursorInfoUSRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9238D228AD94E0008C684 /* CursorInfoUSRTests.swift */; };
 		C236E84B1DFF5120003807D2 /* YamlRequestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */; };
 		CDB51F33203E2899007563AE /* SwiftDocKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */; };
@@ -173,6 +174,7 @@
 		6CC381621ECACB50000C6F81 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8F935B332288C05A00971070 /* File+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Hashable.swift"; sourceTree = "<group>"; };
 		8FB50D0523BFF035004F0F2B /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		9C57920A2480C60800ADCD37 /* SwiftDocMarkupDelimiterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDocMarkupDelimiterTests.swift; sourceTree = "<group>"; };
 		BCF9238D228AD94E0008C684 /* CursorInfoUSRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorInfoUSRTests.swift; sourceTree = "<group>"; };
 		C236E84A1DFF5120003807D2 /* YamlRequestCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YamlRequestCommand.swift; sourceTree = "<group>"; };
 		CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDocKeyTests.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				E8C9EA071A5C99C400A6D4D1 /* StringTests.swift */,
 				E8C9EA031A5C986A00A6D4D1 /* StructureTests.swift */,
 				CDB51F32203E2899007563AE /* SwiftDocKeyTests.swift */,
+				9C57920A2480C60800ADCD37 /* SwiftDocMarkupDelimiterTests.swift */,
 				E80F23661A5CADD900FD2352 /* SwiftDocsTests.swift */,
 				D0DB09A319EA354200234B16 /* SyntaxTests.swift */,
 				BCF9238D228AD94E0008C684 /* CursorInfoUSRTests.swift */,
@@ -803,6 +806,7 @@
 				E8C9EA081A5C99C400A6D4D1 /* StringTests.swift in Sources */,
 				CDB51F33203E2899007563AE /* SwiftDocKeyTests.swift in Sources */,
 				E8C9EA041A5C986A00A6D4D1 /* StructureTests.swift in Sources */,
+				9C57920B2480C60800ADCD37 /* SwiftDocMarkupDelimiterTests.swift in Sources */,
 				E80F23671A5CADD900FD2352 /* SwiftDocsTests.swift in Sources */,
 				D0DB09A419EA354200234B16 /* SyntaxTests.swift in Sources */,
 			);
