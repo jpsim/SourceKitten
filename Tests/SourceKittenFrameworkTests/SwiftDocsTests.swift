@@ -140,6 +140,7 @@ class SwiftDocsTests: XCTestCase {
             "key.doc.name": "name",
             "key.usr": "usr",
             "key.doc.declaration": "declaration",
+            "key.doc.abstract": [["Para": "discussion"]],
             "key.doc.parameters": [[
                 "name": "param1",
                 "discussion": [["Para": "param1_discussion"]]
