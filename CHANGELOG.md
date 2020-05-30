@@ -8,6 +8,8 @@
 
 * Update Yams to 3.0.0.  
   [Keith Smiley](https://github.com/keith)
+* Extract all supported delimiters from document XML.
+  [Eneko Alonso](https://github.com/eneko)
 
 ##### Bug Fixes
 
