@@ -120,4 +120,11 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case propertyWrapper = "source.decl.attribute.propertyWrapper"
     case IBSegueAction = "source.decl.attribute.IBSegueAction"
     case _functionBuilder = "source.decl.attribute._functionBuilder"
+
+    // Only available in Swift >= 5.2
+    case differentiable = "source.decl.attribute.differentiable"
+    case _nonEphemeral = "source.decl.attribute._nonEphemeral"
+    case _originallyDefinedIn = "source.decl.attribute._originallyDefinedIn"
+    case _inheritsConvenienceInitializers = "source.decl.attribute._inheritsConvenienceInitializers"
+    case _hasMissingDesignatedInitializers = "source.decl.attribute._hasMissingDesignatedInitializers"
 }
