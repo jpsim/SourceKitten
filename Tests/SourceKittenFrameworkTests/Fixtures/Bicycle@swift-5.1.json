@@ -303,9 +303,6 @@
                     "key.parsed_declaration" : "case Freewheel(speeds: Int)",
                     "key.parsed_scope.end" : 29,
                     "key.parsed_scope.start" : 29,
-                    "key.substructure" : [
-
-                    ],
                     "key.typename" : "(Bicycle.Gearing.Type) -> (Int) -> Bicycle.Gearing",
                     "key.typeusr" : "$sy7BicycleAAC7GearingOSi_tcADmcD",
                     "key.usr" : "s:7BicycleAAC7GearingO9FreewheelyADSi_tcADmF"
@@ -574,7 +571,7 @@
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.annotated_decl" : "<Declaration>private(set) var numberOfTrips: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>private(set) var numberOfTrips: <Type usr=\"s:Si\">Int<\/Type> {\n  get\n  }<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.setter_access.private",
@@ -589,16 +586,16 @@
             ],
             "key.doc.column" : 22,
             "key.doc.comment" : "The number of trips travelled by the bicycle.",
-            "key.doc.declaration" : "private(set) var numberOfTrips: Int { get }",
+            "key.doc.declaration" : "private(set) var numberOfTrips: Int {\n    get\n    }",
             "key.doc.file" : "Bicycle.swift",
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"57\" column=\"22\"><Name>numberOfTrips<\/Name><USR>s:7BicycleAAC13numberOfTripsSivp<\/USR><Declaration>private(set) var numberOfTrips: Int { get }<\/Declaration><CommentParts><Abstract><Para>The number of trips travelled by the bicycle.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"57\" column=\"22\"><Name>numberOfTrips<\/Name><USR>s:7BicycleAAC13numberOfTripsSivp<\/USR><Declaration>private(set) var numberOfTrips: Int {\n    get\n    }<\/Declaration><CommentParts><Abstract><Para>The number of trips travelled by the bicycle.<\/Para><\/Abstract><\/CommentParts><\/Other>",
             "key.doc.line" : 57,
             "key.doc.name" : "numberOfTrips",
             "key.doc.type" : "Other",
             "key.doclength" : 50,
             "key.docoffset" : 1320,
             "key.filepath" : "Bicycle.swift",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>numberOfTrips<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type> { get }<\/decl.var.instance>",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>numberOfTrips<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type> {\n  get\n  }<\/decl.var.instance>",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.length" : 22,
             "key.name" : "numberOfTrips",
@@ -615,7 +612,7 @@
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.annotated_decl" : "<Declaration>private(set) var distanceTravelled: <Type usr=\"s:Sd\">Double<\/Type> { get }<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>private(set) var distanceTravelled: <Type usr=\"s:Sd\">Double<\/Type> {\n  get\n  }<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.setter_access.private",
@@ -630,16 +627,16 @@
             ],
             "key.doc.column" : 22,
             "key.doc.comment" : "The total distance travelled by the bicycle, in meters.",
-            "key.doc.declaration" : "private(set) var distanceTravelled: Double { get }",
+            "key.doc.declaration" : "private(set) var distanceTravelled: Double {\n    get\n    }",
             "key.doc.file" : "Bicycle.swift",
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"60\" column=\"22\"><Name>distanceTravelled<\/Name><USR>s:7BicycleAAC17distanceTravelledSdvp<\/USR><Declaration>private(set) var distanceTravelled: Double { get }<\/Declaration><CommentParts><Abstract><Para>The total distance travelled by the bicycle, in meters.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"60\" column=\"22\"><Name>distanceTravelled<\/Name><USR>s:7BicycleAAC17distanceTravelledSdvp<\/USR><Declaration>private(set) var distanceTravelled: Double {\n    get\n    }<\/Declaration><CommentParts><Abstract><Para>The total distance travelled by the bicycle, in meters.<\/Para><\/Abstract><\/CommentParts><\/Other>",
             "key.doc.line" : 60,
             "key.doc.name" : "distanceTravelled",
             "key.doc.type" : "Other",
             "key.doclength" : 60,
             "key.docoffset" : 1415,
             "key.filepath" : "Bicycle.swift",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>distanceTravelled<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Sd\">Double<\/ref.struct><\/decl.var.type> { get }<\/decl.var.instance>",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>distanceTravelled<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Sd\">Double<\/ref.struct><\/decl.var.type> {\n  get\n  }<\/decl.var.instance>",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.length" : 29,
             "key.name" : "distanceTravelled",

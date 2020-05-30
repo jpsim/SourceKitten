@@ -115,6 +115,11 @@
                 "key.offset" : 585
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable string describing the purpose of this argument. This will be shown in help messages."
+              }
+            ],
             "key.doc.column" : 13,
             "key.doc.comment" : "A human-readable string describing the purpose of this argument. This will\nbe shown in help messages.",
             "key.doc.declaration" : "public let usage: String",
@@ -148,6 +153,11 @@
                 "key.attribute" : "source.decl.attribute.public",
                 "key.length" : 6,
                 "key.offset" : 804
+              }
+            ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable string that describes this argument as a paramater shown in the list of possible parameters in help messages (e.g. for “paths”, the user would see <paths…>)."
               }
             ],
             "key.doc.column" : 13,
@@ -278,6 +288,11 @@
         "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 251,
         "key.bodyoffset" : 1283,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes an argument that can be provided on the command line."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.declaration" : "public struct Argument<T>",
         "key.doc.file" : "Sources\/Commandant\/Argument.swift",
@@ -309,6 +324,11 @@
             ],
             "key.bodylength" : 62,
             "key.bodyoffset" : 1470,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A string describing this argument as a parameter in help messages. This falls back to `\"\\(self)\"` if `usageParameter` is `nil`"
+              }
+            ],
             "key.doc.column" : 15,
             "key.doc.comment" : "A string describing this argument as a parameter in help messages. This falls back\nto `\"\\(self)\"` if `usageParameter` is `nil`",
             "key.doc.declaration" : "internal var usageParameterDescription: String { get }",
@@ -349,6 +369,11 @@
         "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 254,
         "key.bodyoffset" : 1575,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes an argument that can be provided on the command line."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.declaration" : "public struct Argument<T>",
         "key.doc.file" : "Sources\/Commandant\/Argument.swift",
@@ -380,6 +405,11 @@
             ],
             "key.bodylength" : 65,
             "key.bodyoffset" : 1762,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A string describing this argument as a parameter in help messages. This falls back to `\"\\(self)\"` if `usageParameter` is `nil`"
+              }
+            ],
             "key.doc.column" : 15,
             "key.doc.comment" : "A string describing this argument as a parameter in help messages. This falls back\nto `\"\\(self)\"` if `usageParameter` is `nil`",
             "key.doc.declaration" : "internal var usageParameterDescription: String { get }",
@@ -428,6 +458,11 @@
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 1979,
         "key.bodyoffset" : 1877,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes the “mode” in which a command should run."
+          }
+        ],
         "key.doc.column" : 13,
         "key.doc.declaration" : "public enum CommandMode",
         "key.doc.file" : "Sources\/Commandant\/Command.swift",
@@ -459,6 +494,11 @@
             ],
             "key.bodylength" : 518,
             "key.bodyoffset" : 2212,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates the given argument in the given mode."
+              }
+            ],
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given argument in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, the argument's `defaultValue` is used.",
             "key.doc.declaration" : "public static func <| <T, ClientError>(mode: CommandMode, argument: Argument<T>) -> Result<T, CommandantError<ClientError>> where T : ArgumentProtocol",
@@ -572,6 +612,11 @@
             ],
             "key.bodylength" : 778,
             "key.bodyoffset" : 3076,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates the given argument list in the given mode."
+              }
+            ],
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given argument list in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, the argument's `defaultValue` is used.",
             "key.doc.declaration" : "public static func <| <T, ClientError>(mode: CommandMode, argument: Argument<[T]>) -> Result<[T], CommandantError<ClientError>> where T : ArgumentProtocol",
@@ -698,6 +743,11 @@
         ],
         "key.bodylength" : 296,
         "key.bodyoffset" : 266,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Represents an argument passed on the command line."
+          }
+        ],
         "key.doc.column" : 14,
         "key.doc.comment" : "Represents an argument passed on the command line.",
         "key.doc.declaration" : "private enum RawArgument : Equatable",
@@ -742,6 +792,11 @@
               {
                 "key.accessibility" : "source.lang.swift.accessibility.internal",
                 "key.annotated_decl" : "<Declaration>case key(<Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
+                "key.doc.abstract" : [
+                  {
+                    "Para" : "A key corresponding to an option (e.g., `verbose` for `--verbose`)."
+                  }
+                ],
                 "key.doc.column" : 7,
                 "key.doc.comment" : "A key corresponding to an option (e.g., `verbose` for `--verbose`).",
                 "key.doc.declaration" : "",
@@ -779,6 +834,11 @@
               {
                 "key.accessibility" : "source.lang.swift.accessibility.internal",
                 "key.annotated_decl" : "<Declaration>case value(<Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
+                "key.doc.abstract" : [
+                  {
+                    "Para" : "A value, either associated with an option or passed as a positional argument."
+                  }
+                ],
                 "key.doc.column" : 7,
                 "key.doc.comment" : "A value, either associated with an option or passed as a positional\nargument.",
                 "key.doc.declaration" : "",
@@ -816,6 +876,11 @@
               {
                 "key.accessibility" : "source.lang.swift.accessibility.internal",
                 "key.annotated_decl" : "<Declaration>case flag(<Type usr=\"s:10Commandant10OrderedSetV\">OrderedSet<\/Type>&lt;<Type usr=\"s:SJ\">Character<\/Type>&gt;)<\/Declaration>",
+                "key.doc.abstract" : [
+                  {
+                    "Para" : "One or more flag arguments (e.g ‘r’ and ‘f’ for `-rf`)"
+                  }
+                ],
                 "key.doc.column" : 7,
                 "key.doc.comment" : "One or more flag arguments (e.g 'r' and 'f' for `-rf`)",
                 "key.doc.declaration" : "",
@@ -853,6 +918,11 @@
         "key.annotated_decl" : "<Declaration>private enum RawArgument : <Type usr=\"s:SQ\">Equatable<\/Type><\/Declaration>",
         "key.bodylength" : 214,
         "key.bodyoffset" : 613,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Represents an argument passed on the command line."
+          }
+        ],
         "key.doc.column" : 14,
         "key.doc.declaration" : "private enum RawArgument : Equatable",
         "key.doc.file" : "Sources\/Commandant\/ArgumentParser.swift",
@@ -896,6 +966,11 @@
             ],
             "key.bodylength" : 173,
             "key.bodyoffset" : 652,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A textual representation of this instance."
+              }
+            ],
             "key.doc.declaration" : "var description: String { get }",
             "key.doc.discussion" : [
               {
@@ -953,6 +1028,11 @@
         ],
         "key.bodylength" : 3711,
         "key.bodyoffset" : 924,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Destructively parses a list of command-line arguments."
+          }
+        ],
         "key.doc.column" : 20,
         "key.doc.comment" : "Destructively parses a list of command-line arguments.",
         "key.doc.declaration" : "public final class ArgumentParser",
@@ -984,6 +1064,11 @@
                 "key.attribute" : "source.decl.attribute.private",
                 "key.length" : 7,
                 "key.offset" : 991
+              }
+            ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The remaining arguments to be extracted, in their raw form."
               }
             ],
             "key.doc.column" : 14,
@@ -1024,6 +1109,11 @@
             ],
             "key.bodylength" : 741,
             "key.bodyoffset" : 1151,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Initializes the generator from a simple list of command-line arguments."
+              }
+            ],
             "key.doc.column" : 9,
             "key.doc.comment" : "Initializes the generator from a simple list of command-line arguments.",
             "key.doc.declaration" : "public init(_ arguments: [String])",
@@ -1097,6 +1187,11 @@
             ],
             "key.bodylength" : 76,
             "key.bodyoffset" : 1978,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns the remaining arguments."
+              }
+            ],
             "key.doc.column" : 15,
             "key.doc.comment" : "Returns the remaining arguments.",
             "key.doc.declaration" : "internal var remainingArguments: [String]? { get }",
@@ -1134,6 +1229,11 @@
             ],
             "key.bodylength" : 281,
             "key.bodyoffset" : 2323,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns whether the given key was enabled or disabled, or nil if it was not given at all."
+              }
+            ],
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given key was enabled or disabled, or nil if it\nwas not given at all.\n\nIf the key is found, it is then removed from the list of arguments\nremaining to be parsed.",
             "key.doc.declaration" : "internal func consumeBoolean(forKey key: String) -> Bool?",
@@ -1217,6 +1317,11 @@
             ],
             "key.bodylength" : 503,
             "key.bodyoffset" : 2999,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns the value associated with the given flag, or nil if the flag was not specified. If the key is presented, but no value was given, an error is returned."
+              }
+            ],
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns the value associated with the given flag, or nil if the flag was\nnot specified. If the key is presented, but no value was given, an error\nis returned.\n\nIf a value is found, the key and the value are both removed from the\nlist of arguments remaining to be parsed.",
             "key.doc.declaration" : "internal func consumeValue(forKey key: String) -> Result<String?, CommandantError<Never>>",
@@ -1317,6 +1422,11 @@
             ],
             "key.bodylength" : 164,
             "key.bodyoffset" : 3688,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns the next positional argument that hasn’t yet been returned, or nil if there are no more positional arguments."
+              }
+            ],
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns the next positional argument that hasn't yet been returned, or\nnil if there are no more positional arguments.",
             "key.doc.declaration" : "internal func consumePositionalArgument() -> String?",
@@ -1357,6 +1467,11 @@
             ],
             "key.bodylength" : 143,
             "key.bodyoffset" : 4007,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns whether the given key was specified and removes it from the list of arguments remaining."
+              }
+            ],
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given key was specified and removes it from the\nlist of arguments remaining.",
             "key.doc.declaration" : "internal func consume(key: String) -> Bool",
@@ -1413,6 +1528,11 @@
             ],
             "key.bodylength" : 316,
             "key.bodyoffset" : 4317,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns whether the given flag was specified and removes it from the list of arguments remaining."
+              }
+            ],
             "key.doc.column" : 16,
             "key.doc.comment" : "Returns whether the given flag was specified and removes it from the\nlist of arguments remaining.",
             "key.doc.declaration" : "internal func consumeBoolean(flag: Character) -> Bool",
@@ -1471,6 +1591,11 @@
         ],
         "key.bodylength" : 189,
         "key.bodyoffset" : 253,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Represents a value that can be converted from a command-line argument."
+          }
+        ],
         "key.doc.column" : 17,
         "key.doc.comment" : "Represents a value that can be converted from a command-line argument.",
         "key.doc.declaration" : "public protocol ArgumentProtocol",
@@ -1499,6 +1624,11 @@
             "key.annotated_decl" : "<Declaration>static var name: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 5,
             "key.bodyoffset" : 322,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable name for this type."
+              }
+            ],
             "key.doc.column" : 13,
             "key.doc.comment" : "A human-readable name for this type.",
             "key.doc.declaration" : "static var name: String { get }",
@@ -1527,6 +1657,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.annotated_decl" : "<Declaration>static func from(string: <Type usr=\"s:SS\">String<\/Type>) -&gt; `Self`?<\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "Attempts to parse a value from the given command-line argument."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.comment" : "Attempts to parse a value from the given command-line argument.",
             "key.doc.declaration" : "static func from(string: String) -> `Self`?",
@@ -1565,6 +1700,11 @@
         "key.annotated_decl" : "<Declaration>struct Int : <Type usr=\"s:s17FixedWidthIntegerP\">FixedWidthInteger<\/Type>, <Type usr=\"s:SZ\">SignedInteger<\/Type><\/Declaration>",
         "key.bodylength" : 113,
         "key.bodyoffset" : 478,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A signed integer value type."
+          }
+        ],
         "key.doc.declaration" : "struct Int : FixedWidthInteger, SignedInteger",
         "key.doc.discussion" : [
           {
@@ -1610,6 +1750,11 @@
                 "key.offset" : 480
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable name for this type."
+              }
+            ],
             "key.doc.column" : 13,
             "key.doc.declaration" : "static var name: String { get }",
             "key.doc.file" : "Sources\/Commandant\/ArgumentProtocol.swift",
@@ -1650,6 +1795,11 @@
             ],
             "key.bodylength" : 23,
             "key.bodyoffset" : 566,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Attempts to parse a value from the given command-line argument."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.declaration" : "static func from(string: String) -> `Self`?",
             "key.doc.file" : "Sources\/Commandant\/ArgumentProtocol.swift",
@@ -1691,19 +1841,24 @@
         "key.annotated_decl" : "<Declaration>struct String<\/Declaration>",
         "key.bodylength" : 110,
         "key.bodyoffset" : 630,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A Unicode string value that is a collection of characters."
+          }
+        ],
         "key.doc.declaration" : "struct String",
         "key.doc.discussion" : [
           {
             "Para" : "A string is a series of characters, such as `\"Swift\"`, that forms a collection. Strings in Swift are Unicode correct and locale insensitive, and are designed to be efficient. The `String` type bridges with the Objective-C class `NSString` and offers interoperability with C functions that works with strings."
           },
           {
-            "Para" : "You can create new strings using string literals or string interpolations. A  is a series of characters enclosed in quotes."
+            "Para" : "You can create new strings using string literals or string interpolations. A _string literal_ is a series of characters enclosed in quotes."
           },
           {
             "CodeListing" : ""
           },
           {
-            "Para" : " are string literals that evaluate any included expressions and convert the results to string form. String interpolations give you an easy way to build a string from multiple pieces. Wrap each expression in a string interpolation in parentheses, prefixed by a backslash."
+            "Para" : "_String interpolations_ are string literals that evaluate any included expressions and convert the results to string form. String interpolations give you an easy way to build a string from multiple pieces. Wrap each expression in a string interpolation in parentheses, prefixed by a backslash."
           },
           {
             "CodeListing" : ""
@@ -1739,7 +1894,7 @@
             "Para" : "Basic string operations are not sensitive to locale settings, ensuring that string comparisons and other operations always have a single, stable result, allowing strings to be used as keys in `Dictionary` instances and for other purposes."
           },
           {
-            "Para" : "A string is a collection of , which approximate human-readable characters. Many individual characters, such as “é”, “김”, and “🇮🇳”, can be made up of multiple Unicode scalar values. These scalar values are combined by Unicode’s boundary algorithms into extended grapheme clusters, represented by the Swift `Character` type. Each element of a string is represented by a `Character` instance."
+            "Para" : "A string is a collection of _extended grapheme clusters_, which approximate human-readable characters. Many individual characters, such as “é”, “김”, and “🇮🇳”, can be made up of multiple Unicode scalar values. These scalar values are combined by Unicode’s boundary algorithms into extended grapheme clusters, represented by the Swift `Character` type. Each element of a string is represented by a `Character` instance."
           },
           {
             "Para" : "For example, to retrieve the first word of a longer string, you can search for a space and then create a substring from a prefix of the string up to that point:"
@@ -1805,7 +1960,7 @@
             "Para" : "When you need to know the length of a string, you must first consider what you’ll use the length for. Are you measuring the number of characters that will be displayed on the screen, or are you measuring the amount of storage needed for the string in a particular encoding? A single string can have greatly differing lengths when measured by its different views."
           },
           {
-            "Para" : "For example, an ASCII character like the capital letter  is represented by a single element in each of its four views. The Unicode scalar value of  is `65`, which is small enough to fit in a single code unit in both UTF-16 and UTF-8."
+            "Para" : "For example, an ASCII character like the capital letter _A_ is represented by a single element in each of its four views. The Unicode scalar value of _A_ is `65`, which is small enough to fit in a single code unit in both UTF-16 and UTF-8."
           },
           {
             "CodeListing" : ""
@@ -1850,13 +2005,13 @@
             "CodeListing" : ""
           },
           {
-            "Para" : "Although strings in Swift have value semantics, strings use a copy-on-write strategy to store their data in a buffer. This buffer can then be shared by different copies of a string. A string’s data is only copied lazily, upon mutation, when more than one string instance is using the same buffer. Therefore, the first in any sequence of mutating operations may cost O() time and space."
+            "Para" : "Although strings in Swift have value semantics, strings use a copy-on-write strategy to store their data in a buffer. This buffer can then be shared by different copies of a string. A string’s data is only copied lazily, upon mutation, when more than one string instance is using the same buffer. Therefore, the first in any sequence of mutating operations may cost O(_n_) time and space."
           },
           {
             "Para" : "When a string’s contiguous storage fills up, a new buffer must be allocated and data must be moved to the new storage. String buffers use an exponential growth strategy that makes appending to a string a constant time operation when averaged over many append operations."
           },
           {
-            "Para" : "Any `String` instance can be bridged to `NSString` using the type-cast operator (`as`), and any `String` instance that originates in Objective-C may use an `NSString` instance as its storage. Because any arbitrary subclass of `NSString` can become a `String` instance, there are no guarantees about representation or efficiency when a `String` instance is backed by `NSString` storage. Because `NSString` is immutable, it is just as though the storage was shared by a copy. The first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost O() time and space, where  is the length of the string’s encoded representation (or more, if the underlying `NSString` has unusual performance characteristics)."
+            "Para" : "Any `String` instance can be bridged to `NSString` using the type-cast operator (`as`), and any `String` instance that originates in Objective-C may use an `NSString` instance as its storage. Because any arbitrary subclass of `NSString` can become a `String` instance, there are no guarantees about representation or efficiency when a `String` instance is backed by `NSString` storage. Because `NSString` is immutable, it is just as though the storage was shared by a copy. The first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost O(_n_) time and space, where _n_ is the length of the string’s encoded representation (or more, if the underlying `NSString` has unusual performance characteristics)."
           },
           {
             "Para" : "For more information about the Unicode terms used in this discussion, see the . In particular, this discussion mentions , , and ."
@@ -1901,6 +2056,11 @@
                 "key.offset" : 632
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable name for this type."
+              }
+            ],
             "key.doc.column" : 13,
             "key.doc.declaration" : "static var name: String { get }",
             "key.doc.file" : "Sources\/Commandant\/ArgumentProtocol.swift",
@@ -1941,6 +2101,11 @@
             ],
             "key.bodylength" : 18,
             "key.bodyoffset" : 720,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Attempts to parse a value from the given command-line argument."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.declaration" : "static func from(string: String) -> `Self`?",
             "key.doc.file" : "Sources\/Commandant\/ArgumentProtocol.swift",
@@ -1982,6 +2147,11 @@
         "key.annotated_decl" : "<Declaration>protocol RawRepresentable<\/Declaration>",
         "key.bodylength" : 112,
         "key.bodyoffset" : 826,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A type that can be converted to and from an associated raw value."
+          }
+        ],
         "key.doc.declaration" : "protocol RawRepresentable",
         "key.doc.discussion" : [
           {
@@ -2000,7 +2170,7 @@
             "CodeListing" : ""
           },
           {
-            "Para" : "You can create a `Counter` instance from an integer value between 1 and 5 by using the `init?(rawValue:)` initializer declared in the `RawRepresentable` protocol. This initializer is failable because although every case of the `Counter` type has a corresponding `Int` value, there are many `Int` values that  correspond to a case of `Counter`."
+            "Para" : "You can create a `Counter` instance from an integer value between 1 and 5 by using the `init?(rawValue:)` initializer declared in the `RawRepresentable` protocol. This initializer is failable because although every case of the `Counter` type has a corresponding `Int` value, there are many `Int` values that _don’t_ correspond to a case of `Counter`."
           },
           {
             "CodeListing" : ""
@@ -2093,6 +2263,11 @@
         "key.annotated_decl" : "<Declaration>protocol RawRepresentable<\/Declaration>",
         "key.bodylength" : 112,
         "key.bodyoffset" : 1027,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A type that can be converted to and from an associated raw value."
+          }
+        ],
         "key.doc.declaration" : "protocol RawRepresentable",
         "key.doc.discussion" : [
           {
@@ -2111,7 +2286,7 @@
             "CodeListing" : ""
           },
           {
-            "Para" : "You can create a `Counter` instance from an integer value between 1 and 5 by using the `init?(rawValue:)` initializer declared in the `RawRepresentable` protocol. This initializer is failable because although every case of the `Counter` type has a corresponding `Int` value, there are many `Int` values that  correspond to a case of `Counter`."
+            "Para" : "You can create a `Counter` instance from an integer value between 1 and 5 by using the `init?(rawValue:)` initializer declared in the `RawRepresentable` protocol. This initializer is failable because although every case of the `Counter` type has a corresponding `Int` value, there are many `Int` values that _don’t_ correspond to a case of `Counter`."
           },
           {
             "CodeListing" : ""
@@ -2219,6 +2394,11 @@
         ],
         "key.bodylength" : 483,
         "key.bodyoffset" : 280,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Represents a subcommand that can be executed with its own set of arguments."
+          }
+        ],
         "key.doc.column" : 17,
         "key.doc.comment" : "Represents a subcommand that can be executed with its own set of arguments.",
         "key.doc.declaration" : "public protocol CommandProtocol",
@@ -2245,6 +2425,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.annotated_decl" : "<Declaration>associatedtype Options : <Type usr=\"s:10Commandant15OptionsProtocolP\">OptionsProtocol<\/Type><\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "The command’s options type."
+              }
+            ],
             "key.doc.column" : 17,
             "key.doc.comment" : "The command's options type.",
             "key.doc.declaration" : "associatedtype Options : OptionsProtocol",
@@ -2293,6 +2478,11 @@
             "key.annotated_decl" : "<Declaration>var verb: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 5,
             "key.bodyoffset" : 532,
+            "key.doc.abstract" : [
+              {
+                "Para" : "The action that users should specify to use this subcommand (e.g., `help`)."
+              }
+            ],
             "key.doc.column" : 6,
             "key.doc.comment" : "The action that users should specify to use this subcommand (e.g.,\n`help`).",
             "key.doc.declaration" : "var verb: String { get }",
@@ -2323,6 +2513,11 @@
             "key.annotated_decl" : "<Declaration>var function: <Type usr=\"s:SS\">String<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 5,
             "key.bodyoffset" : 648,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable, high-level description of what this command is used for."
+              }
+            ],
             "key.doc.column" : 6,
             "key.doc.comment" : "A human-readable, high-level description of what this command is used\nfor.",
             "key.doc.declaration" : "var function: String { get }",
@@ -2351,6 +2546,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.annotated_decl" : "<Declaration>func run(_ options: <Type usr=\"s:10Commandant15CommandProtocolP7OptionsQa\">Options<\/Type>) -&gt; <Type usr=\"s:s6ResultO\">Result<\/Type>&lt;(), <Type usr=\"s:10Commandant15CommandProtocolP11ClientErrorQa\">ClientError<\/Type>&gt;<\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "Runs this subcommand with the given options."
+              }
+            ],
             "key.doc.column" : 7,
             "key.doc.comment" : "Runs this subcommand with the given options.",
             "key.doc.declaration" : "func run(_ options: Options) -> Result<(), ClientError>",
@@ -2396,6 +2596,11 @@
         ],
         "key.bodylength" : 957,
         "key.bodyoffset" : 843,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A type-erased command."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "A type-erased command.",
         "key.doc.declaration" : "public struct CommandWrapper<ClientError> where ClientError : Error",
@@ -2559,6 +2764,11 @@
             ],
             "key.bodylength" : 633,
             "key.bodyoffset" : 1165,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Creates a command that wraps another."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.comment" : "Creates a command that wraps another.",
             "key.doc.declaration" : "fileprivate init<C>(_ command: C) where ClientError == C.ClientError, C : CommandProtocol",
@@ -2632,6 +2842,11 @@
         ],
         "key.bodylength" : 216,
         "key.bodyoffset" : 1884,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes the “mode” in which a command should run."
+          }
+        ],
         "key.doc.column" : 13,
         "key.doc.comment" : "Describes the \"mode\" in which a command should run.",
         "key.doc.declaration" : "public enum CommandMode",
@@ -2664,6 +2879,11 @@
               {
                 "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case arguments(<Type usr=\"s:10Commandant14ArgumentParserC\">ArgumentParser<\/Type>)<\/Declaration>",
+                "key.doc.abstract" : [
+                  {
+                    "Para" : "Options should be parsed from the given command-line arguments."
+                  }
+                ],
                 "key.doc.column" : 7,
                 "key.doc.comment" : "Options should be parsed from the given command-line arguments.",
                 "key.doc.declaration" : "",
@@ -2701,6 +2921,11 @@
               {
                 "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case usage<\/Declaration>",
+                "key.doc.abstract" : [
+                  {
+                    "Para" : "Each option should record its usage information in an error, for presentation to the user."
+                  }
+                ],
                 "key.doc.column" : 7,
                 "key.doc.comment" : "Each option should record its usage information in an error, for\npresentation to the user.",
                 "key.doc.declaration" : "",
@@ -2750,6 +2975,11 @@
         ],
         "key.bodylength" : 1204,
         "key.bodyoffset" : 2212,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Maintains the list of commands available to run."
+          }
+        ],
         "key.doc.column" : 20,
         "key.doc.comment" : "Maintains the list of commands available to run.",
         "key.doc.declaration" : "public final class CommandRegistry<ClientError> where ClientError : Error",
@@ -2839,6 +3069,11 @@
             ],
             "key.bodylength" : 69,
             "key.bodyoffset" : 2369,
+            "key.doc.abstract" : [
+              {
+                "Para" : "All available commands."
+              }
+            ],
             "key.doc.column" : 13,
             "key.doc.comment" : "All available commands.",
             "key.doc.declaration" : "public var commands: [CommandWrapper<ClientError>] { get }",
@@ -2908,6 +3143,11 @@
             ],
             "key.bodylength" : 106,
             "key.bodyoffset" : 2775,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Registers the given commands, making those available to run."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.comment" : "Registers the given commands, making those available to run.\n\nIf another commands were already registered with the same `verb`s, those\nwill be overwritten.",
             "key.doc.declaration" : "public func register<C>(_ commands: C...) -> CommandRegistry where ClientError == C.ClientError, C : CommandProtocol",
@@ -2981,6 +3221,11 @@
             ],
             "key.bodylength" : 54,
             "key.bodyoffset" : 3164,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Runs the command corresponding to the given verb, passing it the given arguments."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.comment" : "Runs the command corresponding to the given verb, passing it the given\narguments.\n\nReturns the results of the execution, or nil if no such command exists.",
             "key.doc.declaration" : "public func run(command verb: String, arguments: [String]) -> Result<(), CommandantError<ClientError>>?",
@@ -3026,6 +3271,11 @@
             ],
             "key.bodylength" : 32,
             "key.bodyoffset" : 3382,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns the command matching the given verb, or nil if no such command is registered."
+              }
+            ],
             "key.doc.column" : 9,
             "key.doc.comment" : "Returns the command matching the given verb, or nil if no such command\nis registered.",
             "key.doc.declaration" : "public subscript(verb: String) -> CommandWrapper<ClientError>? { get }",
@@ -3064,6 +3314,11 @@
         "key.annotated_decl" : "<Declaration>public final class CommandRegistry&lt;ClientError&gt; where ClientError : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 4074,
         "key.bodyoffset" : 3446,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Maintains the list of commands available to run."
+          }
+        ],
         "key.doc.column" : 20,
         "key.doc.declaration" : "public final class CommandRegistry<ClientError> where ClientError : Error",
         "key.doc.file" : "Sources\/Commandant\/Command.swift",
@@ -3095,6 +3350,11 @@
             ],
             "key.bodylength" : 97,
             "key.bodyoffset" : 4332,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Hands off execution to the CommandRegistry, by parsing CommandLine.arguments and then running whichever command has been identified in the argument list."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.comment" : "Hands off execution to the CommandRegistry, by parsing CommandLine.arguments\nand then running whichever command has been identified in the argument\nlist.\n\nIf the chosen command executes successfully, the process will exit with\na successful exit code.\n\nIf the chosen command fails, the provided error handler will be invoked,\nthen the process will exit with a failure exit code.\n\nIf a matching command could not be found but there is any `executable-verb`\nstyle subcommand executable in the caller's `$PATH`, the subcommand will\nbe executed.\n\nIf a matching command could not be found or a usage error occurred,\na helpful error message will be written to `stderr`, then the process\nwill exit with a failure error code.",
             "key.doc.declaration" : "public func main(defaultVerb: String, errorHandler: (ClientError) -> Void) -> Never",
@@ -3154,6 +3414,11 @@
             ],
             "key.bodylength" : 945,
             "key.bodyoffset" : 5328,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Hands off execution to the CommandRegistry, by parsing `arguments` and then running whichever command has been identified in the argument list."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.comment" : "Hands off execution to the CommandRegistry, by parsing `arguments`\nand then running whichever command has been identified in the argument\nlist.\n\nIf the chosen command executes successfully, the process will exit with\na successful exit code.\n\nIf the chosen command fails, the provided error handler will be invoked,\nthen the process will exit with a failure exit code.\n\nIf a matching command could not be found but there is any `executable-verb`\nstyle subcommand executable in the caller's `$PATH`, the subcommand will\nbe executed.\n\nIf a matching command could not be found or a usage error occurred,\na helpful error message will be written to `stderr`, then the process\nwill exit with a failure error code.",
             "key.doc.declaration" : "public func main(arguments: [String], defaultVerb: String, errorHandler: (ClientError) -> Void) -> Never",
@@ -3263,6 +3528,11 @@
             ],
             "key.bodylength" : 933,
             "key.bodyoffset" : 6585,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Finds and executes a subcommand which exists in your $PATH. The executable name must be in the form of `executable-verb`."
+              }
+            ],
             "key.doc.column" : 15,
             "key.doc.comment" : "Finds and executes a subcommand which exists in your $PATH. The executable\nname must be in the form of `executable-verb`.\n\n- Returns: The exit status of found subcommand or nil.",
             "key.doc.declaration" : "private func executeSubcommandIfExists(_ executableName: String, verb: String, arguments: [String]) -> Int32?",
@@ -3393,6 +3663,11 @@
         ],
         "key.bodylength" : 157,
         "key.bodyoffset" : 372,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Possible errors that can originate from Commandant."
+          }
+        ],
         "key.doc.column" : 13,
         "key.doc.comment" : "Possible errors that can originate from Commandant.\n\n`ClientError` should be the type of error (if any) that can occur when\nrunning commands.",
         "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
@@ -3459,6 +3734,11 @@
               {
                 "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case usageError(description: <Type usr=\"s:SS\">String<\/Type>)<\/Declaration>",
+                "key.doc.abstract" : [
+                  {
+                    "Para" : "An option was used incorrectly."
+                  }
+                ],
                 "key.doc.column" : 7,
                 "key.doc.comment" : "An option was used incorrectly.",
                 "key.doc.declaration" : "",
@@ -3496,6 +3776,11 @@
               {
                 "key.accessibility" : "source.lang.swift.accessibility.public",
                 "key.annotated_decl" : "<Declaration>case commandError(<Type usr=\"s:10Commandant0A5ErrorO06ClientB0xmfp\">ClientError<\/Type>)<\/Declaration>",
+                "key.doc.abstract" : [
+                  {
+                    "Para" : "An error occurred while running a command."
+                  }
+                ],
                 "key.doc.column" : 7,
                 "key.doc.comment" : "An error occurred while running a command.",
                 "key.doc.declaration" : "",
@@ -3533,6 +3818,11 @@
         "key.annotated_decl" : "<Declaration>public enum CommandantError&lt;ClientError&gt; : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 187,
         "key.bodyoffset" : 584,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Possible errors that can originate from Commandant."
+          }
+        ],
         "key.doc.column" : 13,
         "key.doc.declaration" : "public enum CommandantError<ClientError> : Error",
         "key.doc.discussion" : [
@@ -3581,6 +3871,11 @@
             ],
             "key.bodylength" : 151,
             "key.bodyoffset" : 618,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A textual representation of this instance."
+              }
+            ],
             "key.doc.declaration" : "var description: String { get }",
             "key.doc.discussion" : [
               {
@@ -3633,6 +3928,11 @@
         ],
         "key.bodylength" : 105,
         "key.bodyoffset" : 992,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an `InvalidArgument` error that indicates a missing value for the argument by the given name."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an `InvalidArgument` error that indicates a missing value for\nthe argument by the given name.",
         "key.doc.declaration" : "internal func missingArgumentError<ClientError>(_ argumentName: String) -> CommandantError<ClientError>",
@@ -3706,6 +4006,11 @@
         ],
         "key.bodylength" : 179,
         "key.bodyoffset" : 1339,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error by combining the example of key (and value, if applicable) with the usage description."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error by combining the example of key (and value, if applicable)\nwith the usage description.",
         "key.doc.declaration" : "internal func informativeUsageError<ClientError>(_ keyValueExample: String, usage: String) -> CommandantError<ClientError>",
@@ -3808,6 +4113,11 @@
         ],
         "key.bodylength" : 265,
         "key.bodyoffset" : 1813,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Combines the text of the two errors, if they’re both `UsageError`s. Otherwise, uses whichever one is not (biased toward the left)."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Combines the text of the two errors, if they're both `UsageError`s.\nOtherwise, uses whichever one is not (biased toward the left).",
         "key.doc.declaration" : "internal func combineUsageErrors<ClientError>(_ lhs: CommandantError<ClientError>, _ rhs: CommandantError<ClientError>) -> CommandantError<ClientError>",
@@ -3864,6 +4174,11 @@
         ],
         "key.bodylength" : 96,
         "key.bodyoffset" : 2260,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that indicates unrecognized arguments remains."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that indicates unrecognized arguments remains.",
         "key.doc.declaration" : "internal func unrecognizedArgumentsError<ClientError>(_ options: [String]) -> CommandantError<ClientError>",
@@ -3928,6 +4243,11 @@
         ],
         "key.bodylength" : 192,
         "key.bodyoffset" : 2631,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the argument, with the given example of value usage if applicable."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the argument, with the given\nexample of value usage if applicable.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ valueExample: String, argument: Argument<T>) -> CommandantError<ClientError>",
@@ -4030,6 +4350,11 @@
         ],
         "key.bodylength" : 378,
         "key.bodyoffset" : 3018,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the argument."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the argument.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ argument: Argument<T>) -> CommandantError<ClientError> where T : ArgumentProtocol",
@@ -4178,6 +4503,11 @@
         ],
         "key.bodylength" : 378,
         "key.bodyoffset" : 3598,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the argument list."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the argument list.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ argument: Argument<[T]>) -> CommandantError<ClientError> where T : ArgumentProtocol",
@@ -4334,6 +4664,11 @@
         ],
         "key.bodylength" : 76,
         "key.bodyoffset" : 4257,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the option, with the given example of key (and value, if applicable) usage."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option, with the given\nexample of key (and value, if applicable) usage.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ keyValueExample: String, option: Option<T>) -> CommandantError<ClientError>",
@@ -4436,6 +4771,11 @@
         ],
         "key.bodylength" : 89,
         "key.bodyoffset" : 4522,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the option."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ option: Option<T>) -> CommandantError<ClientError> where T : ArgumentProtocol",
@@ -4550,6 +4890,11 @@
         ],
         "key.bodylength" : 78,
         "key.bodyoffset" : 4801,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the option."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ option: Option<T?>) -> CommandantError<ClientError> where T : ArgumentProtocol",
@@ -4664,6 +5009,11 @@
         ],
         "key.bodylength" : 91,
         "key.bodyoffset" : 5070,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the option."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ option: Option<[T]>) -> CommandantError<ClientError> where T : ArgumentProtocol",
@@ -4778,6 +5128,11 @@
         ],
         "key.bodylength" : 78,
         "key.bodyoffset" : 5353,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the option."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the option.",
         "key.doc.declaration" : "internal func informativeUsageError<T, ClientError>(_ option: Option<[T]?>) -> CommandantError<ClientError> where T : ArgumentProtocol",
@@ -4892,6 +5247,11 @@
         ],
         "key.bodylength" : 121,
         "key.bodyoffset" : 5616,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Constructs an error that describes how to use the given boolean option."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Constructs an error that describes how to use the given boolean option.",
         "key.doc.declaration" : "internal func informativeUsageError<ClientError>(_ option: Option<Bool>) -> CommandantError<ClientError>",
@@ -5002,6 +5362,11 @@
         ],
         "key.bodylength" : 1127,
         "key.bodyoffset" : 601,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A basic implementation of a `help` command, using information available in a `CommandRegistry`."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "A basic implementation of a `help` command, using information available in a\n`CommandRegistry`.\n\nIf you want to use this command, initialize it with the registry, then add\nit to that same registry:\n\n\tlet commands: CommandRegistry<MyErrorType> = …\n\tlet helpCommand = HelpCommand(registry: commands)\n\tcommands.register(helpCommand)",
         "key.doc.declaration" : "public struct HelpCommand<ClientError> : CommandProtocol where ClientError : Error",
@@ -5083,6 +5448,11 @@
                 "key.offset" : 603
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The command’s options type."
+              }
+            ],
             "key.doc.column" : 17,
             "key.doc.declaration" : "associatedtype Options : OptionsProtocol",
             "key.doc.file" : "Sources\/Commandant\/Command.swift",
@@ -5120,6 +5490,11 @@
                 "key.offset" : 657
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The action that users should specify to use this subcommand (e.g., `help`)."
+              }
+            ],
             "key.doc.column" : 6,
             "key.doc.declaration" : "var verb: String { get }",
             "key.doc.file" : "Sources\/Commandant\/Command.swift",
@@ -5155,6 +5530,11 @@
                 "key.attribute" : "source.decl.attribute.public",
                 "key.length" : 6,
                 "key.offset" : 683
+              }
+            ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable, high-level description of what this command is used for."
               }
             ],
             "key.doc.column" : 6,
@@ -5221,6 +5601,11 @@
             ],
             "key.bodylength" : 102,
             "key.bodyoffset" : 931,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Initializes the command to provide help from the given registry of commands."
+              }
+            ],
             "key.doc.column" : 9,
             "key.doc.comment" : "Initializes the command to provide help from the given registry of\ncommands.",
             "key.doc.declaration" : "public init(registry: CommandRegistry<ClientError>, function: String? = nil)",
@@ -5261,6 +5646,11 @@
             ],
             "key.bodylength" : 625,
             "key.bodyoffset" : 1101,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Runs this subcommand with the given options."
+              }
+            ],
             "key.doc.column" : 7,
             "key.doc.declaration" : "func run(_ options: Options) -> Result<(), ClientError>",
             "key.doc.file" : "Sources\/Commandant\/Command.swift",
@@ -5474,6 +5864,11 @@
             ],
             "key.bodylength" : 99,
             "key.bodyoffset" : 2100,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates this set of options in the given mode."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
             "key.doc.discussion" : [
@@ -5534,6 +5929,11 @@
         ],
         "key.bodylength" : 233,
         "key.bodyoffset" : 1421,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Represents a record of options for a command, which can be parsed from a list of command-line arguments."
+          }
+        ],
         "key.doc.column" : 17,
         "key.doc.comment" : "Represents a record of options for a command, which can be parsed from\na list of command-line arguments.\n\nThis is most helpful when used in conjunction with the `Option` and `Switch`\ntypes, and `<*>` and `<|` combinators.\n\nExample:\n\n\tstruct LogOptions: OptionsProtocol {\n\t\tlet verbosity: Int\n\t\tlet outputFilename: String\n\t\tlet shouldDelete: Bool\n\t\tlet logName: String\n\n\t\tstatic func create(_ verbosity: Int) -> (String) -> (Bool) -> (String) -> LogOptions {\n\t\t\treturn { outputFilename in { shouldDelete in { logName in LogOptions(verbosity: verbosity, outputFilename: outputFilename, shouldDelete: shouldDelete, logName: logName) } } }\n\t\t}\n\n\t\tstatic func evaluate(_ m: CommandMode) -> Result<LogOptions, CommandantError<YourErrorType>> {\n\t\t\treturn create\n\t\t\t\t<*> m <| Option(key: \"verbose\", defaultValue: 0, usage: \"the verbosity level with which to read the logs\")\n\t\t\t\t<*> m <| Option(key: \"outputFilename\", defaultValue: \"\", usage: \"a file to print output to, instead of stdout\")\n\t\t\t\t<*> m <| Switch(flag: \"d\", key: \"delete\", usage: \"delete the logs when finished\")\n\t\t\t\t<*> m <| Argument(usage: \"the log to read\")\n\t\t}\n\t}",
         "key.doc.declaration" : "public protocol OptionsProtocol",
@@ -5589,6 +5989,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
             "key.annotated_decl" : "<Declaration>static func evaluate(_ m: <Type usr=\"s:10Commandant11CommandModeO\">CommandMode<\/Type>) -&gt; <Type usr=\"s:s6ResultO\">Result<\/Type>&lt;<Type usr=\"s:10Commandant15OptionsProtocolP4Selfxmfp\">Self<\/Type>, <Type usr=\"s:10Commandant0A5ErrorO\">CommandantError<\/Type>&lt;<Type usr=\"s:10Commandant15OptionsProtocolP11ClientErrorQa\">ClientError<\/Type>&gt;&gt;<\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates this set of options in the given mode."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.comment" : "Evaluates this set of options in the given mode.\n\nReturns the parsed options or a `UsageError`.",
             "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
@@ -5639,6 +6044,11 @@
         ],
         "key.bodylength" : 154,
         "key.bodyoffset" : 1765,
+        "key.doc.abstract" : [
+          {
+            "Para" : "An `OptionsProtocol` that has no options."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "An `OptionsProtocol` that has no options.",
         "key.doc.declaration" : "public struct NoOptions<ClientError> : OptionsProtocol where ClientError : Error",
@@ -5741,6 +6151,11 @@
             ],
             "key.bodylength" : 33,
             "key.bodyoffset" : 1884,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates this set of options in the given mode."
+              }
+            ],
             "key.doc.column" : 14,
             "key.doc.declaration" : "static func evaluate(_ m: CommandMode) -> Result<Self, CommandantError<ClientError>>",
             "key.doc.discussion" : [
@@ -5793,6 +6208,11 @@
         ],
         "key.bodylength" : 786,
         "key.bodyoffset" : 2013,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes an option that can be provided on the command line."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Describes an option that can be provided on the command line.",
         "key.doc.declaration" : "public struct Option<T>",
@@ -5842,6 +6262,11 @@
                 "key.offset" : 2132
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The key that controls this option. For example, a key of `verbose` would be used for a `--verbose` option."
+              }
+            ],
             "key.doc.column" : 13,
             "key.doc.comment" : "The key that controls this option. For example, a key of `verbose` would\nbe used for a `--verbose` option.",
             "key.doc.declaration" : "public let key: String",
@@ -5875,6 +6300,11 @@
                 "key.attribute" : "source.decl.attribute.public",
                 "key.length" : 6,
                 "key.offset" : 2303
+              }
+            ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The default value for this option. This is the value that will be used if the option is never explicitly specified on the command line."
               }
             ],
             "key.doc.column" : 13,
@@ -5912,12 +6342,17 @@
                 "key.offset" : 2637
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable string describing the purpose of this option. This will be shown in help messages."
+              }
+            ],
             "key.doc.column" : 13,
             "key.doc.comment" : "A human-readable string describing the purpose of this option. This will\nbe shown in help messages.\n\nFor boolean operations, this should describe the effect of _not_ using\nthe default value (i.e., what will happen if you disable\/enable the flag\ndifferently from the default).",
             "key.doc.declaration" : "public let usage: String",
             "key.doc.discussion" : [
               {
-                "Para" : "For boolean operations, this should describe the effect of  using the default value (i.e., what will happen if you disable\/enable the flag differently from the default)."
+                "Para" : "For boolean operations, this should describe the effect of _not_ using the default value (i.e., what will happen if you disable\/enable the flag differently from the default)."
               }
             ],
             "key.doc.file" : "Sources\/Commandant\/Option.swift",
@@ -5982,6 +6417,11 @@
         "key.annotated_decl" : "<Declaration>public struct Option&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 58,
         "key.bodyoffset" : 2845,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes an option that can be provided on the command line."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.declaration" : "public struct Option<T>",
         "key.doc.file" : "Sources\/Commandant\/Option.swift",
@@ -6025,6 +6465,11 @@
             ],
             "key.bodylength" : 22,
             "key.bodyoffset" : 2879,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A textual representation of this instance."
+              }
+            ],
             "key.doc.declaration" : "var description: String { get }",
             "key.doc.discussion" : [
               {
@@ -6085,6 +6530,11 @@
         ],
         "key.bodylength" : 22,
         "key.bodyoffset" : 4545,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Applies `f` to the value in the given result."
+          }
+        ],
         "key.doc.column" : 13,
         "key.doc.comment" : "Applies `f` to the value in the given result.\n\nIn the context of command-line option parsing, this is used to chain\ntogether the parsing of multiple arguments. See OptionsProtocol for an example.",
         "key.doc.declaration" : "public func <*> <T, U, ClientError>(f: (T) -> U, value: Result<T, CommandantError<ClientError>>) -> Result<U, CommandantError<ClientError>>",
@@ -6185,6 +6635,11 @@
         ],
         "key.bodylength" : 346,
         "key.bodyoffset" : 4978,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Applies the function in `f` to the value in the given result."
+          }
+        ],
         "key.doc.column" : 13,
         "key.doc.comment" : "Applies the function in `f` to the value in the given result.\n\nIn the context of command-line option parsing, this is used to chain\ntogether the parsing of multiple arguments. See OptionsProtocol for an example.",
         "key.doc.declaration" : "public func <*> <T, U, ClientError>(f: Result<((T) -> U), CommandantError<ClientError>>, value: Result<T, CommandantError<ClientError>>) -> Result<U, CommandantError<ClientError>>",
@@ -6278,6 +6733,11 @@
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 4309,
         "key.bodyoffset" : 5350,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes the “mode” in which a command should run."
+          }
+        ],
         "key.doc.column" : 13,
         "key.doc.declaration" : "public enum CommandMode",
         "key.doc.file" : "Sources\/Commandant\/Command.swift",
@@ -6309,6 +6769,11 @@
             ],
             "key.bodylength" : 230,
             "key.bodyoffset" : 5677,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates the given option in the given mode."
+              }
+            ],
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given option in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, the option's `defaultValue` is used.",
             "key.doc.declaration" : "public static func <| <T, ClientError>(mode: CommandMode, option: Option<T>) -> Result<T, CommandantError<ClientError>> where T : ArgumentProtocol",
@@ -6439,6 +6904,11 @@
             ],
             "key.bodylength" : 852,
             "key.bodyoffset" : 6216,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates the given option in the given mode."
+              }
+            ],
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given option in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, `nil` is used.",
             "key.doc.declaration" : "public static func <| <T, ClientError>(mode: CommandMode, option: Option<T?>) -> Result<T?, CommandantError<ClientError>> where T : ArgumentProtocol",
@@ -6569,6 +7039,11 @@
             ],
             "key.bodylength" : 232,
             "key.bodyoffset" : 7401,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates the given option in the given mode."
+              }
+            ],
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given option in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, the option's `defaultValue` is used.",
             "key.doc.declaration" : "public static func <| <T, ClientError>(mode: CommandMode, option: Option<[T]>) -> Result<[T], CommandantError<ClientError>> where T : ArgumentProtocol",
@@ -6699,6 +7174,11 @@
             ],
             "key.bodylength" : 1117,
             "key.bodyoffset" : 7946,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates the given option in the given mode."
+              }
+            ],
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given option in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, `nil` is used.",
             "key.doc.declaration" : "public static func <| <T, ClientError>(mode: CommandMode, option: Option<[T]?>) -> Result<[T]?, CommandantError<ClientError>> where T : ArgumentProtocol",
@@ -6829,6 +7309,11 @@
             ],
             "key.bodylength" : 272,
             "key.bodyoffset" : 9385,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates the given boolean option in the given mode."
+              }
+            ],
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given boolean option in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, the option's `defaultValue` is used.",
             "key.doc.declaration" : "public static func <| <ClientError>(mode: CommandMode, option: Option<Bool>) -> Result<Bool, CommandantError<ClientError>>",
@@ -6926,6 +7411,11 @@
         ],
         "key.bodylength" : 348,
         "key.bodyoffset" : 82,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A poor man’s ordered set."
+          }
+        ],
         "key.doc.column" : 17,
         "key.doc.comment" : "A poor man's ordered set.",
         "key.doc.declaration" : "internal struct OrderedSet<T> : Equatable where T : Hashable",
@@ -7111,6 +7601,11 @@
         "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; : <Type usr=\"s:SQ\">Equatable<\/Type> where T : <Type usr=\"s:SH\">Hashable<\/Type><\/Declaration>",
         "key.bodylength" : 331,
         "key.bodyoffset" : 467,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A poor man’s ordered set."
+          }
+        ],
         "key.doc.column" : 17,
         "key.doc.declaration" : "internal struct OrderedSet<T> : Equatable where T : Hashable",
         "key.doc.file" : "Sources\/Commandant\/OrderedSet.swift",
@@ -7147,6 +7642,16 @@
             "key.annotated_decl" : "<Declaration>subscript(position: <Type usr=\"s:Si\">Int<\/Type>) -&gt; <Type usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 28,
             "key.bodyoffset" : 500,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Accesses the element at the specified position."
+              }
+            ],
+            "key.doc.complexity" : [
+              {
+                "Para" : "O(1)"
+              }
+            ],
             "key.doc.declaration" : "subscript(position: Self.Index) -> Self.Element { get }",
             "key.doc.discussion" : [
               {
@@ -7203,10 +7708,20 @@
             "key.annotated_decl" : "<Declaration>var count: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 24,
             "key.bodyoffset" : 548,
+            "key.doc.abstract" : [
+              {
+                "Para" : "The number of elements in the collection."
+              }
+            ],
+            "key.doc.complexity" : [
+              {
+                "Para" : "O(1) if the collection conforms to `RandomAccessCollection`; otherwise, O(_n_), where _n_ is the length of the collection."
+              }
+            ],
             "key.doc.declaration" : "var count: Int { get }",
             "key.doc.discussion" : [
               {
-                "Para" : "To check whether a collection is empty, use its `isEmpty` property instead of comparing `count` to zero. Unless the collection guarantees random-access performance, calculating `count` can be an O() operation."
+                "Para" : "To check whether a collection is empty, use its `isEmpty` property instead of comparing `count` to zero. Unless the collection guarantees random-access performance, calculating `count` can be an O(_n_) operation."
               },
               {
                 "Complexity" : ""
@@ -7240,6 +7755,16 @@
             "key.annotated_decl" : "<Declaration>var isEmpty: <Type usr=\"s:Sb\">Bool<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 26,
             "key.bodyoffset" : 595,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A Boolean value indicating whether the collection is empty."
+              }
+            ],
+            "key.doc.complexity" : [
+              {
+                "Para" : "O(1)"
+              }
+            ],
             "key.doc.declaration" : "var isEmpty: Bool { get }",
             "key.doc.discussion" : [
               {
@@ -7280,6 +7805,11 @@
             "key.annotated_decl" : "<Declaration>var startIndex: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 29,
             "key.bodyoffset" : 646,
+            "key.doc.abstract" : [
+              {
+                "Para" : "The position of the first element in a nonempty collection."
+              }
+            ],
             "key.doc.declaration" : "var startIndex: Self.Index { get }",
             "key.doc.discussion" : [
               {
@@ -7314,6 +7844,11 @@
             "key.annotated_decl" : "<Declaration>var endIndex: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 27,
             "key.bodyoffset" : 698,
+            "key.doc.abstract" : [
+              {
+                "Para" : "The collection’s “past the end” position—that is, the position one greater than the last valid subscript argument."
+              }
+            ],
             "key.doc.declaration" : "var endIndex: Self.Index { get }",
             "key.doc.discussion" : [
               {
@@ -7354,6 +7889,11 @@
             "key.annotated_decl" : "<Declaration>func index(after i: <Type usr=\"s:Si\">Int<\/Type>) -&gt; <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
             "key.bodylength" : 34,
             "key.bodyoffset" : 762,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns the position immediately after the given index."
+              }
+            ],
             "key.doc.declaration" : "func index(after i: Self.Index) -> Self.Index",
             "key.doc.discussion" : [
               {
@@ -7426,6 +7966,11 @@
         ],
         "key.bodylength" : 244,
         "key.bodyoffset" : 175,
+        "key.doc.abstract" : [
+          {
+            "Para" : "A value that represents either a success or a failure, including an associated value in each case."
+          }
+        ],
         "key.doc.declaration" : "enum Result<Success, Failure> where Failure : Error",
         "key.doc.full_as_xml" : "<Other><Name>Result<\/Name><USR>s:s6ResultO<\/USR><Declaration>enum Result&lt;Success, Failure&gt; where Failure : Error<\/Declaration><CommentParts><Abstract><Para>A value that represents either a success or a failure, including an associated value in each case.<\/Para><\/Abstract><\/CommentParts><\/Other>",
         "key.doc.name" : "Result",
@@ -7511,6 +8056,11 @@
         ],
         "key.bodylength" : 724,
         "key.bodyoffset" : 397,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes a parameterless command line flag that defaults to false and can only be switched on. Canonical examples include `--force` and `--recurse`."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Describes a parameterless command line flag that defaults to false and can only\nbe switched on. Canonical examples include `--force` and `--recurse`.\n\nFor a boolean toggle that can be enabled and disabled use `Option<Bool>`.",
         "key.doc.declaration" : "public struct Switch",
@@ -7548,6 +8098,11 @@
                 "key.offset" : 515
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The key that enables this switch. For example, a key of `verbose` would be used for a `--verbose` option."
+              }
+            ],
             "key.doc.column" : 13,
             "key.doc.comment" : "The key that enables this switch. For example, a key of `verbose` would be\nused for a `--verbose` option.",
             "key.doc.declaration" : "public let key: String",
@@ -7581,6 +8136,11 @@
                 "key.attribute" : "source.decl.attribute.public",
                 "key.length" : 6,
                 "key.offset" : 828
+              }
+            ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "Optional single letter flag that enables this switch. For example, `-v` would be used as a shorthand for `--verbose`."
               }
             ],
             "key.doc.column" : 13,
@@ -7621,6 +8181,11 @@
                 "key.attribute" : "source.decl.attribute.public",
                 "key.length" : 6,
                 "key.offset" : 968
+              }
+            ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "A human-readable string describing the purpose of this option. This will be shown in help messages."
               }
             ],
             "key.doc.column" : 13,
@@ -7688,6 +8253,11 @@
         "key.annotated_decl" : "<Declaration>public struct Switch<\/Declaration>",
         "key.bodylength" : 140,
         "key.bodyoffset" : 1167,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes a parameterless command line flag that defaults to false and can only be switched on. Canonical examples include `--force` and `--recurse`."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.declaration" : "public struct Switch",
         "key.doc.discussion" : [
@@ -7736,6 +8306,11 @@
             ],
             "key.bodylength" : 104,
             "key.bodyoffset" : 1201,
+            "key.doc.abstract" : [
+              {
+                "Para" : "A textual representation of this instance."
+              }
+            ],
             "key.doc.declaration" : "var description: String { get }",
             "key.doc.discussion" : [
               {
@@ -7806,6 +8381,11 @@
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 650,
         "key.bodyoffset" : 1355,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes the “mode” in which a command should run."
+          }
+        ],
         "key.doc.column" : 13,
         "key.doc.declaration" : "public enum CommandMode",
         "key.doc.file" : "Sources\/Commandant\/Command.swift",
@@ -7837,6 +8417,11 @@
             ],
             "key.bodylength" : 333,
             "key.bodyoffset" : 1670,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Evaluates the given boolean switch in the given mode."
+              }
+            ],
             "key.doc.column" : 21,
             "key.doc.comment" : "Evaluates the given boolean switch in the given mode.\n\nIf parsing command line arguments, and no value was specified on the command\nline, the option's `defaultValue` is used.",
             "key.doc.declaration" : "public static func <| <ClientError>(mode: CommandMode, option: Switch) -> Result<Bool, CommandantError<ClientError>>",
