@@ -9,6 +9,11 @@
         "key.annotated_decl" : "<Declaration>class Base<\/Declaration>",
         "key.bodylength" : 166,
         "key.bodyoffset" : 29,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Doc for Base"
+          }
+        ],
         "key.doc.column" : 7,
         "key.doc.comment" : "Doc for Base",
         "key.doc.declaration" : "class Base",
@@ -35,6 +40,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>typealias <Type usr=\"s:9Extension4BaseC\">Base<\/Type>.Index = <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "Doc for Base.Index"
+              }
+            ],
             "key.doc.column" : 15,
             "key.doc.comment" : "Doc for Base.Index",
             "key.doc.declaration" : "typealias Extension.Base.Index = Int",
@@ -65,6 +75,11 @@
             "key.annotated_decl" : "<Declaration>func f(index: <Type usr=\"s:9Extension4BaseC5Indexa\">Index<\/Type>)<\/Declaration>",
             "key.bodylength" : 5,
             "key.bodyoffset" : 134,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Doc for Base.f"
+              }
+            ],
             "key.doc.column" : 10,
             "key.doc.comment" : "Doc for Base.f",
             "key.doc.declaration" : "func f(index: Index)",
@@ -98,6 +113,11 @@
             "key.annotated_decl" : "<Declaration>class <Type usr=\"s:9Extension4BaseC\">Base<\/Type>.Nested<\/Declaration>",
             "key.bodylength" : 5,
             "key.bodyoffset" : 188,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Doc for Base.Nested"
+              }
+            ],
             "key.doc.column" : 11,
             "key.doc.comment" : "Doc for Base.Nested",
             "key.doc.declaration" : "class Extension.Base.Nested",
@@ -129,10 +149,14 @@
         "key.usr" : "s:9Extension4BaseC"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>class Base<\/Declaration>",
         "key.bodylength" : 155,
         "key.bodyoffset" : 214,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Doc for Base"
+          }
+        ],
         "key.doc.column" : 7,
         "key.doc.declaration" : "class Base",
         "key.doc.file" : "Extension.swift",
@@ -153,8 +177,12 @@
         "key.parsed_scope.start" : 16,
         "key.substructure" : [
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>typealias ExtendedIndex = <Type usr=\"s:Sd\">Double<\/Type><\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "Doc for Base.ExtendedIndex"
+              }
+            ],
             "key.doc.column" : 15,
             "key.doc.comment" : "Doc for Base.ExtendedIndex",
             "key.doc.declaration" : "typealias ExtendedIndex = Double",
@@ -181,10 +209,14 @@
             "key.usr" : "s:9Extension4BaseC13ExtendedIndexa"
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>func extendedF(index: <Type usr=\"s:9Extension4BaseC13ExtendedIndexa\">ExtendedIndex<\/Type>)<\/Declaration>",
             "key.bodylength" : 5,
             "key.bodyoffset" : 362,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Doc for Base.extendedF"
+              }
+            ],
             "key.doc.column" : 10,
             "key.doc.comment" : "Doc for Base.extendedF",
             "key.doc.declaration" : "func extendedF(index: ExtendedIndex)",
@@ -219,10 +251,14 @@
         "key.usr" : "s:9Extension4BaseC"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>class <Type usr=\"s:9Extension4BaseC\">Base<\/Type>.Nested<\/Declaration>",
         "key.bodylength" : 1,
         "key.bodyoffset" : 436,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Doc for Base.Nested"
+          }
+        ],
         "key.doc.column" : 11,
         "key.doc.declaration" : "class Extension.Base.Nested",
         "key.doc.file" : "Extension.swift",
@@ -289,7 +325,6 @@
         "key.usr" : "s:9Extension004ipIhC"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>struct <Type usr=\"s:9Extension004ipIhC\">🐽<\/Type>.🐧<\/Declaration>",
         "key.bodylength" : 1,
         "key.bodyoffset" : 501,

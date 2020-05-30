@@ -16,6 +16,11 @@
         ],
         "key.bodylength" : 1029,
         "key.bodyoffset" : 231,
+        "key.doc.abstract" : [
+          {
+            "Para" : "Describes an argument that can be provided on the command line."
+          }
+        ],
         "key.doc.column" : 15,
         "key.doc.comment" : "Describes an argument that can be provided on the command line.",
         "key.doc.declaration" : "public struct Argument<T>",
@@ -63,6 +68,11 @@
                 "key.attribute" : "source.decl.attribute.public",
                 "key.length" : 6,
                 "key.offset" : 443
+              }
+            ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The default value for this argument. This is the value that will be used if the argument is never explicitly specified on the command line."
               }
             ],
             "key.doc.column" : 13,
