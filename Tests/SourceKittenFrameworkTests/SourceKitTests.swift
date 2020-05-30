@@ -117,7 +117,7 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    func testSwiftDeclarationAttributeKind() {
+    func testSwiftDeclarationAttributeKind() { // swiftlint:disable:this function_body_length
         var expected = Set(SwiftDeclarationAttributeKind.allCases)
         let attributesFoundInSwift5ButWeIgnore = [
             "source.decl.attribute.GKInspectable",
