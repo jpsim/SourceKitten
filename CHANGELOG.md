@@ -11,6 +11,9 @@
 * Extract all supported delimiters from document XML.
   [Eneko Alonso](https://github.com/eneko)
 
+* Add `SwiftDeclarationAttributeKind` values introduced in Swift 5.2.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Bug Fixes
 
 * Stop the program immediately if the `xcodebuild` command fails.  
