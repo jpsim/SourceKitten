@@ -1,2 +1,2 @@
 github "drmohundro/SWXMLHash" == 5.0.1
-github "jpsim/Yams" ~> 2.0
+github "jpsim/Yams" ~> 3.0
