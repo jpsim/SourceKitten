@@ -53,6 +53,8 @@ public enum SwiftDocKey: String {
     case documentationComment = "key.doc.comment"
     /// Declaration of documented token (String).
     case docDeclaration       = "key.doc.declaration"
+    /// Abstract of documented token
+    case docAbstract          = "key.doc.abstract"
     /// Discussion documentation of documented token ([SourceKitRepresentable]).
     case docDiscussion        = "key.doc.discussion"
     /// File where the documented token is located (String).
@@ -65,6 +67,8 @@ public enum SwiftDocKey: String {
     case docParameters        = "key.doc.parameters"
     /// Parsed declaration (String).
     case docResultDiscussion  = "key.doc.result_discussion"
+    /// Throws delimiter from documented token
+    case docThrowsDiscussion  = "key.doc.throws_discussion"
     /// Parsed scope start (Int64).
     case docType              = "key.doc.type"
     /// Parsed scope start end (Int64).
@@ -89,6 +93,49 @@ public enum SwiftDocKey: String {
     case unavailableMessage   = "key.unavailable_message"
     /// Annotations ([String]).
     case annotations          = "key.annotations"
+
+    // MARK: Delimiters extracted from discussion
+
+    /// Content of `- attention:` delimiter
+    case docAttention         = "key.doc.attention"
+    /// Content of `- author:` delimiter
+    case docAuthor            = "key.doc.author"
+    /// Content of `- authors:` delimiter
+    case docAuthors           = "key.doc.authors"
+    /// Content of `- bug:` delimiter
+    case docBug               = "key.doc.bug"
+    /// Content of `- complexity:` delimiter
+    case docComplexity        = "key.doc.complexity"
+    /// Content of `- copyright:` delimiter
+    case docCopyright         = "key.doc.copyright"
+    /// Content of `- date:` delimiter
+    case docDate              = "key.doc.date"
+    /// Content of `- experiment:` delimiter
+    case docExperiment        = "key.doc.experiment"
+    /// Content of `- important:` delimiter
+    case docImportant         = "key.doc.important"
+    /// Content of `- invariant:` delimiter
+    case docInvariant         = "key.doc.invariant"
+    /// Content of `- note:` delimiter
+    case docNote              = "key.doc.note"
+    /// Content of `- postcondition:` delimiter
+    case docPostcondition     = "key.doc.postcondition"
+    /// Content of `- precondition:` delimiter
+    case docPrecondition      = "key.doc.precondition"
+    /// Content of `- remark:` delimiter
+    case docRemark            = "key.doc.remark"
+    /// Content of `- requires:` delimiter
+    case docRequires          = "key.doc.requires"
+    /// Content of `- see:` and `- seealso:` delimiters
+    case docSeeAlso           = "key.doc.see_also"
+    /// Content of `- since:` delimiter
+    case docSince             = "key.doc.since"
+    /// Content of `- toDo:` delimiter
+    case docToDo              = "key.doc.to_do"
+    /// Content of `- version:` delimiter
+    case docVersion           = "key.doc.version"
+    /// Content of `- warning:` delimiter
+    case docWarning           = "key.doc.warning"
 
     // MARK: Typed SwiftDocKey Getters
 

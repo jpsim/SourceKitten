@@ -459,6 +459,10 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
         .replacingOccurrences(of: "</rawHTML>", with: "")
         .replacingOccurrences(of: "<codeVoice>", with: "`")
         .replacingOccurrences(of: "</codeVoice>", with: "`")
+        .replacingOccurrences(of: "<emphasis>", with: "_")
+        .replacingOccurrences(of: "</emphasis>", with: "_")
+//        .replacingOccurrences(of: "<strong>", with: "**")
+//        .replacingOccurrences(of: "</strong>", with: "**")
     return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
         var docs = [String: SourceKitRepresentable]()
         docs[SwiftDocKey.docType.rawValue] = rootXML.element?.name
@@ -484,10 +488,38 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
             }
             docs[SwiftDocKey.docParameters.rawValue] = parameters.map(docParameters(from:)) as [SourceKitRepresentable]
         }
+        docs[SwiftDocKey.docAbstract.rawValue] = commentPartsXML["Abstract"].childrenAsArray()
         docs[SwiftDocKey.docDiscussion.rawValue] = commentPartsXML["Discussion"].childrenAsArray()
         docs[SwiftDocKey.docResultDiscussion.rawValue] = commentPartsXML["ResultDiscussion"].childrenAsArray()
+        docs[SwiftDocKey.docThrowsDiscussion.rawValue] = commentPartsXML["ThrowsDiscussion"].childrenAsArray()
+        populateDelimiters(docs: &docs, discussion: commentPartsXML["Discussion"])
         return docs
     }
+}
+
+/// Delimiters extracted from discussion (supported by Xcode)
+/// - see: https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/MarkupFunctionality.html
+func populateDelimiters(docs: inout [String: SourceKitRepresentable], discussion: XMLIndexer) {
+    docs[SwiftDocKey.docAttention.rawValue] = discussion["Attention"].childrenAsArray()
+    docs[SwiftDocKey.docAuthor.rawValue] = discussion["Author"].childrenAsArray()
+    docs[SwiftDocKey.docAuthors.rawValue] = discussion["Authors"].childrenAsArray()
+    docs[SwiftDocKey.docBug.rawValue] = discussion["Bug"].childrenAsArray()
+    docs[SwiftDocKey.docComplexity.rawValue] = discussion["Complexity"].childrenAsArray()
+    docs[SwiftDocKey.docCopyright.rawValue] = discussion["Copyright"].childrenAsArray()
+    docs[SwiftDocKey.docDate.rawValue] = discussion["Date"].childrenAsArray()
+    docs[SwiftDocKey.docExperiment.rawValue] = discussion["Experiment"].childrenAsArray()
+    docs[SwiftDocKey.docImportant.rawValue] = discussion["Important"].childrenAsArray()
+    docs[SwiftDocKey.docInvariant.rawValue] = discussion["Invariant"].childrenAsArray()
+    docs[SwiftDocKey.docNote.rawValue] = discussion["Note"].childrenAsArray()
+    docs[SwiftDocKey.docPostcondition.rawValue] = discussion["Postcondition"].childrenAsArray()
+    docs[SwiftDocKey.docPrecondition.rawValue] = discussion["Precondition"].childrenAsArray()
+    docs[SwiftDocKey.docRemark.rawValue] = discussion["Remark"].childrenAsArray()
+    docs[SwiftDocKey.docRequires.rawValue] = discussion["Requires"].childrenAsArray()
+    docs[SwiftDocKey.docSeeAlso.rawValue] = discussion["See"].childrenAsArray()
+    docs[SwiftDocKey.docSince.rawValue] = discussion["Since"].childrenAsArray()
+    docs[SwiftDocKey.docToDo.rawValue] = discussion["TODO"].childrenAsArray()
+    docs[SwiftDocKey.docVersion.rawValue] = discussion["Version"].childrenAsArray()
+    docs[SwiftDocKey.docWarning.rawValue] = discussion["Warning"].childrenAsArray()
 }
 
 private extension XMLIndexer {

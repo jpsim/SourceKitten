@@ -8,6 +8,8 @@
 
 * Update Yams to 3.0.0.  
   [Keith Smiley](https://github.com/keith)
+* Extract all supported delimiters from document XML.
+  [Eneko Alonso](https://github.com/eneko)
 
 * Add `SwiftDeclarationAttributeKind` values introduced in Swift 5.2.  
   [JP Simard](https://github.com/jpsim)

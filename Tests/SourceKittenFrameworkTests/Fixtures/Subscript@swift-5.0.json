@@ -26,6 +26,11 @@
             "key.annotated_decl" : "<Declaration>subscript(key: <Type usr=\"s:SS\">String<\/Type>) -&gt; () { get set }<\/Declaration>",
             "key.bodylength" : 46,
             "key.bodyoffset" : 84,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Returns or sets Void."
+              }
+            ],
             "key.doc.column" : 5,
             "key.doc.comment" : "Returns or sets Void.",
             "key.doc.declaration" : "subscript(key: String) -> () { get set }",

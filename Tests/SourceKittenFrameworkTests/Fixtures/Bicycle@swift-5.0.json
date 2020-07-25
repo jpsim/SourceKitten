@@ -53,6 +53,11 @@
         ],
         "key.bodylength" : 2222,
         "key.bodyoffset" : 248,
+        "key.doc.abstract" : [
+          {
+            "Para" : "🚲 A two-wheeled, human-powered mode of transportation."
+          }
+        ],
         "key.doc.column" : 14,
         "key.doc.comment" : "🚲 A two-wheeled, human-powered mode of transportation.",
         "key.doc.declaration" : "public class Bicycle",
@@ -88,6 +93,11 @@
             ],
             "key.bodylength" : 49,
             "key.bodyoffset" : 492,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Frame and construction style."
+              }
+            ],
             "key.doc.column" : 17,
             "key.doc.comment" : "Frame and construction style.\n\n- Road: For streets or trails.\n- Touring: For long journeys.\n- Cruiser: For casual trips around town.\n- Hybrid: For general-purpose transportation.",
             "key.doc.declaration" : "public enum Bicycle.Bicycle.Style",
@@ -213,6 +223,11 @@
             ],
             "key.bodylength" : 60,
             "key.bodyoffset" : 733,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Mechanism for converting pedal power into motion."
+              }
+            ],
             "key.doc.column" : 17,
             "key.doc.comment" : "Mechanism for converting pedal power into motion.\n\n- Fixed: A single, fixed gear.\n- Freewheel: A variable-speed, disengageable gear.",
             "key.doc.declaration" : "public enum Bicycle.Bicycle.Gearing",
@@ -304,6 +319,11 @@
             "key.annotated_decl" : "<Declaration>enum <Type usr=\"s:7BicycleAAC\">Bicycle<\/Type>.Handlebar<\/Declaration>",
             "key.bodylength" : 47,
             "key.bodyoffset" : 1009,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Hardware used for steering."
+              }
+            ],
             "key.doc.column" : 10,
             "key.doc.comment" : "Hardware used for steering.\n\n- Riser: A casual handlebar.\n- Café: An upright handlebar.\n- Drop: A classic handlebar.\n- Bullhorn: A powerful handlebar.",
             "key.doc.declaration" : "enum Bicycle.Bicycle.Handlebar",
@@ -420,6 +440,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>let style: <Type usr=\"s:7BicycleAAC5StyleO\">Style<\/Type><\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "The style of the bicycle."
+              }
+            ],
             "key.doc.column" : 9,
             "key.doc.comment" : "The style of the bicycle.",
             "key.doc.declaration" : "let style: Style",
@@ -448,6 +473,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>let gearing: <Type usr=\"s:7BicycleAAC7GearingO\">Gearing<\/Type><\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "The gearing of the bicycle."
+              }
+            ],
             "key.doc.column" : 9,
             "key.doc.comment" : "The gearing of the bicycle.",
             "key.doc.declaration" : "let gearing: Gearing",
@@ -476,6 +506,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>let handlebar: <Type usr=\"s:7BicycleAAC9HandlebarO\">Handlebar<\/Type><\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "The handlebar of the bicycle."
+              }
+            ],
             "key.doc.column" : 9,
             "key.doc.comment" : "The handlebar of the bicycle.",
             "key.doc.declaration" : "let handlebar: Handlebar",
@@ -504,6 +539,11 @@
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>let frameSize: <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
+            "key.doc.abstract" : [
+              {
+                "Para" : "The size of the frame, in centimeters."
+              }
+            ],
             "key.doc.column" : 9,
             "key.doc.comment" : "The size of the frame, in centimeters.",
             "key.doc.declaration" : "let frameSize: Int",
@@ -537,6 +577,11 @@
                 "key.attribute" : "source.decl.attribute.setter_access.private",
                 "key.length" : 12,
                 "key.offset" : 1374
+              }
+            ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The number of trips travelled by the bicycle."
               }
             ],
             "key.doc.column" : 22,
@@ -575,6 +620,11 @@
                 "key.offset" : 1479
               }
             ],
+            "key.doc.abstract" : [
+              {
+                "Para" : "The total distance travelled by the bicycle, in meters."
+              }
+            ],
             "key.doc.column" : 22,
             "key.doc.comment" : "The total distance travelled by the bicycle, in meters.",
             "key.doc.declaration" : "private(set) var distanceTravelled: Double {\n    get\n    }",
@@ -606,6 +656,11 @@
             "key.annotated_decl" : "<Declaration>init(style: <Type usr=\"s:7BicycleAAC5StyleO\">Style<\/Type>, gearing: <Type usr=\"s:7BicycleAAC7GearingO\">Gearing<\/Type>, handlebar: <Type usr=\"s:7BicycleAAC9HandlebarO\">Handlebar<\/Type>, frameSize centimeters: <Type usr=\"s:Si\">Int<\/Type>)<\/Declaration>",
             "key.bodylength" : 192,
             "key.bodyoffset" : 2010,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Initializes a new bicycle with the provided parts and specifications."
+              }
+            ],
             "key.doc.column" : 5,
             "key.doc.comment" : "Initializes a new bicycle with the provided parts and specifications.\n\n- parameter style: The style of the bicycle\n- parameter gearing: The gearing of the bicycle\n- parameter handlebar: The handlebar of the bicycle\n- parameter centimeters: The frame size of the bicycle, in centimeters\n\n- returns: A beautiful, brand-new, custom built just for you.",
             "key.doc.declaration" : "init(style: Style, gearing: Gearing, handlebar: Handlebar, frameSize centimeters: Int)",
@@ -678,6 +733,11 @@
             "key.annotated_decl" : "<Declaration>func travel(distance meters: <Type usr=\"s:Sd\">Double<\/Type>)<\/Declaration>",
             "key.bodylength" : 112,
             "key.bodyoffset" : 2356,
+            "key.doc.abstract" : [
+              {
+                "Para" : "Take a bike out for a spin."
+              }
+            ],
             "key.doc.column" : 10,
             "key.doc.comment" : "Take a bike out for a spin.\n\n- parameter meters: The distance to travel in meters.",
             "key.doc.declaration" : "func travel(distance meters: Double)",
