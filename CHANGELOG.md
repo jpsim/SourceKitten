@@ -14,6 +14,9 @@
 
 ##### Bug Fixes
 
+* Return nil rather than crashing when failing to parse .m files.
+  [Joe Laws](https://github.com/jlaws)
+
 * Fix crashes when parsing .m files.  
   [Joe Laws](https://github.com/jlaws)
   

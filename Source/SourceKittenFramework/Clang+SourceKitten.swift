@@ -108,6 +108,9 @@ extension CXCursor {
 
     func str() -> String? {
         let cursorExtent = extent()
+        guard FileManager.default.fileExists(atPath: cursorExtent.start.file) else {
+            return nil
+        }
         guard let content = try? String(contentsOfFile: cursorExtent.start.file, encoding: .utf8) else {
             return nil
         }
@@ -115,19 +118,19 @@ extension CXCursor {
         return contents.substringWithSourceRange(start: cursorExtent.start, end: cursorExtent.end)
     }
 
-    func name() -> String {
+    func name() -> String? {
         let type = objCKind()
         if type == .category, let usrNSString = usr() as NSString? {
             let ext = (usrNSString.range(of: "c:objc(ext)").location == 0)
             let regex = try! NSRegularExpression(pattern: "(\\w+)@(\\w+)", options: [])
             let range = NSRange(location: 0, length: usrNSString.length)
             let matches = regex.matches(in: usrNSString as String, options: [], range: range)
-            if !matches.isEmpty {
+            if matches.isEmpty {
+                return nil
+            } else {
                 let categoryOn = usrNSString.substring(with: matches[0].range(at: 1))
                 let categoryName = ext ? "" : usrNSString.substring(with: matches[0].range(at: 2))
                 return "\(categoryOn)(\(categoryName))"
-            } else {
-                fatalError("Couldn't get category name")
             }
         }
         let spelling = clang_getCursorSpelling(self).str()!

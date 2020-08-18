@@ -125,6 +125,9 @@ public struct StringView {
      Returns a substring from a start and end SourceLocation.
      */
     public func substringWithSourceRange(start: SourceLocation, end: SourceLocation) -> String? {
+        guard start.offset < end.offset else {
+            return nil
+        }
         let byteRange = ByteRange(location: ByteCount(Int(start.offset)),
                                   length: ByteCount(Int(end.offset - start.offset)))
         return substringWithByteRange(byteRange)
