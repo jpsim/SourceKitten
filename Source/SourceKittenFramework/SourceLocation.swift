@@ -20,6 +20,9 @@ public struct SourceLocation: Comparable {
     public let offset: UInt32
 
     public func range(toEnd end: SourceLocation) -> ByteRange {
+      guard end.offset > offset else {
+        return ByteRange(location: 0, length: 0)
+      }
         return ByteRange(location: ByteCount(Int(offset)), length: ByteCount(Int(end.offset - offset)))
     }
 

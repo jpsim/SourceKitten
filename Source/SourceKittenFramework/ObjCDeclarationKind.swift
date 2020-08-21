@@ -75,6 +75,8 @@ public enum ObjCDeclarationKind: String {
         case CXCursor_ModuleImportDecl: self = .moduleImport
         case CXCursor_UnexposedDecl: self = .unexposedDecl
         case CXCursor_ObjCImplementationDecl: self = .class
+        case CXCursor_ObjCCategoryImplDecl: self = .category
+        case CXCursor_ObjCDynamicDecl: self = .unexposedDecl
         case CXCursor_ObjCSynthesizeDecl: self = .unexposedDecl
         default: fatalError("Unsupported CXCursorKind: \(clang_getCursorKindSpelling(cursorKind))")
         }
