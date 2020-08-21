@@ -15,6 +15,8 @@ jobs:
         containerImage: norionomura/swiftlint:swift-5.0
       swift51:
         containerImage: swift:5.1
+      swift52:
+        containerImage: swift:5.2
   container: $[ variables['containerImage'] ]
   steps:
     - script: swift test --parallel
@@ -34,7 +36,7 @@ jobs:
 
 - job: macOS
   pool:
-    vmImage: 'macOS 10.14'
+    vmImage: 'macOS 10.15'
   strategy:
     maxParallel: 10
     matrix:
@@ -46,6 +48,12 @@ jobs:
         DEVELOPER_DIR: /Applications/Xcode_11.app
       xcode113:
         DEVELOPER_DIR: /Applications/Xcode_11.3.app
+      xcode114:
+        DEVELOPER_DIR: /Applications/Xcode_11.4.app
+      xcode115:
+        DEVELOPER_DIR: /Applications/Xcode_11.5.app
+      xcode116:
+        DEVELOPER_DIR: /Applications/Xcode_11.6.app
   steps:
     - script: git submodule update --init --recursive
       displayName: Update git submodules
@@ -71,9 +79,9 @@ jobs:
 
 - job: CocoaPods
   pool:
-    vmImage: 'macOS 10.14'
+    vmImage: 'macOS 10.15'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_11.3.app
+    DEVELOPER_DIR: /Applications/Xcode_11.6.app
   steps:
     - script: bundle install --path vendor/bundle
       displayName: bundle install
@@ -84,9 +92,9 @@ jobs:
 
 - job: Jazzy
   pool:
-    vmImage: 'macOS 10.14'
+    vmImage: 'macOS 10.15'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_11.3.app
+    DEVELOPER_DIR: /Applications/Xcode_11.6.app
   steps:
     - script: swift build
       displayName: swift build
