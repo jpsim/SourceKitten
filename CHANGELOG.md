@@ -6,8 +6,9 @@
 
 ##### Enhancements
 
-* Update Yams to 3.0.0.  
+* Update Yams to 4.0.0.  
   [Keith Smiley](https://github.com/keith)
+  [JP Simard](https://github.com/jpsim)
 
 * Add `SwiftDeclarationAttributeKind` values introduced in Swift 5.2.  
   [JP Simard](https://github.com/jpsim)

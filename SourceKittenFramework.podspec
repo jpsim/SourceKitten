@@ -8,8 +8,8 @@ Pod::Spec.new do |s|
   s.author              = { 'JP Simard' => 'jp@jpsim.com' }
   s.platform            = :osx, '10.9'
   s.source_files        = 'Source/Clang_C/include/*.h', 'Source/SourceKit/include/*.h', 'Source/SourceKittenFramework/*.swift'
-  s.swift_versions      = ['5.0', '5.1']
+  s.swift_versions      = ['5.1', '5.2']
   s.pod_target_xcconfig = { 'APPLICATION_EXTENSION_API_ONLY' => 'YES' }
   s.dependency            'SWXMLHash', '~> 5.0.1'
-  s.dependency            'Yams', '~> 3.0'
+  s.dependency            'Yams', '~> 4.0'
 end
