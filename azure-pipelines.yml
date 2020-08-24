@@ -36,7 +36,7 @@ jobs:
 
 - job: macOS
   pool:
-    vmImage: 'macOS 10.15'
+    vmImage: 'macOS-10.15'
   strategy:
     maxParallel: 10
     matrix:
@@ -79,7 +79,7 @@ jobs:
 
 - job: CocoaPods
   pool:
-    vmImage: 'macOS 10.15'
+    vmImage: 'macOS-10.15'
   variables:
     DEVELOPER_DIR: /Applications/Xcode_11.6.app
   steps:
@@ -92,7 +92,7 @@ jobs:
 
 - job: Jazzy
   pool:
-    vmImage: 'macOS 10.15'
+    vmImage: 'macOS-10.15'
   variables:
     DEVELOPER_DIR: /Applications/Xcode_11.6.app
   steps:
