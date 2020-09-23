@@ -83,7 +83,7 @@ archive:
 release: package archive
 
 docker_test:
-	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.2 swift test --parallel
+	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.3 swift test --parallel
 
 docker_htop:
 	docker run -it --rm --pid=container:sourcekitten terencewestphal/htop || reset
@@ -113,7 +113,7 @@ update_fixtures_macos:
 	done
 
 update_fixtures_docker:
-	for image in swift:5.0 swift:5.1 swift:5.2; do \
+	for image in swift:5.0 swift:5.1 swift:5.2 swift:5.3; do \
 		swift package reset ; \
 		docker run -t -v `pwd`:`pwd` -w `pwd` --rm $$image env OVERWRITE_FIXTURES=1 swift test ; \
 	done
