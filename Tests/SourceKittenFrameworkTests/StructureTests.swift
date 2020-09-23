@@ -75,7 +75,7 @@ class StructureTests: XCTestCase {
 
     func testInheritedType() throws {
         let structure = try Structure(file: File(contents: "class Foo: Bar {}"))
-#if os(Linux) && compiler(>=5.3)
+#if compiler(>=5.3)
         let expected: NSDictionary = [
             "key.substructure": [
                 [
