@@ -127,4 +127,12 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case _originallyDefinedIn = "source.decl.attribute._originallyDefinedIn"
     case _inheritsConvenienceInitializers = "source.decl.attribute._inheritsConvenienceInitializers"
     case _hasMissingDesignatedInitializers = "source.decl.attribute._hasMissingDesignatedInitializers"
+
+    // Only available in Swift >= 5.3
+    case _spi = "source.decl.attribute._spi"
+    case _typeEraser = "source.decl.attribute._typeEraser"
+    case derivative = "source.decl.attribute.derivative"
+    case main = "source.decl.attribute.main"
+    case noDerivative = "source.decl.attribute.noDerivative"
+    case transpose = "source.decl.attribute.transpose"
 }
