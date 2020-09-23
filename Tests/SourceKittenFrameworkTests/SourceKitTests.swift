@@ -127,6 +127,12 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=5.3)
+#else
+        // added in Swift 5.3
+        expected.subtract([._spi, ._typeEraser, .derivative, .main, .noDerivative, .transpose])
+#endif
+
 #if compiler(>=5.2)
         // removed in Swift 5.2
         expected.subtract([.implicitlyUnwrappedOptional])

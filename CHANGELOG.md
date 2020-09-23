@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Add `SwiftDeclarationAttributeKind` values introduced in Swift 5.3.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Bug Fixes
 
