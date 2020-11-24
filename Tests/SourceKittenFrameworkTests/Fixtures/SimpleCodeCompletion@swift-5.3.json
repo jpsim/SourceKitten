@@ -172,6 +172,28 @@
   "sourcetext" : "encode(to: <#T##Encoder#>)",
   "typeName" : "Void"
 }, {
+  "associatedUSRs" : "s:Si12customMirrors0B0Vvp s:s17CustomReflectableP12customMirrors0D0Vvp",
+  "context" : "source.codecompletion.context.thisclass",
+  "descriptionKey" : "customMirror",
+  "docBrief" : "A mirror that reflects the Int instance.",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "moduleName" : "Swift",
+  "name" : "customMirror",
+  "numBytesToErase" : 0,
+  "sourcetext" : "customMirror",
+  "typeName" : "Mirror"
+}, {
+  "associatedUSRs" : "s:Si25customPlaygroundQuickLooks01_bcD0Ovp s:s30_CustomPlaygroundQuickLookableP06custombC4Looks01_bcF0Ovp",
+  "context" : "source.codecompletion.context.thisclass",
+  "descriptionKey" : "customPlaygroundQuickLook",
+  "docBrief" : "A custom playground Quick Look for the Int instance.",
+  "kind" : "source.lang.swift.decl.var.instance",
+  "moduleName" : "Swift",
+  "name" : "customPlaygroundQuickLook",
+  "numBytesToErase" : 0,
+  "sourcetext" : "customPlaygroundQuickLook",
+  "typeName" : "_PlaygroundQuickLook"
+}, {
   "associatedUSRs" : "s:Si4hash4intoys6HasherVz_tF s:SH4hash4intoys6HasherVz_tF",
   "context" : "source.codecompletion.context.thisclass",
   "descriptionKey" : "hash(into: &Hasher)",
@@ -215,28 +237,6 @@
   "numBytesToErase" : 0,
   "sourcetext" : "advanced(by: <#T##Int#>)",
   "typeName" : "Int"
-}, {
-  "associatedUSRs" : "s:Si12customMirrors0B0Vvp s:s17CustomReflectableP12customMirrors0D0Vvp",
-  "context" : "source.codecompletion.context.thisclass",
-  "descriptionKey" : "customMirror",
-  "docBrief" : "A mirror that reflects the Int instance.",
-  "kind" : "source.lang.swift.decl.var.instance",
-  "moduleName" : "Swift",
-  "name" : "customMirror",
-  "numBytesToErase" : 0,
-  "sourcetext" : "customMirror",
-  "typeName" : "Mirror"
-}, {
-  "associatedUSRs" : "s:Si25customPlaygroundQuickLooks01_bcD0Ovp s:s30_CustomPlaygroundQuickLookableP06custombC4Looks01_bcF0Ovp",
-  "context" : "source.codecompletion.context.thisclass",
-  "descriptionKey" : "customPlaygroundQuickLook",
-  "docBrief" : "A custom playground Quick Look for the Int instance.",
-  "kind" : "source.lang.swift.decl.var.instance",
-  "moduleName" : "Swift",
-  "name" : "customPlaygroundQuickLook",
-  "numBytesToErase" : 0,
-  "sourcetext" : "customPlaygroundQuickLook",
-  "typeName" : "_PlaygroundQuickLook"
 }, {
   "associatedUSRs" : "s:s17FixedWidthIntegerPsE03bitB0Sivp",
   "context" : "source.codecompletion.context.superclass",
