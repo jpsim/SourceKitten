@@ -1,5 +1,5 @@
 [{
-  "\/Sources\/Commandant\/Argument.swift" : {
+  "\/private\/Sources\/Commandant\/Argument.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 3858,
     "key.offset" : 0,
@@ -668,7 +668,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/ArgumentParser.swift" : {
+  "\/private\/Sources\/Commandant\/ArgumentParser.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 4637,
     "key.offset" : 0,
@@ -1451,7 +1451,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/ArgumentProtocol.swift" : {
+  "\/private\/Sources\/Commandant\/ArgumentProtocol.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 1141,
     "key.offset" : 0,
@@ -2214,7 +2214,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/Command.swift" : {
+  "\/private\/Sources\/Commandant\/Command.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 7522,
     "key.offset" : 0,
@@ -3372,7 +3372,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/Errors.swift" : {
+  "\/private\/Sources\/Commandant\/Errors.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 5739,
     "key.offset" : 0,
@@ -4989,7 +4989,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/HelpCommand.swift" : {
+  "\/private\/Sources\/Commandant\/HelpCommand.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 2203,
     "key.offset" : 0,
@@ -5544,7 +5544,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/Option.swift" : {
+  "\/private\/Sources\/Commandant\/Option.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 9661,
     "key.offset" : 0,
@@ -6939,7 +6939,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/OrderedSet.swift" : {
+  "\/private\/Sources\/Commandant\/OrderedSet.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 800,
     "key.offset" : 0,
@@ -7287,7 +7287,7 @@
                 "Note" : ""
               }
             ],
-            "key.doc.full_as_xml" : "<Other><Name>isEmpty<\/Name><USR>s:Sl7isEmptySbvp<\/USR><Declaration>var isEmpty: Bool { get }<\/Declaration><CommentParts><Abstract><Para>A Boolean value indicating whether the collection is empty.<\/Para><\/Abstract><Discussion><Para>When you need to check whether your collection is empty, use the <codeVoice>isEmpty<\/codeVoice> property instead of checking that the <codeVoice>count<\/codeVoice> property is equal to zero. For collections that don’t conform to <codeVoice>RandomAccessCollection<\/codeVoice>, accessing the <codeVoice>count<\/codeVoice> property iterates through the elements of the collection.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let horseName = \"Silver\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[if horseName.isEmpty {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"I've been through the desert on a horse with no name.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[} else {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"Hi ho, \\(horseName)!\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Hi ho, Silver!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Complexity><Para>O(1)<\/Para><\/Complexity><Note><Para>This documentation comment was inherited from <codeVoice>Collection<\/codeVoice>.<\/Para><\/Note><\/Discussion><\/CommentParts><\/Other>",
+            "key.doc.full_as_xml" : "<Other><Name>isEmpty<\/Name><USR>s:Sl7isEmptySbvp<\/USR><Declaration>var isEmpty: Bool { get }<\/Declaration><CommentParts><Abstract><Para>A Boolean value indicating whether the collection is empty.<\/Para><\/Abstract><Discussion><Para>When you need to check whether your collection is empty, use the <codeVoice>isEmpty<\/codeVoice> property instead of checking that the <codeVoice>count<\/codeVoice> property is equal to zero. For collections that don’t conform to <codeVoice>RandomAccessCollection<\/codeVoice>, accessing the <codeVoice>count<\/codeVoice> property iterates through the elements of the collection.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let horseName = \"Silver\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[if horseName.isEmpty {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"My horse has no name.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[} else {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"Hi ho, \\(horseName)!\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Hi ho, Silver!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Complexity><Para>O(1)<\/Para><\/Complexity><Note><Para>This documentation comment was inherited from <codeVoice>Collection<\/codeVoice>.<\/Para><\/Note><\/Discussion><\/CommentParts><\/Other>",
             "key.doc.name" : "isEmpty",
             "key.doc.type" : "Other",
             "key.filepath" : "",
@@ -7450,7 +7450,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/Result+Additions.swift" : {
+  "\/private\/Sources\/Commandant\/Result+Additions.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 421,
     "key.offset" : 0,
@@ -7535,7 +7535,7 @@
     ]
   }
 }, {
-  "\/Sources\/Commandant\/Switch.swift" : {
+  "\/private\/Sources\/Commandant\/Switch.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 2007,
     "key.offset" : 0,
