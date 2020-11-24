@@ -51,7 +51,7 @@ jobs:
       displayName: xcodebuild -version
     - script: >
         set -o pipefail &&
-        xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten -parallel-testing-enabled NO test |
+        xcodebuild -scheme sourcekitten -parallel-testing-enabled NO test |
         xcpretty -r junit -o build/reports/xcodebuild-macos.xml
       displayName: xcodebuild test
       condition: succeededOrFailed()
