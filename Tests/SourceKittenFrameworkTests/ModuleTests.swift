@@ -81,8 +81,8 @@ class ModuleTests: XCTestCase {
     }
 
     func testSpmDefaultModule() {
-        let skModule = Module(spmName: nil, inPath: projectRoot)!
-        XCTAssertEqual("SourceKittenFramework", skModule.name)
+        let skModule = Module(spmName: nil, inPath: projectRoot)
+        XCTAssertEqual(skModule?.name, "SourceKittenFramework")
     }
 
     static var allTests: [(String, (ModuleTests) -> () throws -> Void)] {
