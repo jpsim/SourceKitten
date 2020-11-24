@@ -385,11 +385,9 @@ public final class File {
     - parameter dictionary: Dictionary to parse.
     */
     private func shouldParseDeclaration(_ dictionary: [String: SourceKitRepresentable]) -> Bool {
-        // swiftlint:disable operator_usage_whitespace
         let hasTypeName             = SwiftDocKey.getTypeName(dictionary) != nil
         let hasAnnotatedDeclaration = SwiftDocKey.getAnnotatedDeclaration(dictionary) != nil
         let hasOffset               = SwiftDocKey.getOffset(dictionary) != nil
-        // swiftlint:enable operator_usage_whitespace
         return hasTypeName && hasAnnotatedDeclaration && hasOffset
     }
 

@@ -73,6 +73,7 @@ class StructureTests: XCTestCase {
         XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
     }
 
+    // swiftlint:disable:next function_body_length
     func testInheritedType() throws {
         let structure = try Structure(file: File(contents: "class Foo: Bar {}"))
 #if compiler(>=5.3)
