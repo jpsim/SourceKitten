@@ -87,7 +87,7 @@
             "key.parsed_scope.end" : 9,
             "key.parsed_scope.start" : 8,
             "key.substructure" : [
-              
+
             ],
             "key.typename" : "(Base) -> (Int) -> ()",
             "key.typeusr" : "$s5indexySi_tcD",
@@ -204,7 +204,7 @@
             "key.parsed_scope.end" : 23,
             "key.parsed_scope.start" : 22,
             "key.substructure" : [
-              
+
             ],
             "key.typename" : "(Base) -> (Double) -> ()",
             "key.typeusr" : "$s5indexySd_tcD",
