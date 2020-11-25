@@ -6,6 +6,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "addingReportingOverflow(:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "addingReportingOverflow(<#T##other: Int##Int#>)",
   "typeName" : "(partialValue: Int, overflow: Bool)"
 }, {
@@ -16,6 +17,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "advanced(by:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "advanced(by: <#T##Int#>)",
   "typeName" : "Int"
 }, {
@@ -26,6 +28,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "bigEndian",
+  "numBytesToErase" : 0,
   "sourcetext" : "bigEndian",
   "typeName" : "Int"
 }, {
@@ -36,6 +39,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "bitWidth",
+  "numBytesToErase" : 0,
   "sourcetext" : "bitWidth",
   "typeName" : "Int"
 }, {
@@ -46,6 +50,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "byteSwapped",
+  "numBytesToErase" : 0,
   "sourcetext" : "byteSwapped",
   "typeName" : "Int"
 }, {
@@ -56,6 +61,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "customMirror",
+  "numBytesToErase" : 0,
   "sourcetext" : "customMirror",
   "typeName" : "Mirror"
 }, {
@@ -66,6 +72,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "customPlaygroundQuickLook",
+  "numBytesToErase" : 0,
   "sourcetext" : "customPlaygroundQuickLook",
   "typeName" : "_PlaygroundQuickLook"
 }, {
@@ -76,6 +83,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "description",
+  "numBytesToErase" : 0,
   "sourcetext" : "description",
   "typeName" : "String"
 }, {
@@ -86,6 +94,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "distance(to:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "distance(to: <#T##Int#>)",
   "typeName" : "Int"
 }, {
@@ -96,6 +105,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "dividedReportingOverflow(by:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "dividedReportingOverflow(by: <#T##Int#>)",
   "typeName" : "(partialValue: Int, overflow: Bool)"
 }, {
@@ -106,6 +116,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "dividingFullWidth(:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "dividingFullWidth(<#T##dividend: (high: Int, low: Int.Magnitude)##(high: Int, low: Int.Magnitude)#>)",
   "typeName" : "(quotient: Int, remainder: Int)"
 }, {
@@ -116,6 +127,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "encode(to:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "encode(to: <#T##Encoder#>)",
   "typeName" : "Void"
 }, {
@@ -126,6 +138,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "hash(into:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "hash(into: &<#T##Hasher#>)",
   "typeName" : "Void"
 }, {
@@ -136,6 +149,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "hashValue",
+  "numBytesToErase" : 0,
   "sourcetext" : "hashValue",
   "typeName" : "Int"
 }, {
@@ -146,6 +160,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "isMultiple(of:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "isMultiple(of: <#T##Int#>)",
   "typeName" : "Bool"
 }, {
@@ -156,6 +171,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "leadingZeroBitCount",
+  "numBytesToErase" : 0,
   "sourcetext" : "leadingZeroBitCount",
   "typeName" : "Int"
 }, {
@@ -166,6 +182,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "littleEndian",
+  "numBytesToErase" : 0,
   "sourcetext" : "littleEndian",
   "typeName" : "Int"
 }, {
@@ -176,6 +193,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "magnitude",
+  "numBytesToErase" : 0,
   "sourcetext" : "magnitude",
   "typeName" : "UInt"
 }, {
@@ -186,6 +204,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "multipliedFullWidth(by:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "multipliedFullWidth(by: <#T##Int#>)",
   "typeName" : "(high: Int, low: Int.Magnitude)"
 }, {
@@ -196,6 +215,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "multipliedReportingOverflow(by:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "multipliedReportingOverflow(by: <#T##Int#>)",
   "typeName" : "(partialValue: Int, overflow: Bool)"
 }, {
@@ -206,6 +226,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "negate()",
+  "numBytesToErase" : 0,
   "sourcetext" : "negate()",
   "typeName" : "Void"
 }, {
@@ -216,6 +237,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "nonzeroBitCount",
+  "numBytesToErase" : 0,
   "sourcetext" : "nonzeroBitCount",
   "typeName" : "Int"
 }, {
@@ -226,6 +248,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "quotientAndRemainder(dividingBy:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "quotientAndRemainder(dividingBy: <#T##Int#>)",
   "typeName" : "(quotient: Int, remainder: Int)"
 }, {
@@ -236,6 +259,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "remainderReportingOverflow(dividingBy:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "remainderReportingOverflow(dividingBy: <#T##Int#>)",
   "typeName" : "(partialValue: Int, overflow: Bool)"
 }, {
@@ -243,6 +267,7 @@
   "descriptionKey" : "self",
   "kind" : "source.lang.swift.keyword",
   "name" : "self",
+  "numBytesToErase" : 0,
   "sourcetext" : "self",
   "typeName" : "Int"
 }, {
@@ -253,6 +278,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "signum()",
+  "numBytesToErase" : 0,
   "sourcetext" : "signum()",
   "typeName" : "Int"
 }, {
@@ -263,6 +289,7 @@
   "kind" : "source.lang.swift.decl.function.method.instance",
   "moduleName" : "Swift",
   "name" : "subtractingReportingOverflow(:)",
+  "numBytesToErase" : 0,
   "sourcetext" : "subtractingReportingOverflow(<#T##other: Int##Int#>)",
   "typeName" : "(partialValue: Int, overflow: Bool)"
 }, {
@@ -273,6 +300,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "trailingZeroBitCount",
+  "numBytesToErase" : 0,
   "sourcetext" : "trailingZeroBitCount",
   "typeName" : "Int"
 }, {
@@ -283,6 +311,7 @@
   "kind" : "source.lang.swift.decl.var.instance",
   "moduleName" : "Swift",
   "name" : "words",
+  "numBytesToErase" : 0,
   "sourcetext" : "words",
   "typeName" : "Int.Words"
 }]

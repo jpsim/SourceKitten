@@ -1,0 +1,207 @@
+{
+  "key.annotations" : [
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.doccomment",
+      "key.length" : 35,
+      "key.offset" : 1
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.keyword",
+      "key.length" : 4,
+      "key.offset" : 36
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.identifier",
+      "key.length" : 23,
+      "key.offset" : 41
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.doccomment",
+      "key.length" : 45,
+      "key.offset" : 72
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.keyword",
+      "key.length" : 4,
+      "key.offset" : 118
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.identifier",
+      "key.length" : 22,
+      "key.offset" : 123
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.keyword",
+      "key.length" : 4,
+      "key.offset" : 153
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.identifier",
+      "key.length" : 16,
+      "key.offset" : 158
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.comment",
+      "key.length" : 36,
+      "key.offset" : 182
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.keyword",
+      "key.length" : 4,
+      "key.offset" : 218
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.identifier",
+      "key.length" : 27,
+      "key.offset" : 223
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.comment",
+      "key.length" : 73,
+      "key.offset" : 258
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.keyword",
+      "key.length" : 4,
+      "key.offset" : 335
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.identifier",
+      "key.length" : 36,
+      "key.offset" : 340
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.doccomment",
+      "key.length" : 24,
+      "key.offset" : 385
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.keyword",
+      "key.length" : 6,
+      "key.offset" : 409
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.identifier",
+      "key.length" : 16,
+      "key.offset" : 416
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.doccomment",
+      "key.length" : 27,
+      "key.offset" : 437
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.keyword",
+      "key.length" : 3,
+      "key.offset" : 466
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.identifier",
+      "key.length" : 1,
+      "key.offset" : 470
+    },
+    {
+      "key.kind" : "source.lang.swift.ref.struct",
+      "key.length" : 6,
+      "key.name" : "String",
+      "key.offset" : 473,
+      "key.usr" : "s:SS"
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.doccomment",
+      "key.length" : 40,
+      "key.offset" : 483
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.attribute.builtin",
+      "key.length" : 11,
+      "key.offset" : 526
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.keyword",
+      "key.length" : 4,
+      "key.offset" : 538
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.identifier",
+      "key.length" : 20,
+      "key.offset" : 543
+    },
+    {
+      "key.kind" : "source.lang.swift.syntaxtype.doccomment",
+      "key.length" : 41,
+      "key.offset" : 575
+    }
+  ],
+  "key.entities" : [
+    {
+      "key.doc.full_as_xml" : "<Function file=\"&lt;input&gt;\" line=\"3\" column=\"6\"><Name>singleLineCommentedFunc()<\/Name><USR>s:4main23singleLineCommentedFuncyyF<\/USR><Declaration>func singleLineCommentedFunc()<\/Declaration><CommentParts><Abstract><Para>Single line commented function<\/Para><\/Abstract><\/CommentParts><\/Function>",
+      "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>singleLineCommentedFunc<\/decl.name>()<\/decl.function.free>",
+      "key.kind" : "source.lang.swift.decl.function.free",
+      "key.length" : 33,
+      "key.name" : "singleLineCommentedFunc()",
+      "key.offset" : 36,
+      "key.usr" : "s:4main23singleLineCommentedFuncyyF"
+    },
+    {
+      "key.doc.full_as_xml" : "<Function file=\"&lt;input&gt;\" line=\"10\" column=\"6\"><Name>multiLineCommentedFunc()<\/Name><USR>s:4main22multiLineCommentedFuncyyF<\/USR><Declaration>func multiLineCommentedFunc()<\/Declaration><CommentParts><Abstract><Para>Multiple line commented function.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+      "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>multiLineCommentedFunc<\/decl.name>()<\/decl.function.free>",
+      "key.kind" : "source.lang.swift.decl.function.free",
+      "key.length" : 32,
+      "key.name" : "multiLineCommentedFunc()",
+      "key.offset" : 118,
+      "key.usr" : "s:4main22multiLineCommentedFuncyyF"
+    },
+    {
+      "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>undocumentedFunc<\/decl.name>()<\/decl.function.free>",
+      "key.kind" : "source.lang.swift.decl.function.free",
+      "key.length" : 26,
+      "key.name" : "undocumentedFunc()",
+      "key.offset" : 153,
+      "key.usr" : "s:4main16undocumentedFuncyyF"
+    },
+    {
+      "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>nonDocCommentDocumentedFunc<\/decl.name>()<\/decl.function.free>",
+      "key.kind" : "source.lang.swift.decl.function.free",
+      "key.length" : 37,
+      "key.name" : "nonDocCommentDocumentedFunc()",
+      "key.offset" : 218,
+      "key.usr" : "s:4main27nonDocCommentDocumentedFuncyyF"
+    },
+    {
+      "key.fully_annotated_decl" : "<decl.function.free><syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>nonDocCommentMultiLineDocumentedFunc<\/decl.name>()<\/decl.function.free>",
+      "key.kind" : "source.lang.swift.decl.function.free",
+      "key.length" : 46,
+      "key.name" : "nonDocCommentMultiLineDocumentedFunc()",
+      "key.offset" : 335,
+      "key.usr" : "s:4main36nonDocCommentMultiLineDocumentedFuncyyF"
+    },
+    {
+      "key.doc.full_as_xml" : "<Class file=\"&lt;input&gt;\" line=\"28\" column=\"8\"><Name>DocumentedStruct<\/Name><USR>s:4main16DocumentedStructV<\/USR><Declaration>struct DocumentedStruct<\/Declaration><CommentParts><Abstract><Para>A documented struct<\/Para><\/Abstract><\/CommentParts><\/Class>",
+      "key.entities" : [
+        {
+          "key.doc.full_as_xml" : "<Other file=\"&lt;input&gt;\" line=\"30\" column=\"7\"><Name>x<\/Name><USR>s:4main16DocumentedStructV1xSSvp<\/USR><Declaration>let x: String<\/Declaration><CommentParts><Abstract><Para>A documented variable.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+          "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>x<\/decl.name>: <decl.var.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.type><\/decl.var.instance>",
+          "key.kind" : "source.lang.swift.decl.var.instance",
+          "key.name" : "x",
+          "key.usr" : "s:4main16DocumentedStructV1xSSvp"
+        },
+        {
+          "key.doc.full_as_xml" : "<Function file=\"&lt;input&gt;\" line=\"35\" column=\"20\"><Name>documentedMemberFunc()<\/Name><USR>s:4main16DocumentedStructV20documentedMemberFunc33_374C40B424EC1B948FB20E2F0812B5A6LLyyF<\/USR><Declaration>fileprivate func documentedMemberFunc()<\/Declaration><CommentParts><Abstract><Para>A documented member func.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+          "key.fully_annotated_decl" : "<decl.function.method.instance><syntaxtype.keyword>fileprivate<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>documentedMemberFunc<\/decl.name>()<\/decl.function.method.instance>",
+          "key.kind" : "source.lang.swift.decl.function.method.instance",
+          "key.length" : 32,
+          "key.name" : "documentedMemberFunc()",
+          "key.offset" : 538,
+          "key.usr" : "s:4main16DocumentedStructV20documentedMemberFunc33_374C40B424EC1B948FB20E2F0812B5A6LLyyF"
+        }
+      ],
+      "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>DocumentedStruct<\/decl.name><\/decl.struct>",
+      "key.kind" : "source.lang.swift.decl.struct",
+      "key.length" : 163,
+      "key.name" : "DocumentedStruct",
+      "key.offset" : 409,
+      "key.usr" : "s:4main16DocumentedStructV"
+    }
+  ]
+}

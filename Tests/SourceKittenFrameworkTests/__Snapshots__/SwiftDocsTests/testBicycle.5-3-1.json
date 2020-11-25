@@ -6,7 +6,7 @@
     "key.substructure" : [
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
-        "key.annotated_decl" : "<Declaration>class NSString : <Type usr=\"s:10Foundation8NSObjectC\">NSObject<\/Type>, <Type usr=\"s:10Foundation9NSCopyingP\">NSCopying<\/Type>, <Type usr=\"s:10Foundation16NSMutableCopyingP\">NSMutableCopying<\/Type>, <Type usr=\"s:10Foundation14NSSecureCodingP\">NSSecureCoding<\/Type>, <Type usr=\"s:10Foundation8NSCodingP\">NSCoding<\/Type><\/Declaration>",
+        "key.annotated_decl" : "<Declaration>class NSString : <Type usr=\"c:objc(cs)NSObject\">NSObject<\/Type>, <Type usr=\"c:objc(pl)NSCopying\">NSCopying<\/Type>, <Type usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/Type>, <Type usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/Type><\/Declaration>",
         "key.attributes" : [
           {
             "key.attribute" : "source.decl.attribute.public",
@@ -24,11 +24,12 @@
         "key.doc.comment" : "Deprecated extension.",
         "key.doclength" : 26,
         "key.docoffset" : 19,
-        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>NSString<\/decl.name> : <ref.class usr=\"s:10Foundation8NSObjectC\">NSObject<\/ref.class>, <ref.protocol usr=\"s:10Foundation9NSCopyingP\">NSCopying<\/ref.protocol>, <ref.protocol usr=\"s:10Foundation16NSMutableCopyingP\">NSMutableCopying<\/ref.protocol>, <ref.protocol usr=\"s:10Foundation14NSSecureCodingP\">NSSecureCoding<\/ref.protocol>, <ref.protocol usr=\"s:10Foundation8NSCodingP\">NSCoding<\/ref.protocol><\/decl.class>",
+        "key.filepath" : "<absolute-path-redacted>",
+        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>NSString<\/decl.name> : <ref.class usr=\"c:objc(cs)NSObject\">NSObject<\/ref.class>, <ref.protocol usr=\"c:objc(pl)NSCopying\">NSCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/ref.protocol><\/decl.class>",
         "key.is_system" : true,
         "key.kind" : "source.lang.swift.decl.extension",
         "key.length" : 21,
-        "key.modulename" : "Foundation",
+        "key.modulename" : "Foundation.NSString",
         "key.name" : "NSString",
         "key.namelength" : 8,
         "key.nameoffset" : 151,
@@ -37,8 +38,8 @@
         "key.parsed_scope.end" : 5,
         "key.parsed_scope.start" : 5,
         "key.typename" : "NSString.Type",
-        "key.typeusr" : "$s10Foundation8NSStringCmD",
-        "key.usr" : "s:10Foundation8NSStringC"
+        "key.typeusr" : "$sSo8NSStringCmD",
+        "key.usr" : "c:objc(cs)NSString"
       },
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -73,7 +74,6 @@
         "key.parsed_declaration" : "public class Bicycle",
         "key.parsed_scope.end" : 93,
         "key.parsed_scope.start" : 8,
-        "key.runtime_name" : "_TtC4main7Bicycle",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -287,6 +287,9 @@
                     "key.parsed_declaration" : "case Freewheel(speeds: Int)",
                     "key.parsed_scope.end" : 29,
                     "key.parsed_scope.start" : 29,
+                    "key.substructure" : [
+
+                    ],
                     "key.typename" : "(Bicycle.Gearing.Type) -> (Int) -> Bicycle.Gearing",
                     "key.typeusr" : "$sy7BicycleAAC7GearingOSi_tcADmcD",
                     "key.usr" : "s:7BicycleAAC7GearingO9FreewheelyADSi_tcADmF"
@@ -530,7 +533,7 @@
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.annotated_decl" : "<Declaration>private(set) var numberOfTrips: <Type usr=\"s:Si\">Int<\/Type> {\n  get\n  }<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>private(set) var numberOfTrips: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.setter_access.private",
@@ -540,16 +543,16 @@
             ],
             "key.doc.column" : 22,
             "key.doc.comment" : "The number of trips travelled by the bicycle.",
-            "key.doc.declaration" : "private(set) var numberOfTrips: Int {\n    get\n    }",
+            "key.doc.declaration" : "private(set) var numberOfTrips: Int { get }",
             "key.doc.file" : "Bicycle.swift",
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"57\" column=\"22\"><Name>numberOfTrips<\/Name><USR>s:7BicycleAAC13numberOfTripsSivp<\/USR><Declaration>private(set) var numberOfTrips: Int {\n    get\n    }<\/Declaration><CommentParts><Abstract><Para>The number of trips travelled by the bicycle.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"57\" column=\"22\"><Name>numberOfTrips<\/Name><USR>s:7BicycleAAC13numberOfTripsSivp<\/USR><Declaration>private(set) var numberOfTrips: Int { get }<\/Declaration><CommentParts><Abstract><Para>The number of trips travelled by the bicycle.<\/Para><\/Abstract><\/CommentParts><\/Other>",
             "key.doc.line" : 57,
             "key.doc.name" : "numberOfTrips",
             "key.doc.type" : "Other",
             "key.doclength" : 50,
             "key.docoffset" : 1320,
             "key.filepath" : "Bicycle.swift",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>numberOfTrips<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type> {\n  get\n  }<\/decl.var.instance>",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>numberOfTrips<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Si\">Int<\/ref.struct><\/decl.var.type> { get }<\/decl.var.instance>",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.length" : 22,
             "key.name" : "numberOfTrips",
@@ -566,7 +569,7 @@
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.internal",
-            "key.annotated_decl" : "<Declaration>private(set) var distanceTravelled: <Type usr=\"s:Sd\">Double<\/Type> {\n  get\n  }<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>private(set) var distanceTravelled: <Type usr=\"s:Sd\">Double<\/Type> { get }<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.setter_access.private",
@@ -576,16 +579,16 @@
             ],
             "key.doc.column" : 22,
             "key.doc.comment" : "The total distance travelled by the bicycle, in meters.",
-            "key.doc.declaration" : "private(set) var distanceTravelled: Double {\n    get\n    }",
+            "key.doc.declaration" : "private(set) var distanceTravelled: Double { get }",
             "key.doc.file" : "Bicycle.swift",
-            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"60\" column=\"22\"><Name>distanceTravelled<\/Name><USR>s:7BicycleAAC17distanceTravelledSdvp<\/USR><Declaration>private(set) var distanceTravelled: Double {\n    get\n    }<\/Declaration><CommentParts><Abstract><Para>The total distance travelled by the bicycle, in meters.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.full_as_xml" : "<Other file=\"Bicycle.swift\" line=\"60\" column=\"22\"><Name>distanceTravelled<\/Name><USR>s:7BicycleAAC17distanceTravelledSdvp<\/USR><Declaration>private(set) var distanceTravelled: Double { get }<\/Declaration><CommentParts><Abstract><Para>The total distance travelled by the bicycle, in meters.<\/Para><\/Abstract><\/CommentParts><\/Other>",
             "key.doc.line" : 60,
             "key.doc.name" : "distanceTravelled",
             "key.doc.type" : "Other",
             "key.doclength" : 60,
             "key.docoffset" : 1415,
             "key.filepath" : "Bicycle.swift",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>distanceTravelled<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Sd\">Double<\/ref.struct><\/decl.var.type> {\n  get\n  }<\/decl.var.instance>",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword>(set) <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>distanceTravelled<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Sd\">Double<\/ref.struct><\/decl.var.type> { get }<\/decl.var.instance>",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.length" : 29,
             "key.name" : "distanceTravelled",
@@ -666,7 +669,7 @@
             "key.parsed_scope.end" : 80,
             "key.parsed_scope.start" : 72,
             "key.substructure" : [
-              
+
             ],
             "key.typename" : "(Bicycle.Type) -> (Bicycle.Style, Bicycle.Gearing, Bicycle.Handlebar, Int) -> Bicycle",
             "key.typeusr" : "$s5style7gearing9handlebar9frameSize7BicycleAECAF5StyleO_AF7GearingOAF9HandlebarOSitcD",
@@ -709,7 +712,7 @@
             "key.parsed_scope.end" : 92,
             "key.parsed_scope.start" : 87,
             "key.substructure" : [
-              
+
             ],
             "key.typename" : "(Bicycle) -> (Double) -> ()",
             "key.typeusr" : "$s8distanceySd_tcD",

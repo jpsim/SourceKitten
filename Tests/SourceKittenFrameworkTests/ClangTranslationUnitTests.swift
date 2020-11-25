@@ -1,4 +1,5 @@
 import Foundation
+import SnapshotTesting
 import SourceKittenFramework
 import XCTest
 
@@ -7,7 +8,6 @@ let fixturesDirectory = URL(fileURLWithPath: #file).deletingLastPathComponent().
 #if !os(Linux)
 
 class ClangTranslationUnitTests: XCTestCase {
-
     func testParsesObjectiveCHeaderFilesAndXcodebuildArguments() {
         let headerFiles = [
             "a.h",
@@ -23,26 +23,31 @@ class ClangTranslationUnitTests: XCTestCase {
         XCTAssertEqual(parsedXcodebuildArguments, xcodebuildArguments, "xcodebuild arguments should be parsed")
     }
 
-    private func compare(clangFixture fixture: String) {
-        let unit = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
-                                        compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
-        compareJSONString(withFixtureNamed: (fixture as NSString).lastPathComponent, jsonString: unit)
+    func translationUnit(forFixture fixture: String) -> ClangTranslationUnit {
+        return ClangTranslationUnit(
+            headerFiles: [fixturesDirectory + fixture + ".h"],
+            compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory]
+        )
     }
 
     func testBasicObjectiveCDocs() {
-        compare(clangFixture: "Musician")
+        let unit = translationUnit(forFixture: "Musician")
+        assertSourceKittenSnapshot(matching: unit, as: .clangJSON, named: nil)
     }
 
     func testUnicodeInObjectiveCDocs() {
-        compare(clangFixture: "SuperScript")
+        let unit = translationUnit(forFixture: "SuperScript")
+        assertSourceKittenSnapshot(matching: unit, as: .clangJSON, named: nil)
     }
 
     func testRealmObjectiveCDocs() {
-        compare(clangFixture: "Realm/Realm")
+        let unit = translationUnit(forFixture: "Realm/Realm")
+        assertSourceKittenSnapshot(matching: unit, as: .clangJSON, named: nil)
     }
 
     func testCodeFormattingObjectiveCDocs() {
-        compare(clangFixture: "CodeFormatting")
+        let unit = translationUnit(forFixture: "CodeFormatting")
+        assertSourceKittenSnapshot(matching: unit, as: .clangJSON, named: nil)
     }
 }
 

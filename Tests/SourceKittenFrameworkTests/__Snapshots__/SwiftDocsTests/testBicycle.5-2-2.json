@@ -24,7 +24,7 @@
         "key.doc.comment" : "Deprecated extension.",
         "key.doclength" : 26,
         "key.docoffset" : 19,
-        "key.filepath" : "",
+        "key.filepath" : "<absolute-path-redacted>",
         "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>NSString<\/decl.name> : <ref.class usr=\"c:objc(cs)NSObject\">NSObject<\/ref.class>, <ref.protocol usr=\"c:objc(pl)NSCopying\">NSCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/ref.protocol><\/decl.class>",
         "key.is_system" : true,
         "key.kind" : "source.lang.swift.decl.extension",
@@ -74,6 +74,7 @@
         "key.parsed_declaration" : "public class Bicycle",
         "key.parsed_scope.end" : 93,
         "key.parsed_scope.start" : 8,
+        "key.runtime_name" : "_TtC4main7Bicycle",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",

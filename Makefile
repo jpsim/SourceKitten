@@ -100,14 +100,13 @@ update_clang_headers:
 update_fixtures: update_fixtures_macos update_fixtures_docker
 
 update_fixtures_macos:
-	for identifier in org.swift.50120190418a org.swift.5120190905a ; do \
+	for xcode in /Applications/Xcode-11.4.1.app /Applications/Xcode-11.7.app /Applications/Xcode-12.app /Applications/Xcode-12.2.app ; do \
 		swift package reset ; \
-		OVERWRITE_FIXTURES=1 xcrun --toolchain $$identifier swift test ; \
+		DEVELOPER_DIR=$$xcode OVERWRITE_FIXTURES=1 swift test  ; \
 	done
 
 update_fixtures_docker:
 	for image in swift:5.2 swift:5.3; do \
-		swift package reset ; \
 		docker run -t -v `pwd`:`pwd` -w `pwd` --rm $$image env OVERWRITE_FIXTURES=1 swift test ; \
 	done
 

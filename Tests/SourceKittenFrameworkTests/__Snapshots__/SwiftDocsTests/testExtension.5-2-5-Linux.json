@@ -87,7 +87,7 @@
             "key.parsed_scope.end" : 9,
             "key.parsed_scope.start" : 8,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "(Base) -> (Int) -> ()",
             "key.typeusr" : "$s5indexySi_tcD",
@@ -129,7 +129,6 @@
         "key.usr" : "s:9Extension4BaseC"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>class Base<\/Declaration>",
         "key.bodylength" : 155,
         "key.bodyoffset" : 214,
@@ -153,7 +152,6 @@
         "key.parsed_scope.start" : 16,
         "key.substructure" : [
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>typealias ExtendedIndex = <Type usr=\"s:Sd\">Double<\/Type><\/Declaration>",
             "key.doc.column" : 15,
             "key.doc.comment" : "Doc for Base.ExtendedIndex",
@@ -181,7 +179,6 @@
             "key.usr" : "s:9Extension4BaseC13ExtendedIndexa"
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>func extendedF(index: <Type usr=\"s:9Extension4BaseC13ExtendedIndexa\">ExtendedIndex<\/Type>)<\/Declaration>",
             "key.bodylength" : 5,
             "key.bodyoffset" : 362,
@@ -207,7 +204,7 @@
             "key.parsed_scope.end" : 23,
             "key.parsed_scope.start" : 22,
             "key.substructure" : [
-
+              
             ],
             "key.typename" : "(Base) -> (Double) -> ()",
             "key.typeusr" : "$s5indexySd_tcD",
@@ -219,7 +216,6 @@
         "key.usr" : "s:9Extension4BaseC"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>class <Type usr=\"s:9Extension4BaseC\">Base<\/Type>.Nested<\/Declaration>",
         "key.bodylength" : 1,
         "key.bodyoffset" : 436,
@@ -289,7 +285,6 @@
         "key.usr" : "s:9Extension004ipIhC"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>struct <Type usr=\"s:9Extension004ipIhC\">🐽<\/Type>.🐧<\/Declaration>",
         "key.bodylength" : 1,
         "key.bodyoffset" : 501,

@@ -229,7 +229,7 @@ class SourceKitTests: XCTestCase {
         try replace("\"key\\.filepath\"[^\\n]*", withTemplate: "\"key\\.filepath\" : \"\",")
         try replace("\"key\\.hash\"[^\\n]*", withTemplate: "\"key\\.hash\" : \"\",")
 
-        compareJSONString(withFixtureNamed: "BicycleIndex", jsonString: indexJSON.bridge())
+        assertSourceKittenSnapshot(matching: indexJSON.bridge(), as: .fixturesJSON)
     }
 
     func testYamlRequest() throws {
@@ -250,7 +250,7 @@ class SourceKitTests: XCTestCase {
             return
         }
 
-        compareJSONString(withFixtureNamed: "BicycleSyntax", jsonString: syntaxJSON)
+        assertSourceKittenSnapshot(matching: syntaxJSON, as: .fixturesJSON)
     }
 
     func testCompilerVersion() {

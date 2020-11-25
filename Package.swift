@@ -8,6 +8,7 @@ let package = Package(
         .library(name: "SourceKittenFramework", targets: ["SourceKittenFramework"])
     ],
     dependencies: [
+        .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.8.2"),
         .package(name: "swift-argument-parser", url: "https://github.com/apple/swift-argument-parser.git", .upToNextMinor(from: "0.3.1")),
         .package(name: "SWXMLHash", url: "https://github.com/drmohundro/SWXMLHash.git", .upToNextMinor(from: "5.0.1")),
         .package(name: "Yams", url: "https://github.com/jpsim/Yams.git", from: "4.0.1"),
@@ -38,6 +39,7 @@ let package = Package(
         .testTarget(
             name: "SourceKittenFrameworkTests",
             dependencies: [
+                "SnapshotTesting",
                 "SourceKittenFramework"
             ],
             exclude: [

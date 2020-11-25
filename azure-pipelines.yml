@@ -1,5 +1,5 @@
 # Available Xcode versions can be found here:
-# https://github.com/Microsoft/azure-pipelines-image-generation/blob/master/images/macos/macos-10.15-Readme.md#xcode
+# https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md#xcode
 
 trigger:
 - master
@@ -33,11 +33,9 @@ jobs:
     maxParallel: 10
     matrix:
       xcode114:
-        DEVELOPER_DIR: /Applications/Xcode_11.4.app
-      xcode115:
-        DEVELOPER_DIR: /Applications/Xcode_11.5.app
-      xcode116:
-        DEVELOPER_DIR: /Applications/Xcode_11.6.app
+        DEVELOPER_DIR: /Applications/Xcode_11.4.1.app
+      xcode117:
+        DEVELOPER_DIR: /Applications/Xcode_11.7.app
       xcode12:
         DEVELOPER_DIR: /Applications/Xcode_12.app
       xcode122:

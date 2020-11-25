@@ -1,4 +1,5 @@
 import Foundation
+import SnapshotTesting
 @testable import SourceKittenFramework
 import XCTest
 
@@ -43,8 +44,7 @@ class ModuleTests: XCTestCase {
 
         let arguments = ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"]
         let commandantModule = Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath)!
-        compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs,
-                          rootDirectory: commandantPath)
+        assertSourceKittenSnapshot(matching: commandantModule, as: .moduleJSON(removing: commandantPath))
     }
 
     func testCommandantDocsSPM() throws {
@@ -68,8 +68,7 @@ class ModuleTests: XCTestCase {
         }
 
         let commandantModule = Module(spmArguments: [], spmName: "Commandant", inPath: commandantPath)!
-        compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs,
-                          rootDirectory: commandantPath)
+        assertSourceKittenSnapshot(matching: commandantModule, as: .moduleJSON(removing: commandantPath))
     }
 
     func testSpmDefaultModule() {
