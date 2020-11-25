@@ -8,9 +8,9 @@ extension SourceKitten {
 
         @Option(help: "Relative or absolute path of Swift file to format")
         var file: String = ""
-        @Option(help: "Trim trailing whitespace")
-        var trimWhitespace: Bool = true
-        @Option(help: "Use tabs to indent")
+        @Flag(help: "Trim trailing whitespace")
+        var trimWhitespace: Bool = false
+        @Flag(help: "Use tabs to indent")
         var useTabs: Bool = false
         @Option(help: "Number of spaces to indent")
         var indentWidth: Int = 4

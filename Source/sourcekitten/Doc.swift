@@ -6,13 +6,13 @@ extension SourceKitten {
     struct Doc: ParsableCommand {
         static let configuration = CommandConfiguration(abstract: "Print Swift or Objective-C docs as JSON")
 
-        @Option(help: "Only document one file")
+        @Flag(help: "Only document one file")
         var singleFile: Bool = false
         @Option(help: "Name of Swift module to document (can't be used with `--single-file`)")
         var moduleName: String = ""
-        @Option(help: "Document a Swift Package Manager module")
+        @Flag(help: "Document a Swift Package Manager module")
         var spm: Bool = false
-        @Option(help: "Document Objective-C headers instead of Swift code")
+        @Flag(help: "Document Objective-C headers instead of Swift code")
         var objc: Bool = false
         @Argument(help: "Arguments passed to `xcodebuild` or `swift build`")
         var arguments: [String] = []
