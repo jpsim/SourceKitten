@@ -17,7 +17,7 @@ extension SourceKitten {
         @Option(help: "Equivalent to --spm --module-name (string)")
         var spmModule: String = ""
         @Argument(help: "Arguments passed to `xcodebuild` or `swift build`")
-        var arguments: [String]
+        var arguments: [String] = []
 
         mutating func run() throws {
             let moduleName = self.moduleName.isEmpty ?
