@@ -22,7 +22,7 @@
   `sourcekitten --help` or `sourcekitten -h` now work as expected.
   The help output from various commands has greatly improved as well.
   A few notable breaking changes:
-    * `doc --spm-module` was removed (use `--spm --module` instead)
+    * `doc --spm-module` was removed (use `--spm --module-name` instead)
     * `sourcekitten module_info` is now `sourcekitten module-info`  
   [JP Simard](https://github.com/jpsim)
 

@@ -84,7 +84,7 @@ jobs:
   steps:
     - script: swift build
       displayName: swift build
-    - script: swift run sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
+    - script: swift run sourcekitten doc --spm --module SourceKittenFramework > SourceKittenFramework.json
       displayName: Generate documentation json
     - script: bundle install --path vendor/bundle
       displayName: bundle install
