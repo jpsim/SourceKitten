@@ -1,11 +1,3 @@
-//
-//  OffsetMap.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2015-01-05.
-//  Copyright (c) 2015 SourceKitten. All rights reserved.
-//
-
 /// Type that maps potentially documented declaration offsets to its closest parent offset.
 public typealias OffsetMap = [ByteCount: ByteCount]
 

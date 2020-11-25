@@ -1,11 +1,3 @@
-//
-//  ClangTranslationUnit.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2015-01-12.
-//  Copyright (c) 2015 SourceKitten. All rights reserved.
-//
-
 #if !os(Linux)
 
 #if SWIFT_PACKAGE

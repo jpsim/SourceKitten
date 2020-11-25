@@ -1,11 +1,3 @@
-//
-//  ByteRangeTests.swift
-//  SourceKittenFrameworkTests
-//
-//  Created by Paul Taykalo on 16.01.2020.
-//  Copyright © 2020 SourceKitten. All rights reserved.
-//
-
 import SourceKittenFramework
 import XCTest
 

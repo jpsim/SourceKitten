@@ -1,10 +1,3 @@
-//
-//  Exec.swift
-//  SourceKittenFramework
-//
-//  Copyright © 2019 SourceKitten. All rights reserved.
-//
-
 import Foundation
 
 /// Namespace for utilities to execute a child process.

@@ -1,10 +1,3 @@
-//
-//  SwiftVersion.swift
-//  SourceKitten
-//
-//  Copyright © 2020 SourceKitten. All rights reserved.
-//
-
 /// The version triple of the Swift compiler, for example "5.1.3"
 struct SwiftVersion: RawRepresentable, Comparable {
     typealias RawValue = String

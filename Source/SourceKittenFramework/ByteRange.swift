@@ -1,11 +1,3 @@
-//
-//  ByteRange.swift
-//  SourceKittenFramework
-//
-//  Created by Paul Taykalo on 11.01.2020.
-//  Copyright © 2020 SourceKitten. All rights reserved.
-//
-
 import Foundation
 
 /// Structure that represents a string range in bytes.

@@ -1,11 +1,3 @@
-//
-//  SwiftDocKey.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2015-01-05.
-//  Copyright (c) 2015 SourceKitten. All rights reserved.
-//
-
 /// SourceKit response dictionary keys.
 public enum SwiftDocKey: String {
     // MARK: SourceKit Keys

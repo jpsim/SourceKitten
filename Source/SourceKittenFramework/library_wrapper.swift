@@ -1,11 +1,3 @@
-//
-//  library_wrapper.swift
-//  sourcekitten
-//
-//  Created by Norio Nomura on 2/20/16.
-//  Copyright © 2016 SourceKitten. All rights reserved.
-//
-
 import Foundation
 
 // MARK: - Shared Types & Functions

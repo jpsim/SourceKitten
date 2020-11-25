@@ -1,11 +1,3 @@
-//
-//  YamlCommand.swift
-//  SourceKitten
-//
-//  Created by Keith Smiley on 12/12/16.
-//  Copyright © 2016 SourceKitten. All rights reserved.
-//
-
 import Commandant
 import SourceKittenFramework
 

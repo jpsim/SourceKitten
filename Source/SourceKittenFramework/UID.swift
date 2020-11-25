@@ -1,11 +1,3 @@
-//
-//  UID.swift
-//  SourceKitten
-//
-//  Created by Norio Nomura on 2/07/18.
-//  Copyright © 2018 SourceKitten. All rights reserved.
-//
-
 #if SWIFT_PACKAGE
 import SourceKit
 #endif

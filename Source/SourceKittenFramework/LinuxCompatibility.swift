@@ -1,11 +1,3 @@
-//
-//  LinuxCompatibility.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 8/19/16.
-//  Copyright © 2016 SourceKitten. All rights reserved.
-//
-
 import Foundation
 
 extension Array {

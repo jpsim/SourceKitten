@@ -1,11 +1,3 @@
-//
-//  SwiftDeclarationAttributeKind.swift
-//  SourceKittenFramework
-//
-//  Created by Daniel.Metzing on 2018-04-04.
-//  Copyright © 2018 SourceKitten. All rights reserved.
-//
-
 /// Swift declaration attribute kinds.
 /// Found in `strings SourceKitService | grep source.decl.attribute.`.
 public enum SwiftDeclarationAttributeKind: String, CaseIterable {

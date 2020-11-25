@@ -1,11 +1,3 @@
-//
-//  SwiftDeclarationKind.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2015-01-05.
-//  Copyright (c) 2015 SourceKitten. All rights reserved.
-//
-
 /// Swift declaration kinds.
 /// Found in `strings SourceKitService | grep source.lang.swift.decl.`.
 public enum SwiftDeclarationKind: String, CaseIterable {
