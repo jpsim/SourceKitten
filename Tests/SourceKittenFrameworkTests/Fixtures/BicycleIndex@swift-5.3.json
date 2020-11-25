@@ -125,6 +125,12 @@
               "key.is_system" : true,
               "key.kind" : "source.lang.swift.import.module.swift",
               "key.name" : "Swift"
+            },
+            {
+              "key.filepath" : "",
+              "key.is_system" : true,
+              "key.kind" : "source.lang.swift.import.module.clang",
+              "key.name" : "_SwiftDispatchOverlayShims"
             }
           ],
           "key.filepath" : "",
@@ -151,6 +157,12 @@
               "key.is_system" : true,
               "key.kind" : "source.lang.swift.import.module.swift",
               "key.name" : "Swift"
+            },
+            {
+              "key.filepath" : "",
+              "key.is_system" : true,
+              "key.kind" : "source.lang.swift.import.module.clang",
+              "key.name" : "_SwiftObjectiveCOverlayShims"
             }
           ],
           "key.filepath" : "",
@@ -163,6 +175,18 @@
           "key.is_system" : true,
           "key.kind" : "source.lang.swift.import.module.swift",
           "key.name" : "Swift"
+        },
+        {
+          "key.filepath" : "",
+          "key.is_system" : true,
+          "key.kind" : "source.lang.swift.import.module.clang",
+          "key.name" : "_SwiftCoreFoundationOverlayShims"
+        },
+        {
+          "key.filepath" : "",
+          "key.is_system" : true,
+          "key.kind" : "source.lang.swift.import.module.clang",
+          "key.name" : "_SwiftFoundationOverlayShims"
         },
         {
           "key.filepath" : "",
