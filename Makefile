@@ -26,16 +26,13 @@ OUTPUT_PACKAGE=SourceKitten.pkg
 SOURCEKITTEN_PLIST=Source/sourcekitten/Info.plist
 SOURCEKITTENFRAMEWORK_PLIST=Source/SourceKittenFramework/Info.plist
 
-VERSION_STRING=$(shell /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$(SOURCEKITTEN_PLIST)")
+VERSION_STRING="$(shell ./script/get-version)"
 
-.PHONY: all bootstrap clean install package test uninstall
+.PHONY: all clean install package test uninstall
 
 all: build
 
-bootstrap:
-	script/bootstrap
-
-test: clean_xcode bootstrap
+test: clean_xcode
 	$(BUILD_TOOL) $(XCODEFLAGS) test
 
 clean:
@@ -125,8 +122,6 @@ set_version:
 	$(eval NEW_VERSION := $(filter-out $@,$(MAKECMDGOALS)))
 	@sed -i '' 's/## Master/## $(NEW_VERSION)/g' CHANGELOG.md
 	@sed 's/__VERSION__/$(NEW_VERSION)/g' script/Version.swift.template > Source/SourceKittenFramework/Version.swift
-	@/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $(NEW_VERSION)" "$(SOURCEKITTENFRAMEWORK_PLIST)"
-	@/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $(NEW_VERSION)" "$(SOURCEKITTEN_PLIST)"
 
 %:
 	@:
