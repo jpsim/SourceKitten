@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -euo pipefail
+
+cat Source/SourceKittenFramework/Version.swift | awk -F '"' '{print $2}' | xargs
