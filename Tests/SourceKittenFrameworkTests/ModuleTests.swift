@@ -81,7 +81,7 @@ class ModuleTests: XCTestCase {
     }
 
     func testSpmDefaultModule() {
-        guard ProcessInfo.processInfo.environment["XCTestSessionIdentifier"] == nil else {
+        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else {
             print(
                 """
                 Skipping \(#function) because we're running in Xcode and this test relies on the `.build` \
