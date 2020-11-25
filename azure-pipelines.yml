@@ -47,8 +47,6 @@ jobs:
       xcode122:
         DEVELOPER_DIR: /Applications/Xcode_12.2.app
   steps:
-    - script: git submodule update --init --recursive
-      displayName: Update git submodules
     - script: xcodebuild -version
       displayName: xcodebuild -version
     - script: >
