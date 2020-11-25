@@ -35,17 +35,25 @@ Once SourceKitten is installed, you may use it from the command line.
 
 ```
 $ sourcekitten help
-Available commands:
+OVERVIEW: An adorable little command line tool for interacting with SourceKit
 
-   complete    Generate code completion options
-   doc         Print Swift or Objective-C docs as JSON
-   format      Format Swift file
-   help        Display general or command-specific help
-   index       Index Swift file and print as JSON
-   request     Run a raw sourcekit request
-   structure   Print Swift structure information as JSON
-   syntax      Print Swift syntax information as JSON
-   version     Display the current version of SourceKitten
+USAGE: sourcekitten <subcommand>
+
+OPTIONS:
+  -h, --help              Show help information.
+
+SUBCOMMANDS:
+  complete                Generate code completion options
+  doc                     Print Swift or Objective-C docs as JSON
+  format                  Format Swift file
+  index                   Index Swift file and print as JSON
+  module-info             Obtain information about a Swift module and print as JSON
+  request                 Run a raw SourceKit request
+  structure               Print Swift structure information as JSON
+  syntax                  Print Swift syntax information as JSON
+  version                 Display the current version of SourceKitten
+
+  See 'sourcekitten help <subcommand>' for detailed help.
 ```
 
 ## How is SourceKit resolved?
