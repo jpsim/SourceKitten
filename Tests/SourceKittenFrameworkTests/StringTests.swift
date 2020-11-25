@@ -135,14 +135,10 @@ class StringTests: XCTestCase {
                        """
         let file = File(contents: contents)
         let parsedDecl = file.parseDeclaration(dict)!
-#if compiler(>=5.1)
         let expectedDecl = """
                            func f(a: Int,
                                   b: Int)
                            """
-#else
-        let expectedDecl = "func f(a: Int,"
-#endif
         XCTAssertEqual(parsedDecl, expectedDecl, "should extract the declaration")
     }
 

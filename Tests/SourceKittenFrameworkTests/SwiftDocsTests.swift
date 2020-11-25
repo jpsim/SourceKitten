@@ -63,12 +63,8 @@ private func versionedExpectedFilename(for name: String) -> String {
     let versions = ["swift-5.3.1", "swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
 #elseif compiler(>=5.3)
     let versions = ["swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.2)
-    let versions = ["swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.1)
-    let versions = ["swift-5.1", "swift-5.0"]
 #else
-    let versions = ["swift-5.0"]
+    let versions = ["swift-5.2", "swift-5.1", "swift-5.0"]
 #endif
 #if os(Linux)
     let platforms = ["Linux", ""]
@@ -106,12 +102,8 @@ private let buildingSwiftVersion: String = {
     return "swift-5.3.1"
 #elseif compiler(>=5.3)
     return "swift-5.3"
-#elseif compiler(>=5.2)
-    return "swift-5.2"
-#elseif compiler(>=5.1)
-    return "swift-5.1"
 #else
-    return "swift-5.0"
+    return "swift-5.2"
 #endif
 }()
 

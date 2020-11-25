@@ -254,12 +254,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testCompilerVersion() {
-#if compiler(>=5.1)
         XCTAssertTrue(SwiftVersion.current >= SwiftVersion.fiveDotOne)
-#else
-        XCTAssertTrue(SwiftVersion.current < SwiftVersion.fiveDotOne)
-        XCTAssertTrue(SwiftVersion.current == SwiftVersion.beforeFiveDotOne)
-#endif
     }
 }
 

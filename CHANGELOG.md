@@ -2,6 +2,9 @@
 
 ##### Breaking
 
+* SourceKitten now requires Swift 5.2 or higher to build.  
+  [JP Simard](https://github.com/jpsim)
+
 * SourceKittenFramework can no longer be integrated as a Carthage
   depdendency.  
   [JP Simard](https://github.com/jpsim)
