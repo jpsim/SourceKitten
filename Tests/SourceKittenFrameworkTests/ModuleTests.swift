@@ -81,6 +81,15 @@ class ModuleTests: XCTestCase {
     }
 
     func testSpmDefaultModule() {
+        guard ProcessInfo.processInfo.environment["XCTestSessionIdentifier"] == nil else {
+            print(
+                """
+                Skipping \(#function) because we're running in Xcode and this test relies on the `.build` \
+                directory being present.
+                """
+            )
+            return
+        }
         let skModule = Module(spmName: nil, inPath: projectRoot)
         XCTAssertEqual(skModule?.name, "SourceKittenFramework")
     }
