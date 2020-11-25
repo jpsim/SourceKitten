@@ -85,14 +85,10 @@ enum Exec {
                 process.currentDirectoryPath = currentDirectory
                 process.launch()
             }
-#elseif compiler(>=5)
+#else
             process.executableURL = URL(fileURLWithPath: command)
             process.currentDirectoryURL = URL(fileURLWithPath: currentDirectory)
             try process.run()
-#else
-            process.launchPath = command
-            process.currentDirectoryPath = currentDirectory
-            process.launch()
 #endif
         } catch {
             return Results(terminationStatus: -1, data: Data())

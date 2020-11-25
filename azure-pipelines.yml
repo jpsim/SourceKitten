@@ -11,8 +11,6 @@ jobs:
   strategy:
     maxParallel: 10
     matrix:
-      swift51:
-        containerImage: swift:5.1
       swift52:
         containerImage: swift:5.2
       swift53:
@@ -34,8 +32,6 @@ jobs:
   strategy:
     maxParallel: 10
     matrix:
-      xcode113:
-        DEVELOPER_DIR: /Applications/Xcode_11.3.app
       xcode114:
         DEVELOPER_DIR: /Applications/Xcode_11.4.app
       xcode115:
@@ -88,7 +84,7 @@ jobs:
   steps:
     - script: swift build
       displayName: swift build
-    - script: swift run sourcekitten doc --spm-module SourceKittenFramework > SourceKittenFramework.json
+    - script: swift run sourcekitten doc --spm --module-name SourceKittenFramework > SourceKittenFramework.json
       displayName: Generate documentation json
     - script: bundle install --path vendor/bundle
       displayName: bundle install

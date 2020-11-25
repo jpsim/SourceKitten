@@ -2,6 +2,9 @@
 
 ##### Breaking
 
+* SourceKitten now requires Swift 5.2 or higher to build.  
+  [JP Simard](https://github.com/jpsim)
+
 * SourceKittenFramework can no longer be integrated as a Carthage
   depdendency.  
   [JP Simard](https://github.com/jpsim)
@@ -10,6 +13,17 @@
   completely removed. You can still use Xcode to develop SourceKitten by
   opening it as a Swift Package by typing `xed .` or `xed Package.swift`
   from your shell.  
+  [JP Simard](https://github.com/jpsim)
+
+* The command line syntax has slightly changed due to migrating from the
+  Commandant command line parsing library to swift-argument-parser.
+  For the most part the breaking changes are all to make the syntax more
+  unix compliant and intuitive to use. For example, commands such as
+  `sourcekitten --help` or `sourcekitten -h` now work as expected.
+  The help output from various commands has greatly improved as well.
+  A few notable breaking changes:
+    * `doc --spm-module` was removed (use `--spm --module-name` instead)
+    * `sourcekitten module_info` is now `sourcekitten module-info`  
   [JP Simard](https://github.com/jpsim)
 
 ##### Enhancements
