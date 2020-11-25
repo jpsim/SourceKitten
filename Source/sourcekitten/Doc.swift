@@ -14,16 +14,11 @@ extension SourceKitten {
         var spm: Bool = false
         @Option(help: "Document Objective-C headers instead of Swift code")
         var objc: Bool = false
-        @Option(help: "Equivalent to --spm --module-name (string)")
-        var spmModule: String = ""
         @Argument(help: "Arguments passed to `xcodebuild` or `swift build`")
         var arguments: [String] = []
 
         mutating func run() throws {
-            let moduleName = self.moduleName.isEmpty ?
-                (self.spmModule.isEmpty ? nil : self.spmModule)
-                : self.moduleName
-            let spm = self.spm || !self.spmModule.isEmpty
+            let moduleName = self.moduleName.isEmpty ? nil : self.moduleName
 
             if spm {
                 if let docs = Module(spmArguments: arguments, spmName: moduleName)?.docs {

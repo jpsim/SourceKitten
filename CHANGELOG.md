@@ -21,10 +21,11 @@
   unix compliant and intuitive to use. For example, commands such as
   `sourcekitten --help` or `sourcekitten -h` now work as expected.
   The help output from various commands has greatly improved as well.
-  Notable breaking changes are that `sourcekitten module_info` is now
-  invoked with `sourcekitten module-info`, and some commands that
-  previously took compiler arguments after a `--` delimiter should now
-  omit the `--` delimiter.  
+  A few notable breaking changes:
+    * `doc --spm-module` was removed (use `--spm --module` instead)
+    * `sourcekitten module_info` is now `sourcekitten module-info`
+    * some commands that previously took compiler arguments after a `--`
+      delimiter should now omit the `--` delimiter.  
   [JP Simard](https://github.com/jpsim)
 
 ##### Enhancements
