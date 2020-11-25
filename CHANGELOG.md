@@ -2,7 +2,15 @@
 
 ##### Breaking
 
-* None.
+* SourceKittenFramework can no longer be integrated as a Carthage
+  depdendency.  
+  [JP Simard](https://github.com/jpsim)
+
+* `SourceKitten.xcworkspace` and `sourcekitten.xcproject` have been
+  completely removed. You can still use Xcode to develop SourceKitten by
+  opening it as a Swift Package by typing `xed .` or `xed Package.swift`
+  from your shell.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Enhancements
 

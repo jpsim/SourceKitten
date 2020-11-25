@@ -417,7 +417,7 @@ private func interfaceForModule(_ module: String, compilerArguments: [String]) t
         "key.request": UID("source.request.editor.open.interface"),
         "key.name": NSUUID().uuidString,
         "key.compilerargs": compilerArguments,
-        "key.modulename": "SourceKittenFramework.\(module)"
+        "key.modulename": module
     ]).send()
 }
 
@@ -464,12 +464,12 @@ extension String {
     }
 }
 
-internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, spmModule: String, compilerArguments: [String]) throws -> String {
+internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, compilerArguments: [String]) throws -> String {
     let sourceKitResponse = try interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
-    let spmImport = "#if SWIFT_PACKAGE\nimport \(spmModule)\n#endif\n"
+    let spmImport = "#if SWIFT_PACKAGE\nimport \(module)\n#endif\n"
     let library: String
     if let linuxPath = linuxPath {
         library = "#if os(Linux)\n" +

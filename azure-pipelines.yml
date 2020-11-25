@@ -44,14 +44,14 @@ jobs:
         DEVELOPER_DIR: /Applications/Xcode_11.6.app
       xcode12:
         DEVELOPER_DIR: /Applications/Xcode_12.app
+      xcode122:
+        DEVELOPER_DIR: /Applications/Xcode_12.2.app
   steps:
-    - script: git submodule update --init --recursive
-      displayName: Update git submodules
     - script: xcodebuild -version
       displayName: xcodebuild -version
     - script: >
         set -o pipefail &&
-        xcodebuild -workspace SourceKitten.xcworkspace -scheme sourcekitten -parallel-testing-enabled NO test |
+        xcodebuild -scheme sourcekitten -parallel-testing-enabled NO test |
         xcpretty -r junit -o build/reports/xcodebuild-macos.xml
       displayName: xcodebuild test
       condition: succeededOrFailed()
@@ -71,7 +71,7 @@ jobs:
   pool:
     vmImage: 'macOS-10.15'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_12.app
+    DEVELOPER_DIR: /Applications/Xcode_12.2.app
   steps:
     - script: bundle install --path vendor/bundle
       displayName: bundle install
@@ -84,7 +84,7 @@ jobs:
   pool:
     vmImage: 'macOS-10.15'
   variables:
-    DEVELOPER_DIR: /Applications/Xcode_12.app
+    DEVELOPER_DIR: /Applications/Xcode_12.2.app
   steps:
     - script: swift build
       displayName: swift build

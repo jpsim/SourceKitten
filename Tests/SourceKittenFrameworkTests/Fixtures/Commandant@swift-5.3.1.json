@@ -1,5 +1,5 @@
 [{
-  "\/private\/Sources\/Commandant\/Argument.swift" : {
+  "\/Sources\/Commandant\/Argument.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 3858,
     "key.offset" : 0,
@@ -264,7 +264,6 @@
         "key.usr" : "s:10Commandant8ArgumentV"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 251,
         "key.bodyoffset" : 1283,
@@ -335,7 +334,6 @@
         "key.usr" : "s:10Commandant8ArgumentV"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct Argument&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 254,
         "key.bodyoffset" : 1575,
@@ -414,7 +412,6 @@
         "key.offset" : 1835
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 1979,
         "key.bodyoffset" : 1877,
@@ -671,7 +668,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/ArgumentParser.swift" : {
+  "\/Sources\/Commandant\/ArgumentParser.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 4637,
     "key.offset" : 0,
@@ -753,6 +750,9 @@
                 "key.parsed_declaration" : "case key(String)",
                 "key.parsed_scope.end" : 14,
                 "key.parsed_scope.start" : 14,
+                "key.substructure" : [
+
+                ],
                 "key.typename" : "(RawArgument.Type) -> (String) -> RawArgument",
                 "key.typeusr" : "$sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOSScADmcD",
                 "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO3keyyADSScADmF"
@@ -790,6 +790,9 @@
                 "key.parsed_declaration" : "case value(String)",
                 "key.parsed_scope.end" : 18,
                 "key.parsed_scope.start" : 18,
+                "key.substructure" : [
+
+                ],
                 "key.typename" : "(RawArgument.Type) -> (String) -> RawArgument",
                 "key.typeusr" : "$sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOSScADmcD",
                 "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO5valueyADSScADmF"
@@ -827,6 +830,9 @@
                 "key.parsed_declaration" : "case flag(OrderedSet<Character>)",
                 "key.parsed_scope.end" : 21,
                 "key.parsed_scope.start" : 21,
+                "key.substructure" : [
+
+                ],
                 "key.typename" : "(RawArgument.Type) -> (OrderedSet<Character>) -> RawArgument",
                 "key.typeusr" : "$sy10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLOAA10OrderedSetVySJGcADmcD",
                 "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO4flagyAdA10OrderedSetVySJGcADmF"
@@ -839,7 +845,6 @@
         "key.usr" : "s:10Commandant11RawArgument33_BA859BFBBE9DF3838A11641CB273713ELLO"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>private enum RawArgument : <Type usr=\"s:SQ\">Equatable<\/Type><\/Declaration>",
         "key.bodylength" : 214,
         "key.bodyoffset" : 613,
@@ -967,7 +972,6 @@
         "key.parsed_declaration" : "public final class ArgumentParser",
         "key.parsed_scope.end" : 175,
         "key.parsed_scope.start" : 40,
-        "key.runtime_name" : "_TtC4main14ArgumentParser",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.private",
@@ -981,9 +985,9 @@
             ],
             "key.doc.column" : 14,
             "key.doc.comment" : "The remaining arguments to be extracted, in their raw form.",
-            "key.doc.declaration" : "private var rawArguments: [Commandant.RawArgument]",
+            "key.doc.declaration" : "private var rawArguments: [RawArgument]",
             "key.doc.file" : "\/private\/Sources\/Commandant\/ArgumentParser.swift",
-            "key.doc.full_as_xml" : "<Other file=\"\/private\/Sources\/Commandant\/ArgumentParser.swift\" line=\"42\" column=\"14\"><Name>rawArguments<\/Name><USR>s:10Commandant14ArgumentParserC12rawArguments33_BA859BFBBE9DF3838A11641CB273713ELLSayAA03RawB0AELLOGvp<\/USR><Declaration>private var rawArguments: [Commandant.RawArgument]<\/Declaration><CommentParts><Abstract><Para>The remaining arguments to be extracted, in their raw form.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+            "key.doc.full_as_xml" : "<Other file=\"\/private\/Sources\/Commandant\/ArgumentParser.swift\" line=\"42\" column=\"14\"><Name>rawArguments<\/Name><USR>s:10Commandant14ArgumentParserC12rawArguments33_BA859BFBBE9DF3838A11641CB273713ELLSayAA03RawB0AELLOGvp<\/USR><Declaration>private var rawArguments: [RawArgument]<\/Declaration><CommentParts><Abstract><Para>The remaining arguments to be extracted, in their raw form.<\/Para><\/Abstract><\/CommentParts><\/Other>",
             "key.doc.line" : 42,
             "key.doc.name" : "rawArguments",
             "key.doc.type" : "Other",
@@ -1040,9 +1044,9 @@
             "key.parsed_scope.start" : 45,
             "key.substructure" : [
               {
-                "key.annotated_decl" : "<Declaration>let params: [<Type usr=\"s:s10ArraySliceV\">ArraySlice<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>&gt;]<\/Declaration>",
+                "key.annotated_decl" : "<Declaration>let params: [<Type usr=\"s:Sa\">Array<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>&gt;.<Type usr=\"s:Sa11SubSequencea\">SubSequence<\/Type>]<\/Declaration>",
                 "key.filepath" : "",
-                "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>params<\/decl.name>: <decl.var.type>[<ref.struct usr=\"s:s10ArraySliceV\">ArraySlice<\/ref.struct>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>&gt;]<\/decl.var.type><\/decl.var.local>",
+                "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>params<\/decl.name>: <decl.var.type>[<ref.struct usr=\"s:Sa\">Array<\/ref.struct>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>&gt;.<ref.typealias usr=\"s:Sa11SubSequencea\">SubSequence<\/ref.typealias>]<\/decl.var.type><\/decl.var.local>",
                 "key.kind" : "source.lang.swift.decl.var.local",
                 "key.length" : 91,
                 "key.name" : "params",
@@ -1057,9 +1061,9 @@
                 "key.usr" : "s:10Commandant14ArgumentParserCyACSaySSGcfc6paramsL_Says10ArraySliceVySSGGvp"
               },
               {
-                "key.annotated_decl" : "<Declaration>let options: <Type usr=\"s:s10ArraySliceV\">ArraySlice<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>&gt;<\/Declaration>",
+                "key.annotated_decl" : "<Declaration>let options: <Type usr=\"s:Sa\">Array<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>&gt;.<Type usr=\"s:Sa11SubSequencea\">SubSequence<\/Type><\/Declaration>",
                 "key.filepath" : "",
-                "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>options<\/decl.name>: <decl.var.type><ref.struct usr=\"s:s10ArraySliceV\">ArraySlice<\/ref.struct>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>&gt;<\/decl.var.type><\/decl.var.local>",
+                "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>options<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Sa\">Array<\/ref.struct>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>&gt;.<ref.typealias usr=\"s:Sa11SubSequencea\">SubSequence<\/ref.typealias><\/decl.var.type><\/decl.var.local>",
                 "key.kind" : "source.lang.swift.decl.var.local",
                 "key.length" : 27,
                 "key.name" : "options",
@@ -1447,7 +1451,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/ArgumentProtocol.swift" : {
+  "\/Sources\/Commandant\/ArgumentProtocol.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 1141,
     "key.offset" : 0,
@@ -1485,7 +1489,6 @@
         "key.parsed_declaration" : "public protocol ArgumentProtocol",
         "key.parsed_scope.end" : 16,
         "key.parsed_scope.start" : 10,
-        "key.runtime_name" : "_TtP4main16ArgumentProtocol_",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -1519,19 +1522,19 @@
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
-            "key.annotated_decl" : "<Declaration>static func from(string: <Type usr=\"s:SS\">String<\/Type>) -&gt; `Self`?<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>static func from(string: <Type usr=\"s:SS\">String<\/Type>) -&gt; <Type usr=\"s:10Commandant16ArgumentProtocolP4Selfxmfp\">Self<\/Type>?<\/Declaration>",
             "key.doc.column" : 14,
             "key.doc.comment" : "Attempts to parse a value from the given command-line argument.",
-            "key.doc.declaration" : "static func from(string: String) -> `Self`?",
+            "key.doc.declaration" : "static func from(string: String) -> Self?",
             "key.doc.file" : "\/private\/Sources\/Commandant\/ArgumentProtocol.swift",
-            "key.doc.full_as_xml" : "<Function file=\"\/private\/Sources\/Commandant\/ArgumentProtocol.swift\" line=\"15\" column=\"14\"><Name>from(string:)<\/Name><USR>s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ<\/USR><Declaration>static func from(string: String) -&gt; `Self`?<\/Declaration><CommentParts><Abstract><Para>Attempts to parse a value from the given command-line argument.<\/Para><\/Abstract><\/CommentParts><\/Function>",
+            "key.doc.full_as_xml" : "<Function file=\"\/private\/Sources\/Commandant\/ArgumentProtocol.swift\" line=\"15\" column=\"14\"><Name>from(string:)<\/Name><USR>s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ<\/USR><Declaration>static func from(string: String) -&gt; Self?<\/Declaration><CommentParts><Abstract><Para>Attempts to parse a value from the given command-line argument.<\/Para><\/Abstract><\/CommentParts><\/Function>",
             "key.doc.line" : 15,
             "key.doc.name" : "from(string:)",
             "key.doc.type" : "Function",
             "key.doclength" : 68,
             "key.docoffset" : 331,
             "key.filepath" : "",
-            "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>from<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>string<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype>`Self`?<\/decl.function.returntype><\/decl.function.method.static>",
+            "key.fully_annotated_decl" : "<decl.function.method.static><syntaxtype.keyword>static<\/syntaxtype.keyword> <syntaxtype.keyword>func<\/syntaxtype.keyword> <decl.name>from<\/decl.name>(<decl.var.parameter><decl.var.parameter.argument_label>string<\/decl.var.parameter.argument_label>: <decl.var.parameter.type><ref.struct usr=\"s:SS\">String<\/ref.struct><\/decl.var.parameter.type><\/decl.var.parameter>) -&gt; <decl.function.returntype><ref.generic_type_param usr=\"s:10Commandant16ArgumentProtocolP4Selfxmfp\">Self<\/ref.generic_type_param>?<\/decl.function.returntype><\/decl.function.method.static>",
             "key.kind" : "source.lang.swift.decl.function.method.static",
             "key.length" : 41,
             "key.name" : "from(string:)",
@@ -1554,17 +1557,16 @@
         "key.usr" : "s:10Commandant16ArgumentProtocolP"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
-        "key.annotated_decl" : "<Declaration>@frozen struct Int : <Type usr=\"s:s17FixedWidthIntegerP\">FixedWidthInteger<\/Type>, <Type usr=\"s:SZ\">SignedInteger<\/Type><\/Declaration>",
+        "key.annotated_decl" : "<Declaration>@frozen struct Int : <Type usr=\"s:s17FixedWidthIntegerP\">FixedWidthInteger<\/Type>, <Type usr=\"s:SZ\">SignedInteger<\/Type>, <Type usr=\"s:s35_ExpressibleByBuiltinIntegerLiteralP\">_ExpressibleByBuiltinIntegerLiteral<\/Type><\/Declaration>",
         "key.bodylength" : 113,
         "key.bodyoffset" : 478,
-        "key.doc.declaration" : "struct Int : FixedWidthInteger, SignedInteger",
+        "key.doc.declaration" : "@frozen struct Int : FixedWidthInteger, SignedInteger",
         "key.doc.discussion" : [
           {
             "Para" : "On 32-bit platforms, `Int` is the same size as `Int32`, and on 64-bit platforms, `Int` is the same size as `Int64`."
           }
         ],
-        "key.doc.full_as_xml" : "<Class><Name>Int<\/Name><USR>s:Si<\/USR><Declaration>struct Int : FixedWidthInteger, SignedInteger<\/Declaration><CommentParts><Abstract><Para>A signed integer value type.<\/Para><\/Abstract><Discussion><Para>On 32-bit platforms, <codeVoice>Int<\/codeVoice> is the same size as <codeVoice>Int32<\/codeVoice>, and on 64-bit platforms, <codeVoice>Int<\/codeVoice> is the same size as <codeVoice>Int64<\/codeVoice>.<\/Para><\/Discussion><\/CommentParts><\/Class>",
+        "key.doc.full_as_xml" : "<Class><Name>Int<\/Name><USR>s:Si<\/USR><Declaration>@frozen struct Int : FixedWidthInteger, SignedInteger<\/Declaration><CommentParts><Abstract><Para>A signed integer value type.<\/Para><\/Abstract><Discussion><Para>On 32-bit platforms, <codeVoice>Int<\/codeVoice> is the same size as <codeVoice>Int32<\/codeVoice>, and on 64-bit platforms, <codeVoice>Int<\/codeVoice> is the same size as <codeVoice>Int64<\/codeVoice>.<\/Para><\/Discussion><\/CommentParts><\/Class>",
         "key.doc.name" : "Int",
         "key.doc.type" : "Class",
         "key.elements" : [
@@ -1574,7 +1576,7 @@
             "key.offset" : 460
           }
         ],
-        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.attribute.builtin><syntaxtype.attribute.name>@frozen<\/syntaxtype.attribute.name><\/syntaxtype.attribute.builtin> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>Int<\/decl.name> : <ref.protocol usr=\"s:s17FixedWidthIntegerP\">FixedWidthInteger<\/ref.protocol>, <ref.protocol usr=\"s:SZ\">SignedInteger<\/ref.protocol><\/decl.struct>",
+        "key.fully_annotated_decl" : "<decl.struct><syntaxtype.attribute.builtin><syntaxtype.attribute.name>@frozen<\/syntaxtype.attribute.name><\/syntaxtype.attribute.builtin> <syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>Int<\/decl.name> : <ref.protocol usr=\"s:s17FixedWidthIntegerP\">FixedWidthInteger<\/ref.protocol>, <ref.protocol usr=\"s:SZ\">SignedInteger<\/ref.protocol>, <ref.protocol usr=\"s:s35_ExpressibleByBuiltinIntegerLiteralP\">_ExpressibleByBuiltinIntegerLiteral<\/ref.protocol><\/decl.struct>",
         "key.groupname" : "Math\/Integers",
         "key.inheritedtypes" : [
           {
@@ -1649,14 +1651,14 @@
             "key.bodylength" : 23,
             "key.bodyoffset" : 566,
             "key.doc.column" : 14,
-            "key.doc.declaration" : "static func from(string: String) -> `Self`?",
+            "key.doc.declaration" : "static func from(string: String) -> Self?",
             "key.doc.discussion" : [
               {
                 "Note" : ""
               }
             ],
             "key.doc.file" : "\/private\/Sources\/Commandant\/ArgumentProtocol.swift",
-            "key.doc.full_as_xml" : "<Function file=\"\/private\/Sources\/Commandant\/ArgumentProtocol.swift\" line=\"15\" column=\"14\"><Name>from(string:)<\/Name><USR>s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ<\/USR><Declaration>static func from(string: String) -&gt; `Self`?<\/Declaration><CommentParts><Abstract><Para>Attempts to parse a value from the given command-line argument.<\/Para><\/Abstract><Discussion><Note><Para>This documentation comment was inherited from <codeVoice>ArgumentProtocol<\/codeVoice>.<\/Para><\/Note><\/Discussion><\/CommentParts><\/Function>",
+            "key.doc.full_as_xml" : "<Function file=\"\/private\/Sources\/Commandant\/ArgumentProtocol.swift\" line=\"15\" column=\"14\"><Name>from(string:)<\/Name><USR>s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ<\/USR><Declaration>static func from(string: String) -&gt; Self?<\/Declaration><CommentParts><Abstract><Para>Attempts to parse a value from the given command-line argument.<\/Para><\/Abstract><Discussion><Note><Para>This documentation comment was inherited from <codeVoice>ArgumentProtocol<\/codeVoice>.<\/Para><\/Note><\/Discussion><\/CommentParts><\/Function>",
             "key.doc.line" : 15,
             "key.doc.name" : "from(string:)",
             "key.doc.type" : "Function",
@@ -1690,11 +1692,10 @@
         "key.usr" : "s:Si"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>@frozen struct String<\/Declaration>",
         "key.bodylength" : 110,
         "key.bodyoffset" : 630,
-        "key.doc.declaration" : "struct String",
+        "key.doc.declaration" : "@frozen struct String",
         "key.doc.discussion" : [
           {
             "Para" : "A string is a series of characters, such as `\"Swift\"`, that forms a collection. Strings in Swift are Unicode correct and locale insensitive, and are designed to be efficient. The `String` type bridges with the Objective-C class `NSString` and offers interoperability with C functions that works with strings."
@@ -1865,7 +1866,7 @@
             "Para" : "For more information about the Unicode terms used in this discussion, see the . In particular, this discussion mentions , , and ."
           }
         ],
-        "key.doc.full_as_xml" : "<Class><Name>String<\/Name><USR>s:SS<\/USR><Declaration>struct String<\/Declaration><CommentParts><Abstract><Para>A Unicode string value that is a collection of characters.<\/Para><\/Abstract><Discussion><Para>A string is a series of characters, such as <codeVoice>&quot;Swift&quot;<\/codeVoice>, that forms a collection. Strings in Swift are Unicode correct and locale insensitive, and are designed to be efficient. The <codeVoice>String<\/codeVoice> type bridges with the Objective-C class <codeVoice>NSString<\/codeVoice> and offers interoperability with C functions that works with strings.<\/Para><Para>You can create new strings using string literals or string interpolations. A <emphasis>string literal<\/emphasis> is a series of characters enclosed in quotes.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let greeting = \"Welcome!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para><emphasis>String interpolations<\/emphasis> are string literals that evaluate any included expressions and convert the results to string form. String interpolations give you an easy way to build a string from multiple pieces. Wrap each expression in a string interpolation in parentheses, prefixed by a backslash.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let name = \"Rosa\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let personalizedGreeting = \"Welcome, \\(name)!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ personalizedGreeting == \"Welcome, Rosa!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let price = 2]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let number = 3]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let cookiePrice = \"\\(number) cookies: $\\(price * number).\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ cookiePrice == \"3 cookies: $6.\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Combine strings using the concatenation operator (<codeVoice>+<\/codeVoice>).<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let longerGreeting = greeting + \" We're glad you're here!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ longerGreeting == \"Welcome! We're glad you're here!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Multiline string literals are enclosed in three double quotation marks (<codeVoice>&quot;&quot;&quot;<\/codeVoice>), with each delimiter on its own line. Indentation is stripped from each line of a multiline string literal to match the indentation of the closing delimiter.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let banner = \"\"\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[          __,]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[         (           o  \/) _\/_]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[          `.  , , , ,  \/\/  \/]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[        (___)(_(_\/_(_ \/\/_ (__]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[                     \/)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[                    (\/]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[        \"\"\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Modifying and Comparing Strings<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>Strings always have value semantics. Modifying a copy of a string leaves the original unaffected.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[var otherGreeting = greeting]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[otherGreeting += \" Have a nice time!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ otherGreeting == \"Welcome! Have a nice time!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(greeting)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Welcome!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Comparing strings for equality using the equal-to operator (<codeVoice>==<\/codeVoice>) or a relational operator (like <codeVoice>&lt;<\/codeVoice> or <codeVoice>&gt;=<\/codeVoice>) is always performed using Unicode canonical representation. As a result, different representations of a string compare as being equal.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let cafe1 = \"Cafe\\u{301}\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let cafe2 = \"Café\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(cafe1 == cafe2)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"true\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The Unicode scalar value <codeVoice>&quot;\\u{301}&quot;<\/codeVoice> modifies the preceding character to include an accent, so <codeVoice>&quot;e\\u{301}&quot;<\/codeVoice> has the same canonical representation as the single Unicode scalar value <codeVoice>&quot;é&quot;<\/codeVoice>.<\/Para><Para>Basic string operations are not sensitive to locale settings, ensuring that string comparisons and other operations always have a single, stable result, allowing strings to be used as keys in <codeVoice>Dictionary<\/codeVoice> instances and for other purposes.<\/Para><rawHTML><![CDATA[<h1>]]><\/rawHTML>Accessing String Elements<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>A string is a collection of <emphasis>extended grapheme clusters<\/emphasis>, which approximate human-readable characters. Many individual characters, such as “é”, “김”, and “🇮🇳”, can be made up of multiple Unicode scalar values. These scalar values are combined by Unicode’s boundary algorithms into extended grapheme clusters, represented by the Swift <codeVoice>Character<\/codeVoice> type. Each element of a string is represented by a <codeVoice>Character<\/codeVoice> instance.<\/Para><Para>For example, to retrieve the first word of a longer string, you can search for a space and then create a substring from a prefix of the string up to that point:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let name = \"Marie Curie\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let firstSpace = name.firstIndex(of: \" \") ?? name.endIndex]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let firstName = name[..<firstSpace]]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ firstName == \"Marie\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The <codeVoice>firstName<\/codeVoice> constant is an instance of the <codeVoice>Substring<\/codeVoice> type—a type that represents substrings of a string while sharing the original string’s storage. Substrings present the same interface as strings.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(\"\\(name)'s first name has \\(firstName.count) letters.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Marie Curie's first name has 5 letters.\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Accessing a String’s Unicode Representation<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>If you need to access the contents of a string as encoded in different Unicode encodings, use one of the string’s <codeVoice>unicodeScalars<\/codeVoice>, <codeVoice>utf16<\/codeVoice>, or <codeVoice>utf8<\/codeVoice> properties. Each property provides access to a view of the string as a series of code units, each encoded in a different Unicode encoding.<\/Para><Para>To demonstrate the different views available for every string, the following examples use this <codeVoice>String<\/codeVoice> instance:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let cafe = \"Cafe\\u{301} du 🌍\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(cafe)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Café du 🌍\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The <codeVoice>cafe<\/codeVoice> string is a collection of the nine characters that are visible when the string is displayed.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(cafe.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"9\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(Array(cafe))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[\"C\", \"a\", \"f\", \"é\", \" \", \"d\", \"u\", \" \", \"🌍\"]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h2>]]><\/rawHTML>Unicode Scalar View<rawHTML><![CDATA[<\/h2>]]><\/rawHTML><Para>A string’s <codeVoice>unicodeScalars<\/codeVoice> property is a collection of Unicode scalar values, the 21-bit codes that are the basic unit of Unicode. Each scalar value is represented by a <codeVoice>Unicode.Scalar<\/codeVoice> instance and is equivalent to a UTF-32 code unit.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(cafe.unicodeScalars.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"10\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(Array(cafe.unicodeScalars))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[\"C\", \"a\", \"f\", \"e\", \"\\u{0301}\", \" \", \"d\", \"u\", \" \", \"\\u{0001F30D}\"]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(cafe.unicodeScalars.map { $0.value })]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[67, 97, 102, 101, 769, 32, 100, 117, 32, 127757]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The <codeVoice>unicodeScalars<\/codeVoice> view’s elements comprise each Unicode scalar value in the <codeVoice>cafe<\/codeVoice> string. In particular, because <codeVoice>cafe<\/codeVoice> was declared using the decomposed form of the <codeVoice>&quot;é&quot;<\/codeVoice> character, <codeVoice>unicodeScalars<\/codeVoice> contains the scalar values for both the letter <codeVoice>&quot;e&quot;<\/codeVoice> (101) and the accent character <codeVoice>&quot;´&quot;<\/codeVoice> (769).<\/Para><rawHTML><![CDATA[<h2>]]><\/rawHTML>UTF-16 View<rawHTML><![CDATA[<\/h2>]]><\/rawHTML><Para>A string’s <codeVoice>utf16<\/codeVoice> property is a collection of UTF-16 code units, the 16-bit encoding form of the string’s Unicode scalar values. Each code unit is stored as a <codeVoice>UInt16<\/codeVoice> instance.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(cafe.utf16.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"11\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(Array(cafe.utf16))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[67, 97, 102, 101, 769, 32, 100, 117, 32, 55356, 57101]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The elements of the <codeVoice>utf16<\/codeVoice> view are the code units for the string when encoded in UTF-16. These elements match those accessed through indexed <codeVoice>NSString<\/codeVoice> APIs.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let nscafe = cafe as NSString]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(nscafe.length)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"11\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(nscafe.character(at: 3))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"101\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h2>]]><\/rawHTML>UTF-8 View<rawHTML><![CDATA[<\/h2>]]><\/rawHTML><Para>A string’s <codeVoice>utf8<\/codeVoice> property is a collection of UTF-8 code units, the 8-bit encoding form of the string’s Unicode scalar values. Each code unit is stored as a <codeVoice>UInt8<\/codeVoice> instance.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(cafe.utf8.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"14\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(Array(cafe.utf8))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[67, 97, 102, 101, 204, 129, 32, 100, 117, 32, 240, 159, 140, 141]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The elements of the <codeVoice>utf8<\/codeVoice> view are the code units for the string when encoded in UTF-8. This representation matches the one used when <codeVoice>String<\/codeVoice> instances are passed to C APIs.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let cLength = strlen(cafe)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(cLength)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"14\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Measuring the Length of a String<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>When you need to know the length of a string, you must first consider what you’ll use the length for. Are you measuring the number of characters that will be displayed on the screen, or are you measuring the amount of storage needed for the string in a particular encoding? A single string can have greatly differing lengths when measured by its different views.<\/Para><Para>For example, an ASCII character like the capital letter <emphasis>A<\/emphasis> is represented by a single element in each of its four views. The Unicode scalar value of <emphasis>A<\/emphasis> is <codeVoice>65<\/codeVoice>, which is small enough to fit in a single code unit in both UTF-16 and UTF-8.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let capitalA = \"A\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(capitalA.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(capitalA.unicodeScalars.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(capitalA.utf16.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(capitalA.utf8.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>On the other hand, an emoji flag character is constructed from a pair of Unicode scalar values, like <codeVoice>&quot;\\u{1F1F5}&quot;<\/codeVoice> and <codeVoice>&quot;\\u{1F1F7}&quot;<\/codeVoice>. Each of these scalar values, in turn, is too large to fit into a single UTF-16 or UTF-8 code unit. As a result, each view of the string <codeVoice>&quot;🇵🇷&quot;<\/codeVoice> reports a different length.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let flag = \"🇵🇷\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(flag.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(flag.unicodeScalars.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"2\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(flag.utf16.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"4\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(flag.utf8.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"8\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>To check whether a string is empty, use its <codeVoice>isEmpty<\/codeVoice> property instead of comparing the length of one of the views to <codeVoice>0<\/codeVoice>. Unlike with <codeVoice>isEmpty<\/codeVoice>, calculating a view’s <codeVoice>count<\/codeVoice> property requires iterating through the elements of the string.<\/Para><rawHTML><![CDATA[<h1>]]><\/rawHTML>Accessing String View Elements<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>To find individual elements of a string, use the appropriate view for your task. For example, to retrieve the first word of a longer string, you can search the string for a space and then create a new string from a prefix of the string up to that point.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let name = \"Marie Curie\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let firstSpace = name.firstIndex(of: \" \") ?? name.endIndex]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let firstName = name[..<firstSpace]]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(firstName)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Marie\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Strings and their views share indices, so you can access the UTF-8 view of the <codeVoice>name<\/codeVoice> string using the same <codeVoice>firstSpace<\/codeVoice> index.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(Array(name.utf8[..<firstSpace]))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[77, 97, 114, 105, 101]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Note that an index into one view may not have an exact corresponding position in another view. For example, the <codeVoice>flag<\/codeVoice> string declared above comprises a single character, but is composed of eight code units when encoded as UTF-8. The following code creates constants for the first and second positions in the <codeVoice>flag.utf8<\/codeVoice> view. Accessing the <codeVoice>utf8<\/codeVoice> view with these indices yields the first and second code UTF-8 units.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let firstCodeUnit = flag.startIndex]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let secondCodeUnit = flag.utf8.index(after: firstCodeUnit)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ flag.utf8[firstCodeUnit] == 240]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ flag.utf8[secondCodeUnit] == 159]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>When used to access the elements of the <codeVoice>flag<\/codeVoice> string itself, however, the <codeVoice>secondCodeUnit<\/codeVoice> index does not correspond to the position of a specific character. Instead of only accessing the specific UTF-8 code unit, that index is treated as the position of the character at the index’s encoded offset. In the case of <codeVoice>secondCodeUnit<\/codeVoice>, that character is still the flag itself.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[\/\/ flag[firstCodeUnit] == \"🇵🇷\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ flag[secondCodeUnit] == \"🇵🇷\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>If you need to validate that an index from one string’s view corresponds with an exact position in another view, use the index’s <codeVoice>samePosition(in:)<\/codeVoice> method or the <codeVoice>init(_:within:)<\/codeVoice> initializer.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[if let exactIndex = secondCodeUnit.samePosition(in: flag) {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(flag[exactIndex])]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[} else {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"No exact match for this position.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"No exact match for this position.\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Performance Optimizations<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>Although strings in Swift have value semantics, strings use a copy-on-write strategy to store their data in a buffer. This buffer can then be shared by different copies of a string. A string’s data is only copied lazily, upon mutation, when more than one string instance is using the same buffer. Therefore, the first in any sequence of mutating operations may cost O(<emphasis>n<\/emphasis>) time and space.<\/Para><Para>When a string’s contiguous storage fills up, a new buffer must be allocated and data must be moved to the new storage. String buffers use an exponential growth strategy that makes appending to a string a constant time operation when averaged over many append operations.<\/Para><rawHTML><![CDATA[<h1>]]><\/rawHTML>Bridging Between String and NSString<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>Any <codeVoice>String<\/codeVoice> instance can be bridged to <codeVoice>NSString<\/codeVoice> using the type-cast operator (<codeVoice>as<\/codeVoice>), and any <codeVoice>String<\/codeVoice> instance that originates in Objective-C may use an <codeVoice>NSString<\/codeVoice> instance as its storage. Because any arbitrary subclass of <codeVoice>NSString<\/codeVoice> can become a <codeVoice>String<\/codeVoice> instance, there are no guarantees about representation or efficiency when a <codeVoice>String<\/codeVoice> instance is backed by <codeVoice>NSString<\/codeVoice> storage. Because <codeVoice>NSString<\/codeVoice> is immutable, it is just as though the storage was shared by a copy. The first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost O(<emphasis>n<\/emphasis>) time and space, where <emphasis>n<\/emphasis> is the length of the string’s encoded representation (or more, if the underlying <codeVoice>NSString<\/codeVoice> has unusual performance characteristics).<\/Para><Para>For more information about the Unicode terms used in this discussion, see the <Link href=\"http:\/\/www.unicode.org\/glossary\/\">Unicode.org glossary<\/Link>. In particular, this discussion mentions <Link href=\"http:\/\/www.unicode.org\/glossary\/#extended_grapheme_cluster\">extended grapheme clusters<\/Link>, <Link href=\"http:\/\/www.unicode.org\/glossary\/#unicode_scalar_value\">Unicode scalar values<\/Link>, and <Link href=\"http:\/\/www.unicode.org\/glossary\/#canonical_equivalent\">canonical equivalence<\/Link>.<\/Para><\/Discussion><\/CommentParts><\/Class>",
+        "key.doc.full_as_xml" : "<Class><Name>String<\/Name><USR>s:SS<\/USR><Declaration>@frozen struct String<\/Declaration><CommentParts><Abstract><Para>A Unicode string value that is a collection of characters.<\/Para><\/Abstract><Discussion><Para>A string is a series of characters, such as <codeVoice>&quot;Swift&quot;<\/codeVoice>, that forms a collection. Strings in Swift are Unicode correct and locale insensitive, and are designed to be efficient. The <codeVoice>String<\/codeVoice> type bridges with the Objective-C class <codeVoice>NSString<\/codeVoice> and offers interoperability with C functions that works with strings.<\/Para><Para>You can create new strings using string literals or string interpolations. A <emphasis>string literal<\/emphasis> is a series of characters enclosed in quotes.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let greeting = \"Welcome!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para><emphasis>String interpolations<\/emphasis> are string literals that evaluate any included expressions and convert the results to string form. String interpolations give you an easy way to build a string from multiple pieces. Wrap each expression in a string interpolation in parentheses, prefixed by a backslash.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let name = \"Rosa\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let personalizedGreeting = \"Welcome, \\(name)!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ personalizedGreeting == \"Welcome, Rosa!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let price = 2]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let number = 3]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let cookiePrice = \"\\(number) cookies: $\\(price * number).\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ cookiePrice == \"3 cookies: $6.\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Combine strings using the concatenation operator (<codeVoice>+<\/codeVoice>).<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let longerGreeting = greeting + \" We're glad you're here!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ longerGreeting == \"Welcome! We're glad you're here!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Multiline string literals are enclosed in three double quotation marks (<codeVoice>&quot;&quot;&quot;<\/codeVoice>), with each delimiter on its own line. Indentation is stripped from each line of a multiline string literal to match the indentation of the closing delimiter.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let banner = \"\"\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[          __,]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[         (           o  \/) _\/_]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[          `.  , , , ,  \/\/  \/]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[        (___)(_(_\/_(_ \/\/_ (__]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[                     \/)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[                    (\/]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[        \"\"\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Modifying and Comparing Strings<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>Strings always have value semantics. Modifying a copy of a string leaves the original unaffected.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[var otherGreeting = greeting]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[otherGreeting += \" Have a nice time!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ otherGreeting == \"Welcome! Have a nice time!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(greeting)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Welcome!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Comparing strings for equality using the equal-to operator (<codeVoice>==<\/codeVoice>) or a relational operator (like <codeVoice>&lt;<\/codeVoice> or <codeVoice>&gt;=<\/codeVoice>) is always performed using Unicode canonical representation. As a result, different representations of a string compare as being equal.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let cafe1 = \"Cafe\\u{301}\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let cafe2 = \"Café\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(cafe1 == cafe2)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"true\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The Unicode scalar value <codeVoice>&quot;\\u{301}&quot;<\/codeVoice> modifies the preceding character to include an accent, so <codeVoice>&quot;e\\u{301}&quot;<\/codeVoice> has the same canonical representation as the single Unicode scalar value <codeVoice>&quot;é&quot;<\/codeVoice>.<\/Para><Para>Basic string operations are not sensitive to locale settings, ensuring that string comparisons and other operations always have a single, stable result, allowing strings to be used as keys in <codeVoice>Dictionary<\/codeVoice> instances and for other purposes.<\/Para><rawHTML><![CDATA[<h1>]]><\/rawHTML>Accessing String Elements<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>A string is a collection of <emphasis>extended grapheme clusters<\/emphasis>, which approximate human-readable characters. Many individual characters, such as “é”, “김”, and “🇮🇳”, can be made up of multiple Unicode scalar values. These scalar values are combined by Unicode’s boundary algorithms into extended grapheme clusters, represented by the Swift <codeVoice>Character<\/codeVoice> type. Each element of a string is represented by a <codeVoice>Character<\/codeVoice> instance.<\/Para><Para>For example, to retrieve the first word of a longer string, you can search for a space and then create a substring from a prefix of the string up to that point:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let name = \"Marie Curie\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let firstSpace = name.firstIndex(of: \" \") ?? name.endIndex]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let firstName = name[..<firstSpace]]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ firstName == \"Marie\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The <codeVoice>firstName<\/codeVoice> constant is an instance of the <codeVoice>Substring<\/codeVoice> type—a type that represents substrings of a string while sharing the original string’s storage. Substrings present the same interface as strings.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(\"\\(name)'s first name has \\(firstName.count) letters.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Marie Curie's first name has 5 letters.\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Accessing a String’s Unicode Representation<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>If you need to access the contents of a string as encoded in different Unicode encodings, use one of the string’s <codeVoice>unicodeScalars<\/codeVoice>, <codeVoice>utf16<\/codeVoice>, or <codeVoice>utf8<\/codeVoice> properties. Each property provides access to a view of the string as a series of code units, each encoded in a different Unicode encoding.<\/Para><Para>To demonstrate the different views available for every string, the following examples use this <codeVoice>String<\/codeVoice> instance:<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let cafe = \"Cafe\\u{301} du 🌍\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(cafe)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Café du 🌍\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The <codeVoice>cafe<\/codeVoice> string is a collection of the nine characters that are visible when the string is displayed.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(cafe.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"9\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(Array(cafe))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[\"C\", \"a\", \"f\", \"é\", \" \", \"d\", \"u\", \" \", \"🌍\"]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h2>]]><\/rawHTML>Unicode Scalar View<rawHTML><![CDATA[<\/h2>]]><\/rawHTML><Para>A string’s <codeVoice>unicodeScalars<\/codeVoice> property is a collection of Unicode scalar values, the 21-bit codes that are the basic unit of Unicode. Each scalar value is represented by a <codeVoice>Unicode.Scalar<\/codeVoice> instance and is equivalent to a UTF-32 code unit.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(cafe.unicodeScalars.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"10\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(Array(cafe.unicodeScalars))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[\"C\", \"a\", \"f\", \"e\", \"\\u{0301}\", \" \", \"d\", \"u\", \" \", \"\\u{0001F30D}\"]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(cafe.unicodeScalars.map { $0.value })]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[67, 97, 102, 101, 769, 32, 100, 117, 32, 127757]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The <codeVoice>unicodeScalars<\/codeVoice> view’s elements comprise each Unicode scalar value in the <codeVoice>cafe<\/codeVoice> string. In particular, because <codeVoice>cafe<\/codeVoice> was declared using the decomposed form of the <codeVoice>&quot;é&quot;<\/codeVoice> character, <codeVoice>unicodeScalars<\/codeVoice> contains the scalar values for both the letter <codeVoice>&quot;e&quot;<\/codeVoice> (101) and the accent character <codeVoice>&quot;´&quot;<\/codeVoice> (769).<\/Para><rawHTML><![CDATA[<h2>]]><\/rawHTML>UTF-16 View<rawHTML><![CDATA[<\/h2>]]><\/rawHTML><Para>A string’s <codeVoice>utf16<\/codeVoice> property is a collection of UTF-16 code units, the 16-bit encoding form of the string’s Unicode scalar values. Each code unit is stored as a <codeVoice>UInt16<\/codeVoice> instance.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(cafe.utf16.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"11\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(Array(cafe.utf16))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[67, 97, 102, 101, 769, 32, 100, 117, 32, 55356, 57101]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The elements of the <codeVoice>utf16<\/codeVoice> view are the code units for the string when encoded in UTF-16. These elements match those accessed through indexed <codeVoice>NSString<\/codeVoice> APIs.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let nscafe = cafe as NSString]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(nscafe.length)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"11\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(nscafe.character(at: 3))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"101\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h2>]]><\/rawHTML>UTF-8 View<rawHTML><![CDATA[<\/h2>]]><\/rawHTML><Para>A string’s <codeVoice>utf8<\/codeVoice> property is a collection of UTF-8 code units, the 8-bit encoding form of the string’s Unicode scalar values. Each code unit is stored as a <codeVoice>UInt8<\/codeVoice> instance.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(cafe.utf8.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"14\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(Array(cafe.utf8))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[67, 97, 102, 101, 204, 129, 32, 100, 117, 32, 240, 159, 140, 141]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>The elements of the <codeVoice>utf8<\/codeVoice> view are the code units for the string when encoded in UTF-8. This representation matches the one used when <codeVoice>String<\/codeVoice> instances are passed to C APIs.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let cLength = strlen(cafe)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(cLength)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"14\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Measuring the Length of a String<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>When you need to know the length of a string, you must first consider what you’ll use the length for. Are you measuring the number of characters that will be displayed on the screen, or are you measuring the amount of storage needed for the string in a particular encoding? A single string can have greatly differing lengths when measured by its different views.<\/Para><Para>For example, an ASCII character like the capital letter <emphasis>A<\/emphasis> is represented by a single element in each of its four views. The Unicode scalar value of <emphasis>A<\/emphasis> is <codeVoice>65<\/codeVoice>, which is small enough to fit in a single code unit in both UTF-16 and UTF-8.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let capitalA = \"A\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(capitalA.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(capitalA.unicodeScalars.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(capitalA.utf16.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(capitalA.utf8.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>On the other hand, an emoji flag character is constructed from a pair of Unicode scalar values, like <codeVoice>&quot;\\u{1F1F5}&quot;<\/codeVoice> and <codeVoice>&quot;\\u{1F1F7}&quot;<\/codeVoice>. Each of these scalar values, in turn, is too large to fit into a single UTF-16 or UTF-8 code unit. As a result, each view of the string <codeVoice>&quot;🇵🇷&quot;<\/codeVoice> reports a different length.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let flag = \"🇵🇷\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(flag.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"1\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(flag.unicodeScalars.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"2\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(flag.utf16.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"4\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(flag.utf8.count)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"8\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>To check whether a string is empty, use its <codeVoice>isEmpty<\/codeVoice> property instead of comparing the length of one of the views to <codeVoice>0<\/codeVoice>. Unlike with <codeVoice>isEmpty<\/codeVoice>, calculating a view’s <codeVoice>count<\/codeVoice> property requires iterating through the elements of the string.<\/Para><rawHTML><![CDATA[<h1>]]><\/rawHTML>Accessing String View Elements<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>To find individual elements of a string, use the appropriate view for your task. For example, to retrieve the first word of a longer string, you can search the string for a space and then create a new string from a prefix of the string up to that point.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let name = \"Marie Curie\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let firstSpace = name.firstIndex(of: \" \") ?? name.endIndex]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let firstName = name[..<firstSpace]]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[print(firstName)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Marie\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Strings and their views share indices, so you can access the UTF-8 view of the <codeVoice>name<\/codeVoice> string using the same <codeVoice>firstSpace<\/codeVoice> index.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[print(Array(name.utf8[..<firstSpace]))]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"[77, 97, 114, 105, 101]\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>Note that an index into one view may not have an exact corresponding position in another view. For example, the <codeVoice>flag<\/codeVoice> string declared above comprises a single character, but is composed of eight code units when encoded as UTF-8. The following code creates constants for the first and second positions in the <codeVoice>flag.utf8<\/codeVoice> view. Accessing the <codeVoice>utf8<\/codeVoice> view with these indices yields the first and second code UTF-8 units.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let firstCodeUnit = flag.startIndex]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[let secondCodeUnit = flag.utf8.index(after: firstCodeUnit)]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ flag.utf8[firstCodeUnit] == 240]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ flag.utf8[secondCodeUnit] == 159]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>When used to access the elements of the <codeVoice>flag<\/codeVoice> string itself, however, the <codeVoice>secondCodeUnit<\/codeVoice> index does not correspond to the position of a specific character. Instead of only accessing the specific UTF-8 code unit, that index is treated as the position of the character at the index’s encoded offset. In the case of <codeVoice>secondCodeUnit<\/codeVoice>, that character is still the flag itself.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[\/\/ flag[firstCodeUnit] == \"🇵🇷\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ flag[secondCodeUnit] == \"🇵🇷\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Para>If you need to validate that an index from one string’s view corresponds with an exact position in another view, use the index’s <codeVoice>samePosition(in:)<\/codeVoice> method or the <codeVoice>init(_:within:)<\/codeVoice> initializer.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[if let exactIndex = secondCodeUnit.samePosition(in: flag) {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(flag[exactIndex])]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[} else {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"No exact match for this position.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"No exact match for this position.\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><rawHTML><![CDATA[<h1>]]><\/rawHTML>Performance Optimizations<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>Although strings in Swift have value semantics, strings use a copy-on-write strategy to store their data in a buffer. This buffer can then be shared by different copies of a string. A string’s data is only copied lazily, upon mutation, when more than one string instance is using the same buffer. Therefore, the first in any sequence of mutating operations may cost O(<emphasis>n<\/emphasis>) time and space.<\/Para><Para>When a string’s contiguous storage fills up, a new buffer must be allocated and data must be moved to the new storage. String buffers use an exponential growth strategy that makes appending to a string a constant time operation when averaged over many append operations.<\/Para><rawHTML><![CDATA[<h1>]]><\/rawHTML>Bridging Between String and NSString<rawHTML><![CDATA[<\/h1>]]><\/rawHTML><Para>Any <codeVoice>String<\/codeVoice> instance can be bridged to <codeVoice>NSString<\/codeVoice> using the type-cast operator (<codeVoice>as<\/codeVoice>), and any <codeVoice>String<\/codeVoice> instance that originates in Objective-C may use an <codeVoice>NSString<\/codeVoice> instance as its storage. Because any arbitrary subclass of <codeVoice>NSString<\/codeVoice> can become a <codeVoice>String<\/codeVoice> instance, there are no guarantees about representation or efficiency when a <codeVoice>String<\/codeVoice> instance is backed by <codeVoice>NSString<\/codeVoice> storage. Because <codeVoice>NSString<\/codeVoice> is immutable, it is just as though the storage was shared by a copy. The first in any sequence of mutating operations causes elements to be copied into unique, contiguous storage which may cost O(<emphasis>n<\/emphasis>) time and space, where <emphasis>n<\/emphasis> is the length of the string’s encoded representation (or more, if the underlying <codeVoice>NSString<\/codeVoice> has unusual performance characteristics).<\/Para><Para>For more information about the Unicode terms used in this discussion, see the <Link href=\"http:\/\/www.unicode.org\/glossary\/\">Unicode.org glossary<\/Link>. In particular, this discussion mentions <Link href=\"http:\/\/www.unicode.org\/glossary\/#extended_grapheme_cluster\">extended grapheme clusters<\/Link>, <Link href=\"http:\/\/www.unicode.org\/glossary\/#unicode_scalar_value\">Unicode scalar values<\/Link>, and <Link href=\"http:\/\/www.unicode.org\/glossary\/#canonical_equivalent\">canonical equivalence<\/Link>.<\/Para><\/Discussion><\/CommentParts><\/Class>",
         "key.doc.name" : "String",
         "key.doc.type" : "Class",
         "key.elements" : [
@@ -1950,14 +1951,14 @@
             "key.bodylength" : 18,
             "key.bodyoffset" : 720,
             "key.doc.column" : 14,
-            "key.doc.declaration" : "static func from(string: String) -> `Self`?",
+            "key.doc.declaration" : "static func from(string: String) -> Self?",
             "key.doc.discussion" : [
               {
                 "Note" : ""
               }
             ],
             "key.doc.file" : "\/private\/Sources\/Commandant\/ArgumentProtocol.swift",
-            "key.doc.full_as_xml" : "<Function file=\"\/private\/Sources\/Commandant\/ArgumentProtocol.swift\" line=\"15\" column=\"14\"><Name>from(string:)<\/Name><USR>s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ<\/USR><Declaration>static func from(string: String) -&gt; `Self`?<\/Declaration><CommentParts><Abstract><Para>Attempts to parse a value from the given command-line argument.<\/Para><\/Abstract><Discussion><Note><Para>This documentation comment was inherited from <codeVoice>ArgumentProtocol<\/codeVoice>.<\/Para><\/Note><\/Discussion><\/CommentParts><\/Function>",
+            "key.doc.full_as_xml" : "<Function file=\"\/private\/Sources\/Commandant\/ArgumentProtocol.swift\" line=\"15\" column=\"14\"><Name>from(string:)<\/Name><USR>s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ<\/USR><Declaration>static func from(string: String) -&gt; Self?<\/Declaration><CommentParts><Abstract><Para>Attempts to parse a value from the given command-line argument.<\/Para><\/Abstract><Discussion><Note><Para>This documentation comment was inherited from <codeVoice>ArgumentProtocol<\/codeVoice>.<\/Para><\/Note><\/Discussion><\/CommentParts><\/Function>",
             "key.doc.line" : 15,
             "key.doc.name" : "from(string:)",
             "key.doc.type" : "Function",
@@ -1991,7 +1992,6 @@
         "key.usr" : "s:SS"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>protocol RawRepresentable<\/Declaration>",
         "key.bodylength" : 112,
         "key.bodyoffset" : 826,
@@ -2083,7 +2083,7 @@
             "key.parsed_scope.start" : 35,
             "key.related_decls" : [
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; `Self`?<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SY10CommandantAA16ArgumentProtocolRzs17FixedWidthInteger8RawValueSYRpzrlE4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
@@ -2102,7 +2102,6 @@
         "key.usr" : "s:SY"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>protocol RawRepresentable<\/Declaration>",
         "key.bodylength" : 112,
         "key.bodyoffset" : 1027,
@@ -2194,7 +2193,7 @@
             "key.parsed_scope.start" : 41,
             "key.related_decls" : [
               {
-                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; `Self`?<\/RelatedName>"
+                "key.annotated_decl" : "<RelatedName usr=\"s:10Commandant16ArgumentProtocolP4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
               },
               {
                 "key.annotated_decl" : "<RelatedName usr=\"s:SY10CommandantAA16ArgumentProtocolRzSy8RawValueSYRpzrlE4from6stringxSgSS_tFZ\">from(string: String) -&gt; Self?<\/RelatedName>"
@@ -2215,7 +2214,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Command.swift" : {
+  "\/Sources\/Commandant\/Command.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 7522,
     "key.offset" : 0,
@@ -2253,7 +2252,6 @@
         "key.parsed_declaration" : "public protocol CommandProtocol",
         "key.parsed_scope.end" : 29,
         "key.parsed_scope.start" : 12,
-        "key.runtime_name" : "_TtP4main15CommandProtocol_",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -2698,6 +2696,9 @@
                 "key.parsed_declaration" : "case arguments(ArgumentParser)",
                 "key.parsed_scope.end" : 70,
                 "key.parsed_scope.start" : 70,
+                "key.substructure" : [
+
+                ],
                 "key.typename" : "(CommandMode.Type) -> (ArgumentParser) -> CommandMode",
                 "key.typeusr" : "$sy10Commandant11CommandModeOAA14ArgumentParserCcACmcD",
                 "key.usr" : "s:10Commandant11CommandModeO9argumentsyAcA14ArgumentParserCcACmF"
@@ -2816,7 +2817,7 @@
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.private",
-            "key.annotated_decl" : "<Declaration>private var commandsByVerb: [<Type usr=\"s:SS\">String<\/Type> : <Type usr=\"s:10Commandant14CommandWrapperV\">CommandWrapper<\/Type>&lt;ClientError&gt;]<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>private var commandsByVerb: [<Type usr=\"s:SS\">String<\/Type> : <Type usr=\"s:10Commandant14CommandWrapperV\">CommandWrapper<\/Type>&lt;<Type usr=\"s:10Commandant15CommandRegistryC11ClientErrorxmfp\">ClientError<\/Type>&gt;]<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.private",
@@ -2825,7 +2826,7 @@
               }
             ],
             "key.filepath" : "",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>commandsByVerb<\/decl.name>: <decl.var.type>[<ref.struct usr=\"s:SS\">String<\/ref.struct> : <ref.struct usr=\"s:10Commandant14CommandWrapperV\">CommandWrapper<\/ref.struct>&lt;ClientError&gt;]<\/decl.var.type><\/decl.var.instance>",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>private<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>commandsByVerb<\/decl.name>: <decl.var.type>[<ref.struct usr=\"s:SS\">String<\/ref.struct> : <ref.struct usr=\"s:10Commandant14CommandWrapperV\">CommandWrapper<\/ref.struct>&lt;<ref.generic_type_param usr=\"s:10Commandant15CommandRegistryC11ClientErrorxmfp\">ClientError<\/ref.generic_type_param>&gt;]<\/decl.var.type><\/decl.var.instance>",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.length" : 63,
             "key.name" : "commandsByVerb",
@@ -3073,7 +3074,6 @@
         "key.usr" : "s:10Commandant15CommandRegistryC"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public final class CommandRegistry&lt;ClientError&gt; where ClientError : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 4074,
         "key.bodyoffset" : 3446,
@@ -3353,23 +3353,6 @@
                     "key.typename" : "Process",
                     "key.typeusr" : "$sSo6NSTaskCD",
                     "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF4taskL_So6NSTaskCvp"
-                  },
-                  {
-                    "key.annotated_decl" : "<Declaration>let nserror: <Type usr=\"c:objc(cs)NSError\">NSError<\/Type><\/Declaration>",
-                    "key.filepath" : "",
-                    "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>nserror<\/decl.name>: <decl.var.type><ref.class usr=\"c:objc(cs)NSError\">NSError<\/ref.class><\/decl.var.type><\/decl.var.local>",
-                    "key.kind" : "source.lang.swift.decl.var.local",
-                    "key.length" : 7,
-                    "key.name" : "nserror",
-                    "key.namelength" : 7,
-                    "key.nameoffset" : 7174,
-                    "key.offset" : 7174,
-                    "key.parsed_declaration" : "} catch let nserror",
-                    "key.parsed_scope.end" : 225,
-                    "key.parsed_scope.start" : 225,
-                    "key.typename" : "NSError",
-                    "key.typeusr" : "$sSo7NSErrorCD",
-                    "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF7nserrorL_So7NSErrorCvp"
                   }
                 ],
                 "key.typename" : "<ClientError where ClientError : Error> (String, arguments: [String]) -> Int32",
@@ -3389,7 +3372,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Errors.swift" : {
+  "\/Sources\/Commandant\/Errors.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 5739,
     "key.offset" : 0,
@@ -3493,6 +3476,9 @@
                 "key.parsed_declaration" : "case usageError(description: String)",
                 "key.parsed_scope.end" : 17,
                 "key.parsed_scope.start" : 17,
+                "key.substructure" : [
+
+                ],
                 "key.typename" : "<ClientError> (CommandantError<ClientError>.Type) -> (String) -> CommandantError<ClientError>",
                 "key.typeusr" : "$sy10Commandant0A5ErrorOyxGSS_tcADmcluD",
                 "key.usr" : "s:10Commandant0A5ErrorO05usageB0yACyxGSS_tcAEmlF"
@@ -3530,6 +3516,9 @@
                 "key.parsed_declaration" : "case commandError(ClientError)",
                 "key.parsed_scope.end" : 20,
                 "key.parsed_scope.start" : 20,
+                "key.substructure" : [
+
+                ],
                 "key.typename" : "<ClientError> (CommandantError<ClientError>.Type) -> (ClientError) -> CommandantError<ClientError>",
                 "key.typeusr" : "$sy10Commandant0A5ErrorOyxGxcADmcluD",
                 "key.usr" : "s:10Commandant0A5ErrorO07commandB0yACyxGxcAEmlF"
@@ -3542,7 +3531,6 @@
         "key.usr" : "s:10Commandant0A5ErrorO"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum CommandantError&lt;ClientError&gt; : <Type usr=\"s:s5ErrorP\">Error<\/Type><\/Declaration>",
         "key.bodylength" : 187,
         "key.bodyoffset" : 584,
@@ -5001,7 +4989,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/HelpCommand.swift" : {
+  "\/Sources\/Commandant\/HelpCommand.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 2203,
     "key.offset" : 0,
@@ -5556,7 +5544,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Option.swift" : {
+  "\/Sources\/Commandant\/Option.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 9661,
     "key.offset" : 0,
@@ -5605,7 +5593,6 @@
         "key.parsed_declaration" : "public protocol OptionsProtocol",
         "key.parsed_scope.end" : 44,
         "key.parsed_scope.start" : 37,
-        "key.runtime_name" : "_TtP4main15OptionsProtocol_",
         "key.substructure" : [
           {
             "key.accessibility" : "source.lang.swift.accessibility.public",
@@ -6020,7 +6007,6 @@
         "key.usr" : "s:10Commandant6OptionV"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct Option&lt;T&gt;<\/Declaration>",
         "key.bodylength" : 58,
         "key.bodyoffset" : 2845,
@@ -6319,7 +6305,6 @@
         "key.usr" : "s:10Commandant3lmgoiys6ResultOyq_AA0A5ErrorOyq0_GGADyq_xcAGG_ADyxAGGtr1_lF"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 4309,
         "key.bodyoffset" : 5350,
@@ -6954,7 +6939,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/OrderedSet.swift" : {
+  "\/Sources\/Commandant\/OrderedSet.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 800,
     "key.offset" : 0,
@@ -7036,7 +7021,7 @@
           },
           {
             "key.accessibility" : "source.lang.swift.accessibility.fileprivate",
-            "key.annotated_decl" : "<Declaration>fileprivate var values: [T]<\/Declaration>",
+            "key.annotated_decl" : "<Declaration>fileprivate var values: [<Type usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/Type>]<\/Declaration>",
             "key.attributes" : [
               {
                 "key.attribute" : "source.decl.attribute.fileprivate",
@@ -7045,7 +7030,7 @@
               }
             ],
             "key.filepath" : "",
-            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>fileprivate<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>values<\/decl.name>: <decl.var.type>[T]<\/decl.var.type><\/decl.var.instance>",
+            "key.fully_annotated_decl" : "<decl.var.instance><syntaxtype.keyword>fileprivate<\/syntaxtype.keyword> <syntaxtype.keyword>var<\/syntaxtype.keyword> <decl.name>values<\/decl.name>: <decl.var.type>[<ref.generic_type_param usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/ref.generic_type_param>]<\/decl.var.type><\/decl.var.instance>",
             "key.kind" : "source.lang.swift.decl.var.instance",
             "key.length" : 20,
             "key.name" : "values",
@@ -7152,7 +7137,6 @@
         "key.usr" : "s:10Commandant10OrderedSetV"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>internal struct OrderedSet&lt;T&gt; : <Type usr=\"s:SQ\">Equatable<\/Type> where T : <Type usr=\"s:SH\">Hashable<\/Type><\/Declaration>",
         "key.bodylength" : 331,
         "key.bodyoffset" : 467,
@@ -7188,7 +7172,6 @@
         "key.parsed_scope.start" : 21,
         "key.substructure" : [
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>subscript(position: <Type usr=\"s:Si\">Int<\/Type>) -&gt; <Type usr=\"s:10Commandant10OrderedSetV1Txmfp\">T<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 28,
             "key.bodyoffset" : 500,
@@ -7247,7 +7230,6 @@
             "key.usr" : "s:Sly7ElementQz5IndexQzcip"
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>var count: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 24,
             "key.bodyoffset" : 548,
@@ -7287,7 +7269,6 @@
             "key.usr" : "s:Sl5countSivp"
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>var isEmpty: <Type usr=\"s:Sb\">Bool<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 26,
             "key.bodyoffset" : 595,
@@ -7306,7 +7287,7 @@
                 "Note" : ""
               }
             ],
-            "key.doc.full_as_xml" : "<Other><Name>isEmpty<\/Name><USR>s:Sl7isEmptySbvp<\/USR><Declaration>var isEmpty: Bool { get }<\/Declaration><CommentParts><Abstract><Para>A Boolean value indicating whether the collection is empty.<\/Para><\/Abstract><Discussion><Para>When you need to check whether your collection is empty, use the <codeVoice>isEmpty<\/codeVoice> property instead of checking that the <codeVoice>count<\/codeVoice> property is equal to zero. For collections that don’t conform to <codeVoice>RandomAccessCollection<\/codeVoice>, accessing the <codeVoice>count<\/codeVoice> property iterates through the elements of the collection.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let horseName = \"Silver\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[if horseName.isEmpty {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"I've been through the desert on a horse with no name.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[} else {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"Hi ho, \\(horseName)!\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Hi ho, Silver!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Complexity><Para>O(1)<\/Para><\/Complexity><Note><Para>This documentation comment was inherited from <codeVoice>Collection<\/codeVoice>.<\/Para><\/Note><\/Discussion><\/CommentParts><\/Other>",
+            "key.doc.full_as_xml" : "<Other><Name>isEmpty<\/Name><USR>s:Sl7isEmptySbvp<\/USR><Declaration>var isEmpty: Bool { get }<\/Declaration><CommentParts><Abstract><Para>A Boolean value indicating whether the collection is empty.<\/Para><\/Abstract><Discussion><Para>When you need to check whether your collection is empty, use the <codeVoice>isEmpty<\/codeVoice> property instead of checking that the <codeVoice>count<\/codeVoice> property is equal to zero. For collections that don’t conform to <codeVoice>RandomAccessCollection<\/codeVoice>, accessing the <codeVoice>count<\/codeVoice> property iterates through the elements of the collection.<\/Para><CodeListing language=\"swift\"><zCodeLineNumbered><![CDATA[let horseName = \"Silver\"]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[if horseName.isEmpty {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"My horse has no name.\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[} else {]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[    print(\"Hi ho, \\(horseName)!\")]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[}]]><\/zCodeLineNumbered><zCodeLineNumbered><![CDATA[\/\/ Prints \"Hi ho, Silver!\"]]><\/zCodeLineNumbered><zCodeLineNumbered><\/zCodeLineNumbered><\/CodeListing><Complexity><Para>O(1)<\/Para><\/Complexity><Note><Para>This documentation comment was inherited from <codeVoice>Collection<\/codeVoice>.<\/Para><\/Note><\/Discussion><\/CommentParts><\/Other>",
             "key.doc.name" : "isEmpty",
             "key.doc.type" : "Other",
             "key.filepath" : "",
@@ -7330,7 +7311,6 @@
             "key.usr" : "s:Sl7isEmptySbvp"
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>var startIndex: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 29,
             "key.bodyoffset" : 646,
@@ -7367,7 +7347,6 @@
             "key.usr" : "s:Sl10startIndex0B0Qzvp"
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>var endIndex: <Type usr=\"s:Si\">Int<\/Type> { get }<\/Declaration>",
             "key.bodylength" : 27,
             "key.bodyoffset" : 698,
@@ -7410,7 +7389,6 @@
             "key.usr" : "s:Sl8endIndex0B0Qzvp"
           },
           {
-            "key.accessibility" : "source.lang.swift.accessibility.internal",
             "key.annotated_decl" : "<Declaration>func index(after i: <Type usr=\"s:Si\">Int<\/Type>) -&gt; <Type usr=\"s:Si\">Int<\/Type><\/Declaration>",
             "key.bodylength" : 34,
             "key.bodyoffset" : 762,
@@ -7472,7 +7450,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Result+Additions.swift" : {
+  "\/Sources\/Commandant\/Result+Additions.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 421,
     "key.offset" : 0,
@@ -7489,8 +7467,8 @@
         ],
         "key.bodylength" : 244,
         "key.bodyoffset" : 175,
-        "key.doc.declaration" : "enum Result<Success, Failure> where Failure : Error",
-        "key.doc.full_as_xml" : "<Other><Name>Result<\/Name><USR>s:s6ResultO<\/USR><Declaration>enum Result&lt;Success, Failure&gt; where Failure : Error<\/Declaration><CommentParts><Abstract><Para>A value that represents either a success or a failure, including an associated value in each case.<\/Para><\/Abstract><\/CommentParts><\/Other>",
+        "key.doc.declaration" : "@frozen enum Result<Success, Failure> where Failure : Error",
+        "key.doc.full_as_xml" : "<Other><Name>Result<\/Name><USR>s:s6ResultO<\/USR><Declaration>@frozen enum Result&lt;Success, Failure&gt; where Failure : Error<\/Declaration><CommentParts><Abstract><Para>A value that represents either a success or a failure, including an associated value in each case.<\/Para><\/Abstract><\/CommentParts><\/Other>",
         "key.doc.name" : "Result",
         "key.doc.type" : "Other",
         "key.fully_annotated_decl" : "<decl.enum><syntaxtype.attribute.builtin><syntaxtype.attribute.name>@frozen<\/syntaxtype.attribute.name><\/syntaxtype.attribute.builtin> <syntaxtype.keyword>enum<\/syntaxtype.keyword> <decl.name>Result<\/decl.name>&lt;<decl.generic_type_param usr=\"s:s6ResultO7Successxmfp\"><decl.generic_type_param.name>Success<\/decl.generic_type_param.name><\/decl.generic_type_param>, <decl.generic_type_param usr=\"s:s6ResultO7Failureq_mfp\"><decl.generic_type_param.name>Failure<\/decl.generic_type_param.name><\/decl.generic_type_param>&gt; <syntaxtype.keyword>where<\/syntaxtype.keyword> <decl.generic_type_requirement>Failure : <ref.protocol usr=\"s:s5ErrorP\">Error<\/ref.protocol><\/decl.generic_type_requirement><\/decl.enum>",
@@ -7557,7 +7535,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Switch.swift" : {
+  "\/Sources\/Commandant\/Switch.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 2007,
     "key.offset" : 0,
@@ -7747,7 +7725,6 @@
         "key.usr" : "s:10Commandant6SwitchV"
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public struct Switch<\/Declaration>",
         "key.bodylength" : 140,
         "key.bodyoffset" : 1167,
@@ -7868,7 +7845,6 @@
         "key.offset" : 1313
       },
       {
-        "key.accessibility" : "source.lang.swift.accessibility.internal",
         "key.annotated_decl" : "<Declaration>public enum CommandMode<\/Declaration>",
         "key.bodylength" : 650,
         "key.bodyoffset" : 1355,

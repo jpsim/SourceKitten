@@ -42,7 +42,6 @@ private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
 }
 
 let sourcekittenXcodebuildArguments = [
-    "-workspace", "SourceKitten.xcworkspace",
     "-scheme", "sourcekitten"
 ] + { () -> [String] in
     return ProcessInfo.processInfo.environment["XCODE_VERSION_MINOR"].map { $0 >= "1000" } ?? false ? [] : [
@@ -195,27 +194,24 @@ class SourceKitTests: XCTestCase {
     }
 
     func testLibraryWrappersAreUpToDate() throws {
-#if compiler(>=5.1)
-        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments, name: "SourceKittenFramework", inPath: projectRoot)!
+#if compiler(>=5.3)
+        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments,
+                                                 name: "SourceKittenFramework", inPath: projectRoot)!
         let docsJSON = sourceKittenFrameworkModule.docs.description
         XCTAssert(docsJSON.range(of: "error type") == nil)
-        do {
-            let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
-            XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
-        } catch {
-            XCTFail("JSON should be propery parsed")
-        }
-        let modules: [(module: String, path: String, linuxPath: String?, spmModule: String)] = [
-            ("CXString", "libclang.dylib", nil, "Clang_C"),
-            ("Documentation", "libclang.dylib", nil, "Clang_C"),
-            ("Index", "libclang.dylib", nil, "Clang_C"),
-            ("sourcekitd", "sourcekitd.framework/Versions/A/sourcekitd", "libsourcekitdInProc.so", "SourceKit")
+        let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
+        XCTAssertNotNil(jsonArray, "JSON should be properly parsed")
+        let modules: [(module: String, path: String, linuxPath: String?)] = [
+            ("Clang_C", "libclang.dylib", nil),
+            ("SourceKit", "sourcekitd.framework/Versions/A/sourcekitd", "libsourcekitdInProc.so")
         ]
-        for (module, path, linuxPath, spmModule) in modules {
+        for (module, path, linuxPath) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try String(contentsOfFile: wrapperPath)
-            let generatedWrapper = try libraryWrapperForModule(module, loadPath: path, linuxPath: linuxPath, spmModule: spmModule,
-                                                           compilerArguments: sourceKittenFrameworkModule.compilerArguments)
+            let generatedWrapper = try libraryWrapperForModule(
+                module, loadPath: path, linuxPath: linuxPath,
+                compilerArguments: sourceKittenFrameworkModule.compilerArguments
+            )
             XCTAssertEqual(existingWrapper, generatedWrapper)
             let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
             if existingWrapper != generatedWrapper && overwrite {

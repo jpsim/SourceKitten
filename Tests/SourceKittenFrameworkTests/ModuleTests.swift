@@ -16,57 +16,82 @@ let projectRoot = #file.bridge()
     .deletingLastPathComponent
 
 class ModuleTests: XCTestCase {
-
     func testModuleNilInPathWithNoXcodeProject() {
         let pathWithNoXcodeProject = (#file as NSString).deletingLastPathComponent
         let model = Module(xcodeBuildArguments: [], name: nil, inPath: pathWithNoXcodeProject)
         XCTAssert(model == nil, "model initialization without any Xcode project should fail")
     }
 
-    func testCommandantDocs() {
-        let commandantPath = projectRoot + "/Carthage/Checkouts/Commandant/"
-        let arguments = ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"]
-        let commandantModule = Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath)!
-        compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs, rootDirectory: commandantPath)
-    }
-}
-
-#if SWIFT_PACKAGE
-let commandantPathForSPM: String? = {
-    struct Package: Decodable {
-        var name: String
-        var path: String
-        var dependencies: [Package]
-    }
-
-    let arguments = ["swift", "package", "show-dependencies", "--format", "json"]
-    let result = Exec.run("/usr/bin/env", arguments, currentDirectory: projectRoot)
-    guard result.terminationStatus == 0 else {
-        print("`\(arguments.joined(separator: " "))` returns error: \(result.terminationStatus)")
-        return nil
-    }
-    do {
-        let package = try JSONDecoder().decode(Package.self, from: result.data)
-        return (package.dependencies.first(where: { $0.name == "Commandant" })?.path).map { $0 + "/" }
-    } catch {
-        print("failed to decode output of `\(arguments.joined(separator: " "))`: \(error)")
-        return nil
-    }
-}()
-
-extension ModuleTests {
-    func testCommandantDocsSPM() {
-        guard let commandantPath = commandantPathForSPM else {
-            XCTFail("Can't find Commandant")
+    func testCommandantDocs() throws {
+        let temporaryURL = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("\(#function)-\(NSUUID())")
+        try FileManager.default.createDirectory(at: temporaryURL, withIntermediateDirectories: true)
+        let cloneArguments = ["git", "clone", "https://github.com/Carthage/Commandant.git"]
+        let cloneResult = Exec.run("/usr/bin/env", cloneArguments, currentDirectory: temporaryURL.path)
+        guard cloneResult.terminationStatus == 0 else {
+            XCTFail("`\(cloneArguments.joined(separator: " "))` failed: \(cloneResult.terminationStatus)")
             return
         }
-        let commandantModule = Module(spmArguments: [], spmName: "Commandant", inPath: projectRoot)!
-        compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs, rootDirectory: commandantPath)
+
+        let commandantPath = temporaryURL.appendingPathComponent("Commandant").path
+
+        let checkoutArguments = ["git", "checkout", "0.17.0"]
+        let checkoutResult = Exec.run("/usr/bin/env", checkoutArguments, currentDirectory: commandantPath)
+        guard checkoutResult.terminationStatus == 0 else {
+            XCTFail("`\(checkoutArguments.joined(separator: " "))` failed: \(checkoutResult.terminationStatus)")
+            return
+        }
+
+        let submoduleArguments = ["git", "submodule", "update", "--init", "--recursive"]
+        let submoduleResult = Exec.run("/usr/bin/env", submoduleArguments, currentDirectory: commandantPath)
+        guard submoduleResult.terminationStatus == 0 else {
+            XCTFail("`\(submoduleArguments.joined(separator: " "))` failed: \(submoduleResult.terminationStatus)")
+            return
+        }
+
+        let arguments = ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"]
+        let commandantModule = Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath)!
+        compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs,
+                          rootDirectory: commandantPath)
+    }
+
+    func testCommandantDocsSPM() throws {
+        let temporaryURL = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("\(#function)-\(NSUUID())")
+        try FileManager.default.createDirectory(at: temporaryURL, withIntermediateDirectories: true)
+        let cloneArguments = ["git", "clone", "https://github.com/Carthage/Commandant.git"]
+        let cloneResult = Exec.run("/usr/bin/env", cloneArguments, currentDirectory: temporaryURL.path)
+        guard cloneResult.terminationStatus == 0 else {
+            XCTFail("`\(cloneArguments.joined(separator: " "))` failed: \(cloneResult.terminationStatus)")
+            return
+        }
+
+        let commandantPath = temporaryURL.appendingPathComponent("Commandant").path
+
+        let checkoutArguments = ["git", "checkout", "0.17.0"]
+        let checkoutResult = Exec.run("/usr/bin/env", checkoutArguments, currentDirectory: commandantPath)
+        guard checkoutResult.terminationStatus == 0 else {
+            XCTFail("`\(checkoutArguments.joined(separator: " "))` failed: \(checkoutResult.terminationStatus)")
+            return
+        }
+
+        let commandantModule = Module(spmArguments: [], spmName: "Commandant", inPath: commandantPath)!
+        compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs,
+                          rootDirectory: commandantPath)
     }
 
     func testSpmDefaultModule() {
-        let skModule = Module(spmName: nil, inPath: projectRoot)!
-        XCTAssertEqual("SourceKittenFramework", skModule.name)
+        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else {
+            print(
+                """
+                Skipping \(#function) because we're running in Xcode and this test relies on the `.build` \
+                directory being present.
+                """
+            )
+            return
+        }
+        let skModule = Module(spmName: nil, inPath: projectRoot)
+        XCTAssertEqual(skModule?.name, "SourceKittenFramework")
     }
 
     static var allTests: [(String, (ModuleTests) -> () throws -> Void)] {
@@ -79,4 +104,3 @@ extension ModuleTests {
         ]
     }
 }
-#endif
