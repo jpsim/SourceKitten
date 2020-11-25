@@ -1,11 +1,3 @@
-//
-//  UIDRepresentable.swift
-//  SourceKittenFramework
-//
-//  Created by Colton Schlosser on 7/16/19.
-//  Copyright © 2019 SourceKitten. All rights reserved.
-//
-
 public protocol UIDRepresentable {
     var uid: UID { get }
 }

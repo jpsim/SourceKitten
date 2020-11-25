@@ -1,11 +1,3 @@
-//
-//  SourceKitObject.swift
-//  SourceKitten
-//
-//  Created by Norio Nomura on 2/7/18.
-//  Copyright © 2018 SourceKitten. All rights reserved.
-//
-
 import Foundation
 #if SWIFT_PACKAGE
 import SourceKit

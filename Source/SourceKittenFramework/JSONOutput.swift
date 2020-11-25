@@ -1,11 +1,3 @@
-//
-//  JSONOutput.swift
-//  SourceKitten
-//
-//  Created by Thomas Goyne on 9/17/15.
-//  Copyright © 2015 SourceKitten. All rights reserved.
-//
-
 import Foundation
 
 /**

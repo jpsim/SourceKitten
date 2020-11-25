@@ -1,11 +1,3 @@
-//
-//  CodeCompletionTests.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 9/3/15.
-//  Copyright © 2015 SourceKitten. All rights reserved.
-//
-
 import Foundation
 import SourceKittenFramework
 import XCTest

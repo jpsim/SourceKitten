@@ -1,11 +1,3 @@
-//
-//  CursorInfoParsingTests.swift
-//  SourceKittenFramework
-//
-//  Created by Colton Schlosser on 7/21/19.
-//  Copyright © 2019 SourceKitten. All rights reserved.
-//
-
 import SourceKittenFramework
 import XCTest
 

@@ -1,11 +1,3 @@
-//
-//  CodeCompletionItem.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 9/4/15.
-//  Copyright © 2015 SourceKitten. All rights reserved.
-//
-
 fileprivate extension Dictionary {
     mutating func addIfNotNil(_ key: Key, _ value: Value?) {
         if let value = value {

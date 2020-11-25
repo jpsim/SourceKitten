@@ -1,11 +1,3 @@
-//
-//  SyntaxToken.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2015-01-03.
-//  Copyright (c) 2015 SourceKitten. All rights reserved.
-//
-
 /// Represents a single Swift syntax token.
 public struct SyntaxToken {
     /// Token type. See SyntaxKind.

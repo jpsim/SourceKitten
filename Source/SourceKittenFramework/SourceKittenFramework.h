@@ -1,11 +1,3 @@
-//
-//  SourceKittenFramework.h
-//  SourceKittenFramework
-//
-//  Created by JP Simard on 2015-01-02.
-//  Copyright (c) 2015 SourceKitten. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 //! Project version number for SourceKittenFramework.

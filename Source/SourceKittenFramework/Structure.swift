@@ -1,11 +1,3 @@
-//
-//  Structure.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2015-01-06.
-//  Copyright (c) 2015 SourceKitten. All rights reserved.
-//
-
 /// Represents the structural information in a Swift source file.
 public struct Structure {
     /// Structural information as an [String: SourceKitRepresentable].

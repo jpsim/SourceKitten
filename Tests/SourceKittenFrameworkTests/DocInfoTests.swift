@@ -1,11 +1,3 @@
-//
-//  DocInfoTests.swift
-//  SourceKitten
-//
-//  Created by Erik Abair on 10/25/16.
-//  Copyright © 2016 SourceKitten. All rights reserved.
-//
-
 import Foundation
 import SourceKittenFramework
 import XCTest

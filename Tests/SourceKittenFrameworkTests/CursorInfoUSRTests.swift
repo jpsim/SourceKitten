@@ -1,11 +1,3 @@
-//
-//  CursorInfoUSRTests.swift
-//  SourceKittenFrameworkTests
-//
-//  Created by Timofey Solonin on 14/05/19.
-//  Copyright © 2019 SourceKitten. All rights reserved.
-//
-
 import Foundation
 import SourceKittenFramework
 import XCTest

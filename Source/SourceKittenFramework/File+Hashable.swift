@@ -1,11 +1,3 @@
-//
-//  File+Hashable.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2019-05-12.
-//  Copyright (c) 2019 SourceKitten. All rights reserved.
-//
-
 extension File: Hashable {
     public static func == (lhs: File, rhs: File) -> Bool {
         switch (lhs.path, rhs.path) {

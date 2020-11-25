@@ -1,11 +1,3 @@
-//
-//  ByteCount.swift
-//  SourceKitten
-//
-//  Created by Paul Taykalo on 2019-11-02.
-//  Copyright © 2019 SourceKitten. All rights reserved.
-//
-
 /// Represents the number of bytes in a string. Could be used to model offsets into a string, or the distance between
 /// two locations in a string.
 public struct ByteCount: ExpressibleByIntegerLiteral, Hashable {

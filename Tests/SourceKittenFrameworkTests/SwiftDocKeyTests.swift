@@ -1,11 +1,3 @@
-//
-//  SwiftDocKeyTests.swift
-//  SourceKittenFrameworkTests
-//
-//  Created by Sho Ikeda on 2/22/18.
-//  Copyright © 2018 SourceKitten. All rights reserved.
-//
-
 import Foundation
 import SourceKittenFramework
 import XCTest

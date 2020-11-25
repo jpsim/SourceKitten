@@ -1,11 +1,3 @@
-//
-//  FormatCommand.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2016-05-28.
-//  Copyright (c) 2016 SourceKitten. All rights reserved.
-//
-
 import Commandant
 import Foundation
 import SourceKittenFramework

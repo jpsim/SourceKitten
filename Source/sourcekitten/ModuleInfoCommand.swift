@@ -1,10 +1,3 @@
-//
-//  IndexCommand.swift
-//  SourceKitten
-//
-//  Copyright (c) 2018 SourceKitten. All rights reserved.
-//
-
 import Commandant
 import SourceKittenFramework
 

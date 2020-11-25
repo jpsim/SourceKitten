@@ -1,11 +1,3 @@
-//
-//  Errors.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2015-01-15.
-//  Copyright (c) 2015 SourceKitten. All rights reserved.
-//
-
 /// Possible errors within SourceKitten.
 enum SourceKittenError: Error, CustomStringConvertible {
     /// One or more argument was invalid.

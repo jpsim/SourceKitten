@@ -1,11 +1,3 @@
-//
-//  SwiftStatementKind.swift
-//  SourceKitten
-//
-//  Created by Denis Lebedev on 03/02/2016.
-//  Copyright © 2016 SourceKitten. All rights reserved.
-//
-
 // swiftlint:disable identifier_name
 
 /// Swift declaration kinds.

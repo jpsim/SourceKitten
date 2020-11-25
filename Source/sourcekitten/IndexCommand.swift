@@ -1,11 +1,3 @@
-//
-//  IndexCommand.swift
-//  SourceKitten
-//
-//  Created by JP Simard on 2015-04-24.
-//  Copyright (c) 2016 SourceKitten. All rights reserved.
-//
-
 import Commandant
 import SourceKittenFramework
 
