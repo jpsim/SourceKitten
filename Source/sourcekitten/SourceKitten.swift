@@ -4,6 +4,7 @@ struct SourceKitten: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "sourcekitten",
         abstract: "An adorable little command line tool for interacting with SourceKit",
+        version: Version.value,
         subcommands: [
             Complete.self,
             Doc.self,
