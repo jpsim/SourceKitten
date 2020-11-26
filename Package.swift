@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
@@ -8,15 +8,15 @@ let package = Package(
         .library(name: "SourceKittenFramework", targets: ["SourceKittenFramework"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMinor(from: "0.3.1")),
-        .package(url: "https://github.com/drmohundro/SWXMLHash.git", .upToNextMinor(from: "5.0.1")),
-        .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.1"),
+        .package(name: "swift-argument-parser", url: "https://github.com/apple/swift-argument-parser.git", .upToNextMinor(from: "0.3.1")),
+        .package(name: "SWXMLHash", url: "https://github.com/drmohundro/SWXMLHash.git", .upToNextMinor(from: "5.0.1")),
+        .package(name: "Yams", url: "https://github.com/jpsim/Yams.git", from: "4.0.1"),
     ],
     targets: [
         .target(
             name: "sourcekitten",
             dependencies: [
-                "ArgumentParser",
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 "SourceKittenFramework",
             ]
         ),
