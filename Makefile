@@ -73,11 +73,7 @@ package: installables
 		--version "$(VERSION_STRING)" \
 		"$(OUTPUT_PACKAGE)"
 
-archive:
-	carthage build --no-skip-current --platform mac
-	carthage archive SourceKittenFramework Yams SWXMLHash
-
-release: package archive
+release: package
 
 docker_test:
 	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.3 swift test --parallel
