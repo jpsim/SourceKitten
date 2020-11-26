@@ -101,8 +101,7 @@ update_fixtures: update_fixtures_macos update_fixtures_docker
 
 update_fixtures_macos:
 	for xcode in /Applications/Xcode-11.4.1.app /Applications/Xcode-11.7.app /Applications/Xcode-12.app /Applications/Xcode-12.2.app ; do \
-		swift package reset ; \
-		DEVELOPER_DIR=$$xcode OVERWRITE_FIXTURES=1 swift test  ; \
+		DEVELOPER_DIR=$$xcode OVERWRITE_FIXTURES=1 swift test ; \
 	done
 
 update_fixtures_docker:
