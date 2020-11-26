@@ -1,8 +1,6 @@
 #if !os(Linux)
 
-#if SWIFT_PACKAGE
 import Clang_C
-#endif
 import Foundation
 
 public func insertMarks(declarations: [SourceDeclaration], limit: NSRange? = nil) -> [SourceDeclaration] {
@@ -194,4 +192,5 @@ extension SourceDeclaration: Comparable {}
 public func < (lhs: SourceDeclaration, rhs: SourceDeclaration) -> Bool {
     return lhs.location == rhs.location ? lhs.extent.end < rhs.extent.end : lhs.location < rhs.location
 }
+
 #endif

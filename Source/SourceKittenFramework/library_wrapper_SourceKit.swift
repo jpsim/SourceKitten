@@ -1,6 +1,4 @@
-#if SWIFT_PACKAGE
 import SourceKit
-#endif
 #if os(Linux)
 private let path = "libsourcekitdInProc.so"
 #else

@@ -1,6 +1,4 @@
-#if SWIFT_PACKAGE
 import SourceKit
-#endif
 
 /// Swift representation of sourcekitd_uid_t
 public struct UID: Hashable {

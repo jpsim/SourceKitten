@@ -1,8 +1,6 @@
 import Dispatch
 import Foundation
-#if SWIFT_PACKAGE
 import SourceKit
-#endif
 import SWXMLHash
 
 // swiftlint:disable file_length

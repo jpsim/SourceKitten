@@ -1,8 +1,6 @@
 import Dispatch
 import Foundation
-#if SWIFT_PACKAGE
 import SourceKit
-#endif
 
 // swiftlint:disable file_length
 // This file could easily be split up
@@ -461,7 +459,7 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxP
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
-    let spmImport = "#if SWIFT_PACKAGE\nimport \(module)\n#endif\n"
+    let moduleImport = "import \(module)\n"
     let library: String
     if let linuxPath = linuxPath {
         library = "#if os(Linux)\n" +
@@ -483,5 +481,5 @@ internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxP
         startPlatformCheck = ""
         endPlatformCheck = "\n"
     }
-    return startPlatformCheck + spmImport + library + swiftlintDisableComment + freeFunctions.joined(separator: "\n") + endPlatformCheck
+    return startPlatformCheck + moduleImport + library + swiftlintDisableComment + freeFunctions.joined(separator: "\n") + endPlatformCheck
 }

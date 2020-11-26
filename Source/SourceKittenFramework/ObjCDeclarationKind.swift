@@ -1,8 +1,6 @@
 #if !os(Linux)
 
-#if SWIFT_PACKAGE
 import Clang_C
-#endif
 
 /**
 Objective-C declaration kinds.
@@ -74,4 +72,5 @@ public enum ObjCDeclarationKind: String {
         }
     }
 }
+
 #endif

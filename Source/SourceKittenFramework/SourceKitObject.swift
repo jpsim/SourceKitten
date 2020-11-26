@@ -1,7 +1,5 @@
 import Foundation
-#if SWIFT_PACKAGE
 import SourceKit
-#endif
 
 // MARK: - SourceKitObjectConvertible
 

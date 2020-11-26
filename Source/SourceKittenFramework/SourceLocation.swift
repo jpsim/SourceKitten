@@ -1,8 +1,6 @@
 #if !os(Linux)
 
-#if SWIFT_PACKAGE
 import Clang_C
-#endif
 import Foundation
 
 public struct SourceLocation: Comparable {
@@ -47,4 +45,5 @@ extension SourceLocation {
             line: line, column: column, offset: offset)
     }
 }
+
 #endif

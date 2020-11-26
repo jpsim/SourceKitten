@@ -1,8 +1,6 @@
 #if !os(Linux)
 
-#if SWIFT_PACKAGE
 import Clang_C
-#endif
 
 public struct Documentation {
     public let parameters: [Parameter]

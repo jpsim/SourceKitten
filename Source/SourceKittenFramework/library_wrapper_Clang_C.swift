@@ -1,7 +1,5 @@
 #if !os(Linux)
-#if SWIFT_PACKAGE
 import Clang_C
-#endif
 private let library = toolchainLoader.load(path: "libclang.dylib")
 // swiftlint:disable unused_declaration - We don't care if some of these are unused.
 internal let clang_getCString: @convention(c) (CXString) -> (UnsafePointer<Int8>?) = library.load(symbol: "clang_getCString")
