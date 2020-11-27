@@ -100,7 +100,7 @@ update_clang_headers:
 update_fixtures: update_fixtures_macos update_fixtures_docker
 
 update_fixtures_macos:
-	for xcode in /Applications/Xcode-11.4.1.app /Applications/Xcode-11.7.app /Applications/Xcode-12.app /Applications/Xcode-12.2.app ; do \
+	shopt -s nullglob; for xcode in /Applications/Xcode*{11.4.1,11.7,12,12.2}.app ; do \
 		DEVELOPER_DIR=$$xcode OVERWRITE_FIXTURES=1 swift test ; \
 	done
 
