@@ -2,6 +2,10 @@
 import SourceKit
 #endif
 
+#if os(Linux)
+import Glibc
+#endif
+
 /// Represents docs for a Swift file.
 public struct SwiftDocs {
     /// Documented File.
