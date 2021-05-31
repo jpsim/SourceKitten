@@ -197,7 +197,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testLibraryWrappersAreUpToDate() throws {
-#if compiler(>=5.3)
+#if compiler(>=5.4)
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments,
                                                  name: "SourceKittenFramework", inPath: projectRoot)!
         let docsJSON = sourceKittenFrameworkModule.docs.description
