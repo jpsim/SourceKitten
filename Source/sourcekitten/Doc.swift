@@ -10,6 +10,10 @@ extension SourceKitten {
         var singleFile: Bool = false
         @Option(help: "Name of Swift module to document (can't be used with `--single-file`)")
         var moduleName: String = ""
+        @Option(help: "Source file pathnames to be included in documentation. Supports wildcards. (can't be used with `--single-file`)")
+        var include: [String] = []
+        @Option(help: "Source file pathnames to be excluded from documentation. Supports wildcards. (can't be used with `--single-file`)")
+        var exclude: [String] = []
         @Flag(help: "Document a Swift Package Manager module")
         var spm: Bool = false
         @Flag(help: "Document Objective-C headers instead of Swift code")
@@ -21,7 +25,7 @@ extension SourceKitten {
             let moduleName = self.moduleName.isEmpty ? nil : self.moduleName
 
             if spm {
-                if let docs = Module(spmArguments: arguments, spmName: moduleName)?.docs {
+                if let docs = Module(spmArguments: arguments, spmName: moduleName, include: include, exclude: exclude)?.docs {
                     print(docs)
                     return
                 }
@@ -55,7 +59,7 @@ extension SourceKitten {
                 throw SourceKittenError.readFailed(path: arguments[0])
             }
 
-            let module = Module(xcodeBuildArguments: arguments, name: moduleName)
+            let module = Module(xcodeBuildArguments: arguments, name: moduleName, include: include, exclude: exclude)
             if let docs = module?.docs {
                 print(docs)
                 return
