@@ -24,9 +24,6 @@ class ClangTranslationUnitTests: XCTestCase {
     }
 
     private func compare(clangFixture fixture: String) {
-        guard ProcessInfo.processInfo.environment["SKIP_LIBCLANG_TESTS"] == nil else {
-            return
-        }
         let unit = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
                                         compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
         compareJSONString(withFixtureNamed: (fixture as NSString).lastPathComponent, jsonString: unit)

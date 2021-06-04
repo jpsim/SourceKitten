@@ -35,8 +35,6 @@ jobs:
       matrix:
         swift_version: ['5.4']
     runs-on: macos-latest
-    env:
-      SKIP_LIBCLANG_TESTS: 1
     steps:
       - uses: fwal/setup-swift@v1
         with:
