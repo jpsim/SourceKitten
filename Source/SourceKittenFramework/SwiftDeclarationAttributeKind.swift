@@ -127,4 +127,13 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case main = "source.decl.attribute.main"
     case noDerivative = "source.decl.attribute.noDerivative"
     case transpose = "source.decl.attribute.transpose"
+
+    // Only available in Swift >= 5.4
+    case _specializeExtension = "source.decl.attribute._specializeExtension"
+    case actor = "source.decl.attribute.actor"
+    case actorIndepedent = "source.decl.attribute.actorIndependent"
+    case async = "source.decl.attribute.async"
+    case asyncHandler = "source.decl.attribute.asyncHandler"
+    case globalActor = "source.decl.attribute.globalActor"
+    case resultBuilder = "source.decl.attribute.resultBuilder"
 }
