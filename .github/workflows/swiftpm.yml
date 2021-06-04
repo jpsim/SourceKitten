@@ -10,7 +10,7 @@ jobs:
   Xcode:
     strategy:
       matrix:
-        xcode_version: ['11.4', '11.5', '11.6', '12', '12.2']
+        xcode_version: ['11.4', '11.5', '11.6', '12', '12.2', '12.5']
     runs-on: macos-latest
     env:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
@@ -29,20 +29,3 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: swift test --parallel
-
-  MacOS:
-    strategy:
-      matrix:
-        swift_version: ['5.4']
-    runs-on: macos-latest
-    steps:
-      - uses: fwal/setup-swift@v1
-        with:
-          swift-version: ${{ matrix.swift_version }}
-      - uses: actions/checkout@v2
-      - run: /usr/bin/xcrun -find swift
-      - run: sudo mkdir -p /Library/Developer/Toolchains
-      - run: sudo ln -sf /Users/runner/hostedtoolcache/swift-macOS/${{ matrix.swift_version }}/x64 /Library/Developer/Toolchains/swift.xctoolchain
-      - run: /usr/bin/xcrun -find swift
-      - run: swift -version
-      - run: swift test
