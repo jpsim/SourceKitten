@@ -35,8 +35,10 @@ public struct Module {
                           package if `nil`.
      - parameter path:    Path of the directory containing the SPM `.build` directory.
                           Uses the current directory by default.
+     - parameter include: Source file pathnames to be included in documentation. Supports wildcards. Empty array will include all files.
+     - parameter exclude: Source file pathnames to be excluded from documentation. Supports wildcards.
      */
-    public init?(spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+    public init?(spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath, include: [String] = [], exclude: [String] = []) {
         let yamlPath = URL(fileURLWithPath: path).appendingPathComponent(".build/debug.yaml").path
         guard let yaml = try? Yams.compose(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)),
             let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
@@ -76,7 +78,7 @@ public struct Module {
             arguments.append(contentsOf: imports)
             return arguments
         }()
-        sourceFiles = sources
+        sourceFiles = sources.filteringElements(include: include, exclude: exclude)
     }
 
     /**
@@ -89,8 +91,10 @@ public struct Module {
                           package if `nil`.
      - parameter path:    Path of the directory containing the `Package.swift` file.
                           Uses the current directory by default.
+     - parameter include: Source file pathnames to be included in documentation. Supports wildcards. Empty array will include all files.
+     - parameter exclude: Source file pathnames to be excluded from documentation. Supports wildcards.
      */
-    public init?(spmArguments: [String], spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+    public init?(spmArguments: [String], spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath, include: [String] = [], exclude: [String] = []) {
         fputs("Running swift build\n", stderr)
         let buildResults = Exec.run("/usr/bin/env", ["swift", "build"] + spmArguments, currentDirectory: path, stderr: .merge)
         guard buildResults.terminationStatus == 0 else {
@@ -100,7 +104,7 @@ public struct Module {
             return nil
         }
 
-        self.init(spmName: spmName, inPath: path)
+        self.init(spmName: spmName, inPath: path, include: include, exclude: exclude)
     }
 
     /**
@@ -110,8 +114,10 @@ public struct Module {
     - parameter xcodeBuildArguments: The arguments necessary pass in to `xcodebuild` to build this Module.
     - parameter name:                Module name. Will be parsed from `xcodebuild` output if nil.
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
+    - parameter include: Source file pathnames to be included in documentation. Supports wildcards. Empty array will include all files.
+    - parameter exclude: Source file pathnames to be excluded from documentation. Supports wildcards.
     */
-    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+    public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath, include: [String] = [], exclude: [String] = []) {
         let buildSettings = XcodeBuild.showBuildSettings(arguments: xcodeBuildArguments, inPath: path)
 
         let name = name
@@ -132,7 +138,7 @@ public struct Module {
         if let output = results.string,
             let arguments = parseCompilerArguments(xcodebuildOutput: output, language: .swift, moduleName: name),
             let moduleName = moduleName(fromArguments: arguments) {
-            self.init(name: moduleName, compilerArguments: arguments)
+            self.init(name: moduleName, compilerArguments: arguments, include: include, exclude: exclude)
             return
         }
         // Check New Build System is used
@@ -140,7 +146,7 @@ public struct Module {
         if let projectTempRoot = buildSettings?.firstBuildSettingValue(for: { $0.PROJECT_TEMP_ROOT }),
             let arguments = checkNewBuildSystem(in: projectTempRoot, moduleName: name),
             let moduleName = moduleName(fromArguments: arguments) {
-            self.init(name: moduleName, compilerArguments: arguments)
+            self.init(name: moduleName, compilerArguments: arguments, include: include, exclude: exclude)
             return
         }
         // Executing `clean build` is a fallback.
@@ -157,7 +163,7 @@ public struct Module {
             fputs("Could not parse module name from compiler arguments.\n", stderr)
             return nil
         }
-        self.init(name: moduleName, compilerArguments: arguments)
+        self.init(name: moduleName, compilerArguments: arguments, include: include, exclude: exclude)
     }
 
     /**
@@ -165,15 +171,17 @@ public struct Module {
 
     - parameter name:              Module name.
     - parameter compilerArguments: Compiler arguments required by SourceKit to process the source files in this Module.
+    - parameter include: Source file pathnames to be included in documentation. Supports wildcards. Empty array will include all files.
+    - parameter exclude: Source file pathnames to be excluded from documentation. Supports wildcards.
     */
-    public init(name: String, compilerArguments: [String]) {
+    public init(name: String, compilerArguments: [String], include: [String] = [], exclude: [String] = []) {
         self.name = name
         self.compilerArguments = compilerArguments.expandingResponseFiles
         sourceFiles = self.compilerArguments.filter({
             $0.bridge().isSwiftFile() && $0.isFile
         }).map {
             return URL(fileURLWithPath: $0).resolvingSymlinksInPath().path
-        }
+        }.filteringElements(include: include, exclude: exclude)
     }
 }
 
@@ -200,5 +208,41 @@ private extension Collection where Element == XcodeBuildSetting {
     /// - Returns: The first value returned by the getter closure.
     func firstBuildSettingValue(for getterClosure: (XcodeBuildSetting) -> String?) -> String? {
         return lazy.compactMap(getterClosure).first
+    }
+}
+
+
+private extension Array where Element == String {
+
+    func filteringElements(include: [String], exclude: [String]) -> [String] {
+        var result = self
+        if !include.isEmpty {
+            result = result.filter { file in
+                for pattern in include {
+                    if file.matches(pattern: pattern) {
+                        return true
+                    }
+                }
+                return false
+            }
+        }
+
+        result = result.filter { file in
+            for pattern in exclude {
+                if file.matches(pattern: pattern) {
+                    return false
+                }
+            }
+            return true
+        }
+        return result
+    }
+}
+
+private extension String {
+
+    func matches(pattern: String) -> Bool {
+        let pred = NSPredicate(format: "self LIKE %@", pattern)
+        return !NSArray(object: self).filtered(using: pred).isEmpty
     }
 }
