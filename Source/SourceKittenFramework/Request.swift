@@ -240,7 +240,7 @@ public enum Request {
                 "key.editor.format.options": [
                     "key.editor.format.indentwidth": indentWidth,
                     "key.editor.format.tabwidth": indentWidth,
-                    "key.editor.format.usetabs": useTabs ? 1 : 0
+                    "key.editor.format.usetabs": useTabs ? Int64(1) : Int64(0)
                 ]
             ]
         case let .replaceText(file, range, sourceText):
