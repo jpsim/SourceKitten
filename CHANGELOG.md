@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Add `key.attributes` and `key.attribute` enum cases to SwiftDocKey
+  [Erick Sanchez](https://github.com/ErickESGoogle)
 
 ##### Bug Fixes
 
