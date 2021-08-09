@@ -81,6 +81,10 @@ public enum SwiftDocKey: String {
     case unavailableMessage   = "key.unavailable_message"
     /// Annotations ([String]).
     case annotations          = "key.annotations"
+    /// Attributes ([[String: SourceKitRepresentable]]).
+    case attributes           = "key.attributes"
+    /// Attribute (String).
+    case attribute            = "key.attribute"
 
     // MARK: Typed SwiftDocKey Getters
 
