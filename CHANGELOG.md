@@ -10,6 +10,9 @@
   [Brian Osborn](https://github.com/bosborn)
   [#705](https://github.com/jpsim/SourceKitten/issues/705)
 
+* Add `key.attributes` and `key.attribute` enum cases to `SwiftDocKey`.  
+  [Erick Sanchez](https://github.com/ErickESGoogle)
+
 ##### Bug Fixes
 
 * None.
