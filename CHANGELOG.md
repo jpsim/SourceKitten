@@ -6,7 +6,7 @@
 
 ##### Enhancements
 
-* Objective C Union support.
+* Objective C Union support.  
   [Brian Osborn](https://github.com/bosborn)
   [#705](https://github.com/jpsim/SourceKitten/issues/705)
 
