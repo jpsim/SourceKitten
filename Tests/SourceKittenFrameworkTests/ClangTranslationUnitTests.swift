@@ -44,6 +44,11 @@ class ClangTranslationUnitTests: XCTestCase {
     func testCodeFormattingObjectiveCDocs() {
         compare(clangFixture: "CodeFormatting")
     }
+    
+    func testUnionObjectiveCDocs() {
+        compare(clangFixture: "Union")
+    }
+    
 }
 
 #endif
