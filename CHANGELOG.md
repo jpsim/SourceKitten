@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Objective C Union support.
+  [Brian Osborn](https://github.com/bosborn)
+  [#705](https://github.com/jpsim/SourceKitten/issues/705)
 
 ##### Bug Fixes
 
@@ -85,7 +87,7 @@
 
 * Fix crashes when parsing .m files.  
   [Joe Laws](https://github.com/jlaws)
-  
+
 * Stop the program immediately if the `xcodebuild` command fails.  
   [John Fairhurst](https://github.com/johnfairh)
   [#643](https://github.com/jpsim/SourceKitten/issues/643)
