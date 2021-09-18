@@ -1,2 +1,1 @@
-
-typedef union { double  a; int  b; char *c; } VALUE;
+typedef union { double  a; int  b; } VALUE;
