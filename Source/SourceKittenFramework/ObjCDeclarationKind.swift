@@ -38,6 +38,8 @@ public enum ObjCDeclarationKind: String {
     case mark = "sourcekitten.source.lang.objc.mark"
     /// `struct`
     case `struct` = "sourcekitten.source.lang.objc.decl.struct"
+    /// `union`
+    case `union` = "sourcekitten.source.lang.objc.decl.union"
     /// `field`
     case field = "sourcekitten.source.lang.objc.decl.field"
     /// `ivar`
@@ -62,6 +64,7 @@ public enum ObjCDeclarationKind: String {
         case CXCursor_VarDecl: self = .constant
         case CXCursor_FunctionDecl: self = .function
         case CXCursor_StructDecl: self = .struct
+        case CXCursor_UnionDecl: self = .union
         case CXCursor_FieldDecl: self = .field
         case CXCursor_ObjCIvarDecl: self = .ivar
         case CXCursor_ModuleImportDecl: self = .moduleImport
