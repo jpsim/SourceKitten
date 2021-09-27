@@ -23,7 +23,7 @@ private let sourcekitStrings: [String] = {
     let sourceKitPath = Exec.run("/usr/bin/xcrun", "-f", "swiftc").string!.bridge()
         .deletingLastPathComponent.bridge()
         .deletingLastPathComponent.bridge()
-        .appendingPathComponent("lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService")
+        .appendingPathComponent("lib/sourcekitdInProc.framework/sourcekitdInProc")
 #endif
     let strings = Exec.run("/usr/bin/strings", sourceKitPath).string
     return strings!.components(separatedBy: "\n")
@@ -34,7 +34,8 @@ private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
 }
 
 let sourcekittenXcodebuildArguments = [
-    "-scheme", "sourcekitten"
+    "-scheme", "sourcekitten",
+    "-destination", "platform=macOS"
 ] + { () -> [String] in
     return ProcessInfo.processInfo.environment["XCODE_VERSION_MINOR"].map { $0 >= "1000" } ?? false ? [] : [
         "-derivedDataPath",
@@ -117,6 +118,16 @@ class SourceKitTests: XCTestCase {
         ]
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
+
+#if compiler(>=5.5)
+#else
+        // added in Swift 5.5
+        expected.subtract([
+            .spawn, ._unsafeMainActor, ._unsafeSendable, .isolated, ._inheritActorContext,
+            .nonisolated, ._implicitSelfCapture, .completionHandlerAsync, ._marker,
+            .reasync, .Sendable
+        ])
+#endif
 
 #if compiler(>=5.4)
         // removed in Swift 5.4
