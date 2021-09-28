@@ -20,10 +20,17 @@ private let sourcekitStrings: [String] = {
         fatalError("Could not find or load libsourcekitdInProc.so")
     }()
 #else
+    // `sourcekitdInProc` doesn't exist on at least Xcode 11.7, and
+    // `SourceKitService` doesn't contain the strings in Xcode 13.
+#if swift(>=5.5)
+    let toolchainUsrPath = "lib/sourcekitdInProc.framework/sourcekitdInProc"
+#else
+    let toolchainUsrPath = "lib/sourcekitd.framework/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService"
+#endif
     let sourceKitPath = Exec.run("/usr/bin/xcrun", "-f", "swiftc").string!.bridge()
         .deletingLastPathComponent.bridge()
         .deletingLastPathComponent.bridge()
-        .appendingPathComponent("lib/sourcekitdInProc.framework/sourcekitdInProc")
+        .appendingPathComponent(toolchainUsrPath)
 #endif
     let strings = Exec.run("/usr/bin/strings", sourceKitPath).string
     return strings!.components(separatedBy: "\n")

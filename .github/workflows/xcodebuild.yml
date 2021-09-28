@@ -17,4 +17,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: xcodebuild -version
-      - run: xcodebuild -scheme sourcekitten -parallel-testing-enabled NO test
+      - run: xcodebuild -scheme sourcekitten -parallel-testing-enabled NO test -destination platform=macOS
