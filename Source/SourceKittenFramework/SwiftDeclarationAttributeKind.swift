@@ -136,4 +136,17 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case asyncHandler = "source.decl.attribute.asyncHandler"
     case globalActor = "source.decl.attribute.globalActor"
     case resultBuilder = "source.decl.attribute.resultBuilder"
+
+    // Only available in Swift >= 5.5
+    case spawn = "source.decl.attribute.spawn"
+    case _unsafeMainActor = "source.decl.attribute._unsafeMainActor"
+    case _unsafeSendable = "source.decl.attribute._unsafeSendable"
+    case isolated = "source.decl.attribute.isolated"
+    case _inheritActorContext = "source.decl.attribute._inheritActorContext"
+    case nonisolated = "source.decl.attribute.nonisolated"
+    case _implicitSelfCapture = "source.decl.attribute._implicitSelfCapture"
+    case completionHandlerAsync = "source.decl.attribute.completionHandlerAsync"
+    case _marker = "source.decl.attribute._marker"
+    case reasync = "source.decl.attribute.reasync"
+    case Sendable = "source.decl.attribute.Sendable"
 }
