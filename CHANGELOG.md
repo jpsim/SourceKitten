@@ -13,6 +13,12 @@
 * Add `key.attributes` and `key.attribute` enum cases to `SwiftDocKey`.  
   [Erick Sanchez](https://github.com/ErickESGoogle)
 
+* Add `--prettify` and `--sort-keys` flags to complete command, both of
+  which default to false. Previously these options were hardcoded to be
+  enabled, which slowed down the command when processing large inputs.  
+  [Paul Taykalo](https://github.com/PaulTaykalo)
+  [#710](https://github.com/jpsim/SourceKitten/issues/710)
+
 ##### Bug Fixes
 
 * None.
