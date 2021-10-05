@@ -19,6 +19,10 @@
   [Paul Taykalo](https://github.com/PaulTaykalo)
   [#710](https://github.com/jpsim/SourceKitten/issues/710)
 
+* Add new `SwiftDeclarationAttributeKind` members available starting
+  with Swift 5.4/5.5.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 ##### Bug Fixes
 
 * None.
