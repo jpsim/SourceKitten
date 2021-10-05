@@ -14,6 +14,11 @@ extension SourceKitten {
         var offset: Int = 0
         @Option(help: "Read compiler flags from a Swift Package Manager module")
         var spmModule: String = ""
+        @Flag(help: "Prettify output")
+        var prettify: Bool = false
+        @available(macOS 10.13, *)
+        @Flag(help: "Sort keys in output")
+        var sortKeys: Bool = false
         @Argument(help: "Compiler arguments to pass to SourceKit")
         var compilerargs: [String]
 
@@ -47,7 +52,14 @@ extension SourceKitten {
             let request = SourceKittenFramework.Request.codeCompletionRequest(file: path, contents: contents,
                                                                               offset: ByteCount(offset),
                                                                               arguments: args)
-            print(CodeCompletionItem.parse(response: try request.send()))
+            let completionItems = CodeCompletionItem.parse(response: try request.send())
+
+            var outputOptions: JSONSerialization.WritingOptions = []
+            outputOptions.insert(prettify ? .prettyPrinted : [])
+            if #available(macOS 10.13, *) {
+                outputOptions.insert(sortKeys ? .sortedKeys : [])
+            }
+            print(toJSON(completionItems.map { $0.dictionaryValue.bridge() }, options: outputOptions))
         }
     }
 }

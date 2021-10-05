@@ -4,24 +4,29 @@ import Foundation
  JSON Object to JSON String.
 
  - parameter object: Object to convert to JSON.
+ - parameter options: Serialization options
 
  - returns: JSON string representation of the input object.
  */
-public func toJSON(_ object: Any) -> String {
+public func toJSON(_ object: Any, options: JSONSerialization.WritingOptions? = nil) -> String {
     if let array = object as? [Any], array.isEmpty {
         return "[\n\n]"
     }
     do {
-        let options: JSONSerialization.WritingOptions
-#if os(Linux)
-        options = [.prettyPrinted, .sortedKeys]
-#else
-        if #available(macOS 10.13, *) {
+        func defaultOptions() -> JSONSerialization.WritingOptions {
+            let options: JSONSerialization.WritingOptions
+            #if os(Linux)
             options = [.prettyPrinted, .sortedKeys]
-        } else {
-            options = .prettyPrinted
+            #else
+            if #available(macOS 10.13, *) {
+                options = [.prettyPrinted, .sortedKeys]
+            } else {
+                options = .prettyPrinted
+            }
+            #endif
+            return options
         }
-#endif
+        let options = options ?? defaultOptions()
         let prettyJSONData = try JSONSerialization.data(withJSONObject: object, options: options)
         if let jsonString = String(data: prettyJSONData, encoding: .utf8) {
             return jsonString
