@@ -347,6 +347,13 @@ public class Request {
         cursorInfoRequest.updateValue(Int64(offset.value), forKey: SwiftDocKey.offset)
         return try? Request.customRequest(request: cursorInfoRequest).send()
     }
+    
+    
+    /// Updates offset variable for underlying sourcekit object. Only available for some requsts
+    /// - Parameter offset: byte offset
+    public func update(offset: ByteCount) {
+        sourcekitObject.updateValue(Int64(offset.value), forKey: SwiftDocKey.offset)
+    }
 
     /**
     Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
