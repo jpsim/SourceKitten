@@ -13,36 +13,30 @@ public struct Module {
     /// Documentation for this Module. Typically expensive computed property.
     public var docs: [SwiftDocs] {
         var fileIndex = 1
-        let queue = DispatchQueue(label: "com.jpsim.Module.docs", qos: .userInitiated, attributes: .concurrent)
-        let group = DispatchGroup()
         let lock = NSLock()
-        var out: [SwiftDocs] = []
 
-        for path in sourceFiles.sorted() {
-            queue.async(group: group) {
-                let file = File(path: path)
-                let docs = file.flatMap { SwiftDocs(file: $0, arguments: self.compilerArguments) }
-                let fileName = path.bridge().lastPathComponent
+        return sourceFiles.sorted().parallelCompactMap { path in
+            let file = File(path: path)
+            let docs = file.flatMap { SwiftDocs(file: $0, arguments: self.compilerArguments) }
+            let fileName = path.bridge().lastPathComponent
 
-                lock.lock()
-                let log: String
-                if let docs = docs {
-                    out.append(docs)
-                    log = "Parsed \(fileName) (\(fileIndex)/\(self.sourceFiles.count))"
-                } else {
-                    log = """
-                        Could not parse `\(fileName)`. \
-                        Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.
-                        """
-                }
-                fputs("\(log)\n", stderr)
-                fileIndex += 1
-                lock.unlock()
+            let log: String
+            if docs != nil {
+                log = "Parsed \(fileName) (\(fileIndex)/\(self.sourceFiles.count))"
+            } else {
+                log = """
+                    Could not parse `\(fileName)`. \
+                    Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.
+                    """
             }
-        }
 
-        group.wait()
-        return out
+            lock.lock()
+            fputs("\(log)\n", stderr)
+            fileIndex += 1
+            lock.unlock()
+
+            return docs
+        }
     }
 
     /**
@@ -219,5 +213,21 @@ private extension Collection where Element == XcodeBuildSetting {
     /// - Returns: The first value returned by the getter closure.
     func firstBuildSettingValue(for getterClosure: (XcodeBuildSetting) -> String?) -> String? {
         return lazy.compactMap(getterClosure).first
+    }
+}
+
+private extension Array {
+    func parallelCompactMap<T>(transform: (Element) -> T?) -> [T] {
+        return parallelMap(transform: transform).compactMap { $0 }
+    }
+
+    func parallelMap<T>(transform: (Element) -> T) -> [T] {
+        var result = ContiguousArray<T?>(repeating: nil, count: count)
+        return result.withUnsafeMutableBufferPointer { buffer in
+            DispatchQueue.concurrentPerform(iterations: buffer.count) { idx in
+                buffer[idx] = transform(self[idx])
+            }
+            return buffer.map { $0! }
+        }
     }
 }
