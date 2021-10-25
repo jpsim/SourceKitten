@@ -30,10 +30,10 @@ public struct Module {
                     """
             }
 
-            lock.lock()
-            fputs("\(log)\n", stderr)
-            fileIndex += 1
-            lock.unlock()
+            lock.withLock {
+                fputs("\(log)\n", stderr)
+                fileIndex += 1
+            }
 
             return docs
         }
