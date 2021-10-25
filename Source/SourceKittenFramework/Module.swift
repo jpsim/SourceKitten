@@ -21,14 +21,14 @@ public struct Module {
         for path in sourceFiles.sorted() {
             queue.async(group: group) {
                 let file = File(path: path)
-                let docs = file.flatMap { SwiftDocs(file: $0, arguments: compilerArguments) }
+                let docs = file.flatMap { SwiftDocs(file: $0, arguments: self.compilerArguments) }
                 let fileName = path.bridge().lastPathComponent
 
                 lock.lock()
                 let log: String
                 if let docs = docs {
                     out.append(docs)
-                    log = "Parsed \(fileName) (\(fileIndex)/\(sourceFiles.count))"
+                    log = "Parsed \(fileName) (\(fileIndex)/\(self.sourceFiles.count))"
                 } else {
                     log = """
                         Could not parse `\(fileName)`. \
