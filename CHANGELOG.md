@@ -6,8 +6,8 @@
 
 ##### Enhancements
 
-* Refactored `Modules.doc` computed property to make use of the dispatch
-  queue to speed up the computation.  
+* Refactored `Modules.doc` computed property to make distributed the
+  workload across cores using a concurrent dispatch queue.  
   [Galen Rhodes](https://github.com/GalenRhodes)
 
 ##### Bug Fixes
