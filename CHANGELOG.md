@@ -6,7 +6,7 @@
 
 ##### Enhancements
 
-* Refactored Modules.doc computed property to make use of the dispatch
+* Refactored `Modules.doc` computed property to make use of the dispatch
   queue to speed up the computation.  
   [Galen Rhodes](https://github.com/GalenRhodes)
 
