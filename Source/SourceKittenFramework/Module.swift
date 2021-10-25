@@ -10,10 +10,7 @@ public struct Module {
     /// Source files to be documented in this Module.
     public let sourceFiles: [String]
 
-    /// Documentation for this Module.
-    ///
-    /// - note: Expensive to compute.
-    ///
+    /// Documentation for this Module. Typically expensive computed property.
     public var docs: [SwiftDocs] {
         var fileIndex        = 1
         let queue            = DispatchQueue(label: UUID().uuidString, qos: .userInitiated, attributes: .concurrent)
