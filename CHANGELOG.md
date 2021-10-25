@@ -6,23 +6,9 @@
 
 ##### Enhancements
 
-* None.
-
-##### Bug Fixes
-
-* None.
-
-## 0.31.2
-
-##### Breaking
-
-* None.
-
-##### Enhancements
-
-* Refactored Modules.doc computed property to make use of the dispatch queue to speed up the computation.
+* Refactored Modules.doc computed property to make use of the dispatch
+  queue to speed up the computation.  
   [Galen Rhodes](https://github.com/GalenRhodes)
-  [#716](https://github.com/jpsim/SourceKitten/pull/716)
 
 ##### Bug Fixes
 
