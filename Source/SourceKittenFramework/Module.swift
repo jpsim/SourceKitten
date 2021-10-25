@@ -10,8 +10,9 @@ public struct Module {
     /// Source files to be documented in this Module.
     public let sourceFiles: [String]
 
-    /// Documentation for this Module. Typically expensive computed property.
-    /// (Does this really need to be computed every time?)
+    /// Documentation for this Module.
+    ///
+    /// - note: Expensive to compute.
     ///
     public var docs: [SwiftDocs] {
         var fileIndex        = 1
