@@ -12,25 +12,32 @@ public struct Module {
 
     /// Documentation for this Module. Typically expensive computed property.
     public var docs: [SwiftDocs] {
-        var fileIndex        = 1
-        let queue            = DispatchQueue(label: UUID().uuidString, qos: .userInitiated, attributes: .concurrent)
-        let group            = DispatchGroup()
-        let lock             = NSLock()
+        var fileIndex = 1
+        let queue = DispatchQueue(label: "com.jpsim.Module.docs", qos: .userInitiated, attributes: .concurrent)
+        let group = DispatchGroup()
+        let lock = NSLock()
         var out: [SwiftDocs] = []
 
-        for fn in sourceFiles.sorted() {
+        for path in sourceFiles.sorted() {
             queue.async(group: group) {
-                guard let file = File(path: fn), let docs = SwiftDocs(file: file, arguments: compilerArguments) else {
-                    lock.lock()
-                    defer { lock.unlock() }
-                    fputs("Could not parse `\(fn.bridge().lastPathComponent)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
-                    return
-                }
+                let file = File(path: path)
+                let docs = file.flatMap { SwiftDocs(file: $0, arguments: compilerArguments) }
+                let fileName = path.bridge().lastPathComponent
+
                 lock.lock()
-                defer { lock.unlock() }
-                out.append(docs)
-                fputs("Parsed \(fn.bridge().lastPathComponent) (\(fileIndex)/\(sourceFiles.count))\n", stderr)
+                let log: String
+                if let docs = docs {
+                    out.append(docs)
+                    log = "Parsed \(fileName) (\(fileIndex)/\(sourceFiles.count))"
+                } else {
+                    log = """
+                        Could not parse `\(fileName)`. \
+                        Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.
+                        """
+                }
+                fputs("\(log)\n", stderr)
                 fileIndex += 1
+                lock.unlock()
             }
         }
 
