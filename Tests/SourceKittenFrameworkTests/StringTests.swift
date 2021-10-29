@@ -70,6 +70,9 @@ class StringTests: XCTestCase {
     }
 
     func testAbsolutePath() {
+        guard ProcessInfo.processInfo.environment["TEST_WORKSPACE"] == nil else {
+            return
+        }
         XCTAssert(("LICENSE".bridge().absolutePathRepresentation().bridge()).isAbsolutePath,
                   "absolutePathRepresentation() of a relative path should be an absolute path")
         XCTAssertEqual(#file.bridge().absolutePathRepresentation(), #file,

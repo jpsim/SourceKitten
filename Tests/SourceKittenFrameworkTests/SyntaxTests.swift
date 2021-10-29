@@ -27,8 +27,14 @@ class SyntaxTests: XCTestCase {
     }
 
     func testGenerateSameSyntaxMapFileAndContents() throws {
-        let fileContents = try String(contentsOfFile: #file, encoding: .utf8)
-        try XCTAssertEqual(SyntaxMap(file: File(path: #file)!),
+        let filepath: String
+        if let buildWorkspaceRoot: String = ProcessInfo.processInfo.environment["PROJECT_ROOT"] {
+            filepath = buildWorkspaceRoot + "/Tests/SourceKittenFrameworkTests/SyntaxTests.swift"
+        } else {
+            filepath = #file
+        }
+        let fileContents = try String(contentsOfFile: filepath, encoding: .utf8)
+        try XCTAssertEqual(SyntaxMap(file: File(path: filepath)!),
             SyntaxMap(file: File(contents: fileContents)),
             "should generate the same syntax map for a file as raw text")
     }

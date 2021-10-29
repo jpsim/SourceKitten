@@ -2,7 +2,8 @@ import Foundation
 @testable import SourceKittenFramework
 import XCTest
 
-let projectRoot = #file.bridge()
+let bazelProjectRoot: String? = ProcessInfo.processInfo.environment["PROJECT_ROOT"]
+let projectRoot: String = bazelProjectRoot ?? #file.bridge()
     .deletingLastPathComponent.bridge()
     .deletingLastPathComponent.bridge()
     .deletingLastPathComponent
@@ -73,7 +74,8 @@ class ModuleTests: XCTestCase {
     }
 
     func testSpmDefaultModule() {
-        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else {
+        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil
+            && ProcessInfo.processInfo.environment["TEST_WORKSPACE"] == nil else {
             print(
                 """
                 Skipping \(#function) because we're running in Xcode and this test relies on the `.build` \

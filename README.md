@@ -21,6 +21,21 @@ Run `brew install sourcekitten`.
 
 Run `swift build` in the root directory of this project.
 
+### Bazel
+
+Add the following to your WORKSPACE file:
+
+```python
+SOURCEKITTEN_VERSION = "A_VERSION"
+http_archive(
+    name = "com_github_jpsim_sourcekitten",
+    url = "https://github.com/jpsim/SourceKitten/archive/refs/tags/%s.tar.gz" % (SOURCEKITTEN_VERSION),
+    strip_prefix = "SourceKitten-%s" % SOURCEKITTEN_VERSION
+)
+```
+
+Then run: `bazel run @com_github_jpsim_sourcekitten//:sourcekitten -- -h`
+
 ### Xcode (via Make)
 
 Run `make install` in the root directory of this project.
@@ -102,7 +117,7 @@ environment variable.
 
 <details>
   <summary>See More</summary>
-  
+
   * https://github.com/appsquickly/TyphoonSwift
   * https://github.com/banjun/bansan
   * https://github.com/Beaver/BeaverCodeGen
