@@ -145,7 +145,7 @@ public struct StringView {
         return byteRangeToNSRange(byteRange).map(nsString.substring)
     }
 
-    /// Returns a substictg, started at UTF-16 location.
+    /// Returns a substring, started at UTF-16 location.
     ///
     /// - parameter location: UTF-16 location.
     func substring(from location: Int) -> String {
