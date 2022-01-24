@@ -10,7 +10,7 @@ jobs:
   Xcode:
     strategy:
       matrix:
-        xcode_version: ['11.7', '12.5.1', '13.0', '13.2.1']
+        xcode_version: ['12.5.1', '13.0', '13.2.1']
     runs-on: macos-11
     env:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
@@ -22,7 +22,7 @@ jobs:
   Linux:
     strategy:
       matrix:
-        tag: ['5.2', '5.3', '5.4', '5.5']
+        tag: ['5.3', '5.4', '5.5']
     runs-on: ubuntu-latest
     container:
       image: swift:${{ matrix.tag }}
