@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
         "state": {
           "branch": null,
-          "revision": "d2930e8fcf9c33162b9fcc1d522bc975e2d4179b",
-          "version": "1.0.1"
+          "revision": "e1465042f195f374b94f915ba8ca49de24300a0d",
+          "version": "1.0.2"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {
           "branch": null,
-          "revision": "a4931e5c3bafbedeb1601d3bb76bbe835c6d475a",
-          "version": "5.0.1"
+          "revision": "6469881a3f30417c5bb02404ea4b69207f297592",
+          "version": "6.0.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/jpsim/Yams.git",
         "state": {
           "branch": null,
-          "revision": "138cf1b701cf825233b92ceac919152d5aba8a3f",
-          "version": "4.0.1"
+          "revision": "9ff1cc9327586db4e0c8f46f064b6a82ec1566fa",
+          "version": "4.0.6"
         }
       }
     ]

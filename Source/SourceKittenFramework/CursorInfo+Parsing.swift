@@ -18,6 +18,6 @@ public extension Dictionary where Key == String, Value == SourceKitRepresentable
 
 private extension String {
     var relatedNameUSR: String? {
-        return SWXMLHash.parse(self)["RelatedName"].element?.value(ofAttribute: "usr")
+        return XMLHash.parse(self)["RelatedName"].element?.value(ofAttribute: "usr")
     }
 }

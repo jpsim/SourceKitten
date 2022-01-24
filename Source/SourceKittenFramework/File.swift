@@ -449,7 +449,7 @@ public func parseFullXMLDocs(_ xmlDocs: String) -> [String: SourceKitRepresentab
         .replacingOccurrences(of: "</rawHTML>", with: "")
         .replacingOccurrences(of: "<codeVoice>", with: "`")
         .replacingOccurrences(of: "</codeVoice>", with: "`")
-    return SWXMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
+    return XMLHash.parse(cleanXMLDocs).children.first.map { rootXML in
         var docs = [String: SourceKitRepresentable]()
         docs[SwiftDocKey.docType.rawValue] = rootXML.element?.name
         docs[SwiftDocKey.docFile.rawValue] = rootXML.element?.allAttributes["file"]?.text
