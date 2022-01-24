@@ -10,7 +10,7 @@ jobs:
   Jazzy:
     runs-on: ubuntu-latest
     container:
-      image: norionomura/jazzy:0.13.6_swift-5.3.1
+      image: norionomura/jazzy:0.13.6_swift-5.3.3
     steps:
       - uses: actions/checkout@v2
       - run: bundle install --path vendor/bundle
