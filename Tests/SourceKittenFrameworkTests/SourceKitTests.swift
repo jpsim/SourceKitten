@@ -126,6 +126,11 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=5.5.2)
+        // removed in Swift 5.5.2
+        expected.subtract([.completionHandlerAsync])
+#endif
+
 #if compiler(>=5.5)
 #else
         // added in Swift 5.5
