@@ -8,7 +8,7 @@ For SourceKitten contributors, follow these steps to cut a release:
     * Cat-astrophic
     * SourceClangKitLibKitten
     * Grumpy Cat
-3. Commit & push to the `master` branch.
+3. Commit & push to the `main` branch.
 4. Tag: `git tag -a 0.6.2 -m "0.6.2: Objective-Cat"; git push origin 0.6.2`
 5. Make sure you have the latest stable Xcode version installed and
    `xcode-select`ed.
