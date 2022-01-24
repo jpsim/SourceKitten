@@ -40,6 +40,7 @@ OVERVIEW: An adorable little command line tool for interacting with SourceKit
 USAGE: sourcekitten <subcommand>
 
 OPTIONS:
+  --version               Show the version.
   -h, --help              Show help information.
 
 SUBCOMMANDS:
