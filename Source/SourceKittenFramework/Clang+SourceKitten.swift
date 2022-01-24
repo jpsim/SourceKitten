@@ -82,7 +82,7 @@ extension CXCursor {
             return str()
         }
         let commentXML = clang_FullComment_getAsXML(comment).str() ?? ""
-        guard let rootXML = SWXMLHash.parse(commentXML).children.first else {
+        guard let rootXML = XMLHash.parse(commentXML).children.first else {
             fatalError("couldn't parse XML")
         }
         guard let text = rootXML["Declaration"].element?.text,
@@ -227,7 +227,7 @@ extension CXCursor {
         }
 
         let swiftDeclaration = (cursorInfo[SwiftDocKey.annotatedDeclaration.rawValue] as? String)
-            .flatMap(SWXMLHash.parse)?.element?.recursiveText
+            .flatMap(XMLHash.parse)?.element?.recursiveText
 
         let swiftName = cursorInfo[SwiftDocKey.name.rawValue] as? String
 
