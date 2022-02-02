@@ -7,7 +7,8 @@
 
 ##### Enhancements
 
-* None.
+* Support docs generation on Swift 5.6.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ##### Bug Fixes
 

@@ -290,8 +290,8 @@ public final class File {
         if kind == SyntaxKind.commentMark.rawValue, let markName = parseMarkName(dictionary) {
             // Update comment marks
             return [SwiftDocKey.name.rawValue: markName]
-        } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .varParameter {
-            // Update if kind is a declaration (but not a parameter)
+        } else if let decl = SwiftDeclarationKind(rawValue: kind), decl != .varParameter, decl != .enumcase {
+            // Update if kind is a declaration (but not a parameter or the enumcase wrapper)
             let innerTypeNameOffset = SwiftDocKey.getName(dictionary)?.byteOffsetOfInnerTypeName() ?? 0
             let offset = SwiftDocKey.getNameOffset(dictionary)! + innerTypeNameOffset
             var updateDict = Request.send(cursorInfoRequest: cursorInfoRequest, atOffset: offset) ?? [:]
