@@ -481,7 +481,7 @@ internal func libraryWrapperForModule(_ module: String,
             }()
             #endif
             private let library = toolchainLoader.load(path: path)
-            
+
             """
     } else {
         library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
