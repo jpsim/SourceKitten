@@ -227,15 +227,17 @@ class SourceKitTests: XCTestCase {
         XCTAssert(docsJSON.range(of: "error type") == nil)
         let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
         XCTAssertNotNil(jsonArray, "JSON should be properly parsed")
-        let modules: [(module: String, path: String, linuxPath: String?)] = [
-            ("Clang_C", "libclang.dylib", nil),
-            ("SourceKit", "sourcekitd.framework/Versions/A/sourcekitd", "libsourcekitdInProc.so")
+        let sourcekitd = "sourcekitd.framework/Versions/A/sourcekitd"
+        let sourcekitdInProc = "sourcekitdInProc.framework/Versions/A/sourcekitdInProc"
+        let modules: [(module: String, path: String, inProcPath: String?, linuxPath: String?)] = [
+            ("Clang_C", "libclang.dylib", nil, nil),
+            ("SourceKit", sourcekitd, sourcekitdInProc, "libsourcekitdInProc.so")
         ]
-        for (module, path, linuxPath) in modules {
+        for (module, path, inProcPath, linuxPath) in modules {
             let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
             let existingWrapper = try String(contentsOfFile: wrapperPath)
             let generatedWrapper = try libraryWrapperForModule(
-                module, loadPath: path, linuxPath: linuxPath,
+                module, loadPath: path, inProcLoadPath: inProcPath, linuxPath: linuxPath,
                 compilerArguments: sourceKittenFrameworkModule.compilerArguments
             )
             XCTAssertEqual(existingWrapper, generatedWrapper)

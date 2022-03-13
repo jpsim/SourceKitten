@@ -456,20 +456,33 @@ extension String {
     }
 }
 
-internal func libraryWrapperForModule(_ module: String, loadPath: String, linuxPath: String?, compilerArguments: [String]) throws -> String {
+internal func libraryWrapperForModule(_ module: String,
+                                      loadPath: String,
+                                      inProcLoadPath: String?,
+                                      linuxPath: String?,
+                                      compilerArguments: [String]) throws -> String {
     let sourceKitResponse = try interfaceForModule(module, compilerArguments: compilerArguments)
     let substructure = SwiftDocKey.getSubstructure(Structure(sourceKitResponse: sourceKitResponse).dictionary)!
     let source = sourceKitResponse["key.sourcetext"] as! String
     let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
     let spmImport = "#if SWIFT_PACKAGE\nimport \(module)\n#endif\n"
     let library: String
-    if let linuxPath = linuxPath {
-        library = "#if os(Linux)\n" +
-            "private let path = \"\(linuxPath)\"\n" +
-            "#else\n" +
-            "private let path = \"\(loadPath)\"\n" +
-            "#endif\n" +
-            "private let library = toolchainLoader.load(path: path)\n"
+    if let inProcLoadPath = inProcLoadPath, let linuxPath = linuxPath {
+        library = """
+            #if os(Linux)
+            private let path = "\(linuxPath)"
+            #else
+            private let path: String = {
+                if useInProcSourceKit {
+                    return "\(inProcLoadPath)"
+                } else {
+                    return "\(loadPath)"
+                }
+            }()
+            #endif
+            private let library = toolchainLoader.load(path: path)
+            
+            """
     } else {
         library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
     }
