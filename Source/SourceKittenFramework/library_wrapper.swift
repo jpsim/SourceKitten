@@ -36,6 +36,13 @@ private func env(_ name: String) -> String? {
     return ProcessInfo.processInfo.environment[name]
 }
 
+private func envBool(_ name: String) -> Bool {
+    guard let value = env(name) else {
+        return false
+    }
+    return ["1", "YES", "TRUE"].contains(value.uppercased())
+}
+
 private extension String {
     func appending(pathComponent: String) -> String {
         return URL(fileURLWithPath: self).appendingPathComponent(pathComponent).path
@@ -123,6 +130,8 @@ let toolchainLoader = Loader(searchPaths: [
     }
     return nil
 })
+
+let useInProcSourceKit = envBool("USE_INPROC_SOURCEKIT")
 
 /// Returns "XCODE_DEFAULT_TOOLCHAIN_OVERRIDE" environment variable
 ///
