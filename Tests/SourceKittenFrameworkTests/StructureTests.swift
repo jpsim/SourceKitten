@@ -22,8 +22,47 @@ class StructureTests: XCTestCase {
             "should generate the same structure for a file as raw text")
     }
 
+    // swiftlint:disable:next function_body_length
     func testEnum() throws {
         let structure = try Structure(file: File(contents: "enum MyEnum { case First }"))
+#if compiler(>=5.6)
+        let expectedStructure: NSDictionary = [
+            "key.substructure": [
+                [
+                    "key.kind": "source.lang.swift.decl.enum",
+                    "key.accessibility": "source.lang.swift.accessibility.internal",
+                    "key.offset": 0,
+                    "key.nameoffset": 5,
+                    "key.namelength": 6,
+                    "key.bodyoffset": 13,
+                    "key.bodylength": 12,
+                    "key.length": 26,
+                    "key.substructure": [
+                        [
+                            "key.kind": "source.lang.swift.decl.enumcase",
+                            "key.offset": 14,
+                            "key.length": 10,
+                            "key.substructure": [
+                                [
+                                    "key.kind": "source.lang.swift.decl.enumelement",
+                                    "key.accessibility": "source.lang.swift.accessibility.internal",
+                                    "key.name": "First",
+                                    "key.offset": 19,
+                                    "key.length": 5,
+                                    "key.nameoffset": 19,
+                                    "key.namelength": 5
+                                ]
+                            ]
+                        ]
+                    ],
+                    "key.name": "MyEnum"
+                ]
+            ],
+            "key.offset": 0,
+            "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
+            "key.length": 26
+        ]
+#else
         let expectedStructure: NSDictionary = [
             "key.substructure": [
                 [
@@ -62,6 +101,7 @@ class StructureTests: XCTestCase {
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
             "key.length": 26
         ]
+#endif
         XCTAssertEqual(toNSDictionary(structure.dictionary), expectedStructure, "should generate expected structure")
     }
 

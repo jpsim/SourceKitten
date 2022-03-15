@@ -10,6 +10,9 @@
 * Support docs generation on Swift 5.6.  
   [John Fairhurst](https://github.com/johnfairh)
 
+* Added `SwiftDeclarationAttributeKind` values introduced in Swift 5.6.  
+  [JP Simard](https://github.com/jpsim)
+
 * Add `IN_PROCESS_SOURCEKIT` environment variable, which causes to use
   the in-process version of sourcekitd on macOS. This avoids the use of
   XPC, which is prohibited in some sandboxed environments, such as in

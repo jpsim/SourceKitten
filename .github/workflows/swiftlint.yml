@@ -9,7 +9,9 @@ on:
 jobs:
   SwiftLint:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/realm/swiftlint:0.46.5
     steps:
-      - uses: actions/checkout@v2
-      - name: GitHub Action for SwiftLint
-        uses: norio-nomura/action-swiftlint@3.1.0
+      - uses: actions/checkout@v3
+      - name: Run SwiftLint
+        run: swiftlint --strict
