@@ -131,7 +131,7 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     // Only available in Swift >= 5.4
     case _specializeExtension = "source.decl.attribute._specializeExtension"
     case actor = "source.decl.attribute.actor"
-    case actorIndepedent = "source.decl.attribute.actorIndependent"
+    case actorIndependent = "source.decl.attribute.actorIndependent"
     case async = "source.decl.attribute.async"
     case asyncHandler = "source.decl.attribute.asyncHandler"
     case globalActor = "source.decl.attribute.globalActor"
@@ -149,4 +149,16 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case _marker = "source.decl.attribute._marker"
     case reasync = "source.decl.attribute.reasync"
     case Sendable = "source.decl.attribute.Sendable"
+
+    // Only available in Swift >= 5.6
+    case distributed = "source.decl.attribute.distributed"
+    case _unavailableFromAsync = "source.decl.attribute._unavailableFromAsync"
+    case preconcurrency = "source.decl.attribute.preconcurrency"
+    case _assemblyVision = "source.decl.attribute._assemblyVision"
+    case _const = "source.decl.attribute._const"
+    case _typeSequence = "source.decl.attribute._typeSequence"
+    case _nonSendable = "source.decl.attribute._nonSendable"
+    case _noAllocation = "source.decl.attribute._noAllocation"
+    case _noImplicitCopy = "source.decl.attribute._noImplicitCopy"
+    case _noLocks = "source.decl.attribute._noLocks"
 }

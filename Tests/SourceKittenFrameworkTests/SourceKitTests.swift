@@ -126,6 +126,15 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=5.6)
+        // removed in Swift 5.6
+        expected.subtract([.asyncHandler, .actorIndependent, .spawn, ._unsafeMainActor, ._unsafeSendable])
+#else
+        // added in Swift 5.6
+        expected.subtract([.distributed, ._unavailableFromAsync, .preconcurrency, ._assemblyVision, ._const,
+                           ._typeSequence, ._nonSendable, ._noAllocation, ._noImplicitCopy, ._noLocks])
+#endif
+
 #if compiler(>=5.5.2)
         // removed in Swift 5.5.2
         expected.subtract([.completionHandlerAsync])
@@ -147,7 +156,7 @@ class SourceKitTests: XCTestCase {
 #else
         // added in Swift 5.4
         expected.subtract([
-            ._specializeExtension, .actor, .actorIndepedent, .async, .asyncHandler,
+            ._specializeExtension, .actor, .actorIndependent, .async, .asyncHandler,
             .globalActor, .resultBuilder
         ])
 #endif
@@ -172,8 +181,8 @@ class SourceKitTests: XCTestCase {
 #if compiler(>=5.0)
         // removed in Swift 5.0
         expected.subtract([.silStored, .effects])
-#if !canImport(Darwin)
-        // added in Swift 5.0 for Darwin
+#if !canImport(Darwin) && compiler(<5.6)
+        // added in Swift 5.0 for Darwin, 5.6 for Linux
         expected.subtract([
             .__raw_doc_comment, .__setter_access, ._hasInitialValue, ._hasStorage, ._show_in_interface
         ])
@@ -189,8 +198,8 @@ class SourceKitTests: XCTestCase {
 #if compiler(>=5.1)
         // removed in Swift 5.1
         expected.subtract([.noreturn, ._frozen])
-#if !canImport(Darwin)
-        // added in Swift 5.1 for Darwin
+#if !canImport(Darwin) && compiler(<5.6)
+        // added in Swift 5.1 for Darwin, 5.6 for Linux
         expected.subtract([
             .IBSegueAction
         ])

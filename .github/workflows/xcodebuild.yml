@@ -15,6 +15,6 @@ jobs:
     env:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: xcodebuild -version
       - run: xcodebuild -scheme sourcekitten -parallel-testing-enabled NO test -destination platform=macOS

@@ -76,7 +76,8 @@ package: installables
 release: package
 
 docker_test:
-	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.5 swift test --parallel
+	# TODO: Move to official Swift Docker image when available
+	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swiftlang/swift:nightly-5.6-focal swift test --parallel
 
 docker_htop:
 	docker run -it --rm --pid=container:sourcekitten terencewestphal/htop || reset
