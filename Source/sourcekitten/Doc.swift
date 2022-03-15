@@ -7,13 +7,13 @@ extension SourceKitten {
         static let configuration = CommandConfiguration(abstract: "Print Swift or Objective-C docs as JSON")
 
         @Flag(help: "Only document one file")
-        var singleFile: Bool = false
+        var singleFile = false
         @Option(help: "Name of Swift module to document (can't be used with `--single-file`)")
-        var moduleName: String = ""
+        var moduleName = ""
         @Flag(help: "Document a Swift Package Manager module")
-        var spm: Bool = false
+        var spm = false
         @Flag(help: "Document Objective-C headers instead of Swift code")
-        var objc: Bool = false
+        var objc = false
         @Argument(help: "Arguments passed to `xcodebuild` or `swift build`")
         var arguments: [String] = []
 

@@ -7,13 +7,13 @@ extension SourceKitten {
         static let configuration = CommandConfiguration(abstract: "Format Swift file")
 
         @Option(help: "Relative or absolute path of Swift file to format")
-        var file: String = ""
+        var file = ""
         @Flag(help: "Trim trailing whitespace")
-        var trimWhitespace: Bool = false
+        var trimWhitespace = false
         @Flag(help: "Use tabs to indent")
-        var useTabs: Bool = false
+        var useTabs = false
         @Option(help: "Number of spaces to indent")
-        var indentWidth: Int = 4
+        var indentWidth = 4
 
         mutating func run() throws {
             guard !file.isEmpty else {
