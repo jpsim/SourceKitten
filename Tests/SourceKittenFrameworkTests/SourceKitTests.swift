@@ -156,7 +156,7 @@ class SourceKitTests: XCTestCase {
 #else
         // added in Swift 5.4
         expected.subtract([
-            ._specializeExtension, .actor, .actorIndepedent, .async, .asyncHandler,
+            ._specializeExtension, .actor, .actorIndependent, .async, .asyncHandler,
             .globalActor, .resultBuilder
         ])
 #endif
