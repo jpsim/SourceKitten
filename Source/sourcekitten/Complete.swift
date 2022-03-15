@@ -7,18 +7,18 @@ extension SourceKitten {
         static let configuration = CommandConfiguration(abstract: "Generate code completion options")
 
         @Option(help: "Relative or absolute path of Swift file to parse")
-        var file: String = ""
+        var file = ""
         @Option(help: "Swift code text to parse")
-        var text: String = ""
+        var text = ""
         @Option(help: "Offset for which to generate code completion options")
-        var offset: Int = 0
+        var offset = 0
         @Option(help: "Read compiler flags from a Swift Package Manager module")
-        var spmModule: String = ""
+        var spmModule = ""
         @Flag(help: "Prettify output")
-        var prettify: Bool = false
+        var prettify = false
         @available(macOS 10.13, *)
         @Flag(help: "Sort keys in output")
-        var sortKeys: Bool = false
+        var sortKeys = false
         @Argument(help: "Compiler arguments to pass to SourceKit")
         var compilerargs: [String]
 
