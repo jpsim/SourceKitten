@@ -473,7 +473,7 @@ internal func libraryWrapperForModule(_ module: String,
             private let path = "\(linuxPath)"
             #else
             private let path: String = {
-                if useInProcSourceKit {
+                if SourceKittenConfiguration.preferInProcessSourceKit {
                     return "\(inProcLoadPath)"
                 } else {
                     return "\(loadPath)"

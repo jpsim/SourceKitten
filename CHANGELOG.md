@@ -10,7 +10,7 @@
 * Support docs generation on Swift 5.6.  
   [John Fairhurst](https://github.com/johnfairh)
 
-* Add `USE_INPROC_SOURCEKIT` environment variable, which causes to use
+* Add `IN_PROCESS_SOURCEKIT` environment variable, which causes to use
   the in-process version of sourcekitd on macOS. This avoids the use of
   XPC, which is prohibited in some sandboxed environments, such as in
   Swift Package Manager plugins.  

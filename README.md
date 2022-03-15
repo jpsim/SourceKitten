@@ -75,7 +75,7 @@ environment variable.
 
 On macOS, `sourcekitd.framework` is used, which uses XPC to communicate with the
 sourcekit daemon. If you want to use the in-process version
-(`sourcekitdInProc.framework`), specify `USE_INPROC_SOURCEKIT=YES`
+(`sourcekitdInProc.framework`), specify `IN_PROCESS_SOURCEKIT=YES`
 environment variable.
 
 ## Projects Built With SourceKitten

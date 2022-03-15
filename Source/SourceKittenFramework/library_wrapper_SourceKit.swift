@@ -5,7 +5,7 @@ import SourceKit
 private let path = "libsourcekitdInProc.so"
 #else
 private let path: String = {
-    if useInProcSourceKit {
+    if SourceKittenConfiguration.preferInProcessSourceKit {
         return "sourcekitdInProc.framework/Versions/A/sourcekitdInProc"
     } else {
         return "sourcekitd.framework/Versions/A/sourcekitd"
