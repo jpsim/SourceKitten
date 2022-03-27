@@ -27,13 +27,6 @@ load(
 
 swift_rules_extra_dependencies()
 
-load(
-    "@build_bazel_apple_support//lib:repositories.bzl",
-    "apple_support_dependencies",
-)
-
-apple_support_dependencies()
-
 YAMS_GIT_SHA = "64f37c1adc741c6422e58ada688f999f48fc936f"
 http_archive(
     name = "com_github_jpsim_yams",
