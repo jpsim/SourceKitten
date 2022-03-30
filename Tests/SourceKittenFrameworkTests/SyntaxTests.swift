@@ -28,7 +28,7 @@ class SyntaxTests: XCTestCase {
 
     func testGenerateSameSyntaxMapFileAndContents() throws {
         let filepath: String
-        if let buildWorkspaceRoot: String = ProcessInfo.processInfo.environment["PROJECT_ROOT"] {
+        if let buildWorkspaceRoot = bazelProjectRoot {
             filepath = buildWorkspaceRoot + "/Tests/SourceKittenFrameworkTests/SyntaxTests.swift"
         } else {
             filepath = #file
