@@ -17,7 +17,7 @@ class StructureTests: XCTestCase {
 
     func testGenerateSameStructureFileAndContents() throws {
         let filepath: String
-        if let buildWorkspaceRoot: String = ProcessInfo.processInfo.environment["PROJECT_ROOT"] {
+        if let buildWorkspaceRoot = bazelProjectRoot {
             filepath = buildWorkspaceRoot + "/Tests/SourceKittenFrameworkTests/StructureTests.swift"
         } else {
             filepath = #file
