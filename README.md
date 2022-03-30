@@ -23,7 +23,7 @@ Run `swift build` in the root directory of this project.
 
 ### Bazel
 
-Add the following to your WORKSPACE file:
+Add the following to your `WORKSPACE` file:
 
 ```python
 SOURCEKITTEN_VERSION = "A_VERSION"
