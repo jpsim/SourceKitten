@@ -52,7 +52,7 @@ SWIFT_ARGUMENT_PARSER_VERSION = "1.0.2"
 http_archive(
     name = "com_github_apple_swift_argument_parser",
     url = "https://github.com/apple/swift-argument-parser/archive/refs/tags/%s.tar.gz" % SWIFT_ARGUMENT_PARSER_VERSION,
-    sha256 = "19faa1bea738dc04a36b3bf3ab755c671a8da233c85fb8c3c94728e55fb33bf8",
+    sha256 = "2f7f9ca756b43ea5b8c2d5efb9059294a6bbd5483055842a54d67976ef7c75df",
     build_file = "SwiftArgumentParser/BUILD",
     strip_prefix = "swift-argument-parser-%s" % SWIFT_ARGUMENT_PARSER_VERSION
 )
