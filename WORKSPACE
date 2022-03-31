@@ -48,7 +48,7 @@ http_archive(
     strip_prefix = "SWXMLHash-%s" % SWXMLHASH_SHA,
 )
 
-SWIFT_ARGUMENT_PARSER_VERSION = "1.0.1"
+SWIFT_ARGUMENT_PARSER_VERSION = "1.0.2"
 http_archive(
     name = "com_github_apple_swift_argument_parser",
     url = "https://github.com/apple/swift-argument-parser/archive/refs/tags/%s.tar.gz" % SWIFT_ARGUMENT_PARSER_VERSION,
