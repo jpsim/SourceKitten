@@ -9,8 +9,8 @@ swift_library(
     module_name = "SourceKittenFramework",
     srcs = ["//Source:SourceKittenFrameworkSources"],
     deps = [
-        "@com_github_drmohundro_SWXMLHash//:SWXMLHash",
-        "@com_github_jpsim_yams//:Yams",
+        "@swiftsyntax_com_github_drmohundro_SWXMLHash//:SWXMLHash",
+        "@swiftsyntax_com_github_jpsim_yams//:Yams",
         "//Source:SourceKit",
         "//Source:Clang_C"
     ],
@@ -23,7 +23,7 @@ swift_binary(
     srcs = ["//Source:SourceKittenLibSources"],
     deps = [
         ":SourceKittenFramework",
-        "@com_github_apple_swift_argument_parser//:ArgumentParser"
+        "@swiftsyntax_com_github_apple_swift_argument_parser//:ArgumentParser"
     ],
     defines = ["SWIFT_PACKAGE"],
     visibility = ["//visibility:public"]
