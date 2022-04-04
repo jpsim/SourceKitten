@@ -16,8 +16,14 @@ class StructureTests: XCTestCase {
     }
 
     func testGenerateSameStructureFileAndContents() throws {
-        let fileContents = try String(contentsOfFile: #file, encoding: .utf8)
-        try XCTAssertEqual(Structure(file: File(path: #file)!),
+        let filepath: String
+        if let buildWorkspaceRoot = bazelProjectRoot {
+            filepath = buildWorkspaceRoot + "/Tests/SourceKittenFrameworkTests/StructureTests.swift"
+        } else {
+            filepath = #file
+        }
+        let fileContents = try String(contentsOfFile: filepath, encoding: .utf8)
+        try XCTAssertEqual(Structure(file: File(path: filepath)!),
             Structure(file: File(contents: fileContents)),
             "should generate the same structure for a file as raw text")
     }

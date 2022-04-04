@@ -2,7 +2,13 @@ import Foundation
 import SourceKittenFramework
 import XCTest
 
-let fixturesDirectory = URL(fileURLWithPath: #file).deletingLastPathComponent().path + "/Fixtures/"
+let testWorkspaceDirectory: String? = {
+    if let buildWorkspaceRoot: String = ProcessInfo.processInfo.environment["PROJECT_ROOT"] {
+        return buildWorkspaceRoot + "/Tests/SourceKittenFrameworkTests/Fixtures/"
+    }
+    return nil
+}()
+let fixturesDirectory = testWorkspaceDirectory ?? (URL(fileURLWithPath: #file).deletingLastPathComponent().path + "/Fixtures/")
 
 #if !os(Linux)
 

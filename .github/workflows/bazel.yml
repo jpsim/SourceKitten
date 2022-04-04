@@ -1,0 +1,15 @@
+name: Bazel
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: ['*']
+
+jobs:
+  MacOS:
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v2
+      - run: bazelisk test //Tests:UnitTests --test_env=PROJECT_ROOT=$(bazelisk info workspace) --spawn_strategy=standalone
+      - run: bazelisk build sourcekitten

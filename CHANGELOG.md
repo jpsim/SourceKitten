@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Adds Bazel Build Support
+  [Maxwell Elliott](https://github.com/maxwellE)
 
 ##### Bug Fixes
 
