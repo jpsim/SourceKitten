@@ -29,7 +29,7 @@ swift_rules_extra_dependencies()
 
 YAMS_GIT_SHA = "64f37c1adc741c6422e58ada688f999f48fc936f"
 http_archive(
-    name = "swiftsyntax_com_github_jpsim_yams",
+    name = "sourcekitten_com_github_jpsim_yams",
     urls = [
         "https://github.com/jpsim/Yams/archive/%s.zip" % YAMS_GIT_SHA,
     ],
@@ -39,7 +39,7 @@ http_archive(
 
 SWXMLHASH_SHA = "6469881a3f30417c5bb02404ea4b69207f297592"
 http_archive(
-    name = "swiftsyntax_com_github_drmohundro_SWXMLHash",
+    name = "sourcekitten_com_github_drmohundro_SWXMLHash",
     urls = [
         "https://github.com/drmohundro/SWXMLHash/archive/%s.zip" % SWXMLHASH_SHA,
     ],
@@ -50,7 +50,7 @@ http_archive(
 
 SWIFT_ARGUMENT_PARSER_VERSION = "1.0.2"
 http_archive(
-    name = "swiftsyntax_com_github_apple_swift_argument_parser",
+    name = "sourcekitten_com_github_apple_swift_argument_parser",
     url = "https://github.com/apple/swift-argument-parser/archive/refs/tags/%s.tar.gz" % SWIFT_ARGUMENT_PARSER_VERSION,
     sha256 = "2f7f9ca756b43ea5b8c2d5efb9059294a6bbd5483055842a54d67976ef7c75df",
     build_file = "SwiftArgumentParser/BUILD",

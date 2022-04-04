@@ -26,10 +26,12 @@ Run `swift build` in the root directory of this project.
 Add the following to your `WORKSPACE` file:
 
 ```python
-SOURCEKITTEN_VERSION = "A_VERSION"
+SOURCEKITTEN_VERSION = "SOME_VERSION"
+SOURCEKITTEN_SHA = "SOME_SHA"
 http_archive(
     name = "com_github_jpsim_sourcekitten",
     url = "https://github.com/jpsim/SourceKitten/archive/refs/tags/%s.tar.gz" % (SOURCEKITTEN_VERSION),
+    sha256 = SOURCEKITTEN_SHA,
     strip_prefix = "SourceKitten-%s" % SOURCEKITTEN_VERSION
 )
 ```
