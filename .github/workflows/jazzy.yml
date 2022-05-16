@@ -9,11 +9,12 @@ on:
 jobs:
   Jazzy:
     runs-on: ubuntu-latest
-    container:
-      image: norionomura/jazzy:0.13.6_swift-5.3.3
     steps:
       - uses: actions/checkout@v3
-      - run: bundle install --path vendor/bundle
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - run: swift build
       - name: Generate documentation json
         run: swift run sourcekitten doc --spm --module-name SourceKittenFramework > SourceKittenFramework.json
