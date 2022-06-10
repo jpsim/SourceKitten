@@ -8,8 +8,11 @@
 
 ##### Enhancements
 
-* Adds Bazel Build Support
+* Adds Bazel Build Support.  
   [Maxwell Elliott](https://github.com/maxwellE)
+
+* Support docs generation with Xcode 14 projects.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 ##### Bug Fixes
 

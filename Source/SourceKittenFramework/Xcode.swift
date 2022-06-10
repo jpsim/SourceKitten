@@ -116,6 +116,7 @@ private func filter(arguments args: [String]) -> [String] {
     return args.filter {
         ![
             "-parseable-output",
+            "-use-frontend-parseable-output",
             "-incremental",
             "-serialize-diagnostics",
             "-emit-dependencies"
