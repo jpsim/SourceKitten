@@ -13,7 +13,7 @@ def sourcekitten_repos():
     SWXMLHASH_VERSION = "7.0.1"
     http_archive(
         name = "sourcekitten_com_github_drmohundro_SWXMLHash",
-        url = "https://github.com/drmohundro/SWXMLHash/archive/%s.tar.gz" % SWXMLHASH_VERSION,
+        url = "https://github.com/drmohundro/SWXMLHash/archive/refs/tags/%s.tar.gz" % SWXMLHASH_VERSION,
         build_file = "@com_github_jpsim_sourcekitten//bazel:SWXMLHash.BUILD",
         sha256 = "bafa037a09aa296f180e5613206748db5053b79aa09258c78d093ae9f8102a18",
         strip_prefix = "SWXMLHash-%s" % SWXMLHASH_VERSION,
