@@ -25,5 +25,5 @@ def sourcekitten_repos():
         url = "https://github.com/apple/swift-argument-parser/archive/refs/tags/%s.tar.gz" % SWIFT_ARGUMENT_PARSER_VERSION,
         sha256 = "e52c0ac4e17cfad9f13f87a63ddc850805695e17e98bf798cce85144764cdcaa",
         build_file = "@com_github_jpsim_sourcekitten//bazel:SwiftArgumentParser.BUILD",
-        strip_prefix = "swift-argument-parser-%s" % SWIFT_ARGUMENT_PARSER_VERSION
+        strip_prefix = "swift-argument-parser-%s" % SWIFT_ARGUMENT_PARSER_VERSION,
     )
