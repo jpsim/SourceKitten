@@ -8,7 +8,7 @@ SourceKitten links and communicates with `sourcekitd.framework` to parse the Swi
 
 ## Installation
 
-Building SourceKitten requires Xcode 13 or later or a Swift 5.5
+Building SourceKitten requires Xcode 13.3 or later or a Swift 5.6
 toolchain or later with the Swift Package Manager.
 
 SourceKitten typically supports previous versions of SourceKit.
