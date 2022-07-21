@@ -33,13 +33,3 @@ final class CursorInfoParsingTests: XCTestCase {
         XCTAssertEqual(cursorInfo.referencedUSRs, ["s:4main5limitL_Sivp", "s:4main5limit33_BF49849BA67C991867DA082EF03F5F16LLSivp"])
     }
 }
-
-extension CursorInfoParsingTests {
-    static var allTests: [(String, (CursorInfoParsingTests) -> () throws -> Void)] {
-        return [
-            ("testNoReferencedUSR", testNoReferencedUSR),
-            ("testSingleReferencedUSR", testSingleReferencedUSR),
-            ("testRelatedReferencedUSR", testRelatedReferencedUSR)
-        ]
-    }
-}

@@ -19,11 +19,3 @@ class SwiftDocKeyTests: XCTestCase {
     }
 
 }
-
-extension SwiftDocKeyTests {
-    static var allTests: [(String, (SwiftDocKeyTests) -> () throws -> Void)] {
-        return [
-            ("testElements", testElements)
-        ]
-    }
-}

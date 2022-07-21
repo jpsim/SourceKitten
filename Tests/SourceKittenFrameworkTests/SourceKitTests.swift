@@ -126,6 +126,14 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=5.6.2)
+        // removed in Swift 5.6.2
+        expected.subtract([
+            .__raw_doc_comment, .__setter_access, .IBSegueAction, ._hasStorage,
+            ._show_in_interface, ._hasInitialValue
+        ])
+#endif
+
 #if compiler(>=5.6)
         // removed in Swift 5.6
         expected.subtract([.asyncHandler, .actorIndependent, .spawn, ._unsafeMainActor, ._unsafeSendable])
@@ -229,7 +237,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testLibraryWrappersAreUpToDate() throws {
-#if compiler(>=5.4)
+#if compiler(>=5.4) && os(macOS)
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments,
                                                  name: "SourceKittenFramework", inPath: projectRoot)!
         let docsJSON = sourceKittenFrameworkModule.docs.description
@@ -300,20 +308,5 @@ class SourceKitTests: XCTestCase {
 
     func testCompilerVersion() {
         XCTAssertTrue(SwiftVersion.current >= SwiftVersion.fiveDotOne)
-    }
-}
-
-extension SourceKitTests {
-    static var allTests: [(String, (SourceKitTests) -> () throws -> Void)] {
-        return [
-            ("testStatementKinds", testStatementKinds),
-            ("testSyntaxKinds", testSyntaxKinds),
-            ("testSwiftDeclarationKind", testSwiftDeclarationKind),
-            ("testSwiftDeclarationAttributeKind", testSwiftDeclarationAttributeKind),
-            ("testIndex", testIndex),
-            ("testYamlRequest", testYamlRequest),
-            ("testSyntaxTree", testSyntaxTree),
-            ("testCompilerVersion", testCompilerVersion)
-        ]
     }
 }

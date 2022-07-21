@@ -20,11 +20,3 @@ class SourceKitObjectTests: XCTestCase {
         XCTAssertEqual(object.description, expected)
     }
 }
-
-extension SourceKitObjectTests {
-    static var allTests: [(String, (SourceKitObjectTests) -> () throws -> Void)] {
-        return [
-            ("testExample", testExample)
-        ]
-    }
-}

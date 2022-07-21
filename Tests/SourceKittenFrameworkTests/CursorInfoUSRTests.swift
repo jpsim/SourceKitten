@@ -19,11 +19,3 @@ class CursorInfoUSRTests: XCTestCase {
         compareJSONString(withFixtureNamed: "CursorInfoUSR", jsonString: toJSON(info))
     }
 }
-
-extension CursorInfoUSRTests {
-    static var allTests: [(String, (CursorInfoUSRTests) -> () throws -> Void)] {
-        return [
-            ("testCursorInfoUSRRequest", testCursorInfoUSRRequest)
-        ]
-    }
-}

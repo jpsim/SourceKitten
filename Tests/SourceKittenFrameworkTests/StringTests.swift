@@ -273,39 +273,8 @@ private func XCTAssertEqual(_ actual: (Int, Int)?, _ expected: (Int, Int), file:
         XCTAssertEqual([actual.0, actual.1], [expected.0, expected.1], file: file, line: line)
     }
 }
-
-extension StringTests {
-    static var allTests: [(String, (StringTests) -> () throws -> Void)] {
-        return [
-            ("testStringByRemovingCommonLeadingWhitespaceFromLines", testStringByRemovingCommonLeadingWhitespaceFromLines),
-            ("testStringByTrimmingTrailingCharactersInSet", testStringByTrimmingTrailingCharactersInSet),
-            ("testCommentBody", testCommentBody),
-            ("testIsSwiftFile", testIsSwiftFile),
-            ("testIsObjectiveCHeaderFile", testIsObjectiveCHeaderFile),
-            ("testAbsolutePath", testAbsolutePath),
-            ("testIsTokenDocumentable", testIsTokenDocumentable),
-            ("testParseDeclaration", testParseDeclaration),
-            ("testParseMultiLineDeclaration", testParseMultiLineDeclaration),
-            ("testParseUnbodiedMultiLineDeclaration", testParseUnbodiedMultiLineDeclaration),
-            ("testGenerateDocumentedTokenOffsets", testGenerateDocumentedTokenOffsets),
-            ("testDocumentedTokenOffsetsWithSubscript", testDocumentedTokenOffsetsWithSubscript),
-            ("testGenerateDocumentedTokenOffsetsEmpty", testGenerateDocumentedTokenOffsetsEmpty),
-            ("testSubstringWithByteRange", testSubstringWithByteRange),
-            ("testSubstringLinesWithByteRange", testSubstringLinesWithByteRange),
-            ("testLineRangeWithByteRange", testLineRangeWithByteRange),
-            ("testLineAndCharacterForByteOffset", testLineAndCharacterForByteOffset),
-            ("testByteRangeToNSRange", testByteRangeToNSRange),
-            ("testLineAndCharacterForCharacterOffset", testLineAndCharacterForCharacterOffset),
-            ("testUnescaping", testUnescaping),
-            ("testResponseFiles", testResponseFiles)
-        ]
-    }
-}
-
 private extension String {
-
     func stringView() -> StringView {
         return StringView(self)
     }
-
 }
