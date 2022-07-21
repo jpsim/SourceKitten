@@ -2,7 +2,8 @@
 
 ##### Breaking
 
-* SourceKitten now requires Swift 5.5 or higher to build.  
+* SourceKitten now requires Swift 5.5 or higher to build, and macOS 12
+  or higher to run.  
   [JP Simard](https://github.com/jpsim)
 
 ##### Enhancements

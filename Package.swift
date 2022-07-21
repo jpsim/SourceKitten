@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "SourceKitten",
+    platforms: [.macOS(.v12)],
     products: [
         .executable(name: "sourcekitten", targets: ["sourcekitten"]),
         .library(name: "SourceKittenFramework", targets: ["SourceKittenFramework"])
@@ -13,7 +14,7 @@ let package = Package(
         .package(name: "Yams", url: "https://github.com/jpsim/Yams.git", from: "5.0.1"),
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "sourcekitten",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),

@@ -10,20 +10,7 @@ jobs:
   Xcode:
     strategy:
       matrix:
-        xcode_version: ['13.0', '13.2.1']
-    runs-on: macos-11
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
-    steps:
-      - uses: actions/checkout@v3
-      - run: xcodebuild -version
-      - run: swift -version
-      - run: swift test
-
-  Xcode_Monterey:
-    strategy:
-      matrix:
-        xcode_version: ['13.3', '13.4.1']
+        xcode_version: ['13.1', '13.3', '13.4.1']
     runs-on: macos-12
     env:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
