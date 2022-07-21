@@ -168,15 +168,3 @@ class SwiftDocsTests: XCTestCase {
         XCTAssertFalse(docs.docsDictionary.isEmpty)
     }
 }
-
-extension SwiftDocsTests {
-    static var allTests: [(String, (SwiftDocsTests) -> () throws -> Void)] {
-        return [
-            ("testSubscript", testSubscript),
-            ("testBicycle", testBicycle),
-            ("testExtension", testExtension),
-            ("testParseFullXMLDocs", testParseFullXMLDocs),
-            ("testParseExternalReference", testParseExternalReference)
-        ]
-    }
-}

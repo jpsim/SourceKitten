@@ -50,16 +50,3 @@ class ByteRangeTests: XCTestCase {
     }
 
 }
-
-extension ByteRangeTests {
-    static var allTests: [(String, (ByteRangeTests) -> () throws -> Void)] {
-        return [
-            ("testZeroLengthRangeContainment", testZeroLengthRangeContainment),
-            ("testNonZeroLengthRangeContainment", testNonZeroLengthRangeContainment),
-            ("testRangeUnionWithSameRange", testRangeUnionWithSameRange),
-            ("testRangeUnionWithNonOverlappingRange", testRangeUnionWithNonOverlappingRange),
-            ("testRangeUnionWithFullyIncludedRange", testRangeUnionWithFullyIncludedRange),
-            ("testRangeUnionWithOverlapping", testRangeUnionWithOverlapping)
-        ]
-    }
-}

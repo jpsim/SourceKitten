@@ -217,15 +217,3 @@ class StructureTests: XCTestCase {
         XCTAssertEqual(jsonDictionary.bridge(), expectedStructure, "JSON should match expected structure")
     }
 }
-
-extension StructureTests {
-    static var allTests: [(String, (StructureTests) -> () throws -> Void)] {
-        return [
-            ("testPrintEmptyStructure", testPrintEmptyStructure),
-            ("testGenerateSameStructureFileAndContents", testGenerateSameStructureFileAndContents),
-            ("testEnum", testEnum),
-            ("testInheritedType", testInheritedType),
-            ("testStructurePrintValidJSON", testStructurePrintValidJSON)
-        ]
-    }
-}

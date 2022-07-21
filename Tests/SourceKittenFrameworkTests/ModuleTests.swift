@@ -9,6 +9,9 @@ let projectRoot: String = bazelProjectRoot ?? #file.bridge()
     .deletingLastPathComponent
 
 class ModuleTests: XCTestCase {
+
+#if !os(Linux)
+
     func testModuleNilInPathWithNoXcodeProject() {
         let pathWithNoXcodeProject = (#file as NSString).deletingLastPathComponent
         let model = Module(xcodeBuildArguments: [], name: nil, inPath: pathWithNoXcodeProject)
@@ -48,6 +51,8 @@ class ModuleTests: XCTestCase {
                           rootDirectory: commandantPath)
     }
 
+#endif
+
     func testCommandantDocsSPM() throws {
         let temporaryURL = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("\(#function)-\(NSUUID())")
@@ -86,15 +91,5 @@ class ModuleTests: XCTestCase {
         }
         let skModule = Module(spmName: nil, inPath: projectRoot)
         XCTAssertEqual(skModule?.name, "SourceKittenFramework")
-    }
-
-    static var allTests: [(String, (ModuleTests) -> () throws -> Void)] {
-        return [
-            // Disabled on Linux because these tests require Xcode
-            // ("testModuleNilInPathWithNoXcodeProject", testModuleNilInPathWithNoXcodeProject),
-            // ("testCommandantDocs", testCommandantDocs),
-            ("testCommandantDocsSPM", testCommandantDocsSPM),
-            ("testSpmDefaultModule", testSpmDefaultModule)
-        ]
     }
 }

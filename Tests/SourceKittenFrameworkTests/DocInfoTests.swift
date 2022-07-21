@@ -12,11 +12,3 @@ class DocInfoTests: XCTestCase {
         compareJSONString(withFixtureNamed: "DocInfo", jsonString: toJSON(info))
     }
 }
-
-extension DocInfoTests {
-    static var allTests: [(String, (DocInfoTests) -> () throws -> Void)] {
-        return [
-            ("testDocInfoRequest", testDocInfoRequest)
-        ]
-    }
-}

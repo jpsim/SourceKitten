@@ -237,7 +237,7 @@ class SourceKitTests: XCTestCase {
     }
 
     func testLibraryWrappersAreUpToDate() throws {
-#if compiler(>=5.4)
+#if compiler(>=5.4) && os(macOS)
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments,
                                                  name: "SourceKittenFramework", inPath: projectRoot)!
         let docsJSON = sourceKittenFrameworkModule.docs.description
@@ -308,20 +308,5 @@ class SourceKitTests: XCTestCase {
 
     func testCompilerVersion() {
         XCTAssertTrue(SwiftVersion.current >= SwiftVersion.fiveDotOne)
-    }
-}
-
-extension SourceKitTests {
-    static var allTests: [(String, (SourceKitTests) -> () throws -> Void)] {
-        return [
-            ("testStatementKinds", testStatementKinds),
-            ("testSyntaxKinds", testSyntaxKinds),
-            ("testSwiftDeclarationKind", testSwiftDeclarationKind),
-            ("testSwiftDeclarationAttributeKind", testSwiftDeclarationAttributeKind),
-            ("testIndex", testIndex),
-            ("testYamlRequest", testYamlRequest),
-            ("testSyntaxTree", testSyntaxTree),
-            ("testCompilerVersion", testCompilerVersion)
-        ]
     }
 }

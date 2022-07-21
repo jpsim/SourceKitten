@@ -19,13 +19,3 @@ class FileTests: XCTestCase {
         XCTAssertEqual(file.lines.last?.byteRange, ByteRange(location: 67, length: 10))
     }
 }
-
-extension FileTests {
-    static var allTests: [(String, (FileTests) -> () throws -> Void)] {
-        return [
-            ("testUnreadablePath", testUnreadablePath),
-            ("testFormat", testFormat),
-            ("testLinesRangesWhenUsingLineSeparator", testLinesRangesWhenUsingLineSeparator)
-        ]
-    }
-}
