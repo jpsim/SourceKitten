@@ -4,6 +4,8 @@ import SourceKit
 
 #if os(Linux)
 import Glibc
+#else
+import Darwin
 #endif
 
 /// Represents docs for a Swift file.
