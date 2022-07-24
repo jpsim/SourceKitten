@@ -4,9 +4,15 @@ exports_files(glob(["SourceKittenFramework/**/*.swift"]))
 
 cc_library(
     name = "Clang_CLibrary",
-    srcs = glob(["Clang_C/**/*.c"], allow_empty = False),
-    hdrs = glob(["Clang_C/**/*.h"], allow_empty = False),
-    visibility = ["//visibility:public"]
+    srcs = glob(
+        ["Clang_C/**/*.c"],
+        allow_empty = False,
+    ),
+    hdrs = glob(
+        ["Clang_C/**/*.h"],
+        allow_empty = False,
+    ),
+    visibility = ["//visibility:public"],
 )
 
 swift_c_module(
@@ -19,9 +25,15 @@ swift_c_module(
 
 cc_library(
     name = "SourceKitLibrary",
-    srcs = glob(["SourceKit/**/*.c"], allow_empty = False),
-    hdrs = glob(["SourceKit/**/*.h"], allow_empty = False),
-    visibility = ["//visibility:public"]
+    srcs = glob(
+        ["SourceKit/**/*.c"],
+        allow_empty = False,
+    ),
+    hdrs = glob(
+        ["SourceKit/**/*.h"],
+        allow_empty = False,
+    ),
+    visibility = ["//visibility:public"],
 )
 
 swift_c_module(
@@ -34,12 +46,18 @@ swift_c_module(
 
 filegroup(
     name = "SourceKittenFrameworkSources",
-    srcs = glob(["SourceKittenFramework/**/*.swift"], allow_empty = False),
-    visibility = ["//visibility:public"]
+    srcs = glob(
+        ["SourceKittenFramework/**/*.swift"],
+        allow_empty = False,
+    ),
+    visibility = ["//visibility:public"],
 )
 
 filegroup(
     name = "SourceKittenLibSources",
-    srcs = glob(["sourcekitten/**/*.swift"], allow_empty = False),
-    visibility = ["//visibility:public"]
+    srcs = glob(
+        ["sourcekitten/**/*.swift"],
+        allow_empty = False,
+    ),
+    visibility = ["//visibility:public"],
 )
