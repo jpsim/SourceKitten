@@ -33,4 +33,3 @@ jobs:
         if: always()
         run: bazelisk build sourcekitten
         shell: bash
-      - name: Yams tests logs
