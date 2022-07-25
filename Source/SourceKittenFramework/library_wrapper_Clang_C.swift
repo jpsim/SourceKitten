@@ -1,4 +1,5 @@
 #if !os(Linux)
+import Darwin
 #if SWIFT_PACKAGE
 import Clang_C
 #endif

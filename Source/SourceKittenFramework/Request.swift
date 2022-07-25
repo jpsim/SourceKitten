@@ -490,7 +490,7 @@ internal func libraryWrapperForModule(_ module: String,
     let startPlatformCheck: String
     let endPlatformCheck: String
     if linuxPath == nil {
-        startPlatformCheck = "#if !os(Linux)\n"
+        startPlatformCheck = "#if !os(Linux)\nimport Darwin\n"
         endPlatformCheck = "\n#endif\n"
     } else {
         startPlatformCheck = ""
