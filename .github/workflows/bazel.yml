@@ -26,10 +26,6 @@ jobs:
         with:
           go-version: '^1.13.1' # The Go version to download (if necessary) and use.
       - name: Setup Bazel
-        if: always()
-        run: go get github.com/bazelbuild/bazelisk
-        shell: bash
-      - name: Build
-        if: always()
+        run: go install github.com/bazelbuild/bazelisk@latest
+      - name: Build SourceKitten
         run: bazelisk build sourcekitten
-        shell: bash
