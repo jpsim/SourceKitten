@@ -4,10 +4,6 @@ exports_files(glob(["SourceKittenFramework/**/*.swift"]))
 
 cc_library(
     name = "Clang_CLibrary",
-    srcs = glob(
-        ["Clang_C/**/*.c"],
-        allow_empty = False,
-    ),
     hdrs = glob(
         ["Clang_C/**/*.h"],
         allow_empty = False,
@@ -25,10 +21,6 @@ swift_c_module(
 
 cc_library(
     name = "SourceKitLibrary",
-    srcs = glob(
-        ["SourceKit/**/*.c"],
-        allow_empty = False,
-    ),
     hdrs = glob(
         ["SourceKit/**/*.h"],
         allow_empty = False,
