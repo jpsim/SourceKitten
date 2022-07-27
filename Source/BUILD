@@ -16,7 +16,7 @@ swift_c_module(
     module_map = "Clang_C/Clang_C.modulemap",
     module_name = "Clang_C",
     visibility = ["//visibility:public"],
-    deps = [":SourceKitLibrary"],
+    deps = [":Clang_CLibrary"],
 )
 
 cc_library(
