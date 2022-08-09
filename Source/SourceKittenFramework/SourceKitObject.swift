@@ -111,8 +111,8 @@ extension SourceKitObject: SourceKitObjectConvertible {
 extension SourceKitObject: CustomStringConvertible {
     public var description: String {
         let bytes = sourcekitd_request_description_copy(sourcekitdObject)!
-        let length = Int(strlen(bytes))
-        return String(bytesNoCopy: bytes, length: length, encoding: .utf8, freeWhenDone: true)!
+        defer { bytes.deallocate() }
+        return String(cString: bytes)
     }
 }
 
