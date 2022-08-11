@@ -6,6 +6,12 @@
   or higher to run.  
   [JP Simard](https://github.com/jpsim)
 
+* SourceKitten now always uses the in-process version of sourcekitd on
+  macOS. The `IN_PROCESS_SOURCEKIT` environment variable is ignored and
+  the `SourceKittenConfiguration.preferInProcessSourceKit` API has been
+  completely removed.  
+  [JP Simard](https://github.com/jpsim)
+
 ##### Enhancements
 
 * Adds Bazel Build Support

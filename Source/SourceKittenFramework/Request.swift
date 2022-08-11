@@ -457,8 +457,7 @@ extension String {
 }
 
 internal func libraryWrapperForModule(_ module: String,
-                                      loadPath: String,
-                                      inProcLoadPath: String?,
+                                      macOSPath: String,
                                       linuxPath: String?,
                                       compilerArguments: [String]) throws -> String {
     let sourceKitResponse = try interfaceForModule(module, compilerArguments: compilerArguments)
@@ -467,24 +466,18 @@ internal func libraryWrapperForModule(_ module: String,
     let freeFunctions = source.extractFreeFunctions(inSubstructure: substructure)
     let spmImport = "#if SWIFT_PACKAGE\nimport \(module)\n#endif\n"
     let library: String
-    if let inProcLoadPath = inProcLoadPath, let linuxPath = linuxPath {
+    if let linuxPath = linuxPath {
         library = """
             #if os(Linux)
             private let path = "\(linuxPath)"
             #else
-            private let path: String = {
-                if SourceKittenConfiguration.preferInProcessSourceKit {
-                    return "\(inProcLoadPath)"
-                } else {
-                    return "\(loadPath)"
-                }
-            }()
+            private let path = "\(macOSPath)"
             #endif
             private let library = toolchainLoader.load(path: path)
 
             """
     } else {
-        library = "private let library = toolchainLoader.load(path: \"\(loadPath)\")\n"
+        library = "private let library = toolchainLoader.load(path: \"\(macOSPath)\")\n"
     }
     let swiftlintDisableComment = "// swiftlint:disable unused_declaration - We don't care if some of these are unused.\n"
     let startPlatformCheck: String
