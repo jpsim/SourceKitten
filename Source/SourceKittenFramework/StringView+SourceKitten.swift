@@ -35,10 +35,8 @@ public extension StringView {
 
         return matches.compactMap { match in
             let markRange = match.range(at: 2)
-            for excludedRange in excludeRanges {
-                if NSIntersectionRange(excludedRange, markRange).length > 0 {
-                    return nil
-                }
+            for excludedRange in excludeRanges where NSIntersectionRange(excludedRange, markRange).length > 0 {
+                return nil
             }
             let markString = nsString.substring(with: markRange).trimmingCharacters(in: .whitespaces)
             if markString.isEmpty {
