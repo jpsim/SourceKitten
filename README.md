@@ -90,11 +90,6 @@ On Linux, SourceKit is expected to be located in
 `/usr/lib/libsourcekitdInProc.so` or specified by the `LINUX_SOURCEKIT_LIB_PATH`
 environment variable.
 
-On macOS, `sourcekitd.framework` is used, which uses XPC to communicate with the
-sourcekit daemon. If you want to use the in-process version
-(`sourcekitdInProc.framework`), specify `IN_PROCESS_SOURCEKIT=YES`
-environment variable.
-
 ## Projects Built With SourceKitten
 
 * [SwiftLint](https://github.com/realm/SwiftLint):
