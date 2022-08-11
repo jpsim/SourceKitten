@@ -4,13 +4,7 @@ import SourceKit
 #if os(Linux)
 private let path = "libsourcekitdInProc.so"
 #else
-private let path: String = {
-    if SourceKittenConfiguration.preferInProcessSourceKit {
-        return "sourcekitdInProc.framework/Versions/A/sourcekitdInProc"
-    } else {
-        return "sourcekitd.framework/Versions/A/sourcekitd"
-    }
-}()
+private let path = "sourcekitdInProc.framework/Versions/A/sourcekitdInProc"
 #endif
 private let library = toolchainLoader.load(path: path)
 // swiftlint:disable unused_declaration - We don't care if some of these are unused.
