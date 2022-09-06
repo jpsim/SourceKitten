@@ -1,3 +1,18 @@
+## Main
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* Add a `File.clearCaches()` function to clear a file's cached data.  
+  [JP Simard](https://github.com/jpsim)
+
+##### Bug Fixes
+
+* None.
+
 ## 0.33.0
 
 ##### Breaking

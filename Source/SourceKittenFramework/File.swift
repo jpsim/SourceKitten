@@ -32,6 +32,15 @@ public final class File {
         }
     }
 
+    public func clearCaches() {
+        _contentsQueue.sync {
+            _contents = nil
+            _stringViewQueue.sync {
+                _stringView = nil
+            }
+        }
+    }
+
     public var stringView: StringView {
         _stringViewQueue.sync {
             if _stringView == nil {
@@ -46,7 +55,6 @@ public final class File {
     }
 
     private var _contents: String?
-    private var _lines: [Line]?
     private var _stringView: StringView?
     private let _contentsQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.contents")
     private let _stringViewQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.stringView")
