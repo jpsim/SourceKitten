@@ -5,7 +5,7 @@ import SourceKit
 #endif
 import SWXMLHash
 
-// swiftlint:disable file_length
+// swiftlint:disable file_length type_body_length
 // This file could easily be split up
 
 /// Represents a source file.
