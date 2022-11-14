@@ -260,12 +260,6 @@ class StringTests: XCTestCase {
     }
 }
 
-typealias LineRangeType = (start: Int, end: Int)
-
-func == (lhs: LineRangeType, rhs: LineRangeType) -> Bool {
-    return lhs.start == rhs.start && lhs.end == rhs.end
-}
-
 private func XCTAssertEqual(_ actual: (Int, Int)?, _ expected: (Int, Int), file: StaticString = #file, line: UInt = #line) {
     XCTAssertNotNil(actual, file: file, line: line)
 
