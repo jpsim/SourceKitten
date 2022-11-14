@@ -145,13 +145,6 @@ public struct StringView {
         return byteRangeToNSRange(byteRange).map(nsString.substring)
     }
 
-    /// Returns a substring, started at UTF-16 location.
-    ///
-    /// - parameter location: UTF-16 location.
-    func substring(from location: Int) -> String {
-        return nsString.substring(from: location)
-    }
-
     /**
      Converts a range of byte offsets in `self` to an `NSRange` suitable for filtering `self` as an
      `NSString`.
