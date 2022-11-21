@@ -88,4 +88,6 @@ public enum SwiftDeclarationKind: String, CaseIterable {
     case varParameter = "source.lang.swift.decl.var.parameter"
     /// `var.static`.
     case varStatic = "source.lang.swift.decl.var.static"
+    /// `actor`.
+    case actor = "source.lang.swift.decl.actor"
 }

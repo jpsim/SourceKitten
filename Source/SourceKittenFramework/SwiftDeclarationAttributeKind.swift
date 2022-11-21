@@ -161,4 +161,12 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case _noAllocation = "source.decl.attribute._noAllocation"
     case _noImplicitCopy = "source.decl.attribute._noImplicitCopy"
     case _noLocks = "source.decl.attribute._noLocks"
+
+    // Only available in Swift >= 5.7
+
+    case _local = "source.decl.attribute._local"
+    case _backDeploy = "source.decl.attribute._backDeploy"
+    case exclusivity = "source.decl.attribute.exclusivity"
+    case _unsafeInheritExecutor = "source.decl.attribute._unsafeInheritExecutor"
+    case _compilerInitialized = "source.decl.attribute._compilerInitialized"
 }

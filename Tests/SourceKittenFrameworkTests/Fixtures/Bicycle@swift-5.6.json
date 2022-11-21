@@ -6,7 +6,7 @@
     "key.substructure" : [
       {
         "key.accessibility" : "source.lang.swift.accessibility.public",
-        "key.annotated_decl" : "<Declaration>class NSString : <Type usr=\"c:objc(cs)NSObject\">NSObject<\/Type>, <Type usr=\"c:objc(pl)NSCopying\">NSCopying<\/Type>, <Type usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/Type>, <Type usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/Type><\/Declaration>",
+        "key.annotated_decl" : "<Declaration>@_nonSendable(_assumed) class NSString : <Type usr=\"c:objc(cs)NSObject\">NSObject<\/Type>, <Type usr=\"c:objc(pl)NSCopying\">NSCopying<\/Type>, <Type usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/Type>, <Type usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/Type><\/Declaration>",
         "key.attributes" : [
           {
             "key.attribute" : "source.decl.attribute.public",
@@ -27,7 +27,7 @@
         "key.doclength" : 26,
         "key.docoffset" : 19,
         "key.filepath" : "",
-        "key.fully_annotated_decl" : "<decl.class><syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>NSString<\/decl.name> : <ref.class usr=\"c:objc(cs)NSObject\">NSObject<\/ref.class>, <ref.protocol usr=\"c:objc(pl)NSCopying\">NSCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/ref.protocol><\/decl.class>",
+        "key.fully_annotated_decl" : "<decl.class><syntaxtype.attribute.builtin><syntaxtype.attribute.name>@_nonSendable(_assumed)<\/syntaxtype.attribute.name><\/syntaxtype.attribute.builtin> <syntaxtype.keyword>class<\/syntaxtype.keyword> <decl.name>NSString<\/decl.name> : <ref.class usr=\"c:objc(cs)NSObject\">NSObject<\/ref.class>, <ref.protocol usr=\"c:objc(pl)NSCopying\">NSCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSMutableCopying\">NSMutableCopying<\/ref.protocol>, <ref.protocol usr=\"c:objc(pl)NSSecureCoding\">NSSecureCoding<\/ref.protocol><\/decl.class>",
         "key.is_system" : true,
         "key.kind" : "source.lang.swift.decl.extension",
         "key.length" : 21,

@@ -37,62 +37,10 @@
     {
       "key.dependencies" : [
         {
-          "key.dependencies" : [
-            {
-              "key.dependencies" : [
-                {
-                  "key.filepath" : "",
-                  "key.is_system" : true,
-                  "key.kind" : "source.lang.swift.import.module.clang",
-                  "key.name" : "Darwin"
-                },
-                {
-                  "key.filepath" : "",
-                  "key.is_system" : true,
-                  "key.kind" : "source.lang.swift.import.module.swift",
-                  "key.name" : "Swift"
-                },
-                {
-                  "key.filepath" : "",
-                  "key.is_system" : true,
-                  "key.kind" : "source.lang.swift.import.module.clang",
-                  "key.name" : "SwiftOverlayShims"
-                },
-                {
-                  "key.filepath" : "",
-                  "key.is_system" : true,
-                  "key.kind" : "source.lang.swift.import.module.clang",
-                  "key.name" : "SwiftShims"
-                }
-              ],
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Darwin"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Swift"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "_Concurrency"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "_StringProcessing"
-            }
-          ],
           "key.filepath" : "",
           "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.swift",
-          "key.name" : "Combine"
+          "key.kind" : "source.lang.swift.import.module.clang",
+          "key.name" : "CoreFoundation"
         },
         {
           "key.dependencies" : [
@@ -100,45 +48,7 @@
               "key.filepath" : "",
               "key.is_system" : true,
               "key.kind" : "source.lang.swift.import.module.clang",
-              "key.name" : "CoreFoundation"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Swift"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "_Concurrency"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "_StringProcessing"
-            }
-          ],
-          "key.filepath" : "",
-          "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.swift",
-          "key.name" : "CoreFoundation"
-        },
-        {
-          "key.filepath" : "",
-          "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.swift",
-          "key.name" : "Darwin"
-        },
-        {
-          "key.dependencies" : [
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Combine"
+              "key.name" : "CDispatch"
             },
             {
               "key.filepath" : "",
@@ -171,19 +81,7 @@
           "key.name" : "Dispatch"
         },
         {
-          "key.filepath" : "",
-          "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.clang",
-          "key.name" : "Foundation"
-        },
-        {
           "key.dependencies" : [
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.clang",
-              "key.name" : "ObjectiveC"
-            },
             {
               "key.filepath" : "",
               "key.is_system" : true,
@@ -193,20 +91,26 @@
             {
               "key.filepath" : "",
               "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "_Concurrency"
+              "key.kind" : "source.lang.swift.import.module.clang",
+              "key.name" : "SwiftGlibc"
             },
             {
               "key.filepath" : "",
               "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "_StringProcessing"
+              "key.kind" : "source.lang.swift.import.module.clang",
+              "key.name" : "SwiftOverlayShims"
+            },
+            {
+              "key.filepath" : "",
+              "key.is_system" : true,
+              "key.kind" : "source.lang.swift.import.module.clang",
+              "key.name" : "SwiftShims"
             }
           ],
           "key.filepath" : "",
           "key.is_system" : true,
           "key.kind" : "source.lang.swift.import.module.swift",
-          "key.name" : "ObjectiveC"
+          "key.name" : "Glibc"
         },
         {
           "key.filepath" : "",
@@ -225,12 +129,6 @@
           "key.is_system" : true,
           "key.kind" : "source.lang.swift.import.module.swift",
           "key.name" : "_StringProcessing"
-        },
-        {
-          "key.filepath" : "",
-          "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.clang",
-          "key.name" : "uuid"
         }
       ],
       "key.filepath" : "",
@@ -252,7 +150,7 @@
       "key.kind" : "source.lang.swift.ref.class",
       "key.line" : 5,
       "key.name" : "NSString",
-      "key.usr" : "c:objc(cs)NSString"
+      "key.usr" : "s:10Foundation8NSStringC"
     },
     {
       "key.attributes" : [
