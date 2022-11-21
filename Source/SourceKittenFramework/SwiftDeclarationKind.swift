@@ -27,12 +27,12 @@ public enum SwiftDeclarationKind: String, CaseIterable {
     case functionAccessorDidset = "source.lang.swift.decl.function.accessor.didset"
     /// `function.accessor.getter`.
     case functionAccessorGetter = "source.lang.swift.decl.function.accessor.getter"
-    /// `function.accessor.modify`
+    // `function.accessor.modify`
     //    @available(swift, introduced: 5.0)
     case functionAccessorModify = "source.lang.swift.decl.function.accessor.modify"
     /// `function.accessor.mutableaddress`.
     case functionAccessorMutableaddress = "source.lang.swift.decl.function.accessor.mutableaddress"
-    /// `function.accessor.read`
+    // `function.accessor.read`
     //    @available(swift, introduced: 5.0)
     case functionAccessorRead = "source.lang.swift.decl.function.accessor.read"
     /// `function.accessor.setter`.
@@ -51,7 +51,7 @@ public enum SwiftDeclarationKind: String, CaseIterable {
     case functionMethodInstance = "source.lang.swift.decl.function.method.instance"
     /// `function.method.static`.
     case functionMethodStatic = "source.lang.swift.decl.function.method.static"
-    /// `function.operator`.
+    // `function.operator`.
     //    @available(swift, obsoleted: 2.2)
     case functionOperator = "source.lang.swift.decl.function.operator"
     /// `function.operator.infix`.
