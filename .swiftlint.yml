@@ -42,3 +42,4 @@ disabled_rules:
   - todo
 
 line_length: 160
+large_tuple: 4
