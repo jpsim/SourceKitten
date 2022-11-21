@@ -18,7 +18,7 @@ jobs:
   Linux:
     strategy:
       matrix:
-        tag: ['5.7']
+        tag: ['5.7-focal']
     runs-on: ubuntu-latest
     container:
       image: swift:${{ matrix.tag }}
