@@ -9,69 +9,37 @@
     {
       "key.dependencies" : [
         {
-          "key.dependencies" : [
-            {
-              "key.dependencies" : [
-                {
-                  "key.filepath" : "",
-                  "key.is_system" : true,
-                  "key.kind" : "source.lang.swift.import.module.clang",
-                  "key.name" : "Darwin"
-                },
-                {
-                  "key.filepath" : "",
-                  "key.is_system" : true,
-                  "key.kind" : "source.lang.swift.import.module.swift",
-                  "key.name" : "Swift"
-                },
-                {
-                  "key.filepath" : "",
-                  "key.is_system" : true,
-                  "key.kind" : "source.lang.swift.import.module.clang",
-                  "key.name" : "SwiftOverlayShims"
-                },
-                {
-                  "key.filepath" : "",
-                  "key.is_system" : true,
-                  "key.kind" : "source.lang.swift.import.module.clang",
-                  "key.name" : "SwiftShims"
-                }
-              ],
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Darwin"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Swift"
-            }
-          ],
           "key.filepath" : "",
           "key.is_system" : true,
           "key.kind" : "source.lang.swift.import.module.swift",
-          "key.name" : "Combine"
-        },
+          "key.name" : "Swift"
+        }
+      ],
+      "key.filepath" : "",
+      "key.is_system" : true,
+      "key.kind" : "source.lang.swift.import.module.swift",
+      "key.name" : "_StringProcessing"
+    },
+    {
+      "key.dependencies" : [
         {
-          "key.dependencies" : [
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.clang",
-              "key.name" : "CoreFoundation"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Swift"
-            }
-          ],
           "key.filepath" : "",
           "key.is_system" : true,
           "key.kind" : "source.lang.swift.import.module.swift",
+          "key.name" : "Swift"
+        }
+      ],
+      "key.filepath" : "",
+      "key.is_system" : true,
+      "key.kind" : "source.lang.swift.import.module.swift",
+      "key.name" : "_Concurrency"
+    },
+    {
+      "key.dependencies" : [
+        {
+          "key.filepath" : "",
+          "key.is_system" : true,
+          "key.kind" : "source.lang.swift.import.module.clang",
           "key.name" : "CoreFoundation"
         },
         {
@@ -80,39 +48,7 @@
               "key.filepath" : "",
               "key.is_system" : true,
               "key.kind" : "source.lang.swift.import.module.clang",
-              "key.name" : "CoreGraphics"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Darwin"
-            },
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Swift"
-            }
-          ],
-          "key.filepath" : "",
-          "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.swift",
-          "key.name" : "CoreGraphics"
-        },
-        {
-          "key.filepath" : "",
-          "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.swift",
-          "key.name" : "Darwin"
-        },
-        {
-          "key.dependencies" : [
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.swift",
-              "key.name" : "Combine"
+              "key.name" : "CDispatch"
             },
             {
               "key.filepath" : "",
@@ -129,8 +65,14 @@
             {
               "key.filepath" : "",
               "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.clang",
-              "key.name" : "_SwiftDispatchOverlayShims"
+              "key.kind" : "source.lang.swift.import.module.swift",
+              "key.name" : "_Concurrency"
+            },
+            {
+              "key.filepath" : "",
+              "key.is_system" : true,
+              "key.kind" : "source.lang.swift.import.module.swift",
+              "key.name" : "_StringProcessing"
             }
           ],
           "key.filepath" : "",
@@ -139,19 +81,7 @@
           "key.name" : "Dispatch"
         },
         {
-          "key.filepath" : "",
-          "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.clang",
-          "key.name" : "Foundation"
-        },
-        {
           "key.dependencies" : [
-            {
-              "key.filepath" : "",
-              "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.clang",
-              "key.name" : "ObjectiveC"
-            },
             {
               "key.filepath" : "",
               "key.is_system" : true,
@@ -162,13 +92,25 @@
               "key.filepath" : "",
               "key.is_system" : true,
               "key.kind" : "source.lang.swift.import.module.clang",
-              "key.name" : "_SwiftObjectiveCOverlayShims"
+              "key.name" : "SwiftGlibc"
+            },
+            {
+              "key.filepath" : "",
+              "key.is_system" : true,
+              "key.kind" : "source.lang.swift.import.module.clang",
+              "key.name" : "SwiftOverlayShims"
+            },
+            {
+              "key.filepath" : "",
+              "key.is_system" : true,
+              "key.kind" : "source.lang.swift.import.module.clang",
+              "key.name" : "SwiftShims"
             }
           ],
           "key.filepath" : "",
           "key.is_system" : true,
           "key.kind" : "source.lang.swift.import.module.swift",
-          "key.name" : "ObjectiveC"
+          "key.name" : "Glibc"
         },
         {
           "key.filepath" : "",
@@ -179,20 +121,14 @@
         {
           "key.filepath" : "",
           "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.clang",
-          "key.name" : "_SwiftCoreFoundationOverlayShims"
+          "key.kind" : "source.lang.swift.import.module.swift",
+          "key.name" : "_Concurrency"
         },
         {
           "key.filepath" : "",
           "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.clang",
-          "key.name" : "_SwiftFoundationOverlayShims"
-        },
-        {
-          "key.filepath" : "",
-          "key.is_system" : true,
-          "key.kind" : "source.lang.swift.import.module.clang",
-          "key.name" : "uuid"
+          "key.kind" : "source.lang.swift.import.module.swift",
+          "key.name" : "_StringProcessing"
         }
       ],
       "key.filepath" : "",
@@ -214,7 +150,7 @@
       "key.kind" : "source.lang.swift.ref.class",
       "key.line" : 5,
       "key.name" : "NSString",
-      "key.usr" : "c:objc(cs)NSString"
+      "key.usr" : "s:10Foundation8NSStringC"
     },
     {
       "key.attributes" : [
@@ -223,6 +159,7 @@
         }
       ],
       "key.column" : 14,
+      "key.effective_access" : "source.decl.effective_access.public",
       "key.entities" : [
         {
           "key.attributes" : [
@@ -231,9 +168,11 @@
             }
           ],
           "key.column" : 17,
+          "key.effective_access" : "source.decl.effective_access.public",
           "key.entities" : [
             {
               "key.column" : 14,
+              "key.effective_access" : "source.decl.effective_access.public",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 18,
               "key.name" : "Road",
@@ -241,6 +180,7 @@
             },
             {
               "key.column" : 20,
+              "key.effective_access" : "source.decl.effective_access.public",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 18,
               "key.name" : "Touring",
@@ -248,6 +188,7 @@
             },
             {
               "key.column" : 29,
+              "key.effective_access" : "source.decl.effective_access.public",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 18,
               "key.name" : "Cruiser",
@@ -255,6 +196,7 @@
             },
             {
               "key.column" : 38,
+              "key.effective_access" : "source.decl.effective_access.public",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 18,
               "key.name" : "Hybrid",
@@ -273,9 +215,11 @@
             }
           ],
           "key.column" : 17,
+          "key.effective_access" : "source.decl.effective_access.public",
           "key.entities" : [
             {
               "key.column" : 14,
+              "key.effective_access" : "source.decl.effective_access.public",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 28,
               "key.name" : "Fixed",
@@ -283,6 +227,7 @@
             },
             {
               "key.column" : 14,
+              "key.effective_access" : "source.decl.effective_access.public",
               "key.entities" : [
                 {
                   "key.column" : 32,
@@ -305,9 +250,11 @@
         },
         {
           "key.column" : 10,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.column" : 14,
+              "key.effective_access" : "source.decl.effective_access.internal",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 41,
               "key.name" : "Riser",
@@ -315,6 +262,7 @@
             },
             {
               "key.column" : 21,
+              "key.effective_access" : "source.decl.effective_access.internal",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 41,
               "key.name" : "Café",
@@ -322,6 +270,7 @@
             },
             {
               "key.column" : 28,
+              "key.effective_access" : "source.decl.effective_access.internal",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 41,
               "key.name" : "Drop",
@@ -329,6 +278,7 @@
             },
             {
               "key.column" : 34,
+              "key.effective_access" : "source.decl.effective_access.internal",
               "key.kind" : "source.lang.swift.decl.enumelement",
               "key.line" : 41,
               "key.name" : "Bullhorn",
@@ -347,6 +297,7 @@
             }
           ],
           "key.column" : 9,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.attributes" : [
@@ -392,6 +343,7 @@
             }
           ],
           "key.column" : 9,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.attributes" : [
@@ -437,6 +389,7 @@
             }
           ],
           "key.column" : 9,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.attributes" : [
@@ -482,6 +435,7 @@
             }
           ],
           "key.column" : 9,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.attributes" : [
@@ -527,6 +481,7 @@
             }
           ],
           "key.column" : 22,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.attributes" : [
@@ -574,6 +529,7 @@
             }
           ],
           "key.column" : 22,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.attributes" : [
@@ -616,6 +572,7 @@
         },
         {
           "key.column" : 5,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.column" : 17,
@@ -650,11 +607,9 @@
               "key.entities" : [
                 {
                   "key.column" : 14,
-                  "key.is_dynamic" : true,
                   "key.is_implicit" : true,
                   "key.kind" : "source.lang.swift.ref.function.accessor.setter",
                   "key.line" : 73,
-                  "key.receiver_usr" : "s:7BicycleAAC",
                   "key.usr" : "s:7BicycleAAC5styleAB5StyleOvs"
                 }
               ],
@@ -668,11 +623,9 @@
               "key.entities" : [
                 {
                   "key.column" : 14,
-                  "key.is_dynamic" : true,
                   "key.is_implicit" : true,
                   "key.kind" : "source.lang.swift.ref.function.accessor.setter",
                   "key.line" : 74,
-                  "key.receiver_usr" : "s:7BicycleAAC",
                   "key.usr" : "s:7BicycleAAC7gearingAB7GearingOvs"
                 }
               ],
@@ -686,11 +639,9 @@
               "key.entities" : [
                 {
                   "key.column" : 14,
-                  "key.is_dynamic" : true,
                   "key.is_implicit" : true,
                   "key.kind" : "source.lang.swift.ref.function.accessor.setter",
                   "key.line" : 75,
-                  "key.receiver_usr" : "s:7BicycleAAC",
                   "key.usr" : "s:7BicycleAAC9handlebarAB9HandlebarOvs"
                 }
               ],
@@ -704,11 +655,9 @@
               "key.entities" : [
                 {
                   "key.column" : 14,
-                  "key.is_dynamic" : true,
                   "key.is_implicit" : true,
                   "key.kind" : "source.lang.swift.ref.function.accessor.setter",
                   "key.line" : 76,
-                  "key.receiver_usr" : "s:7BicycleAAC",
                   "key.usr" : "s:7BicycleAAC9frameSizeSivs"
                 }
               ],
@@ -730,9 +679,11 @@
                   "key.usr" : "s:7BicycleAAC13numberOfTripsSivs"
                 }
               ],
+              "key.is_dynamic" : true,
               "key.kind" : "source.lang.swift.ref.var.instance",
               "key.line" : 78,
               "key.name" : "numberOfTrips",
+              "key.receiver_usr" : "s:7BicycleAAC",
               "key.usr" : "s:7BicycleAAC13numberOfTripsSivp"
             },
             {
@@ -748,9 +699,11 @@
                   "key.usr" : "s:7BicycleAAC17distanceTravelledSdvs"
                 }
               ],
+              "key.is_dynamic" : true,
               "key.kind" : "source.lang.swift.ref.var.instance",
               "key.line" : 79,
               "key.name" : "distanceTravelled",
+              "key.receiver_usr" : "s:7BicycleAAC",
               "key.usr" : "s:7BicycleAAC17distanceTravelledSdvp"
             }
           ],
@@ -761,6 +714,7 @@
         },
         {
           "key.column" : 10,
+          "key.effective_access" : "source.decl.effective_access.internal",
           "key.entities" : [
             {
               "key.column" : 34,
@@ -774,7 +728,6 @@
               "key.kind" : "source.lang.swift.ref.function.operator.infix",
               "key.line" : 88,
               "key.name" : ">(_:_:)",
-              "key.receiver_usr" : "s:Sd",
               "key.usr" : "s:SFsE1goiySbx_xtFZ"
             },
             {
@@ -799,9 +752,11 @@
                   "key.usr" : "s:7BicycleAAC17distanceTravelledSdvs"
                 }
               ],
+              "key.is_dynamic" : true,
               "key.kind" : "source.lang.swift.ref.var.instance",
               "key.line" : 89,
               "key.name" : "distanceTravelled",
+              "key.receiver_usr" : "s:7BicycleAAC",
               "key.usr" : "s:7BicycleAAC17distanceTravelledSdvp"
             },
             {
@@ -809,7 +764,6 @@
               "key.kind" : "source.lang.swift.ref.function.operator.infix",
               "key.line" : 89,
               "key.name" : "+=(_:_:)",
-              "key.receiver_usr" : "s:Sd",
               "key.usr" : "s:Sd2peoiyySdz_SdtFZ"
             },
             {
@@ -834,9 +788,11 @@
                   "key.usr" : "s:7BicycleAAC13numberOfTripsSivs"
                 }
               ],
+              "key.is_dynamic" : true,
               "key.kind" : "source.lang.swift.ref.var.instance",
               "key.line" : 90,
               "key.name" : "numberOfTrips",
+              "key.receiver_usr" : "s:7BicycleAAC",
               "key.usr" : "s:7BicycleAAC13numberOfTripsSivp"
             },
             {
@@ -844,7 +800,6 @@
               "key.kind" : "source.lang.swift.ref.function.operator.infix",
               "key.line" : 90,
               "key.name" : "+=(_:_:)",
-              "key.receiver_usr" : "s:Si",
               "key.usr" : "s:Si2peoiyySiz_SitFZ"
             }
           ],

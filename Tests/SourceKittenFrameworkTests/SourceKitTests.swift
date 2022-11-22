@@ -126,14 +126,6 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
-#if compiler(>=5.6.2)
-        // removed in Swift 5.6.2
-        expected.subtract([
-            .__raw_doc_comment, .__setter_access, .IBSegueAction, ._hasStorage,
-            ._show_in_interface, ._hasInitialValue
-        ])
-#endif
-
 #if compiler(>=5.6)
         // removed in Swift 5.6
         expected.subtract([.asyncHandler, .actorIndependent, .spawn, ._unsafeMainActor, ._unsafeSendable])

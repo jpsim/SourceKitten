@@ -16,8 +16,8 @@ extension SourceKitten {
         var spmModule = ""
         @Flag(help: "Prettify output")
         var prettify = false
-        @available(macOS 10.13, *)
         @Flag(help: "Sort keys in output")
+        @available(macOS 10.13, *)
         var sortKeys = false
         @Argument(help: "Compiler arguments to pass to SourceKit")
         var compilerargs: [String]

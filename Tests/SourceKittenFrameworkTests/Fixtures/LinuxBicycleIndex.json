@@ -18,6 +18,20 @@
       "key.filepath" : "",
       "key.is_system" : true,
       "key.kind" : "source.lang.swift.import.module.swift",
+      "key.name" : "_StringProcessing"
+    },
+    {
+      "key.dependencies" : [
+        {
+          "key.filepath" : "",
+          "key.is_system" : true,
+          "key.kind" : "source.lang.swift.import.module.swift",
+          "key.name" : "Swift"
+        }
+      ],
+      "key.filepath" : "",
+      "key.is_system" : true,
+      "key.kind" : "source.lang.swift.import.module.swift",
       "key.name" : "_Concurrency"
     },
     {
@@ -57,8 +71,8 @@
             {
               "key.filepath" : "",
               "key.is_system" : true,
-              "key.kind" : "source.lang.swift.import.module.clang",
-              "key.name" : "_SwiftDispatchOverlayShims"
+              "key.kind" : "source.lang.swift.import.module.swift",
+              "key.name" : "_StringProcessing"
             }
           ],
           "key.filepath" : "",
@@ -109,6 +123,12 @@
           "key.is_system" : true,
           "key.kind" : "source.lang.swift.import.module.swift",
           "key.name" : "_Concurrency"
+        },
+        {
+          "key.filepath" : "",
+          "key.is_system" : true,
+          "key.kind" : "source.lang.swift.import.module.swift",
+          "key.name" : "_StringProcessing"
         }
       ],
       "key.filepath" : "",
@@ -590,7 +610,6 @@
                   "key.is_implicit" : true,
                   "key.kind" : "source.lang.swift.ref.function.accessor.setter",
                   "key.line" : 73,
-                  "key.receiver_usr" : "s:7BicycleAAC",
                   "key.usr" : "s:7BicycleAAC5styleAB5StyleOvs"
                 }
               ],
@@ -607,7 +626,6 @@
                   "key.is_implicit" : true,
                   "key.kind" : "source.lang.swift.ref.function.accessor.setter",
                   "key.line" : 74,
-                  "key.receiver_usr" : "s:7BicycleAAC",
                   "key.usr" : "s:7BicycleAAC7gearingAB7GearingOvs"
                 }
               ],
@@ -624,7 +642,6 @@
                   "key.is_implicit" : true,
                   "key.kind" : "source.lang.swift.ref.function.accessor.setter",
                   "key.line" : 75,
-                  "key.receiver_usr" : "s:7BicycleAAC",
                   "key.usr" : "s:7BicycleAAC9handlebarAB9HandlebarOvs"
                 }
               ],
@@ -641,7 +658,6 @@
                   "key.is_implicit" : true,
                   "key.kind" : "source.lang.swift.ref.function.accessor.setter",
                   "key.line" : 76,
-                  "key.receiver_usr" : "s:7BicycleAAC",
                   "key.usr" : "s:7BicycleAAC9frameSizeSivs"
                 }
               ],
@@ -663,9 +679,11 @@
                   "key.usr" : "s:7BicycleAAC13numberOfTripsSivs"
                 }
               ],
+              "key.is_dynamic" : true,
               "key.kind" : "source.lang.swift.ref.var.instance",
               "key.line" : 78,
               "key.name" : "numberOfTrips",
+              "key.receiver_usr" : "s:7BicycleAAC",
               "key.usr" : "s:7BicycleAAC13numberOfTripsSivp"
             },
             {
@@ -681,9 +699,11 @@
                   "key.usr" : "s:7BicycleAAC17distanceTravelledSdvs"
                 }
               ],
+              "key.is_dynamic" : true,
               "key.kind" : "source.lang.swift.ref.var.instance",
               "key.line" : 79,
               "key.name" : "distanceTravelled",
+              "key.receiver_usr" : "s:7BicycleAAC",
               "key.usr" : "s:7BicycleAAC17distanceTravelledSdvp"
             }
           ],
@@ -708,7 +728,6 @@
               "key.kind" : "source.lang.swift.ref.function.operator.infix",
               "key.line" : 88,
               "key.name" : ">(_:_:)",
-              "key.receiver_usr" : "s:Sd",
               "key.usr" : "s:SFsE1goiySbx_xtFZ"
             },
             {
@@ -733,9 +752,11 @@
                   "key.usr" : "s:7BicycleAAC17distanceTravelledSdvs"
                 }
               ],
+              "key.is_dynamic" : true,
               "key.kind" : "source.lang.swift.ref.var.instance",
               "key.line" : 89,
               "key.name" : "distanceTravelled",
+              "key.receiver_usr" : "s:7BicycleAAC",
               "key.usr" : "s:7BicycleAAC17distanceTravelledSdvp"
             },
             {
@@ -743,7 +764,6 @@
               "key.kind" : "source.lang.swift.ref.function.operator.infix",
               "key.line" : 89,
               "key.name" : "+=(_:_:)",
-              "key.receiver_usr" : "s:Sd",
               "key.usr" : "s:Sd2peoiyySdz_SdtFZ"
             },
             {
@@ -768,9 +788,11 @@
                   "key.usr" : "s:7BicycleAAC13numberOfTripsSivs"
                 }
               ],
+              "key.is_dynamic" : true,
               "key.kind" : "source.lang.swift.ref.var.instance",
               "key.line" : 90,
               "key.name" : "numberOfTrips",
+              "key.receiver_usr" : "s:7BicycleAAC",
               "key.usr" : "s:7BicycleAAC13numberOfTripsSivp"
             },
             {
@@ -778,7 +800,6 @@
               "key.kind" : "source.lang.swift.ref.function.operator.infix",
               "key.line" : 90,
               "key.name" : "+=(_:_:)",
-              "key.receiver_usr" : "s:Si",
               "key.usr" : "s:Si2peoiyySiz_SitFZ"
             }
           ],
