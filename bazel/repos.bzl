@@ -2,11 +2,11 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 def sourcekitten_repos():
     """Fetches SourceKitten repositories"""
-    YAMS_VERSION = "5.0.1"
+    YAMS_VERSION = "5.0.3"
     http_archive(
         name = "sourcekitten_com_github_jpsim_yams",
         url = "https://github.com/jpsim/Yams/archive/refs/tags/%s.tar.gz" % YAMS_VERSION,
-        sha256 = "ec1ad699c30f0db45520006c63a88cc1c946a7d7b36dff32a96460388c0a4af2",
+        sha256 = "ac821256858ca84788f0864838b9957a88ed3345eb07cae6802f31d3165526f7",
         strip_prefix = "Yams-%s" % YAMS_VERSION,
     )
 
