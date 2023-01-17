@@ -1,0 +1,20 @@
+{
+    "homepage": "https://github.com/jpsim/SourceKitten",
+    "maintainers": [
+        {
+            "email": "jp@jpsim.com",
+            "github": "jpsim",
+            "name": "JP Simard"
+        },
+        {
+            "email": "keithbsmiley@gmail.com",
+            "github": "keith",
+            "name": "Keith Smiley"
+        }
+    ],
+    "repository": [
+        "github:jpsim/SourceKitten"
+    ],
+    "versions": [],
+    "yanked_versions": {}
+}
