@@ -1,4 +1,4 @@
-## Main
+## 0.34.0
 
 ##### Breaking
 
@@ -7,7 +7,8 @@
 
 ##### Enhancements
 
-* None.
+* Added support for bzlmod.  
+  [Keith Smiley](https://github.com/keith)
 
 ##### Bug Fixes
 
