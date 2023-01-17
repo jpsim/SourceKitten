@@ -118,6 +118,7 @@ set_version:
 	$(eval NEW_VERSION := $(filter-out $@,$(MAKECMDGOALS)))
 	@sed -i '' 's/## Main/## $(NEW_VERSION)/g' CHANGELOG.md
 	@sed 's/__VERSION__/$(NEW_VERSION)/g' script/Version.swift.template > Source/SourceKittenFramework/Version.swift
+	@sed -e '3s/.*/    version = "$(NEW_VERSION)",/' -i '' MODULE.bazel
 
 %:
 	@:
