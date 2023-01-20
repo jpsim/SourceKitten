@@ -21,4 +21,5 @@ tasks:
     name: Verify targets (macOS)
     platform: macos
     build_targets:
-      - '@sourcekitten//:sourcekitten'
+      # TODO: Build `:sourcekitten` target when CI has Xcode 14 installed
+      - '@sourcekitten//:SourceKittenFramework'
