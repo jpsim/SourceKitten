@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Add `Request.sendAsync()` function.  
+  [JP Simard](https://github.com/jpsim)
+  [#759](https://github.com/jpsim/SourceKitten/issues/759)
 
 ##### Bug Fixes
 

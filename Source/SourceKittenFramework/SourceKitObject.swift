@@ -100,6 +100,31 @@ public final class SourceKitObject {
     func sendSync() -> sourcekitd_response_t? {
         return sourcekitd_send_request_sync(sourcekitdObject)
     }
+
+    func sendAsync() async throws -> sourcekitd_response_t {
+        let handle = UnsafeMutablePointer<sourcekitd_request_handle_t?>.allocate(capacity: 1)
+
+        return try await withTaskCancellationHandler {
+            try await withUnsafeThrowingContinuation { continuation in
+                sourcekitd_send_request(sourcekitdObject, handle) { response in
+                    enum SourceKitSendError: Error { case error, noResponse }
+
+                    guard let response else {
+                        continuation.resume(throwing: SourceKitSendError.noResponse)
+                        return
+                    }
+
+                    if sourcekitd_response_is_error(response) {
+                        continuation.resume(throwing: SourceKitSendError.error)
+                    } else {
+                        continuation.resume(returning: response)
+                    }
+                }
+            }
+        } onCancel: {
+            sourcekitd_cancel_request(handle)
+        }
+    }
 }
 
 extension SourceKitObject: SourceKitObjectConvertible {

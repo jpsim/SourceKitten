@@ -336,6 +336,19 @@ public enum Request {
     - returns: SourceKit output as a dictionary.
     - throws: Request.Error on fail ()
     */
+    public func asyncSend() async throws -> [String: SourceKitRepresentable] {
+        initializeSourceKitFailable
+        let response = try await sourcekitObject.sendAsync()
+        defer { sourcekitd_response_dispose(response) }
+        return fromSourceKit(sourcekitd_response_get_value(response)) as! [String: SourceKitRepresentable]
+    }
+
+    /**
+    Sends the request to SourceKit and return the response as an [String: SourceKitRepresentable].
+
+    - returns: SourceKit output as a dictionary.
+    - throws: Request.Error on fail ()
+    */
     public func send() throws -> [String: SourceKitRepresentable] {
         initializeSourceKitFailable
         let response = sourcekitObject.sendSync()
