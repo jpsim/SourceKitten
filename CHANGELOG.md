@@ -1,3 +1,17 @@
+## Main
+
+##### Breaking
+
+* None.
+
+##### Enhancements
+
+* None.
+
+##### Bug Fixes
+
+* None.
+
 ## 0.34.1
 
 ##### Breaking
