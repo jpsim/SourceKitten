@@ -18,4 +18,9 @@ class FileTests: XCTestCase {
         XCTAssertEqual(file.lines.count, 2)
         XCTAssertEqual(file.lines.last?.byteRange, ByteRange(location: 67, length: 10))
     }
+
+    func testNonUTF8Files() throws {
+        let file = File(pathDeferringReading: fixturesDirectory + "NonUTF8File")
+        XCTAssertEqual(file.contents, "")
+    }
 }
