@@ -79,6 +79,13 @@ class StringTests: XCTestCase {
                        "absolutePathRepresentation() should return the caller if it's already an absolute path")
     }
 
+    func testTildeExpanded() {
+        guard ProcessInfo.processInfo.environment["TEST_WORKSPACE"] == nil else {
+            return
+        }
+        XCTAssertTrue("~/my_file".bridge().absolutePathRepresentation().starts(with: FileManager.default.homeDirectoryForCurrentUser.path))
+    }
+
     func testIsTokenDocumentable() throws {
         let source = "struct A { subscript(key: String) -> Void { return () } }"
         let file = File(contents: source)

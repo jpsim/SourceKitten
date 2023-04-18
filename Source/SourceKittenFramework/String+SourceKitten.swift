@@ -172,7 +172,7 @@ extension NSString {
      - parameter rootDirectory: Absolute parent path if not already an absolute path.
      */
     public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
-        if isAbsolutePath { return bridge() }
+        if isAbsolutePath { return expandingTildeInPath }
         #if os(Linux)
         return NSURL(fileURLWithPath: NSURL.fileURL(withPathComponents: [rootDirectory, bridge()])!.path).standardizingPath!.path
         #else
