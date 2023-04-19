@@ -10,18 +10,10 @@ private var _interfaceUUIDMap = [String: String]()
 private var _interfaceUUIDMapLock = NSLock()
 
 /// Thread safe read from sourceKitUID map
-private func uuidString(`for` sourceKitUID: String) -> String? {
-    _interfaceUUIDMapLock.lock()
-    defer { _interfaceUUIDMapLock.unlock() }
-    return _interfaceUUIDMap[sourceKitUID]
-}
+private func uuidString(`for` sourceKitUID: String) -> String? { _interfaceUUIDMapLock.withLock { _interfaceUUIDMap[sourceKitUID] } }
 
 /// Thread safe write from sourceKitUID map
-private func setUUIDString(uidString: String, `for` file: String) {
-    _interfaceUUIDMapLock.lock()
-    defer { _interfaceUUIDMapLock.unlock() }
-    _interfaceUUIDMap[file] = uidString
-}
+private func setUUIDString(uidString: String, `for` file: String) { _interfaceUUIDMapLock.withLock { _interfaceUUIDMap[file] = uidString } }
 
 struct ClangIndex {
     private let index = clang_createIndex(0, 1)

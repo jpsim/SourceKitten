@@ -13,16 +13,29 @@ public struct Module {
     /// Documentation for this Module. Typically expensive computed property.
     public var docs: [SwiftDocs] {
         var fileIndex = 1
-        let sourceFilesCount = sourceFiles.count
-        return sourceFiles.sorted().compactMap {
-            let filename = $0.bridge().lastPathComponent
-            if let file = File(path: $0) {
-                fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
-                fileIndex += 1
-                return SwiftDocs(file: file, arguments: compilerArguments)
+        let lock = NSLock()
+
+        return sourceFiles.sorted().parallelCompactMap { path in
+            let file = File(path: path)
+            let docs = file.flatMap { SwiftDocs(file: $0, arguments: self.compilerArguments) }
+            let fileName = path.bridge().lastPathComponent
+
+            let log: String
+            if docs != nil {
+                log = "Parsed \(fileName) (\(fileIndex)/\(self.sourceFiles.count))"
+            } else {
+                log = """
+                    Could not parse `\(fileName)`. \
+                    Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.
+                    """
             }
-            fputs("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
-            return nil
+
+            lock.withLock {
+                fputs("\(log)\n", stderr)
+                fileIndex += 1
+            }
+
+            return docs
         }
     }
 
@@ -200,5 +213,21 @@ private extension Collection where Element == XcodeBuildSetting {
     /// - Returns: The first value returned by the getter closure.
     func firstBuildSettingValue(for getterClosure: (XcodeBuildSetting) -> String?) -> String? {
         return lazy.compactMap(getterClosure).first
+    }
+}
+
+private extension Array {
+    func parallelCompactMap<T>(transform: (Element) -> T?) -> [T] {
+        return parallelMap(transform: transform).compactMap { $0 }
+    }
+
+    func parallelMap<T>(transform: (Element) -> T) -> [T] {
+        var result = ContiguousArray<T?>(repeating: nil, count: count)
+        return result.withUnsafeMutableBufferPointer { buffer in
+            DispatchQueue.concurrentPerform(iterations: buffer.count) { idx in
+                buffer[idx] = transform(self[idx])
+            }
+            return buffer.map { $0! }
+        }
     }
 }
