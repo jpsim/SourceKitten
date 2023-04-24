@@ -6,7 +6,9 @@
 
 ##### Enhancements
 
-* None.
+* Refactored `Modules.doc` property to compute documentation in parallel
+  distributing the work across available cores.  
+  [Galen Rhodes](https://github.com/GalenRhodes)
 
 ##### Bug Fixes
 
