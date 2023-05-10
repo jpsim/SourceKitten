@@ -1,11 +1,15 @@
 #if SWIFT_PACKAGE
 import SourceKit
 #endif
+
 #if os(Linux)
 private let path = "libsourcekitdInProc.so"
+#elseif os(Windows)
+private let path = "sourcekitdInProc.dll"
 #else
 private let path = "sourcekitdInProc.framework/Versions/A/sourcekitdInProc"
 #endif
+
 private let library = toolchainLoader.load(path: path)
 // swiftlint:disable unused_declaration - We don't care if some of these are unused.
 internal let sourcekitd_initialize: @convention(c) () -> () = library.load(symbol: "sourcekitd_initialize")
