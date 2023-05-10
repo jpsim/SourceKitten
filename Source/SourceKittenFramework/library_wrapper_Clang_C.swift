@@ -1,9 +1,21 @@
 #if !os(Linux)
+
+#if os(Windows)
+import WinSDK
+#else
 import Darwin
+#endif
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
+
+#if os(Windows)
+private let library = toolchainLoader.load(path: "libclang.dll")
+#else
 private let library = toolchainLoader.load(path: "libclang.dylib")
+#endif
+
 // swiftlint:disable unused_declaration - We don't care if some of these are unused.
 internal let clang_getCString: @convention(c) (CXString) -> (UnsafePointer<CChar>?) = library.load(symbol: "clang_getCString")
 internal let clang_disposeString: @convention(c) (CXString) -> () = library.load(symbol: "clang_disposeString")
