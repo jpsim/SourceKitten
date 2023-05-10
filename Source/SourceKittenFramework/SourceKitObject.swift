@@ -3,6 +3,14 @@ import Foundation
 import SourceKit
 #endif
 
+#if os(Linux)
+import Glibc
+#elseif os(Windows)
+import ucrt
+#else
+import Darwin
+#endif
+
 // MARK: - SourceKitObjectConvertible
 
 public protocol SourceKitObjectConvertible {
@@ -136,7 +144,7 @@ extension SourceKitObject: SourceKitObjectConvertible {
 extension SourceKitObject: CustomStringConvertible {
     public var description: String {
         let bytes = sourcekitd_request_description_copy(sourcekitdObject)!
-        defer { bytes.deallocate() }
+        defer { free(bytes) }
         return String(cString: bytes)
     }
 }
