@@ -189,6 +189,8 @@ public func sdkPath() -> String {
 #if os(Linux)
     // xcrun does not exist on Linux
     return ""
+#elseif os(Windows)
+    return ProcessInfo.processInfo.environment["SDKROOT"] ?? ""
 #else
     return Exec.run("/usr/bin/xcrun", "--show-sdk-path", "--sdk", "macosx").string ?? ""
 #endif
