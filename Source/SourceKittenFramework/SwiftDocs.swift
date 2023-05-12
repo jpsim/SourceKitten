@@ -1,3 +1,5 @@
+import Foundation
+
 #if SWIFT_PACKAGE
 import SourceKit
 #endif
@@ -70,6 +72,14 @@ public struct SwiftDocs {
 extension SwiftDocs: CustomStringConvertible {
     /// A textual JSON representation of `SwiftDocs`.
     public var description: String {
-        return toJSON(toNSDictionary([file.path ?? "<No File>": docsDictionary]))
+        let source: String
+        if let path = file.path {
+            source = URL(fileURLWithPath: path).standardizedFileURL.withUnsafeFileSystemRepresentation {
+                String(cString: $0!)
+            }
+        } else {
+            source = "<No File>"
+        }
+        return toJSON(toNSDictionary([source: docsDictionary]))
     }
 }
