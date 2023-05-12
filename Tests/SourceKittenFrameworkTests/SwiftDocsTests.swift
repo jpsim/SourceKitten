@@ -2,19 +2,32 @@ import Foundation
 @testable import SourceKittenFramework
 import XCTest
 
+extension FileManager {
+    #if os(Windows)
+    static let pathSeparator = "\\"
+    #else
+    static let pathSeparator = "/"
+    #endif
+}
+
 func compareJSONString(withFixtureNamed name: String,
                        jsonString: CustomStringConvertible,
                        rootDirectory: String = fixturesDirectory,
                        file: StaticString = #file,
                        line: UInt = #line) {
+    let jsonString = String(describing: jsonString)
+
     // Strip out fixtures directory since it's dependent on the test machine's setup
-    let escapedFixturesDirectory = rootDirectory.replacingOccurrences(of: "/", with: "\\/")
-    let jsonString = String(describing: jsonString).replacingOccurrences(of: escapedFixturesDirectory, with: "")
+    let escapedFixturesDirectory = URL(fileURLWithPath: rootDirectory).standardizedFileURL.withUnsafeFileSystemRepresentation {
+        String(cString: $0!) + FileManager.pathSeparator
+    }.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "/", with: "\\/")
+
+    let escapedJSONString = jsonString.replacingOccurrences(of: escapedFixturesDirectory, with: "")
 
     // Strip out any other absolute paths after that, since it's also dependent on the test machine's setup
     let absolutePathRegex = try! NSRegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
-    let actualContent = absolutePathRegex.stringByReplacingMatches(in: jsonString, options: [],
-                                                                   range: NSRange(location: 0, length: jsonString.bridge().length),
+    let actualContent = absolutePathRegex.stringByReplacingMatches(in: escapedJSONString, options: [],
+                                                                   range: NSRange(location: 0, length: escapedJSONString.bridge().length),
                                                                    withTemplate: "\"key\\.filepath\" : \"\",")
     let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
