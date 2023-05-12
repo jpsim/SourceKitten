@@ -78,6 +78,8 @@ private func versionedExpectedFilename(for name: String) -> String {
 #endif
 #if os(Linux)
     let platforms = ["Linux", ""]
+#elseif os(Windows)
+    let platforms = ["Windows", ""]
 #else
     let platforms = [""]
 #endif
