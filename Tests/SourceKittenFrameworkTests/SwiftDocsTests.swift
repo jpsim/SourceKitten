@@ -115,7 +115,7 @@ private func diff(original: String, modified: String) -> String {
         try original.data(using: .utf8)?.write(to: url.appendingPathComponent("original.json"))
         try modified.data(using: .utf8)?.write(to: url.appendingPathComponent("modified.json"))
 
-        return Exec.run("/usr/bin/env", "git", "diff", "original.json", "modified.json",
+        return Exec.run("C:\\Program Files\\Git\\cmd\\git.exe", "diff", "original.json", "modified.json",
                         currentDirectory: url.path).string ?? ""
     } catch {
         return "\(error)"
