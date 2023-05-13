@@ -50,7 +50,7 @@ public struct Module {
                 return nodeModuleName == spmName
             }
             let inputs = node["inputs"]?.array(of: String.self) ?? []
-            return inputs.allSatisfy({ !$0.contains(".build/checkouts/") }) && !nodeModuleName.hasSuffix("Tests")
+            return inputs.allSatisfy({ !$0.contains(".build\\checkouts\\") }) && !nodeModuleName.hasSuffix("Tests")
         }
 
         guard let moduleCommand = commands.first(where: matchModuleName) else {
