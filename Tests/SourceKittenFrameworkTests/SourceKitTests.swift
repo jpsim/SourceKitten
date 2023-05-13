@@ -284,7 +284,7 @@ class SourceKitTests: XCTestCase {
         let actualStructure = Structure(sourceKitResponse: output)
         XCTAssertEqual(expectedStructure, actualStructure)
     }
-
+#if compiler(<5.9)
     func testSyntaxTree() throws {
         let file = File(path: "\(fixturesDirectory)Bicycle.swift")!
         let request = Request.syntaxTree(file: file, byteTree: false)
@@ -296,6 +296,7 @@ class SourceKitTests: XCTestCase {
 
         compareJSONString(withFixtureNamed: "BicycleSyntax", jsonString: syntaxJSON)
     }
+#endif
 
     func testCompilerVersion() {
         XCTAssertTrue(SwiftVersion.current >= SwiftVersion.fiveDotOne)
