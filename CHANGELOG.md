@@ -10,7 +10,9 @@
 
 ##### Bug Fixes
 
-* None.
+* Fix a crash when a file cannot be read as UTF-8.  
+  [Martin Redington](https://github.com/mildm8nnered)
+  [#765](https://github.com/jpsim/SourceKitten/issues/765)
 
 ## 0.34.1
 
@@ -26,9 +28,7 @@
 
 ##### Bug Fixes
 
-* Fix a crash when a file cannot be read as UTF-8.  
-  [Martin Redington](https://github.com/mildm8nnered)
-  [#765](https://github.com/jpsim/SourceKitten/issues/765)
+* None.
 
 ## 0.34.0
 
