@@ -57,3 +57,6 @@ SourceKittenFramework.framework.zip
 # Bazel
 
 bazel-*
+
+# vim
+.*.sw?
