@@ -10,7 +10,7 @@ let projectRoot: String = bazelProjectRoot ?? #file.bridge()
 
 class ModuleTests: XCTestCase {
 
-#if !os(Linux)
+#if os(macOS)
 
     func testModuleNilInPathWithNoXcodeProject() {
         let pathWithNoXcodeProject = (#file as NSString).deletingLastPathComponent
