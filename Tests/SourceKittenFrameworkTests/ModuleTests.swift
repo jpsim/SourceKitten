@@ -45,6 +45,13 @@ class ModuleTests: XCTestCase {
             return
         }
 
+        let pbxprojURL = URL(fileURLWithPath: "\(commandantPath)/Commandant.xcodeproj/project.pbxproj")
+        let originalPbxproj = try String(contentsOf: pbxprojURL)
+        let newPbxproj = originalPbxproj.replacingOccurrences(
+            of: "MACOSX_DEPLOYMENT_TARGET = 10.9",
+            with: "MACOSX_DEPLOYMENT_TARGET = 10.13"
+        )
+        try newPbxproj.data(using: .utf8)?.write(to: pbxprojURL)
         let arguments = ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"]
         let commandantModule = try XCTUnwrap(Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath))
         compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs,
