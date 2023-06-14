@@ -157,7 +157,7 @@ class SwiftDocsTests: XCTestCase {
             "key.doc.parameters": [[
                 "name": "param1",
                 "discussion": [["Para": "param1_discussion"]]
-            ]],
+            ] as [String : Any]],
             "key.doc.result_discussion": [["Para": "result_discussion"]]
         ]
         XCTAssertEqual(toNSDictionary(parsedPreSwift32), expected)
