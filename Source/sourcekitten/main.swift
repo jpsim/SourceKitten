@@ -3,6 +3,8 @@ import ArgumentParser
 import Darwin
 #elseif canImport(Glibc)
 import Glibc
+#elseif os(Windows)
+import ucrt
 #else
 #error("Unsupported platform")
 #endif

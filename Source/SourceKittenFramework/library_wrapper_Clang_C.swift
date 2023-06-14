@@ -1,10 +1,23 @@
 #if !os(Linux)
+
+#if os(Windows)
+import WinSDK
+#else
 import Darwin
+#endif
+
 #if SWIFT_PACKAGE
 import Clang_C
 #endif
+
+#if os(Windows)
+private let library = toolchainLoader.load(path: "libclang.dll")
+#else
 private let library = toolchainLoader.load(path: "libclang.dylib")
+#endif
+
 // swiftlint:disable unused_declaration - We don't care if some of these are unused.
+
 internal let clang_getCString: @convention(c) (CXString) -> (UnsafePointer<CChar>?) = library.load(symbol: "clang_getCString")
 internal let clang_disposeString: @convention(c) (CXString) -> () = library.load(symbol: "clang_disposeString")
 internal let clang_disposeStringSet: @convention(c) (UnsafeMutablePointer<CXStringSet>?) -> () = library.load(symbol: "clang_disposeStringSet")
@@ -386,4 +399,5 @@ internal let clang_VerbatimLineComment_getText: @convention(c) (CXComment) -> (C
 internal let clang_HTMLTagComment_getAsString: @convention(c) (CXComment) -> (CXString) = library.load(symbol: "clang_HTMLTagComment_getAsString")
 internal let clang_FullComment_getAsHTML: @convention(c) (CXComment) -> (CXString) = library.load(symbol: "clang_FullComment_getAsHTML")
 internal let clang_FullComment_getAsXML: @convention(c) (CXComment) -> (CXString) = library.load(symbol: "clang_FullComment_getAsXML")
+
 #endif

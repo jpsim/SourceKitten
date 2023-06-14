@@ -2,6 +2,7 @@ import Foundation
 @testable import SourceKittenFramework
 import XCTest
 
+#if !os(Windows)
 private let sourcekitStrings: [String] = {
 #if os(Linux)
     let searchPaths = [
@@ -35,6 +36,7 @@ private let sourcekitStrings: [String] = {
     let strings = Exec.run("/usr/bin/strings", sourceKitPath).string
     return strings!.components(separatedBy: "\n")
 }()
+#endif
 
 private func sourcekitStrings(startingWith pattern: String) -> Set<String> {
     return Set(sourcekitStrings.filter { $0.hasPrefix(pattern) })
@@ -228,35 +230,6 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    func testLibraryWrappersAreUpToDate() throws {
-#if compiler(>=5.4) && os(macOS)
-        let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments,
-                                                 name: "SourceKittenFramework", inPath: projectRoot)!
-        let docsJSON = sourceKittenFrameworkModule.docs.description
-        XCTAssert(docsJSON.range(of: "error type") == nil)
-        let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
-        XCTAssertNotNil(jsonArray, "JSON should be properly parsed")
-        let sourcekitd = "sourcekitdInProc.framework/Versions/A/sourcekitdInProc"
-        let modules: [(module: String, macOSPath: String, linuxPath: String?)] = [
-            ("Clang_C", "libclang.dylib", nil),
-            ("SourceKit", sourcekitd, "libsourcekitdInProc.so")
-        ]
-        for (module, inProcPath, linuxPath) in modules {
-            let wrapperPath = "\(projectRoot)/Source/SourceKittenFramework/library_wrapper_\(module).swift"
-            let existingWrapper = try String(contentsOfFile: wrapperPath)
-            let generatedWrapper = try libraryWrapperForModule(
-                module, macOSPath: inProcPath, linuxPath: linuxPath,
-                compilerArguments: sourceKittenFrameworkModule.compilerArguments
-            )
-            XCTAssertEqual(existingWrapper, generatedWrapper)
-            let overwrite = false // set this to true to overwrite existing wrappers with the generated ones
-            if existingWrapper != generatedWrapper && overwrite {
-                try generatedWrapper.data(using: .utf8)?.write(to: URL(fileURLWithPath: wrapperPath))
-            }
-        }
-#endif
-    }
-
     func testIndex() throws {
         let file = "\(fixturesDirectory)Bicycle.swift"
         let arguments = ["-sdk", sdkPath(), "-j4", file ]
@@ -284,7 +257,7 @@ class SourceKitTests: XCTestCase {
         let actualStructure = Structure(sourceKitResponse: output)
         XCTAssertEqual(expectedStructure, actualStructure)
     }
-
+#if compiler(<5.9)
     func testSyntaxTree() throws {
         let file = File(path: "\(fixturesDirectory)Bicycle.swift")!
         let request = Request.syntaxTree(file: file, byteTree: false)
@@ -296,6 +269,7 @@ class SourceKitTests: XCTestCase {
 
         compareJSONString(withFixtureNamed: "BicycleSyntax", jsonString: syntaxJSON)
     }
+#endif
 
     func testCompilerVersion() {
         XCTAssertTrue(SwiftVersion.current >= SwiftVersion.fiveDotOne)

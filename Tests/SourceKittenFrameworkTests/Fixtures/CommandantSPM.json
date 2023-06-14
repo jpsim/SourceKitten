@@ -1,5 +1,5 @@
 [{
-  "\/private\/Sources\/Commandant\/Argument.swift" : {
+  "\/Sources\/Commandant\/Argument.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 3858,
     "key.offset" : 0,
@@ -746,7 +746,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/ArgumentParser.swift" : {
+  "\/Sources\/Commandant\/ArgumentParser.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 4637,
     "key.offset" : 0,
@@ -1615,7 +1615,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/ArgumentProtocol.swift" : {
+  "\/Sources\/Commandant\/ArgumentProtocol.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 1141,
     "key.offset" : 0,
@@ -2406,7 +2406,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Command.swift" : {
+  "\/Sources\/Commandant\/Command.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 7522,
     "key.offset" : 0,
@@ -3704,7 +3704,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Errors.swift" : {
+  "\/Sources\/Commandant\/Errors.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 5739,
     "key.offset" : 0,
@@ -5501,7 +5501,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/HelpCommand.swift" : {
+  "\/Sources\/Commandant\/HelpCommand.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 2203,
     "key.offset" : 0,
@@ -6126,7 +6126,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Option.swift" : {
+  "\/Sources\/Commandant\/Option.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 9661,
     "key.offset" : 0,
@@ -7692,7 +7692,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/OrderedSet.swift" : {
+  "\/Sources\/Commandant\/OrderedSet.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 800,
     "key.offset" : 0,
@@ -8255,7 +8255,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Result+Additions.swift" : {
+  "\/Sources\/Commandant\/Result+Additions.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 421,
     "key.offset" : 0,
@@ -8347,7 +8347,7 @@
     ]
   }
 }, {
-  "\/private\/Sources\/Commandant\/Switch.swift" : {
+  "\/Sources\/Commandant\/Switch.swift" : {
     "key.diagnostic_stage" : "source.diagnostic.stage.swift.parse",
     "key.length" : 2007,
     "key.offset" : 0,

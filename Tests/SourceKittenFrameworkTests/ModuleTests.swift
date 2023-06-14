@@ -46,7 +46,7 @@ class ModuleTests: XCTestCase {
         }
 
         let arguments = ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"]
-        let commandantModule = Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath)!
+        let commandantModule = try XCTUnwrap(Module(xcodeBuildArguments: arguments, name: nil, inPath: commandantPath))
         compareJSONString(withFixtureNamed: "Commandant", jsonString: commandantModule.docs,
                           rootDirectory: commandantPath)
     }
@@ -73,7 +73,7 @@ class ModuleTests: XCTestCase {
             return
         }
 
-        let commandantModule = Module(spmArguments: [], spmName: "Commandant", inPath: commandantPath)!
+        let commandantModule = try XCTUnwrap(Module(spmArguments: [], spmName: "Commandant", inPath: commandantPath))
         compareJSONString(withFixtureNamed: "CommandantSPM", jsonString: commandantModule.docs,
                           rootDirectory: commandantPath)
     }
