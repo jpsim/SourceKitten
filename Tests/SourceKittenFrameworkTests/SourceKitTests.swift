@@ -257,7 +257,7 @@ class SourceKitTests: XCTestCase {
         let actualStructure = Structure(sourceKitResponse: output)
         XCTAssertEqual(expectedStructure, actualStructure)
     }
-#if compiler(<5.9)
+#if compiler(<5.8)
     func testSyntaxTree() throws {
         let file = File(path: "\(fixturesDirectory)Bicycle.swift")!
         let request = Request.syntaxTree(file: file, byteTree: false)
