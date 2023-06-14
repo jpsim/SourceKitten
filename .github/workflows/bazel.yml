@@ -8,9 +8,12 @@ on:
 
 jobs:
   MacOS:
+    strategy:
+      matrix:
+        xcode_version: ['14.1', '14.3.1']
     runs-on: macos-13
     env:
-      DEVELOPER_DIR: /Applications/Xcode_14.1.app
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
     steps:
       - uses: actions/checkout@v2
       - run: bazelisk test //Tests:UnitTests --test_env=PROJECT_ROOT=$(bazelisk info workspace)
@@ -18,7 +21,7 @@ jobs:
   Linux:
     strategy:
       matrix:
-        tag: ['5.7-focal']
+        tag: ['5.7-focal', '5.8-focal']
     runs-on: ubuntu-latest
     container:
       image: swift:${{ matrix.tag }}
