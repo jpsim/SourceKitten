@@ -128,6 +128,16 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=5.8)
+        // removed in Swift 5.8
+        expected.subtract([._typeSequence, ._backDeploy])
+#else
+        // added in Swift 5.8
+        expected.subtract([.backDeployed, ._noEagerMove, .typeWrapperIgnored, ._spiOnly, ._moveOnly,
+                           ._noMetadata, ._alwaysEmitConformanceMetadata, .runtimeMetadata,
+                           ._objcImplementation, ._eagerMove, .typeWrapper, ._expose, ._documentation])
+#endif
+
 #if compiler(>=5.6)
         // removed in Swift 5.6
         expected.subtract([.asyncHandler, .actorIndependent, .spawn, ._unsafeMainActor, ._unsafeSendable])

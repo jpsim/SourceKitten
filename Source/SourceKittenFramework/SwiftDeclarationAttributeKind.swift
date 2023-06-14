@@ -169,4 +169,20 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case exclusivity = "source.decl.attribute.exclusivity"
     case _unsafeInheritExecutor = "source.decl.attribute._unsafeInheritExecutor"
     case _compilerInitialized = "source.decl.attribute._compilerInitialized"
+
+    // Only available in Swift >= 5.8
+
+    case backDeployed = "source.decl.attribute.backDeployed"
+    case _noEagerMove = "source.decl.attribute._noEagerMove"
+    case typeWrapperIgnored = "source.decl.attribute.typeWrapperIgnored"
+    case _spiOnly = "source.decl.attribute._spiOnly"
+    case _moveOnly = "source.decl.attribute._moveOnly"
+    case _noMetadata = "source.decl.attribute._noMetadata"
+    case _alwaysEmitConformanceMetadata = "source.decl.attribute._alwaysEmitConformanceMetadata"
+    case runtimeMetadata = "source.decl.attribute.runtimeMetadata"
+    case _objcImplementation = "source.decl.attribute._objcImplementation"
+    case _eagerMove = "source.decl.attribute._eagerMove"
+    case typeWrapper = "source.decl.attribute.typeWrapper"
+    case _expose = "source.decl.attribute._expose"
+    case _documentation = "source.decl.attribute._documentation"
 }
