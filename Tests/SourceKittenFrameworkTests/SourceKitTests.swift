@@ -111,7 +111,10 @@ class SourceKitTests: XCTestCase {
 #if !compiler(>=5.1)
         expected.remove(.opaqueType)
 #endif
-        let expectedStrings = Set(expected.map { $0.rawValue })
+#if compiler(<5.8)
+        expected.remove(.macro)
+#endif
+        let expectedStrings = Set(expected.map(\.rawValue))
         XCTAssertEqual(
             actual,
             expectedStrings
