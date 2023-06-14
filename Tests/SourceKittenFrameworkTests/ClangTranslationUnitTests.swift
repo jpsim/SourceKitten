@@ -30,8 +30,14 @@ class ClangTranslationUnitTests: XCTestCase {
     }
 
     private func compare(clangFixture fixture: String) {
-        let unit = ClangTranslationUnit(headerFiles: [fixturesDirectory + fixture + ".h"],
-                                        compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", fixturesDirectory])
+        let path = URL(fileURLWithPath: fixturesDirectory + fixture + ".h")
+            .standardizedFileURL
+            .withUnsafeFileSystemRepresentation { String(cString: $0!) }
+        let includes = URL(fileURLWithPath: fixturesDirectory)
+            .standardizedFileURL
+            .withUnsafeFileSystemRepresentation { String(cString: $0!) }
+        let unit = ClangTranslationUnit(headerFiles: [path],
+                                        compilerArguments: ["-x", "objective-c", "-isysroot", sdkPath(), "-I", includes])
         compareJSONString(withFixtureNamed: (fixture as NSString).lastPathComponent, jsonString: unit)
     }
 

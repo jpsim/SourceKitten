@@ -50,7 +50,7 @@ public struct Module {
                 return nodeModuleName == spmName
             }
             let inputs = node["inputs"]?.array(of: String.self) ?? []
-            return inputs.allSatisfy({ !$0.contains(".build/checkouts/") }) && !nodeModuleName.hasSuffix("Tests")
+            return inputs.allSatisfy({ !$0.contains(".build\\checkouts\\") }) && !nodeModuleName.hasSuffix("Tests")
         }
 
         guard let moduleCommand = commands.first(where: matchModuleName) else {
@@ -92,7 +92,7 @@ public struct Module {
      */
     public init?(spmArguments: [String], spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
         fputs("Running swift build\n", stderr)
-        let buildResults = Exec.run("/usr/bin/env", ["swift", "build"] + spmArguments, currentDirectory: path, stderr: .merge)
+        let buildResults = Exec.run("C:\\Library\\Developer\\Toolchains\\unknown-Asserts-development.xctoolchain\\usr\\bin\\swift.exe", ["build"] + spmArguments, currentDirectory: path, stderr: .merge)
         guard buildResults.terminationStatus == 0 else {
             let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("swift-build-\(UUID().uuidString).log")
             _ = try? buildResults.data.write(to: file)

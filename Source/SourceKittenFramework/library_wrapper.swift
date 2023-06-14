@@ -1,16 +1,62 @@
 import Foundation
+#if os(Windows)
+import WinSDK
+
+@_transparent
+internal func MAKELANGID(_ p: WORD, _ s: WORD) -> DWORD {
+    return DWORD((s << 10) | p)
+}
+
+struct WindowsError {
+    public let code: DWORD
+}
+
+extension WindowsError: CustomStringConvertible {
+    public var description: String {
+        let dwFlags: DWORD = DWORD(FORMAT_MESSAGE_ALLOCATE_BUFFER)
+                           | DWORD(FORMAT_MESSAGE_FROM_SYSTEM)
+                           | DWORD(FORMAT_MESSAGE_IGNORE_INSERTS)
+        let dwLanguageId: DWORD =
+            MAKELANGID(WORD(LANG_NEUTRAL), WORD(SUBLANG_DEFAULT))
+
+        var buffer: UnsafeMutablePointer<WCHAR>?
+        let dwResult = withUnsafeMutablePointer(to: &buffer) {
+            $0.withMemoryRebound(to: WCHAR.self, capacity: 2) {
+                FormatMessageW(dwFlags, nil, code, dwLanguageId, $0, 0, nil)
+            }
+        }
+        guard dwResult > 0, let message = buffer else { return "Unknown error" }
+        defer { LocalFree(message) }
+        return String(decodingCString: message, as: UTF16.self)
+    }
+}
+#endif
 
 // MARK: - Shared Types & Functions
 
 struct DynamicLinkLibrary {
-    fileprivate let handle: UnsafeMutableRawPointer
+#if os(Windows)
+    typealias HandleType = HMODULE?
+#else
+    typealias HandleType = UnsafeMutableRawPointer
+#endif
+
+    fileprivate let handle: HandleType
 
     func load<T>(symbol: String) -> T {
+#if os(Windows)
+        if let sym = GetProcAddress(handle, symbol) {
+            return unsafeBitCast(sym, to: T.self)
+        }
+        let error = WindowsError(code: GetLastError())
+        fatalError("Finding symbol \(symbol) failed: \(error)")
+#else
         if let sym = dlsym(handle, symbol) {
             return unsafeBitCast(sym, to: T.self)
         }
         let errorString = String(validatingUTF8: dlerror())
         fatalError("Finding symbol \(symbol) failed: \(errorString ?? "unknown error")")
+#endif
     }
 }
 
@@ -23,9 +69,15 @@ struct Loader {
         // try all fullPaths that contains target file,
         // then try loading with simple path that depends resolving to DYLD
         for fullPath in fullPaths + [path] {
+#if os(Windows)
+            if let handle = fullPath.withCString(encodedAs: UTF16.self, LoadLibraryW) {
+                return DynamicLinkLibrary(handle: handle)
+            }
+#else
             if let handle = dlopen(fullPath, RTLD_LAZY) {
                 return DynamicLinkLibrary(handle: handle)
             }
+#endif
         }
 
         fatalError("Loading \(path) failed")
@@ -100,6 +152,16 @@ let toolchainLoader = Loader(searchPaths: [
     linuxFindSwiftInstallationLibPath,
     linuxDefaultLibPath
 ].compactMap({ $0 }))
+
+#elseif os(Windows)
+
+// MARK: - Windows
+
+let toolchainLoader = Loader(searchPaths: [
+    "C:\\Library\\Developer\\Toolchains\\unknown-Asserts-development.xctoolchain\\usr\\bin",
+].compactMap {
+    FileManager.default.fileExists(atPath: $0) ? $0 : nil
+})
 
 #else
 

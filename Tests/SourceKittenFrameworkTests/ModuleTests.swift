@@ -22,8 +22,8 @@ class ModuleTests: XCTestCase {
         let temporaryURL = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("\(#function)-\(NSUUID())")
         try FileManager.default.createDirectory(at: temporaryURL, withIntermediateDirectories: true)
-        let cloneArguments = ["git", "clone", "https://github.com/Carthage/Commandant.git"]
-        let cloneResult = Exec.run("/usr/bin/env", cloneArguments, currentDirectory: temporaryURL.path)
+        let cloneArguments = ["clone", "https://github.com/Carthage/Commandant.git"]
+        let cloneResult = Exec.run("C:\\Program Files\\Git\\cmd\\git.exe", cloneArguments, currentDirectory: temporaryURL.path)
         guard cloneResult.terminationStatus == 0 else {
             XCTFail("`\(cloneArguments.joined(separator: " "))` failed: \(cloneResult.terminationStatus)")
             return
@@ -31,15 +31,15 @@ class ModuleTests: XCTestCase {
 
         let commandantPath = temporaryURL.appendingPathComponent("Commandant").path
 
-        let checkoutArguments = ["git", "checkout", "0.17.0"]
-        let checkoutResult = Exec.run("/usr/bin/env", checkoutArguments, currentDirectory: commandantPath)
+        let checkoutArguments = ["checkout", "0.17.0"]
+        let checkoutResult = Exec.run("C:\\Program Files\\Git\\cmd\\git.exe", checkoutArguments, currentDirectory: commandantPath)
         guard checkoutResult.terminationStatus == 0 else {
             XCTFail("`\(checkoutArguments.joined(separator: " "))` failed: \(checkoutResult.terminationStatus)")
             return
         }
 
-        let submoduleArguments = ["git", "submodule", "update", "--init", "--recursive"]
-        let submoduleResult = Exec.run("/usr/bin/env", submoduleArguments, currentDirectory: commandantPath)
+        let submoduleArguments = ["submodule", "update", "--init", "--recursive"]
+        let submoduleResult = Exec.run("C:\\Program Files\\Git\\cmd\\git.exe", submoduleArguments, currentDirectory: commandantPath)
         guard submoduleResult.terminationStatus == 0 else {
             XCTFail("`\(submoduleArguments.joined(separator: " "))` failed: \(submoduleResult.terminationStatus)")
             return
@@ -64,8 +64,8 @@ class ModuleTests: XCTestCase {
         let temporaryURL = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("\(#function)-\(NSUUID())")
         try FileManager.default.createDirectory(at: temporaryURL, withIntermediateDirectories: true)
-        let cloneArguments = ["git", "clone", "https://github.com/Carthage/Commandant.git"]
-        let cloneResult = Exec.run("/usr/bin/env", cloneArguments, currentDirectory: temporaryURL.path)
+        let cloneArguments = ["clone", "https://github.com/Carthage/Commandant.git"]
+        let cloneResult = Exec.run("C:\\Program Files\\Git\\cmd\\git.exe", cloneArguments, currentDirectory: temporaryURL.path)
         guard cloneResult.terminationStatus == 0 else {
             XCTFail("`\(cloneArguments.joined(separator: " "))` failed: \(cloneResult.terminationStatus)")
             return
@@ -73,8 +73,8 @@ class ModuleTests: XCTestCase {
 
         let commandantPath = temporaryURL.appendingPathComponent("Commandant").path
 
-        let checkoutArguments = ["git", "checkout", "0.17.0"]
-        let checkoutResult = Exec.run("/usr/bin/env", checkoutArguments, currentDirectory: commandantPath)
+        let checkoutArguments = ["checkout", "0.17.0"]
+        let checkoutResult = Exec.run("C:\\Program Files\\Git\\cmd\\git.exe", checkoutArguments, currentDirectory: commandantPath)
         guard checkoutResult.terminationStatus == 0 else {
             XCTFail("`\(checkoutArguments.joined(separator: " "))` failed: \(checkoutResult.terminationStatus)")
             return
