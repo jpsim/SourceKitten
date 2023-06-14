@@ -79,11 +79,15 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    func disabled_testSyntaxKinds() {
+    func testSyntaxKinds() {
+#if compiler(>=5.8)
         let expected = SyntaxKind.allCases
+#else
+        let expected = Set(SyntaxKind.allCases).subtracting([.operator])
+#endif
 
         let actual = sourcekitStrings(startingWith: "source.lang.swift.syntaxtype.")
-        let expectedStrings = Set(expected.map { $0.rawValue })
+        let expectedStrings = Set(expected.map(\.rawValue))
         XCTAssertEqual(
             actual,
             expectedStrings
@@ -94,7 +98,7 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    func disabled_testSwiftDeclarationKind() {
+    func testSwiftDeclarationKind() {
         var expected = Set(SwiftDeclarationKind.allCases)
         let actual = sourcekitStrings(startingWith: "source.lang.swift.decl.")
 #if swift(>=2.2)
@@ -118,7 +122,7 @@ class SourceKitTests: XCTestCase {
         }
     }
 
-    func disabled_testSwiftDeclarationAttributeKind() { // swiftlint:disable:this function_body_length
+    func testSwiftDeclarationAttributeKind() { // swiftlint:disable:this function_body_length
         var expected = Set(SwiftDeclarationAttributeKind.allCases)
         let attributesFoundInSwift5ButWeIgnore = [
             "source.decl.attribute.GKInspectable",

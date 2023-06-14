@@ -41,6 +41,8 @@ public enum SyntaxKind: String, CaseIterable {
     case typeidentifier = "source.lang.swift.syntaxtype.typeidentifier"
     /// `pounddirective.keyword`.
     case poundDirectiveKeyword = "source.lang.swift.syntaxtype.pounddirective.keyword"
+    /// `operator`
+    case `operator` = "source.lang.swift.syntaxtype.operator"
 
     /// Returns the valid documentation comment syntax kinds.
     internal static func docComments() -> [SyntaxKind] {
