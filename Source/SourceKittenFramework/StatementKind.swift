@@ -1,5 +1,3 @@
-// swiftlint:disable identifier_name
-
 /// Swift declaration kinds.
 /// Found in `strings SourceKitService | grep source.lang.swift.stmt.`.
 public enum StatementKind: String {
