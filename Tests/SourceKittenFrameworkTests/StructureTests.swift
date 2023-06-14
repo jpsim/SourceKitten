@@ -9,7 +9,7 @@ class StructureTests: XCTestCase {
             "key.offset": 0,
             "key.length": 0,
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
-            "key.substructure": []
+            "key.substructure": [] as NSArray
         ]
         let structure = try Structure(file: File(contents: ""))
         XCTAssertEqual(toNSDictionary(structure.dictionary), expected, "should generate expected structure")
@@ -57,12 +57,12 @@ class StructureTests: XCTestCase {
                                     "key.length": 5,
                                     "key.nameoffset": 19,
                                     "key.namelength": 5
-                                ]
+                                ] as [String: Any]
                             ]
-                        ]
+                        ] as [String: Any]
                     ],
                     "key.name": "MyEnum"
-                ]
+                ] as [String: Any]
             ],
             "key.offset": 0,
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
@@ -132,12 +132,12 @@ class StructureTests: XCTestCase {
                             "key.kind": "source.lang.swift.structure.elem.typeref",
                             "key.offset": 11,
                             "key.length": 3
-                        ]
+                        ] as [String: Any]
                     ],
                     "key.inheritedtypes": [
                         ["key.name": "Bar"]
                     ]
-                ]
+                ] as [String: Any]
             ],
             "key.offset": 0,
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",
@@ -201,10 +201,10 @@ class StructureTests: XCTestCase {
                             "key.bodylength": 0,
                             "key.length": 11,
                             "key.name": "b()"
-                        ]
+                        ] as [String: Any]
                     ],
                     "key.name": "A"
-                ]
+                ] as [String: Any]
             ],
             "key.offset": 0,
             "key.diagnostic_stage": "source.diagnostic.stage.swift.parse",

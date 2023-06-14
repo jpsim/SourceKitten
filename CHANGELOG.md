@@ -6,7 +6,8 @@
 
 ##### Enhancements
 
-* None.
+* Added new syntax, attribute and declaration kinds introduced in Swift 5.8.  
+  [JP Simard](https://github.com/jpsim)
 
 ##### Bug Fixes
 

@@ -80,10 +80,14 @@ class SourceKitTests: XCTestCase {
     }
 
     func testSyntaxKinds() {
+#if compiler(>=5.8)
         let expected = SyntaxKind.allCases
+#else
+        let expected = Set(SyntaxKind.allCases).subtracting([.operator])
+#endif
 
         let actual = sourcekitStrings(startingWith: "source.lang.swift.syntaxtype.")
-        let expectedStrings = Set(expected.map { $0.rawValue })
+        let expectedStrings = Set(expected.map(\.rawValue))
         XCTAssertEqual(
             actual,
             expectedStrings
@@ -107,7 +111,10 @@ class SourceKitTests: XCTestCase {
 #if !compiler(>=5.1)
         expected.remove(.opaqueType)
 #endif
-        let expectedStrings = Set(expected.map { $0.rawValue })
+#if compiler(<5.8)
+        expected.remove(.macro)
+#endif
+        let expectedStrings = Set(expected.map(\.rawValue))
         XCTAssertEqual(
             actual,
             expectedStrings
@@ -127,6 +134,16 @@ class SourceKitTests: XCTestCase {
         ]
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
+
+#if compiler(>=5.8)
+        // removed in Swift 5.8
+        expected.subtract([._typeSequence, ._backDeploy])
+#else
+        // added in Swift 5.8
+        expected.subtract([.backDeployed, ._noEagerMove, .typeWrapperIgnored, ._spiOnly, ._moveOnly,
+                           ._noMetadata, ._alwaysEmitConformanceMetadata, .runtimeMetadata,
+                           ._objcImplementation, ._eagerMove, .typeWrapper, ._expose, ._documentation])
+#endif
 
 #if compiler(>=5.6)
         // removed in Swift 5.6
@@ -257,7 +274,7 @@ class SourceKitTests: XCTestCase {
         let actualStructure = Structure(sourceKitResponse: output)
         XCTAssertEqual(expectedStructure, actualStructure)
     }
-#if compiler(<5.9)
+#if compiler(<5.8)
     func testSyntaxTree() throws {
         let file = File(path: "\(fixturesDirectory)Bicycle.swift")!
         let request = Request.syntaxTree(file: file, byteTree: false)
