@@ -7,14 +7,14 @@ internal func MAKELANGID(_ p: WORD, _ s: WORD) -> DWORD {
 }
 
 struct WindowsError {
-    public let code: DWORD
+    let code: DWORD
 }
 
 extension WindowsError: Error {
     var localizedDescription: String {
-        let dwFlags: DWORD = DWORD(FORMAT_MESSAGE_ALLOCATE_BUFFER)
-                           | DWORD(FORMAT_MESSAGE_FROM_SYSTEM)
-                           | DWORD(FORMAT_MESSAGE_IGNORE_INSERTS)
+        let dwFlags = DWORD(FORMAT_MESSAGE_ALLOCATE_BUFFER)
+                    | DWORD(FORMAT_MESSAGE_FROM_SYSTEM)
+                    | DWORD(FORMAT_MESSAGE_IGNORE_INSERTS)
         let dwLanguageId: DWORD =
             MAKELANGID(WORD(LANG_NEUTRAL), WORD(SUBLANG_DEFAULT))
 

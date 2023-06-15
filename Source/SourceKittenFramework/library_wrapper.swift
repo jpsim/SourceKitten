@@ -7,9 +7,9 @@ import WinSDK
 
 struct DynamicLinkLibrary {
 #if os(Windows)
-    typealias HandleType = HMODULE?
+    typealias Handle = HMODULE?
 #else
-    typealias HandleType = UnsafeMutableRawPointer
+    typealias Handle = UnsafeMutableRawPointer
 #endif
 
     fileprivate let handle: HandleType
