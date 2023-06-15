@@ -1,16 +1,33 @@
 import Foundation
+#if os(Windows)
+import WinSDK
+#endif
 
 // MARK: - Shared Types & Functions
 
 struct DynamicLinkLibrary {
-    fileprivate let handle: UnsafeMutableRawPointer
+#if os(Windows)
+    typealias Handle = HMODULE?
+#else
+    typealias Handle = UnsafeMutableRawPointer
+#endif
+
+    fileprivate let handle: Handle
 
     func load<T>(symbol: String) -> T {
+#if os(Windows)
+        if let sym = GetProcAddress(handle, symbol) {
+            return unsafeBitCast(sym, to: T.self)
+        }
+        let error = WindowsError(code: GetLastError())
+        fatalError("Finding symbol \(symbol) failed: \(error)")
+#else
         if let sym = dlsym(handle, symbol) {
             return unsafeBitCast(sym, to: T.self)
         }
         let errorString = String(validatingUTF8: dlerror())
         fatalError("Finding symbol \(symbol) failed: \(errorString ?? "unknown error")")
+#endif
     }
 }
 
@@ -23,9 +40,15 @@ struct Loader {
         // try all fullPaths that contains target file,
         // then try loading with simple path that depends resolving to DYLD
         for fullPath in fullPaths + [path] {
+#if os(Windows)
+            if let handle = fullPath.withCString(encodedAs: UTF16.self, LoadLibraryW) {
+                return DynamicLinkLibrary(handle: handle)
+            }
+#else
             if let handle = dlopen(fullPath, RTLD_LAZY) {
                 return DynamicLinkLibrary(handle: handle)
             }
+#endif
         }
 
         fatalError("Loading \(path) failed")
@@ -100,6 +123,15 @@ let toolchainLoader = Loader(searchPaths: [
     linuxFindSwiftInstallationLibPath,
     linuxDefaultLibPath
 ].compactMap({ $0 }))
+
+#elseif os(Windows)
+
+// MARK: - Windows
+
+let toolchainLoader = Loader(searchPaths: [
+].compactMap {
+    FileManager.default.fileExists(atPath: $0) ? $0 : nil
+})
 
 #else
 
