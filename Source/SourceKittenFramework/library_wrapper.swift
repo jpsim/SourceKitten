@@ -12,7 +12,7 @@ struct DynamicLinkLibrary {
     typealias Handle = UnsafeMutableRawPointer
 #endif
 
-    fileprivate let handle: HandleType
+    fileprivate let handle: Handle
 
     func load<T>(symbol: String) -> T {
 #if os(Windows)
