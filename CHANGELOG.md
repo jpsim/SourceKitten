@@ -15,6 +15,10 @@
   [Martin Redington](https://github.com/mildm8nnered)
   [#765](https://github.com/jpsim/SourceKitten/issues/765)
 
+* Fix compiling via `make` with Xcode 15.  
+  [JP Simard](https://github.com/jpsim)
+  [#793](https://github.com/jpsim/SourceKitten/issues/793)
+
 ## 0.34.1
 
 ##### Breaking

@@ -8,13 +8,6 @@ XCODEFLAGS=-workspace 'SourceKitten.xcworkspace' \
 	OTHER_LDFLAGS=-Wl,-headerpad_max_install_names
 
 SWIFT_BUILD_FLAGS=--configuration release
-UNAME=$(shell uname)
-ifeq ($(UNAME), Darwin)
-USE_SWIFT_STATIC_STDLIB:=$(shell test -d $$(dirname $$(xcrun --find swift))/../lib/swift_static/macosx && echo yes)
-ifeq ($(USE_SWIFT_STATIC_STDLIB), yes)
-SWIFT_BUILD_FLAGS+= -Xswiftc -static-stdlib
-endif
-endif
 
 SOURCEKITTEN_EXECUTABLE=$(shell swift build $(SWIFT_BUILD_FLAGS) --show-bin-path)/sourcekitten
 
