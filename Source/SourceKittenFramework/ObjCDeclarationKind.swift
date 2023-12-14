@@ -48,6 +48,8 @@ public enum ObjCDeclarationKind: String {
     case moduleImport = "sourcekitten.source.lang.objc.module.import"
     /// `UnexposedDecl`
     case unexposedDecl = "sourcekitten.source.lang.objc.decl.unexposed"
+    /// `static_assert`
+    case staticAssert = "sourcekitten.source.lang.objc.decl.static_assert"
 
     // swiftlint:disable:next cyclomatic_complexity
     public init(_ cursorKind: CXCursorKind) {
@@ -73,6 +75,7 @@ public enum ObjCDeclarationKind: String {
         case CXCursor_ObjCCategoryImplDecl: self = .category
         case CXCursor_ObjCDynamicDecl: self = .unexposedDecl
         case CXCursor_ObjCSynthesizeDecl: self = .unexposedDecl
+        case CXCursor_StaticAssert: self = .staticAssert
         default: fatalError("Unsupported CXCursorKind: \(clang_getCursorKindSpelling(cursorKind))")
         }
     }

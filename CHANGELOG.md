@@ -9,6 +9,9 @@
 * Added new syntax, attribute and declaration kinds introduced in Swift 5.8.  
   [JP Simard](https://github.com/jpsim)
 
+* Added support for static\_assert declaration introduced in C11.  
+  [Zach Jaquish](https://github.com/jaquish)
+
 ##### Bug Fixes
 
 * Fix a crash when a file cannot be read as UTF-8.  
