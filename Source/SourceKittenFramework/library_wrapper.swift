@@ -69,6 +69,10 @@ private extension String {
             .reduce(URL(fileURLWithPath: self)) { url, _ in url.deletingLastPathComponent() }
             .path
     }
+
+    func resolvingSymlinksInPath() -> String {
+        return URL(fileURLWithPath: self).resolvingSymlinksInPath().path
+    }
 }
 
 #if os(Linux)
@@ -111,7 +115,7 @@ internal let linuxFindSwiftInstallationLibPath: String? = {
     }
 
     /// .../bin/swift -> .../lib
-    return swiftPath.deleting(lastPathComponents: 2).appending(pathComponent: "/lib")
+    return swiftPath.resolvingSymlinksInPath().deleting(lastPathComponents: 2).appending(pathComponent: "/lib")
 }()
 
 /// Fallback path on Linux if no better option is available.
