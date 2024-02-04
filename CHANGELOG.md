@@ -14,6 +14,11 @@
 
 ##### Bug Fixes
 
+* Fix an issue where the path to the SourceKit library would not be properly
+  detected on Linux, when the swift executable was symlinked into a directory
+  in PATH from its actual install tree.  
+  [Julia DeMille](https://github.com/judemille)
+
 * Fix a crash when a file cannot be read as UTF-8.  
   [Martin Redington](https://github.com/mildm8nnered)
   [#765](https://github.com/jpsim/SourceKitten/issues/765)
