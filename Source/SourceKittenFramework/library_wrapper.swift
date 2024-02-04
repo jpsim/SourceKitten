@@ -84,7 +84,7 @@ internal let linuxSourceKitLibPath = env("LINUX_SOURCEKIT_LIB_PATH")
 
 /// If available, uses `swiftenv` to determine the user's active Swift root.
 internal let linuxFindSwiftenvActiveLibPath: String? = {
-    guard let swiftenvPath = Exec.run("/usr/bin/which", "swiftenv").string else {
+    guard let swiftenvPath = Exec.run("/usr/bin/env", "which", "swiftenv", stderr: .discard).string else {
         return nil
     }
 
@@ -98,7 +98,7 @@ internal let linuxFindSwiftenvActiveLibPath: String? = {
 /// Attempts to discover the location of libsourcekitdInProc.so by looking at
 /// the `swift` binary on the path.
 internal let linuxFindSwiftInstallationLibPath: String? = {
-    guard let swiftPath = Exec.run("/usr/bin/which", "swift").string else {
+    guard let swiftPath = Exec.run("/usr/bin/env", "which", "swift", stderr: .discard).string else {
         return nil
     }
 
