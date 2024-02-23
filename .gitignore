@@ -57,6 +57,7 @@ SourceKittenFramework.framework.zip
 # Bazel
 
 bazel-*
+/MODULE.bazel.lock
 
 # vim
 .*.sw?

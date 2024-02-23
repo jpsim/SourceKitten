@@ -69,6 +69,10 @@ private extension String {
             .reduce(URL(fileURLWithPath: self)) { url, _ in url.deletingLastPathComponent() }
             .path
     }
+
+    func resolvingSymlinksInPath() -> String {
+        return URL(fileURLWithPath: self).resolvingSymlinksInPath().path
+    }
 }
 
 #if os(Linux)
@@ -80,7 +84,7 @@ internal let linuxSourceKitLibPath = env("LINUX_SOURCEKIT_LIB_PATH")
 
 /// If available, uses `swiftenv` to determine the user's active Swift root.
 internal let linuxFindSwiftenvActiveLibPath: String? = {
-    guard let swiftenvPath = Exec.run("/usr/bin/which", "swiftenv").string else {
+    guard let swiftenvPath = Exec.run("/usr/bin/env", "which", "swiftenv", stderr: .discard).string else {
         return nil
     }
 
@@ -94,7 +98,7 @@ internal let linuxFindSwiftenvActiveLibPath: String? = {
 /// Attempts to discover the location of libsourcekitdInProc.so by looking at
 /// the `swift` binary on the path.
 internal let linuxFindSwiftInstallationLibPath: String? = {
-    guard let swiftPath = Exec.run("/usr/bin/which", "swift").string else {
+    guard let swiftPath = Exec.run("/usr/bin/env", "which", "swift", stderr: .discard).string else {
         return nil
     }
 
@@ -111,7 +115,7 @@ internal let linuxFindSwiftInstallationLibPath: String? = {
     }
 
     /// .../bin/swift -> .../lib
-    return swiftPath.deleting(lastPathComponents: 2).appending(pathComponent: "/lib")
+    return swiftPath.resolvingSymlinksInPath().deleting(lastPathComponents: 2).appending(pathComponent: "/lib")
 }()
 
 /// Fallback path on Linux if no better option is available.
