@@ -10,6 +10,10 @@ struct DynamicLinkLibrary {
     typealias Handle = HMODULE?
 #else
     typealias Handle = UnsafeMutableRawPointer
+    // Workaround for Swift 5.9+, see LibraryWrapperGeneratorTests
+    private struct GetLastError {}
+    private struct WindowsError { let code: GetLastError }
+    // End workaround
 #endif
 
     fileprivate let handle: Handle
