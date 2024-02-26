@@ -106,7 +106,7 @@ Filters compiler arguments from `xcodebuild` to something that SourceKit/Clang w
 
 - returns: Filtered compiler arguments.
 */
-private func filter(arguments args: [String]) -> [String] {
+func filterForSourceKit(arguments args: [String]) -> [String] {
     var args = args
     args.append(contentsOf: ["-D", "DEBUG"])
     var shouldContinueToFilterArguments = true
@@ -158,7 +158,7 @@ internal func parseCompilerArguments(xcodebuildOutput: String, language: Languag
     }
 
     let escapedSpacePlaceholder = "\u{0}"
-    let args = filter(arguments: String(xcodebuildOutput[matchRange])
+    let args = filterForSourceKit(arguments: String(xcodebuildOutput[matchRange])
         .replacingOccurrences(of: "\\ ", with: escapedSpacePlaceholder)
         .unescaped
         .components(separatedBy: " "))
@@ -239,7 +239,7 @@ internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String
                 }
             }
             return nil
-        }.first.map { filter(arguments: $0) }
+        }.first.map { filterForSourceKit(arguments: $0) }
 
         if result != nil {
             fputs("Assuming New Build System is used.\n", stderr)

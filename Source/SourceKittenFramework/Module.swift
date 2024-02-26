@@ -45,7 +45,7 @@ public struct Module {
         }
 
         func matchModuleName(node: Node) -> Bool {
-            guard let nodeModuleName = node["module-name"]?.string else { return false }
+            guard let nodeModuleName = node.swiftModuleName else { return false }
             if let spmName = spmName {
                 return nodeModuleName == spmName
             }
@@ -55,28 +55,18 @@ public struct Module {
 
         guard let moduleCommand = commands.first(where: matchModuleName) else {
             fputs("Could not find SPM module '\(spmName ?? "(any)")'. Here are the modules available:\n", stderr)
-            let availableModules = commands.compactMap({ $0["module-name"]?.string })
+            let availableModules = commands.compactMap(\.swiftModuleName)
             fputs("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n", stderr)
             return nil
         }
 
-        guard let imports = moduleCommand["import-paths"]?.array(of: String.self),
-              let otherArguments = moduleCommand["other-args"]?.array(of: String.self),
-              let sources = moduleCommand["sources"]?.array(of: String.self),
-              let moduleName = moduleCommand["module-name"]!.string else {
-                fputs("SPM build manifest '\(yamlPath)` does not match expected format.\n", stderr)
-                return nil
+        guard let moduleName = moduleCommand.swiftModuleName,
+              let compilerArguments = moduleCommand.swiftCompilerArguments else {
+            fputs("SPM build manifest '\(yamlPath)` does not match expected format.\n", stderr)
+            return nil
         }
-        name = moduleName
-        compilerArguments = {
-            var arguments = sources
-            arguments.append(contentsOf: ["-module-name", moduleName])
-            arguments.append(contentsOf: otherArguments)
-            arguments.append(contentsOf: ["-I"])
-            arguments.append(contentsOf: imports)
-            return arguments
-        }()
-        sourceFiles = sources
+
+        self.init(name: moduleName, compilerArguments: compilerArguments)
     }
 
     /**
@@ -200,5 +190,69 @@ private extension Collection where Element == XcodeBuildSetting {
     /// - Returns: The first value returned by the getter closure.
     func firstBuildSettingValue(for getterClosure: (XcodeBuildSetting) -> String?) -> String? {
         return lazy.compactMap(getterClosure).first
+    }
+}
+
+// MARK: Yams.Node helpers for SwiftPM
+
+// The yaml structure changed in Xcode 15.3 / SwiftPM 5.10.  This extension decodes both formats.
+private extension Node {
+    // SwiftPM < 5.10: 'module-name' string
+    // SwiftPM   5.10: buried inside compiler args
+    var swiftModuleName: String? {
+        if let moduleNameNode = self["module-name"] {
+            return moduleNameNode.string
+        }
+        if let description = self["description"]?.string,
+           description.hasPrefix("Compiling Swift Module"),
+           let arguments = self["args"]?.array(of: String.self) {
+            return moduleName(fromArguments: arguments)
+        }
+        return nil
+    }
+
+    // SwiftPM < 5.10: 'sources' array of Swift files
+    // SwiftPM   5.10: 'inputs' array of various things including Swift files
+    var swiftSources: [String]? {
+        (self["sources"] ?? self["inputs"])?
+            .array(of: String.self)
+            .filter { $0.isSwiftFile() }
+    }
+
+    // SwiftPM < 5.10: 'other-args' and 'import-paths' arrays
+    // SwiftPM   5.10: 'args' is the entire command line that needs filtering
+    //   for SourceKit.  Additionally it contains a response file that may or
+    //   may not contain the list of source files - guessing a window in the
+    //   way we use this unofficial interface to SwiftPM.  Use the separate
+    //   'inputs' node, but we must remove the response file in case it *does*
+    //   contain the files which would cause duplicate file processing...
+    var swiftOtherCompilerArguments: [String]? {
+        if let buildCommandArguments = self["args"]?
+            .array(of: String.self)
+            .filter({ !$0.hasPrefix("@") }) {
+            // Drop the initial "/usr/bin/swiftc"
+            return filterForSourceKit(arguments: Array(buildCommandArguments.dropFirst()))
+        }
+
+        guard let imports = self["import-paths"]?.array(of: String.self),
+              let otherArguments = self["other-args"]?.array(of: String.self),
+              let moduleName = swiftModuleName else {
+            return nil
+        }
+
+        var arguments = ["-module-name", moduleName]
+        arguments.append(contentsOf: otherArguments)
+        arguments.append(contentsOf: ["-I"])
+        arguments.append(contentsOf: imports)
+        return arguments
+    }
+
+    var swiftCompilerArguments: [String]? {
+        guard let sources = swiftSources,
+              let otherCompilerArguments = swiftOtherCompilerArguments else {
+            return nil
+        }
+
+        return sources + otherCompilerArguments
     }
 }
