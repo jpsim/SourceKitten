@@ -92,4 +92,6 @@ public enum SwiftDeclarationKind: String, CaseIterable {
     case actor = "source.lang.swift.decl.actor"
     /// `macro`
     case macro = "source.lang.swift.decl.macro"
+    /// `function.accessor.init`
+    case functionAccessorInit = "source.lang.swift.decl.function.accessor.init"
 }

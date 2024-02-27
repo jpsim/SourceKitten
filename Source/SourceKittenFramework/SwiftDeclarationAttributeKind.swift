@@ -71,7 +71,7 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case setterPublic = "source.decl.attribute.setter_access.public"
     case setterOpen = "source.decl.attribute.setter_access.open"
     case optimize = "source.decl.attribute._optimize"
-    case consuming = "source.decl.attribute.__consuming"
+    case __consuming = "source.decl.attribute.__consuming"
     case implicitlyUnwrappedOptional = "source.decl.attribute._implicitly_unwrapped_optional"
 
     // only available in Swift >= 4.1.50
@@ -185,4 +185,15 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case typeWrapper = "source.decl.attribute.typeWrapper"
     case _expose = "source.decl.attribute._expose"
     case _documentation = "source.decl.attribute._documentation"
+
+    // Only available in Swift >= 5.9
+    case setterAccessPackage = "source.decl.attribute.setter_access.package"
+    case package = "source.decl.attribute.package"
+    case initializes = "source.decl.attribute.initializes"
+    case _lexicalLifetimes = "source.decl.attribute._lexicalLifetimes"
+    case consuming = "source.decl.attribute.consuming"
+    case attached = "source.decl.attribute.attached"
+    case borrowing = "source.decl.attribute.borrowing"
+    case storageRestrictions = "source.decl.attribute.storageRestrictions"
+    case accesses = "source.decl.attribute.accesses"
 }

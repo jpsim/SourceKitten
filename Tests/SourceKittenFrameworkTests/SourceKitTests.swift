@@ -114,6 +114,9 @@ class SourceKitTests: XCTestCase {
 #if compiler(<5.8)
         expected.remove(.macro)
 #endif
+#if compiler(<5.9)
+        expected.remove(.functionAccessorInit)
+#endif
         let expectedStrings = Set(expected.map(\.rawValue))
         XCTAssertEqual(
             actual,
@@ -134,6 +137,15 @@ class SourceKitTests: XCTestCase {
         ]
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
+
+#if compiler(>=5.9)
+        // removed in Swift 5.9
+        expected.subtract([.typeWrapperIgnored, .typeWrapper])
+#else
+        // added in Swift 5.9
+        expected.subtract([.setterAccessPackage, .package, .initializes, ._lexicalLifetimes,
+                           .consuming, .attached, .borrowing, .storageRestrictions, .accesses])
+#endif
 
 #if compiler(>=5.8)
         // removed in Swift 5.8
