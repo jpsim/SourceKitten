@@ -196,4 +196,9 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case borrowing = "source.decl.attribute.borrowing"
     case storageRestrictions = "source.decl.attribute.storageRestrictions"
     case accesses = "source.decl.attribute.accesses"
+
+    // Only available in Swift >= 5.10
+    case _rawLayout = "source.decl.attribute._rawLayout"
+    case _section = "source.decl.attribute._section"
+    case _used = "source.decl.attribute._used"
 }
