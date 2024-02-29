@@ -75,7 +75,7 @@ enum Exec {
         }
 
         do {
-#if canImport(Darwin)
+#if canImport(Darwin) && !targetEnvironment(macCatalyst)
             if #available(macOS 10.13, *) {
                 process.executableURL = URL(fileURLWithPath: command)
                 process.currentDirectoryURL = URL(fileURLWithPath: currentDirectory)
