@@ -138,6 +138,14 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=5.10)
+        // removed in Swift 5.10
+        expected.subtract([.accesses, .runtimeMetadata, .initializes])
+#else
+        // added in Swift 5.10
+        expected.subtract([._rawLayout, ._used, ._section])
+#endif
+
 #if compiler(>=5.9)
         // removed in Swift 5.9
         expected.subtract([.typeWrapperIgnored, .typeWrapper])

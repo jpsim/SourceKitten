@@ -6,6 +6,9 @@
 
 ##### Enhancements
 
+* Support docs generation with SwiftPM in Swift 5.10.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 * Added new syntax, attribute and declaration kinds introduced in Swift 5.9.  
   [John Fairhurst](https://github.com/johnfairh)
 
