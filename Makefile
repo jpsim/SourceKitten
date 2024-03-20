@@ -69,7 +69,7 @@ package: installables
 release: package
 
 docker_test:
-	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.9-focal swift test --parallel
+	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.10-focal swift test --parallel
 
 docker_htop:
 	docker run -it --rm --pid=container:sourcekitten terencewestphal/htop || reset
