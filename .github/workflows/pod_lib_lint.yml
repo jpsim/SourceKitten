@@ -9,11 +9,12 @@ on:
 jobs:
   pod_lib_lint:
     name: pod lib lint
-    runs-on: macos-13
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v3
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 15.3
       - run: bundle install --path vendor/bundle
       - run: bundle exec pod repo update
       - run: bundle exec pod lib lint --verbose
