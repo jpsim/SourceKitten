@@ -1,8 +1,9 @@
-## Main
+## 0.36.0
 
 ##### Breaking
 
-* None.
+* Bazel users only: rules_swift 2.x is now required.  
+  [Luis Padron](https://github.com/luispadron)
 
 ##### Enhancements
 
