@@ -21,7 +21,7 @@ jobs:
       - name: Run jazzy
         run: bundle exec jazzy --clean --sourcekitten-sourcefile SourceKittenFramework.json
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: API Docs
           path: docs
