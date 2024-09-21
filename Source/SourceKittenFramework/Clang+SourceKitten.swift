@@ -38,7 +38,13 @@ public struct ClangAvailability {
     public let unavailableMessage: String?
 }
 
-extension CXString: CustomStringConvertible {
+#if compiler(>=6.0)
+extension CXString: @retroactive CustomStringConvertible {}
+#else
+extension CXString: CustomStringConvertible {}
+#endif
+
+extension CXString {
     func str() -> String? {
         if let cString = clang_getCString(self) {
             return String(validatingUTF8: cString)
