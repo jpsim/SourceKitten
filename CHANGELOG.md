@@ -1,3 +1,22 @@
+## Main
+
+#### Breaking
+
+* None.
+
+#### Enhancements
+
+* Build without warnings with Swift 6 compiler.  
+  [SimplyDanny](https://github.com/SimplyDanny)
+
+* Generate docs cleanly with Swift 6 compiler.  
+  [John Fairhurst](https://github.com/johnfairh)
+  [#821]((https://github.com/realm/SourceKitten/issues/821)
+
+#### Bug Fixes
+
+* None.
+
 ## 0.36.0
 
 ##### Breaking

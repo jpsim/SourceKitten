@@ -43,28 +43,28 @@ public func toJSON(_ object: Any, options: JSONSerialization.WritingOptions? = n
  - returns: JSON-serializable value.
  */
 public func toNSDictionary(_ dictionary: [String: SourceKitRepresentable]) -> NSDictionary {
-    var anyDictionary = [String: Any]()
-    for (key, object) in dictionary {
+    func toNSDictionaryValue(_ object: SourceKitRepresentable) -> Any {
         switch object {
         case let object as [SourceKitRepresentable]:
-            anyDictionary[key] = object.map { toNSDictionary($0 as! [String: SourceKitRepresentable]) }
+            return object.map { toNSDictionaryValue($0) }
         case let object as [[String: SourceKitRepresentable]]:
-            anyDictionary[key] = object.map { toNSDictionary($0) }
+            return object.map { toNSDictionary($0) }
         case let object as [String: SourceKitRepresentable]:
-            anyDictionary[key] = toNSDictionary(object)
+            return toNSDictionary(object)
         case let object as String:
-            anyDictionary[key] = object
+            return object
         case let object as Int64:
-            anyDictionary[key] = NSNumber(value: object)
+            return NSNumber(value: object)
         case let object as Bool:
-            anyDictionary[key] = NSNumber(value: object)
+            return NSNumber(value: object)
         case let object as Any:
-            anyDictionary[key] = object
+            return object
         default:
             fatalError("Should never happen because we've checked all SourceKitRepresentable types")
         }
     }
-    return anyDictionary.bridge()
+
+    return dictionary.mapValues(toNSDictionaryValue).bridge()
 }
 
 #if !os(Linux)
