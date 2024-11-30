@@ -1,14 +1,19 @@
 import ArgumentParser
-#if canImport(Darwin)
+import Dispatch
+
+#if os(macOS)
 import Darwin
-#elseif canImport(Glibc)
+#elseif os(Linux)
+#if canImport(Glibc)
 import Glibc
+#elseif canImport(Musl)
+import Musl
+#endif
 #elseif os(Windows)
 import ucrt
 #else
 #error("Unsupported platform")
 #endif
-import Dispatch
 
 // `sourcekitd_set_notification_handler()` sets the handler to be executed on main thread queue.
 // So, we vacate main thread to `dispatchMain()`.
