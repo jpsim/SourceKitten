@@ -4,10 +4,6 @@ struct SwiftVersion: RawRepresentable, Comparable {
 
     let rawValue: String
 
-    init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
     /// Comparable
     static func < (lhs: SwiftVersion, rhs: SwiftVersion) -> Bool {
         return lhs.rawValue < rhs.rawValue
