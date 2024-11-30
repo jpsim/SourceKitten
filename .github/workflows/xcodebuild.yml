@@ -10,7 +10,7 @@ jobs:
   Xcode:
     strategy:
       matrix:
-        xcode_version: ['14.3.1', '15.2', '15.3']
+        xcode_version: ['15.3', '15.4', '16.1', '16.2']
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v3
