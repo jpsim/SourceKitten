@@ -138,6 +138,15 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=6.0)
+        // removed in Swift 6.0
+        expected.subtract([.isolated, ._objcImplementation])
+#else
+        // added in Swift 6.0
+        expected.subtract([._extern, ._resultDependsOnSelf, ._preInverseGenerics, .implementation,
+                           ._allowFeatureSuppression, ._noRuntime, ._staticExclusiveOnly, .extractConstantsFromMembers,
+                           ._unsafeNonescapableResult, ._noExistentials, ._noObjCBridging, ._nonescapable])
+#endif
 #if compiler(>=5.10)
         // removed in Swift 5.10
         expected.subtract([.accesses, .runtimeMetadata, .initializes])

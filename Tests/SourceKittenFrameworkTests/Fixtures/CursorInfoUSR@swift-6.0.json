@@ -1,0 +1,19 @@
+{
+  "key.annotated_decl" : "<Declaration>struct DocumentedStruct<\/Declaration>",
+  "key.column" : 8,
+  "key.decl_lang" : "source.lang.swift",
+  "key.doc_comment" : "A documented struct",
+  "key.doc.full_as_xml" : "<Class file=\"DocInfo.swift\" line=\"28\" column=\"8\"><Name>DocumentedStruct<\/Name><USR>s:7DocInfo16DocumentedStructV<\/USR><Declaration>struct DocumentedStruct<\/Declaration><CommentParts><Abstract><Para>A documented struct<\/Para><\/Abstract><\/CommentParts><\/Class>",
+  "key.filepath" : "DocInfo.swift",
+  "key.fully_annotated_decl" : "<decl.struct><syntaxtype.keyword>struct<\/syntaxtype.keyword> <decl.name>DocumentedStruct<\/decl.name><\/decl.struct>",
+  "key.kind" : "source.lang.swift.decl.struct",
+  "key.length" : 16,
+  "key.line" : 28,
+  "key.modulename" : "DocInfo",
+  "key.name" : "DocumentedStruct",
+  "key.offset" : 416,
+  "key.reusingastcontext" : false,
+  "key.typename" : "DocumentedStruct.Type",
+  "key.typeusr" : "$s7DocInfo16DocumentedStructVmD",
+  "key.usr" : "s:7DocInfo16DocumentedStructV"
+}

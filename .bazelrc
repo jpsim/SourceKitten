@@ -3,3 +3,4 @@ build --macos_minimum_os=12
 build --repo_env=CC=clang
 test --test_output=errors
 test --spawn_strategy=standalone
+test --macos_minimum_os=13

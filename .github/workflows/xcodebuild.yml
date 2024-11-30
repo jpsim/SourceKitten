@@ -18,4 +18,4 @@ jobs:
         with:
           xcode-version: ${{ matrix.xcode_version }}
       - run: xcodebuild -version
-      - run: xcodebuild -scheme sourcekitten -parallel-testing-enabled NO test -destination platform=macOS
+      - run: xcodebuild -scheme SourceKitten-Package -parallel-testing-enabled NO test -destination platform=macOS
