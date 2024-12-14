@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.source_files        = 'Source/Clang_C/include/*.h', 'Source/SourceKit/include/*.h', 'Source/SourceKittenFramework/*.swift'
   s.swift_versions      = ['5.3', '5.4', '5.5', '5.6', '5.7']
   s.pod_target_xcconfig = { 'APPLICATION_EXTENSION_API_ONLY' => 'YES' }
-  s.dependency            'SWXMLHash', '~> 7.0.0'
+  s.dependency            'SWXMLHash', '~> 8.0.0'
   s.dependency            'Yams', '~> 5.0.0'
 end
