@@ -7,7 +7,11 @@ final class LibraryWrapperGeneratorTests: XCTestCase {
         let sourceKittenFrameworkModule = Module(xcodeBuildArguments: sourcekittenXcodebuildArguments,
                                                  name: "SourceKittenFramework", inPath: projectRoot)!
         let docsJSON = sourceKittenFrameworkModule.docs.description
+
+        /// If this assert fires and the cause is missing Windows types, then see e.g. https://github.com/jpsim/SourceKitten/pull/828
+        /// for direction - the idea is to provide 'shim' types to let sourcekit reason about the types and leave this test unchanged.
         XCTAssert(docsJSON.range(of: "error type") == nil)
+
         let jsonArray = try JSONSerialization.jsonObject(with: docsJSON.data(using: .utf8)!, options: []) as? NSArray
         XCTAssertNotNil(jsonArray, "JSON should be properly parsed")
         for wrapperConfig in LibraryWrapperGenerator.allCases {

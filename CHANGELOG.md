@@ -13,6 +13,9 @@
   [John Fairhurst](https://github.com/johnfairh)
   [#821]((https://github.com/realm/SourceKitten/issues/821)
 
+* Added new syntax, attribute and declaration kinds introduced in Swift 6.0.  
+  [SimplyDanny](https://github.com/SimplyDanny)
+
 #### Bug Fixes
 
 * None.
