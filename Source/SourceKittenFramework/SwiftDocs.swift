@@ -4,12 +4,18 @@ import Foundation
 import SourceKit
 #endif
 
-#if os(Linux)
-import Glibc
-#elseif os(Windows)
-import CRT
-#else
+#if os(macOS)
 import Darwin
+#elseif os(Linux)
+#if canImport(Glibc)
+import Glibc
+#elseif canImport(Musl)
+import Musl
+#endif
+#elseif os(Windows)
+import ucrt
+#else
+#error("Unsupported platform")
 #endif
 
 /// Represents docs for a Swift file.
