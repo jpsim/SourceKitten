@@ -32,8 +32,8 @@ let package = Package(
             dependencies: [
                 "Clang_C",
                 "SourceKit",
-                "SWXMLHash",
-                "Yams",
+                .product(name: "SWXMLHash", package: "SWXMLHash"),
+                .product(name: "Yams", package: "Yams"),
             ]
         ),
         .testTarget(

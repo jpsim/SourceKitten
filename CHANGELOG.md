@@ -1,3 +1,18 @@
+## Main
+
+#### Breaking
+
+* None.
+
+#### Enhancements
+
+* Fully specify package dependencies for wider compatibility.  
+  [Anthony Ilinykh](https://github.com/ailinykh)
+
+#### Bug Fixes
+
+* None.
+
 ## 0.37.0
 
 #### Breaking
