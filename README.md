@@ -23,16 +23,22 @@ Run `swift build` in the root directory of this project.
 
 ### Bazel
 
-Add the following to your `WORKSPACE` file:
+If you are using Bzlmod with Bazel 6 or later, add the following to your `MODULE.bazel` file:
 
 ```python
-SOURCEKITTEN_VERSION = "SOME_VERSION"
-SOURCEKITTEN_SHA = "SOME_SHA"
+bazel_dep(name = "sourcekitten", version = "0.36.0")
+```
+
+Otherwise, add the following to your `WORKSPACE` file:
+
+```python
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
 http_archive(
     name = "com_github_jpsim_sourcekitten",
-    url = "https://github.com/jpsim/SourceKitten/archive/refs/tags/%s.tar.gz" % (SOURCEKITTEN_VERSION),
-    sha256 = SOURCEKITTEN_SHA,
-    strip_prefix = "SourceKitten-%s" % SOURCEKITTEN_VERSION
+    sha256 = "932e05ee380d801189511aedd606e9c153e76d7774ab34185cc046c217ed5fc3",
+    strip_prefix = "SourceKitten-0.36.0",
+    url = "https://github.com/jpsim/SourceKitten/releases/download/0.36.0/SourceKitten-0.36.0.tar.gz",
 )
 ```
 
