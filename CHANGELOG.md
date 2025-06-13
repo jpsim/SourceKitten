@@ -9,6 +9,9 @@
 * Fully specify package dependencies for wider compatibility.  
   [Anthony Ilinykh](https://github.com/ailinykh)
 
+* Support Bazel's rules_swift 3.0.  
+  [Luis Padron](https://github.com/luispadron)
+
 #### Bug Fixes
 
 * None.
