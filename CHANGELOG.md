@@ -1,3 +1,18 @@
+## 0.37.2
+
+#### Breaking
+
+* None.
+
+#### Enhancements
+
+* Update some SwiftPM and Bazel dependencies.  
+  [SimplyDanny](https://github.com/SimplyDanny)
+
+#### Bug Fixes
+
+* None.
+
 ## 0.37.1
 
 #### Breaking
