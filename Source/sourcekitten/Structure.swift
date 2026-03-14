@@ -9,17 +9,19 @@ extension SourceKitten {
         var file: String = ""
         @Option(help: "Swift code text to parse")
         var text: String = ""
+        @Flag(help: "Include import statements in the output")
+        var imports: Bool = false
 
         mutating func run() throws {
             if !file.isEmpty {
                 if let file = File(path: file) {
-                    print(try SourceKittenFramework.Structure(file: file))
+                    print(try SourceKittenFramework.Structure(file: file, extractImports: imports))
                     return
                 }
                 throw SourceKittenError.readFailed(path: file)
             }
             if !text.isEmpty {
-                print(try SourceKittenFramework.Structure(file: File(contents: text)))
+                print(try SourceKittenFramework.Structure(file: File(contents: text), extractImports: imports))
                 return
             }
             throw SourceKittenError.invalidArgument(

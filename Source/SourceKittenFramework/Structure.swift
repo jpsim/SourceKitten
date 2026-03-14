@@ -15,13 +15,37 @@ public struct Structure {
     }
 
     /**
+    Create a Structure from a SourceKit `editor.open` response, extracting import
+    information from the syntax map before discarding it.
+
+    - parameter sourceKitResponse: SourceKit `editor.open` response.
+    - parameter file: The source file, used to resolve import names from byte ranges.
+    */
+    public init(sourceKitResponse: [String: SourceKitRepresentable], file: File, extractImports: Bool = false) {
+        var sourceKitResponse = sourceKitResponse
+        if extractImports, let syntaxMapData = SwiftDocKey.getSyntaxMap(sourceKitResponse) {
+            let syntaxMap = SyntaxMap(data: syntaxMapData)
+            let imports = ImportInfo.extractImports(from: syntaxMap, in: file)
+            if !imports.isEmpty {
+                sourceKitResponse["key.imports"] = imports.map { $0.dictionaryRepresentation } as [SourceKitRepresentable]
+            } else {
+                sourceKitResponse["key.imports"] = [SourceKitRepresentable]()
+            }
+        }
+        _ = sourceKitResponse.removeValue(forKey: SwiftDocKey.syntaxMap.rawValue)
+        dictionary = sourceKitResponse
+    }
+
+    /**
     Initialize a Structure by passing in a File.
 
     - parameter file: File to parse for structural information.
+    - parameter extractImports: Whether to extract import information from the syntax map. Defaults to `false`.
     - throws: Request.Error
     */
-    public init(file: File) throws {
-        self.init(sourceKitResponse: try Request.editorOpen(file: file).send())
+    public init(file: File, extractImports: Bool = false) throws {
+        let response = try Request.editorOpen(file: file).send()
+        self.init(sourceKitResponse: response, file: file, extractImports: extractImports)
     }
 }
 
