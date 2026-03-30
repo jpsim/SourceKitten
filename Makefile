@@ -21,7 +21,7 @@ SOURCEKITTENFRAMEWORK_PLIST=Source/SourceKittenFramework/Info.plist
 
 VERSION_STRING="$(shell ./script/get-version)"
 
-.PHONY: all clean install package test uninstall
+.PHONY: all clean install package test uninstall release
 
 all: build
 
@@ -50,7 +50,9 @@ uninstall:
 	rm -rf "$(FRAMEWORKS_FOLDER)/SourceKittenFramework.framework"
 	rm -f "$(BINARIES_FOLDER)/sourcekitten"
 
-installables: clean build
+installables: build
+	rm -f "$(OUTPUT_PACKAGE)"
+	rm -rf "$(TEMPORARY_FOLDER)"
 	install -d "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)"
 	install "$(SOURCEKITTEN_EXECUTABLE)" "$(TEMPORARY_FOLDER)$(BINARIES_FOLDER)"
 
@@ -66,7 +68,40 @@ package: installables
 		--version "$(VERSION_STRING)" \
 		"$(OUTPUT_PACKAGE)"
 
-release: package
+release:
+	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
+	$(eval VERSION := $(word 1,$(ARGS)))
+	$(eval RELEASE_NAME := $(wordlist 2,100,$(ARGS)))
+	@if [ -z "$(VERSION)" ] || [ -z "$(RELEASE_NAME)" ]; then \
+		echo "usage: make release <version> <release name>"; \
+		exit 1; \
+	fi
+	@# Set version
+	@sed -i '' 's/## Main/## $(VERSION)/g' CHANGELOG.md
+	@sed 's/__VERSION__/$(VERSION)/g' script/Version.swift.template > Source/SourceKittenFramework/Version.swift
+	@sed -e '3s/.*/    version = "$(VERSION)",/' -i '' MODULE.bazel
+	@# Commit, tag, push
+	git commit -am "Release $(VERSION)"
+	git tag -a "$(VERSION)" -m "$(VERSION): $(RELEASE_NAME)"
+	git push origin main
+	git push origin "$(VERSION)"
+	@# Build pkg
+	$(MAKE) package
+	@# Download source tarball for BCR stable URL
+	curl -fsSL --retry 5 "https://github.com/jpsim/SourceKitten/archive/refs/tags/$(VERSION).tar.gz" \
+		-o "SourceKitten-$(VERSION).tar.gz"
+	@# Create GitHub release
+	gh release create "$(VERSION)" \
+		"$(OUTPUT_PACKAGE)" \
+		"SourceKitten-$(VERSION).tar.gz" \
+		--title "$(VERSION): $(RELEASE_NAME)" \
+		--notes "$$(sed -n '/^## $(VERSION)/,/^## /{/^## $(VERSION)/d;/^## /d;p;}' CHANGELOG.md)"
+	rm -f "SourceKitten-$(VERSION).tar.gz"
+	@# Add empty changelog section
+	@printf '## Main\n\n#### Breaking\n\n* None.\n\n#### Enhancements\n\n* None.\n\n#### Bug Fixes\n\n* None.\n\n' | cat - CHANGELOG.md > /tmp/CHANGELOG.md.tmp
+	@mv /tmp/CHANGELOG.md.tmp CHANGELOG.md
+	git commit -am "Add empty changelog section"
+	git push origin main
 
 docker_test:
 	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:5.10-focal swift test --parallel
@@ -77,10 +112,6 @@ docker_htop:
 # http://irace.me/swift-profiling/
 display_compilation_time:
 	$(BUILD_TOOL) $(XCODEFLAGS) OTHER_SWIFT_FLAGS="-Xfrontend -debug-time-function-bodies" clean build-for-testing | grep -E ^[1-9]{1}[0-9]*.[0-9]+ms | sort -n
-
-publish:
-	brew update && brew bump-formula-pr --tag=$(shell git describe --tags) --revision=$(shell git rev-parse HEAD) sourcekitten
-	pod trunk push --verbose
 
 update_clang_headers:
 	rm -rf Source/Clang_C/include
@@ -107,11 +138,6 @@ update_fixtures_docker:
 get_version:
 	@echo $(VERSION_STRING)
 
-set_version:
-	$(eval NEW_VERSION := $(filter-out $@,$(MAKECMDGOALS)))
-	@sed -i '' 's/## Main/## $(NEW_VERSION)/g' CHANGELOG.md
-	@sed 's/__VERSION__/$(NEW_VERSION)/g' script/Version.swift.template > Source/SourceKittenFramework/Version.swift
-	@sed -e '3s/.*/    version = "$(NEW_VERSION)",/' -i '' MODULE.bazel
 
 %:
 	@:
