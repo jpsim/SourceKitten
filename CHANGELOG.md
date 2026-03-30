@@ -6,7 +6,8 @@
 
 #### Enhancements
 
-* None.
+* Update Yams to 6.2.1.
+  [Aaron Sky](https://github.com/aaronsky)
 
 #### Bug Fixes
 
