@@ -8,13 +8,13 @@ on:
 
 jobs:
   Jazzy:
-    runs-on: macos-13
+    runs-on: macos-15
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          ruby-version: '3.3'
+          bundler-cache: true
       - run: swift build
       - name: Generate documentation json
         run: swift run sourcekitten doc --spm --module-name SourceKittenFramework > SourceKittenFramework.json

@@ -1,5 +1,5 @@
 {
-    "url": "https://github.com/jpsim/SourceKitten/archive/refs/tags/{TAG}.tar.gz",
+    "url": "https://github.com/jpsim/SourceKitten/releases/download/{TAG}/SourceKitten-{TAG}.tar.gz",
     "integrity": "",
     "strip_prefix": "SourceKitten-{TAG}"
 }
