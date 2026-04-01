@@ -102,6 +102,7 @@ public final class File { // swiftlint:disable:this type_body_length
     /// - Returns: formatted String
     /// - Throws: Request.Error
     public func format(trimmingTrailingWhitespace: Bool,
+                       ignoringEmptyLines: Bool = true,
                        useTabs: Bool,
                        indentWidth: Int) throws -> String {
         guard let path = path else {
@@ -131,10 +132,12 @@ public final class File { // swiftlint:disable:this type_body_length
 
         if trimmingTrailingWhitespace {
             newContents = newContents.map {
-                $0.bridge().trimmingTrailingCharacters(in: .whitespaces)
+                if !$0.containsNonWhitespaceCharacters, ignoringEmptyLines {
+                    return $0.bridge()
+                }
+                return $0.bridge().trimmingTrailingCharacters(in: .whitespaces)
             }
         }
-
         return newContents.joined(separator: "\n") + "\n"
     }
 
@@ -508,3 +511,10 @@ private extension XMLIndexer {
         return elements.map(dictionary(from:)) as [SourceKitRepresentable]
     }
 }
+
+private extension String {
+    var containsNonWhitespaceCharacters: Bool {
+        return self.contains(where: {!$0.isWhitespace})
+    }
+}
+
