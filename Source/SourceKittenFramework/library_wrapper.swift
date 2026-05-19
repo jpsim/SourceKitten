@@ -43,19 +43,36 @@ struct Loader {
 
         // try all fullPaths that contains target file,
         // then try loading with simple path that depends resolving to DYLD
+        var attemptFailures: [String] = []
         for fullPath in fullPaths + [path] {
 #if os(Windows)
             if let handle = fullPath.withCString(encodedAs: UTF16.self, LoadLibraryW) {
                 return DynamicLinkLibrary(handle: handle)
             }
+            attemptFailures.append("  \(fullPath): GetLastError=\(GetLastError())")
 #else
             if let handle = dlopen(fullPath, RTLD_LAZY) {
                 return DynamicLinkLibrary(handle: handle)
             }
+            // dlerror() must be read immediately after a failed dlopen; it clears on read.
+            let reason = dlerror().flatMap { String(validatingUTF8: $0) } ?? "<no error reported by dlerror>"
+            attemptFailures.append("  \(fullPath): \(reason)")
 #endif
         }
 
-        fatalError("Loading \(path) failed")
+        fatalError(Loader.failureMessage(path: path, attemptFailures: attemptFailures))
+    }
+
+    /// Builds the diagnostic emitted when no candidate path could be loaded.
+    /// Extracted so the message can be exercised in tests without triggering a fatal error.
+    static func failureMessage(path: String, attemptFailures: [String]) -> String {
+        guard !attemptFailures.isEmpty else {
+            return "Loading \(path) failed: no candidate paths were attempted (check searchPaths configuration)."
+        }
+        return """
+        Loading \(path) failed. Tried:
+        \(attemptFailures.joined(separator: "\n"))
+        """
     }
 }
 
