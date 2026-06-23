@@ -1,3 +1,18 @@
+## Main
+
+#### Breaking
+
+* None.
+
+#### Enhancements
+
+* New syntax, attribute and declaration kinds introduced in Swift 6.1-6.3.  
+  [John Fairhurst](https://github.com/johnfairh)
+
+#### Bug Fixes
+
+* None.
+
 ## 0.37.3
 
 #### Breaking

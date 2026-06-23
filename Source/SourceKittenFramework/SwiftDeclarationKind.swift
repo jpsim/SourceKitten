@@ -94,4 +94,8 @@ public enum SwiftDeclarationKind: String, CaseIterable {
     case macro = "source.lang.swift.decl.macro"
     /// `function.accessor.init`
     case functionAccessorInit = "source.lang.swift.decl.function.accessor.init"
+    /// `function.accessor.borrow`
+    case functionAccessorBorrow = "source.lang.swift.decl.function.accessor.borrow"
+    /// `function.accessor.mutate`
+    case functionAccessorMutate = "source.lang.swift.decl.function.accessor.mutate"
 }
