@@ -64,9 +64,8 @@ enum SwiftPM {
     private static func runCheckedCommand(arguments: [String], inPath path: String, msgName: String) -> Exec.Results? {
         let results = Exec.run("/usr/bin/env", arguments, currentDirectory: path, stderr: .merge)
         guard results.terminationStatus == 0 else {
-            let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("swift-build-\(UUID().uuidString).log")
-            _ = try? results.data.write(to: file)
-            fputs("Build failed, saved `\(msgName)` log file: \(file.path)\n", stderr)
+            let path = results.save(prefix: "swift-build")
+            fputs("Build failed, saved `\(msgName)` log file: \(path)\n", stderr)
             return nil
         }
         return results

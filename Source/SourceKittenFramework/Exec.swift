@@ -24,6 +24,14 @@ enum Exec {
             let trimmed = encoded.trimmingCharacters(in: .whitespacesAndNewlines)
             return trimmed.isEmpty ? nil : trimmed
         }
+
+        /// Save `data` to a new temporary file and return its path
+        /// - parameter prefix: Prefix for the name of the temporary file
+        func save(prefix: String) -> String {
+            let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(prefix)-\(UUID().uuidString).log")
+            _ = try? data.write(to: file)
+            return file.path
+        }
     }
 
     /**
