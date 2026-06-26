@@ -6,7 +6,8 @@
 
 #### Enhancements
 
-* None.
+* New syntax, attribute and declaration kinds introduced in Swift 6.4.  
+  [John Fairhurst](https://github.com/johnfairh)
 
 #### Bug Fixes
 
@@ -22,8 +23,10 @@
 
 * New syntax, attribute and declaration kinds introduced in Swift 6.1-6.3.  
   [John Fairhurst](https://github.com/johnfairh)
+
 * Improve reporting of `sourcekitdInProc` loading failures.  
   [Daniel Sunarjo](https://github.com/sunarjodaniel)
+
 * Avoid `getcwd` in `absolutePathRepresentation()` for absolute paths.  
   [Brett Best](https://github.com/Brett-Best)
 
