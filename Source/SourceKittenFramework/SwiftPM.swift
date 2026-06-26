@@ -11,6 +11,11 @@ enum SwiftPM {
         return URL(fileURLWithPath: path).appendingPathComponent(".build/debug.yaml").path
     }
 
+    /// Is there a `debug.yaml` file in the .bulid directory
+    static func hasDebugYaml(inPath path: String) -> Bool {
+        return FileManager.default.fileExists(atPath: debugYamlPath(inPath: path))
+    }
+
     /**
      Get module build flags and optionally name from the `debug.yaml` file produced by the default SwiftPM build
      system earlier than Swift 6.4.
@@ -55,7 +60,7 @@ enum SwiftPM {
     // MARK: Build commands
 
     /**
-     Run  a build command.  If it works then return the results otherwise report the error and save the output.
+     Run a build command.  If it works then return the results otherwise report the error and save the output.
 
      - parameter arguments: Program name and arguments
      - parameter path: Working directory for program
@@ -74,6 +79,37 @@ enum SwiftPM {
     /// Run `swift build`. Return the successful results or `nil` and report the error.
     static func runBuild(arguments: [String], inPath path: String) -> Exec.Results? {
         return runCheckedCommand(arguments: ["swift", "build"] + arguments, inPath: path, msgName: "swift build")
+    }
+
+    /// Run `swift build -v`. Return the successful results or `nil` and report the error.
+    static func runVerboseBuild(arguments: [String], inPath path: String) -> Exec.Results? {
+        return runBuild(arguments: ["-v"] + arguments, inPath: path)
+    }
+
+    /// Run `swift package clean`. Return the successful results or `nil` and report the error.
+    static func runClean(inPath path: String) -> Exec.Results? {
+        return runCheckedCommand(arguments: ["swift", "package", "clean"], inPath: path, msgName: "swift package clean")
+    }
+
+    // MARK: Build output parsing
+
+    /**
+     Given some results from `swift build -v`, find the compiler arguments for the module.
+
+     - parameter swiftBuildOutput: Output of `swift build -v
+     - parameter moduleName: Module of interest, `nil` to use any
+     - returns: tuple of module name and compiler args, or `nil` on failure
+     */
+    static func fromBuildResults(_ results: Exec.Results, moduleName: String?) -> (String, [String])? {
+        guard let buildOutput = results.string,
+              let swiftArgs = SourceKittenFramework.parseCompilerArguments(
+                xcodebuildOutput: buildOutput,
+                language: .swift,
+                moduleName: moduleName),
+              let actualModuleName = SourceKittenFramework.moduleName(fromArguments: swiftArgs) else {
+            return nil
+        }
+        return (actualModuleName, swiftArgs)
     }
 }
 
