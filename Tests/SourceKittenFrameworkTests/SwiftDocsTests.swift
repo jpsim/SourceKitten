@@ -68,8 +68,12 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
     compareJSONString(withFixtureNamed: name, jsonString: docs, file: file, line: line)
 }
 
+// swiftlint:disable:next function_body_length
 private func versionedExpectedFilename(for name: String) -> String {
     var versionNumbers = [String]()
+#if compiler(>=6.4)
+    versionNumbers += ["6.4"]
+#endif
 #if compiler(>=6.3)
     versionNumbers += ["6.3"]
 #endif
@@ -138,7 +142,9 @@ private func diff(original: String, modified: String) -> String {
 }
 
 private let buildingSwiftVersion: String = {
-#if compiler(>=6.3)
+#if compiler(>=6.4)
+    return "swift-6.4"
+#elseif compiler(>=6.3)
     return "swift-6.3"
 #elseif compiler(>=6.0)
     return "swift-6.0"
