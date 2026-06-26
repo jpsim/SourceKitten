@@ -9,6 +9,9 @@
 * New syntax, attribute and declaration kinds introduced in Swift 6.4.  
   [John Fairhurst](https://github.com/johnfairh)
 
+* Docs generation and code completion with Swift PM 6.4.  
+  [John Fairhurst](https://github.com/johnfairh)
+
 #### Bug Fixes
 
 * None.

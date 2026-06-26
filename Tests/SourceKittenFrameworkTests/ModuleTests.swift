@@ -61,8 +61,6 @@ class ModuleTests: XCTestCase {
 #endif
 
     func testCommandantDocsSPM() throws {
-        throw XCTSkip("Temporarily disabled - needs SwiftBuild SPM docs extraction work")
-
         let temporaryURL = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("\(#function)-\(NSUUID())")
         try FileManager.default.createDirectory(at: temporaryURL, withIntermediateDirectories: true)
@@ -87,18 +85,30 @@ class ModuleTests: XCTestCase {
                           rootDirectory: commandantPath)
     }
 
-    func testSpmDefaultModule() {
-        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil
-            && ProcessInfo.processInfo.environment["TEST_WORKSPACE"] == nil else {
-            print(
-                """
-                Skipping \(#function) because we're running in Xcode and this test relies on the `.build` \
-                directory being present.
-                """
-            )
-            return
+    private var isXcode: Bool {
+        ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil ||
+        ProcessInfo.processInfo.environment["TEST_WORKSPACE"] != nil
+    }
+
+    func testSpmDefaultModuleXcode() throws {
+        guard isXcode else {
+            // `swift build` hangs if run from within `swift test` of the same package
+            throw XCTSkip("Not running in Xcode.  Can't run `swift build` from within `swift test`: skipping.")
+        }
+        let skModule = Module(spmArguments: [], spmName: nil, inPath: projectRoot)
+        XCTAssertEqual(skModule?.name, "SourceKittenFramework")
+    }
+
+#if compiler(<6.4)
+    // Marking this test deprecated suppresses the deprecated warning on the
+    // pre-6.4 module initializer.
+    @available(*, deprecated)
+    func testSpmDefaultModuleSpm() throws {
+        guard !isXcode else {
+            throw XCTSkip("Not running in Xcode, skipping")
         }
         let skModule = Module(spmName: nil, inPath: projectRoot)
         XCTAssertEqual(skModule?.name, "SourceKittenFramework")
     }
+#endif
 }

@@ -119,7 +119,8 @@ func filterForSourceKit(arguments args: [String]) -> [String] {
             "-use-frontend-parseable-output",
             "-incremental",
             "-serialize-diagnostics",
-            "-emit-dependencies"
+            "-emit-dependencies",
+            "-v"
         ].contains($0)
     }.map {
         if $0 == "-O" {
