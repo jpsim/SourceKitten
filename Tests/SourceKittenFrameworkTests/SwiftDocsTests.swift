@@ -69,32 +69,41 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
 }
 
 private func versionedExpectedFilename(for name: String) -> String {
-#if compiler(>=6)
-    let versions = ["swift-6.0", "swift-5.10", "swift-5.9", "swift-5.8", "swift-5.6", "swift-5.5.2", "swift-5.5", "swift-5.4", "swift-5.3.1", "swift-5.3",
-                    "swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.10)
-    let versions = ["swift-5.10", "swift-5.9", "swift-5.8", "swift-5.6", "swift-5.5.2", "swift-5.5", "swift-5.4", "swift-5.3.1", "swift-5.3", "swift-5.2",
-                    "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.9)
-    let versions = ["swift-5.9", "swift-5.8", "swift-5.6", "swift-5.5.2", "swift-5.5", "swift-5.4", "swift-5.3.1", "swift-5.3", "swift-5.2", "swift-5.1",
-                    "swift-5.0"]
-#elseif compiler(>=5.8)
-    let versions = ["swift-5.8", "swift-5.6", "swift-5.5.2", "swift-5.5", "swift-5.4", "swift-5.3.1", "swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.6)
-    let versions = ["swift-5.6", "swift-5.5.2", "swift-5.5", "swift-5.4", "swift-5.3.1", "swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.5.2)
-    let versions = ["swift-5.5.2", "swift-5.5", "swift-5.4", "swift-5.3.1", "swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.5.0)
-    let versions = ["swift-5.5", "swift-5.4", "swift-5.3.1", "swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.4.0)
-    let versions = ["swift-5.4", "swift-5.3.1", "swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.3.1)
-    let versions = ["swift-5.3.1", "swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
-#elseif compiler(>=5.3)
-    let versions = ["swift-5.3", "swift-5.2", "swift-5.1", "swift-5.0"]
-#else
-    let versions = ["swift-5.2", "swift-5.1", "swift-5.0"]
+    var versionNumbers = [String]()
+#if compiler(>=6.3)
+    versionNumbers += ["6.3"]
 #endif
+#if compiler(>=6.0)
+    versionNumbers += ["6.0"]
+#endif
+#if compiler(>=5.10)
+    versionNumbers += ["5.10"]
+#endif
+#if compiler(>=5.9)
+    versionNumbers += ["5.9"]
+#endif
+#if compiler(>=5.8)
+    versionNumbers += ["5.8"]
+#endif
+#if compiler(>=5.6)
+    versionNumbers += ["5.6"]
+#endif
+#if compiler(>=5.5)
+    versionNumbers += ["5.5"]
+#endif
+#if compiler(>=5.4)
+    versionNumbers += ["5.4"]
+#endif
+#if compiler(>=5.3.1)
+    versionNumbers += ["5.3.1"]
+#endif
+#if compiler(>=5.3)
+    versionNumbers += ["5.3"]
+#endif
+    versionNumbers += ["5.0", "5.1", "5.2"]
+
+    let versions = versionNumbers.map { "swift-\($0)" }
+
 #if os(Linux)
     let platforms = ["Linux", ""]
 #elseif os(Windows)
@@ -129,7 +138,11 @@ private func diff(original: String, modified: String) -> String {
 }
 
 private let buildingSwiftVersion: String = {
-#if compiler(>=5.10)
+#if compiler(>=6.3)
+    return "swift-6.3"
+#elseif compiler(>=6.0)
+    return "swift-6.0"
+#elseif compiler(>=5.10)
     return "swift-5.10"
 #elseif compiler(>=5.9)
     return "swift-5.9"

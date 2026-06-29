@@ -117,6 +117,10 @@ class SourceKitTests: XCTestCase {
 #if compiler(<5.9)
         expected.remove(.functionAccessorInit)
 #endif
+#if compiler(<6.3)
+        expected.remove(.functionAccessorBorrow)
+        expected.remove(.functionAccessorMutate)
+#endif
         let expectedStrings = Set(expected.map(\.rawValue))
         XCTAssertEqual(
             actual,
@@ -138,9 +142,24 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=6.3)
+        // removed in Swift 6.3
+        expected.subtract([._section, ._used, ._resultDependsOnSelf, .cdecl])
+#else
+        // added in Swift 6.3
+        expected.subtract([._noManualOwnership, .constInitialized, .export, .used, .const, .c,
+                           .unsafe, .safe, .concurrent, .section, ._addressableSelf, ._unsafeSelfDependentResult,
+                           .lifetime, .nonexhaustive, .abi, .sensitive, ._neverEmitIntoClient, .specialized,
+                           ._addressableForDependencies])
+#if compiler(>=6.0)
+        // removed in 6.0 but added back in 6.3
+        expected.subtract([.isolated])
+#endif
+#endif
+
 #if compiler(>=6.0)
         // removed in Swift 6.0
-        expected.subtract([.isolated, ._objcImplementation])
+        expected.subtract([._objcImplementation])
 #else
         // added in Swift 6.0
         expected.subtract([._extern, ._resultDependsOnSelf, ._preInverseGenerics, .implementation,
