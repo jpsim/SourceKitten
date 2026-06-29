@@ -143,7 +143,7 @@ class SourceKitTests: XCTestCase {
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
 #if compiler(>=6.3)
-        // Removed in Swift 6.3
+        // removed in Swift 6.3
         expected.subtract([._section, ._used, ._resultDependsOnSelf, .cdecl])
 #else
         // added in Swift 6.3
@@ -152,7 +152,7 @@ class SourceKitTests: XCTestCase {
                            .lifetime, .nonexhaustive, .abi, .sensitive, ._neverEmitIntoClient, .specialized,
                            ._addressableForDependencies])
 #if compiler(>=6.0)
-        // Removed in 6.0 but added back in 6.3
+        // removed in 6.0 but added back in 6.3
         expected.subtract([.isolated])
 #endif
 #endif
