@@ -10,6 +10,8 @@
   [John Fairhurst](https://github.com/johnfairh)
 * Improve reporting of `sourcekitdInProc` loading failures.  
   [Daniel Sunarjo](https://github.com/sunarjodaniel)
+* Avoid `getcwd` in `absolutePathRepresentation()` for absolute paths.  
+  [Brett Best](https://github.com/Brett-Best)
 
 #### Bug Fixes
 

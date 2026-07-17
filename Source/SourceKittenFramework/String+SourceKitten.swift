@@ -170,9 +170,12 @@ extension NSString {
      Returns self represented as an absolute path.
 
      - parameter rootDirectory: Absolute parent path if not already an absolute path.
+                                Uses the current directory by default, evaluated only
+                                if this path is relative.
      */
-    public func absolutePathRepresentation(rootDirectory: String = FileManager.default.currentDirectoryPath) -> String {
+    public func absolutePathRepresentation(rootDirectory: String? = nil) -> String {
         if isAbsolutePath { return expandingTildeInPath }
+        let rootDirectory = rootDirectory ?? FileManager.default.currentDirectoryPath
         #if os(Linux)
         return NSURL(fileURLWithPath: NSURL.fileURL(withPathComponents: [rootDirectory, bridge()])!.path).standardizingPath!.path
         #else
