@@ -10,7 +10,10 @@ For SourceKitten contributors, follow these steps to cut a release:
     * Yarn Ball
 2. Make sure you have the latest stable Xcode version installed and
    `xcode-select`ed.
-3. Run `make release <version> <name>`, e.g.:
+3. Make sure you have the `gh` GitHub CLI installed and authenticated,
+   with the default repo pointing at jpsim/SourceKitten and have named
+   that remote 'origin'.
+4. Run `make release <version> <name>`, e.g.:
    ```
    make release 0.37.3 Yarn Ball
    ```
@@ -25,6 +28,6 @@ For SourceKitten contributors, follow these steps to cut a release:
     * Create the GitHub release with the changelog, pkg, and source
       tarball attached.
     * Add an empty changelog section and push to `main`.
-4. Homebrew will be updated automatically by BrewTestBot within ~3
+5. Homebrew will be updated automatically by BrewTestBot within ~3
    hours. The BCR GitHub app will open a PR to update the Bazel
    Central Registry.

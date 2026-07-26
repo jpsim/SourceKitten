@@ -72,6 +72,24 @@ release:
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval VERSION := $(word 1,$(ARGS)))
 	$(eval RELEASE_NAME := $(wordlist 2,100,$(ARGS)))
+	@if [ -z "$(VERSION)" ] || [ -z "$(RELEASE_NAME)" ]; then \
+		echo "usage: make release <version> <release name>"; \
+		exit 1; \
+	fi
+	@# Set version
+	@sed -i '' 's/## Main/## $(VERSION)/g' CHANGELOG.md
+	@sed 's/__VERSION__/$(VERSION)/g' script/Version.swift.template > Source/SourceKittenFramework/Version.swift
+	@sed -e '3s/.*/    version = "$(VERSION)",/' -i '' MODULE.bazel
+	@# Commit, tag, push
+	git commit -am "Release $(VERSION)"
+	git tag -a "$(VERSION)" -m "$(VERSION): $(RELEASE_NAME)"
+	git push origin main
+	git push origin "$(VERSION)"
+	@# Build pkg
+	$(MAKE) package
+	@# Download source tarball for BCR stable URL
+	curl -fsSL --retry 5 "https://github.com/jpsim/SourceKitten/archive/refs/tags/$(VERSION).tar.gz" \
+		-o "SourceKitten-$(VERSION).tar.gz"
 	@# Create GitHub release
 	gh release create "$(VERSION)" \
 		"$(OUTPUT_PACKAGE)" \
@@ -83,7 +101,7 @@ release:
 	@printf '## Main\n\n#### Breaking\n\n* None.\n\n#### Enhancements\n\n* None.\n\n#### Bug Fixes\n\n* None.\n\n' | cat - CHANGELOG.md > /tmp/CHANGELOG.md.tmp
 	@mv /tmp/CHANGELOG.md.tmp CHANGELOG.md
 	git commit -am "Add empty changelog section"
-	git push upstream main
+	git push origin main
 
 docker_test:
 	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:6.3 swift test --parallel
