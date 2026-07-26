@@ -21,7 +21,7 @@ SOURCEKITTENFRAMEWORK_PLIST=Source/SourceKittenFramework/Info.plist
 
 VERSION_STRING="$(shell ./script/get-version)"
 
-.PHONY: all clean install package test uninstall release
+.PHONY: all clean install package test uninstall release build
 
 all: build
 
@@ -83,8 +83,8 @@ release:
 	@# Commit, tag, push
 	git commit -am "Release $(VERSION)"
 	git tag -a "$(VERSION)" -m "$(VERSION): $(RELEASE_NAME)"
-	git push origin main
-	git push origin "$(VERSION)"
+	git push upstream main
+	git push upstream "$(VERSION)"
 	@# Build pkg
 	$(MAKE) package
 	@# Download source tarball for BCR stable URL
@@ -101,7 +101,7 @@ release:
 	@printf '## Main\n\n#### Breaking\n\n* None.\n\n#### Enhancements\n\n* None.\n\n#### Bug Fixes\n\n* None.\n\n' | cat - CHANGELOG.md > /tmp/CHANGELOG.md.tmp
 	@mv /tmp/CHANGELOG.md.tmp CHANGELOG.md
 	git commit -am "Add empty changelog section"
-	git push origin main
+	git push upstream main
 
 docker_test:
 	docker run -v `pwd`:`pwd` -w `pwd` --name sourcekitten --rm swift:6.3 swift test --parallel

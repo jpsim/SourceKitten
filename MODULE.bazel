@@ -1,6 +1,6 @@
 module(
     name = "sourcekitten",
-    version = "0.37.3",
+    version = "0.38.0",
     compatibility_level = 1,
 )
 
