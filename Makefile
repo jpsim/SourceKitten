@@ -72,24 +72,6 @@ release:
 	$(eval ARGS := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval VERSION := $(word 1,$(ARGS)))
 	$(eval RELEASE_NAME := $(wordlist 2,100,$(ARGS)))
-	@if [ -z "$(VERSION)" ] || [ -z "$(RELEASE_NAME)" ]; then \
-		echo "usage: make release <version> <release name>"; \
-		exit 1; \
-	fi
-	@# Set version
-	@sed -i '' 's/## Main/## $(VERSION)/g' CHANGELOG.md
-	@sed 's/__VERSION__/$(VERSION)/g' script/Version.swift.template > Source/SourceKittenFramework/Version.swift
-	@sed -e '3s/.*/    version = "$(VERSION)",/' -i '' MODULE.bazel
-	@# Commit, tag, push
-	git commit -am "Release $(VERSION)"
-	git tag -a "$(VERSION)" -m "$(VERSION): $(RELEASE_NAME)"
-	git push upstream main
-	git push upstream "$(VERSION)"
-	@# Build pkg
-	$(MAKE) package
-	@# Download source tarball for BCR stable URL
-	curl -fsSL --retry 5 "https://github.com/jpsim/SourceKitten/archive/refs/tags/$(VERSION).tar.gz" \
-		-o "SourceKitten-$(VERSION).tar.gz"
 	@# Create GitHub release
 	gh release create "$(VERSION)" \
 		"$(OUTPUT_PACKAGE)" \
