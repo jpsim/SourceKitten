@@ -236,4 +236,9 @@ public enum SwiftDeclarationAttributeKind: String, CaseIterable {
     case _neverEmitIntoClient = "source.decl.attribute._neverEmitIntoClient"
     case nonexhaustive = "source.decl.attribute.nonexhaustive"
     case sensitive = "source.decl.attribute.sensitive"
+
+    // Only available in Swift >= 6.4
+    case diagnose = "source.decl.attribute.diagnose"
+    case _owned = "source.decl.attribute._owned"
+    case reparentable = "source.decl.attribute.reparentable"
 }
