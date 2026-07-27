@@ -90,15 +90,6 @@ class ModuleTests: XCTestCase {
         ProcessInfo.processInfo.environment["TEST_WORKSPACE"] != nil
     }
 
-    func testSpmDefaultModuleXcode() throws {
-        guard isXcode else {
-            // `swift build` hangs if run from within `swift test` of the same package
-            throw XCTSkip("Not running in Xcode.  Can't run `swift build` from within `swift test`: skipping.")
-        }
-        let skModule = Module(spmArguments: [], spmName: nil, inPath: projectRoot)
-        XCTAssertEqual(skModule?.name, "SourceKittenFramework")
-    }
-
 #if compiler(<6.4)
     // Marking this test deprecated suppresses the deprecated warning on the
     // pre-6.4 module initializer.

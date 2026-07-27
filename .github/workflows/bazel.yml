@@ -22,7 +22,7 @@ jobs:
   Linux:
     strategy:
       matrix:
-        tag: ['5.10-focal', '6.0-focal', '6.3']
+        tag: ['5.10-focal', '6.0-focal', '6.3', '6.4']
     runs-on: ubuntu-latest
     container:
       image: swift:${{ matrix.tag }}

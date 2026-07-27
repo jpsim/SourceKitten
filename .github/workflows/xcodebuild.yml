@@ -10,12 +10,12 @@ jobs:
   Xcode:
     strategy:
       matrix:
-        xcode_version: ['26.5']
-    runs-on: macos-26
+        tools: [ {image: xcode-27, xcode: 27.0.0} ]
+    runs-on: ${{ matrix.tools.image }}
     steps:
       - uses: actions/checkout@v7
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: ${{ matrix.xcode_version }}
+          xcode-version: ${{ matrix.tools.xcode }}
       - run: xcodebuild -version
       - run: xcodebuild -scheme SourceKitten-Package -parallel-testing-enabled NO test -destination platform=macOS
