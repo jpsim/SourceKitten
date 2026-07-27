@@ -1201,11 +1201,11 @@
             "key.reusingastcontext" : false,
             "key.substructure" : [
               {
-                "key.annotated_decl" : "<Declaration>let params: [<Type usr=\"s:Sa\">Array<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>&gt;.<Type usr=\"s:Sa11SubSequencea\">SubSequence<\/Type>]<\/Declaration>",
+                "key.annotated_decl" : "<Declaration>let params: [<Type usr=\"s:s10ArraySliceV\">ArraySlice<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>&gt;]<\/Declaration>",
                 "key.column" : 7,
                 "key.decl_lang" : "source.lang.swift",
                 "key.filepath" : "",
-                "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>params<\/decl.name>: <decl.var.type>[<ref.struct usr=\"s:Sa\">Array<\/ref.struct>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>&gt;.<ref.typealias usr=\"s:Sa11SubSequencea\">SubSequence<\/ref.typealias>]<\/decl.var.type><\/decl.var.local>",
+                "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>params<\/decl.name>: <decl.var.type>[<ref.struct usr=\"s:s10ArraySliceV\">ArraySlice<\/ref.struct>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>&gt;]<\/decl.var.type><\/decl.var.local>",
                 "key.kind" : "source.lang.swift.decl.var.local",
                 "key.length" : 91,
                 "key.line" : 47,
@@ -1223,11 +1223,11 @@
                 "key.usr" : "s:10Commandant14ArgumentParserCyACSaySSGcfc6paramsL_Says10ArraySliceVySSGGvp"
               },
               {
-                "key.annotated_decl" : "<Declaration>let options: <Type usr=\"s:Sa\">Array<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>&gt;.<Type usr=\"s:Sa11SubSequencea\">SubSequence<\/Type><\/Declaration>",
+                "key.annotated_decl" : "<Declaration>let options: <Type usr=\"s:s10ArraySliceV\">ArraySlice<\/Type>&lt;<Type usr=\"s:SS\">String<\/Type>&gt;<\/Declaration>",
                 "key.column" : 7,
                 "key.decl_lang" : "source.lang.swift",
                 "key.filepath" : "",
-                "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>options<\/decl.name>: <decl.var.type><ref.struct usr=\"s:Sa\">Array<\/ref.struct>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>&gt;.<ref.typealias usr=\"s:Sa11SubSequencea\">SubSequence<\/ref.typealias><\/decl.var.type><\/decl.var.local>",
+                "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>options<\/decl.name>: <decl.var.type><ref.struct usr=\"s:s10ArraySliceV\">ArraySlice<\/ref.struct>&lt;<ref.struct usr=\"s:SS\">String<\/ref.struct>&gt;<\/decl.var.type><\/decl.var.local>",
                 "key.kind" : "source.lang.swift.decl.var.local",
                 "key.length" : 27,
                 "key.line" : 50,
@@ -3867,11 +3867,11 @@
                 "key.reusingastcontext" : false,
                 "key.substructure" : [
                   {
-                    "key.annotated_decl" : "<Declaration>let task: <Type usr=\"c:objc(cs)NSTask\">Process<\/Type><\/Declaration>",
+                    "key.annotated_decl" : "<Declaration>let task: <Type usr=\"s:10Foundation7ProcessC\">Process<\/Type><\/Declaration>",
                     "key.column" : 8,
                     "key.decl_lang" : "source.lang.swift",
                     "key.filepath" : "",
-                    "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>task<\/decl.name>: <decl.var.type><ref.class usr=\"c:objc(cs)NSTask\">Process<\/ref.class><\/decl.var.type><\/decl.var.local>",
+                    "key.fully_annotated_decl" : "<decl.var.local><syntaxtype.keyword>let<\/syntaxtype.keyword> <decl.name>task<\/decl.name>: <decl.var.type><ref.class usr=\"s:10Foundation7ProcessC\">Process<\/ref.class><\/decl.var.type><\/decl.var.local>",
                     "key.kind" : "source.lang.swift.decl.var.local",
                     "key.length" : 20,
                     "key.line" : 206,
@@ -3885,8 +3885,8 @@
                     "key.parsed_scope.start" : 206,
                     "key.reusingastcontext" : false,
                     "key.typename" : "Process",
-                    "key.typeusr" : "$sSo6NSTaskCD",
-                    "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF4taskL_So6NSTaskCvp"
+                    "key.typeusr" : "$s10Foundation7ProcessCD",
+                    "key.usr" : "s:10Commandant15CommandRegistryC25executeSubcommandIfExists33_1DD6990CD6DFDE28F713A55F8EE2B70ELL_4verb9argumentss5Int32VSgSS_SSSaySSGtF10launchTaskL__AgISS_AKts5ErrorRzlF4taskL_10Foundation7ProcessCvp"
                   }
                 ],
                 "key.typename" : "<ClientError where ClientError : Error> (String, arguments: [String]) -> Int32",
