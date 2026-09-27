@@ -299,6 +299,30 @@ If you’re interested in using SourceKitten as part of another tool, or perhaps
 
 *Note: SourceKitten is written entirely in Swift, and the SourceKittenFramework API is not designed to interface with Objective-C.*
 
+### Framework diagnostics
+
+Pass an `EventHook` to module, file, Swift documentation, or Clang build operations
+to receive their progress and diagnostic messages without writing them to stderr:
+
+```swift
+let events = EventHook { message in
+    // Dispatch to your UI's queue here, or collect messages for your own logger.
+    print(message, terminator: "")
+}
+let module = Module(name: "MyModule", compilerArguments: arguments, eventHook: events)
+let docs = module.docs
+```
+
+Modules retain the hook and pass it to their nested file/documentation operations.
+File hooks also receive deferred read failures. Handlers run synchronously on the
+calling thread, outside file cache locks; a handler shared between concurrent
+operations must be thread-safe. Message text includes its original newlines.
+Existing initializers continue to use stderr, and `.standardError` can be passed
+explicitly to select that behavior.
+
+These hooks cover framework diagnostics, not raw subprocess output or process-wide
+SourceKit service-restoration notifications. They do not change thrown errors.
+
 ## License
 
 MIT licensed.

@@ -33,6 +33,11 @@ public struct SwiftDocs {
     - parameter arguments: compiler arguments to pass to SourceKit.
     */
     public init?(file: File, arguments: [String]) {
+        self.init(file: file, arguments: arguments, eventHook: .standardError)
+    }
+
+    /// Creates documentation, routing SourceKit request diagnostics to `eventHook`.
+    public init?(file: File, arguments: [String], eventHook: EventHook) {
         do {
             self.init(
                 file: file,
@@ -40,7 +45,7 @@ public struct SwiftDocs {
                 cursorInfoRequest: Request.cursorInfoRequest(filePath: file.path, arguments: arguments)
             )
         } catch let error as Request.Error {
-            fputs(error.description, stderr)
+            eventHook.emit(error.description)
             return nil
         } catch {
             return nil

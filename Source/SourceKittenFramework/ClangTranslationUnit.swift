@@ -49,6 +49,11 @@ public struct ClangTranslationUnit {
     - parameter compilerArguments: Clang compiler arguments.
     */
     public init(headerFiles: [String], compilerArguments: [String]) {
+        self.init(headerFiles: headerFiles, compilerArguments: compilerArguments, eventHook: .standardError)
+    }
+
+    /// Creates translation units, routing nested header-read diagnostics to `eventHook`.
+    public init(headerFiles: [String], compilerArguments: [String], eventHook: EventHook) {
         let cStringCompilerArguments = compilerArguments.map { ($0 as NSString).utf8String }
         let clangIndex = ClangIndex()
         clangTranslationUnits = headerFiles.map { clangIndex.open(file: $0, args: cStringCompilerArguments) }
@@ -58,7 +63,7 @@ public struct ClangTranslationUnit {
             .distinct()
             .sorted()
             .grouped { $0.location.file }
-            .map { insertMarks(declarations: $0) }
+            .map { insertMarks(declarations: $0, eventHook: eventHook) }
     }
 
     /**
@@ -70,12 +75,19 @@ public struct ClangTranslationUnit {
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
     public init?(headerFiles: [String], xcodeBuildArguments: [String], inPath path: String = FileManager.default.currentDirectoryPath) {
-        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments + ["-dry-run"], inPath: path).string ?? ""
+        self.init(headerFiles: headerFiles, xcodeBuildArguments: xcodeBuildArguments, inPath: path, eventHook: .standardError)
+    }
+
+    /// Creates a translation unit, routing framework diagnostics to `eventHook`.
+    public init?(headerFiles: [String], xcodeBuildArguments: [String],
+                 inPath path: String = FileManager.default.currentDirectoryPath, eventHook: EventHook) {
+        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments + ["-dry-run"],
+                                                    inPath: path, eventHook: eventHook).string ?? ""
         guard let clangArguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .objc, moduleName: nil) else {
-            fputs("could not parse compiler arguments\n\(xcodeBuildOutput)\n", stderr)
+            eventHook.emit("could not parse compiler arguments\n\(xcodeBuildOutput)\n")
             return nil
         }
-        self.init(headerFiles: headerFiles, compilerArguments: clangArguments)
+        self.init(headerFiles: headerFiles, compilerArguments: clangArguments, eventHook: eventHook)
     }
 }
 

@@ -15,17 +15,22 @@ public final class File { // swiftlint:disable:this type_body_length
     /// File contents.
     public var contents: String {
         get {
-            _contentsQueue.sync {
+            var diagnostic: String?
+            let contents = _contentsQueue.sync { () -> String in
                 if _contents == nil {
                     do {
                         _contents = try String(contentsOfFile: path!, encoding: .utf8)
                     } catch {
-                        fputs("Could not read contents of `\(path!)`\n", stderr)
+                        diagnostic = "Could not read contents of `\(path!)`\n"
                         _contents = ""
                     }
                 }
+                return _contents!
             }
-            return _contents!
+            if let diagnostic = diagnostic {
+                eventHook.emit(diagnostic)
+            }
+            return contents
         }
         set {
             _contentsQueue.sync {
@@ -47,12 +52,23 @@ public final class File { // swiftlint:disable:this type_body_length
     }
 
     public var stringView: StringView {
-        _stringViewQueue.sync {
-            if _stringView == nil {
-                _stringView = StringView(contents)
+        if let cached = _stringViewQueue.sync(execute: { _stringView }) {
+            return cached
+        }
+        // Reading contents can invoke a client hook. Do not hold either cache lock.
+        let snapshot = contents
+        return _contentsQueue.sync {
+            _stringViewQueue.sync {
+                if let cached = _stringView {
+                    return cached
+                }
+                // Respect invalidation without retrying a hook that clears the caches.
+                guard let contents = _contents else { return StringView(snapshot) }
+                let view = StringView(contents)
+                _stringView = view
+                return view
             }
         }
-        return _stringView!
     }
 
     public var lines: [Line] {
@@ -60,6 +76,7 @@ public final class File { // swiftlint:disable:this type_body_length
     }
 
     private var _contents: String?
+    private let eventHook: EventHook
     private var _stringView: StringView?
     private let _contentsQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.contents")
     private let _stringViewQueue = DispatchQueue(label: "com.sourcekitten.sourcekitten.file.stringView")
@@ -69,18 +86,30 @@ public final class File { // swiftlint:disable:this type_body_length
 
     - parameter path: File path.
     */
-    public init?(path: String) {
+    public convenience init?(path: String) {
+        self.init(path: path, eventHook: .standardError)
+    }
+
+    /// Reads a source file, routing read failures to `eventHook`.
+    public init?(path: String, eventHook: EventHook) {
         self.path = path.bridge().absolutePathRepresentation()
+        self.eventHook = eventHook
         do {
             _contents = try String(contentsOfFile: path, encoding: .utf8)
         } catch {
-            fputs("Could not read contents of `\(path)`\n", stderr)
+            eventHook.emit("Could not read contents of `\(path)`\n")
             return nil
         }
     }
 
-    public init(pathDeferringReading path: String) {
+    public convenience init(pathDeferringReading path: String) {
+        self.init(pathDeferringReading: path, eventHook: .standardError)
+    }
+
+    /// Defers reading a source file, retaining `eventHook` for later read failures.
+    public init(pathDeferringReading path: String, eventHook: EventHook) {
         self.path = path.bridge().absolutePathRepresentation()
+        self.eventHook = eventHook
     }
 
     /**
@@ -90,6 +119,7 @@ public final class File { // swiftlint:disable:this type_body_length
     */
     public init(contents: String) {
         path = nil
+        eventHook = .standardError
         _contents = contents
     }
 

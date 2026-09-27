@@ -10,18 +10,20 @@ public struct Module {
     /// Source files to be documented in this Module.
     public let sourceFiles: [String]
 
+    private let eventHook: EventHook
+
     /// Documentation for this Module. Typically expensive computed property.
     public var docs: [SwiftDocs] {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
         return sourceFiles.sorted().compactMap {
             let filename = $0.bridge().lastPathComponent
-            if let file = File(path: $0) {
-                fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
+            if let file = File(path: $0, eventHook: eventHook) {
+                eventHook.emit("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n")
                 fileIndex += 1
-                return SwiftDocs(file: file, arguments: compilerArguments)
+                return SwiftDocs(file: file, arguments: compilerArguments, eventHook: eventHook)
             }
-            fputs("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
+            eventHook.emit("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n")
             return nil
         }
     }
@@ -37,10 +39,15 @@ public struct Module {
                           Uses the current directory by default.
      */
     public init?(spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+        self.init(spmName: spmName, inPath: path, eventHook: .standardError)
+    }
+
+    /// Creates a module from a SwiftPM build record, routing diagnostics to `eventHook`.
+    public init?(spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath, eventHook: EventHook) {
         let yamlPath = URL(fileURLWithPath: path).appendingPathComponent(".build/debug.yaml").path
         guard let yaml = try? Yams.compose(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)),
             let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
-            fputs("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.\n", stderr)
+            eventHook.emit("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.\n")
             return nil
         }
 
@@ -54,19 +61,19 @@ public struct Module {
         }
 
         guard let moduleCommand = commands.first(where: matchModuleName) else {
-            fputs("Could not find SPM module '\(spmName ?? "(any)")'. Here are the modules available:\n", stderr)
+            eventHook.emit("Could not find SPM module '\(spmName ?? "(any)")'. Here are the modules available:\n")
             let availableModules = commands.compactMap(\.swiftModuleName)
-            fputs("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n", stderr)
+            eventHook.emit("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n")
             return nil
         }
 
         guard let moduleName = moduleCommand.swiftModuleName,
               let compilerArguments = moduleCommand.swiftCompilerArguments else {
-            fputs("SPM build manifest '\(yamlPath)` does not match expected format.\n", stderr)
+            eventHook.emit("SPM build manifest '\(yamlPath)` does not match expected format.\n")
             return nil
         }
 
-        self.init(name: moduleName, compilerArguments: compilerArguments)
+        self.init(name: moduleName, compilerArguments: compilerArguments, eventHook: eventHook)
     }
 
     /**
@@ -81,16 +88,22 @@ public struct Module {
                           Uses the current directory by default.
      */
     public init?(spmArguments: [String], spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
-        fputs("Running swift build\n", stderr)
+        self.init(spmArguments: spmArguments, spmName: spmName, inPath: path, eventHook: .standardError)
+    }
+
+    /// Builds a Swift package and creates its module, routing diagnostics to `eventHook`.
+    public init?(spmArguments: [String], spmName: String? = nil,
+                 inPath path: String = FileManager.default.currentDirectoryPath, eventHook: EventHook) {
+        eventHook.emit("Running swift build\n")
         let buildResults = Exec.run("/usr/bin/env", ["swift", "build"] + spmArguments, currentDirectory: path, stderr: .merge)
         guard buildResults.terminationStatus == 0 else {
             let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("swift-build-\(UUID().uuidString).log")
             _ = try? buildResults.data.write(to: file)
-            fputs("Build failed, saved `swift build` log file: \(file.path)\n", stderr)
+            eventHook.emit("Build failed, saved `swift build` log file: \(file.path)\n")
             return nil
         }
 
-        self.init(spmName: spmName, inPath: path)
+        self.init(spmName: spmName, inPath: path, eventHook: eventHook)
     }
 
     /**
@@ -102,6 +115,12 @@ public struct Module {
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
     public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+        self.init(xcodeBuildArguments: xcodeBuildArguments, name: name, inPath: path, eventHook: .standardError)
+    }
+
+    /// Builds an Xcode module, routing framework diagnostics to `eventHook`.
+    public init?(xcodeBuildArguments: [String], name: String? = nil,
+                 inPath path: String = FileManager.default.currentDirectoryPath, eventHook: EventHook) {
         let buildSettings = XcodeBuild.showBuildSettings(arguments: xcodeBuildArguments, inPath: path)
 
         let name = name
@@ -110,44 +129,44 @@ public struct Module {
             ?? moduleName(fromArguments: xcodeBuildArguments)
 
         // Executing normal build
-        let results = XcodeBuild.build(arguments: xcodeBuildArguments, inPath: path)
+        let results = XcodeBuild.build(arguments: xcodeBuildArguments, inPath: path, eventHook: eventHook)
         if results.terminationStatus != 0 {
-            fputs("Could not successfully run `xcodebuild`.\n", stderr)
-            fputs("Please check the build arguments.\n", stderr)
+            eventHook.emit("Could not successfully run `xcodebuild`.\n")
+            eventHook.emit("Please check the build arguments.\n")
             let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
             _ = try? results.data.write(to: file)
-            fputs("Saved `xcodebuild` log file: \(file.path)\n", stderr)
+            eventHook.emit("Saved `xcodebuild` log file: \(file.path)\n")
             return nil
         }
         if let output = results.string,
             let arguments = parseCompilerArguments(xcodebuildOutput: output, language: .swift, moduleName: name),
             let moduleName = moduleName(fromArguments: arguments) {
-            self.init(name: moduleName, compilerArguments: arguments)
+            self.init(name: moduleName, compilerArguments: arguments, eventHook: eventHook)
             return
         }
         // Check New Build System is used
-        fputs("Checking xcodebuild -showBuildSettings\n", stderr)
+        eventHook.emit("Checking xcodebuild -showBuildSettings\n")
         if let projectTempRoot = buildSettings?.firstBuildSettingValue(for: { $0.PROJECT_TEMP_ROOT }),
-            let arguments = checkNewBuildSystem(in: projectTempRoot, moduleName: name),
+            let arguments = checkNewBuildSystem(in: projectTempRoot, moduleName: name, eventHook: eventHook),
             let moduleName = moduleName(fromArguments: arguments) {
-            self.init(name: moduleName, compilerArguments: arguments)
+            self.init(name: moduleName, compilerArguments: arguments, eventHook: eventHook)
             return
         }
         // Executing `clean build` is a fallback.
-        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments, inPath: path).string ?? ""
+        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments, inPath: path, eventHook: eventHook).string ?? ""
         guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .swift, moduleName: name) else {
-            fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
-            fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
+            eventHook.emit("Could not parse compiler arguments from `xcodebuild` output.\n")
+            eventHook.emit("Please confirm that `xcodebuild` is building a Swift module.\n")
             let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
             _ = try? xcodeBuildOutput.data(using: .utf8)?.write(to: file)
-            fputs("Saved `xcodebuild` log file: \(file.path)\n", stderr)
+            eventHook.emit("Saved `xcodebuild` log file: \(file.path)\n")
             return nil
         }
         guard let moduleName = moduleName(fromArguments: arguments) else {
-            fputs("Could not parse module name from compiler arguments.\n", stderr)
+            eventHook.emit("Could not parse module name from compiler arguments.\n")
             return nil
         }
-        self.init(name: moduleName, compilerArguments: arguments)
+        self.init(name: moduleName, compilerArguments: arguments, eventHook: eventHook)
     }
 
     /**
@@ -157,7 +176,13 @@ public struct Module {
     - parameter compilerArguments: Compiler arguments required by SourceKit to process the source files in this Module.
     */
     public init(name: String, compilerArguments: [String]) {
+        self.init(name: name, compilerArguments: compilerArguments, eventHook: .standardError)
+    }
+
+    /// Creates a module whose deferred documentation diagnostics use `eventHook`.
+    public init(name: String, compilerArguments: [String], eventHook: EventHook) {
         self.name = name
+        self.eventHook = eventHook
         self.compilerArguments = compilerArguments.expandingResponseFiles
         sourceFiles = self.compilerArguments.filter({
             $0.bridge().isSwiftFile() && $0.isFile

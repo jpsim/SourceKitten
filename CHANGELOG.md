@@ -6,7 +6,10 @@
 
 #### Enhancements
 
-* None.
+* Add per-operation event hooks for framework diagnostics, preserving default
+  stderr output.  
+  [Govind Yadav](https://github.com/GtechGovind)
+  [#22](https://github.com/jpsim/SourceKitten/issues/22)
 
 #### Bug Fixes
 
