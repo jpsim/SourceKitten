@@ -10,18 +10,20 @@ public struct Module {
     /// Source files to be documented in this Module.
     public let sourceFiles: [String]
 
+    private let eventHook: EventHook
+
     /// Documentation for this Module. Typically expensive computed property.
     public var docs: [SwiftDocs] {
         var fileIndex = 1
         let sourceFilesCount = sourceFiles.count
         return sourceFiles.sorted().compactMap {
             let filename = $0.bridge().lastPathComponent
-            if let file = File(path: $0) {
-                fputs("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n", stderr)
+            if let file = File(path: $0, eventHook: eventHook) {
+                eventHook.emit("Parsing \(filename) (\(fileIndex)/\(sourceFilesCount))\n")
                 fileIndex += 1
-                return SwiftDocs(file: file, arguments: compilerArguments)
+                return SwiftDocs(file: file, arguments: compilerArguments, eventHook: eventHook)
             }
-            fputs("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n", stderr)
+            eventHook.emit("Could not parse `\(filename)`. Please open an issue at https://github.com/jpsim/SourceKitten/issues with the file contents.\n")
             return nil
         }
     }
@@ -45,11 +47,20 @@ public struct Module {
                 This initializer does not support the Swift Build backend that is the default for SwiftPM 6.4
                 """)
     public init?(spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
-        guard let results = SwiftPM.fromDebugYaml(moduleName: spmName, inPath: path) else {
+        self.init(spmName: spmName, inPath: path, eventHook: .standardError)
+    }
+
+    /// Creates a module from a SwiftPM build record, routing diagnostics to `eventHook`.
+    @available(*, deprecated, message: """
+                Use init(spmArguments:spmName:inPath:eventHook:) instead.
+                This initializer does not support the Swift Build backend that is the default for SwiftPM 6.4
+                """)
+    public init?(spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath, eventHook: EventHook) {
+        guard let results = SwiftPM.fromDebugYaml(moduleName: spmName, inPath: path, eventHook: eventHook) else {
             return nil
         }
-        fputs("Using module data from debug.yaml\n", stderr)
-        self.init(name: results.0, compilerArguments: results.1)
+        eventHook.emit("Using module data from debug.yaml\n")
+        self.init(name: results.0, compilerArguments: results.1, eventHook: eventHook)
     }
 
     /**
@@ -65,6 +76,12 @@ public struct Module {
                           Uses the current directory by default.
      */
     public init?(spmArguments: [String], spmName: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+        self.init(spmArguments: spmArguments, spmName: spmName, inPath: path, eventHook: .standardError)
+    }
+
+    /// Builds a Swift package and creates its module, routing diagnostics to `eventHook`.
+    public init?(spmArguments: [String], spmName: String? = nil,
+                 inPath path: String = FileManager.default.currentDirectoryPath, eventHook: EventHook) {
         /*
          1. `build -v` to get a build directory and maybe some compile commands for (3).
              Fast if already built.
@@ -84,16 +101,16 @@ public struct Module {
         */
 
         // 1. Initial build check
-        fputs("Running swift build\n", stderr)
-        guard let buildResults = SwiftPM.runVerboseBuild(arguments: spmArguments, inPath: path) else {
+        eventHook.emit("Running swift build\n")
+        guard let buildResults = SwiftPM.runVerboseBuild(arguments: spmArguments, inPath: path, eventHook: eventHook) else {
             return nil
         }
 
-        // 2. Pre-Swift Build solution
+        // 2. Use the SwiftPM debug.yaml manifest where available.
         if SwiftPM.hasDebugYaml(inPath: path) {
-            if let info = SwiftPM.fromDebugYaml(moduleName: spmName, inPath: path) {
-                fputs("Using module data from debug.yaml\n", stderr)
-                self.init(name: info.0, compilerArguments: info.1)
+            if let info = SwiftPM.fromDebugYaml(moduleName: spmName, inPath: path, eventHook: eventHook) {
+                eventHook.emit("Using module data from debug.yaml\n")
+                self.init(name: info.0, compilerArguments: info.1, eventHook: eventHook)
                 return
             }
             return nil
@@ -101,27 +118,27 @@ public struct Module {
 
         // 3. See if the (1) build built our module
         if let info = SwiftPM.fromBuildResults(buildResults, moduleName: spmName) {
-            fputs("Using module data from build output\n", stderr)
-            self.init(name: info.0, compilerArguments: info.1)
+            eventHook.emit("Using module data from build output\n")
+            self.init(name: info.0, compilerArguments: info.1, eventHook: eventHook)
             return
         }
 
         // 4. Clean & Build
-        fputs("Running swift package clean and build\n", stderr)
-        guard SwiftPM.runClean(inPath: path) != nil,
-              let secondBuildResults = SwiftPM.runVerboseBuild(arguments: spmArguments, inPath: path) else {
+        eventHook.emit("Running swift package clean and build\n")
+        guard SwiftPM.runClean(inPath: path, eventHook: eventHook) != nil,
+              let secondBuildResults = SwiftPM.runVerboseBuild(arguments: spmArguments, inPath: path, eventHook: eventHook) else {
             return nil
         }
 
         // 5. Should have our module now
         if let info = SwiftPM.fromBuildResults(secondBuildResults, moduleName: spmName) {
-            fputs("Using module data from clean build output\n", stderr)
-            self.init(name: info.0, compilerArguments: info.1)
+            eventHook.emit("Using module data from clean build output\n")
+            self.init(name: info.0, compilerArguments: info.1, eventHook: eventHook)
             return
         }
 
         let path = secondBuildResults.save(prefix: "swift-build")
-        fputs("Could not parse module name '\(spmName ?? "(any)")' from swift build output: \(path)\n", stderr)
+        eventHook.emit("Could not parse module name '\(spmName ?? "(any)")' from swift build output: \(path)\n")
         return nil
     }
 
@@ -134,6 +151,12 @@ public struct Module {
     - parameter path:                Path to run `xcodebuild` from. Uses current path by default.
     */
     public init?(xcodeBuildArguments: [String], name: String? = nil, inPath path: String = FileManager.default.currentDirectoryPath) {
+        self.init(xcodeBuildArguments: xcodeBuildArguments, name: name, inPath: path, eventHook: .standardError)
+    }
+
+    /// Builds an Xcode module, routing framework diagnostics to `eventHook`.
+    public init?(xcodeBuildArguments: [String], name: String? = nil,
+                 inPath path: String = FileManager.default.currentDirectoryPath, eventHook: EventHook) {
         let buildSettings = XcodeBuild.showBuildSettings(arguments: xcodeBuildArguments, inPath: path)
 
         let name = name
@@ -142,42 +165,43 @@ public struct Module {
             ?? moduleName(fromArguments: xcodeBuildArguments)
 
         // Executing normal build
-        let results = XcodeBuild.build(arguments: xcodeBuildArguments, inPath: path)
+        let results = XcodeBuild.build(arguments: xcodeBuildArguments, inPath: path, eventHook: eventHook)
         if results.terminationStatus != 0 {
-            fputs("Could not successfully run `xcodebuild`.\n", stderr)
-            fputs("Please check the build arguments.\n", stderr)
+            eventHook.emit("Could not successfully run `xcodebuild`.\n")
+            eventHook.emit("Please check the build arguments.\n")
             let path = results.save(prefix: "xcodebuild")
-            fputs("Saved `xcodebuild` log file: \(path)\n", stderr)
+            eventHook.emit("Saved `xcodebuild` log file: \(path)\n")
             return nil
         }
         if let output = results.string,
             let arguments = parseCompilerArguments(xcodebuildOutput: output, language: .swift, moduleName: name),
             let moduleName = moduleName(fromArguments: arguments) {
-            self.init(name: moduleName, compilerArguments: arguments)
+            self.init(name: moduleName, compilerArguments: arguments, eventHook: eventHook)
             return
         }
         // Check New Build System is used
-        fputs("Checking xcodebuild -showBuildSettings\n", stderr)
+        eventHook.emit("Checking xcodebuild -showBuildSettings\n")
         if let projectTempRoot = buildSettings?.firstBuildSettingValue(for: { $0.PROJECT_TEMP_ROOT }),
-            let arguments = checkNewBuildSystem(in: projectTempRoot, moduleName: name),
+            let arguments = checkNewBuildSystem(in: projectTempRoot, moduleName: name, eventHook: eventHook),
             let moduleName = moduleName(fromArguments: arguments) {
-            self.init(name: moduleName, compilerArguments: arguments)
+            self.init(name: moduleName, compilerArguments: arguments, eventHook: eventHook)
             return
         }
         // Executing `clean build` is a fallback.
-        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments, inPath: path).string ?? ""
+        let xcodeBuildOutput = XcodeBuild.cleanBuild(arguments: xcodeBuildArguments, inPath: path, eventHook: eventHook).string ?? ""
         guard let arguments = parseCompilerArguments(xcodebuildOutput: xcodeBuildOutput, language: .swift, moduleName: name) else {
-            fputs("Could not parse compiler arguments from `xcodebuild` output.\n", stderr)
-            fputs("Please confirm that `xcodebuild` is building a Swift module.\n", stderr)
-            let path = results.save(prefix: "xcodebuild")
-            fputs("Saved `xcodebuild` log file: \(path)\n", stderr)
+            eventHook.emit("Could not parse compiler arguments from `xcodebuild` output.\n")
+            eventHook.emit("Please confirm that `xcodebuild` is building a Swift module.\n")
+            let file = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("xcodebuild-\(NSUUID().uuidString).log")
+            _ = try? xcodeBuildOutput.data(using: .utf8)?.write(to: file)
+            eventHook.emit("Saved `xcodebuild` log file: \(file.path)\n")
             return nil
         }
         guard let moduleName = moduleName(fromArguments: arguments) else {
-            fputs("Could not parse module name from compiler arguments.\n", stderr)
+            eventHook.emit("Could not parse module name from compiler arguments.\n")
             return nil
         }
-        self.init(name: moduleName, compilerArguments: arguments)
+        self.init(name: moduleName, compilerArguments: arguments, eventHook: eventHook)
     }
 
     /**
@@ -187,7 +211,13 @@ public struct Module {
     - parameter compilerArguments: Compiler arguments required by SourceKit to process the source files in this Module.
     */
     public init(name: String, compilerArguments: [String]) {
+        self.init(name: name, compilerArguments: compilerArguments, eventHook: .standardError)
+    }
+
+    /// Creates a module whose deferred documentation diagnostics use `eventHook`.
+    public init(name: String, compilerArguments: [String], eventHook: EventHook) {
         self.name = name
+        self.eventHook = eventHook
         self.compilerArguments = compilerArguments.expandingResponseFiles
         sourceFiles = self.compilerArguments.filter({
             $0.bridge().isSwiftFile() && $0.isFile

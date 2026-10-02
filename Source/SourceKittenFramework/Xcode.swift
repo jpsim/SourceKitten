@@ -10,9 +10,9 @@ internal enum XcodeBuild {
 
     - returns: results including `xcodebuild`'s STDERR+STDOUT output combined.
     */
-    internal static func cleanBuild(arguments: [String], inPath path: String) -> Exec.Results {
+    internal static func cleanBuild(arguments: [String], inPath path: String, eventHook: EventHook = .standardError) -> Exec.Results {
         let arguments = arguments + ["clean", "build"]
-        return build(arguments: arguments, inPath: path)
+        return build(arguments: arguments, inPath: path, eventHook: eventHook)
     }
 
     /**
@@ -23,11 +23,11 @@ internal enum XcodeBuild {
 
     - returns: results including `xcodebuild`'s STDERR+STDOUT output combined.
     */
-    internal static func build(arguments: [String], inPath path: String) -> Exec.Results {
+    internal static func build(arguments: [String], inPath path: String, eventHook: EventHook = .standardError) -> Exec.Results {
         let arguments = arguments + ["CODE_SIGN_IDENTITY=",
                                      "CODE_SIGNING_REQUIRED=NO",
                                      "CODE_SIGNING_ALLOWED=NO"]
-        fputs("Running xcodebuild\n", stderr)
+        eventHook.emit("Running xcodebuild\n")
         return launch(arguments: arguments, inPath: path, pipingStandardError: true)
     }
 
@@ -214,7 +214,8 @@ ${PROJECT_TEMP_ROOT}
 
 - returns: Compiler arguments, filtered for suitable use by SourceKit.
 */
-internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String? = nil) -> [String]? {
+internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String? = nil,
+                                  eventHook: EventHook = .standardError) -> [String]? {
     let xcbuildDataURL = URL(fileURLWithPath: projectTempRoot).appendingPathComponent("XCBuildData")
 
     do {
@@ -243,7 +244,7 @@ internal func checkNewBuildSystem(in projectTempRoot: String, moduleName: String
         }.first.map { filterForSourceKit(arguments: $0) }
 
         if result != nil {
-            fputs("Assuming New Build System is used.\n", stderr)
+            eventHook.emit("Assuming New Build System is used.\n")
         }
         return result
     } catch {

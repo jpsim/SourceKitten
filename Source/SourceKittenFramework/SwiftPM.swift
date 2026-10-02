@@ -24,11 +24,12 @@ enum SwiftPM {
      - parameter inPath: Directory containing `.build`
      - returns: tuple of module name and compiler args, or `nil` on failure - errors reported
      */
-    static func fromDebugYaml(moduleName: String?, inPath path: String) -> (String, [String])? {
+    static func fromDebugYaml(moduleName: String?, inPath path: String,
+                              eventHook: EventHook = .standardError) -> (String, [String])? {
         let yamlPath = debugYamlPath(inPath: path)
         guard let yaml = try? Yams.compose(yaml: String(contentsOfFile: yamlPath, encoding: .utf8)),
               let commands = (yaml as Node?)?["commands"]?.mapping?.values else {
-            fputs("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.\n", stderr)
+            eventHook.emit("SPM build manifest does not exist at `\(yamlPath)` or does not match expected format.\n")
             return nil
         }
 
@@ -42,15 +43,15 @@ enum SwiftPM {
         }
 
         guard let moduleCommand = commands.first(where: matchModuleName) else {
-            fputs("Could not find SPM module '\(moduleName ?? "(any)")'. Here are the modules available:\n", stderr)
+            eventHook.emit("Could not find SPM module '\(moduleName ?? "(any)")'. Here are the modules available:\n")
             let availableModules = commands.compactMap(\.swiftModuleName)
-            fputs("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n", stderr)
+            eventHook.emit("\(availableModules.map({ "  - " + $0 }).joined(separator: "\n"))\n")
             return nil
         }
 
         guard let foundModuleName = moduleCommand.swiftModuleName,
               let compilerArguments = moduleCommand.swiftCompilerArguments else {
-            fputs("SPM build manifest '\(yamlPath)` does not match expected format.\n", stderr)
+            eventHook.emit("SPM build manifest '\(yamlPath)` does not match expected format.\n")
             return nil
         }
 
@@ -66,29 +67,34 @@ enum SwiftPM {
      - parameter path: Working directory for program
      - parameter msgName: name of the program to report to user if it fails
      */
-    private static func runCheckedCommand(arguments: [String], inPath path: String, msgName: String) -> Exec.Results? {
+    private static func runCheckedCommand(arguments: [String], inPath path: String, msgName: String,
+                                          eventHook: EventHook) -> Exec.Results? {
         let results = Exec.run("/usr/bin/env", arguments, currentDirectory: path, stderr: .merge)
         guard results.terminationStatus == 0 else {
             let path = results.save(prefix: "swift-build")
-            fputs("Build failed, saved `\(msgName)` log file: \(path)\n", stderr)
+            eventHook.emit("Build failed, saved `\(msgName)` log file: \(path)\n")
             return nil
         }
         return results
     }
 
     /// Run `swift build`. Return the successful results or `nil` and report the error.
-    static func runBuild(arguments: [String], inPath path: String) -> Exec.Results? {
-        return runCheckedCommand(arguments: ["swift", "build"] + arguments, inPath: path, msgName: "swift build")
+    static func runBuild(arguments: [String], inPath path: String,
+                         eventHook: EventHook = .standardError) -> Exec.Results? {
+        return runCheckedCommand(arguments: ["swift", "build"] + arguments, inPath: path,
+                                  msgName: "swift build", eventHook: eventHook)
     }
 
     /// Run `swift build -v`. Return the successful results or `nil` and report the error.
-    static func runVerboseBuild(arguments: [String], inPath path: String) -> Exec.Results? {
-        return runBuild(arguments: ["-v"] + arguments, inPath: path)
+    static func runVerboseBuild(arguments: [String], inPath path: String,
+                                eventHook: EventHook = .standardError) -> Exec.Results? {
+        return runBuild(arguments: ["-v"] + arguments, inPath: path, eventHook: eventHook)
     }
 
     /// Run `swift package clean`. Return the successful results or `nil` and report the error.
-    static func runClean(inPath path: String) -> Exec.Results? {
-        return runCheckedCommand(arguments: ["swift", "package", "clean"], inPath: path, msgName: "swift package clean")
+    static func runClean(inPath path: String, eventHook: EventHook = .standardError) -> Exec.Results? {
+        return runCheckedCommand(arguments: ["swift", "package", "clean"], inPath: path,
+                                 msgName: "swift package clean", eventHook: eventHook)
     }
 
     // MARK: Build output parsing

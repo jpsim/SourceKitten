@@ -6,8 +6,13 @@ import Clang_C
 import Foundation
 
 public func insertMarks(declarations: [SourceDeclaration], limit: NSRange? = nil) -> [SourceDeclaration] {
+    insertMarks(declarations: declarations, limit: limit, eventHook: .standardError)
+}
+
+/// Inserts pragma marks, routing nested header-read diagnostics to `eventHook`.
+public func insertMarks(declarations: [SourceDeclaration], limit: NSRange? = nil, eventHook: EventHook) -> [SourceDeclaration] {
     guard !declarations.isEmpty else { return [] }
-    guard let path = declarations.first?.location.file, let file = File(path: path) else {
+    guard let path = declarations.first?.location.file, let file = File(path: path, eventHook: eventHook) else {
         return []
     }
     let currentMarks = file.stringView.pragmaMarks(filename: path, excludeRanges: declarations.map({
@@ -16,7 +21,7 @@ public func insertMarks(declarations: [SourceDeclaration], limit: NSRange? = nil
     let newDeclarations: [SourceDeclaration] = declarations.map { declaration in
         var varDeclaration = declaration
         let range = file.stringView.byteRangeToNSRange(declaration.range)
-        varDeclaration.children = insertMarks(declarations: declaration.children, limit: range)
+        varDeclaration.children = insertMarks(declarations: declaration.children, limit: range, eventHook: eventHook)
         return varDeclaration
     }
     return (newDeclarations + currentMarks).sorted()

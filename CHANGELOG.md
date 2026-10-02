@@ -6,7 +6,10 @@
 
 #### Enhancements
 
-* None.
+* Add per-operation event hooks for framework diagnostics, preserving default
+  stderr output.
+  [Govind Yadav](https://github.com/GtechGovind)
+  [#22](https://github.com/jpsim/SourceKitten/issues/22)
 
 #### Bug Fixes
 
@@ -20,10 +23,10 @@
 
 #### Enhancements
 
-* New syntax, attribute and declaration kinds introduced in Swift 6.4.  
+* New syntax, attribute and declaration kinds introduced in Swift 6.4.
   [John Fairhurst](https://github.com/johnfairh)
 
-* Docs generation and code completion with Swift PM 6.4.  
+* Docs generation and code completion with Swift PM 6.4.
   [John Fairhurst](https://github.com/johnfairh)
 
 #### Bug Fixes
