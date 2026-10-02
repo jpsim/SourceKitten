@@ -2,6 +2,46 @@ import Foundation
 @testable import SourceKittenFramework
 import XCTest
 
+/// Grab bag of editting to remove references to absolute paths that are build-machine dependent
+private func stripAbsolutePaths(escapedJSONString: String) -> String {
+    func stripPathnameKey(key: String, escapedJSONString: String) -> String {
+        let escapedKey = key.replacingOccurrences(of: ".", with: "\\.")
+        let absolutePathRegex = try! NSRegularExpression(pattern: "\"\(escapedKey)\" : \"\\\\/[^\\\n]+", options: [])
+        return absolutePathRegex.stringByReplacingMatches(
+            in: escapedJSONString,
+            options: [],
+            range: NSRange(location: 0, length: escapedJSONString.bridge().length),
+            withTemplate: "\"\(escapedKey)\" : \"\",")
+    }
+
+    func stripXMLFileAttribute(escapedJSONString: String) -> String {
+        // ' file=\"\/Where did I put Xcode This Time/SDK/..."'
+        let fileAttrRegex = try! NSRegularExpression(pattern: " file=\\\\\"\\\\/.*?\"", options: [])
+        return fileAttrRegex.stringByReplacingMatches(
+            in: escapedJSONString,
+            options: [],
+            range: NSRange(location: 0, length: escapedJSONString.bridge().length),
+            withTemplate: " file=\\\\\"\\\\\"")
+    }
+#if compiler(>=6.4)
+
+    var escapedJSONString = escapedJSONString
+    let keys = [
+        "key.filepath",
+        "key.doc.file"
+    ]
+    for key in keys {
+        escapedJSONString = stripPathnameKey(key: key, escapedJSONString: escapedJSONString)
+    }
+    return stripXMLFileAttribute(escapedJSONString: escapedJSONString)
+
+#else
+
+    return stripPathnameKey(key: "key.filepath", escapedJSONString: escapedJSONString)
+
+#endif
+}
+
 func compareJSONString(withFixtureNamed name: String,
                        jsonString: CustomStringConvertible,
                        rootDirectory: String = fixturesDirectory,
@@ -20,12 +60,9 @@ func compareJSONString(withFixtureNamed name: String,
     let escapedFixturesDirectory = rootDirectory.replacingOccurrences(of: "/", with: "\\/")
 #endif
     let escapedJSONString = jsonString.replacingOccurrences(of: escapedFixturesDirectory, with: "")
+    // Strip out other absolute paths, typically to the Xcode installation directory
+    let actualContent = stripAbsolutePaths(escapedJSONString: escapedJSONString)
 
-    // Strip out any other absolute paths after that, since it's also dependent on the test machine's setup
-    let absolutePathRegex = try! NSRegularExpression(pattern: "\"key\\.filepath\" : \"\\\\/[^\\\n]+", options: [])
-    let actualContent = absolutePathRegex.stringByReplacingMatches(in: escapedJSONString, options: [],
-                                                                   range: NSRange(location: 0, length: escapedJSONString.bridge().length),
-                                                                   withTemplate: "\"key\\.filepath\" : \"\",")
     let expectedFile = File(path: versionedExpectedFilename(for: name))!
 
     // Use if changes are introduced by changes in SourceKitten.
@@ -68,8 +105,12 @@ private func compareDocs(withFixtureNamed name: String, file: StaticString = #fi
     compareJSONString(withFixtureNamed: name, jsonString: docs, file: file, line: line)
 }
 
+// swiftlint:disable:next function_body_length
 private func versionedExpectedFilename(for name: String) -> String {
     var versionNumbers = [String]()
+#if compiler(>=6.4)
+    versionNumbers += ["6.4"]
+#endif
 #if compiler(>=6.3)
     versionNumbers += ["6.3"]
 #endif
@@ -138,7 +179,9 @@ private func diff(original: String, modified: String) -> String {
 }
 
 private let buildingSwiftVersion: String = {
-#if compiler(>=6.3)
+#if compiler(>=6.4)
+    return "swift-6.4"
+#elseif compiler(>=6.3)
     return "swift-6.3"
 #elseif compiler(>=6.0)
     return "swift-6.0"

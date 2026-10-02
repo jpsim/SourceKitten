@@ -43,7 +43,7 @@ extension SourceKitten {
                     args.append(contentsOf: ["-sdk", sdkPath()])
                 }
             } else {
-                guard let module = Module(spmName: spmModule) else {
+                guard let module = Module(spmArguments: [], spmName: spmModule) else {
                     throw SourceKittenError.invalidArgument(description: "Bad module name")
                 }
                 args = module.compilerArguments

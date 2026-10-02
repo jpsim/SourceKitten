@@ -49,7 +49,7 @@ class ModuleTests: XCTestCase {
         let originalPbxproj = try String(contentsOf: pbxprojURL)
         let newPbxproj = originalPbxproj.replacingOccurrences(
             of: "MACOSX_DEPLOYMENT_TARGET = 10.9",
-            with: "MACOSX_DEPLOYMENT_TARGET = 10.13"
+            with: "MACOSX_DEPLOYMENT_TARGET = 12.0"
         )
         try newPbxproj.data(using: .utf8)?.write(to: pbxprojURL)
         let arguments = ["-workspace", "Commandant.xcworkspace", "-scheme", "Commandant"]
@@ -85,18 +85,21 @@ class ModuleTests: XCTestCase {
                           rootDirectory: commandantPath)
     }
 
-    func testSpmDefaultModule() {
-        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil
-            && ProcessInfo.processInfo.environment["TEST_WORKSPACE"] == nil else {
-            print(
-                """
-                Skipping \(#function) because we're running in Xcode and this test relies on the `.build` \
-                directory being present.
-                """
-            )
-            return
+    private var isXcode: Bool {
+        ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil ||
+        ProcessInfo.processInfo.environment["TEST_WORKSPACE"] != nil
+    }
+
+#if compiler(<6.4)
+    // Marking this test deprecated suppresses the deprecated warning on the
+    // pre-6.4 module initializer.
+    @available(*, deprecated)
+    func testSpmDefaultModuleSpm() throws {
+        guard !isXcode else {
+            throw XCTSkip("Not running in Xcode, skipping")
         }
         let skModule = Module(spmName: nil, inPath: projectRoot)
         XCTAssertEqual(skModule?.name, "SourceKittenFramework")
     }
+#endif
 }

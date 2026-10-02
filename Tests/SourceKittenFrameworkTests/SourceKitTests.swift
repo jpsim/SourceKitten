@@ -142,6 +142,12 @@ class SourceKitTests: XCTestCase {
         let actual = sourcekitStrings(startingWith: "source.decl.attribute.")
             .subtracting(attributesFoundInSwift5ButWeIgnore)
 
+#if compiler(>=6.4)
+#else
+        // added in Swift 6.4
+        expected.subtract([.diagnose, ._owned, .reparentable])
+#endif
+
 #if compiler(>=6.3)
         // removed in Swift 6.3
         expected.subtract([._section, ._used, ._resultDependsOnSelf, .cdecl])

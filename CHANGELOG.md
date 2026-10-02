@@ -7,9 +7,27 @@
 #### Enhancements
 
 * Add per-operation event hooks for framework diagnostics, preserving default
-  stderr output.  
+  stderr output.
   [Govind Yadav](https://github.com/GtechGovind)
   [#22](https://github.com/jpsim/SourceKitten/issues/22)
+
+#### Bug Fixes
+
+* None.
+
+## 0.39.0
+
+#### Breaking
+
+* None.
+
+#### Enhancements
+
+* New syntax, attribute and declaration kinds introduced in Swift 6.4.
+  [John Fairhurst](https://github.com/johnfairh)
+
+* Docs generation and code completion with Swift PM 6.4.
+  [John Fairhurst](https://github.com/johnfairh)
 
 #### Bug Fixes
 
@@ -25,8 +43,10 @@
 
 * New syntax, attribute and declaration kinds introduced in Swift 6.1-6.3.  
   [John Fairhurst](https://github.com/johnfairh)
+
 * Improve reporting of `sourcekitdInProc` loading failures.  
   [Daniel Sunarjo](https://github.com/sunarjodaniel)
+
 * Avoid `getcwd` in `absolutePathRepresentation()` for absolute paths.  
   [Brett Best](https://github.com/Brett-Best)
 
